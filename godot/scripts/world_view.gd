@@ -118,6 +118,7 @@ func _on_interact_pressed() -> void:
 
 
 func _trigger_interact() -> void:
+	print("[worldview] trigger_interact, _active=", _active, " traveler world_pos=", _traveler.world_pos)
 	if _active.is_empty():
 		return
 	hotspot_interacted.emit(str(_active.get("id", "")), _active)
@@ -139,6 +140,12 @@ func _walk_to_control_point(control_px: Vector2) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	print("[worldview] unhandled_key_input: ", event)
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_SPACE or event.keycode == KEY_ENTER:
 			_trigger_interact()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		print("[worldview] _input saw key: ", event.keycode, " handled=", get_viewport().is_input_handled())

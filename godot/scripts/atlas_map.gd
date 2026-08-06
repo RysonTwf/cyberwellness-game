@@ -100,7 +100,9 @@ func _refresh_greeting() -> void:
 
 func _on_realm_pressed(_id: String, realm_name: String) -> void:
 	_status.text = "%s isn't built yet — coming up next (godot.md §12)." % realm_name
+	print("[interact] realm pressed: ", realm_name)
 
 
 func _on_finale_pressed() -> void:
 	_status.text = "The finale certificate isn't built yet."
+	print("[interact] finale pressed")
