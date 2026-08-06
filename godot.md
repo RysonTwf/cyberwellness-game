@@ -11,6 +11,8 @@ This doc merges two sources:
 
 No code has been written yet — this is the plan to build from.
 
+**Revision note:** the original draft kept all four realms on their existing DOM-era mechanics (Sort/Sort/Spot/Balance) — three of the four are variations on "put things in a bin," which reads as flat once it's an actual game instead of a web form. This revision borrows two mechanics from the example doc's genre-per-level structure — a platformer for Passworld and a stepping-stone decision run for Privacy Peaks — while keeping Bully Bog's Sort and Balance Bay's Balance, which don't have a better analog in the example. See §2.3, §5, and §6 for the updated mechanics.
+
 ---
 
 ## 1. Decision: stay 2D, not 3D
@@ -29,8 +31,8 @@ Where extra visual depth is wanted, get it inside 2D: parallax background layers
 From `design.md` + `storyline.md`, unchanged in spirit, now as build constraints:
 
 1. **No fail state.** The unsafe choice is never a game over — it triggers a warm redirect line from Comet and returns the player to the same decision. Godot implementation: decision scenes never `queue_free()` on the wrong pick; they just swap the dialogue label and re-enable the choice buttons.
-2. **The mechanic is the lesson**, already true here (sort locked-vs-share info, spot the scam signals, sort kind-vs-unkind replies, balance the day) — preserve these four mechanics as-is rather than adopting the example doc's platformer/river/boss mechanics, which would require inventing new content this project doesn't have.
-3. **Two mini-game shapes, reused with different content** (`design.md` §5): *Sort* (drag into two bins) and *Spot* (tap flagged items), plus the one bespoke mechanic, *Balance* (fill 6 day-slots, no single right answer). Keep exactly these three Godot mini-game scenes, data-driven per realm — don't grow a fourth mechanic per realm the way the example doc's 4-genre structure does.
+2. **The mechanic is the lesson.** Winning has to require doing the safe behaviour, not just be themed around it — this is why Passworld's platformer meter is built from actual character-type mixing (not just "collect anything") and Privacy Peaks' river stones are the actual scam scenarios, not decoration around an unrelated jumping puzzle.
+3. **Four mechanics, one per realm, each reused nowhere else** (revised from the original three-mechanic, bin-heavy set): *Platformer* (Passworld), *Stepping-Stone Decision Run* (Privacy Peaks), *Sort* (Bully Bog), *Balance* (Balance Bay). This trades "fewer controls to learn" for "each realm feels distinct," which is worth it once this is a real game and not a form — see the revision note above and §6 for the mapping.
 4. **Nothing is a villain.** Keeper Vex, the Fog, the Glimmer are all misguided-not-malicious; dialogue tone must survive the port verbatim (see §5 for the actual line-by-line content).
 5. **No login, no data collection**, already true (no accounts; only a first name held in memory). Godot save data (§8) must stay local-only, same as the example doc's Principle 5.
 6. **Large tap targets, no timers, color+icon+text redundancy, `prefers-reduced-motion`-equivalent restraint** — carry `design.md` §8 forward as Godot's accessibility bar.
@@ -41,10 +43,10 @@ From `design.md` + `storyline.md`, unchanged in spirit, now as build constraints
 
 | Realm | Topic | Mechanic | Stamp |
 |---|---|---|---|
-| Passworld | Passwords & personal info | Sort — *Guard the Vault* | Key (gold) |
-| Privacy Peaks | Strangers & scams online | Spot — *Clear the Fog* | Compass (teal) |
-| Bully Bog | Cyberbullying & kindness | Sort — *Clear the Water* | Heart (coral) |
-| Balance Bay | Screen time balance | Balance — *Balance the Day* | Sun (periwinkle) |
+| Passworld | Passwords & personal info | Platformer — *Password Fortress* (new, replaces the "Guard the Vault" sort) | Key (gold) |
+| Privacy Peaks | Strangers & scams online | Stepping-Stone Run — *Cross the Fog* (new, replaces the separate decision card + "Clear the Fog" spot game) | Compass (teal) |
+| Bully Bog | Cyberbullying & kindness | Sort — *Clear the Water* (unchanged) | Heart (coral) |
+| Balance Bay | Screen time balance | Balance — *Balance the Day* (unchanged) | Sun (periwinkle) |
 
 Realms are playable in any order from the Atlas hub; the finale (Traveler's Pledge + certificate) unlocks once all four stamps are earned — same flow as `design.md` §4, just re-hosted in Godot's scene tree instead of React state.
 
@@ -63,10 +65,17 @@ Realm.tscn
   Hotspots (Node2D)            # Area2D per stop: story / decision / game / rule
   UI (CanvasLayer)
     DialogueCard (Control)
-    ChoiceCard x2 (Control)
-    MiniGame<Sort|Spot|Balance> (Control, instanced per realm's game.type)
+    ChoiceCard x2 (Control)    # Bully Bog only, under this revision — see below
+    MiniGame<Platformer|River|Sort|Balance> (instanced per realm's game.type)
   RealmState (Node, script)    # local state machine: idle → story → decision → game → rule → stamped
 ```
+
+Bully Bog and Balance Bay keep the original four-phase shape (story → decision card → mini-game → rule) unchanged. Passworld and Privacy Peaks now fold decision into the mini-game itself, since that's the point of borrowing these two mechanics:
+
+- **Passworld:** the Keeper Vex decision card (share info vs. decline) stays exactly as-is — it's about a stranger's request, a separate lesson from password composition. What changes is the phase after it: instead of a static Sort game, it's the Platformer (§5, §6). `RealmState` becomes idle → story → decision → **platformer** → rule → stamped.
+- **Privacy Peaks:** the single decision card and the separate "Clear the Fog" spot game merge into one phase — the stepping-stone run. `RealmState` becomes idle → story → **river run** → rule → stamped (one fewer phase, not one more).
+
+`MiniGame<Platformer>` additionally needs a `CharacterBody2D` (reuses `Traveler`'s controller with jump added) and `Area2D` hazards/collectibles — the only mini-game in this revision that isn't pure `Control` UI, which is why it's flagged as the highest-effort addition in §12.
 
 ### 4.1 Walk system (ports `src/world/useWalker.js` directly)
 
@@ -89,15 +98,14 @@ This section exists so whoever builds the JSON files isn't re-deriving dialogue 
 
 ### Passworld (gold · key)
 - **Story:** Comet — *"Passworld! Every door here is a vault, and every vault has a keeper."* → Keeper Vex asks for full name, school, address, and password "just so I know you're trustworthy."
-- **Decision:** Answer everything (unsafe → warm redirect: a stranger never needs your real info or password to prove anything) vs. *"I don't think I should share that with someone I just met."* (safe → Vex approves, lets you through).
-- **Game — Sort, "Guard the Vault":** bins *Keep It Locked* / *Safe to Share*. Locked: home address, full name, school, password, phone number. Share: favourite colour, favourite game, nickname, hobby.
-- **Rule:** name/address/school/password stay locked; colour/nickname/games are fine to share; a real adult never needs your password.
+- **Decision (unchanged):** Answer everything (unsafe → warm redirect: a stranger never needs your real info or password to prove anything) vs. *"I don't think I should share that with someone I just met."* (safe → Vex approves, lets you through the gate, into the vault-keep proper).
+- **Game — Platformer, "Password Fortress" (new, adapted from the example doc's Level 1):** the Traveler runs/jumps across a short vault-interior platform section, collecting floating letter, number, and symbol tiles. A password-strength meter fills only from a *mix* of tile types, not raw count — collecting five letters and nothing else caps out weak. Decoy tiles shaped like common weak passwords (`123456`, `password`) are tempting (easy to reach, clustered together) but *reduce* the meter if grabbed, teaching "looks like a password, isn't a strong one" the way the original Sort game's locked/share bins taught "looks shareable, isn't." A cartoon hacker patrols the platforms and nudges the Traveler back to the start of the current section on contact — momentum lost, not a life lost, no game over screen, consistent with Principle 1. The exit gate (visually the same vault door from the decision phase) opens once the meter reads "Strong."
+- **Rule (unchanged):** name/address/school/password stay locked; colour/nickname/games are fine to share; a real adult never needs your password — now doubly reinforced, since the platformer just made "what makes a password strong" a physical skill instead of a sorted fact.
 
 ### Privacy Peaks (teal · compass)
-- **Story:** Comet warns fog hides who's really messaging you. "The Fog" sends a message: won a free tablet, click fast, "whats ur address so we can send it lol."
-- **Decision:** Click the link (unsafe → nothing good happens, three scam signs at once) vs. *"That looks like a scam. I'm not clicking, and I'll tell a trusted adult."* (safe → fog clears).
-- **Game — Spot, "Clear the Fog":** 6 tappable messages, 4 flagged (prize you didn't enter, artificial urgency, address request, "meet at the park, don't tell your parents"), 2 not flagged (plain hello, favourite-game question — reinforces that not every stranger message is a trap).
-- **Rule:** don't guess through fog — rushing, prizes, address requests, and secrecy asks are the four signs; stop, don't reply, show a trusted adult.
+- **Story (unchanged):** Comet warns fog hides who's really messaging you. "The Fog" sends a message: won a free tablet, click fast, "whats ur address so we can send it lol."
+- **Game — Stepping-Stone Run, "Cross the Fog" (new, adapted from the example doc's Level 2 river crossing; replaces both the old single decision card and the separate "Clear the Fog" spot game):** the Traveler approaches a run of stones crossing the misty water. Each stone surfaces one line from the original "Clear the Fog" message set as its own scenario — the prize offer, the "click fast" urgency, the address request, the "meet at the park, don't tell your parents" ask, plus the two that are actually fine (a plain hello, a favourite-game question) so the run doesn't train "every stranger message is a trap." Picking the safe response on a stone solidifies it and the Traveler crosses; picking unsafe makes the stone wobble and the Traveler "falls in" (a soft splash animation, not a drowning) with Comet's existing per-message warm-redirect line, then the same stone is offered again. No content had to be invented — the six messages already in `realms.js` map one-to-one onto six stones.
+- **Rule (unchanged):** don't guess through fog — rushing, prizes, address requests, and secrecy asks are the four signs; stop, don't reply, show a trusted adult.
 
 ### Bully Bog (coral · heart)
 - **Story:** Pockets is singing; a comment appears — *"nobody wants to hear this, go away"* — and two other bog creatures start typing, looking at the player.
@@ -123,11 +131,12 @@ This section exists so whoever builds the JSON files isn't re-deriving dialogue 
 
 | Mechanic | Used in | Godot approach |
 |---|---|---|
-| **Sort** | Passworld, Bully Bog | Draggable `Control`/`TextureRect` cards (custom `draggable.gd`, same pattern as the example doc's Level 3), two `Area2D`- or `Control`-based drop zones. Immediate per-item feedback, not end-of-round scoring — matches `design.md`'s "no score pressure." |
-| **Spot** | Privacy Peaks | A vertical list of tappable message `Control` nodes; tap toggles a "flagged" state with an icon + the item's `note` text shown, not just a color change (accessibility rule: color is never the only signal). |
+| **Platformer** | Passworld | `CharacterBody2D` + `TileMap` level geometry, `Area2D` collectible tiles (letters/numbers/symbols + weak-password decoys) and hazard (`AnimationPlayer`-driven hacker patrol, `Area2D` contact → soft knockback to section start), `Camera2D` following the player. The one mechanic in this revision with real physics — see §12 for why it's sequenced last. |
+| **Stepping-Stone Run** | Privacy Peaks | A `Node2D` path of stone sprites, each an `Area2D` trigger that opens a `Control` scenario popup on approach (reusing `DialogueCard`/`ChoiceCard`); correct answer plays a "solidify" `AnimationPlayer` clip and advances a `CharacterBody2D` or scripted-walk tween across it, wrong answer plays a "wobble/splash" clip and re-opens the same stone. Simple state machine tracks which of the 6 stones are cleared. |
+| **Sort** | Bully Bog | Draggable `Control`/`TextureRect` cards (custom `draggable.gd`, same pattern as the example doc's Level 3), two `Area2D`- or `Control`-based drop zones. Immediate per-item feedback, not end-of-round scoring — matches `design.md`'s "no score pressure." |
 | **Balance** | Balance Bay | 6 empty slot `Control`s + a card tray; tapping a card fills the next open slot, tapping a filled slot returns it to the tray. A `verdict.gd` script checks the screen/non-screen ratio against the three verdict strings already written (`allScreen` / `noScreen` / `level`) and nudges a "tide" sprite's height via `Tween`. |
 
-None of these need physics bodies or collision — all are `Control`-based UI mini-games layered in a `CanvasLayer` above the walkable realm, exactly like the current DOM overlay approach.
+Sort, Stepping-Stone Run, and Balance are all `Control`-based UI layered in a `CanvasLayer` above the walkable realm, same as the current DOM overlay approach. Platformer is the exception — it needs actual collision and a camera, since that's what makes it feel different from the other three rather than being "Sort with extra steps."
 
 ---
 
@@ -148,9 +157,10 @@ res://
   scripts/
     traveler_controller.gd # ports useWalker.js
     realm_state.gd         # per-realm story→decision→game→rule→stamp machine
-    minigame_sort.gd
-    minigame_spot.gd
-    minigame_balance.gd
+    minigame_platformer.gd # Passworld only
+    minigame_river.gd      # Privacy Peaks only
+    minigame_sort.gd       # Bully Bog
+    minigame_balance.gd    # Balance Bay
     journey_manager.gd     # Autoload: traveler name, current screen, realmProgress dict
     stamp_manager.gd       # Autoload: which stamps are earned, drives JournalProgress UI
   data/
@@ -231,14 +241,16 @@ Performance targets stay conservative regardless (per §1): modest sprite/partic
 
 ## 12. Suggested build order
 
+Sequenced by mechanical complexity, cheapest first — same logic the example doc uses for saving its platformer for last:
+
 1. **Foundation:** `journey_manager` + `stamp_manager` Autoloads, `atlas_gate.tscn` (name entry, meet Comet), `atlas_map.tscn` hub with 4 realm nodes + stamp dots (locked/unlocked art only, no realms wired yet).
-2. **One full realm vertical slice — Passworld first** (already the simplest: one decision, one Sort game, no bespoke mechanic). Proves the walk system, hotspot gating, dialogue card, decision card, Sort mini-game, stamp thunk, and page-fold transition all at once. → **Playtest checkpoint** before touching the other three.
-3. **Bully Bog** — reuses the Sort mini-game verbatim with new content; validates that realm data is fully JSON-driven with no code changes needed for a second Sort realm.
-4. **Privacy Peaks** — introduces the Spot mini-game.
-5. **Balance Bay** — introduces the bespoke Balance mini-game (the one mechanic without a precedent in the example doc, so budget it its own design pass on the tide-tween feel).
+2. **Bully Bog first** (not Passworld, under this revision) — plain `Control`-based Sort, no physics, validates the walk system, hotspot gating, dialogue/decision cards, stamp thunk, and page-fold transition with the lowest-risk mechanic. → **Playtest checkpoint.**
+3. **Balance Bay** — reuses the same UI-only approach with the bespoke slot/tray/tide-tween mechanic. → **Playtest checkpoint.**
+4. **Privacy Peaks** — the stepping-stone run: new state machine (per-stone pass/fail, cross animation) but still no physics body, still `Control`+`Area2D` triggers. → **Playtest checkpoint.**
+5. **Passworld** — the platformer, last on purpose: real collision, a patrolling hazard, a camera follow, and the only mechanic that needs genuine playtesting for game-feel (jump arc, hazard fairness) rather than just content correctness. → **Playtest checkpoint.**
 6. **Finale:** certificate screen + Traveler's Pledge, unlock-at-4-stamps gating.
 7. **Polish pass:** stamp jitter/rotation baking, page-fold timing, audio (currently absent from the React version — optional addition, not required for parity).
-8. **Export:** HTML5 export, test in an actual browser (not just the Godot editor's embedded preview) before calling it done.
+8. **Export:** HTML5 export, test in an actual browser (not just the Godot editor's embedded preview) before calling it done — the platformer in particular needs a check that keyboard input and collision feel right in an exported build, not just the editor.
 
 ---
 
@@ -246,7 +258,9 @@ Performance targets stay conservative regardless (per §1): modest sprite/partic
 
 - **Save system:** add persistence (§8) as part of the port, or intentionally keep it session-only to match the current product's privacy stance as closely as possible?
 - **Audio:** the current game is silent (no audio system in `src/`). Add narration/SFX in the Godot version, or keep it silent for parity?
-- **Scope of the first milestone:** build all four realms before anything is playable end-to-end, or ship the Passworld vertical slice (step 2 above) as a standalone demo first?
+- **Scope of the first milestone:** build all four realms before anything is playable end-to-end, or ship the Bully Bog vertical slice (step 2 above) as a standalone demo first?
+- **Passworld platformer difficulty:** the example doc's original version scaled hazard speed and meter requirements by grade band, which this game doesn't have. Worth a single difficulty pass, or keep it as gentle as the rest of the game (slow hacker, generous platforms) by default?
+- **Content authoring for the river run:** the six existing "Clear the Fog" messages map cleanly onto six stones, but that's more stones than the example doc's own Level 2 recommends (4–6 scenarios, aimed at a ~4–5 min level budget) — worth trimming to 4–5 stones, or keep all six since the content already exists?
 
 ---
 
