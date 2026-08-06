@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowRight, Key, Compass, Heart, Sun, RefreshCw, Check, X } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
@@ -93,8 +94,12 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
         onInteract={() => setOpen(true)}
       />
 
-      {/* ---- The step panel, opened by walking up to the pin ---------------- */}
-      {open && (
+      {/* ---- The step panel, opened by walking up to the pin ----------------
+          Portalled to <body>. `.fold` animates a perspective/rotateY transform,
+          which makes it a containing block — so the scrim's `position: fixed`
+          was resolving against the realm card instead of the viewport, trapping
+          the panel inside the scene box and scrolling its buttons out of reach. */}
+      {open && createPortal(
         <div className="panel-scrim" onClick={undefined}>
           <div className="panel" style={accentVars}>
             {/* ---------------------------------------------------- story -- */}
@@ -223,7 +228,8 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   );

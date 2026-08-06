@@ -35,6 +35,27 @@ function PassworldScene({ mood }) {
     <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
       <Sky tint={gold} />
 
+      {/* clouds over the kingdom, filling the band of sky above the wall */}
+      <g fill="#f6f9fa" opacity="0.9">
+        <g>
+          <ellipse cx="188" cy="54" rx="34" ry="14" />
+          <ellipse cx="214" cy="47" rx="24" ry="16" />
+          <ellipse cx="162" cy="48" rx="20" ry="11" />
+        </g>
+        <g>
+          <ellipse cx="392" cy="40" rx="28" ry="12" />
+          <ellipse cx="414" cy="34" rx="20" ry="14" />
+        </g>
+        <g>
+          <ellipse cx="286" cy="26" rx="24" ry="10" />
+          <ellipse cx="304" cy="22" rx="16" ry="11" />
+        </g>
+      </g>
+      <g stroke={INK} strokeWidth="2" fill="none" opacity="0.22" strokeLinecap="round">
+        <path d="M330 68 q7 -6 14 0" />
+        <path d="M346 64 q7 -6 14 0" />
+      </g>
+
       {/* distant towers */}
       <g fill={gold} opacity="0.45">
         <rect x="42" y="52" width="30" height="104" rx="6" />
@@ -96,8 +117,9 @@ function PassworldScene({ mood }) {
         )}
       </g>
 
-      {/* Keeper Vex, with a very long clipboard */}
-      <g transform="translate(348 112)">
+      {/* Keeper Vex, with a very long clipboard. Dropped so the base of the
+          body lands on the ground line at y=188 instead of hovering above it. */}
+      <g transform="translate(348 132)">
         <rect x="0" y="0" width="50" height="56" rx="16" fill={gold} />
         <rect x="0" y="0" width="50" height="56" rx="16" fill="none" stroke={INK} strokeWidth="2" opacity="0.2" />
         <circle cx="15" cy="20" r="4.4" fill={INK} opacity="0.75" />
@@ -163,9 +185,11 @@ function PrivacyScene({ mood }) {
         <path d="M33 -22 l24 8 l-24 8 Z" fill={teal} />
       </g>
 
-      {/* the path forward — only visible once the fog thins */}
+      {/* The path forward — only visible once the fog thins. It starts down on
+          the walkable ground and recedes up the ridge, passing through the
+          'rule' pin at (470, 213) so the pin sits on the path, not beside it. */}
       <path
-        d="M130 244 Q250 224 320 206 T496 168"
+        d="M360 262 Q424 238 462 214 T546 170"
         fill="none"
         stroke={teal}
         strokeWidth="5"
@@ -175,15 +199,9 @@ function PrivacyScene({ mood }) {
         style={{ transition: 'opacity 0.6s ease' }}
       />
 
-      {/* the fog */}
-      <g style={{ transition: 'opacity 0.6s ease' }} opacity={clear ? 0.18 : 1}>
-        <ellipse cx="176" cy="150" rx="132" ry="36" fill="#eef3f4" />
-        <ellipse cx="372" cy="182" rx="164" ry="40" fill="#eef3f4" />
-        <ellipse cx="292" cy="118" rx="120" ry="28" fill="#f2f6f7" />
-        <ellipse cx="486" cy="140" rx="104" ry="30" fill="#eef3f4" />
-      </g>
-
-      {/* a shape in the fog, never quite resolving */}
+      {/* A shape in the fog, never quite resolving. It is drawn UNDER the fog on
+          purpose — the whole point of the Fog is that you can't make out who is
+          on the other side, and painting the face on top resolved it perfectly. */}
       {!clear && (
         <g transform="translate(392 116)">
           <circle cx="24" cy="24" r="27" fill={teal} opacity="0.5" />
@@ -192,6 +210,14 @@ function PrivacyScene({ mood }) {
           <path d="M14 34 Q24 40 34 34" stroke={INK} strokeWidth="2.6" fill="none" opacity="0.45" strokeLinecap="round" />
         </g>
       )}
+
+      {/* the fog */}
+      <g style={{ transition: 'opacity 0.6s ease' }} opacity={clear ? 0.18 : 1}>
+        <ellipse cx="176" cy="150" rx="132" ry="36" fill="#eef3f4" opacity="0.92" />
+        <ellipse cx="372" cy="182" rx="164" ry="40" fill="#eef3f4" opacity="0.92" />
+        <ellipse cx="292" cy="118" rx="120" ry="28" fill="#f2f6f7" opacity="0.9" />
+        <ellipse cx="486" cy="140" rx="104" ry="30" fill="#eef3f4" opacity="0.86" />
+      </g>
 
       {/* ground */}
       <rect x="0" y="222" width="560" height="58" fill={teal} opacity="0.24" />
@@ -209,6 +235,47 @@ function BogScene({ mood }) {
     <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
       <Sky tint={green} opacity="0.1" />
 
+      {/* The far side of the bog. Without it the water simply begins in mid-air
+          at y=150; a treeline gives it another bank to start from and fills a
+          sky that was otherwise empty. */}
+      {/* Two overlapping layers of canopy at different depths — one row of
+          evenly-sized circles reads as bubbles, not as trees. */}
+      <g fill={green} opacity="0.2">
+        {[
+          [18, 116, 32],
+          [92, 106, 27],
+          [174, 114, 34],
+          [258, 104, 29],
+          [342, 116, 31],
+          [424, 106, 28],
+          [508, 114, 33],
+          [556, 110, 26],
+        ].map(([cx, cy, r]) => (
+          <circle key={`b${cx}`} cx={cx} cy={cy} r={r} />
+        ))}
+      </g>
+      <g fill={INK} opacity="0.16">
+        {[52, 158, 274, 398, 520].map((x) => (
+          <rect key={x} x={x - 3.5} y="124" width="7" height="30" rx="2.5" />
+        ))}
+      </g>
+      <g fill={green} opacity="0.42">
+        {[
+          [52, 130, 23],
+          [104, 138, 16],
+          [158, 126, 25],
+          [212, 136, 18],
+          [274, 128, 22],
+          [332, 138, 17],
+          [398, 126, 26],
+          [458, 136, 19],
+          [520, 130, 23],
+        ].map(([cx, cy, r]) => (
+          <circle key={`f${cx}`} cx={cx} cy={cy} r={r} />
+        ))}
+      </g>
+      <path d="M0 148 Q90 140 190 146 T380 144 T560 148 L560 158 L0 158 Z" fill={green} opacity="0.42" />
+
       {/* the water — darkens when unkind things land in it */}
       <rect
         x="0"
@@ -221,12 +288,21 @@ function BogScene({ mood }) {
       />
       <path d="M0 150 H560" stroke={INK} strokeWidth="2" opacity="0.2" />
 
-      {/* ripples */}
+      {/* ripples, kept inside the open water between y=150 and the bank */}
       <g stroke="#f6f9fa" strokeWidth="2.4" fill="none" opacity="0.5">
-        <path d="M44 184 q18 -7 36 0 t36 0" />
-        <path d="M436 206 q18 -7 36 0 t36 0" />
-        <path d="M196 232 q18 -7 36 0 t36 0" />
+        <path d="M44 178 q18 -7 36 0 t36 0" />
+        <path d="M436 162 q18 -7 36 0 t36 0" />
+        <path d="M196 172 q18 -7 36 0 t36 0" />
       </g>
+
+      {/* The near bank. The walkable strip starts at scene y=196, so the bog
+          needs a shore under it — without this the Traveler walks on water. */}
+      <path
+        d="M0 188 Q130 178 270 186 T560 182 L560 280 L0 280 Z"
+        fill={green}
+        opacity="0.5"
+      />
+      <path d="M0 188 Q130 178 270 186 T560 182" fill="none" stroke={INK} strokeWidth="2" opacity="0.18" />
 
       {/* reeds */}
       <g stroke={green} strokeWidth="5" strokeLinecap="round" opacity="0.9">
@@ -236,14 +312,15 @@ function BogScene({ mood }) {
         <path d="M510 158 q-6 -32 4 -48" />
       </g>
 
-      {/* lily pads */}
+      {/* lily pads, floating on the water rather than beached on the bank */}
       <g fill={green} opacity="0.8">
-        <ellipse cx="118" cy="206" rx="38" ry="12" />
+        <ellipse cx="118" cy="160" rx="38" ry="12" />
         <ellipse cx="466" cy="176" rx="30" ry="10" />
       </g>
 
-      {/* Pockets — sunk low, or up and singing again */}
-      <g transform={`translate(232 ${clear ? 84 : 106})`} style={{ transition: 'transform 0.6s ease' }}>
+      {/* Pockets — sunk low, or up and singing again. Both positions keep them
+          in the water, between the far edge at y=150 and the bank at y=186. */}
+      <g transform={`translate(232 ${clear ? 96 : 118})`} style={{ transition: 'transform 0.6s ease' }}>
         <ellipse cx="48" cy="66" rx="54" ry="14" fill={green} opacity="0.85" />
         <path d="M12 62 Q48 30 84 62 Q84 72 48 72 Q12 72 12 62 Z" fill={green} />
         <circle cx="32" cy="34" r="12" fill={green} />
@@ -298,8 +375,10 @@ function BayScene({ mood }) {
   const peri = 'var(--periwinkle)';
   const warm = 'var(--gold)';
 
-  // The tide sits high while the Glimmer has hold of you, and drops when you go.
-  const tideY = settled ? 196 : 152;
+  // The horizon is fixed; it's the shoreline that moves. The Glimmer holds the
+  // tide high up the beach, and letting go lets it draw back toward the sea —
+  // so the whole beach group slides up the screen, exposing more sand.
+  const tideShift = settled ? -26 : 0;
 
   return (
     <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
@@ -308,35 +387,61 @@ function BayScene({ mood }) {
       {/* dusk sun, low */}
       <circle cx="92" cy="82" r="32" fill={warm} opacity={settled ? 0.7 : 0.34} />
 
-      {/* sea */}
-      <rect
-        x="0"
-        y={tideY}
-        width="560"
-        height={280 - tideY}
-        fill={peri}
-        opacity="0.5"
-        style={{ transition: 'y 0.6s ease, height 0.6s ease' }}
-      />
+      {/* Sunset-lit cloud bars, and the first stars — which only really come out
+          once the Glimmer is put down. Looking up is part of the reward. */}
+      <g fill={warm} opacity="0.26">
+        <g>
+          <ellipse cx="112" cy="120" rx="46" ry="10" />
+          <ellipse cx="146" cy="115" rx="30" ry="11" />
+        </g>
+        <g>
+          <ellipse cx="396" cy="110" rx="40" ry="9" />
+          <ellipse cx="422" cy="106" rx="26" ry="10" />
+        </g>
+        <ellipse cx="262" cy="136" rx="34" ry="8" />
+      </g>
       <g
-        stroke="#f6f9fa"
-        strokeWidth="2.6"
-        fill="none"
-        opacity="0.6"
-        style={{ transition: 'transform 0.6s ease' }}
-        transform={`translate(0 ${tideY})`}
+        fill={warm}
+        opacity={settled ? 0.95 : 0.2}
+        style={{ transition: 'opacity 0.6s ease' }}
       >
-        <path d="M34 20 q16 -8 32 0 t32 0" />
-        <path d="M188 38 q16 -8 32 0 t32 0" />
-        <path d="M320 24 q16 -8 32 0 t32 0" />
+        <circle cx="300" cy="34" r="2.8" />
+        <circle cx="356" cy="62" r="2.1" />
+        <circle cx="414" cy="30" r="2.5" />
+        <circle cx="466" cy="58" r="1.9" />
+        <circle cx="514" cy="26" r="2.6" />
+        <circle cx="238" cy="52" r="2" />
+        <circle cx="486" cy="96" r="1.8" />
       </g>
 
-      {/* sand */}
-      <path d="M0 226 Q140 212 300 230 T560 220 L560 280 L0 280 Z" fill={warm} opacity="0.4" />
+      {/* gulls heading home */}
+      <g stroke={INK} strokeWidth="2" fill="none" opacity="0.24" strokeLinecap="round">
+        <path d="M148 62 q7 -6 14 0" />
+        <path d="M164 58 q7 -6 14 0" />
+      </g>
+
+      {/* the sea, from a fixed horizon down to the beach */}
+      <rect x="0" y="150" width="560" height="130" fill={peri} opacity="0.5" />
+      <path d="M0 150 H560" stroke={INK} strokeWidth="2" opacity="0.12" />
+
+      {/* The beach. Everything that belongs to the water's edge moves together,
+          so the wet line and the breaking waves never come apart. The sand runs
+          well past y=280 so sliding it up can't expose a gap at the bottom. */}
+      <g style={{ transition: 'transform 0.6s ease' }} transform={`translate(0 ${tideShift})`}>
+        {/* waves, breaking just short of the sand */}
+        <g stroke="#f6f9fa" strokeWidth="2.6" fill="none" opacity="0.6">
+          <path d="M34 180 q16 -8 32 0 t32 0" />
+          <path d="M212 172 q16 -8 32 0 t32 0" />
+          <path d="M396 182 q16 -8 32 0 t32 0" />
+        </g>
+        {/* wet sand, then dry sand further up the beach */}
+        <path d="M0 192 Q140 182 300 198 T560 190 L560 340 L0 340 Z" fill={warm} opacity="0.26" />
+        <path d="M0 206 Q140 196 300 212 T560 204 L560 340 L0 340 Z" fill={warm} opacity="0.42" />
+      </g>
 
       {/* the Glimmer, out over the water */}
       <g
-        transform="translate(196 70)"
+        transform="translate(196 88)"
         opacity={settled ? 0.42 : 1}
         style={{ transition: 'opacity 0.6s ease' }}
       >
@@ -345,22 +450,49 @@ function BayScene({ mood }) {
         <circle cx="34" cy="34" r="8" fill="#f6f9fa" />
       </g>
 
-      {/* the bonfire down the beach, and friends waiting by it */}
-      <g transform="translate(438 156)">
-        <circle cx="22" cy="34" r={settled ? 34 : 18} fill={warm} opacity={settled ? 0.34 : 0.14} style={{ transition: 'r 0.6s ease, opacity 0.6s ease' }} />
-        <path d="M6 52 L40 36 M40 52 L6 36" stroke={INK} strokeWidth="5" strokeLinecap="round" opacity="0.6" />
-        <path
-          d="M22 6 Q34 24 27 36 Q22 44 22 44 Q22 44 17 36 Q10 24 22 6 Z"
+      {/* The bonfire down the beach, and friends waiting by it. Fixed to the dry
+          sand, not to the tide group — a fire nobody moves when the water goes
+          out. Its base sits at y=254, well clear of the wet line. */}
+      <g transform="translate(438 202)">
+        {/* firelight pooling on the sand — widens once the fire is properly lit */}
+        <ellipse
+          cx="22"
+          cy="50"
+          rx={settled ? 64 : 34}
+          ry={settled ? 18 : 10}
           fill={warm}
-          opacity={settled ? 1 : 0.42}
+          opacity={settled ? 0.3 : 0.12}
+          style={{ transition: 'rx 0.6s ease, ry 0.6s ease, opacity 0.6s ease' }}
+        />
+        {/* crossed logs */}
+        <path d="M2 54 L42 34 M42 54 L2 34" stroke={INK} strokeWidth="6" strokeLinecap="round" opacity="0.6" />
+        {/* flame: a gold body with a pale heart, so it reads as fire at any size */}
+        <path
+          d="M22 0 Q40 22 31 40 Q22 50 22 50 Q22 50 13 40 Q4 22 22 0 Z"
+          fill={warm}
+          opacity={settled ? 1 : 0.4}
           style={{ transition: 'opacity 0.6s ease' }}
         />
-        {/* two friends, sitting */}
-        <g fill={INK} opacity="0.55">
-          <circle cx="-20" cy="32" r="8" />
-          <path d="M-30 52 q10 -15 20 0 Z" />
-          <circle cx="66" cy="34" r="8" />
-          <path d="M56 52 q10 -15 20 0 Z" />
+        <path
+          d="M22 16 Q31 28 26 40 Q22 46 22 46 Q22 46 18 40 Q13 28 22 16 Z"
+          fill="#f6f9fa"
+          opacity={settled ? 0.72 : 0.22}
+          style={{ transition: 'opacity 0.6s ease' }}
+        />
+        {/* embers, only once you've actually sat down */}
+        {settled && (
+          <g fill={warm} opacity="0.85">
+            <circle cx="10" cy="-12" r="2.6" />
+            <circle cx="33" cy="-22" r="2" />
+            <circle cx="20" cy="-31" r="1.6" />
+          </g>
+        )}
+        {/* two friends, sitting, each in their own colour so they read as people */}
+        <g>
+          <circle cx="-22" cy="30" r="9" fill={INK} opacity="0.7" />
+          <path d="M-34 54 q12 -18 24 0 Z" fill={peri} opacity="0.85" />
+          <circle cx="68" cy="32" r="9" fill={INK} opacity="0.7" />
+          <path d="M56 54 q12 -18 24 0 Z" fill={warm} opacity="0.9" />
         </g>
       </g>
     </svg>

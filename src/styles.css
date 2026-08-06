@@ -1136,12 +1136,34 @@ p {
 .panel {
   position: relative;
   width: min(760px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--paper);
   border: 1.5px solid var(--line);
   border-radius: var(--radius-lg);
   padding: clamp(18px, 4vw, 28px);
   box-shadow: var(--shadow-lift);
   animation: panel-in 0.22s ease both;
+}
+
+/* The action row sticks to the bottom of the panel. A long story beat can push
+   the button past the fold on a short screen, and a child who cannot see the
+   way forward is simply stuck — there is no scroll affordance to teach here. */
+.panel .center,
+.panel .panel-actions {
+  position: sticky;
+  /* The negative bottom margin has to be matched by an equal negative sticky
+     offset, or the bar parks one padding-width above the scrollport floor and
+     content keeps scrolling through the gap underneath it. */
+  bottom: calc(-1 * clamp(18px, 4vw, 28px));
+  z-index: 3;
+  /* Bleed over the panel's own padding so the bar spans the full width and
+     nothing shows through behind the buttons. */
+  margin: 6px calc(-1 * clamp(18px, 4vw, 28px)) calc(-1 * clamp(18px, 4vw, 28px));
+  padding: 14px clamp(18px, 4vw, 28px) clamp(18px, 4vw, 28px);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
 }
 
 @keyframes panel-in {
@@ -1475,5 +1497,101 @@ p {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Dev-only: the #art scene contact sheet (src/dev/ArtPreview.jsx).
+   Not part of the game UI.
+   ------------------------------------------------------------------------ */
+
+.ap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.ap h1 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+.ap > p {
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.ap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.ap-cell figcaption {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.ap-cell figcaption em {
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.ap-frame {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  border: 2px solid rgba(31, 52, 82, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ap-frame > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ap-band {
+  position: absolute;
+  background: rgba(224, 99, 122, 0.16);
+  outline: 1.5px dashed rgba(224, 99, 122, 0.85);
+  pointer-events: none;
+}
+
+.ap-stop,
+.ap-spawn {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--periwinkle);
+  outline: 2px solid #fff;
+  pointer-events: none;
+}
+
+.ap-spawn {
+  background: var(--teal);
+}
+
+.ap-stop span,
+.ap-spawn span {
+  position: absolute;
+  left: 12px;
+  top: -6px;
+  font: 700 10px/1 var(--font-stamp), monospace;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 2px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .ap-grid {
+    grid-template-columns: 1fr;
   }
 }

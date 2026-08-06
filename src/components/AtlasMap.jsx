@@ -3,12 +3,19 @@ import DialogueCard from './DialogueCard';
 import World from '../world/World';
 import { REALMS } from '../data/realms';
 
-/** Island positions in the map's own viewBox, and in world (0-100) units. */
+/**
+ * Island positions in the map's own viewBox, and in world (0-100) units.
+ *
+ * The two are tied together: `world.y` must land just below the island's base
+ * (`svg.y + 22`) so the pin sits at the island's shoreline rather than floating
+ * in the water in front of it. Scene y = world y x 2.8. The heights are
+ * deliberately uneven so the four don't read as a row of identical bumps.
+ */
 const ISLANDS = {
-  passworld: { svg: { x: 96, y: 186 }, world: { x: 17, y: 74 } },
-  privacy: { svg: { x: 224, y: 186 }, world: { x: 40, y: 74 } },
-  bullybog: { svg: { x: 352, y: 186 }, world: { x: 63, y: 74 } },
-  balance: { svg: { x: 476, y: 186 }, world: { x: 85, y: 74 } },
+  passworld: { svg: { x: 129, y: 190 }, world: { x: 23, y: 76 } },
+  privacy: { svg: { x: 246, y: 178 }, world: { x: 44, y: 71 } },
+  bullybog: { svg: { x: 364, y: 192 }, world: { x: 65, y: 77 } },
+  balance: { svg: { x: 476, y: 180 }, world: { x: 85, y: 72 } },
 };
 
 const GATE = { x: 6, y: 88 };
@@ -18,8 +25,74 @@ function AtlasScene({ realmProgress }) {
   return (
     <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
       <rect width="560" height="280" rx="18" fill="#e9eff1" />
+
+      {/* This is a map drawn in a journal, so it gets a chart's furniture: a
+          ruled graticule, clouds, birds and a compass rose. Without them the
+          top half of the hub — the screen the player returns to most — is a
+          large empty grey rectangle. */}
+      <g stroke="var(--ink)" strokeWidth="1" opacity="0.055">
+        {[40, 80, 120, 160, 200, 240].map((y) => (
+          <path key={`h${y}`} d={`M0 ${y} H560`} />
+        ))}
+        {[70, 140, 210, 280, 350, 420, 490].map((x) => (
+          <path key={`v${x}`} d={`M${x} 0 V280`} />
+        ))}
+      </g>
+
       {/* a band of open water the Stream runs through */}
       <rect y="150" width="560" height="130" fill="var(--ink)" opacity="0.05" />
+
+      {/* clouds */}
+      <g fill="#f6f9fa" opacity="0.9">
+        <g>
+          <ellipse cx="118" cy="60" rx="34" ry="15" />
+          <ellipse cx="144" cy="53" rx="24" ry="17" />
+          <ellipse cx="94" cy="54" rx="20" ry="12" />
+        </g>
+        <g>
+          <ellipse cx="352" cy="42" rx="30" ry="13" />
+          <ellipse cx="376" cy="36" rx="21" ry="15" />
+        </g>
+        <g>
+          <ellipse cx="238" cy="112" rx="26" ry="10" />
+          <ellipse cx="256" cy="107" rx="18" ry="12" />
+        </g>
+      </g>
+
+      {/* birds, because an empty sky reads as unfinished */}
+      <g stroke="var(--ink)" strokeWidth="2" fill="none" opacity="0.3" strokeLinecap="round">
+        <path d="M196 82 q7 -6 14 0" />
+        <path d="M211 79 q7 -6 14 0" />
+        <path d="M300 60 q6 -5 12 0" />
+      </g>
+
+      {/* compass rose */}
+      <g transform="translate(502 66)">
+        <circle r="27" fill="#f6f9fa" opacity="0.7" />
+        <circle r="27" fill="none" stroke="var(--ink)" strokeWidth="1.6" opacity="0.4" />
+        <circle r="19" fill="none" stroke="var(--ink)" strokeWidth="1" opacity="0.28" />
+        <path d="M-26 0 L0 -6 L26 0 L0 6 Z" fill="var(--ink)" opacity="0.26" />
+        <path d="M0 26 L6 0 L0 -26 L-6 0 Z" fill="var(--ink)" opacity="0.42" />
+        <path d="M0 -26 L6 0 L0 0 Z" fill="var(--gold)" />
+        <text
+          x="0"
+          y="-30"
+          textAnchor="middle"
+          fill="var(--ink)"
+          opacity="0.55"
+          style={{ font: '700 11px var(--font-stamp), monospace', letterSpacing: '0.08em' }}
+        >
+          N
+        </text>
+      </g>
+
+      {/* open-water texture, so the sea isn't a flat wash either */}
+      <g stroke="var(--ink)" strokeWidth="2" fill="none" opacity="0.12" strokeLinecap="round">
+        <path d="M46 252 q10 -6 20 0 t20 0" />
+        <path d="M266 258 q10 -6 20 0 t20 0" />
+        <path d="M414 246 q10 -6 20 0 t20 0" />
+        <path d="M158 268 q10 -6 20 0 t20 0" />
+      </g>
 
       {/* The Stream, running behind the islands */}
       <path
@@ -130,6 +203,10 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, onEn
       <World
         sceneKey="atlas"
         scene={<AtlasScene realmProgress={realmProgress} />}
+        // The Atlas has no realm colour of its own; gold ties the Traveler to
+        // the passport and the Gate, and keeps them from reading as a dark
+        // smudge against the pale map.
+        accent="var(--gold)"
         spawn={GATE}
         bounds={{ minX: 4, maxX: 94, minY: 68, maxY: 92 }}
         hotspots={hotspots}

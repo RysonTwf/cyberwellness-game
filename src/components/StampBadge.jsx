@@ -70,15 +70,21 @@ export default function StampBadge({
   const seed = seedFrom(realmId ?? icon);
   const arcId = `stamp-arc-${realmId ?? icon}`;
 
-  // Bottom arc for the label: 155° -> 25° around the centre, taken the short
-  // way (through the bottom) so the text sits upright and reads left to right.
+  // Bottom arc for the label: 172° -> 8° around the centre, taken the short way
+  // (through the bottom) so the text sits upright and reads left to right.
+  //
+  // The span is set by the longest label. At 155°->25° the arc was ~93 units
+  // and "Privacy Peaks · Visited" needs ~104, so both ends were being clipped
+  // ("LANCE BAY · VISIT"). 164° gives ~117 units — enough for every label with
+  // room to spare. Widening it further would push the text past the ring's
+  // waist, where it stops reading as a stamp.
   const r = 41;
   const pt = (deg) => [
     60 + r * Math.cos((deg * Math.PI) / 180),
     60 + r * Math.sin((deg * Math.PI) / 180),
   ];
-  const [x1, y1] = pt(155);
-  const [x2, y2] = pt(25);
+  const [x1, y1] = pt(172);
+  const [x2, y2] = pt(8);
   const arcPath = `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 0 0 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
 
   return (
@@ -117,9 +123,9 @@ export default function StampBadge({
             <path id={arcId} d={arcPath} fill="none" />
             <text
               fill="currentColor"
-              fontSize="7.2"
+              fontSize="6.6"
               fontWeight="700"
-              letterSpacing="1.1"
+              letterSpacing="0.55"
               style={{ fontFamily: 'var(--font-stamp)' }}
             >
               <textPath href={`#${arcId}`} startOffset="50%" textAnchor="middle">

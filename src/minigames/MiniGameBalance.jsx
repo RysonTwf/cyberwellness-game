@@ -123,7 +123,7 @@ export default function MiniGameBalance({ game, onComplete }) {
         </div>
       )}
 
-      <div className="row" style={{ justifyContent: 'center' }}>
+      <div className="row panel-actions" style={{ justifyContent: 'center' }}>
         <button
           type="button"
           className="btn btn-ghost btn-sm"

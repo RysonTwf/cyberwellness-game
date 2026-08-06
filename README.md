@@ -52,8 +52,35 @@ src/
   world/                useWalker (movement), World (walkable space), Traveler
   components/           Atlas gate/map, realm screen, dialogue, stamps, certificate
   minigames/            Sort, Spot, Balance
+  dev/ArtPreview.jsx    scene contact sheet (dev only, see below)
   styles.css            design tokens and all styling
 ```
+
+## The ground rule
+
+Scene art and the walkable band are defined in two different files, in two
+different coordinate systems, and nothing enforces that they agree:
+
+- `data/realms.js` sets `world.bounds` in 0–100 world units.
+- `components/RealmArt.jsx` draws in a 560×280 viewBox.
+
+They convert as **`scene_y = world_y × 2.8`**. Two rules follow, and breaking
+either produces the class of bug this project has already had once (a campfire
+burning on open water, a Traveler walking across a bog):
+
+1. **Solid ground must be drawn across the entire walkable band.** If the band
+   runs 207–260, every pixel of scene between those rows has to be beach, bank,
+   or floor — for *both* moods, since the art changes after the safe choice.
+2. **Nothing solid may float above the band.** `World.jsx` draws the Traveler
+   over the scene unconditionally — there is no depth sorting — so props need to
+   sit where a Traveler overlapping them still reads correctly.
+
+### Scene contact sheet
+
+Open the app at **`#art`** (e.g. `http://localhost:5173/#art`) to see all four
+realms in both moods at once, with the walkable band and every hotspot drawn on
+top. This is the fastest way to check the two rules above; eyeballing it beats
+walking to all sixteen corners by hand. It is dev-only and nothing links to it.
 
 ## Notes on the build
 
@@ -63,6 +90,15 @@ src/
 - Fonts are self-hosted via `@fontsource`, so there are no external requests.
 - The walk loop is driven by `requestAnimationFrame`, so it pauses while the tab
   is in the background and resumes with a clamped timestep (no teleporting).
+  Note for automated testing: a browser throttles `rAF` to zero in a hidden tab,
+  so the Traveler will appear frozen there. That is the harness, not the game.
+- The step panel is rendered through a **portal to `<body>`**. `.fold` animates a
+  `perspective()/rotateY()` transform, which makes it a containing block — a
+  `position: fixed` scrim inside it resolves against the realm card instead of
+  the viewport. Anything full-screen must be portalled out for the same reason.
+- Panel action rows (`.center`, `.panel-actions`) are sticky to the bottom of
+  the panel. A long story beat can otherwise push the only way forward below the
+  fold, and a child who cannot see the button is simply stuck.
 
 ## Known deviations from the design docs
 

@@ -13,9 +13,14 @@ import '@fontsource/space-mono/700.css';
 
 import './styles.css';
 import App from './App';
+import ArtPreview from './dev/ArtPreview';
+
+// `#art` opens the scene contact sheet instead of the game — a dev aid for
+// checking scenery against the walkable band. Nothing links to it.
+const Root = window.location.hash === '#art' ? ArtPreview : App;
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
 );

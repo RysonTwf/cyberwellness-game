@@ -197,6 +197,32 @@ built, not before.
 - No external image assets — all character and scene art built from SVG
   shapes/icons, consistent with the flat vector direction in Section 3.
 
+## 9a. Scene Construction (added once the realms became walkable)
+
+Section 5 originally specified point-and-click cards with no moving character.
+That changed on request: each realm is now a 2D scene the Traveler walks
+around. That introduces a constraint the card design never had — **the art has
+to agree with the ground the player can stand on.**
+
+Scene art is authored in a 560×280 viewBox; the walkable band is authored in
+0–100 world units in `data/realms.js`. They convert as `scene_y = world_y × 2.8`.
+Two rules:
+
+1. **Solid ground across the whole band, in both moods.** Scenery changes when
+   the safe choice is made (the tide goes out, the fog lifts), and the band has
+   to stay on solid ground through that change, not just before it.
+2. **Nothing solid floats above the band.** There is no depth sorting — the
+   Traveler always draws over the scene — so a prop placed higher than the band
+   will have the player walk in front of something they should pass behind.
+
+Breaking these is not a subtle rendering nit; it reads immediately as broken to
+a child. The failures already caught this way: a bonfire and the friends around
+it burning on open water, a bog with no bank so the Traveler walked across the
+water for the whole realm, and a Keeper hovering twenty units above the ground.
+
+Check both rules on the `#art` contact sheet (see README), which overlays the
+band and every hotspot on all four realms in both moods.
+
 ## 10. Motion & Animation Direction
 
 Spend motion on exactly two moments, keep everything else static:

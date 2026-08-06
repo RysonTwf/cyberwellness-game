@@ -29,7 +29,9 @@ export const REALMS = [
 
     world: {
       spawn: { x: 10, y: 84 },
-      bounds: { minX: 5, maxX: 94, minY: 62, maxY: 90 },
+      // minY keeps the Traveler below the wall's base (scene y=188), so they
+      // can't walk up into the stonework.
+      bounds: { minX: 5, maxX: 94, minY: 68, maxY: 90 },
       stops: {
         story: { x: 68, y: 72, label: 'Keeper Vex', action: 'Talk' },
         decision: { x: 68, y: 72, label: 'Keeper Vex', action: 'Answer' },
@@ -115,12 +117,14 @@ export const REALMS = [
 
     world: {
       spawn: { x: 12, y: 86 },
-      bounds: { minX: 6, maxX: 93, minY: 66, maxY: 92 },
+      // The near ridge dips to scene y=198; minY clears it so the Traveler
+      // always stands in front of the mountain rather than inside its face.
+      bounds: { minX: 6, maxX: 93, minY: 72, maxY: 92 },
       stops: {
-        story: { x: 72, y: 72, label: 'the shape in the fog', action: 'Look' },
-        decision: { x: 72, y: 72, label: 'the message', action: 'Reply' },
-        game: { x: 30, y: 84, label: 'the lookout', action: 'Read' },
-        rule: { x: 84, y: 70, label: 'the clear path', action: 'Take it' },
+        story: { x: 72, y: 76, label: 'the shape in the fog', action: 'Look' },
+        decision: { x: 72, y: 76, label: 'the message', action: 'Reply' },
+        game: { x: 18, y: 82, label: 'the lookout', action: 'Read' },
+        rule: { x: 84, y: 76, label: 'the clear path', action: 'Take it' },
       },
     },
 
@@ -217,11 +221,13 @@ export const REALMS = [
 
     world: {
       spawn: { x: 10, y: 88 },
+      // The bank starts at scene y=188; minY keeps the Traveler on it instead
+      // of out on the open water.
       bounds: { minX: 5, maxX: 92, minY: 70, maxY: 92 },
       stops: {
         story: { x: 48, y: 76, label: 'Pockets', action: 'Listen' },
         decision: { x: 66, y: 74, label: 'the comment', action: 'Respond' },
-        game: { x: 24, y: 86, label: 'the murky water', action: 'Clear it' },
+        game: { x: 24, y: 74, label: 'the murky water', action: 'Clear it' },
         rule: { x: 48, y: 78, label: 'Pockets', action: 'Talk' },
       },
     },

@@ -75,7 +75,7 @@ export default function MiniGameSpot({ game, onComplete }) {
         </div>
       )}
 
-      <div className="row" style={{ justifyContent: 'center' }}>
+      <div className="row panel-actions" style={{ justifyContent: 'center' }}>
         <button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpened([])}>
           <RotateCcw size={16} />
           Fog it back up
