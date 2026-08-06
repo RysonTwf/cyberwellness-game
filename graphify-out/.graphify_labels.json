@@ -1,1 +1,18 @@
-{"0": "Realm Content & Story Components", "1": "Design Spec & Godot Port Docs", "2": "Realm Lore & Mini-Game Design", "3": "Atlas Map & Realm Art Scenes", "4": "App Shell & Progress State", "5": "Vite Build Scripts", "6": "Persistence, Accessibility & Managers", "7": "Visual Design System", "8": "React Runtime Dependencies", "9": "Realm Screen & Mini-Games", "10": "Walkable Scene Coordinate Rules", "11": "Traveler Walk System", "12": "Choice Card Component", "13": "No-Fear Choice Framing", "14": "Graphify Integration", "15": "Traveler Character", "16": "Vite Config File"}
+{
+  "0": "Realm Content & Story Components",
+  "1": "Design Spec & Godot Port Docs",
+  "2": "Realm Lore & Mini-Game Design",
+  "3": "Atlas Map & Realm Art Scenes",
+  "4": "App Shell & Progress State",
+  "5": "Vite Build Scripts",
+  "6": "Persistence, Accessibility & Managers",
+  "7": "Visual Design System",
+  "8": "React Runtime Dependencies",
+  "9": "Realm Screen & Mini-Games",
+  "10": "Walkable Scene Coordinate Rules",
+  "11": "Traveler Walk System",
+  "12": "Choice Card Component",
+  "13": "No-Fear Choice Framing",
+  "14": "Graphify Integration",
+  "15": "Traveler Character"
+}

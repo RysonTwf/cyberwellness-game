@@ -1,55 +1,72 @@
 extends Control
-## Ports AtlasMap.jsx's hub-with-no-walkable-scene fallback (design.md §3's own
-## ASCII layout: greeting, 4 realm cards, stamp progress). The full walkable
-## Stream/islands scene (World.jsx + AtlasScene svg) is real art+walk-system
-## work, tracked separately — this is godot.md §12 step 1's minimum bar:
-## "hub with 4 realm nodes + stamp dots (locked art only, no realms wired)."
+## Ports AtlasMap.jsx — the hub. The Traveler walks the Stream between four
+## islands (World.jsx + this file's own AtlasScene svg, ported to WorldView +
+## AtlasSceneArt). The source's plain-list accessibility fallback (a button
+## per realm, redundant with the walkable map) was dropped on request now
+## that walking is the real way in — the map is the only way to reach a
+## realm here.
+
+## GATE, matching AtlasMap.jsx's own inline const — the hub's spawn point and
+## bounds are Atlas-specific navigation data, not per-realm content.
+const GATE := Vector2(6, 88)
+const WORLD_BOUNDS_MIN := Vector2(4, 68)
+const WORLD_BOUNDS_MAX := Vector2(94, 92)
 
 @onready var _greeting: DialogueCard = $Scroll/Margin/Col/GreetingCard
-@onready var _grid: GridContainer = $Scroll/Margin/Col/RealmGrid
 @onready var _status: Label = $Scroll/Margin/Col/StatusLabel
 @onready var _finale_btn: Button = $Scroll/Margin/Col/FinaleBtn
 @onready var _stamp_row: HBoxContainer = $Scroll/Margin/Col/StampRow
+@onready var _world: WorldView = $Scroll/Margin/Col/World
 
 
 func _ready() -> void:
-	_build_realm_cards()
 	_build_stamp_row()
+	_setup_world()
 	_refresh_greeting()
 	_finale_btn.pressed.connect(_on_finale_pressed)
 	_finale_btn.visible = JourneyManager.all_stamped()
-	JourneyManager.progress_changed.connect(func(_id): _refresh_greeting())
+	JourneyManager.progress_changed.connect(func(_id): _refresh_greeting(); _rebuild_hotspots())
 
 
-func _build_realm_cards() -> void:
+func _setup_world() -> void:
+	_world.configure(WORLD_BOUNDS_MIN, WORLD_BOUNDS_MAX, GATE)
+	_world.hotspot_interacted.connect(_on_hotspot_interacted)
+	_rebuild_hotspots()
+	_world.enter()
+
+
+func _rebuild_hotspots() -> void:
+	var hotspots: Array = []
 	for id in JourneyManager.REALM_IDS:
 		var data: Dictionary = JourneyManager.realms.get(id, {})
-		var btn := Button.new()
-		btn.custom_minimum_size = Vector2(0, 100)
-		btn.text = "%s\n%s" % [data.get("name", id), data.get("topic", "")]
-		btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		btn.size_flags_horizontal = SIZE_EXPAND_FILL
+		var island: Dictionary = AtlasSceneArt.ISLANDS.get(id, {})
+		var world_pos: Vector2 = island.get("world", Vector2.ZERO)
+		hotspots.append({
+			"id": id,
+			"x": world_pos.x,
+			"y": world_pos.y,
+			"label": data.get("name", id),
+			"action": "Visit again" if JourneyManager.is_stamped(id) else "Travel here",
+			"accent": StampManager.accent_for(id),
+		})
+	if JourneyManager.all_stamped():
+		hotspots.append({
+			"id": "finale",
+			"x": GATE.x + 2,
+			"y": 78,
+			"label": "The Atlas Gate",
+			"action": "Finish",
+			"accent": Palette.GOLD,
+		})
+	_world.set_hotspots(hotspots)
+	_world.objective_text = "Walk back to the Atlas Gate" if JourneyManager.all_stamped() else "Walk to an island and step onto it"
 
-		var accent := Color(String(data.get("accent", "#1f3452")))
-		var style := StyleBoxFlat.new()
-		style.bg_color = Color(accent, 0.16)
-		style.border_color = accent
-		style.set_border_width_all(2)
-		style.set_corner_radius_all(14)
-		style.content_margin_left = 16.0
-		style.content_margin_right = 16.0
-		style.content_margin_top = 12.0
-		style.content_margin_bottom = 12.0
-		btn.add_theme_stylebox_override("normal", style)
 
-		var hover: StyleBoxFlat = style.duplicate()
-		hover.bg_color = Color(accent, 0.26)
-		btn.add_theme_stylebox_override("hover", hover)
-
-		btn.add_theme_color_override("font_color", Palette.INK)
-		btn.add_theme_font_size_override("font_size", 18)
-		btn.pressed.connect(_on_realm_pressed.bind(id, data.get("name", id)))
-		_grid.add_child(btn)
+func _on_hotspot_interacted(id: String, data: Dictionary) -> void:
+	if id == "finale":
+		_on_finale_pressed()
+	else:
+		_on_realm_pressed(id, str(data.get("label", id)))
 
 
 func _build_stamp_row() -> void:

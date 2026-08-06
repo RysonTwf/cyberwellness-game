@@ -4,39 +4,6 @@
   "graph": {
     "hyperedges": [
       {
-        "id": "four_realm_journey",
-        "label": "The four-realm Atlas journey (topic, mini-game, stamp per realm)",
-        "nodes": [
-          "readme_atlas",
-          "readme_passworld",
-          "readme_privacy_peaks",
-          "readme_bully_bog",
-          "readme_balance_bay",
-          "readme_passport_stamp",
-          "readme_wise_traveler_certificate"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "README.md"
-      },
-      {
-        "id": "scene_ground_agreement_contract",
-        "label": "Scene art / walkable ground agreement contract",
-        "nodes": [
-          "readme_world_scene_coordinate_rule",
-          "readme_solid_ground_rule",
-          "readme_no_floating_props_rule",
-          "readme_scene_contact_sheet",
-          "design_scene_construction",
-          "godot_walk_system_port"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "design.md"
-      },
-      {
         "id": "godot_autoload_json_architecture",
         "label": "Godot autoload + JSON-content architecture borrowed from the example doc",
         "nodes": [
@@ -72,754 +39,124 @@
   },
   "nodes": [
     {
-      "label": "package.json",
-      "file_type": "code",
-      "source_file": "package.json",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "readme",
       "community": 5,
-      "norm_label": "package.json",
-      "id": "package"
+      "norm_label": "readme.md"
     },
     {
-      "label": "name",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L2",
+      "label": "Cyber Wellness Quest",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "name",
-      "id": "package_name"
+      "id": "readme_cyber_wellness_quest",
+      "community": 4,
+      "norm_label": "cyber wellness quest"
     },
     {
-      "label": "private",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L3",
+      "label": "Running it",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L15",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "private",
-      "id": "package_private"
+      "id": "readme_running_it",
+      "community": 4,
+      "norm_label": "running it"
     },
     {
-      "label": "version",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L4",
+      "label": "The four realms",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L20",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "version",
-      "id": "package_version"
+      "id": "readme_the_four_realms",
+      "community": 4,
+      "norm_label": "the four realms"
     },
     {
-      "label": "type",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L5",
+      "label": "Layout",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L33",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "type",
-      "id": "package_type"
+      "id": "readme_layout",
+      "community": 4,
+      "norm_label": "layout"
     },
     {
-      "label": "scripts",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L6",
+      "label": "Project history",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L43",
       "_origin": "ast",
-      "community": 5,
-      "norm_label": "scripts",
-      "id": "package_scripts"
+      "id": "readme_project_history",
+      "community": 4,
+      "norm_label": "project history"
     },
     {
-      "label": "dev",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L7",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "godot/README.md",
+      "source_location": "L1",
       "_origin": "ast",
+      "id": "godot_readme",
       "community": 5,
-      "norm_label": "dev",
-      "id": "package_scripts_dev"
+      "norm_label": "readme.md"
     },
     {
-      "label": "build",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L8",
+      "label": "Cyber Wellness Quest \u2014 Godot port",
+      "file_type": "document",
+      "source_file": "godot/README.md",
+      "source_location": "L1",
       "_origin": "ast",
+      "id": "godot_readme_cyber_wellness_quest_godot_port",
       "community": 5,
-      "norm_label": "build",
-      "id": "package_scripts_build"
+      "norm_label": "cyber wellness quest \u2014 godot port"
     },
     {
-      "label": "preview",
-      "file_type": "code",
-      "source_file": "package.json",
+      "label": "Opening it",
+      "file_type": "document",
+      "source_file": "godot/README.md",
       "source_location": "L9",
       "_origin": "ast",
+      "id": "godot_readme_opening_it",
       "community": 5,
-      "norm_label": "preview",
-      "id": "package_scripts_preview"
+      "norm_label": "opening it"
     },
     {
-      "label": "dependencies",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "dependencies",
-      "id": "package_dependencies"
-    },
-    {
-      "label": "@fontsource/baloo-2",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L12",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/baloo-2",
-      "id": "package_dependencies_fontsource_baloo_2"
-    },
-    {
-      "label": "@fontsource/baloo-2",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L12",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/baloo-2",
-      "id": "fontsource_baloo_2"
-    },
-    {
-      "label": "@fontsource/nunito",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/nunito",
-      "id": "package_dependencies_fontsource_nunito"
-    },
-    {
-      "label": "@fontsource/nunito",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/nunito",
-      "id": "fontsource_nunito"
-    },
-    {
-      "label": "@fontsource/space-mono",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L14",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/space-mono",
-      "id": "package_dependencies_fontsource_space_mono"
-    },
-    {
-      "label": "@fontsource/space-mono",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L14",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "@fontsource/space-mono",
-      "id": "fontsource_space_mono"
-    },
-    {
-      "label": "lucide-react",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "lucide-react",
-      "id": "package_dependencies_lucide_react"
-    },
-    {
-      "label": "lucide-react",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "lucide-react",
-      "id": "lucide_react"
-    },
-    {
-      "label": "react",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "react",
-      "id": "package_dependencies_react"
-    },
-    {
-      "label": "react",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "react",
-      "id": "react"
-    },
-    {
-      "label": "react-dom",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "react-dom",
-      "id": "package_dependencies_react_dom"
-    },
-    {
-      "label": "react-dom",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 8,
-      "norm_label": "react-dom",
-      "id": "react_dom"
-    },
-    {
-      "label": "devDependencies",
-      "file_type": "code",
-      "source_file": "package.json",
+      "label": "Running the checks without the editor",
+      "file_type": "document",
+      "source_file": "godot/README.md",
       "source_location": "L19",
       "_origin": "ast",
+      "id": "godot_readme_running_the_checks_without_the_editor",
       "community": 5,
-      "norm_label": "devdependencies",
-      "id": "package_devdependencies"
+      "norm_label": "running the checks without the editor"
     },
     {
-      "label": "@vitejs/plugin-react",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L20",
+      "label": "Layout",
+      "file_type": "document",
+      "source_file": "godot/README.md",
+      "source_location": "L35",
       "_origin": "ast",
+      "id": "godot_readme_layout",
       "community": 5,
-      "norm_label": "@vitejs/plugin-react",
-      "id": "package_devdependencies_vitejs_plugin_react"
+      "norm_label": "layout"
     },
     {
-      "label": "@vitejs/plugin-react",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "@vitejs/plugin-react",
-      "id": "vitejs_plugin_react"
-    },
-    {
-      "label": "vite",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "vite",
-      "id": "package_devdependencies_vite"
-    },
-    {
-      "label": "vite",
-      "file_type": "concept",
-      "source_file": "package.json",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "vite",
-      "id": "vite"
-    },
-    {
-      "label": "App.jsx",
-      "file_type": "code",
-      "source_file": "src/App.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "app.jsx",
-      "id": "src_app"
-    },
-    {
-      "label": "App()",
-      "file_type": "code",
-      "source_file": "src/App.jsx",
-      "source_location": "L10",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "app()",
-      "id": "src_app_app"
-    },
-    {
-      "label": "AtlasGate.jsx",
-      "file_type": "code",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "atlasgate.jsx",
-      "id": "src_components_atlasgate"
-    },
-    {
-      "label": "BEATS",
-      "file_type": "code",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 3,
-      "norm_label": "beats",
-      "id": "src_components_atlasgate_beats"
-    },
-    {
-      "label": "AtlasGate()",
-      "file_type": "code",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "atlasgate()",
-      "id": "src_components_atlasgate_atlasgate"
-    },
-    {
-      "label": "CertificateScreen.jsx",
-      "file_type": "code",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "certificatescreen.jsx",
-      "id": "src_components_certificatescreen"
-    },
-    {
-      "label": "CertificateScreen()",
-      "file_type": "code",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "certificatescreen()",
-      "id": "src_components_certificatescreen_certificatescreen"
-    },
-    {
-      "label": "Characters.jsx",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "characters.jsx",
-      "id": "src_components_characters"
-    },
-    {
-      "label": "Comet()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "comet()",
-      "id": "src_components_characters_comet"
-    },
-    {
-      "label": "Vex()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L32",
-      "_origin": "ast",
-      "community": 3,
-      "norm_label": "vex()",
-      "id": "src_components_characters_vex"
-    },
-    {
-      "label": "Fog()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L57",
-      "_origin": "ast",
-      "community": 3,
-      "norm_label": "fog()",
-      "id": "src_components_characters_fog"
-    },
-    {
-      "label": "Pockets()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L71",
-      "_origin": "ast",
-      "community": 3,
-      "norm_label": "pockets()",
-      "id": "src_components_characters_pockets"
-    },
-    {
-      "label": "Glimmer()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L106",
-      "_origin": "ast",
-      "community": 3,
-      "norm_label": "glimmer()",
-      "id": "src_components_characters_glimmer"
-    },
-    {
-      "label": "CommentBubble()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L117",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "commentbubble()",
-      "id": "src_components_characters_commentbubble"
-    },
-    {
-      "label": "BY_NAME",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L134",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "by_name",
-      "id": "src_components_characters_by_name"
-    },
-    {
-      "label": "CharacterArt()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L143",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "characterart()",
-      "id": "src_components_characters_characterart"
-    },
-    {
-      "label": "ChoiceCard.jsx",
-      "file_type": "code",
-      "source_file": "src/components/ChoiceCard.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 12,
-      "norm_label": "choicecard.jsx",
-      "id": "src_components_choicecard"
-    },
-    {
-      "label": "ChoiceCard()",
-      "file_type": "code",
-      "source_file": "src/components/ChoiceCard.jsx",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 12,
-      "norm_label": "choicecard()",
-      "id": "src_components_choicecard_choicecard"
-    },
-    {
-      "label": "DialogueCard.jsx",
-      "file_type": "code",
-      "source_file": "src/components/DialogueCard.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "dialoguecard.jsx",
-      "id": "src_components_dialoguecard"
-    },
-    {
-      "label": "DialogueCard()",
-      "file_type": "code",
-      "source_file": "src/components/DialogueCard.jsx",
-      "source_location": "L4",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "dialoguecard()",
-      "id": "src_components_dialoguecard_dialoguecard"
-    },
-    {
-      "label": "JournalProgress.jsx",
-      "file_type": "code",
-      "source_file": "src/components/JournalProgress.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "journalprogress.jsx",
-      "id": "src_components_journalprogress"
-    },
-    {
-      "label": "JournalProgress()",
-      "file_type": "code",
-      "source_file": "src/components/JournalProgress.jsx",
-      "source_location": "L5",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "journalprogress()",
-      "id": "src_components_journalprogress_journalprogress"
-    },
-    {
-      "label": "StampMoment.jsx",
-      "file_type": "code",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "stampmoment.jsx",
-      "id": "src_components_stampmoment"
-    },
-    {
-      "label": "StampMoment()",
-      "file_type": "code",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "stampmoment()",
-      "id": "src_components_stampmoment_stampmoment"
-    },
-    {
-      "label": "realms.js",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "realms.js",
-      "id": "src_data_realms"
-    },
-    {
-      "label": "REALMS",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L19",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "realms",
-      "id": "src_data_realms_realms"
-    },
-    {
-      "label": "REALM_BY_ID",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L401",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "realm_by_id",
-      "id": "src_data_realms_realm_by_id"
-    },
-    {
-      "label": "PLEDGE",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L404",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "pledge",
-      "id": "src_data_realms_pledge"
-    },
-    {
-      "label": "ArtPreview.jsx",
-      "file_type": "code",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "artpreview.jsx",
-      "id": "src_dev_artpreview"
-    },
-    {
-      "label": "MOODS",
-      "file_type": "code",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "moods",
-      "id": "src_dev_artpreview_moods"
-    },
-    {
-      "label": "Scene()",
-      "file_type": "code",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "scene()",
-      "id": "src_dev_artpreview_scene"
-    },
-    {
-      "label": "ArtPreview()",
-      "file_type": "code",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L55",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "artpreview()",
-      "id": "src_dev_artpreview_artpreview"
-    },
-    {
-      "label": "main.jsx",
-      "file_type": "code",
-      "source_file": "src/main.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "main.jsx",
-      "id": "src_main"
-    },
-    {
-      "label": "useProgress.js",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "useprogress.js",
-      "id": "src_state_useprogress"
-    },
-    {
-      "label": "freshRealmProgress()",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "freshrealmprogress()",
-      "id": "src_state_useprogress_freshrealmprogress"
-    },
-    {
-      "label": "initialState()",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L34",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "initialstate()",
-      "id": "src_state_useprogress_initialstate"
-    },
-    {
-      "label": "reducer()",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
+      "label": "Not done yet",
+      "file_type": "document",
+      "source_file": "godot/README.md",
       "source_location": "L49",
       "_origin": "ast",
-      "community": 4,
-      "norm_label": "reducer()",
-      "id": "src_state_useprogress_reducer"
-    },
-    {
-      "label": "load()",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L105",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "load()",
-      "id": "src_state_useprogress_load"
-    },
-    {
-      "label": "useProgress()",
-      "file_type": "code",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L126",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "useprogress()",
-      "id": "src_state_useprogress_useprogress"
-    },
-    {
-      "label": "Traveler.jsx",
-      "file_type": "code",
-      "source_file": "src/world/Traveler.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "traveler.jsx",
-      "id": "src_world_traveler"
-    },
-    {
-      "label": "Traveler()",
-      "file_type": "code",
-      "source_file": "src/world/Traveler.jsx",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "traveler()",
-      "id": "src_world_traveler_traveler"
-    },
-    {
-      "label": "World.jsx",
-      "file_type": "code",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "world.jsx",
-      "id": "src_world_world"
-    },
-    {
-      "label": "World()",
-      "file_type": "code",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L18",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "world()",
-      "id": "src_world_world_world"
-    },
-    {
-      "label": "useWalker.js",
-      "file_type": "code",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "usewalker.js",
-      "id": "src_world_usewalker"
-    },
-    {
-      "label": "KEY_DIRS",
-      "file_type": "code",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "key_dirs",
-      "id": "src_world_usewalker_key_dirs"
-    },
-    {
-      "label": "useWalker()",
-      "file_type": "code",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L31",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "usewalker()",
-      "id": "src_world_usewalker_usewalker"
-    },
-    {
-      "label": "distance()",
-      "file_type": "code",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L170",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "distance()",
-      "id": "src_world_usewalker_distance"
-    },
-    {
-      "label": "vite.config.js",
-      "file_type": "code",
-      "source_file": "vite.config.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 16,
-      "norm_label": "vite.config.js",
-      "id": "vite_config"
+      "id": "godot_readme_not_done_yet",
+      "community": 5,
+      "norm_label": "not done yet"
     },
     {
       "label": "The Atlas (internet as a map)",
@@ -843,7 +180,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 12,
       "norm_label": "the traveler (player)",
       "id": "storyline_traveler"
     },
@@ -856,7 +193,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 12,
       "norm_label": "comet (paper-airplane guide)",
       "id": "storyline_comet"
     },
@@ -1043,19 +380,6 @@
       "id": "storyline_reversible_choices"
     },
     {
-      "label": "SPA Root Mount Point",
-      "file_type": "document",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 4,
-      "norm_label": "spa root mount point",
-      "id": "index_root_mount"
-    },
-    {
       "label": "graphify Knowledge-Graph Workflow",
       "file_type": "document",
       "source_file": "CLAUDE.md",
@@ -1069,642 +393,6 @@
       "id": "claude_graphify_integration"
     },
     {
-      "label": "AtlasMap.jsx",
-      "file_type": "code",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_components_atlasmap",
-      "community": 3,
-      "norm_label": "atlasmap.jsx"
-    },
-    {
-      "label": "ISLANDS",
-      "file_type": "code",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "src_components_atlasmap_islands",
-      "community": 3,
-      "norm_label": "islands"
-    },
-    {
-      "label": "GATE",
-      "file_type": "code",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L21",
-      "_origin": "ast",
-      "id": "src_components_atlasmap_gate",
-      "community": 3,
-      "norm_label": "gate"
-    },
-    {
-      "label": "AtlasScene()",
-      "file_type": "code",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "src_components_atlasmap_atlasscene",
-      "community": 3,
-      "norm_label": "atlasscene()"
-    },
-    {
-      "label": "AtlasMap()",
-      "file_type": "code",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L168",
-      "_origin": "ast",
-      "id": "src_components_atlasmap_atlasmap",
-      "community": 3,
-      "norm_label": "atlasmap()"
-    },
-    {
-      "label": "RealmArt.jsx",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_components_realmart",
-      "community": 4,
-      "norm_label": "realmart.jsx"
-    },
-    {
-      "label": "Sky()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "src_components_realmart_sky",
-      "community": 4,
-      "norm_label": "sky()"
-    },
-    {
-      "label": "PassworldScene()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "src_components_realmart_passworldscene",
-      "community": 3,
-      "norm_label": "passworldscene()"
-    },
-    {
-      "label": "PrivacyScene()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L152",
-      "_origin": "ast",
-      "id": "src_components_realmart_privacyscene",
-      "community": 3,
-      "norm_label": "privacyscene()"
-    },
-    {
-      "label": "BogScene()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L229",
-      "_origin": "ast",
-      "id": "src_components_realmart_bogscene",
-      "community": 3,
-      "norm_label": "bogscene()"
-    },
-    {
-      "label": "BayScene()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L373",
-      "_origin": "ast",
-      "id": "src_components_realmart_bayscene",
-      "community": 3,
-      "norm_label": "bayscene()"
-    },
-    {
-      "label": "SCENES",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L502",
-      "_origin": "ast",
-      "id": "src_components_realmart_scenes",
-      "community": 4,
-      "norm_label": "scenes"
-    },
-    {
-      "label": "RealmArt()",
-      "file_type": "code",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L509",
-      "_origin": "ast",
-      "id": "src_components_realmart_realmart",
-      "community": 4,
-      "norm_label": "realmart()"
-    },
-    {
-      "label": "RealmScreen.jsx",
-      "file_type": "code",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_components_realmscreen",
-      "community": 9,
-      "norm_label": "realmscreen.jsx"
-    },
-    {
-      "label": "REALM_ICONS",
-      "file_type": "code",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "src_components_realmscreen_realm_icons",
-      "community": 9,
-      "norm_label": "realm_icons"
-    },
-    {
-      "label": "GAMES",
-      "file_type": "code",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "src_components_realmscreen_games",
-      "community": 9,
-      "norm_label": "games"
-    },
-    {
-      "label": "RealmScreen()",
-      "file_type": "code",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "src_components_realmscreen_realmscreen",
-      "community": 9,
-      "norm_label": "realmscreen()"
-    },
-    {
-      "label": "StampBadge.jsx",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_components_stampbadge",
-      "community": 0,
-      "norm_label": "stampbadge.jsx"
-    },
-    {
-      "label": "ICONS",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "src_components_stampbadge_icons",
-      "community": 0,
-      "norm_label": "icons"
-    },
-    {
-      "label": "makeRandom()",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "src_components_stampbadge_makerandom",
-      "community": 0,
-      "norm_label": "makerandom()"
-    },
-    {
-      "label": "seedFrom()",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "src_components_stampbadge_seedfrom",
-      "community": 0,
-      "norm_label": "seedfrom()"
-    },
-    {
-      "label": "roughCircle()",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "src_components_stampbadge_roughcircle",
-      "community": 0,
-      "norm_label": "roughcircle()"
-    },
-    {
-      "label": "StampBadge()",
-      "file_type": "code",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L59",
-      "_origin": "ast",
-      "id": "src_components_stampbadge_stampbadge",
-      "community": 0,
-      "norm_label": "stampbadge()"
-    },
-    {
-      "label": "MiniGameBalance.jsx",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameBalance.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_minigames_minigamebalance",
-      "community": 9,
-      "norm_label": "minigamebalance.jsx"
-    },
-    {
-      "label": "MiniGameBalance()",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameBalance.jsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "src_minigames_minigamebalance_minigamebalance",
-      "community": 9,
-      "norm_label": "minigamebalance()"
-    },
-    {
-      "label": "MiniGameSort.jsx",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_minigames_minigamesort",
-      "community": 9,
-      "norm_label": "minigamesort.jsx"
-    },
-    {
-      "label": "BIN_ICONS",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "src_minigames_minigamesort_bin_icons",
-      "community": 9,
-      "norm_label": "bin_icons"
-    },
-    {
-      "label": "shuffle()",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "src_minigames_minigamesort_shuffle",
-      "community": 9,
-      "norm_label": "shuffle()"
-    },
-    {
-      "label": "MiniGameSort()",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "src_minigames_minigamesort_minigamesort",
-      "community": 9,
-      "norm_label": "minigamesort()"
-    },
-    {
-      "label": "MiniGameSpot.jsx",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSpot.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_minigames_minigamespot",
-      "community": 9,
-      "norm_label": "minigamespot.jsx"
-    },
-    {
-      "label": "MiniGameSpot()",
-      "file_type": "code",
-      "source_file": "src/minigames/MiniGameSpot.jsx",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "src_minigames_minigamespot_minigamespot",
-      "community": 9,
-      "norm_label": "minigamespot()"
-    },
-    {
-      "label": "Cyber Wellness Quest (game overview)",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L1-9",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_cyber_wellness_quest",
-      "community": 1,
-      "norm_label": "cyber wellness quest (game overview)"
-    },
-    {
-      "label": "The Atlas (map of the internet)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L3-7",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Reframes the internet as a explorable map of four islands rather than an abstract network, so a 7-12 year old has a spatial mental model to travel through.",
-      "id": "readme_atlas",
-      "community": 2,
-      "norm_label": "the atlas (map of the internet)"
-    },
-    {
-      "label": "Comet (paper-airplane guide spirit)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L3-7",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_comet",
-      "community": 1,
-      "norm_label": "comet (paper-airplane guide spirit)"
-    },
-    {
-      "label": "The Traveler (player character)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L3-7",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_traveler",
-      "community": 15,
-      "norm_label": "the traveler (player character)"
-    },
-    {
-      "label": "Passport stamp reward",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L6-7",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_passport_stamp",
-      "community": 2,
-      "norm_label": "passport stamp reward"
-    },
-    {
-      "label": "Wise Traveler certificate (finale)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L6-7",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_wise_traveler_certificate",
-      "community": 2,
-      "norm_label": "wise traveler certificate (finale)"
-    },
-    {
-      "label": "Passworld realm (passwords & personal info)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L39",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_passworld",
-      "community": 2,
-      "norm_label": "passworld realm (passwords & personal info)"
-    },
-    {
-      "label": "Privacy Peaks realm (strangers & scams)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L40",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_privacy_peaks",
-      "community": 2,
-      "norm_label": "privacy peaks realm (strangers & scams)"
-    },
-    {
-      "label": "Bully Bog realm (cyberbullying & kindness)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L41",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_bully_bog",
-      "community": 2,
-      "norm_label": "bully bog realm (cyberbullying & kindness)"
-    },
-    {
-      "label": "Balance Bay realm (screen time balance)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L42",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_balance_bay",
-      "community": 2,
-      "norm_label": "balance bay realm (screen time balance)"
-    },
-    {
-      "label": "Walkable 2D realm scene",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L20-29",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Each step (story, decision, mini-game, rule) relocates the interaction pin and mutates the scene, so progress is felt as physical change in the world rather than a page advancing.",
-      "id": "readme_walkable_realm",
-      "community": 10,
-      "norm_label": "walkable 2d realm scene"
-    },
-    {
-      "label": "No fail state / warm redirect",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L31-33",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Picking the unsafe option hands the decision straight back with a warm Comet redirect; no dead ends, no timers, and no visible score, so the child is never punished for exploring the wrong answer.",
-      "id": "readme_no_fail_state",
-      "community": 1,
-      "norm_label": "no fail state / warm redirect"
-    },
-    {
-      "label": "scene_y = world_y x 2.8 coordinate conversion",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L59-71",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Scene art (560x280 viewBox in RealmArt.jsx) and the walkable band (0-100 world units in data/realms.js) live in different coordinate systems with nothing enforcing agreement; the 2.8 scalar is the only bridge, so both authoring rules hang off it.",
-      "id": "readme_world_scene_coordinate_rule",
-      "community": 10,
-      "norm_label": "scene_y = world_y x 2.8 coordinate conversion"
-    },
-    {
-      "label": "Rule 1: solid ground across the whole walkable band",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L71-74",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Art changes after the safe choice, so ground must hold in both moods; breaking this produced a campfire burning on open water and a Traveler walking across a bog.",
-      "id": "readme_solid_ground_rule",
-      "community": 10,
-      "norm_label": "rule 1: solid ground across the whole walkable band"
-    },
-    {
-      "label": "Rule 2: nothing solid floats above the band",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L74-76",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "World.jsx draws the Traveler over the scene unconditionally with no depth sorting, so any prop above the band makes the player walk in front of something they should pass behind.",
-      "id": "readme_no_floating_props_rule",
-      "community": 10,
-      "norm_label": "rule 2: nothing solid floats above the band"
-    },
-    {
-      "label": "#art scene contact sheet (dev-only)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L78-83",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Overlays the walkable band and every hotspot on all four realms in both moods at once, which is faster at catching ground-rule violations than walking to all sixteen corners by hand.",
-      "id": "readme_scene_contact_sheet",
-      "community": 10,
-      "norm_label": "#art scene contact sheet (dev-only)"
-    },
-    {
-      "label": "localStorage progress persistence (cyber-wellness-quest/v1)",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L87-88",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_localstorage_persistence",
-      "community": 6,
-      "norm_label": "localstorage progress persistence (cyber-wellness-quest/v1)"
-    },
-    {
-      "label": "No image assets: all art is SVG shapes",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L89-90",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Every character and scene is built from SVG shapes and fonts are self-hosted via @fontsource, so the built site makes no external requests.",
-      "id": "readme_svg_only_art",
-      "community": 6,
-      "norm_label": "no image assets: all art is svg shapes"
-    },
-    {
-      "label": "requestAnimationFrame walk loop with clamped timestep",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "L91-94",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Pauses in a background tab and resumes with a clamped timestep so the Traveler never teleports; automated tests see a frozen Traveler because browsers throttle rAF to zero in hidden tabs, which is a harness artifact not a bug.",
-      "id": "readme_raf_walk_loop",
-      "community": 10,
-      "norm_label": "requestanimationframe walk loop with clamped timestep"
-    },
-    {
-      "label": "Step panel portalled to body",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L95-98",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": ".fold animates a perspective()/rotateY() transform, which makes it a containing block, so a position:fixed scrim inside resolves against the realm card instead of the viewport; anything full-screen must be portalled out.",
-      "id": "readme_step_panel_portal",
-      "community": 7,
-      "norm_label": "step panel portalled to body"
-    },
-    {
-      "label": "Sticky panel action rows",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L99-101",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": ".center and .panel-actions stick to the bottom of the panel because a long story beat would otherwise push the only way forward below the fold, and a child who cannot see the button is stuck.",
-      "id": "readme_sticky_panel_actions",
-      "community": 6,
-      "norm_label": "sticky panel action rows"
-    },
-    {
-      "label": "Deviation: walkable world replaces card navigation",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L108-110",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "design.md section 5 specified point-and-click cards with no moving character; changed on request so realms are walked, though mini-games remain tap puzzles.",
-      "id": "readme_deviation_walkable_world",
-      "community": 10,
-      "norm_label": "deviation: walkable world replaces card navigation"
-    },
-    {
-      "label": "Deviation: real Vite app instead of single-file artifact",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L111-113",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "design.md section 9 assumed an artifact (Tailwind, no localStorage), but section 7 had already flagged persistence as the follow-up once the base game existed.",
-      "id": "readme_deviation_vite_app",
-      "community": 6,
-      "norm_label": "deviation: real vite app instead of single-file artifact"
-    },
-    {
-      "label": "Deviation: Balance as a third mini-game component",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "L114-117",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "design.md section 6 lists only Sort and Spot, but 'Balance the Day' is a scale rather than two bins, so it got its own component while reusing Sort's exact tap-to-place controls so there is no new control to learn.",
-      "id": "readme_deviation_third_minigame",
-      "community": 2,
-      "norm_label": "deviation: balance as a third mini-game component"
-    },
-    {
       "label": "Concept summary: single-sitting Atlas journey",
       "file_type": "document",
       "source_file": "design.md",
@@ -1714,9 +402,9 @@
       "author": null,
       "contributor": null,
       "rationale": "One 20-30 minute sitting for ages 7-12; each realm teaches one cyber wellness topic via story beat, branching decision, and a hands-on mini-game, tracked by stamps in a passport journal.",
-      "id": "design_concept_summary",
-      "community": 1,
-      "norm_label": "concept summary: single-sitting atlas journey"
+      "community": 4,
+      "norm_label": "concept summary: single-sitting atlas journey",
+      "id": "design_concept_summary"
     },
     {
       "label": "Field-journal / passport metaphor",
@@ -1728,9 +416,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Grounds the whole product so the internet feels like a nature reserve visited with a guide and a notebook, worth exploring thoughtfully, rather than a void to fear or a screen to be babysat through; every badge is a physical-feeling ink stamp, not a digital trophy.",
-      "id": "design_field_journal_metaphor",
       "community": 7,
-      "norm_label": "field-journal / passport metaphor"
+      "norm_label": "field-journal / passport metaphor",
+      "id": "design_field_journal_metaphor"
     },
     {
       "label": "Rejected trope: neon-cyberspace-on-black",
@@ -1742,9 +430,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Dark backgrounds, glowing circuits and matrix grids read as scary or hacker-coded, working against the message that the internet is a place kids can explore safely.",
-      "id": "design_avoided_neon_cyberspace",
       "community": 7,
-      "norm_label": "rejected trope: neon-cyberspace-on-black"
+      "norm_label": "rejected trope: neon-cyberspace-on-black",
+      "id": "design_avoided_neon_cyberspace"
     },
     {
       "label": "Rejected trope: warm-cream-and-serif AI default",
@@ -1756,9 +444,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Flattens personality and does not fit an energetic kids' product.",
-      "id": "design_avoided_ai_default_look",
       "community": 7,
-      "norm_label": "rejected trope: warm-cream-and-serif ai default"
+      "norm_label": "rejected trope: warm-cream-and-serif ai default",
+      "id": "design_avoided_ai_default_look"
     },
     {
       "label": "Color token system (paper, ink, realm accents)",
@@ -1770,9 +458,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Each realm accent is used only inside that realm's screens and stamp while hub and shared UI stay ink/paper, so the four colors read as distinct regions of a map rather than a rainbow UI; ink is deep fountain-pen navy and never pure black.",
-      "id": "design_color_token_system",
       "community": 7,
-      "norm_label": "color token system (paper, ink, realm accents)"
+      "norm_label": "color token system (paper, ink, realm accents)",
+      "id": "design_color_token_system"
     },
     {
       "label": "Type system: Display / Body / Stamp-Label",
@@ -1784,9 +472,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Baloo 2 or Fredoka for display at large sizes only, Nunito body at 18-20px for age-appropriate readability, and a monospace (Space Mono / IBM Plex Mono) confined to stamps, pins and badge labels because that is what sells the passport-ink signature; it must not leak into body copy.",
-      "id": "design_type_system",
       "community": 7,
-      "norm_label": "type system: display / body / stamp-label"
+      "norm_label": "type system: display / body / stamp-label",
+      "id": "design_type_system"
     },
     {
       "label": "Signature element: the ink stamp badge",
@@ -1798,9 +486,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Irregular-edged circle in realm accent with an arced monospace label, landing at a rotation randomized once per session so the journal feels hand-stamped not templated; it is the one recurring wow moment, so the rest of the UI stays quiet to avoid competing.",
-      "id": "design_ink_stamp_badge",
       "community": 7,
-      "norm_label": "signature element: the ink stamp badge"
+      "norm_label": "signature element: the ink stamp badge",
+      "id": "design_ink_stamp_badge"
     },
     {
       "label": "Hub layout: The Atlas",
@@ -1811,9 +499,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_atlas_hub_layout",
       "community": 1,
-      "norm_label": "hub layout: the atlas"
+      "norm_label": "hub layout: the atlas",
+      "id": "design_atlas_hub_layout"
     },
     {
       "label": "Screen flow: gate to Atlas to realms to finale",
@@ -1825,9 +513,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Realms complete in any order and return to the hub; the finale unlocks only once all four stamps are earned.",
-      "id": "design_screen_flow",
       "community": 1,
-      "norm_label": "screen flow: gate to atlas to realms to finale"
+      "norm_label": "screen flow: gate to atlas to realms to finale",
+      "id": "design_screen_flow"
     },
     {
       "label": "Decision point pattern (two choice cards, no dead end)",
@@ -1839,9 +527,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Selecting the unsafe option shows a brief warm redirect and lets the child pick again, so there is no wrong-answer dead end and nothing punishes or scares.",
-      "id": "design_decision_point_pattern",
       "community": 1,
-      "norm_label": "decision point pattern (two choice cards, no dead end)"
+      "norm_label": "decision point pattern (two choice cards, no dead end)",
+      "id": "design_decision_point_pattern"
     },
     {
       "label": "Sort mechanic (two labeled bins)",
@@ -1853,9 +541,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Mechanics are deliberately kept to two and reused across realms with different content so kids do not have to learn new controls each time.",
-      "id": "design_minigame_sort",
-      "community": 2,
-      "norm_label": "sort mechanic (two labeled bins)"
+      "community": 10,
+      "norm_label": "sort mechanic (two labeled bins)",
+      "id": "design_minigame_sort"
     },
     {
       "label": "Spot mechanic (tap flagged items)",
@@ -1866,9 +554,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_minigame_spot",
-      "community": 1,
-      "norm_label": "spot mechanic (tap flagged items)"
+      "community": 2,
+      "norm_label": "spot mechanic (tap flagged items)",
+      "id": "design_minigame_spot"
     },
     {
       "label": "Page-fold transition",
@@ -1880,9 +568,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Reinforces the journal metaphor between hub and realm screens; kept to ~250-300ms and respects prefers-reduced-motion.",
-      "id": "design_page_fold_transition",
       "community": 7,
-      "norm_label": "page-fold transition"
+      "norm_label": "page-fold transition",
+      "id": "design_page_fold_transition"
     },
     {
       "label": "Component inventory for the React build",
@@ -1893,9 +581,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_component_inventory",
       "community": 1,
-      "norm_label": "component inventory for the react build"
+      "norm_label": "component inventory for the react build",
+      "id": "design_component_inventory"
     },
     {
       "label": "AtlasMap component",
@@ -1906,9 +594,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_atlasmap",
       "community": 1,
-      "norm_label": "atlasmap component"
+      "norm_label": "atlasmap component",
+      "id": "design_atlasmap"
     },
     {
       "label": "RealmScreen component",
@@ -1919,9 +607,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_realmscreen",
       "community": 1,
-      "norm_label": "realmscreen component"
+      "norm_label": "realmscreen component",
+      "id": "design_realmscreen"
     },
     {
       "label": "DialogueCard component",
@@ -1932,9 +620,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_dialoguecard",
       "community": 1,
-      "norm_label": "dialoguecard component"
+      "norm_label": "dialoguecard component",
+      "id": "design_dialoguecard"
     },
     {
       "label": "ChoiceCard component",
@@ -1945,9 +633,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_choicecard",
       "community": 1,
-      "norm_label": "choicecard component"
+      "norm_label": "choicecard component",
+      "id": "design_choicecard"
     },
     {
       "label": "MiniGameSort component",
@@ -1958,9 +646,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_minigamesort_component",
-      "community": 1,
-      "norm_label": "minigamesort component"
+      "community": 10,
+      "norm_label": "minigamesort component",
+      "id": "design_minigamesort_component"
     },
     {
       "label": "MiniGameSpot component",
@@ -1971,9 +659,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_minigamespot_component",
-      "community": 1,
-      "norm_label": "minigamespot component"
+      "community": 2,
+      "norm_label": "minigamespot component",
+      "id": "design_minigamespot_component"
     },
     {
       "label": "StampBadge component",
@@ -1984,9 +672,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_stampbadge_component",
       "community": 7,
-      "norm_label": "stampbadge component"
+      "norm_label": "stampbadge component",
+      "id": "design_stampbadge_component"
     },
     {
       "label": "JournalProgress component",
@@ -1997,9 +685,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_journalprogress_component",
       "community": 6,
-      "norm_label": "journalprogress component"
+      "norm_label": "journalprogress component",
+      "id": "design_journalprogress_component"
     },
     {
       "label": "CertificateScreen component",
@@ -2010,9 +698,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "design_certificatescreen_component",
       "community": 1,
-      "norm_label": "certificatescreen component"
+      "norm_label": "certificatescreen component",
+      "id": "design_certificatescreen_component"
     },
     {
       "label": "State & data model (travelerName, currentScreen, realmProgress)",
@@ -2024,9 +712,9 @@
       "author": null,
       "contributor": null,
       "rationale": "All state lives in useState/useReducer in memory because artifacts cannot use browser storage; persistence via window.storage is flagged as worth adding once the base game is built, not before.",
-      "id": "design_state_data_model",
       "community": 6,
-      "norm_label": "state & data model (travelername, currentscreen, realmprogress)"
+      "norm_label": "state & data model (travelername, currentscreen, realmprogress)",
+      "id": "design_state_data_model"
     },
     {
       "label": "Accessibility & kid-safety UX notes",
@@ -2038,9 +726,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Min ~48px tap targets for a touch-first product, no timers or fail states or score pressure, text-equivalent instruction lines, color never the only signal, and no real personal data beyond an in-session first name.",
-      "id": "design_accessibility_notes",
-      "community": 6,
-      "norm_label": "accessibility & kid-safety ux notes"
+      "community": 8,
+      "norm_label": "accessibility & kid-safety ux notes",
+      "id": "design_accessibility_notes"
     },
     {
       "label": "Technical constraints (artifact-era)",
@@ -2052,9 +740,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Single-file React artifact with Tailwind core utilities only, no localStorage per artifact rules, lucide-react icons, no framer-motion, and no external image assets.",
-      "id": "design_technical_constraints",
       "community": 6,
-      "norm_label": "technical constraints (artifact-era)"
+      "norm_label": "technical constraints (artifact-era)",
+      "id": "design_technical_constraints"
     },
     {
       "label": "Scene construction (section 9a): art must agree with walkable ground",
@@ -2066,9 +754,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Making realms walkable introduced a constraint the card design never had; failures already caught this way include a bonfire and friends burning on open water, a bog with no bank, and a Keeper hovering twenty units above the ground - it reads immediately as broken to a child.",
-      "id": "design_scene_construction",
       "community": 10,
-      "norm_label": "scene construction (section 9a): art must agree with walkable ground"
+      "norm_label": "scene construction (section 9a): art must agree with walkable ground",
+      "id": "design_scene_construction"
     },
     {
       "label": "Motion budget: two spent moments only",
@@ -2080,9 +768,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Animation is spent only on the stamp thunk and the page-fold transition; everything else uses ~150ms opacity/scale changes so nothing bouncy competes with the two signature moments.",
-      "id": "design_motion_budget",
       "community": 7,
-      "norm_label": "motion budget: two spent moments only"
+      "norm_label": "motion budget: two spent moments only",
+      "id": "design_motion_budget"
     },
     {
       "label": "Godot 4 port design doc",
@@ -2094,9 +782,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Merges this repo's actual content and visual system with the engineering patterns (Autoloads, JSON content, node-per-mechanic, performance discipline) of an uploaded Godot example doc, while discarding that doc's curriculum and grade-banded level concepts.",
-      "id": "godot_port_design_doc",
-      "community": 1,
-      "norm_label": "godot 4 port design doc"
+      "community": 4,
+      "norm_label": "godot 4 port design doc",
+      "id": "godot_port_design_doc"
     },
     {
       "label": "Uploaded Godot example doc (e41a819a-cyberwellnessgamedesigndoc.md)",
@@ -2107,9 +795,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_example_doc",
-      "community": 1,
-      "norm_label": "uploaded godot example doc (e41a819a-cyberwellnessgamedesigndoc.md)"
+      "community": 4,
+      "norm_label": "uploaded godot example doc (e41a819a-cyberwellnessgamedesigndoc.md)",
+      "id": "godot_example_doc"
     },
     {
       "label": "Revision note: replace bin-heavy mechanics",
@@ -2121,9 +809,9 @@
       "author": null,
       "contributor": null,
       "rationale": "The original draft kept Sort/Sort/Spot/Balance, three of which are variations on 'put things in a bin' - flat once it is an actual game instead of a web form; so a platformer and a stepping-stone run were borrowed from the example doc while Bully Bog's Sort and Balance Bay's Balance stayed.",
-      "id": "godot_revision_note",
       "community": 2,
-      "norm_label": "revision note: replace bin-heavy mechanics"
+      "norm_label": "revision note: replace bin-heavy mechanics",
+      "id": "godot_revision_note"
     },
     {
       "label": "Decision: stay 2D, not 3D",
@@ -2135,9 +823,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Two independent reasons: the example doc's performance section rules out 3D for this audience/hardware (target the oldest laptop in the room), and this game's identity IS 2D paper-journal illustration, so 3D would fight the 'internet as a place worth exploring' rationale. Extra depth comes from parallax layers, an ink-bleed shader, and capped GPUParticles2D instead.",
-      "id": "godot_decision_stay_2d",
-      "community": 1,
-      "norm_label": "decision: stay 2d, not 3d"
+      "community": 4,
+      "norm_label": "decision: stay 2d, not 3d",
+      "id": "godot_decision_stay_2d"
     },
     {
       "label": "Principle 1: no fail state (Godot)",
@@ -2149,9 +837,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Decision scenes never queue_free() on a wrong pick; they swap the dialogue label and re-enable the choice buttons.",
-      "id": "godot_principle_no_fail_state",
-      "community": 1,
-      "norm_label": "principle 1: no fail state (godot)"
+      "community": 15,
+      "norm_label": "principle 1: no fail state (godot)",
+      "id": "godot_principle_no_fail_state"
     },
     {
       "label": "Principle 2: the mechanic is the lesson",
@@ -2163,9 +851,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Winning must require doing the safe behaviour, not just be themed around it - hence the platformer meter is built from real character-type mixing and the river stones are the actual scam scenarios, not decoration around an unrelated jumping puzzle.",
-      "id": "godot_principle_mechanic_is_lesson",
       "community": 2,
-      "norm_label": "principle 2: the mechanic is the lesson"
+      "norm_label": "principle 2: the mechanic is the lesson",
+      "id": "godot_principle_mechanic_is_lesson"
     },
     {
       "label": "Principle 3: four mechanics, one per realm",
@@ -2177,9 +865,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Deliberately trades design.md's 'fewer controls to learn' for 'each realm feels distinct', judged worth it once this is a real game rather than a form.",
-      "id": "godot_principle_four_mechanics",
       "community": 2,
-      "norm_label": "principle 3: four mechanics, one per realm"
+      "norm_label": "principle 3: four mechanics, one per realm",
+      "id": "godot_principle_four_mechanics"
     },
     {
       "label": "Principle 4: nothing is a villain",
@@ -2191,9 +879,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Keeper Vex, the Fog and the Glimmer are misguided-not-malicious; the dialogue tone must survive the port verbatim.",
-      "id": "godot_principle_nothing_is_villain",
-      "community": 2,
-      "norm_label": "principle 4: nothing is a villain"
+      "community": 9,
+      "norm_label": "principle 4: nothing is a villain",
+      "id": "godot_principle_nothing_is_villain"
     },
     {
       "label": "Principle 5: no login, no data collection",
@@ -2205,9 +893,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Only a first name held in memory today; Godot save data must stay local-only to keep this intact.",
-      "id": "godot_principle_no_data_collection",
-      "community": 6,
-      "norm_label": "principle 5: no login, no data collection"
+      "community": 8,
+      "norm_label": "principle 5: no login, no data collection",
+      "id": "godot_principle_no_data_collection"
     },
     {
       "label": "Realm anatomy (Realm.tscn node layout)",
@@ -2219,9 +907,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Every realm is one .tscn with the same internal state machine driven by JSON content instead of hardcoded dialogue; Bully Bog and Balance Bay keep the four-phase shape while Passworld and Privacy Peaks fold decision into the mini-game.",
-      "id": "godot_realm_anatomy",
       "community": 1,
-      "norm_label": "realm anatomy (realm.tscn node layout)"
+      "norm_label": "realm anatomy (realm.tscn node layout)",
+      "id": "godot_realm_anatomy"
     },
     {
       "label": "RealmState machine (idle to story to game to rule to stamped)",
@@ -2232,9 +920,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_realm_state_machine",
       "community": 1,
-      "norm_label": "realmstate machine (idle to story to game to rule to stamped)"
+      "norm_label": "realmstate machine (idle to story to game to rule to stamped)",
+      "id": "godot_realm_state_machine"
     },
     {
       "label": "Walk system port (useWalker.js to CharacterBody2D)",
@@ -2246,9 +934,9 @@
       "author": null,
       "contributor": null,
       "rationale": "The current walker is already exactly Godot's CharacterBody2D pattern: _physics_process replaces the rAF loop, Input.get_vector() replaces the KEY_DIRS table, and a clicked point sets a target Vector2 mirroring walkTo(); 0-100 world units stay resolution-independent with one scalar per realm.",
-      "id": "godot_walk_system_port",
       "community": 10,
-      "norm_label": "walk system port (usewalker.js to characterbody2d)"
+      "norm_label": "walk system port (usewalker.js to characterbody2d)",
+      "id": "godot_walk_system_port"
     },
     {
       "label": "Hotspots as Area2D stops",
@@ -2260,9 +948,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Each realm's four named stops become Area2D nodes with a label and action verb; RealmState enables only the hotspot relevant to the current phase, the same gating RealmScreen does in React today.",
-      "id": "godot_hotspots",
       "community": 1,
-      "norm_label": "hotspots as area2d stops"
+      "norm_label": "hotspots as area2d stops",
+      "id": "godot_hotspots"
     },
     {
       "label": "Password Fortress platformer (Passworld)",
@@ -2274,9 +962,9 @@
       "author": null,
       "contributor": null,
       "rationale": "A strength meter fills only from a mix of letter/number/symbol tiles, and decoy tiles shaped like weak passwords (123456, password) are easy to reach but reduce the meter - teaching 'looks like a password, isn't a strong one' the way the old Sort game's bins taught 'looks shareable, isn't'. A patrolling hacker knocks the player back to the section start: momentum lost, not a life.",
-      "id": "godot_minigame_platformer",
       "community": 2,
-      "norm_label": "password fortress platformer (passworld)"
+      "norm_label": "password fortress platformer (passworld)",
+      "id": "godot_minigame_platformer"
     },
     {
       "label": "Cross the Fog stepping-stone run (Privacy Peaks)",
@@ -2288,9 +976,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Merges the old decision card and the separate Clear the Fog spot game into one phase; the six existing messages map one-to-one onto six stones, and two of them are genuinely fine so the run does not train 'every stranger message is a trap'. Wrong picks wobble the stone and produce a soft splash, not a drowning, then re-offer the same stone.",
-      "id": "godot_minigame_river_run",
       "community": 2,
-      "norm_label": "cross the fog stepping-stone run (privacy peaks)"
+      "norm_label": "cross the fog stepping-stone run (privacy peaks)",
+      "id": "godot_minigame_river_run"
     },
     {
       "label": "Clear the Water sort (Bully Bog, unchanged)",
@@ -2302,9 +990,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Immediate per-item feedback rather than end-of-round scoring, matching design.md's no-score-pressure rule.",
-      "id": "godot_minigame_sort",
-      "community": 2,
-      "norm_label": "clear the water sort (bully bog, unchanged)"
+      "community": 11,
+      "norm_label": "clear the water sort (bully bog, unchanged)",
+      "id": "godot_minigame_sort"
     },
     {
       "label": "Balance the Day (Balance Bay, unchanged)",
@@ -2316,9 +1004,9 @@
       "author": null,
       "contributor": null,
       "rationale": "6 slots filled from 10 cards with no single correct split - only all-screen or no-screen trip a verdict, and a level mix reads as 'that's the whole trick'.",
-      "id": "godot_minigame_balance",
-      "community": 2,
-      "norm_label": "balance the day (balance bay, unchanged)"
+      "community": 9,
+      "norm_label": "balance the day (balance bay, unchanged)",
+      "id": "godot_minigame_balance"
     },
     {
       "label": "Keeper Vex (Passworld character)",
@@ -2329,9 +1017,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_keeper_vex",
-      "community": 2,
-      "norm_label": "keeper vex (passworld character)"
+      "community": 9,
+      "norm_label": "keeper vex (passworld character)",
+      "id": "godot_keeper_vex"
     },
     {
       "label": "The Fog (Privacy Peaks antagonist)",
@@ -2342,9 +1030,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_the_fog",
-      "community": 2,
-      "norm_label": "the fog (privacy peaks antagonist)"
+      "community": 9,
+      "norm_label": "the fog (privacy peaks antagonist)",
+      "id": "godot_the_fog"
     },
     {
       "label": "Pockets (Bully Bog character)",
@@ -2355,9 +1043,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_pockets",
-      "community": 2,
-      "norm_label": "pockets (bully bog character)"
+      "community": 11,
+      "norm_label": "pockets (bully bog character)",
+      "id": "godot_pockets"
     },
     {
       "label": "The Glimmer (Balance Bay character)",
@@ -2368,9 +1056,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_the_glimmer",
-      "community": 2,
-      "norm_label": "the glimmer (balance bay character)"
+      "community": 9,
+      "norm_label": "the glimmer (balance bay character)",
+      "id": "godot_the_glimmer"
     },
     {
       "label": "Traveler's Pledge (finale, four lines)",
@@ -2381,9 +1069,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_travelers_pledge",
-      "community": 2,
-      "norm_label": "traveler's pledge (finale, four lines)"
+      "community": 11,
+      "norm_label": "traveler's pledge (finale, four lines)",
+      "id": "godot_travelers_pledge"
     },
     {
       "label": "Content lives in JSON, not GDScript",
@@ -2395,9 +1083,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Called the example doc's strongest idea and taken wholesale, so dialogue and realm bounds are authored data rather than code.",
-      "id": "godot_json_content_pattern",
-      "community": 1,
-      "norm_label": "content lives in json, not gdscript"
+      "community": 4,
+      "norm_label": "content lives in json, not gdscript",
+      "id": "godot_json_content_pattern"
     },
     {
       "label": "journey_manager autoload",
@@ -2409,9 +1097,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Holds traveler name, current screen and the realm_progress dictionary carried over unchanged from design.md section 7; set up first so every realm scene can read what has been earned without re-wiring signals scene-to-scene.",
-      "id": "godot_journey_manager",
       "community": 6,
-      "norm_label": "journey_manager autoload"
+      "norm_label": "journey_manager autoload",
+      "id": "godot_journey_manager"
     },
     {
       "label": "stamp_manager autoload",
@@ -2422,9 +1110,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_stamp_manager",
       "community": 6,
-      "norm_label": "stamp_manager autoload"
+      "norm_label": "stamp_manager autoload",
+      "id": "godot_stamp_manager"
     },
     {
       "label": "res:// project layout (scenes/scripts/data/assets)",
@@ -2435,9 +1123,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_project_layout",
       "community": 1,
-      "norm_label": "res:// project layout (scenes/scripts/data/assets)"
+      "norm_label": "res:// project layout (scenes/scripts/data/assets)",
+      "id": "godot_project_layout"
     },
     {
       "label": "Local FileAccess save system",
@@ -2449,9 +1137,9 @@
       "author": null,
       "contributor": null,
       "rationale": "A Godot build is a real client and can persist for free, so a small local JSON save at user:// is framed as a genuine upgrade from the port rather than scope creep - it stores nothing beyond the first name already collected, keeping Principle 5 intact.",
-      "id": "godot_save_system",
-      "community": 6,
-      "norm_label": "local fileaccess save system"
+      "community": 8,
+      "norm_label": "local fileaccess save system",
+      "id": "godot_save_system"
     },
     {
       "label": "Visual system ported token-for-token",
@@ -2463,9 +1151,9 @@
       "author": null,
       "contributor": null,
       "rationale": "design.md section 3 tokens map onto Theme panel background, Theme font colors, per-realm realm_accent export vars, and three DynamicFont resources - explicitly ported rather than reinterpreted.",
-      "id": "godot_visual_system_port",
       "community": 7,
-      "norm_label": "visual system ported token-for-token"
+      "norm_label": "visual system ported token-for-token",
+      "id": "godot_visual_system_port"
     },
     {
       "label": "Ink stamp badge in Godot (Path2D arc label, baked jitter)",
@@ -2477,9 +1165,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Per-vertex circle jitter is baked once rather than randomized at runtime, and the +/-6 degree rotation is set once on stamp-earned and never re-rolled, to match design.md's 'randomized once per session'.",
-      "id": "godot_ink_stamp_badge_port",
       "community": 7,
-      "norm_label": "ink stamp badge in godot (path2d arc label, baked jitter)"
+      "norm_label": "ink stamp badge in godot (path2d arc label, baked jitter)",
+      "id": "godot_ink_stamp_badge_port"
     },
     {
       "label": "Godot motion budget (two moments)",
@@ -2491,9 +1179,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Godot has no direct prefers-reduced-motion equivalent, so a skippable/instant page-fold would need a manual settings toggle if it matters enough to add.",
-      "id": "godot_motion_budget",
       "community": 7,
-      "norm_label": "godot motion budget (two moments)"
+      "norm_label": "godot motion budget (two moments)",
+      "id": "godot_motion_budget"
     },
     {
       "label": "Godot accessibility & kid-safety bar",
@@ -2504,9 +1192,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "godot_accessibility_bar",
-      "community": 6,
-      "norm_label": "godot accessibility & kid-safety bar"
+      "community": 8,
+      "norm_label": "godot accessibility & kid-safety bar",
+      "id": "godot_accessibility_bar"
     },
     {
       "label": "HTML5 export as primary distribution target",
@@ -2518,9 +1206,9 @@
       "author": null,
       "contributor": null,
       "rationale": "This is a browser game today with no offline/classroom requirement in the repo docs, unlike the example doc's school-laptop .exe scenario; native export stays an easy later addition but nothing should be built around requiring it.",
-      "id": "godot_distribution_html5",
-      "community": 1,
-      "norm_label": "html5 export as primary distribution target"
+      "community": 4,
+      "norm_label": "html5 export as primary distribution target",
+      "id": "godot_distribution_html5"
     },
     {
       "label": "Suggested build order (cheapest mechanic first)",
@@ -2532,9 +1220,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Sequenced by mechanical complexity: Bully Bog goes first (not Passworld) because a plain Control-based Sort validates the walk system, hotspot gating, dialogue cards, stamp thunk and page-fold at lowest risk; the platformer is last because it is the only mechanic needing real collision, camera follow and game-feel playtesting.",
-      "id": "godot_build_order",
-      "community": 2,
-      "norm_label": "suggested build order (cheapest mechanic first)"
+      "community": 11,
+      "norm_label": "suggested build order (cheapest mechanic first)",
+      "id": "godot_build_order"
     },
     {
       "label": "Open questions (save, audio, milestone scope, difficulty, stone count)",
@@ -2546,1441 +1234,141 @@
       "author": null,
       "contributor": null,
       "rationale": "Explicitly left undecided: persistence vs session-only parity, audio vs silence, vertical slice vs all four realms, a difficulty pass for the platformer, and whether six river stones exceed the example doc's 4-5 scenario budget.",
-      "id": "godot_open_questions",
-      "community": 2,
-      "norm_label": "open questions (save, audio, milestone scope, difficulty, stone count)"
+      "community": 8,
+      "norm_label": "open questions (save, audio, milestone scope, difficulty, stone count)",
+      "id": "godot_open_questions"
     }
   ],
   "links": [
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_dependencies"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_devdependencies"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_name"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_private"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_scripts"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_type"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package",
-      "target": "package_version"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_scripts",
-      "target": "package_scripts_build"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_scripts",
-      "target": "package_scripts_dev"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_scripts",
-      "target": "package_scripts_preview"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_fontsource_baloo_2"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_fontsource_nunito"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_fontsource_space_mono"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_lucide_react"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_react"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_dependencies",
-      "target": "package_dependencies_react_dom"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L12",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_fontsource_baloo_2",
-      "target": "fontsource_baloo_2"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L13",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_fontsource_nunito",
-      "target": "fontsource_nunito"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L14",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_fontsource_space_mono",
-      "target": "fontsource_space_mono"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L15",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_lucide_react",
-      "target": "lucide_react"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L16",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_react",
-      "target": "react"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L17",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_dependencies_react_dom",
-      "target": "react_dom"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_vite"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "package_devdependencies",
-      "target": "package_devdependencies_vitejs_plugin_react"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L20",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_devdependencies_vitejs_plugin_react",
-      "target": "vitejs_plugin_react"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L21",
-      "weight": 1.0,
-      "context": "import",
-      "confidence_score": 1.0,
-      "source": "package_devdependencies_vite",
-      "target": "vite"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_app_app"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_atlasgate"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_atlasgate_atlasgate"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_atlasmap"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_atlasmap_atlasmap"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_certificatescreen"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_certificatescreen_certificatescreen"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_journalprogress"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_journalprogress_journalprogress"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_realmscreen"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_components_realmscreen_realmscreen"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_data_realms_realm_by_id"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_state_useprogress"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_state_useprogress_useprogress"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/main.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_main",
-      "target": "src_app"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/App.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "src_app_app",
-      "target": "src_state_useprogress_useprogress"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/main.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_main",
-      "target": "src_app_app"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_atlasgate_atlasgate"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_atlasgate_beats"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_characters"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_characters_comet"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_dialoguecard"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_dialoguecard_dialoguecard"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_stampbadge"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_components_stampbadge_stampbadge"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasGate.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasgate",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_atlasgate_beats",
-      "target": "storyline_atlas_gate"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_certificatescreen_certificatescreen"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_characters"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_characters_comet"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_dialoguecard"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_dialoguecard_dialoguecard"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_stampbadge"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_components_stampbadge_stampbadge"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_data_realms_pledge"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_data_realms_realm_by_id"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_certificatescreen",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_certificatescreen_certificatescreen",
-      "target": "storyline_finale_wise_traveler"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L134",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_characters",
-      "target": "src_components_characters_by_name"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L143",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_characters",
-      "target": "src_components_characters_characterart"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L135",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_comet"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L140",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_commentbubble"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L137",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_fog"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L139",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_glimmer"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L138",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_pockets"
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L136",
-      "weight": 1.0,
-      "context": "collection",
-      "confidence_score": 0.5,
-      "source": "src_components_characters",
-      "target": "src_components_characters_vex"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/DialogueCard.jsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_dialoguecard",
-      "target": "src_components_characters"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_components_characters"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_characters_comet",
-      "target": "storyline_comet"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_components_characters_comet"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_characters_vex",
-      "target": "storyline_keeper_vex"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_characters_fog",
-      "target": "storyline_the_fog"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_characters_pockets",
-      "target": "storyline_pockets"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_characters_glimmer",
-      "target": "storyline_the_glimmer"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/DialogueCard.jsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_dialoguecard",
-      "target": "src_components_characters_characterart"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ChoiceCard.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_choicecard",
-      "target": "src_components_choicecard_choicecard"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/DialogueCard.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_dialoguecard",
-      "target": "src_components_dialoguecard_dialoguecard"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_stampmoment",
-      "target": "src_components_dialoguecard"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_stampmoment",
-      "target": "src_components_dialoguecard_dialoguecard"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/JournalProgress.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_journalprogress",
-      "target": "src_components_journalprogress_journalprogress"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/JournalProgress.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_journalprogress",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/JournalProgress.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_journalprogress",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_stampmoment",
-      "target": "src_components_stampbadge"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_stampmoment",
-      "target": "src_components_stampbadge_stampbadge"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_stampmoment",
-      "target": "src_components_stampmoment_stampmoment"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/realms.js",
-      "source_location": "L404",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_data_realms",
-      "target": "src_data_realms_pledge"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/realms.js",
-      "source_location": "L401",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_data_realms",
-      "target": "src_data_realms_realm_by_id"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/realms.js",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_data_realms",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_data_realms"
-    },
-    {
-      "relation": "shares_data_with",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_data_realms_realms",
-      "target": "storyline_atlas"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_data_realms_realms"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_data_realms_pledge",
-      "target": "storyline_travelers_pledge"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_components_realmart"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_components_realmart_realmart"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L55",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_dev_artpreview_artpreview"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_dev_artpreview_moods"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/dev/ArtPreview.jsx",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_dev_artpreview",
-      "target": "src_dev_artpreview_scene"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/main.jsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_main",
-      "target": "src_dev_artpreview"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/main.jsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_main",
-      "target": "src_dev_artpreview_artpreview"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index_root_mount",
-      "target": "src_main"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
+      "source_file": "README.md",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_state_useprogress_freshrealmprogress"
+      "source": "readme",
+      "target": "godot_readme",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L34",
+      "source_file": "README.md",
+      "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_state_useprogress_initialstate"
+      "source": "readme",
+      "target": "readme_cyber_wellness_quest",
+      "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "cites",
       "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L105",
+      "confidence_score": 1.0,
+      "source_file": "godot.md",
+      "source_location": "L236",
       "weight": 1.0,
+      "source": "godot_distribution_html5",
+      "target": "readme_cyber_wellness_quest"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_state_useprogress_load"
+      "source_file": "godot.md",
+      "source_location": "L4, L269",
+      "weight": 1.0,
+      "source": "godot_port_design_doc",
+      "target": "readme_cyber_wellness_quest"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
+      "source_file": "README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "readme_cyber_wellness_quest",
+      "target": "readme_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "readme_cyber_wellness_quest",
+      "target": "readme_project_history",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "readme_cyber_wellness_quest",
+      "target": "readme_running_it",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "readme_cyber_wellness_quest",
+      "target": "readme_the_four_realms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "godot/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "godot_readme",
+      "target": "godot_readme_cyber_wellness_quest_godot_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "godot/README.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "godot_readme_cyber_wellness_quest_godot_port",
+      "target": "godot_readme_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "godot/README.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_state_useprogress_reducer"
+      "source": "godot_readme_cyber_wellness_quest_godot_port",
+      "target": "godot_readme_not_done_yet",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L126",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress",
-      "target": "src_state_useprogress_useprogress"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress_initialstate",
-      "target": "src_state_useprogress_freshrealmprogress"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L110",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress_load",
-      "target": "src_state_useprogress_initialstate"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L95",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress_reducer",
-      "target": "src_state_useprogress_initialstate"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L127",
-      "weight": 1.0,
-      "confidence_score": 0.5,
-      "source": "src_state_useprogress_useprogress",
-      "target": "src_state_useprogress_initialstate"
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L127",
-      "weight": 1.0,
-      "confidence_score": 0.5,
-      "source": "src_state_useprogress_useprogress",
-      "target": "src_state_useprogress_reducer"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/state/useProgress.js",
-      "source_location": "L130",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_state_useprogress_useprogress",
-      "target": "src_state_useprogress_load"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/Traveler.jsx",
+      "source_file": "godot/README.md",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_traveler",
-      "target": "src_world_traveler_traveler"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_traveler"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_traveler_traveler"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_usewalker"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_usewalker_distance"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_usewalker_usewalker"
+      "source": "godot_readme_cyber_wellness_quest_godot_port",
+      "target": "godot_readme_opening_it",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L18",
+      "source_file": "godot/README.md",
+      "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_world_world"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/world/World.jsx",
-      "source_location": "L48",
-      "weight": 1.0,
-      "source": "src_world_world_world",
-      "target": "src_world_usewalker_distance"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/world/World.jsx",
-      "source_location": "L31",
-      "weight": 1.0,
-      "source": "src_world_world_world",
-      "target": "src_world_usewalker_usewalker"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L170",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_usewalker",
-      "target": "src_world_usewalker_distance"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_usewalker",
-      "target": "src_world_usewalker_key_dirs"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/useWalker.js",
-      "source_location": "L31",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_world_usewalker",
-      "target": "src_world_usewalker_usewalker"
-    },
-    {
-      "relation": "implements",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_atlasmap_islands",
-      "target": "storyline_atlas"
+      "source": "godot_readme_cyber_wellness_quest_godot_port",
+      "target": "godot_readme_running_the_checks_without_the_editor",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4083,46 +1471,6 @@
       "target": "storyline_balance_bay"
     },
     {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_realmart_passworldscene",
-      "target": "storyline_passworld"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_realmart_privacyscene",
-      "target": "storyline_privacy_peaks"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_realmart_bogscene",
-      "target": "storyline_bully_bog"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_realmart_bayscene",
-      "target": "storyline_balance_bay"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -4143,16 +1491,6 @@
       "target": "storyline_finale_wise_traveler"
     },
     {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "storyline.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "src_components_stampbadge_icons",
-      "target": "storyline_passport_stamps"
-    },
-    {
       "relation": "conceptually_related_to",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -4161,792 +1499,6 @@
       "weight": 1.0,
       "source": "storyline_no_fear_framing",
       "target": "storyline_reversible_choices"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L168",
-      "weight": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_components_atlasmap_atlasmap",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L24",
-      "weight": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_components_atlasmap_atlasscene",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L21",
-      "weight": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_components_atlasmap_gate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_components_atlasmap_islands",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L506",
-      "weight": 1.0,
-      "context": "collection",
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_bayscene",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L505",
-      "weight": 1.0,
-      "context": "collection",
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_bogscene",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L503",
-      "weight": 1.0,
-      "context": "collection",
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_passworldscene",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L504",
-      "weight": 1.0,
-      "context": "collection",
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_privacyscene",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L509",
-      "weight": 1.0,
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_realmart",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L502",
-      "weight": 1.0,
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_scenes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmArt.jsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "src_components_realmart",
-      "target": "src_components_realmart_sky",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_components_realmart",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_components_realmart_realmart",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_components_realmscreen_games",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_components_realmscreen_realm_icons",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L28",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_components_realmscreen_realmscreen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamebalance",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamebalance_minigamebalance",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamesort",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamesort_minigamesort",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamespot",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_minigames_minigamespot_minigamespot",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "source": "src_components_stampbadge",
-      "target": "src_components_stampbadge_icons",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "source": "src_components_stampbadge",
-      "target": "src_components_stampbadge_makerandom",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "src_components_stampbadge",
-      "target": "src_components_stampbadge_roughcircle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L23",
-      "weight": 1.0,
-      "source": "src_components_stampbadge",
-      "target": "src_components_stampbadge_seedfrom",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L59",
-      "weight": 1.0,
-      "source": "src_components_stampbadge",
-      "target": "src_components_stampbadge_stampbadge",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L38",
-      "weight": 1.0,
-      "source": "src_components_stampbadge_roughcircle",
-      "target": "src_components_stampbadge_makerandom",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L70",
-      "weight": 1.0,
-      "source": "src_components_stampbadge_stampbadge",
-      "target": "src_components_stampbadge_seedfrom",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampBadge.jsx",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "src_components_stampbadge_stampbadge",
-      "target": "src_components_stampbadge_roughcircle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameBalance.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "source": "src_minigames_minigamebalance",
-      "target": "src_minigames_minigamebalance_minigamebalance",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "source": "src_minigames_minigamesort",
-      "target": "src_minigames_minigamesort_bin_icons",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "src_minigames_minigamesort",
-      "target": "src_minigames_minigamesort_minigamesort",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "src_minigames_minigamesort",
-      "target": "src_minigames_minigamesort_shuffle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameSort.jsx",
-      "source_location": "L28",
-      "weight": 1.0,
-      "source": "src_minigames_minigamesort_minigamesort",
-      "target": "src_minigames_minigamesort_shuffle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/minigames/MiniGameSpot.jsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "src_minigames_minigamespot",
-      "target": "src_minigames_minigamespot_minigamespot",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L236",
-      "weight": 1.0,
-      "source": "godot_distribution_html5",
-      "target": "readme_cyber_wellness_quest"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L4, L269",
-      "weight": 1.0,
-      "source": "godot_port_design_doc",
-      "target": "readme_cyber_wellness_quest"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "readme_cyber_wellness_quest",
-      "target": "design_concept_summary"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L35-44",
-      "weight": 1.0,
-      "source": "readme_atlas",
-      "target": "readme_balance_bay"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L35-44",
-      "weight": 1.0,
-      "source": "readme_atlas",
-      "target": "readme_bully_bog"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L35-44",
-      "weight": 1.0,
-      "source": "readme_atlas",
-      "target": "readme_passworld"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L35-44",
-      "weight": 1.0,
-      "source": "readme_atlas",
-      "target": "readme_privacy_peaks"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L31-33",
-      "weight": 1.0,
-      "source": "readme_comet",
-      "target": "readme_no_fail_state"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L6-7",
-      "weight": 1.0,
-      "source": "readme_passport_stamp",
-      "target": "readme_wise_traveler_certificate"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L51, L122-126",
-      "weight": 1.0,
-      "source": "godot_travelers_pledge",
-      "target": "readme_wise_traveler_certificate"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L46, L102",
-      "weight": 1.0,
-      "source": "godot_minigame_platformer",
-      "target": "readme_passworld"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L47, L107",
-      "weight": 1.0,
-      "source": "godot_minigame_river_run",
-      "target": "readme_privacy_peaks"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L48, L113",
-      "weight": 1.0,
-      "source": "godot_minigame_sort",
-      "target": "readme_bully_bog"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L49, L119",
-      "weight": 1.0,
-      "source": "godot_minigame_balance",
-      "target": "readme_balance_bay"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L108-110",
-      "weight": 1.0,
-      "source": "readme_deviation_walkable_world",
-      "target": "readme_walkable_realm"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L91-94",
-      "weight": 1.0,
-      "source": "readme_walkable_realm",
-      "target": "readme_raf_walk_loop"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "design.md",
-      "source_location": "L130-134",
-      "weight": 1.0,
-      "source": "design_decision_point_pattern",
-      "target": "readme_no_fail_state"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "godot_principle_no_fail_state",
-      "target": "readme_no_fail_state"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "design.md",
-      "source_location": "L200-224",
-      "weight": 1.0,
-      "source": "design_scene_construction",
-      "target": "readme_world_scene_coordinate_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L86",
-      "weight": 1.0,
-      "source": "godot_walk_system_port",
-      "target": "readme_world_scene_coordinate_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L74-76",
-      "weight": 1.0,
-      "source": "readme_no_floating_props_rule",
-      "target": "readme_world_scene_coordinate_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L71-74",
-      "weight": 1.0,
-      "source": "readme_solid_ground_rule",
-      "target": "readme_world_scene_coordinate_rule"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "godot_walk_system_port",
-      "target": "readme_solid_ground_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L78-83",
-      "weight": 1.0,
-      "source": "readme_scene_contact_sheet",
-      "target": "readme_solid_ground_rule"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "godot_walk_system_port",
-      "target": "readme_no_floating_props_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L78-83",
-      "weight": 1.0,
-      "source": "readme_scene_contact_sheet",
-      "target": "readme_no_floating_props_rule"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "design.md",
-      "source_location": "L223-224",
-      "weight": 1.0,
-      "source": "design_scene_construction",
-      "target": "readme_scene_contact_sheet"
-    },
-    {
-      "relation": "shares_data_with",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "design.md",
-      "source_location": "L157-176",
-      "weight": 1.0,
-      "source": "design_state_data_model",
-      "target": "readme_localstorage_persistence"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "godot.md",
-      "source_location": "L195-197",
-      "weight": 1.0,
-      "source": "godot_save_system",
-      "target": "readme_localstorage_persistence"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L111-113",
-      "weight": 1.0,
-      "source": "readme_deviation_vite_app",
-      "target": "readme_localstorage_persistence"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L89",
-      "weight": 1.0,
-      "source": "readme_svg_only_art",
-      "target": "design_technical_constraints"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "godot.md",
-      "source_location": "L85",
-      "weight": 1.0,
-      "source": "godot_walk_system_port",
-      "target": "readme_raf_walk_loop"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "L95-98",
-      "weight": 1.0,
-      "source": "readme_step_panel_portal",
-      "target": "design_page_fold_transition"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md",
-      "source_location": "L99-101",
-      "weight": 1.0,
-      "source": "readme_sticky_panel_actions",
-      "target": "design_accessibility_notes"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L108-110",
-      "weight": 1.0,
-      "source": "readme_deviation_walkable_world",
-      "target": "design_minigame_sort"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L111-113",
-      "weight": 1.0,
-      "source": "readme_deviation_vite_app",
-      "target": "design_state_data_model"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L111-113",
-      "weight": 1.0,
-      "source": "readme_deviation_vite_app",
-      "target": "design_technical_constraints"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "godot.md",
-      "source_location": "L119, L137",
-      "weight": 1.0,
-      "source": "godot_minigame_balance",
-      "target": "readme_deviation_third_minigame"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.75,
-      "source_file": "godot.md",
-      "source_location": "L35",
-      "weight": 1.0,
-      "source": "godot_principle_four_mechanics",
-      "target": "readme_deviation_third_minigame"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L114-117",
-      "weight": 1.0,
-      "source": "readme_deviation_third_minigame",
-      "target": "design_component_inventory"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L114-117",
-      "weight": 1.0,
-      "source": "readme_deviation_third_minigame",
-      "target": "design_minigame_sort"
     },
     {
       "relation": "references",
@@ -5751,39 +2303,6 @@
   ],
   "hyperedges": [
     {
-      "id": "four_realm_journey",
-      "label": "The four-realm Atlas journey (topic, mini-game, stamp per realm)",
-      "nodes": [
-        "readme_atlas",
-        "readme_passworld",
-        "readme_privacy_peaks",
-        "readme_bully_bog",
-        "readme_balance_bay",
-        "readme_passport_stamp",
-        "readme_wise_traveler_certificate"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md"
-    },
-    {
-      "id": "scene_ground_agreement_contract",
-      "label": "Scene art / walkable ground agreement contract",
-      "nodes": [
-        "readme_world_scene_coordinate_rule",
-        "readme_solid_ground_rule",
-        "readme_no_floating_props_rule",
-        "readme_scene_contact_sheet",
-        "design_scene_construction",
-        "godot_walk_system_port"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "design.md"
-    },
-    {
       "id": "godot_autoload_json_architecture",
       "label": "Godot autoload + JSON-content architecture borrowed from the example doc",
       "nodes": [
@@ -5816,5 +2335,5 @@
       "source_file": "storyline.md"
     }
   ],
-  "built_at_commit": "44cea1fb193e372669b012c4c146e746dccb94f7"
+  "built_at_commit": "0b4a40cf42c325b1d2c28f10b18b8d8af3d5d27d"
 }

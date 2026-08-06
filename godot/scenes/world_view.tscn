@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/world_view.gd" id="1_view"]
+[ext_resource type="Script" path="res://scripts/atlas_scene_art.gd" id="2_art"]
+[ext_resource type="Script" path="res://scripts/hotspot_layer.gd" id="3_hotspots"]
+[ext_resource type="PackedScene" path="res://scenes/comet.tscn" id="4_comet"]
+[ext_resource type="Script" path="res://scripts/traveler_controller.gd" id="5_traveler"]
+
+[node name="WorldView" type="Control"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+clip_contents = true
+script = ExtResource("1_view")
+
+[node name="SceneRoot" type="Node2D" parent="."]
+
+[node name="Art" type="Node2D" parent="SceneRoot"]
+script = ExtResource("2_art")
+
+[node name="HotspotLayer" type="Node2D" parent="SceneRoot"]
+script = ExtResource("3_hotspots")
+
+[node name="CometFollow" parent="SceneRoot" instance=ExtResource("4_comet")]
+comet_size = 30.0
+mouse_filter = 2
+
+[node name="Traveler" type="Node2D" parent="SceneRoot"]
+script = ExtResource("5_traveler")
+
+[node name="InteractBtn" type="Button" parent="."]
+visible = false
+focus_mode = 0
+custom_minimum_size = Vector2(110, 34)
+theme_override_font_sizes/font_size = 14
+mouse_filter = 1
+text = "Look"
+
+[node name="InfoBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="ObjectiveLabel" type="Label" parent="InfoBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.122, 0.204, 0.322, 1)
+theme_override_font_sizes/font_size = 13
+text = ""
+
+[node name="HintLabel" type="Label" parent="InfoBar"]
+layout_mode = 2
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.361, 0.443, 0.522, 1)
+theme_override_font_sizes/font_size = 12
+text = ""

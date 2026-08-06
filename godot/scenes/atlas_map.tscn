@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/atlas_map.gd" id="1_map"]
 [ext_resource type="PackedScene" path="res://scenes/dialogue_card.tscn" id="2_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/world_view.tscn" id="3_world"]
 
 [node name="AtlasMap" type="Control"]
 layout_mode = 3
@@ -58,14 +59,12 @@ layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 6
 
-[node name="GreetingCard" parent="Scroll/Margin/Col" instance=ExtResource("2_dialogue")]
+[node name="World" parent="Scroll/Margin/Col" instance=ExtResource("3_world")]
+custom_minimum_size = Vector2(0, 340)
 layout_mode = 2
 
-[node name="RealmGrid" type="GridContainer" parent="Scroll/Margin/Col"]
+[node name="GreetingCard" parent="Scroll/Margin/Col" instance=ExtResource("2_dialogue")]
 layout_mode = 2
-theme_override_constants/h_separation = 14
-theme_override_constants/v_separation = 14
-columns = 2
 
 [node name="StatusLabel" type="Label" parent="Scroll/Margin/Col"]
 layout_mode = 2
@@ -76,6 +75,7 @@ text = ""
 
 [node name="FinaleBtn" type="Button" parent="Scroll/Margin/Col"]
 visible = false
+focus_mode = 0
 layout_mode = 2
 custom_minimum_size = Vector2(0, 48)
 theme_override_font_sizes/font_size = 17
