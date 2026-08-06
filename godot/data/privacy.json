@@ -1,0 +1,14 @@
+{
+  "id": "privacy",
+  "name": "Privacy Peaks",
+  "topic": "Strangers & scams online",
+  "accent": "#2d8c7f",
+  "stamp": { "icon": "compass", "label": "Privacy Peaks · Visited" },
+  "world": {
+    "spawn": { "x": 12, "y": 86 },
+    "bounds": { "minX": 6, "maxX": 93, "minY": 72, "maxY": 92 },
+    "_note": "The near ridge dips to scene y=198; minY clears it."
+  },
+  "game": { "type": "river_run", "title": "Cross the Fog" },
+  "phases": ["idle", "story", "river_run", "rule", "stamped"]
+}

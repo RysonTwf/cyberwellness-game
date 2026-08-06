@@ -1,0 +1,14 @@
+{
+  "id": "passworld",
+  "name": "Passworld",
+  "topic": "Passwords & personal info",
+  "accent": "#e0a030",
+  "stamp": { "icon": "key", "label": "Passworld · Visited" },
+  "world": {
+    "spawn": { "x": 10, "y": 84 },
+    "bounds": { "minX": 5, "maxX": 94, "minY": 68, "maxY": 90 },
+    "_note": "minY keeps the Traveler below the wall's base (scene y=188)."
+  },
+  "game": { "type": "platformer", "title": "Password Fortress" },
+  "phases": ["idle", "story", "decision", "platformer", "rule", "stamped"]
+}

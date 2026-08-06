@@ -1,0 +1,13 @@
+{
+  "id": "balance",
+  "name": "Balance Bay",
+  "topic": "Screen time balance",
+  "accent": "#7b6ef6",
+  "stamp": { "icon": "sun", "label": "Balance Bay · Visited" },
+  "world": {
+    "spawn": { "x": 8, "y": 88 },
+    "bounds": { "minX": 5, "maxX": 93, "minY": 74, "maxY": 93 }
+  },
+  "game": { "type": "balance", "title": "Balance the Day" },
+  "phases": ["idle", "story", "decision", "balance", "rule", "stamped"]
+}

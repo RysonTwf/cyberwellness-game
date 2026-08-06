@@ -1,0 +1,14 @@
+{
+  "id": "bullybog",
+  "name": "Bully Bog",
+  "topic": "Cyberbullying & kindness",
+  "accent": "#e0637a",
+  "stamp": { "icon": "heart", "label": "Bully Bog · Visited" },
+  "world": {
+    "spawn": { "x": 10, "y": 88 },
+    "bounds": { "minX": 5, "maxX": 92, "minY": 70, "maxY": 92 },
+    "_note": "The bank starts at scene y=188; minY keeps the Traveler on it."
+  },
+  "game": { "type": "sort", "title": "Clear the Water" },
+  "phases": ["idle", "story", "decision", "sort", "rule", "stamped"]
+}

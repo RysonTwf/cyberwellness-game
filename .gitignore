@@ -1,8 +1,5 @@
-node_modules/
-dist/
-dist-ssr/
-*.local
-.vite/
+# Godot 4 web export output (build artifact, not source)
+/build/
 
 # editor / OS
 .DS_Store
@@ -10,9 +7,3 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*

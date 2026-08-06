@@ -1,0 +1,8 @@
+# Godot 4 import cache and per-machine editor state
+.godot/
+/android/
+
+# Exported builds
+/build/
+/export/
+*.translation

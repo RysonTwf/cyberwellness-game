@@ -1,0 +1,39 @@
+; Cyber Wellness Quest — Godot 4 port
+; See ../godot.md for the full design doc. Layout follows godot.md §7.
+
+config_version=5
+
+[application]
+
+config/name="Cyber Wellness Quest"
+config/description="A field journal for the internet. 1 hub + 4 walkable realms."
+run/main_scene="res://scenes/atlas_gate.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[autoload]
+
+; godot.md §7: every realm scene needs "what's been earned so far" without
+; re-wiring signals scene-to-scene.
+JourneyManager="*res://scripts/journey_manager.gd"
+StampManager="*res://scripts/stamp_manager.gd"
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+; Touch-first product (README): scale the whole canvas rather than expanding it,
+; so the 0-100 world space stays resolution-independent on phones and laptops.
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[rendering]
+
+; godot.md §1 + §11: HTML5 export is the primary target and the perf bar is
+; "the oldest laptop in the room". GL Compatibility is the safe renderer for both.
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+
+[rendering/environment]
+
+defaults/default_clear_color=Color(0.945, 0.961, 0.965, 1)

@@ -1,117 +1,48 @@
 # Cyber Wellness Quest
 
 A walkable cyber wellness game for ages 7–12. You're a Traveler with a paper
-journal; a paper-airplane spirit called Comet shows you the Atlas — a map of the
-internet made of four islands. Walk each realm, talk to who lives there, make a
-call, play a small game, and earn a passport stamp. Four stamps gets you the
-Wise Traveler certificate.
+journal; a paper-airplane spirit called Comet shows you the Atlas — a map of
+the internet made of four islands. Walk each realm, talk to who lives there,
+make a call, play a mini-game built around the lesson itself, and earn a
+passport stamp. Four stamps gets you the Wise Traveler certificate.
 
-Built from `design.md` (visual system) and `storyline.md` (world and script).
+This is a **Godot 4 project** — see [`godot/`](godot/). An earlier React/Vite
+draft of this game existed in this repo; it has been retired in favor of the
+Godot build, which is the one plan now being followed. Its content and lessons
+carry forward through `design.md` (original visual system) and `storyline.md`
+(world and script); `godot.md` is the actual build plan.
 
 ## Running it
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # static site into dist/
-npm run preview  # serve the built site
-```
-
-## How it plays
-
-Each realm is a 2D scene you walk around in:
-
-- **Move** — tap/click the ground to walk there, or hold the arrow keys / WASD.
-- **Interact** — walk up to the pin and press Space/Enter, or tap the button
-  that appears over the Traveler.
-- Each step (story → decision → mini-game → the rule) puts the pin somewhere
-  new, and the scene itself changes once you make the safe choice: the vault
-  opens, the fog lifts, the water clears, the tide goes out.
-
-Nothing can be failed. Picking the unsafe option gets a warm redirect from
-Comet and hands the decision straight back — there is no dead end, no timer,
-and no score shown to the player.
+See [`godot/README.md`](godot/README.md) — open `godot/project.godot` in
+Godot 4.1+, press F5.
 
 ## The four realms
 
-| Realm | Topic | Mini-game | Stamp |
+| Realm | Topic | Mechanic | Stamp |
 |---|---|---|---|
-| Passworld | Passwords & personal info | Sort: Guard the Vault | Key |
-| Privacy Peaks | Strangers & scams online | Spot: Clear the Fog | Compass |
-| Bully Bog | Cyberbullying & kindness | Sort: Clear the Water | Heart |
-| Balance Bay | Screen time balance | Balance the Day | Sun |
+| Passworld | Passwords & personal info | Platformer — *Password Fortress* | Key (gold) |
+| Privacy Peaks | Strangers & scams online | Stepping-Stone Run — *Cross the Fog* | Compass (teal) |
+| Bully Bog | Cyberbullying & kindness | Sort — *Clear the Water* | Heart (coral) |
+| Balance Bay | Screen time balance | Balance — *Balance the Day* | Sun (periwinkle) |
 
-Realms can be played in any order; the finale unlocks at four stamps.
+Realms can be played in any order; the finale unlocks at four stamps. See
+`godot.md` §5–6 for the full content and mechanic mapping, and §2 for why
+Passworld and Privacy Peaks moved off their original bin-sort mechanics.
 
 ## Layout
 
 ```
-src/
-  data/realms.js        all story, choices, mini-game content, world layouts
-  state/useProgress.js  game state + localStorage persistence
-  world/                useWalker (movement), World (walkable space), Traveler
-  components/           Atlas gate/map, realm screen, dialogue, stamps, certificate
-  minigames/            Sort, Spot, Balance
-  dev/ArtPreview.jsx    scene contact sheet (dev only, see below)
-  styles.css            design tokens and all styling
+godot/            the game — see godot/README.md
+design.md         visual system (tokens, type, signature stamp element)
+storyline.md      world, characters, tone rules, full dialogue
+godot.md          the build plan — architecture, content map, build order
+graphify-out/     knowledge graph of this repo (see CLAUDE.md)
 ```
 
-## The ground rule
+## Project history
 
-Scene art and the walkable band are defined in two different files, in two
-different coordinate systems, and nothing enforces that they agree:
-
-- `data/realms.js` sets `world.bounds` in 0–100 world units.
-- `components/RealmArt.jsx` draws in a 560×280 viewBox.
-
-They convert as **`scene_y = world_y × 2.8`**. Two rules follow, and breaking
-either produces the class of bug this project has already had once (a campfire
-burning on open water, a Traveler walking across a bog):
-
-1. **Solid ground must be drawn across the entire walkable band.** If the band
-   runs 207–260, every pixel of scene between those rows has to be beach, bank,
-   or floor — for *both* moods, since the art changes after the safe choice.
-2. **Nothing solid may float above the band.** `World.jsx` draws the Traveler
-   over the scene unconditionally — there is no depth sorting — so props need to
-   sit where a Traveler overlapping them still reads correctly.
-
-### Scene contact sheet
-
-Open the app at **`#art`** (e.g. `http://localhost:5173/#art`) to see all four
-realms in both moods at once, with the walkable band and every hotspot drawn on
-top. This is the fastest way to check the two rules above; eyeballing it beats
-walking to all sixteen corners by hand. It is dev-only and nothing links to it.
-
-## Notes on the build
-
-- Progress (name, stamps, pledge) persists in `localStorage` under
-  `cyber-wellness-quest/v1`. "Start a new journal" on the finale clears it.
-- No image assets — every character and scene is SVG shapes, per `design.md` §9.
-- Fonts are self-hosted via `@fontsource`, so there are no external requests.
-- The walk loop is driven by `requestAnimationFrame`, so it pauses while the tab
-  is in the background and resumes with a clamped timestep (no teleporting).
-  Note for automated testing: a browser throttles `rAF` to zero in a hidden tab,
-  so the Traveler will appear frozen there. That is the harness, not the game.
-- The step panel is rendered through a **portal to `<body>`**. `.fold` animates a
-  `perspective()/rotateY()` transform, which makes it a containing block — a
-  `position: fixed` scrim inside it resolves against the realm card instead of
-  the viewport. Anything full-screen must be portalled out for the same reason.
-- Panel action rows (`.center`, `.panel-actions`) are sticky to the bottom of
-  the panel. A long story beat can otherwise push the only way forward below the
-  fold, and a child who cannot see the button is simply stuck.
-
-## Known deviations from the design docs
-
-Both were deliberate calls, noted here so the docs and the build don't quietly
-drift apart:
-
-1. **Walkable world instead of card-based navigation.** `design.md` §5 specified
-   point-and-click cards with no moving character. This was changed on request:
-   the realms are now walked, though the mini-games are still tap puzzles.
-2. **A real Vite app with persistence, not a single-file artifact.**
-   `design.md` §9 assumed an artifact (Tailwind, no `localStorage`). §7 had
-   already flagged persistence as the follow-up once the base game existed.
-3. **A third mini-game component.** §6 lists only Sort and Spot, but §5's own
-   "Balance the Day" description is a scale rather than two bins, so it has its
-   own component — reusing Sort's exact tap-to-place controls so there is no new
-   control to learn.
+Retired: a React/Vite draft that proved out the walkable-realm concept and
+carried the original Sort/Spot mini-game set. Its content is preserved in
+`design.md`/`storyline.md` and in git history; nothing in it is the live
+plan anymore — `godot.md` is.

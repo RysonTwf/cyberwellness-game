@@ -1,0 +1,188 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/atlas_gate.gd" id="1_gate"]
+[ext_resource type="PackedScene" path="res://scenes/comet.tscn" id="2_comet"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue_card.tscn" id="3_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/stamp_badge.tscn" id="4_badge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_passport"]
+bg_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+content_margin_left = 24.0
+content_margin_top = 22.0
+content_margin_right = 24.0
+content_margin_bottom = 22.0
+
+[node name="AtlasGate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gate")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.945098, 0.960784, 0.964706, 1)
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 60
+
+[node name="Col" type="VBoxContainer" parent="Scroll/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="HeaderBox" type="VBoxContainer" parent="Scroll/Margin/Col"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="CometAvatar" parent="Scroll/Margin/Col/HeaderBox" instance=ExtResource("2_comet")]
+layout_mode = 2
+size_flags_horizontal = 4
+comet_size = 78.0
+
+[node name="Title" type="Label" parent="Scroll/Margin/Col/HeaderBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.122, 0.204, 0.322, 1)
+theme_override_font_sizes/font_size = 30
+text = "Cyber Wellness Quest"
+
+[node name="Lede" type="Label" parent="Scroll/Margin/Col/HeaderBox"]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.361, 0.443, 0.522, 1)
+theme_override_font_sizes/font_size = 17
+text = "A journal, a map, and four realms worth visiting."
+
+[node name="BeatsBox" type="VBoxContainer" parent="Scroll/Margin/Col"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Beat0" parent="Scroll/Margin/Col/BeatsBox" instance=ExtResource("3_dialogue")]
+layout_mode = 2
+
+[node name="Beat1" parent="Scroll/Margin/Col/BeatsBox" instance=ExtResource("3_dialogue")]
+layout_mode = 2
+
+[node name="KeepReadingBtn" type="Button" parent="Scroll/Margin/Col"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(200, 48)
+theme_override_font_sizes/font_size = 17
+text = "Keep reading  >"
+
+[node name="NamingBox" type="VBoxContainer" parent="Scroll/Margin/Col"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="PassportCard" type="PanelContainer" parent="Scroll/Margin/Col/NamingBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_passport")
+
+[node name="PMargin" type="MarginContainer" parent="Scroll/Margin/Col/NamingBox/PassportCard"]
+layout_mode = 2
+
+[node name="PCol" type="VBoxContainer" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="PassportLabel" type="Label" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.361, 0.443, 0.522, 1)
+theme_override_font_sizes/font_size = 13
+text = "YOUR PASSPORT"
+
+[node name="BadgeRow" type="HBoxContainer" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+theme_override_constants/separation = 4
+
+[node name="Badge0" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol/BadgeRow" instance=ExtResource("4_badge")]
+layout_mode = 2
+realm_id = "passworld"
+icon = "key"
+badge_accent = Color(0.878431, 0.627451, 0.188235, 1)
+badge_size = 68.0
+
+[node name="Badge1" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol/BadgeRow" instance=ExtResource("4_badge")]
+layout_mode = 2
+realm_id = "privacy"
+icon = "compass"
+badge_accent = Color(0.176471, 0.54902, 0.498039, 1)
+badge_size = 68.0
+
+[node name="Badge2" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol/BadgeRow" instance=ExtResource("4_badge")]
+layout_mode = 2
+realm_id = "bullybog"
+icon = "heart"
+badge_accent = Color(0.878431, 0.388235, 0.478431, 1)
+badge_size = 68.0
+
+[node name="Badge3" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol/BadgeRow" instance=ExtResource("4_badge")]
+layout_mode = 2
+realm_id = "balance"
+icon = "sun"
+badge_accent = Color(0.482353, 0.431373, 0.964706, 1)
+badge_size = 68.0
+
+[node name="NameLabel" type="Label" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.361, 0.443, 0.522, 1)
+theme_override_font_sizes/font_size = 13
+text = "TRAVELER NAME"
+
+[node name="NameEdit" type="LineEdit" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(300, 44)
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Type your first name"
+max_length = 18
+
+[node name="HelperLabel" type="Label" parent="Scroll/Margin/Col/NamingBox/PassportCard/PMargin/PCol"]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.361, 0.443, 0.522, 1)
+theme_override_font_sizes/font_size = 14
+text = "Just a first name, and only so Comet knows what to call you."
+
+[node name="CatchphraseCard" parent="Scroll/Margin/Col/NamingBox" instance=ExtResource("3_dialogue")]
+layout_mode = 2
+
+[node name="OpenBtn" type="Button" parent="Scroll/Margin/Col/NamingBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(220, 48)
+theme_override_font_sizes/font_size = 17
+text = "Open the Atlas  >"
