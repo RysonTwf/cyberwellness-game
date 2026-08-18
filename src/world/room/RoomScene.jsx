@@ -33,7 +33,7 @@ function Prop({ src, x, y, width, z = 1 }) {
 /**
  * The glowing journal (storyline.md prologue) — hand-drawn rather than from
  * the tileset, since it's the one prop that has to read as magical, not
- * furniture. Sits on the table; `lit` fades the glow out once it's been
+ * furniture. Sits on the desk; `lit` fades the glow out once it's been
  * opened, so it doesn't keep visually begging for another interaction.
  */
 function GlowingDiary({ x, y, lit = true }) {
@@ -60,17 +60,106 @@ function GlowingDiary({ x, y, lit = true }) {
   );
 }
 
+/** A simple bed — hand-drawn (no bed sprite in the itch.io pack), corner spot. */
+function Bed({ x, y, width }) {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${x}%`,
+        top: `${y}%`,
+        width: `${width}%`,
+        aspectRatio: '4 / 5',
+        transform: 'translate(-50%, -100%)',
+        zIndex: 2,
+        pointerEvents: 'none',
+      }}
+    >
+      <svg viewBox="0 0 40 50" width="100%" height="100%">
+        <rect x="1" y="1" width="38" height="48" rx="3" fill="#7a5233" />
+        <rect x="4" y="13" width="32" height="34" rx="2" fill="#e0637a" />
+        <rect x="4" y="13" width="32" height="34" rx="2" fill="none" stroke="#b94f61" strokeWidth="1.4" />
+        <rect x="6" y="3" width="28" height="12" rx="2.5" fill="#fdf6e3" stroke="#d8c9a3" strokeWidth="1.2" />
+        <rect x="6" y="24" width="28" height="2" fill="#b94f61" opacity="0.5" />
+        <rect x="6" y="32" width="28" height="2" fill="#b94f61" opacity="0.5" />
+      </svg>
+    </div>
+  );
+}
+
+/** A small TV-on-a-desk, hand-drawn — the study-corner echo of the reference room. */
+function DeskAndScreen({ x, y, width }) {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${x}%`,
+        top: `${y}%`,
+        width: `${width}%`,
+        aspectRatio: '5 / 4',
+        transform: 'translate(-50%, -100%)',
+        zIndex: 2,
+        pointerEvents: 'none',
+      }}
+    >
+      <svg viewBox="0 0 50 40" width="100%" height="100%">
+        <rect x="2" y="18" width="46" height="20" rx="2" fill="#7a5233" />
+        <rect x="2" y="18" width="46" height="4" fill="#a06a3f" />
+        <rect x="10" y="4" width="30" height="18" rx="2" fill="#3a3a44" />
+        <rect x="13" y="7" width="24" height="12" fill="#7fb6c9" opacity="0.8" />
+      </svg>
+    </div>
+  );
+}
+
+/** A framed picture on the wall — hand-drawn accent. */
+function Picture({ x, y, width }) {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${x}%`,
+        top: `${y}%`,
+        width: `${width}%`,
+        aspectRatio: '4 / 5',
+        zIndex: 2,
+        pointerEvents: 'none',
+      }}
+    >
+      <svg viewBox="0 0 24 30" width="100%" height="100%">
+        <rect x="1" y="1" width="22" height="28" rx="1.5" fill="#c99a5b" stroke="#5c3a22" strokeWidth="1.6" />
+        <rect x="4" y="4" width="16" height="22" fill="#9fd0d8" />
+        <path d="M4 20 L10 12 L14 17 L17 13 L20 20 Z" fill="#3f8f4f" />
+        <circle cx="16" cy="8" r="2.4" fill="#fdf3d8" />
+      </svg>
+    </div>
+  );
+}
+
 /**
  * The Traveler's Room — the game's opening scene (storyline.md prologue).
- * Built from the itch.io top-down house pack rather than hand-drawn SVG,
- * since it's real furniture rather than a stylised map. Floor tiles via a
- * repeating background (so one 16x16 crop covers the whole room); walls are
- * a plain colour frame — this pack only has a thin top-edge wall trim, not
- * a tileable wall face, so a solid frame reads better than stretching that.
+ * Layout takes its composition (desk-corner, wall picture, rug, plant, bed)
+ * from a classic top-down RPG bedroom, rebuilt with our own assets: the
+ * itch.io top-down house pack for floor/door/wardrobe/cabinet/plant/rug,
+ * and a few hand-drawn accents (desk screen, picture, bed) where the pack
+ * doesn't have a matching piece.
  */
 export default function RoomScene({ diaryOpened = false }) {
   return (
     <div style={{ position: 'absolute', inset: 0, background: '#5c3a22' }}>
+      {/* a hint of the classic gabled roofline, behind the wall band */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '38%',
+          top: 0,
+          width: '24%',
+          height: '9%',
+          background: '#4a2f1c',
+          clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+        }}
+      />
+
       {/* floor */}
       <div
         style={{
@@ -86,18 +175,36 @@ export default function RoomScene({ diaryOpened = false }) {
           boxShadow: 'inset 0 0 0 3px #3f2717',
         }}
       />
+      {/* diagonal plank grain, layered over the tiled floor */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '4%',
+          top: '9%',
+          right: '4%',
+          bottom: '3%',
+          backgroundImage:
+            'repeating-linear-gradient(45deg, rgba(63,39,23,0.08) 0 3px, transparent 3px 16px)',
+        }}
+      />
 
       {/* the door the Traveler steps out through, once they're ready */}
       <Prop src={doorImg} x={50} y={99} width={7} z={2} />
 
-      <Prop src={rugImg} x={50} y={68} width={22} z={1} />
-      <Prop src={wardrobeImg} x={15} y={24} width={8} z={2} />
+      {/* top wall: desk+screen far-left, wardrobe, picture, cabinet far-right */}
+      <DeskAndScreen x={14} y={26} width={12} />
+      <Prop src={wardrobeImg} x={30} y={24} width={7} z={2} />
+      <Picture x={57} y={11} width={7} />
       <Prop src={cabinetImg} x={85} y={22} width={9} z={2} />
-      <Prop src={plantImg} x={12} y={76} width={3.5} z={2} />
 
-      {/* the table the diary rests on */}
-      <Prop src={tableImg} x={50} y={30} width={6} z={2} />
-      <GlowingDiary x={50} y={29} lit={!diaryOpened} />
+      {/* the desk the diary rests on, right where the Traveler starts nearby */}
+      <Prop src={tableImg} x={14} y={38} width={6} z={2} />
+      <GlowingDiary x={14} y={37} lit={!diaryOpened} />
+
+      {/* bottom row: plant, rug, bed — echoing the reference layout */}
+      <Prop src={plantImg} x={12} y={88} width={3.5} z={2} />
+      <Prop src={rugImg} x={50} y={78} width={22} z={1} />
+      <Bed x={84} y={90} width={13} />
     </div>
   );
 }
