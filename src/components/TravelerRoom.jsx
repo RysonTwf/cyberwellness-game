@@ -12,8 +12,8 @@ import AtlasGate from './AtlasGate';
  * Atlas.
  */
 const SPAWN = { x: 50, y: 82 };
-const BOUNDS = { minX: 10, maxX: 90, minY: 20, maxY: 92 };
-const DIARY_SPOT = { id: 'diary', x: 14, y: 38, label: 'the glowing diary', action: 'Open it' };
+const BOUNDS = { minX: 10, maxX: 90, minY: 30, maxY: 92 };
+const DIARY_SPOT = { id: 'diary', x: 70, y: 41, label: 'the glowing diary', action: 'Open it' };
 const DOOR_SPOT = { id: 'door', x: 50, y: 94, label: 'the door', action: 'Step outside' };
 
 export default function TravelerRoom({ onBegin, onExit }) {
