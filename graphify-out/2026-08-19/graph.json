@@ -69,7 +69,7 @@
       "label": "DIARY_SPOT",
       "file_type": "code",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L19",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_travelerroom_diary_spot",
       "community": 0,
@@ -79,7 +79,7 @@
       "label": "DOOR_SPOT",
       "file_type": "code",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L21",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "src_components_travelerroom_door_spot",
       "community": 0,
@@ -89,31 +89,11 @@
       "label": "TravelerRoom()",
       "file_type": "code",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L23",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_travelerroom_travelerroom",
       "community": 0,
       "norm_label": "travelerroom()"
-    },
-    {
-      "label": "World.jsx",
-      "file_type": "code",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_world_world",
-      "community": 0,
-      "norm_label": "world.jsx"
-    },
-    {
-      "label": "World()",
-      "file_type": "code",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "src_world_world_world",
-      "community": 0,
-      "norm_label": "world()"
     },
     {
       "label": "RoomScene.jsx",
@@ -136,20 +116,10 @@
       "norm_label": "prop()"
     },
     {
-      "label": "Shadow()",
-      "file_type": "code",
-      "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L45",
-      "_origin": "ast",
-      "id": "src_world_room_roomscene_shadow",
-      "community": 0,
-      "norm_label": "shadow()"
-    },
-    {
       "label": "GlowingDiary()",
       "file_type": "code",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L70",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "src_world_room_roomscene_glowingdiary",
       "community": 0,
@@ -159,7 +129,7 @@
       "label": "Screen()",
       "file_type": "code",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L95",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "src_world_room_roomscene_screen",
       "community": 0,
@@ -169,7 +139,7 @@
       "label": "Bed()",
       "file_type": "code",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L119",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "src_world_room_roomscene_bed",
       "community": 0,
@@ -179,7 +149,7 @@
       "label": "RoomScene()",
       "file_type": "code",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L157",
+      "source_location": "L129",
       "_origin": "ast",
       "id": "src_world_room_roomscene_roomscene",
       "community": 0,
@@ -191,7 +161,7 @@
       "source_file": "src/App.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "app.jsx",
       "id": "src_app"
     },
@@ -211,7 +181,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "atlasmap.jsx",
       "id": "src_components_atlasmap"
     },
@@ -221,7 +191,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "islands",
       "id": "src_components_atlasmap_islands"
     },
@@ -231,7 +201,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "gate",
       "id": "src_components_atlasmap_gate"
     },
@@ -241,7 +211,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "gate_svg",
       "id": "src_components_atlasmap_gate_svg"
     },
@@ -251,7 +221,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "branch_ctrl",
       "id": "src_components_atlasmap_branch_ctrl"
     },
@@ -261,7 +231,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L45",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "palmtree()",
       "id": "src_components_atlasmap_palmtree"
     },
@@ -271,7 +241,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L61",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "fishmark()",
       "id": "src_components_atlasmap_fishmark"
     },
@@ -281,7 +251,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L75",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "atlasscene()",
       "id": "src_components_atlasmap_atlasscene"
     },
@@ -291,7 +261,7 @@
       "source_file": "src/components/AtlasMap.jsx",
       "source_location": "L217",
       "_origin": "ast",
-      "community": 0,
+      "community": 8,
       "norm_label": "atlasmap()",
       "id": "src_components_atlasmap_atlasmap"
     },
@@ -301,7 +271,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "useprogress.js",
       "id": "src_state_useprogress"
     },
@@ -311,7 +281,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "freshrealmprogress()",
       "id": "src_state_useprogress_freshrealmprogress"
     },
@@ -321,7 +291,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "initialstate()",
       "id": "src_state_useprogress_initialstate"
     },
@@ -331,7 +301,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L52",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "reducer()",
       "id": "src_state_useprogress_reducer"
     },
@@ -341,7 +311,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L111",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "load()",
       "id": "src_state_useprogress_load"
     },
@@ -351,7 +321,7 @@
       "source_file": "src/state/useProgress.js",
       "source_location": "L135",
       "_origin": "ast",
-      "community": 19,
+      "community": 8,
       "norm_label": "useprogress()",
       "id": "src_state_useprogress_useprogress"
     },
@@ -381,7 +351,7 @@
       "source_file": "src/world/Traveler.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 20,
+      "community": 3,
       "norm_label": "traveler.jsx",
       "id": "src_world_traveler"
     },
@@ -391,9 +361,29 @@
       "source_file": "src/world/Traveler.jsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 20,
+      "community": 3,
       "norm_label": "traveler()",
       "id": "src_world_traveler_traveler"
+    },
+    {
+      "label": "World.jsx",
+      "file_type": "code",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "world.jsx",
+      "id": "src_world_world"
+    },
+    {
+      "label": "World()",
+      "file_type": "code",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L19",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "world()",
+      "id": "src_world_world_world"
     },
     {
       "label": "package.json",
@@ -921,7 +911,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "realmart.jsx",
       "id": "src_components_realmart"
     },
@@ -931,7 +921,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "sky()",
       "id": "src_components_realmart_sky"
     },
@@ -941,7 +931,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "passworldscene()",
       "id": "src_components_realmart_passworldscene"
     },
@@ -951,7 +941,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L152",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "privacyscene()",
       "id": "src_components_realmart_privacyscene"
     },
@@ -961,7 +951,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L229",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "bogscene()",
       "id": "src_components_realmart_bogscene"
     },
@@ -971,7 +961,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L373",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "bayscene()",
       "id": "src_components_realmart_bayscene"
     },
@@ -981,7 +971,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L506",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "fablefallsscene()",
       "id": "src_components_realmart_fablefallsscene"
     },
@@ -991,7 +981,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L560",
       "_origin": "ast",
-      "community": 8,
+      "community": 19,
       "norm_label": "scenes",
       "id": "src_components_realmart_scenes"
     },
@@ -1001,7 +991,7 @@
       "source_file": "src/components/RealmArt.jsx",
       "source_location": "L568",
       "_origin": "ast",
-      "community": 8,
+      "community": 2,
       "norm_label": "realmart()",
       "id": "src_components_realmart_realmart"
     },
@@ -2702,7 +2692,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L19",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_travelerroom",
       "target": "src_components_travelerroom_diary_spot",
@@ -2712,7 +2702,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L21",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_travelerroom",
       "target": "src_components_travelerroom_door_spot",
@@ -2732,7 +2722,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L23",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_components_travelerroom",
       "target": "src_components_travelerroom_travelerroom",
@@ -2761,28 +2751,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "src_components_travelerroom",
-      "target": "src_world_world",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/TravelerRoom.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "src_components_travelerroom",
-      "target": "src_world_world_world",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -2794,64 +2762,10 @@
       "target": "src_components_travelerroom_travelerroom"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_world_world"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_world_world"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/World.jsx",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "src_world_world",
-      "target": "src_world_world_world",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_atlasmap",
-      "target": "src_world_world_world"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_components_realmscreen",
-      "target": "src_world_world_world"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L119",
+      "source_location": "L94",
       "weight": 1.0,
       "source": "src_world_room_roomscene",
       "target": "src_world_room_roomscene_bed",
@@ -2861,7 +2775,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L70",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "src_world_room_roomscene",
       "target": "src_world_room_roomscene_glowingdiary",
@@ -2881,7 +2795,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L157",
+      "source_location": "L129",
       "weight": 1.0,
       "source": "src_world_room_roomscene",
       "target": "src_world_room_roomscene_roomscene",
@@ -2891,20 +2805,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L95",
+      "source_location": "L70",
       "weight": 1.0,
       "source": "src_world_room_roomscene",
       "target": "src_world_room_roomscene_screen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/world/room/RoomScene.jsx",
-      "source_location": "L45",
-      "weight": 1.0,
-      "source": "src_world_room_roomscene",
-      "target": "src_world_room_roomscene_shadow",
       "confidence_score": 1.0
     },
     {
@@ -3075,6 +2979,28 @@
       "target": "src_components_atlasmap_palmtree"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AtlasMap.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_atlasmap",
+      "target": "src_world_world"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AtlasMap.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_atlasmap",
+      "target": "src_world_world_world"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/state/useProgress.js",
@@ -3201,6 +3127,28 @@
       "target": "src_world_boat_boat"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_world_world",
+      "target": "src_world_boat"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_world_world",
+      "target": "src_world_boat_boat"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/Traveler.jsx",
@@ -3209,6 +3157,60 @@
       "confidence_score": 1.0,
       "source": "src_world_traveler",
       "target": "src_world_traveler_traveler"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_world_world",
+      "target": "src_world_traveler"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_world_world",
+      "target": "src_world_traveler_traveler"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_realmscreen",
+      "target": "src_world_world"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/World.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_world_world",
+      "target": "src_world_world_world"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_realmscreen",
+      "target": "src_world_world_world"
     },
     {
       "relation": "contains",
@@ -5867,5 +5869,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "9c471a55918f6810341bf6f3921fd48964f947f2"
+  "built_at_commit": "bc0ddbbe3d59c5c91c0171c268d482a26892776d"
 }

@@ -16,12 +16,20 @@
  * just a locked "next" button). See components/PlatformerStoryRealm.jsx.
  */
 
-const INK = 0x1f3452;
-const PAPER = 0xf1f5f6;
+import {
+  buildPassworldArt,
+  platformTexture,
+  playerBody,
+  preloadPassworldArt,
+  spriteScale,
+  tileTextureFor,
+} from './passworldArt';
+
+// Only the few tints the scene applies at runtime live here — everything the
+// art itself is drawn with belongs to passworldArt.js.
 const GOLD = 0xe0a030;
 const TEAL = 0x2d8c7f;
 const HAZARD = 0xc76b5c;
-const NEUTRAL = 0x9aa6b5; // the impersonator — deliberately unplaceable, not a villain colour
 
 const LEVEL_W = 1120;
 const LEVEL_H = 280;
@@ -42,98 +50,55 @@ export function makePasswordFortressLevelConfig(
     }
 
     preload() {
-      this.buildTextures();
-    }
-
-    buildTextures() {
-      const g = this.add.graphics();
-
-      g.clear();
-      g.fillStyle(INK, 1);
-      g.fillRoundedRect(0, 8, 24, 24, 7);
-      g.fillStyle(GOLD, 1);
-      g.fillRoundedRect(0, 4, 24, 11, 5);
-      g.fillStyle(PAPER, 1);
-      g.fillCircle(8, 13, 2);
-      g.fillCircle(16, 13, 2);
-      g.generateTexture('traveler', 24, 32);
-
-      g.clear();
-      g.fillStyle(HAZARD, 1);
-      g.fillRoundedRect(0, 0, 28, 24, 11);
-      g.fillStyle(PAPER, 1);
-      g.fillCircle(9, 10, 2.4);
-      g.fillCircle(19, 10, 2.4);
-      g.generateTexture('hazard', 28, 24);
-
-      g.clear();
-      g.fillStyle(TEAL, 1);
-      g.fillRoundedRect(0, 0, 34, 34, 8);
-      g.lineStyle(2, INK, 0.5);
-      g.strokeRoundedRect(1, 1, 32, 32, 8);
-      g.generateTexture('tile-real', 34, 34);
-
-      g.clear();
-      g.fillStyle(GOLD, 1);
-      g.fillRoundedRect(0, 0, 34, 34, 8);
-      g.lineStyle(2, INK, 0.5);
-      g.strokeRoundedRect(1, 1, 32, 32, 8);
-      g.generateTexture('tile-decoy', 34, 34);
-
-      // The impersonator: same flat-blob language as everyone else, but
-      // drawn twice at a slight offset with reduced opacity — a soft
-      // "double image" that reads as "something's not quite lined up"
-      // without needing a face or an expression to sell it.
-      g.clear();
-      g.fillStyle(NEUTRAL, 0.55);
-      g.fillRoundedRect(2, 6, 24, 26, 9);
-      g.fillStyle(NEUTRAL, 1);
-      g.fillRoundedRect(0, 4, 24, 26, 9);
-      g.fillStyle(PAPER, 1);
-      g.fillCircle(8, 14, 2);
-      g.fillCircle(16, 14, 2);
-      g.generateTexture('npc', 28, 32);
-
-      // Gate: a portcullis of vertical bars.
-      g.clear();
-      g.fillStyle(INK, 0.88);
-      for (let i = 0; i < 5; i += 1) g.fillRoundedRect(i * 12, 0, 6, 120, 3);
-      g.generateTexture('gate', 60, 120);
-
-      g.destroy();
+      // Real sprite sheets if they've been dropped in, otherwise the built-in
+      // stand-ins — see passworldArt.js for how to swap them.
+      preloadPassworldArt(this);
     }
 
     create() {
+      buildPassworldArt(this);
+
       this.physics.world.setBounds(0, 0, LEVEL_W, LEVEL_H);
       this.cameras.main.setBounds(0, 0, LEVEL_W, LEVEL_H);
+
+      // ---- background: two parallax layers behind the vault ----
+      this.add
+        .tileSprite(0, 0, LEVEL_W, LEVEL_H, 'pw-bg-wall')
+        .setOrigin(0)
+        .setScrollFactor(0.15);
+      this.add
+        .tileSprite(0, 0, LEVEL_W, LEVEL_H, 'pw-bg-machinery')
+        .setOrigin(0)
+        .setScrollFactor(0.45);
 
       // ---- platforms ----
       this.platforms = this.physics.add.staticGroup();
       for (const p of platformLayout) {
-        const key = `plat-${p.x}-${p.y}`;
-        if (!this.textures.exists(key)) {
-          const g = this.add.graphics();
-          g.fillStyle(INK, 0.85);
-          g.fillRoundedRect(0, 0, p.w, p.h, 4);
-          g.generateTexture(key, p.w, p.h);
-          g.destroy();
-        }
-        const body = this.platforms.create(p.x + p.w / 2, p.y + p.h / 2, key);
+        const body = this.platforms.create(
+          p.x + p.w / 2,
+          p.y + p.h / 2,
+          platformTexture(this, p.w, p.h),
+        );
         body.refreshBody();
       }
 
       // ---- player ----
-      this.player = this.physics.add.sprite(30, 210, 'traveler').setBounce(0.05);
-      this.player.body.setSize(20, 26).setOffset(2, 4);
+      this.player = this.physics.add.sprite(30, 210, 'pw-traveler').setBounce(0.05);
+      this.player.setScale(spriteScale(this, 'pw-traveler'));
+      const pb = playerBody(this);
+      this.player.body.setSize(pb.width, pb.height).setOffset(pb.offsetX, pb.offsetY);
       this.player.setCollideWorldBounds(true);
       this.physics.add.collider(this.player, this.platforms);
+      this.player.play('pw-idle');
       this.facing = 1;
       this.locked = false;
       this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
 
       // ---- the impersonator + the gate they're blocking ----
-      this.add.image(encounterX + 14, 234, 'npc');
-      this.gateBody = this.physics.add.staticImage(gateX, 202, 'gate');
+      // Stood clear of the gate on the player's side — parked at the gate's
+      // own x they were drawn behind the bars and barely legible.
+      this.add.image(encounterX - 24, 234, 'pw-impostor');
+      this.gateBody = this.physics.add.staticImage(gateX, 202, 'pw-gate');
       this.physics.add.collider(this.player, this.gateBody);
 
       this.decisionTriggered = false;
@@ -154,13 +119,39 @@ export function makePasswordFortressLevelConfig(
       this.tileGroup = this.physics.add.staticGroup();
       this.tileById = new Map(tiles.map((t) => [t.id, t]));
       for (const t of tiles) {
-        const sprite = this.tileGroup.create(t.x, t.y, t.kind === 'real' ? 'tile-real' : 'tile-decoy');
+        const sprite = this.tileGroup.create(t.x, t.y, tileTextureFor(t));
         sprite.setData('id', t.id);
-        this.add.text(t.x, t.y, t.label, {
-          fontFamily: 'monospace',
-          fontSize: t.label.length > 2 ? '9px' : '14px',
-          color: '#ffffff',
-        }).setOrigin(0.5);
+        const label = this.add
+          .text(t.x, t.y - 1, t.label, {
+            fontFamily: 'monospace',
+            fontSize: t.label.length > 2 ? '9px' : '15px',
+            fontStyle: 'bold',
+            color: '#ffffff',
+          })
+          .setOrigin(0.5);
+        sprite.setData('label', label);
+
+        if (t.kind === 'real') {
+          // a slow hover, so the ones worth having read as "live"
+          this.tweens.add({
+            targets: [sprite, label],
+            y: '-=3',
+            duration: 1100,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+          });
+        } else {
+          // ...and the decoys glint instead: flashier, but going nowhere
+          this.tweens.add({
+            targets: sprite,
+            alpha: 0.78,
+            duration: 620,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+          });
+        }
       }
       this.physics.add.overlap(this.player, this.tileGroup, (_player, sprite) =>
         this.onTileTouch(sprite),
@@ -168,9 +159,11 @@ export function makePasswordFortressLevelConfig(
 
       // ---- hazard ----
       if (hazardCfg) {
-        this.hazard = this.physics.add.sprite(hazardCfg.patrolFrom, hazardCfg.y, 'hazard');
+        this.hazard = this.physics.add.sprite(hazardCfg.patrolFrom, hazardCfg.y, 'pw-hacker');
+        this.hazard.setScale(spriteScale(this, 'pw-hacker'));
         this.hazard.body.setAllowGravity(false);
         this.hazard.body.setImmovable(true);
+        this.hazard.play('pw-hacker-move');
         this.tweens.add({
           targets: this.hazard,
           x: hazardCfg.patrolTo,
@@ -185,8 +178,18 @@ export function makePasswordFortressLevelConfig(
       // ---- HUD (screen-pinned — setScrollFactor(0) — so it stays put
       // regardless of how far the camera has scrolled) ----
       this.hudText = this.add
-        .text(12, 10, '', { fontFamily: 'sans-serif', fontSize: '14px', fontStyle: 'bold', color: '#1f3452' })
+        .text(12, 8, '', { fontFamily: 'sans-serif', fontSize: '13px', fontStyle: 'bold', color: '#1f3452' })
         .setScrollFactor(0);
+
+      // A real strength meter rather than a bare number: housing from the art
+      // manifest, with the fill drawn live over it so it can animate as the
+      // password gets stronger.
+      this.add.image(12, 26, 'pw-meter').setOrigin(0, 0).setScrollFactor(0);
+      this.meterFill = this.add.graphics().setScrollFactor(0);
+      // 0..1, tweened rather than read straight off the count. It lives on its
+      // own object rather than on the scene so that killing its tween can't
+      // take any other scene-targeted tween down with it.
+      this.meter = { v: 0 };
       this.hintText = this.add
         .text(280, 264, 'Walk right to find out what’s going on.', {
           fontFamily: 'sans-serif',
@@ -240,15 +243,40 @@ export function makePasswordFortressLevelConfig(
       const t = this.tileById.get(sprite.getData('id'));
       if (!t) return;
 
+      const label = sprite.getData('label');
+
       if (t.kind === 'real') {
+        this.collectBurst(sprite.x, sprite.y);
+        this.tweens.killTweensOf([sprite, label]);
+        label?.destroy();
         sprite.destroy();
         this.collected.add(t.id);
         this.updateHud();
         onProgress?.(this.collected.size, this.realTotal);
         if (this.collected.size >= this.realTotal) this.winSequence();
-      } else if (!this.decoyWarned.has(t.id)) {
-        this.decoyWarned.add(t.id);
-        this.flashToast('That one’s easy to guess — look for a locked one instead.');
+      } else {
+        // A decoy shrugs you off — a shake, not a penalty. It stays on the
+        // board so the contrast with the locked tiles keeps teaching.
+        if (!this.decoyShaking) {
+          this.decoyShaking = true;
+          const x0 = sprite.x;
+          this.tweens.add({
+            targets: [sprite, label],
+            x: x0 + 3,
+            duration: 55,
+            yoyo: true,
+            repeat: 3,
+            onComplete: () => {
+              sprite.x = x0;
+              if (label) label.x = x0;
+              this.decoyShaking = false;
+            },
+          });
+        }
+        if (!this.decoyWarned.has(t.id)) {
+          this.decoyWarned.add(t.id);
+          this.flashToast('That one’s easy to guess — look for a locked one instead.');
+        }
       }
     }
 
@@ -273,6 +301,56 @@ export function makePasswordFortressLevelConfig(
       const n = this.collected.size;
       const strength = n === 0 ? 'Weak' : n < this.realTotal ? 'Building…' : 'Strong';
       this.hudText.setText(`Password strength: ${strength}  (${n}/${this.realTotal})`);
+
+      // Tween the fill rather than snapping it, so collecting a tile has a
+      // visible consequence up in the HUD and not just on the tile itself.
+      const target = this.realTotal ? n / this.realTotal : 0;
+      this.tweens.killTweensOf(this.meter);
+      this.tweens.add({
+        targets: this.meter,
+        v: target,
+        duration: 420,
+        ease: 'Cubic.easeOut',
+        onUpdate: () => this.drawMeter(),
+        onComplete: () => {
+          // Land exactly on the target — a killed-and-restarted tween can
+          // otherwise leave the bar a hair short of full at 3/3.
+          this.meter.v = target;
+          this.drawMeter();
+        },
+      });
+    }
+
+    drawMeter() {
+      if (!this.meterFill) return;
+      const w = 96;
+      const h = 14;
+      const v = this.meter.v;
+      // weak → strong runs hazard-red through gold to the realm's teal
+      const color = v >= 0.999 ? TEAL : v >= 0.5 ? GOLD : HAZARD;
+      this.meterFill.clear();
+      if (v <= 0) return;
+      this.meterFill.fillStyle(color, 1);
+      this.meterFill.fillRoundedRect(12 + 2, 26 + 2, Math.max(4, (w - 4) * v), h - 4, (h - 4) / 2);
+    }
+
+    /** A little burst of sparks where a tile was picked up. */
+    collectBurst(x, y) {
+      for (let i = 0; i < 7; i += 1) {
+        const s = this.add.image(x, y, 'pw-spark').setScale(0.7);
+        const a = (Math.PI * 2 * i) / 7 + Math.random() * 0.4;
+        const d = 18 + Math.random() * 14;
+        this.tweens.add({
+          targets: s,
+          x: x + Math.cos(a) * d,
+          y: y + Math.sin(a) * d,
+          alpha: 0,
+          scale: 0.15,
+          duration: 460,
+          ease: 'Cubic.easeOut',
+          onComplete: () => s.destroy(),
+        });
+      }
     }
 
     winSequence() {
@@ -281,14 +359,27 @@ export function makePasswordFortressLevelConfig(
       // Screen-pinned, not world-pinned — otherwise this closes over
       // whatever part of the 1120px level the camera happened to be
       // showing instead of the whole viewport.
-      const left = this.add.rectangle(140, 140, 280, 280, INK, 0.92).setScrollFactor(0);
-      const right = this.add.rectangle(420, 140, 280, 280, INK, 0.92).setScrollFactor(0);
-      this.tweens.add({ targets: left, x: -140, duration: 700, ease: 'Cubic.easeIn' });
+      const left = this.add.image(140, 140, 'pw-door-left').setScrollFactor(0);
+      const right = this.add.image(420, 140, 'pw-door-right').setScrollFactor(0);
+
+      // The doors thump shut, hold a beat, then swing wide — the vault
+      // sealing *then* opening for the Traveler is the stamp-earning moment,
+      // so it wants a pause in the middle rather than one continuous slide.
+      this.tweens.add({ targets: left, x: 130, duration: 180, yoyo: true, ease: 'Quad.easeOut' });
+      this.tweens.add({ targets: right, x: 430, duration: 180, yoyo: true, ease: 'Quad.easeOut' });
+      this.tweens.add({
+        targets: left,
+        x: -140,
+        delay: 620,
+        duration: 760,
+        ease: 'Back.easeIn',
+      });
       this.tweens.add({
         targets: right,
         x: 700,
-        duration: 700,
-        ease: 'Cubic.easeIn',
+        delay: 620,
+        duration: 760,
+        ease: 'Back.easeIn',
         onComplete: () => onWin?.(this.realTotal),
       });
     }
@@ -299,6 +390,7 @@ export function makePasswordFortressLevelConfig(
 
       if (this.locked) {
         this.player.setVelocityX(0);
+        this.playerAnim('pw-idle');
         return;
       }
 
@@ -321,6 +413,20 @@ export function makePasswordFortressLevelConfig(
       if (jumpPressed && this.player.body.blocked.down) {
         this.player.setVelocityY(-360);
       }
+
+      // Airborne beats grounded: rising reads as jump, descending as fall,
+      // and only once we're actually on something does run/idle apply.
+      if (!this.player.body.blocked.down) {
+        this.playerAnim(this.player.body.velocity.y < 0 ? 'pw-jump' : 'pw-fall');
+      } else {
+        this.playerAnim(left || right ? 'pw-run' : 'pw-idle');
+      }
+    }
+
+    /** Switch animation only on change, so the run cycle isn't reset each frame. */
+    playerAnim(key) {
+      if (this.player.anims.currentAnim?.key === key) return;
+      this.player.play(key, true);
     }
   }
 

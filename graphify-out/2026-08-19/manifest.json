@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787065051.263553,
-    "ast_hash": "f429f5a42c094e79f3739d99f41cc8ad",
+    "mtime": 1787065250.5296273,
+    "ast_hash": "c061564a01d44bf6770305e3cda52089",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "src/world/room/RoomScene.jsx": {
-    "mtime": 1787065042.6441503,
-    "ast_hash": "bcaa73d81696cdd008058ae4a0ecd764",
+    "mtime": 1787065540.5675206,
+    "ast_hash": "ad151d3e2d11caa6987439edf265ba00",
     "semantic_hash": ""
   },
   "assets/platformer_assets/LICENSE & CREDITS (1).txt": {
