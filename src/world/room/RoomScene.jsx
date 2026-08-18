@@ -8,7 +8,6 @@ import wardrobeImg from '../../assets/room/wardrobe.png';
 import cabinetImg from '../../assets/room/cabinet.png';
 import armchairImg from '../../assets/room/armchair.png';
 import plantImg from '../../assets/room/plant.png';
-import rugImg from '../../assets/room/rug.png';
 
 /**
  * A piece of furniture, positioned in the room's 0-100 world space and
@@ -197,16 +196,17 @@ export default function RoomScene({ diaryOpened = false }) {
       <Prop src={wardrobeImg} x={42} y={WALL_BOTTOM} width={7} z={2} />
       <Prop src={cabinetImg} x={86} y={WALL_BOTTOM} width={9} z={2} />
 
-      {/* the desk the diary rests on, right where the Traveler starts nearby */}
-      <Prop src={tableImg} x={70} y={WALL_BOTTOM + 15} width={6} z={2} />
-      <GlowingDiary x={70} y={WALL_BOTTOM + 14} lit={!diaryOpened} />
+      {/* the desk the diary rests on, right where the Traveler starts nearby —
+          the table sprite is tall relative to its width, so it needs real
+          clearance below the wall line or its top pokes back into the wall */}
+      <Prop src={tableImg} x={70} y={WALL_BOTTOM + 21} width={6} z={2} />
+      <GlowingDiary x={70} y={WALL_BOTTOM + 20} lit={!diaryOpened} />
 
       {/* reading nook by the bookshelf */}
-      <Prop src={armchairImg} x={28} y={WALL_BOTTOM + 16} width={6} z={2} />
+      <Prop src={armchairImg} x={28} y={WALL_BOTTOM + 22} width={6} z={2} />
 
-      {/* bottom row: plant, rug, bed — echoing the reference layout */}
+      {/* bottom row: plant and bed — echoing the reference layout */}
       <Prop src={plantImg} x={12} y={90} width={3.5} z={2} />
-      <Prop src={rugImg} x={50} y={80} width={22} z={1} />
       <Bed x={84} y={92} width={13} />
     </div>
   );
