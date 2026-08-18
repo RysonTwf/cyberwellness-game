@@ -39,7 +39,9 @@ export function makePasswordFortressLevelConfig(
   { game, controlsRef, onDecisionReached, onProgress, onWin, onSceneReady },
 ) {
   const tiles = game.tiles ?? [];
-  const hazardCfg = game.hazard;
+  // `hazards` for a level that wants more than one patrol; `hazard` is still
+  // honoured for the single-guard levels that predate it.
+  const hazardCfgs = game.hazards ?? (game.hazard ? [game.hazard] : []);
   const gateX = game.gateX ?? 300;
   const encounterX = game.encounterX ?? 260;
   const platformLayout = game.platforms ?? [{ x: 0, y: 262, w: LEVEL_W, h: 18 }];
@@ -158,21 +160,23 @@ export function makePasswordFortressLevelConfig(
       );
 
       // ---- hazard ----
-      if (hazardCfg) {
-        this.hazard = this.physics.add.sprite(hazardCfg.patrolFrom, hazardCfg.y, 'pw-hacker');
-        this.hazard.setScale(spriteScale(this, 'pw-hacker'));
-        this.hazard.body.setAllowGravity(false);
-        this.hazard.body.setImmovable(true);
-        this.hazard.play('pw-hacker-move');
+      for (const cfg of hazardCfgs) {
+        const guard = this.physics.add.sprite(cfg.patrolFrom, cfg.y, 'pw-hacker');
+        guard.setScale(spriteScale(this, 'pw-hacker'));
+        guard.body.setAllowGravity(false);
+        guard.body.setImmovable(true);
+        guard.play('pw-hacker-move');
         this.tweens.add({
-          targets: this.hazard,
-          x: hazardCfg.patrolTo,
-          duration: 1800,
+          targets: guard,
+          x: cfg.patrolTo,
+          // Pace scales with the beat's length so two guards on different
+          // runs don't fall into lockstep and become one predictable wall.
+          duration: Math.max(1200, Math.abs(cfg.patrolTo - cfg.patrolFrom) * 14),
           yoyo: true,
           repeat: -1,
           ease: 'Sine.inOut',
         });
-        this.physics.add.overlap(this.player, this.hazard, () => this.onHazardHit());
+        this.physics.add.overlap(this.player, guard, () => this.onHazardHit(guard));
       }
 
       // ---- HUD (screen-pinned — setScrollFactor(0) — so it stays put
@@ -280,10 +284,10 @@ export function makePasswordFortressLevelConfig(
       }
     }
 
-    onHazardHit() {
+    onHazardHit(guard) {
       if (this.hitCooldown > 0 || !this.player.active) return;
       this.hitCooldown = 700;
-      const dir = this.player.x < this.hazard.x ? -1 : 1;
+      const dir = this.player.x < guard.x ? -1 : 1;
       this.player.setVelocity(dir * 160, -160);
       this.player.setTint(HAZARD);
       this.time.delayedCall(180, () => this.player.clearTint());

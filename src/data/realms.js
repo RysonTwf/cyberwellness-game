@@ -157,23 +157,38 @@ const passworldHigher = {
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles. The \"123456\" and \"password\" tiles on the ground are decoys — shinier, easier to reach, worth nothing. A patrolling guard gives a soft bump if you get too close — no harm done, just try a different way up.",
+      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles. The ledges are narrow and the climb doubles back, so take the jumps one at a time. The \"123456\" and \"password\" tiles on the ground are decoys — shinier, easier to reach, worth nothing. Two guards are patrolling; a bump just knocks you back, so pick your moment and go again.",
     encounterX: 260,
     gateX: 300,
+    // A climbing route rather than three wide steps: narrow ledges, gaps that
+    // need most of a jump, and a dip in the middle so the way up isn't one
+    // straight line. A standing jump clears ~72px of height and ~112px of
+    // distance (velocity -360 against gravity 900, 140px/s across), so every
+    // gap below is inside that but not by much. Falling costs only the climb
+    // back — there's still no fail state (design.md §8).
     platforms: [
       { x: 0, y: 262, w: 1120, h: 18 }, // ground, full level width
-      { x: 380, y: 192, w: 100, h: 14 }, // A
-      { x: 560, y: 142, w: 100, h: 14 }, // B — the hazard patrols here
-      { x: 760, y: 192, w: 100, h: 14 }, // C
+      { x: 370, y: 208, w: 68, h: 12 },
+      { x: 478, y: 160, w: 58, h: 12 }, // letter tile sits up here
+      { x: 600, y: 196, w: 54, h: 12 }, // the dip
+      { x: 700, y: 146, w: 54, h: 12 },
+      { x: 800, y: 98, w: 58, h: 12 }, // number tile — highest point
+      { x: 910, y: 150, w: 50, h: 12 },
+      { x: 1010, y: 200, w: 70, h: 12 }, // symbol tile
     ],
     tiles: [
-      { id: 'letter', label: 'A', kind: 'real', x: 430, y: 175 },
-      { id: 'number', label: '7', kind: 'real', x: 610, y: 125 },
-      { id: 'symbol', label: '#', kind: 'real', x: 810, y: 175 },
-      { id: 'decoy1', label: '123456', kind: 'decoy', x: 340, y: 245 },
-      { id: 'decoy2', label: 'password', kind: 'decoy', x: 680, y: 245 },
+      { id: 'letter', label: 'A', kind: 'real', x: 507, y: 143 },
+      { id: 'number', label: '7', kind: 'real', x: 829, y: 81 },
+      { id: 'symbol', label: '#', kind: 'real', x: 1045, y: 183 },
+      { id: 'decoy1', label: '123456', kind: 'decoy', x: 300, y: 245 },
+      { id: 'decoy2', label: 'password', kind: 'decoy', x: 660, y: 245 },
     ],
-    hazard: { patrolFrom: 570, patrolTo: 650, y: 130 },
+    // One guard works the climb itself, the other the ground by the decoys —
+    // so the easy route isn't the quiet one either.
+    hazards: [
+      { patrolFrom: 700, patrolTo: 806, y: 122 },
+      { patrolFrom: 560, patrolTo: 700, y: 240 },
+    ],
   },
 
   rule: {
