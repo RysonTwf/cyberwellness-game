@@ -396,7 +396,6 @@ p {
 .atlas-map {
   position: relative;
   margin: 0 auto 26px;
-  max-width: 560px;
 }
 
 .realm-grid {
@@ -884,6 +883,11 @@ p {
   width: 100%;
   aspect-ratio: 2 / 1;
   min-height: 260px;
+  /* Capped (and centred) so the box + heading + hint text all still fit
+     together on a 1920x1080 screen without scrolling, even though .shell
+     itself runs full-width. */
+  max-width: 1500px;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--line);
   background: var(--paper-sunk);
@@ -897,11 +901,14 @@ p {
   cursor: default;
 }
 
-/* The Atlas hub gets more horizontal room than a single realm's 2:1 scene
-   box — 5 islands read as cramped at 2:1. viewBox widened to match
-   (700x280, still 280 tall) in AtlasMap.jsx's AtlasScene. */
+/* The Atlas hub is a true top-down spread rather than a single row, so it
+   needs more vertical room than a realm's 2:1 scene box, and a tighter
+   width cap to match (viewBox 640x356 in AtlasMap.jsx's AtlasScene). This
+   compound selector out-specifies the plain `.atlas-map` rule below, so it
+   wins regardless of source order. */
 .world.atlas-map {
-  aspect-ratio: 2.5 / 1;
+  aspect-ratio: 1.8 / 1;
+  max-width: 840px;
 }
 
 /* Phaser-backed mini-games (Milestones Phase 2: Passworld platformer,
@@ -940,8 +947,8 @@ p {
 .walker {
   position: absolute;
   /* left/top are the feet, so pull the sprite up and centre it */
-  margin-left: -25px;
-  margin-top: -63px;
+  margin-left: -32px;
+  margin-top: -81px;
   pointer-events: none;
   z-index: 3;
   transform-origin: bottom center;
@@ -973,6 +980,23 @@ p {
 .traveler.walking .tv-scarf-tail {
   animation: scarf 0.42s ease-in-out infinite;
   transform-origin: 27px 27px;
+}
+
+.diary-glow {
+  animation: diary-pulse 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes diary-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes walk-bob {

@@ -37,7 +37,7 @@ function initialState() {
     // 'lower' (P1–P3) | 'higher' (P4–P6) | null until the Atlas Gate asks
     // (Improvement Plan §0 — one game, one entry point; band picked once).
     band: null,
-    currentScreen: 'gate', // gate | atlas | <realmId> | finale
+    currentScreen: 'room', // room | atlas | <realmId> | finale
     realmProgress: freshRealmProgress(),
     pledgeSigned: false,
     // Nothing is written to storage until the load has happened. Without this

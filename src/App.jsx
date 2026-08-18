@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import AtlasGate from './components/AtlasGate';
+import TravelerRoom from './components/TravelerRoom';
 import AtlasMap from './components/AtlasMap';
 import RealmScreen from './components/RealmScreen';
 import CertificateScreen from './components/CertificateScreen';
@@ -28,7 +28,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="shell">
-        {currentScreen !== 'gate' && (
+        {currentScreen !== 'room' && (
           <JournalProgress
             realmProgress={realmProgress}
             travelerName={travelerName}
@@ -37,13 +37,13 @@ export default function App() {
           />
         )}
 
-        {currentScreen === 'gate' && (
-          <AtlasGate
+        {currentScreen === 'room' && (
+          <TravelerRoom
             onBegin={(name, chosenBand) => {
               dispatch({ type: 'setName', name });
               dispatch({ type: 'setBand', band: chosenBand });
-              go('atlas');
             }}
+            onExit={() => go('atlas')}
           />
         )}
 

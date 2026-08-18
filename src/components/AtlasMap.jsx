@@ -6,150 +6,135 @@ import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
 /**
  * Island positions in the map's own viewBox, and in world (0-100) units.
  *
- * The map runs a wider 700x280 viewBox (`.world.atlas-map`, see styles.css)
- * rather than every other scene's 560x280 — 5 islands read as cramped at
- * the narrower width. `world.x` = svg.x / 700 × 100 and `world.y` =
- * (svg.y + 22) / 2.8, so the pin lands right at the island's shoreline.
- * The heights are deliberately uneven so the islands don't read as a row
- * of identical bumps; the x-spacing is roughly even now that there's
- * actually room for it (~125px, pulled in slightly for Fable Falls so it
- * keeps clear of the compass rose).
+ * The map runs a 640x356 viewBox (`.world.atlas-map`, see styles.css) — a
+ * true top-down spread rather than a single left-to-right row, so islands
+ * sit at different heights as well as different widths (closer to a real
+ * overworld map you'd walk in any direction on). `world.x` = svg.x / 640 ×
+ * 100 and `world.y` = (svg.y + 22) / 356 × 100, so the pin lands right at
+ * the island's shoreline.
  */
 const ISLANDS = {
-  passworld: { svg: { x: 150, y: 190 }, world: { x: 21, y: 76 } },
-  privacy: { svg: { x: 275, y: 176 }, world: { x: 39, y: 71 } },
-  bullybog: { svg: { x: 400, y: 196 }, world: { x: 57, y: 78 } },
-  balance: { svg: { x: 525, y: 178 }, world: { x: 75, y: 71 } },
-  // Placeholder position pending the designer's real island art (Milestones
-  // Phase 3) — otherwise same even spacing as everyone else now.
-  fablefalls: { svg: { x: 630, y: 184 }, world: { x: 90, y: 74 } },
+  passworld: { svg: { x: 190, y: 90 }, world: { x: 29.7, y: 31.5 } },
+  privacy: { svg: { x: 420, y: 60 }, world: { x: 65.6, y: 23 } },
+  bullybog: { svg: { x: 120, y: 230 }, world: { x: 18.8, y: 70.8 } },
+  balance: { svg: { x: 340, y: 270 }, world: { x: 53.1, y: 82 } },
+  fablefalls: { svg: { x: 560, y: 160 }, world: { x: 87.5, y: 51.1 } },
 };
 
-const GATE = { x: 6, y: 88 };
-const GATE_SVG = { x: 34, y: 205 };
+const GATE = { x: 8, y: 84 };
+const GATE_SVG = { x: 50, y: 300 };
 
 /**
  * One curved branch from the Gate to each island's shore (the point where
- * the island path in the render loop below starts, `x - 42, y + 14`).
- * Alternating control-point offsets fan the five branches out across the
- * water band instead of chaining through the islands in a single line.
+ * the island path in the render loop below starts, `x - 42, y + 14`), as a
+ * quadratic control point rather than a finished path string — the render
+ * loop below turns each into both the trail's `d` and its bead positions,
+ * so the two can never drift apart. With islands spread across the whole
+ * canvas instead of a single row, each branch heads in its own distinct
+ * direction, so the beads fan out instead of bunching at the Gate.
  */
-const BRANCHES = {
-  passworld: 'M34 205 Q66 182 108 204',
-  privacy: 'M34 205 Q140 140 233 190',
-  bullybog: 'M34 205 Q190 232 358 210',
-  balance: 'M34 205 Q262 108 483 192',
-  fablefalls: 'M34 205 Q320 258 588 198',
+const BRANCH_CTRL = {
+  passworld: { x: 70, y: 180 },
+  privacy: { x: 180, y: 120 },
+  bullybog: { x: 40, y: 260 },
+  balance: { x: 170, y: 340 },
+  fablefalls: { x: 340, y: 280 },
 };
 
-/** The map itself — five paths branching out from the Gate to each island. */
+/** A simple palm tree, planted at (x, y) with its base on the ground. */
+function PalmTree({ x, y, scale = 1 }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${scale})`}>
+      <path d="M0 0 Q-3 -16 3 -30" fill="none" stroke="#7a5233" strokeWidth="3.4" strokeLinecap="round" />
+      <g fill="#3f8f4f">
+        <path d="M3 -30 Q-16 -34 -22 -22 Q-8 -26 3 -30" />
+        <path d="M3 -30 Q22 -30 26 -16 Q10 -24 3 -30" />
+        <path d="M3 -30 Q-6 -42 -22 -40 Q-8 -34 3 -30" />
+        <path d="M3 -30 Q14 -44 30 -38 Q14 -36 3 -30" />
+        <path d="M3 -30 Q3 -46 -6 -52 Q1 -38 3 -30" />
+      </g>
+    </g>
+  );
+}
+
+/** A fish silhouette, swimming somewhere under the open water. */
+function FishMark({ x, y, scale = 1, flip = false }) {
+  return (
+    <g
+      transform={`translate(${x} ${y}) scale(${scale * (flip ? -1 : 1)}, ${scale})`}
+      fill="#0d3a3f"
+      opacity="0.18"
+    >
+      <path d="M-14 0 Q-6 -7 6 -4 Q14 -2 16 0 Q14 2 6 4 Q-6 7 -14 0 Z" />
+      <path d="M-14 0 L-20 -5 L-20 5 Z" />
+    </g>
+  );
+}
+
+/** The map itself — five beaded trails branching out from the Gate. */
 function AtlasScene({ realmProgress }) {
   return (
-    <svg viewBox="0 0 700 280" width="100%" aria-hidden="true">
-      <rect width="700" height="280" rx="18" fill="#e9eff1" />
+    <svg viewBox="0 0 640 356" width="100%" aria-hidden="true">
+      <rect width="640" height="356" rx="18" fill="#2f8f96" />
 
-      {/* This is a map drawn in a journal, so it gets a chart's furniture: a
-          ruled graticule, clouds, birds and a compass rose. Without them the
-          top half of the hub — the screen the player returns to most — is a
-          large empty grey rectangle. */}
-      <g stroke="var(--ink)" strokeWidth="1" opacity="0.055">
-        {[40, 80, 120, 160, 200, 240].map((y) => (
-          <path key={`h${y}`} d={`M0 ${y} H700`} />
+      {/* A chart's furniture, pirate-map style: a ruled graticule over open
+          water, drifting ship silhouettes, and a compass rose. */}
+      <g stroke="#dff3f2" strokeWidth="1" opacity="0.16">
+        {[40, 80, 120, 160, 200, 240, 280, 320].map((y) => (
+          <path key={`h${y}`} d={`M0 ${y} H640`} />
         ))}
-        {[70, 140, 210, 280, 350, 420, 490, 560, 630].map((x) => (
-          <path key={`v${x}`} d={`M${x} 0 V280`} />
+        {[60, 120, 180, 240, 300, 360, 420, 480, 540, 600].map((x) => (
+          <path key={`v${x}`} d={`M${x} 0 V356`} />
         ))}
       </g>
 
-      {/* a band of open water the Stream runs through */}
-      <rect y="150" width="700" height="130" fill="var(--ink)" opacity="0.05" />
+      <FishMark x={300} y={40} scale={1.1} />
+      <FishMark x={590} y={280} scale={0.9} flip />
+      <FishMark x={230} y={330} scale={0.8} />
+      <FishMark x={470} y={330} scale={0.95} flip />
 
-      {/* clouds */}
-      <g fill="#f6f9fa" opacity="0.9">
-        <g>
-          <ellipse cx="118" cy="60" rx="34" ry="15" />
-          <ellipse cx="144" cy="53" rx="24" ry="17" />
-          <ellipse cx="94" cy="54" rx="20" ry="12" />
-        </g>
-        <g>
-          <ellipse cx="352" cy="42" rx="30" ry="13" />
-          <ellipse cx="376" cy="36" rx="21" ry="15" />
-        </g>
-        <g>
-          <ellipse cx="238" cy="112" rx="26" ry="10" />
-          <ellipse cx="256" cy="107" rx="18" ry="12" />
-        </g>
-        <g>
-          <ellipse cx="560" cy="52" rx="28" ry="12" />
-          <ellipse cx="584" cy="46" rx="20" ry="14" />
-        </g>
+      {/* open-water ripple texture, tucked into the gaps between islands */}
+      <g stroke="#dff3f2" strokeWidth="2" fill="none" opacity="0.16" strokeLinecap="round">
+        <path d="M300 130 q10 -6 20 0 t20 0" />
+        <path d="M470 220 q10 -6 20 0 t20 0" />
+        <path d="M220 60 q10 -6 20 0 t20 0" />
+        <path d="M480 100 q10 -6 20 0 t20 0" />
       </g>
 
-      {/* birds, because an empty sky reads as unfinished */}
-      <g stroke="var(--ink)" strokeWidth="2" fill="none" opacity="0.3" strokeLinecap="round">
-        <path d="M196 82 q7 -6 14 0" />
-        <path d="M211 79 q7 -6 14 0" />
-        <path d="M300 60 q6 -5 12 0" />
-        <path d="M470 96 q7 -6 14 0" />
-      </g>
-
-      {/* compass rose */}
-      <g transform="translate(642 66)">
-        <circle r="27" fill="#f6f9fa" opacity="0.7" />
-        <circle r="27" fill="none" stroke="var(--ink)" strokeWidth="1.6" opacity="0.4" />
-        <circle r="19" fill="none" stroke="var(--ink)" strokeWidth="1" opacity="0.28" />
-        <path d="M-26 0 L0 -6 L26 0 L0 6 Z" fill="var(--ink)" opacity="0.26" />
-        <path d="M0 26 L6 0 L0 -26 L-6 0 Z" fill="var(--ink)" opacity="0.42" />
-        <path d="M0 -26 L6 0 L0 0 Z" fill="var(--gold)" />
-        <text
-          x="0"
-          y="-30"
-          textAnchor="middle"
-          fill="var(--ink)"
-          opacity="0.55"
-          style={{ font: '700 11px var(--font-stamp), monospace', letterSpacing: '0.08em' }}
-        >
-          N
-        </text>
-      </g>
-
-      {/* open-water texture, so the sea isn't a flat wash either */}
-      <g stroke="var(--ink)" strokeWidth="2" fill="none" opacity="0.12" strokeLinecap="round">
-        <path d="M46 252 q10 -6 20 0 t20 0" />
-        <path d="M266 258 q10 -6 20 0 t20 0" />
-        <path d="M414 246 q10 -6 20 0 t20 0" />
-        <path d="M158 268 q10 -6 20 0 t20 0" />
-        <path d="M580 256 q10 -6 20 0 t20 0" />
-      </g>
-
-      {/* Five branches, running behind the islands, fanning out from the Gate */}
-      {ACTIVE_REALMS.map((realm) => (
-        <path
-          key={`branch-${realm.id}`}
-          d={BRANCHES[realm.id]}
-          fill="none"
-          stroke="var(--ink)"
-          strokeWidth="3.5"
-          strokeDasharray="9 9"
-          strokeLinecap="round"
-          opacity="0.32"
-        />
-      ))}
+      {/* Five trails, fanning out from the Gate to each island — a plain
+          wake line each, no waypoint markers cluttering the water. */}
+      {ACTIVE_REALMS.map((realm) => {
+        const ctrl = BRANCH_CTRL[realm.id];
+        const end = ISLANDS[realm.id].svg;
+        const shore = { x: end.x - 42, y: end.y + 14 };
+        const d = `M${GATE_SVG.x} ${GATE_SVG.y} Q${ctrl.x} ${ctrl.y} ${shore.x} ${shore.y}`;
+        return (
+          <path
+            key={`branch-${realm.id}`}
+            d={d}
+            fill="none"
+            stroke="#dff3f2"
+            strokeWidth="2.4"
+            strokeDasharray="1 9"
+            strokeLinecap="round"
+            opacity="0.5"
+          />
+        );
+      })}
 
       {ACTIVE_REALMS.map((realm) => {
         const { x, y } = ISLANDS[realm.id].svg;
         const visited = realmProgress[realm.id]?.stamped;
         return (
           <g key={realm.id}>
-            <ellipse cx={x} cy={y + 22} rx="52" ry="14" fill={realm.accent} opacity="0.22" />
+            <ellipse cx={x} cy={y + 22} rx="52" ry="14" fill="#0d3a3f" opacity="0.18" />
             <path
               d={`M ${x - 42} ${y + 14}
                   q 5 -32 19 -36
                   q 11 -15 25 -6
                   q 21 -4 27 19
                   q 13 8 9 23 Z`}
-              fill={realm.accent}
-              opacity={visited ? 0.92 : 0.55}
+              fill={visited ? '#caa06b' : '#d8b686'}
             />
             <path
               d={`M ${x - 42} ${y + 14}
@@ -158,11 +143,12 @@ function AtlasScene({ realmProgress }) {
                   q 21 -4 27 19
                   q 13 8 9 23 Z`}
               fill="none"
-              stroke="var(--ink)"
+              stroke="#8a6238"
               strokeWidth="2"
-              opacity="0.14"
+              opacity="0.4"
             />
-            {/* a marker flag on each island */}
+            <PalmTree x={x - 20} y={y + 8} scale={0.85} />
+            {/* a marker flag on each island, coloured per realm */}
             <rect x={x - 1} y={y - 56} width="3.5" height="30" rx="1.7" fill="var(--ink)" opacity="0.6" />
             <path d={`M ${x + 2.5} ${y - 56} l 22 8 l -22 8 Z`} fill={realm.accent} />
             {visited && (
@@ -182,11 +168,42 @@ function AtlasScene({ realmProgress }) {
         );
       })}
 
-      {/* the Gate you arrived through */}
-      <g opacity="0.55">
-        <rect x="14" y="186" width="7" height="42" rx="3.5" fill="var(--ink)" />
-        <rect x="46" y="186" width="7" height="42" rx="3.5" fill="var(--ink)" />
-        <rect x="9" y="176" width="49" height="10" rx="5" fill="var(--ink)" />
+      {/* the Gate you arrived through, bottom-left corner */}
+      <g transform={`translate(${GATE_SVG.x - 36} ${GATE_SVG.y - 24})`} opacity="0.7">
+        <rect x="0" y="0" width="7" height="42" rx="3.5" fill="var(--ink)" />
+        <rect x="32" y="0" width="7" height="42" rx="3.5" fill="var(--ink)" />
+        <rect x="-5" y="-10" width="49" height="10" rx="5" fill="var(--ink)" />
+      </g>
+
+      {/* compass rose, top-left */}
+      <g transform="translate(46 46)">
+        <circle r="24" fill="#f6f9fa" opacity="0.85" />
+        <circle r="24" fill="none" stroke="var(--ink)" strokeWidth="1.6" opacity="0.4" />
+        <circle r="17" fill="none" stroke="var(--ink)" strokeWidth="1" opacity="0.28" />
+        <path d="M-23 0 L0 -5 L23 0 L0 5 Z" fill="var(--ink)" opacity="0.26" />
+        <path d="M0 23 L5 0 L0 -23 L-5 0 Z" fill="var(--ink)" opacity="0.42" />
+        <path d="M0 -23 L5 0 L0 0 Z" fill="var(--gold)" />
+        <text
+          x="0"
+          y="-27"
+          textAnchor="middle"
+          fill="var(--ink)"
+          opacity="0.55"
+          style={{ font: '700 10px var(--font-stamp), monospace', letterSpacing: '0.08em' }}
+        >
+          N
+        </text>
+      </g>
+
+      {/* anchor badge, bottom-right */}
+      <g transform="translate(602 320)">
+        <circle r="17" fill="var(--ink)" opacity="0.16" />
+        <g stroke="var(--ink)" strokeWidth="2.4" fill="none" strokeLinecap="round" opacity="0.6">
+          <circle cx="0" cy="-8" r="3" />
+          <path d="M0 -5 V9" />
+          <path d="M-8 4 Q0 13 8 4" />
+          <path d="M-6 0 H6" />
+        </g>
       </g>
     </svg>
   );
@@ -221,7 +238,7 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
     hotspots.push({
       id: 'finale',
       x: GATE.x + 2,
-      y: 78,
+      y: GATE.y - 4,
       label: 'The Atlas Gate',
       action: 'Finish',
       accent: 'var(--gold)',
@@ -249,8 +266,9 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
         // smudge against the pale map.
         accent="var(--gold)"
         spawn={GATE}
-        bounds={{ minX: 4, maxX: 94, minY: 68, maxY: 92 }}
+        bounds={{ minX: 4, maxX: 96, minY: 12, maxY: 92 }}
         hotspots={hotspots}
+        vehicle="boat"
         objective={
           allStamped ? 'Walk back to the Atlas Gate' : 'Pick a branch and step onto an island'
         }

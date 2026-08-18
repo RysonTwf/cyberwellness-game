@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { MapPin, CornerDownLeft } from 'lucide-react';
 import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
+import Boat from './Boat';
 import { useWalker, distance } from './useWalker';
 
 /**
@@ -31,6 +32,8 @@ export default function World({
   // the one scene wide enough to want its own ratio — pass a modifier
   // class rather than changing `.world` itself, so nothing else shifts.
   className,
+  // 'boat' on the Atlas hub, since its ground is open water — see Boat.jsx.
+  vehicle = 'walk',
 }) {
   const { pos, facing, moving, placeAt } = useWalker({
     spawn,
@@ -110,7 +113,11 @@ export default function World({
           className="walker"
           style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: `scale(${scale})` }}
         >
-          <Traveler facing={facing} moving={moving} accent={accent} />
+          {vehicle === 'boat' ? (
+            <Boat facing={facing} moving={moving} accent={accent} />
+          ) : (
+            <Traveler facing={facing} moving={moving} accent={accent} />
+          )}
         </div>
 
         {active && !paused && (

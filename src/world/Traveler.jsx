@@ -11,8 +11,8 @@ export default function Traveler({ facing = 1, moving = false, accent = 'var(--i
     <svg
       className={`traveler${moving ? ' walking' : ''}`}
       viewBox="0 0 40 56"
-      width="50"
-      height="70"
+      width="64"
+      height="90"
       style={{ transform: `scaleX(${facing})` }}
       aria-hidden="true"
     >
