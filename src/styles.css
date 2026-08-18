@@ -1821,10 +1821,6 @@ p {
   box-shadow: var(--shadow-sm);
 }
 
-.bag-chip.on::after {
-  content: ' ¹3';
-}
-
 /* A message the player has marked as worth stopping at, before they commit.
    Distinct from `.cleared`, which is the post-answer reveal. */
 .msg.marked {

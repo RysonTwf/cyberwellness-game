@@ -162,16 +162,6 @@ function padlock(ctx, x, y, s, body, shackle) {
   fillRR(ctx, x - s * 0.42, y - s * 0.06, s * 0.84, s * 0.62, s * 0.16, body);
 }
 
-/** ...and its open counterpart, for the decoys. */
-function padlockOpen(ctx, x, y, s, body, shackle) {
-  ctx.strokeStyle = shackle;
-  ctx.lineWidth = Math.max(1, s * 0.16);
-  ctx.beginPath();
-  ctx.arc(x + s * 0.28, y - s * 0.2, s * 0.3, Math.PI, Math.PI * 1.85);
-  ctx.stroke();
-  fillRR(ctx, x - s * 0.42, y - s * 0.06, s * 0.84, s * 0.62, s * 0.16, body);
-}
-
 /* -------------------------------------------------------------------------- */
 /* The Traveler                                                               */
 /* -------------------------------------------------------------------------- */
@@ -310,68 +300,25 @@ function drawImpostor(ctx) {
  * the glyph is hard to read (or the player is colour-blind) — the Milestones
  * asset list asks for "distinct types at a glance."
  */
-function makeTileDrawer(color, motif) {
-  // Type is carried by three things at once — colour, corner shape, and the
-  // count of pips in the header strip — so it still reads for a colour-blind
-  // player, and none of them sit where the scene draws the glyph.
-  const radius = { letter: 7, number: 15, symbol: 2 }[motif];
-  const pips = { letter: 1, number: 2, symbol: 3 }[motif];
-
-  return (ctx) => {
-    // card
-    fillRR(ctx, 2, 2, 30, 30, radius, color);
-    strokeRR(ctx, 2, 2, 30, 30, radius, INK, 1.6);
-
-    // header strip with the type pips, clipped to the card's own shape
-    ctx.save();
-    rr(ctx, 2, 2, 30, 30, radius);
-    ctx.clip();
-    ctx.fillStyle = 'rgba(255,255,255,0.2)';
-    ctx.fillRect(2, 2, 30, 8);
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    for (let i = 0; i < pips; i += 1) circle(ctx, 17 + (i - (pips - 1) / 2) * 6, 6, 1.6, 'rgba(255,255,255,0.85)');
-    ctx.restore();
-
-    // closed padlock, bottom-right: this one is worth taking
-    padlock(ctx, 25, 25, 7.5, PAPER, PAPER);
-  };
-}
-
 /**
- * The weak-password decoys. The brief calls for these to be "shinier / more
- * tempting / easier to reach" than the real tiles — so they get a gradient, a
- * specular streak and sparkles the real ones don't have. The open padlock is
- * the tell, and it's the only part that isn't flattering.
+ * One card for every collectible, strong and weak alike.
+ *
+ * These used to differ on sight — the real ones carried a closed padlock, the
+ * decoys a gold gloss, sparkles and an *open* padlock. That handed the answer
+ * over before the player read a word, which is the one thing the vault door is
+ * supposed to ask. Now the only thing that separates them is what's written on
+ * them, so deciding whether "qwerty" belongs in a password is actually the
+ * player's decision to make.
+ *
+ * Anything added here has to stay uniform for that reason: no per-kind colour,
+ * shape, badge or animation.
  */
-function drawDecoy(ctx, { w, h }) {
-  const grad = ctx.createLinearGradient(0, 0, w, h);
-  grad.addColorStop(0, '#f6c463');
-  grad.addColorStop(0.5, GOLD);
-  grad.addColorStop(1, GOLD_DEEP);
-  rr(ctx, 2, 2, 30, 30, 7);
-  ctx.fillStyle = grad;
-  ctx.fill();
+function drawTile(ctx) {
+  fillRR(ctx, 2, 2, 30, 30, 7, TEAL);
   strokeRR(ctx, 2, 2, 30, 30, 7, INK, 1.6);
-
-  // specular streak
-  ctx.save();
-  rr(ctx, 2, 2, 30, 30, 7);
-  ctx.clip();
-  ctx.fillStyle = 'rgba(255,255,255,0.4)';
-  ctx.beginPath();
-  ctx.moveTo(-4, 22);
-  ctx.lineTo(14, -4);
-  ctx.lineTo(22, -4);
-  ctx.lineTo(4, 22);
-  ctx.closePath();
-  ctx.fill();
-  ctx.restore();
-
-  sparkle(ctx, 8, 8, 4, 'rgba(255,255,255,0.9)');
-  sparkle(ctx, 26, 12, 2.5, 'rgba(255,255,255,0.7)');
-
-  // the tell: it isn't locked
-  padlockOpen(ctx, 24, 25, 8, '#8a5f13', '#8a5f13');
+  // a lighter inset panel, so the glyph the scene draws on top has a bed
+  fillRR(ctx, 5, 5, 24, 24, 5, 'rgba(255,255,255,0.14)');
+  padlock(ctx, 25, 25, 7.5, PAPER, PAPER);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -556,28 +503,7 @@ export const ART_MANIFEST = [
   },
   { key: 'pw-hacker', file: 'hazard-hacker.png', frameWidth: 30, frameHeight: 26, frames: 2, draw: drawHacker },
   { key: 'pw-impostor', file: 'impostor.png', frameWidth: 28, frameHeight: 32, draw: drawImpostor },
-  {
-    key: 'pw-tile-letter',
-    file: 'tile-letter.png',
-    frameWidth: 34,
-    frameHeight: 34,
-    draw: makeTileDrawer(TEAL, 'letter'),
-  },
-  {
-    key: 'pw-tile-number',
-    file: 'tile-number.png',
-    frameWidth: 34,
-    frameHeight: 34,
-    draw: makeTileDrawer(BLUE, 'number'),
-  },
-  {
-    key: 'pw-tile-symbol',
-    file: 'tile-symbol.png',
-    frameWidth: 34,
-    frameHeight: 34,
-    draw: makeTileDrawer(VIOLET, 'symbol'),
-  },
-  { key: 'pw-tile-decoy', file: 'tile-decoy.png', frameWidth: 34, frameHeight: 34, draw: drawDecoy },
+  { key: 'pw-tile', file: 'tile.png', frameWidth: 34, frameHeight: 34, draw: drawTile },
   { key: 'pw-gate', file: 'gate.png', frameWidth: 60, frameHeight: 120, draw: drawGate },
   { key: 'pw-vault-door', file: 'vault-door.png', frameWidth: 46, frameHeight: 68, draw: drawVaultDoor },
   { key: 'pw-spark', file: 'spark.png', frameWidth: 10, frameHeight: 10, draw: drawSpark },
@@ -705,15 +631,9 @@ export function platformTexture(scene, w, h) {
 }
 
 /**
- * The tile texture for a given tile from the realm data. Reads `type` where
- * the level sets one, so a level can hold more than one tile of a kind
- * (a longer password wants several letters) without their ids having to be
- * literally 'letter'/'number'/'symbol'.
+ * The texture for any collectible. Deliberately ignores `kind` and `type`:
+ * see drawTile — telling strong from weak on sight is the player's job.
  */
-export function tileTextureFor(tile) {
-  if (tile.kind !== 'real') return 'pw-tile-decoy';
-  const type = tile.type ?? tile.id;
-  if (type === 'number') return 'pw-tile-number';
-  if (type === 'symbol') return 'pw-tile-symbol';
-  return 'pw-tile-letter';
+export function tileTextureFor() {
+  return 'pw-tile';
 }

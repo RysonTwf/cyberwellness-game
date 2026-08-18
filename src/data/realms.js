@@ -157,7 +157,7 @@ const passworldHigher = {
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles — six of them, because a long password beats a short one. It's a long climb that doubles back on itself, so take the jumps one at a time. The tiles down on the ground are the weak ones — \"123456\", \"password\", \"qwerty\", \"letmein\" — shinier and easy to reach, worth nothing. Guards patrol both the ledges and the floor; a bump only knocks you back, so pick your moment and go again.",
+      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and the tiles scattered through the vault. It's a long climb that doubles back on itself, so take the jumps one at a time. Grab whatever you can reach — they all go in your bag, and nothing you pick up is wasted. The vault door at the far end is where you decide which of them actually belong in a strong password, so read them as you go. Guards patrol the ledges and the floor; a bump only knocks you back, so pick your moment and go again.",
     encounterX: 260,
     gateX: 300,
     // A long climb in five movements: up to the first tile, a gap run, a tight

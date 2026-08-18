@@ -291,10 +291,9 @@ export default function PlatformerStoryRealm({
           {!decisionOpen && !doorOpen && (
             <>
               <p className="instruction">{realm.game.instruction}</p>
-              <p className="tile-hint">
-                In the bag: {collected} of {total} strong
-                {bag.length > collected ? ` (+${bag.length - collected} weak)` : ''}
-              </p>
+              {/* Count only. Showing "x of 6 strong" as they went told them
+                  which pickups had counted the moment they touched one. */}
+              <p className="tile-hint">In the bag: {bag.length}</p>
               <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
                 <button
                   type="button"

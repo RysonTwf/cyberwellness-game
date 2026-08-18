@@ -119,6 +119,7 @@ export function makePasswordFortressLevelConfig(
       this.collected = new Set();
       this.decoyWarned = new Set();
       this.realTotal = tiles.filter((t) => t.kind === 'real').length;
+      this.bagged = 0; // everything picked up, strong or not
       this.tileGroup = this.physics.add.staticGroup();
       this.tileById = new Map(tiles.map((t) => [t.id, t]));
       for (const t of tiles) {
@@ -134,27 +135,17 @@ export function makePasswordFortressLevelConfig(
           .setOrigin(0.5);
         sprite.setData('label', label);
 
-        if (t.kind === 'real') {
-          // a slow hover, so the ones worth having read as "live"
-          this.tweens.add({
-            targets: [sprite, label],
-            y: '-=3',
-            duration: 1100,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.inOut',
-          });
-        } else {
-          // ...and the decoys glint instead: flashier, but going nowhere
-          this.tweens.add({
-            targets: sprite,
-            alpha: 0.78,
-            duration: 620,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.inOut',
-          });
-        }
+        // The same slow hover on every tile. Giving the real ones a lift and
+        // the decoys a glint marked them apart before the player read them,
+        // which is exactly the call the vault door is there to ask for.
+        this.tweens.add({
+          targets: [sprite, label],
+          y: '-=3',
+          duration: 1100,
+          yoyo: true,
+          repeat: -1,
+          ease: 'Sine.inOut',
+        });
       }
       this.physics.add.overlap(this.player, this.tileGroup, (_player, sprite) =>
         this.onTileTouch(sprite),
@@ -332,6 +323,7 @@ export function makePasswordFortressLevelConfig(
       label?.destroy();
       sprite.destroy();
 
+      this.bagged += 1;
       if (t.kind === 'real') {
         this.collected.add(t.id);
         onProgress?.(this.collected.size, this.realTotal);
@@ -358,13 +350,16 @@ export function makePasswordFortressLevelConfig(
     }
 
     updateHud() {
-      const n = this.collected.size;
-      const strength = n === 0 ? 'Weak' : n < this.realTotal ? 'Building…' : 'Strong';
-      this.hudText.setText(`In the bag: ${n}/${this.realTotal} strong  ·  ${strength}`);
+      // Count only — no running "n of 6 strong". That readout told the player
+      // which pickups had counted the moment they touched them, so the door's
+      // question was already answered by the time they got there. The meter
+      // still moves, but as a bar with no number attached to it.
+      this.hudText.setText(`In the bag: ${this.bagged}`);
 
-      // Tween the fill rather than snapping it, so collecting a tile has a
-      // visible consequence up in the HUD and not just on the tile itself.
-      const target = this.realTotal ? n / this.realTotal : 0;
+      // Fills on *anything* picked up, not just the ones that count. Tracking
+      // the strong ones made the bar itself a tell — it moved for a good
+      // pickup and sat still for a decoy.
+      const target = tiles.length ? this.bagged / tiles.length : 0;
       this.tweens.killTweensOf(this.meter);
       this.tweens.add({
         targets: this.meter,
@@ -386,8 +381,9 @@ export function makePasswordFortressLevelConfig(
       const w = 96;
       const h = 14;
       const v = this.meter.v;
-      // weak → strong runs hazard-red through gold to the realm's teal
-      const color = v >= 0.999 ? TEAL : v >= 0.5 ? GOLD : HAZARD;
+      // One colour: a red/gold/teal ramp would grade the haul as it filled,
+      // which is the judgement the door is supposed to ask for.
+      const color = GOLD;
       this.meterFill.clear();
       if (v <= 0) return;
       this.meterFill.fillStyle(color, 1);
