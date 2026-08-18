@@ -261,6 +261,7 @@ export function makePasswordFortressLevelConfig(
       this.wasd = this.input.keyboard.addKeys('W,A,S,D');
       this.controlsRef = controlsRef;
       this.hitCooldown = 0;
+      this.knockUntil = 0; // ms of knockback left, during which input can't steer
 
       onSceneReady?.(this);
     }
@@ -336,10 +337,21 @@ export function makePasswordFortressLevelConfig(
       if (this.hitCooldown > 0 || !this.player.active) return;
       this.hitCooldown = 700;
       const dir = this.player.x < guard.x ? -1 : 1;
-      this.player.setVelocity(dir * 160, -160);
+      // A hard shove sideways, not a nudge. At 160 you barely moved, so
+      // walking straight through a guard was cheaper than timing the gap and
+      // the patrols weren't really defending anything. 440 across with only a
+      // little lift throws you clear off the ledge — which costs the climb
+      // back and nothing else, so it's still not a fail state (design.md §8).
+      this.player.setVelocity(dir * 440, -170);
+      // Hand the player back control only after the shove has actually
+      // carried. `update()` zeroes horizontal velocity on any frame without
+      // an input, so without this window it cancelled the knockback on the
+      // very next tick — the hit measured 7px of travel at 440px/s, which is
+      // why it read as a nudge no matter how hard the number was.
+      this.knockUntil = 260;
       this.player.setTint(HAZARD);
-      this.time.delayedCall(180, () => this.player.clearTint());
-      this.flashToast('Bumped — no harm done, just try a different path up.');
+      this.time.delayedCall(220, () => this.player.clearTint());
+      this.flashToast('Knocked clear — no harm done, just time it and go again.');
     }
 
     flashToast(msg) {
@@ -442,6 +454,7 @@ export function makePasswordFortressLevelConfig(
 
     update(_time, delta) {
       if (this.hitCooldown > 0) this.hitCooldown -= delta;
+      if (this.knockUntil > 0) this.knockUntil -= delta;
       if (!this.player?.active || this.physics.world.isPaused) return;
 
       if (this.locked) {
@@ -455,14 +468,16 @@ export function makePasswordFortressLevelConfig(
       const right = this.cursors.right.isDown || this.wasd.D.isDown || c.right;
       const jumpPressed = this.cursors.up.isDown || this.wasd.W.isDown || c.jump;
 
-      if (left) {
-        this.player.setVelocityX(-140);
-        this.facing = -1;
-      } else if (right) {
-        this.player.setVelocityX(140);
-        this.facing = 1;
-      } else {
-        this.player.setVelocityX(0);
+      // Mid-knockback the shove owns the horizontal axis; steering resumes
+      // once it's spent. Facing still tracks input so the sprite doesn't
+      // moonwalk through it.
+      if (left) this.facing = -1;
+      else if (right) this.facing = 1;
+
+      if (this.knockUntil <= 0) {
+        if (left) this.player.setVelocityX(-140);
+        else if (right) this.player.setVelocityX(140);
+        else this.player.setVelocityX(0);
       }
       this.player.setFlipX(this.facing < 0);
 
