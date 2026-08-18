@@ -18,9 +18,11 @@ export default function App() {
   const realm = rawRealm ? getBandView(rawRealm, band ?? 'lower') : null;
   const onAtlas = currentScreen === 'atlas';
 
-  // Each screen change starts at the top — the page-fold reads as a new page.
+  // Each screen change starts at the top. The page itself no longer scrolls
+  // (styles.css locks it to the viewport), so this resets whichever side
+  // column was scrolled rather than the window.
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('.stage-side')?.scrollTo({ top: 0 });
   }, [currentScreen]);
 
   const go = (screen) => dispatch({ type: 'go', screen });

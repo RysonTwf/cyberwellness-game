@@ -104,35 +104,41 @@ export default function PlatformerStoryRealm({
 
       {/* ---------------------------------------------------------- story -- */}
       {step === 'story' && (
-        <div className="stack">
-          <div className="world" style={{ cursor: 'default' }}>
-            <RealmArt realmId={realm.id} mood="before" />
+        <div className="stage">
+          <div className="stage-main">
+            <div className="world" style={{ cursor: 'default' }}>
+              <RealmArt realmId={realm.id} mood="before" />
+            </div>
           </div>
-          {realm.story.slice(0, beat + 1).map((b, i) => (
-            <DialogueCard key={i} who={b.who} text={b.text} accent={realm.accent} />
-          ))}
-          <div className="center">
-            <button
-              type="button"
-              className="btn btn-accent"
-              onClick={() => {
-                if (beat < realm.story.length - 1) setBeat((b) => b + 1);
-                else setStep('level');
-              }}
-            >
-              {beat < realm.story.length - 1 ? 'Next' : 'Enter the vault'}
-              <ArrowRight size={19} />
-            </button>
-          </div>
+          <aside className="stage-side">
+            {realm.story.slice(0, beat + 1).map((b, i) => (
+              <DialogueCard key={i} who={b.who} text={b.text} accent={realm.accent} />
+            ))}
+            <div className="center">
+              <button
+                type="button"
+                className="btn btn-accent"
+                onClick={() => {
+                  if (beat < realm.story.length - 1) setBeat((b) => b + 1);
+                  else setStep('level');
+                }}
+              >
+                {beat < realm.story.length - 1 ? 'Next' : 'Enter the vault'}
+                <ArrowRight size={19} />
+              </button>
+            </div>
+          </aside>
         </div>
       )}
 
       {/* ---------------------------------------------------------- level -- */}
       {step === 'level' && (
-        <div className="stack">
-          <p className="instruction">{realm.game.instruction}</p>
-
-          <PhaserMiniGame
+        // The level fills the window; the instruction, progress readout,
+        // d-pad and the Sam decision all sit in the column beside it, so
+        // nothing pushes the game off-screen.
+        <div className="stage">
+          <div className="stage-main">
+            <PhaserMiniGame
             key={round}
             config={(Phaser) =>
               makePasswordFortressLevelConfig(Phaser, {
@@ -149,10 +155,13 @@ export default function PlatformerStoryRealm({
                 },
               })
             }
-          />
+            />
+          </div>
 
+          <aside className="stage-side">
           {!decisionOpen && (
             <>
+              <p className="instruction">{realm.game.instruction}</p>
               <p className="tile-hint">{collected} of {total} secured</p>
               <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
                 <button
@@ -233,29 +242,34 @@ export default function PlatformerStoryRealm({
               Restart this vault
             </button>
           </div>
+          </aside>
         </div>
       )}
 
       {/* ----------------------------------------------------------- rule -- */}
       {step === 'rule' && (
-        <div className="stack">
-          <div className="world" style={{ cursor: 'default' }}>
-            <RealmArt realmId={realm.id} mood="after" />
+        <div className="stage">
+          <div className="stage-main">
+            <div className="world" style={{ cursor: 'default' }}>
+              <RealmArt realmId={realm.id} mood="after" />
+            </div>
           </div>
-          <DialogueCard who={realm.rule.who} text={realm.rule.text} accent={realm.accent} />
-          <div className="center">
-            <button
-              type="button"
-              className="btn btn-accent"
-              onClick={() => {
-                onStamp(realm.id, score);
-                setStep('stamp');
-              }}
-            >
-              <Check size={19} />
-              Stamp my passport
-            </button>
-          </div>
+          <aside className="stage-side">
+            <DialogueCard who={realm.rule.who} text={realm.rule.text} accent={realm.accent} />
+            <div className="center">
+              <button
+                type="button"
+                className="btn btn-accent"
+                onClick={() => {
+                  onStamp(realm.id, score);
+                  setStep('stamp');
+                }}
+              >
+                <Check size={19} />
+                Stamp my passport
+              </button>
+            </div>
+          </aside>
         </div>
       )}
     </div>

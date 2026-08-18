@@ -47,10 +47,15 @@
   box-sizing: border-box;
 }
 
+/* The game is a fixed viewport, not a scrolling page: the window locks to the
+   screen and every screen lays itself out to fit inside it. Anything that
+   still overruns scrolls inside its own side column, never the page. */
 html,
 body,
 #root {
   height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -66,9 +71,9 @@ body {
 
 /* Journal page: faint ruled lines, a soft edge shadow, nothing louder. */
 .app {
-  min-height: 100%;
+  height: 100dvh;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   background: var(--paper);
 }
 
@@ -90,8 +95,103 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
-  padding: clamp(14px, 3.5vw, 30px) clamp(14px, 4vw, 26px) 72px;
+  padding: clamp(10px, 2vw, 20px) clamp(14px, 4vw, 26px) clamp(10px, 2vw, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Each screen fills whatever the journal bar leaves behind. */
+.fold {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---- The stage: game window on one side, everything else on the other ----
+   Stacking the heading, dialogue and controls *under* the scene box is what
+   forced the page to scroll — the box wants most of the height on its own.
+   Beside it, the box can run much taller and the chrome gets a column that
+   scrolls by itself if a realm's dialogue runs long. */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: clamp(12px, 1.6vw, 22px);
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 26vw, 380px);
+  /* stretch, not center: the columns must have a definite height for the
+     scene box inside to flex against. */
+  align-items: stretch;
+}
+
+/* The containers that hand the scene box its height. Each is a column that
+   fills what it's given, so the box can flex into the remainder. */
+.stage-main,
+.world-wrap {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centre on the cross axis too. Left at the default `stretch`, a column
+     flex container forces every item to full width, which quietly overrides
+     the box's `width: auto` and defeats both its aspect ratio and max-width. */
+  align-items: center;
+  gap: 8px;
+}
+
+.world-wrap > .world-bar {
+  align-self: stretch;
+}
+
+.fold > .world-wrap,
+.stage-main > .world-wrap {
+  flex: 1 1 auto;
+  /* Full width, unlike the box it holds — centring this one too would make
+     it shrink to fit and starve the box of the width its ratio needs. */
+  align-self: stretch;
+}
+
+.world-wrap > .world-bar {
+  flex: 0 0 auto;
+}
+
+.stage-side {
+  min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 4px;
+}
+
+/* Grids that assume a full-width row have to fold to one column in here. */
+.stage-side .realm-strip,
+.stage-side .choices {
+  grid-template-columns: 1fr;
+}
+
+/* Below this the two columns won't both earn their keep — stack them and let
+   the side column scroll under the box instead. */
+@media (max-width: 900px) {
+  .stage {
+    grid-template-columns: 1fr;
+    align-items: start;
+    overflow-y: auto;
+  }
+
+  .stage-side {
+    overflow: visible;
+    max-height: none;
+  }
 }
 
 /* ---------- Type ---------------------------------------------------------- */
@@ -874,20 +974,44 @@ p {
    cards. Positions come from the 0-100 world space in useWalker.
    ========================================================================== */
 
-.world-wrap {
-  margin-bottom: 18px;
+
+
+/* Every scene box — realm, Atlas hub, Phaser level — sizes itself off the
+   viewport *height*, not just its width, so the game window is always fully
+   visible without scrolling. Capping the width alone was never enough: a
+   1100px-wide 2:1 box is 550px tall, which on a laptop leaves nothing for the
+   header and controls around it.
+
+   The cap is expressed as a width (height budget x the box's own aspect
+   ratio) rather than a `max-height`, because clamping the height of a box
+   that has `aspect-ratio` just letterboxes it — this keeps the ratio exact.
+
+   --scene-vh is the share of the viewport height that screen's box may take;
+   whatever's left is the budget for its chrome. It differs per screen because
+   the chrome does: the room has almost none, a Phaser level carries a
+   journal bar, a realm heading, an instruction line and a control row. */
+.world,
+.phaser-host {
+  --scene-ar: 2;
+  --scene-max-w: 1100px;
+  position: relative;
+  /* The box takes its *height* from the space its container actually has
+     left over, and derives its width from that via aspect-ratio. Sizing it
+     off a share of the viewport instead can't work: the chrome above it
+     differs per screen (the room has none, a Phaser level has a journal bar,
+     a heading and an instruction line), so any fixed fraction is too tall
+     somewhere and wastefully short everywhere else. `max-width` then reins
+     it in on wide-and-short windows, and aspect-ratio walks the height back
+     down to match. No magic numbers, and nothing to retune per screen. */
+  flex: 1 1 auto;
+  min-height: 0;
+  width: auto;
+  max-width: min(100%, var(--scene-max-w));
+  aspect-ratio: var(--scene-ar) / 1;
+  margin: 0 auto;
 }
 
 .world {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  min-height: 260px;
-  /* Capped (and centred) so the box + heading + hint text all still fit
-     together on a 1920x1080 screen without scrolling, even though .shell
-     itself runs full-width. */
-  max-width: 1100px;
-  margin: 0 auto;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--line);
   background: var(--paper-sunk);
@@ -907,18 +1031,16 @@ p {
    compound selector out-specifies the plain `.atlas-map` rule below, so it
    wins regardless of source order. */
 .world.atlas-map {
-  aspect-ratio: 1.8 / 1;
-  max-width: 840px;
+  --scene-ar: 1.8;
+  --scene-max-w: 840px;
+  --scene-vh: 72;
 }
 
 /* Phaser-backed mini-games (Milestones Phase 2: Passworld platformer,
    Privacy Peaks stepping-stones) render into this box — same 2:1 scene
    proportions as the rest of the game, via minigames/PhaserMiniGame.jsx. */
 .phaser-host {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  min-height: 260px;
+  --scene-vh: 74;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--line);
   background: var(--paper-sunk);
@@ -1549,10 +1671,13 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Give the world a bit more height on a phone so the Traveler isn't tiny */
+  /* Give the world a bit more height on a phone so the Traveler isn't tiny.
+     Goes through --scene-ar/--scene-vh rather than setting aspect-ratio and
+     max-height directly, or it would fight the viewport-height cap above and
+     letterbox the scene. */
   .world {
-    aspect-ratio: 4 / 3;
-    max-height: 58vh;
+    --scene-ar: 1.333;
+    --scene-vh: 58;
   }
 
   .world-bar {

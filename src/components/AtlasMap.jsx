@@ -247,15 +247,11 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
 
   return (
     <div className="fold">
-      <div className="atlas-head">
-        <h2>The Atlas</h2>
-        <p style={{ marginTop: 6 }}>
-          {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, branching out from
-          the Gate.
-        </p>
-      </div>
-
-      <World
+      {/* Map on one side, Comet and the realm list on the other, so the whole
+          hub fits the window without the page ever scrolling. */}
+      <div className="stage">
+        <div className="stage-main">
+          <World
         sceneKey="atlas"
         scene={<AtlasScene realmProgress={realmProgress} />}
         // Wider than a single realm's 2:1 scene box — 5 islands need the
@@ -272,11 +268,20 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
         objective={
           allStamped ? 'Walk back to the Atlas Gate' : 'Pick a branch and step onto an island'
         }
-        onInteract={(spot) => (spot.id === 'finale' ? onFinale() : onEnter(spot.id))}
-      />
+            onInteract={(spot) => (spot.id === 'finale' ? onFinale() : onEnter(spot.id))}
+          />
+        </div>
 
-      <div className="stack" style={{ marginTop: 18 }}>
-        <DialogueCard who="Comet" text={greeting} />
+        <aside className="stage-side">
+          <div className="atlas-head">
+            <h2>The Atlas</h2>
+            <p style={{ marginTop: 6 }}>
+              {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, branching out
+              from the Gate.
+            </p>
+          </div>
+
+          <DialogueCard who="Comet" text={greeting} />
 
         {/* A plain list as well as the map — walking isn't the only way in.
             Ordered per the suggested pacing for this band (Improvement Plan
@@ -313,6 +318,7 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
             Return to the Atlas Gate
           </button>
         )}
+        </aside>
       </div>
     </div>
   );
