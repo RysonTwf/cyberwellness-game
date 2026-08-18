@@ -4,13 +4,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  * Movement for the Traveler inside a 2D realm.
  *
  * The world is a 100x100 unit space mapped onto whatever the scene box is, so
- * every position in realms.js is resolution-independent. Two control schemes
- * run at once, because this is a touch-first product used on desktop too:
- *
- *   - hold arrow keys / WASD (desktop)
- *   - tap or click a spot on the ground to walk there (touch)
- *
- * Both feed the same rAF loop, so neither one is a second-class path.
+ * every position in realms.js is resolution-independent. Movement is
+ * keyboard-only — hold arrow keys or WASD — so it stays predictable and
+ * doesn't compete with clicks on hotspots/UI.
  */
 
 const KEY_DIRS = {
@@ -35,7 +31,6 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
 
   const posRef = useRef(spawn);
   const keys = useRef(new Set());
-  const target = useRef(null);
   const frame = useRef(0);
   const lastTime = useRef(0);
 
@@ -47,18 +42,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
     [bounds.maxX, bounds.minX, bounds.maxY, bounds.minY],
   );
 
-  /** Send the Traveler walking to a point (used by tap-to-move). */
-  const walkTo = useCallback(
-    (x, y) => {
-      if (!enabled) return;
-      const [cx, cy] = clamp(x, y);
-      target.current = { x: cx, y: cy };
-    },
-    [clamp, enabled],
-  );
-
   const stop = useCallback(() => {
-    target.current = null;
     keys.current.clear();
     setMoving(false);
   }, []);
@@ -68,7 +52,6 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
     (x, y) => {
       const [cx, cy] = clamp(x, y);
       posRef.current = { x: cx, y: cy };
-      target.current = null;
       setPos({ x: cx, y: cy });
     },
     [clamp],
@@ -83,7 +66,6 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
         // Don't let arrow keys scroll the page out from under the world.
         e.preventDefault();
         keys.current.add(e.key);
-        target.current = null; // a keypress cancels a tap-to-move
       }
     };
     const up = (e) => {
@@ -126,18 +108,6 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
         }
       }
 
-      if (!dx && !dy && target.current) {
-        const tx = target.current.x - posRef.current.x;
-        const ty = target.current.y - posRef.current.y;
-        const dist = Math.hypot(tx, ty);
-        if (dist < 0.8) {
-          target.current = null;
-        } else {
-          dx = tx / dist;
-          dy = ty / dist;
-        }
-      }
-
       const len = Math.hypot(dx, dy);
       if (len > 0 && dt > 0) {
         // Vertical movement is compressed: the walkable strip is shallow, and
@@ -163,7 +133,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
     };
   }, [clamp, enabled, speed]);
 
-  return { pos, facing, moving, walkTo, stop, placeAt };
+  return { pos, facing, moving, stop, placeAt };
 }
 
 /** Distance in world units — used for "am I close enough to interact?" */

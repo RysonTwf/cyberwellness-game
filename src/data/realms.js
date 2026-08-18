@@ -1084,15 +1084,17 @@ export const REALM_BY_ID = Object.fromEntries(REALMS.map((r) => [r.id, r]));
 export const ACTIVE_REALMS = REALMS.filter((r) => r.enabled !== false);
 
 /**
- * Suggested per-band hub order (Improvement Plan §4) — pacing, not a lock.
- * Each band opens with its own signature classroom scenario; Fake News
- * last as a synthesis challenge before the Pledge either way. Free
- * exploration stays — the Atlas Map is still fully clickable in any order,
- * this only orders the realm-strip list beneath it.
+ * Hub order (storyline.md's Story Arc Overview table) — pacing only, every
+ * realm is reachable from the start (free exploration). Same order for both
+ * bands, matching the documented table: Passworld, Privacy Peaks, Bully Bog,
+ * Balance Bay, then Fable Falls as the synthesis challenge before the
+ * Pledge. Only orders the realm-strip list; the Atlas Map itself is fully
+ * clickable in any order.
  */
+const REALM_ORDER = ['passworld', 'privacy', 'bullybog', 'balance', 'fablefalls'];
 export const HUB_ORDER = {
-  lower: ['balance', 'passworld', 'bullybog', 'privacy', 'fablefalls'],
-  higher: ['passworld', 'privacy', 'bullybog', 'balance', 'fablefalls'],
+  lower: REALM_ORDER,
+  higher: REALM_ORDER,
 };
 
 /** ACTIVE_REALMS, sorted per the suggested order for the given band. */

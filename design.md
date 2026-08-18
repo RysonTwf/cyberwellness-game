@@ -108,22 +108,25 @@ in the UI stays quiet so it doesn't compete.
 ## 4. Screen Flow
 
 ```
-Atlas Gate (name entry, meet Comet)
-        │
-        ▼
-     The Atlas (hub) ──────────────┐
-   /      |        \      \        │
-Passworld Privacy  Bully  Balance  │
-   │      Peaks    Bog    Bay      │
-   ▼        ▼        ▼      ▼      │
- story → choice → mini-game → stamp┘  (returns to hub after each)
-        │ (after all 4 stamps)
-        ▼
-   Finale: Wise Traveler certificate + pledge
+                          Atlas Gate (name entry, meet Comet)
+                                     │
+                                     ▼
+                              The Atlas (hub)
+                          ╱      │      │      │      ╲
+                  Passworld  Privacy  Bully   Balance  Fable
+                             Peaks    Bog     Bay      Falls
+                      │        │        │        │        │
+                      ▼        ▼        ▼        ▼        ▼
+                 story → choice → mini-game → stamp (back to hub after each)
+                                     │ (after every stamp)
+                                     ▼
+                   Finale: Wise Traveler certificate + pledge
 ```
 
-Realms can be completed in any order. The finale only unlocks once all four
-stamps are earned.
+Every realm branches out from the Gate and is reachable from the start —
+free exploration, in any order. The table order in storyline.md is only the
+suggested pacing shown in the realm-strip list beneath the map. The finale
+unlocks once every realm's stamp is earned.
 
 ## 5. Interaction Patterns
 
@@ -221,7 +224,7 @@ it burning on open water, a bog with no bank so the Traveler walked across the
 water for the whole realm, and a Keeper hovering twenty units above the ground.
 
 Check both rules on the `#art` contact sheet (see README), which overlays the
-band and every hotspot on all four realms in both moods.
+band and every hotspot on all realms in both moods.
 
 ## 10. Motion & Animation Direction
 

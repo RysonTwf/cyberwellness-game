@@ -26,8 +26,23 @@ const ISLANDS = {
 };
 
 const GATE = { x: 6, y: 88 };
+const GATE_SVG = { x: 34, y: 205 };
 
-/** The map itself — the islands strung along a winding Stream. */
+/**
+ * One curved branch from the Gate to each island's shore (the point where
+ * the island path in the render loop below starts, `x - 42, y + 14`).
+ * Alternating control-point offsets fan the five branches out across the
+ * water band instead of chaining through the islands in a single line.
+ */
+const BRANCHES = {
+  passworld: 'M34 205 Q66 182 108 204',
+  privacy: 'M34 205 Q140 140 233 190',
+  bullybog: 'M34 205 Q190 232 358 210',
+  balance: 'M34 205 Q262 108 483 192',
+  fablefalls: 'M34 205 Q320 258 588 198',
+};
+
+/** The map itself — five paths branching out from the Gate to each island. */
 function AtlasScene({ realmProgress }) {
   return (
     <svg viewBox="0 0 700 280" width="100%" aria-hidden="true">
@@ -107,16 +122,19 @@ function AtlasScene({ realmProgress }) {
         <path d="M580 256 q10 -6 20 0 t20 0" />
       </g>
 
-      {/* The Stream, running behind the islands */}
-      <path
-        d="M 4 222 C 70 214, 60 182, 96 176 S 176 168, 224 174 S 306 184, 352 176 S 436 164, 476 170 S 546 174, 558 156 S 618 148, 648 158 S 690 168, 696 150"
-        fill="none"
-        stroke="var(--ink)"
-        strokeWidth="3.5"
-        strokeDasharray="9 9"
-        strokeLinecap="round"
-        opacity="0.32"
-      />
+      {/* Five branches, running behind the islands, fanning out from the Gate */}
+      {ACTIVE_REALMS.map((realm) => (
+        <path
+          key={`branch-${realm.id}`}
+          d={BRANCHES[realm.id]}
+          fill="none"
+          stroke="var(--ink)"
+          strokeWidth="3.5"
+          strokeDasharray="9 9"
+          strokeLinecap="round"
+          opacity="0.32"
+        />
+      ))}
 
       {ACTIVE_REALMS.map((realm) => {
         const { x, y } = ISLANDS[realm.id].svg;
@@ -175,8 +193,9 @@ function AtlasScene({ realmProgress }) {
 }
 
 /**
- * The Atlas — hub screen. The Traveler walks the Stream between the
- * islands and steps onto whichever one they like the look of.
+ * The Atlas — hub screen. The Traveler walks out from the Gate along
+ * whichever branch they like and steps onto that island — every realm is
+ * reachable from the start.
  */
 export default function AtlasMap({ travelerName, realmProgress, allStamped, band, onEnter, onFinale }) {
   const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
@@ -187,7 +206,7 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
   const greeting = allStamped
     ? `${ACTIVE_REALMS.length} stamps, Traveler ${travelerName}. The Gate's been waiting for you.`
     : visitedCount === 0
-      ? `Here it is — the whole Atlas. Walk the Stream, ${travelerName}, and step onto whichever island you like the look of.`
+      ? `Here it is — the whole Atlas. Pick a branch, ${travelerName}, and step onto whichever island you like the look of.`
       : `${visitedCount} down, ${ACTIVE_REALMS.length - visitedCount} to go. Where to next, ${travelerName}?`;
 
   const hotspots = ACTIVE_REALMS.map((realm) => ({
@@ -214,8 +233,8 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
       <div className="atlas-head">
         <h2>The Atlas</h2>
         <p style={{ marginTop: 6 }}>
-          {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, one Stream running
-          between them.
+          {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, branching out from
+          the Gate.
         </p>
       </div>
 
@@ -233,7 +252,7 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
         bounds={{ minX: 4, maxX: 94, minY: 68, maxY: 92 }}
         hotspots={hotspots}
         objective={
-          allStamped ? 'Walk back to the Atlas Gate' : 'Walk to an island and step onto it'
+          allStamped ? 'Walk back to the Atlas Gate' : 'Pick a branch and step onto an island'
         }
         onInteract={(spot) => (spot.id === 'finale' ? onFinale() : onEnter(spot.id))}
       />

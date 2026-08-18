@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { MapPin, CornerDownLeft } from 'lucide-react';
 import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
@@ -23,7 +23,7 @@ export default function World({
   bounds,
   hotspots = [],
   objective,
-  hint = 'Tap the ground to walk · or use the arrow keys',
+  hint = 'Use WASD or the arrow keys to walk',
   paused = false,
   onInteract,
   // Every realm shares the same 2:1 scene box (`.world`) so their SVGs
@@ -32,8 +32,7 @@ export default function World({
   // class rather than changing `.world` itself, so nothing else shifts.
   className,
 }) {
-  const groundRef = useRef(null);
-  const { pos, facing, moving, walkTo, placeAt } = useWalker({
+  const { pos, facing, moving, placeAt } = useWalker({
     spawn,
     bounds,
     enabled: !paused,
@@ -72,15 +71,6 @@ export default function World({
     return () => window.removeEventListener('keydown', onKey);
   }, [active, onInteract, paused]);
 
-  function tapGround(e) {
-    if (paused) return;
-    const rect = groundRef.current.getBoundingClientRect();
-    walkTo(
-      ((e.clientX - rect.left) / rect.width) * 100,
-      ((e.clientY - rect.top) / rect.height) * 100,
-    );
-  }
-
   // Fake a little depth: the Traveler is smaller further "back" in the scene.
   const depth = (pos.y - bounds.minY) / Math.max(1, bounds.maxY - bounds.minY);
   const scale = 0.82 + depth * 0.34;
@@ -89,8 +79,6 @@ export default function World({
     <div className="world-wrap">
       <div
         className={`world${paused ? ' paused' : ''}${className ? ` ${className}` : ''}`}
-        ref={groundRef}
-        onPointerDown={tapGround}
         role="presentation"
       >
         <div className="world-scene">{scene}</div>

@@ -89,7 +89,7 @@ body {
 .shell {
   position: relative;
   z-index: 1;
-  width: min(880px, 100%);
+  width: 100%;
   margin: 0 auto;
   padding: clamp(14px, 3.5vw, 30px) clamp(14px, 4vw, 26px) 72px;
 }
@@ -888,7 +888,6 @@ p {
   border: 1.5px solid var(--line);
   background: var(--paper-sunk);
   overflow: hidden;
-  cursor: pointer;
   touch-action: manipulation;
   box-shadow: var(--shadow-sm);
   user-select: none;
@@ -1163,7 +1162,7 @@ p {
 
 .panel {
   position: relative;
-  width: min(760px, 100%);
+  width: 100%;
   max-height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
