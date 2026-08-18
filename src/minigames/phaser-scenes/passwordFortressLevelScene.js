@@ -31,8 +31,8 @@ const GOLD = 0xe0a030;
 const TEAL = 0x2d8c7f;
 const HAZARD = 0xc76b5c;
 
-const LEVEL_W = 1120;
 const LEVEL_H = 280;
+const DEFAULT_LEVEL_W = 1120;
 
 export function makePasswordFortressLevelConfig(
   Phaser,
@@ -44,6 +44,7 @@ export function makePasswordFortressLevelConfig(
   const hazardCfgs = game.hazards ?? (game.hazard ? [game.hazard] : []);
   const gateX = game.gateX ?? 300;
   const encounterX = game.encounterX ?? 260;
+  const LEVEL_W = game.levelWidth ?? DEFAULT_LEVEL_W;
   const platformLayout = game.platforms ?? [{ x: 0, y: 262, w: LEVEL_W, h: 18 }];
 
   class PasswordFortressLevelScene extends Phaser.Scene {
@@ -166,16 +167,45 @@ export function makePasswordFortressLevelConfig(
         guard.body.setAllowGravity(false);
         guard.body.setImmovable(true);
         guard.play('pw-hacker-move');
-        this.tweens.add({
-          targets: guard,
-          x: cfg.patrolTo,
-          // Pace scales with the beat's length so two guards on different
-          // runs don't fall into lockstep and become one predictable wall.
-          duration: Math.max(1200, Math.abs(cfg.patrolTo - cfg.patrolFrom) * 14),
-          yoyo: true,
-          repeat: -1,
-          ease: 'Sine.inOut',
-        });
+
+        // Guards walk a surface, they don't hover. Snap each one onto the
+        // platform under its patrol and clip the beat to that platform's
+        // span, rather than trusting the y in the data — a hand-written
+        // number drifts the moment a platform moves, and a guard left
+        // floating in open air reads as a bug (a slime especially).
+        const mid = (cfg.patrolFrom + cfg.patrolTo) / 2;
+        let surface = null;
+        for (const p of platformLayout) {
+          if (mid < p.x || mid > p.x + p.w) continue;
+          if (p.y < cfg.y) continue; // must be below the requested height
+          if (!surface || p.y < surface.y) surface = p; // highest one under it
+        }
+        const halfW = guard.displayWidth / 2;
+        const halfH = guard.displayHeight / 2;
+        let from = cfg.patrolFrom;
+        let to = cfg.patrolTo;
+        if (surface) {
+          guard.y = surface.y - halfH;
+          from = Math.max(from, surface.x + halfW);
+          to = Math.min(to, surface.x + surface.w - halfW);
+          // A ledge too narrow to pace on gets a sentry instead: it holds the
+          // middle and still blocks the landing, rather than sliding off.
+          if (from >= to) from = to = surface.x + surface.w / 2;
+        }
+        guard.x = from;
+
+        if (to > from) {
+          this.tweens.add({
+            targets: guard,
+            x: to,
+            // Pace scales with the beat's length so two guards on different
+            // runs don't fall into lockstep and become one predictable wall.
+            duration: Math.max(1200, (to - from) * 14),
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+          });
+        }
         this.physics.add.overlap(this.player, guard, () => this.onHazardHit(guard));
       }
 

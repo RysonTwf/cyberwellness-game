@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { MapPin, CornerDownLeft } from 'lucide-react';
 import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
@@ -37,6 +37,9 @@ export default function World({
   // Comet only exists once they've unfolded out of the diary (storyline.md
   // prologue), so the opening room hides them until that happens.
   showComet = true,
+  // Called as the Traveler moves, so a space that wants to be resumable
+  // (the Atlas) can remember where they were and spawn them back there.
+  onMove,
 }) {
   const { pos, facing, moving, placeAt } = useWalker({
     spawn,
@@ -49,6 +52,16 @@ export default function World({
     placeAt(spawn.x, spawn.y);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sceneKey]);
+
+  // Report movement upward, but only once they've settled: writing every frame
+  // would push a state update (and a localStorage write) on every rAF tick.
+  const moveRef = useRef(onMove);
+  moveRef.current = onMove;
+  useEffect(() => {
+    if (!moveRef.current || moving) return undefined;
+    const t = setTimeout(() => moveRef.current?.(pos), 250);
+    return () => clearTimeout(t);
+  }, [moving, pos]);
 
   // Whichever pin the Traveler is closest to, if they're close enough at all.
   const active = useMemo(() => {

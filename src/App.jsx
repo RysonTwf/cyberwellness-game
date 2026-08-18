@@ -55,6 +55,8 @@ export default function App() {
             realmProgress={realmProgress}
             allStamped={allStamped}
             band={band ?? 'lower'}
+            atlasPos={state.atlasPos}
+            onAtlasMove={(pos) => dispatch({ type: 'setAtlasPos', pos })}
             onEnter={(id) => go(id)}
             onFinale={() => go('finale')}
           />

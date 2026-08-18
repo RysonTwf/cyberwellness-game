@@ -663,10 +663,16 @@ export function platformTexture(scene, w, h) {
   return key;
 }
 
-/** The tile texture for a given tile from the realm data. */
+/**
+ * The tile texture for a given tile from the realm data. Reads `type` where
+ * the level sets one, so a level can hold more than one tile of a kind
+ * (a longer password wants several letters) without their ids having to be
+ * literally 'letter'/'number'/'symbol'.
+ */
 export function tileTextureFor(tile) {
   if (tile.kind !== 'real') return 'pw-tile-decoy';
-  if (tile.id === 'number') return 'pw-tile-number';
-  if (tile.id === 'symbol') return 'pw-tile-symbol';
+  const type = tile.type ?? tile.id;
+  if (type === 'number') return 'pw-tile-number';
+  if (type === 'symbol') return 'pw-tile-symbol';
   return 'pw-tile-letter';
 }

@@ -40,6 +40,11 @@ function initialState() {
     currentScreen: 'room', // room | atlas | <realmId> | finale
     realmProgress: freshRealmProgress(),
     pledgeSigned: false,
+    // Where the boat was left on the Atlas. Coming back from a realm should
+    // put the Traveler where they were, not snap them back to the Gate —
+    // otherwise every trip out and back costs the same sail across the map.
+    // null until they've moved at all, which is when the Gate is right.
+    atlasPos: null,
     // Nothing is written to storage until the load has happened. Without this
     // the first render's empty state overwrites the saved journal before it's
     // ever read (and StrictMode's double-invoked effects then clobber it for
@@ -62,6 +67,9 @@ function reducer(state, action) {
 
     case 'go':
       return { ...state, currentScreen: action.screen };
+
+    case 'setAtlasPos':
+      return { ...state, atlasPos: action.pos };
 
     case 'settleChoice':
       return {

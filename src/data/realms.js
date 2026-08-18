@@ -157,37 +157,85 @@ const passworldHigher = {
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles. The ledges are narrow and the climb doubles back, so take the jumps one at a time. The \"123456\" and \"password\" tiles on the ground are decoys — shinier, easier to reach, worth nothing. Two guards are patrolling; a bump just knocks you back, so pick your moment and go again.",
+      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles — six of them, because a long password beats a short one. It's a long climb that doubles back on itself, so take the jumps one at a time. The tiles down on the ground are the weak ones — \"123456\", \"password\", \"qwerty\", \"letmein\" — shinier and easy to reach, worth nothing. Guards patrol both the ledges and the floor; a bump only knocks you back, so pick your moment and go again.",
     encounterX: 260,
     gateX: 300,
-    // A climbing route rather than three wide steps: narrow ledges, gaps that
-    // need most of a jump, and a dip in the middle so the way up isn't one
-    // straight line. A standing jump clears ~72px of height and ~112px of
-    // distance (velocity -360 against gravity 900, 140px/s across), so every
-    // gap below is inside that but not by much. Falling costs only the climb
-    // back — there's still no fail state (design.md §8).
+    // A long climb in five movements: up to the first tile, a gap run, a tight
+    // tower, guarded ledges, then the final approach. Six characters to gather
+    // rather than three, which is the point — a strong password is a *long*
+    // one, so the vault asks for a longer one than it used to.
+    //
+    // Every jump was checked against the actual physics rather than eyeballed.
+    // A standing jump clears 72px of height and 112px of distance (velocity
+    // -360 against gravity 900, 140px/s across); at the 48px rises used here
+    // that leaves 88px of horizontal room, and no gap below exceeds 74px. The
+    // ground runs unbroken the whole way, so a missed jump costs the climb
+    // back and nothing else — still no fail state (design.md §8).
+    levelWidth: 2816,
     platforms: [
-      { x: 0, y: 262, w: 1120, h: 18 }, // ground, full level width
-      { x: 370, y: 208, w: 68, h: 12 },
-      { x: 478, y: 160, w: 58, h: 12 }, // letter tile sits up here
-      { x: 600, y: 196, w: 54, h: 12 }, // the dip
-      { x: 700, y: 146, w: 54, h: 12 },
-      { x: 800, y: 98, w: 58, h: 12 }, // number tile — highest point
-      { x: 910, y: 150, w: 50, h: 12 },
-      { x: 1010, y: 200, w: 70, h: 12 }, // symbol tile
+      { x: 0, y: 262, w: 2816, h: 18 }, // ground, unbroken
+      // climb to the first letter
+      { x: 380, y: 210, w: 62, h: 12 },
+      { x: 486, y: 162, w: 54, h: 12 },
+      { x: 596, y: 114, w: 50, h: 12 },
+      // gap run, down then back up
+      { x: 702, y: 158, w: 48, h: 12 },
+      { x: 806, y: 206, w: 130, h: 12 }, // long: a guard paces here
+      { x: 992, y: 158, w: 46, h: 12 },
+      { x: 1096, y: 110, w: 46, h: 12 },
+      // the tower
+      { x: 1204, y: 158, w: 130, h: 12 }, // long: a guard paces here
+      { x: 1384, y: 110, w: 44, h: 12 },
+      { x: 1478, y: 62, w: 48, h: 12 },
+      // A low re-entry ledge halfway along. Without it a fall anywhere past
+      // the tower means walking all the way back to x=380 and climbing the
+      // whole thing again; from here it's one hop up to the guarded ledges
+      // (ground->206 is a 56px rise, 206->d2 a 40px one, both well inside a
+      // jump), so a mistake costs a few seconds instead of the entire run.
+      { x: 1530, y: 206, w: 130, h: 12 }, // long: a guard paces here
+      // guarded ledges
+      { x: 1590, y: 118, w: 42, h: 12 },
+      { x: 1690, y: 166, w: 42, h: 12 },
+      { x: 1792, y: 118, w: 42, h: 12 },
+      { x: 1894, y: 70, w: 46, h: 12 },
+      // final approach
+      { x: 2010, y: 126, w: 44, h: 12 },
+      { x: 2112, y: 174, w: 130, h: 12 }, // long: a guard paces here
+      { x: 2302, y: 126, w: 44, h: 12 },
+      { x: 2406, y: 78, w: 46, h: 12 },
+      { x: 2526, y: 134, w: 50, h: 12 },
+      { x: 2636, y: 186, w: 60, h: 12 },
     ],
     tiles: [
-      { id: 'letter', label: 'A', kind: 'real', x: 507, y: 143 },
-      { id: 'number', label: '7', kind: 'real', x: 829, y: 81 },
-      { id: 'symbol', label: '#', kind: 'real', x: 1045, y: 183 },
-      { id: 'decoy1', label: '123456', kind: 'decoy', x: 300, y: 245 },
-      { id: 'decoy2', label: 'password', kind: 'decoy', x: 660, y: 245 },
+      { id: 'letter', type: 'letter', label: 'A', kind: 'real', x: 621, y: 95 },
+      { id: 'number', type: 'number', label: '7', kind: 'real', x: 1119, y: 91 },
+      { id: 'symbol', type: 'symbol', label: '#', kind: 'real', x: 1502, y: 43 },
+      { id: 'letter2', type: 'letter', label: 'k', kind: 'real', x: 1917, y: 51 },
+      { id: 'number2', type: 'number', label: '4', kind: 'real', x: 2429, y: 59 },
+      { id: 'symbol2', type: 'symbol', label: '!', kind: 'real', x: 2666, y: 167 },
+      // The weak ones are scattered through the climb, not parked on the
+      // floor. If every decoy sat at the bottom the lesson would collapse
+      // into "high is good, low is bad" and the player would never read a
+      // tile — the open padlock is meant to be the tell, so some of these sit
+      // right on the route to a real one.
+      { id: 'decoy1', label: '123456', kind: 'decoy', x: 320, y: 245 },
+      { id: 'decoy2', label: 'password', kind: 'decoy', x: 513, y: 143 },
+      { id: 'decoy3', label: 'qwerty', kind: 'decoy', x: 1015, y: 139 },
+      { id: 'decoy4', label: 'letmein', kind: 'decoy', x: 1611, y: 99 },
+      { id: 'decoy5', label: 'football', kind: 'decoy', x: 1300, y: 245 },
+      { id: 'decoy6', label: 'iloveyou', kind: 'decoy', x: 2324, y: 107 },
     ],
-    // One guard works the climb itself, the other the ground by the decoys —
-    // so the easy route isn't the quiet one either.
+    // Each guard walks a platform — the scene snaps them onto the surface
+    // under their patrol and clips the beat to it, so these can't end up
+    // hovering in open air. Two work the floor, the rest hold ledges that
+    // sit on the route to a real tile.
     hazards: [
-      { patrolFrom: 700, patrolTo: 806, y: 122 },
-      { patrolFrom: 560, patrolTo: 700, y: 240 },
+      { patrolFrom: 806, patrolTo: 936, y: 186 }, // the dip
+      { patrolFrom: 1204, patrolTo: 1334, y: 138 }, // foot of the tower
+      { patrolFrom: 1530, patrolTo: 1660, y: 186 }, // the re-entry ledge
+      { patrolFrom: 1792, patrolTo: 1834, y: 98 }, // sentry on the ledge below letter-2
+      { patrolFrom: 2112, patrolTo: 2242, y: 154 }, // final approach
+      { patrolFrom: 560, patrolTo: 760, y: 242 }, // the one on the floor, by the first decoy
     ],
   },
 

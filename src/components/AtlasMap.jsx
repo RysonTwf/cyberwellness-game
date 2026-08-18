@@ -214,7 +214,16 @@ function AtlasScene({ realmProgress }) {
  * whichever branch they like and steps onto that island — every realm is
  * reachable from the start.
  */
-export default function AtlasMap({ travelerName, realmProgress, allStamped, band, onEnter, onFinale }) {
+export default function AtlasMap({
+  travelerName,
+  realmProgress,
+  allStamped,
+  band,
+  atlasPos,
+  onAtlasMove,
+  onEnter,
+  onFinale,
+}) {
   const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
   // Suggested play order (Improvement Plan §4) — only orders the list below,
   // free exploration on the map itself is unaffected.
@@ -261,10 +270,12 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
         // the passport and the Gate, and keeps them from reading as a dark
         // smudge against the pale map.
         accent="var(--gold)"
-        spawn={GATE}
+        // Back to wherever the boat was left, not the Gate — see onAtlasMove.
+        spawn={atlasPos ?? GATE}
         bounds={{ minX: 4, maxX: 96, minY: 12, maxY: 92 }}
         hotspots={hotspots}
         vehicle="boat"
+        onMove={onAtlasMove}
         objective={
           allStamped ? 'Walk back to the Atlas Gate' : 'Pick a branch and step onto an island'
         }
