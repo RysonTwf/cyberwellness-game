@@ -1782,3 +1782,52 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---- The vault door's bag of collected pieces --------------------------- */
+
+.bag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Each piece the Traveler carried up to the door. Ticking one is a claim that
+   it belongs in a strong password, so the pressed state has to be unmistakable
+   at a glance — colour alone wouldn't be. */
+.bag-chip {
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-stamp);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 13px;
+  min-height: 42px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--line-strong);
+  background: var(--paper-card);
+  color: var(--ink);
+  transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.bag-chip:hover {
+  border-color: var(--accent);
+}
+
+.bag-chip.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper-card);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.bag-chip.on::after {
+  content: ' ¹3';
+}
+
+/* A message the player has marked as worth stopping at, before they commit.
+   Distinct from `.cleared`, which is the post-answer reveal. */
+.msg.marked {
+  border-color: var(--coral);
+  box-shadow: inset 0 0 0 2px var(--coral);
+}

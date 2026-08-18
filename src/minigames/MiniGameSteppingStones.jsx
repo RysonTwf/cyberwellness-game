@@ -24,6 +24,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
   const current = stones[index] ?? null;
   const done = index >= stones.length;
   const correctCount = resolved.filter((r) => r.correct).length;
+  const allRight = done && correctCount === stones.length;
 
   function choose(action) {
     if (!current || feedback) return;
@@ -104,7 +105,12 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
         </>
       )}
 
-      {done && (
+      {/* A clean crossing is the one that counts. Every stone resolves either
+          way and explains itself, so nothing is lost by getting one wrong —
+          but you don't reach the far side by calling "step" on everything and
+          letting the misses slide, which is what advancing regardless allowed
+          (design.md §8: retry freely, just don't pass without judging). */}
+      {done && allRight && (
         <div className="redirect settled">
           <span className="ic">
             <Check size={22} />
@@ -113,12 +119,24 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
         </div>
       )}
 
+      {done && !allRight && (
+        <div className="redirect">
+          <span className="ic">
+            <Info size={22} />
+          </span>
+          <p>
+            You made it across, but {stones.length - correctCount} of them caught you out. Read
+            what each one said again and cross it clean.
+          </p>
+        </div>
+      )}
+
       <div className="row panel-actions" style={{ justifyContent: 'center' }}>
         <button type="button" className="btn btn-ghost btn-sm" onClick={retry}>
           <RotateCcw size={16} />
           Cross again
         </button>
-        {done && (
+        {done && allRight && (
           <button type="button" className="btn btn-accent" onClick={() => onComplete(correctCount)}>
             <Check size={19} />
             Done crossing

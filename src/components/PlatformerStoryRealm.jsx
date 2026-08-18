@@ -40,6 +40,12 @@ export default function PlatformerStoryRealm({
   const [collected, setCollected] = useState(0);
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
+  // Everything picked up off the level, strong and weak alike, in the order
+  // it was found — the door's question is asked against this.
+  const [bag, setBag] = useState([]);
+  const [doorOpen, setDoorOpen] = useState(false);
+  const [chosen, setChosen] = useState([]); // ids ticked at the door
+  const [verdict, setVerdict] = useState(null); // null | 'short' | 'wrong' | 'passed'
 
   const controlsRef = useRef({ left: false, right: false, jump: false });
   const sceneRef = useRef(null);
@@ -70,8 +76,48 @@ export default function PlatformerStoryRealm({
     setPick(null);
     setDecisionOpen(false);
     setCollected(0);
+    setBag([]);
+    setDoorOpen(false);
+    setChosen([]);
+    setVerdict(null);
     controlsRef.current = { left: false, right: false, jump: false };
     setRound((r) => r + 1);
+  }
+
+  const strongInBag = bag.filter((t) => t.kind === 'real');
+  const hasEveryStrong = strongInBag.length >= total;
+
+  /**
+   * The door's question. Two separate gates, deliberately:
+   * first, are all the strong pieces even in the bag — if not there's nothing
+   * to test yet and they're turned away; then, can they pick those out from
+   * the weak ones they also carried up here. Getting it wrong costs nothing
+   * but another go (design.md §8), it just doesn't open.
+   */
+  function answerDoor() {
+    if (!hasEveryStrong) {
+      setVerdict('short');
+      return;
+    }
+    const wantedIds = strongInBag.map((t) => t.id).sort();
+    const gotIds = [...chosen].sort();
+    const exact =
+      wantedIds.length === gotIds.length && wantedIds.every((id, i) => id === gotIds[i]);
+    if (!exact) {
+      setVerdict('wrong');
+      return;
+    }
+    setVerdict('passed');
+    setDoorOpen(false);
+    setScore(strongInBag.length);
+    sceneRef.current?.resolveDoor(true);
+  }
+
+  function leaveDoor(message) {
+    setDoorOpen(false);
+    setVerdict(null);
+    setChosen([]);
+    sceneRef.current?.resolveDoor(false, message);
   }
 
   if (step === 'stamp') {
@@ -146,8 +192,15 @@ export default function PlatformerStoryRealm({
                 controlsRef,
                 onDecisionReached: () => setDecisionOpen(true),
                 onProgress: (n) => setCollected(n),
+                onCollect: (tile) =>
+                  setBag((b) => (b.some((t) => t.id === tile.id) ? b : [...b, tile])),
+                onDoorReached: () => {
+                  setVerdict(null);
+                  setChosen([]);
+                  setDoorOpen(true);
+                },
                 onWin: (finalScore) => {
-                  setScore(finalScore);
+                  setScore((s) => s || finalScore);
                   setStep('rule');
                 },
                 onSceneReady: (scene) => {
@@ -159,10 +212,89 @@ export default function PlatformerStoryRealm({
           </div>
 
           <aside className="stage-side">
-          {!decisionOpen && (
+          {doorOpen && (
+            <div className="stack">
+              <h3>The vault door</h3>
+
+              {!hasEveryStrong && verdict !== 'short' && (
+                <p className="instruction">
+                  The keypad wants the whole password. Tick every piece in your bag that belongs
+                  in a strong one.
+                </p>
+              )}
+
+              {verdict === 'short' && (
+                <DialogueCard
+                  who="Comet"
+                  accent={realm.accent}
+                  text={`Not all the correct pieces are in your bag yet — you've got ${strongInBag.length} of ${total}. The door won't open on a half-built password. Go back and find the rest.`}
+                />
+              )}
+
+              {verdict === 'wrong' && (
+                <DialogueCard
+                  who="Comet"
+                  accent={realm.accent}
+                  text="That's not the set. Some of what you ticked is the easy-to-guess kind — look for the closed padlock on the ones that count, and try again."
+                />
+              )}
+
+              {verdict !== 'short' && (
+                <>
+                  <div className="bag-grid">
+                    {bag.map((t) => {
+                      const on = chosen.includes(t.id);
+                      return (
+                        <button
+                          key={t.id}
+                          type="button"
+                          className={`bag-chip${on ? ' on' : ''}`}
+                          aria-pressed={on}
+                          onClick={() =>
+                            setChosen((c) =>
+                              c.includes(t.id) ? c.filter((x) => x !== t.id) : [...c, t.id],
+                            )
+                          }
+                        >
+                          {t.label}
+                        </button>
+                      );
+                    })}
+                    {bag.length === 0 && <p className="muted">Your bag is empty.</p>}
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-accent"
+                    disabled={chosen.length === 0}
+                    onClick={answerDoor}
+                  >
+                    <Check size={19} />
+                    Enter the password
+                  </button>
+                </>
+              )}
+
+              <button
+                type="button"
+                className="btn btn-ghost btn-sm"
+                onClick={() =>
+                  leaveDoor(
+                    hasEveryStrong ? 'Have another look at what you picked up.' : 'Some pieces are still out there.',
+                  )
+                }
+              >
+                Step back
+              </button>
+            </div>
+          )}
+
+          {!decisionOpen && !doorOpen && (
             <>
               <p className="instruction">{realm.game.instruction}</p>
-              <p className="tile-hint">{collected} of {total} secured</p>
+              <p className="tile-hint">
+                In the bag: {collected} of {total} strong
+                {bag.length > collected ? ` (+${bag.length - collected} weak)` : ''}
+              </p>
               <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
                 <button
                   type="button"

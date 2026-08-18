@@ -394,6 +394,46 @@ function drawGate(ctx, { w, h }) {
   circle(ctx, w / 2, h * 0.4 + 9, 1.8, INK);
 }
 
+/**
+ * The vault door at the end of the run — the one the Traveler has to answer
+ * to. Drawn shut and locked, with a keypad panel, so it reads as something
+ * that wants an answer rather than something you walk through.
+ */
+function drawVaultDoor(ctx, { w, h }) {
+  // frame
+  fillRR(ctx, 0, 0, w, h, 5, '#24405f');
+  // plate
+  fillRR(ctx, 4, 4, w - 8, h - 8, 4, '#2c4a6d');
+  // rivets down both sides
+  for (let y = 12; y < h - 8; y += 14) {
+    circle(ctx, 8, y, 1.8, GOLD_DEEP);
+    circle(ctx, w - 8, y, 1.8, GOLD_DEEP);
+  }
+  // keypad panel — the thing you answer
+  fillRR(ctx, w / 2 - 9, 14, 18, 22, 3, '#16283c');
+  for (let r = 0; r < 3; r += 1) {
+    for (let c = 0; c < 3; c += 1) {
+      fillRR(ctx, w / 2 - 7 + c * 5, 17 + r * 6, 3.4, 4.2, 1, 'rgba(224,160,48,0.55)');
+    }
+  }
+  // wheel handle
+  const cy = h - 22;
+  ctx.strokeStyle = GOLD;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(w / 2, cy, 11, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.lineWidth = 2.4;
+  for (let i = 0; i < 4; i += 1) {
+    const a = (Math.PI / 2) * i + Math.PI / 4;
+    ctx.beginPath();
+    ctx.moveTo(w / 2 + Math.cos(a) * 3, cy + Math.sin(a) * 3);
+    ctx.lineTo(w / 2 + Math.cos(a) * 13, cy + Math.sin(a) * 13);
+    ctx.stroke();
+  }
+  circle(ctx, w / 2, cy, 4, GOLD_DEEP);
+}
+
 /** A single sparkle particle for the collect burst. */
 function drawSpark(ctx) {
   sparkle(ctx, 5, 5, 5, PAPER);
@@ -539,6 +579,7 @@ export const ART_MANIFEST = [
   },
   { key: 'pw-tile-decoy', file: 'tile-decoy.png', frameWidth: 34, frameHeight: 34, draw: drawDecoy },
   { key: 'pw-gate', file: 'gate.png', frameWidth: 60, frameHeight: 120, draw: drawGate },
+  { key: 'pw-vault-door', file: 'vault-door.png', frameWidth: 46, frameHeight: 68, draw: drawVaultDoor },
   { key: 'pw-spark', file: 'spark.png', frameWidth: 10, frameHeight: 10, draw: drawSpark },
   { key: 'pw-meter', file: 'meter-ui.png', frameWidth: 96, frameHeight: 14, draw: drawMeterFrame },
   { key: 'pw-door-left', file: 'vault-door-left.png', frameWidth: 280, frameHeight: 280, draw: makeDoorDrawer('left') },

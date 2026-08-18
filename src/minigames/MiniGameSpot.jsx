@@ -11,13 +11,53 @@ import { Flag, Check, RotateCcw, Eye } from 'lucide-react';
  * telling the difference is the skill (design.md §8, no fail states).
  */
 export default function MiniGameSpot({ game, onComplete }) {
-  const [opened, setOpened] = useState([]);
-  const totalFlags = useMemo(() => game.messages.filter((m) => m.flag).length, [game.messages]);
-  const foundFlags = opened.filter((id) => game.messages.find((m) => m.id === id)?.flag).length;
-  const done = foundFlags === totalFlags;
+  // Marking is the judgement; revealing is the reward for getting it right.
+  // Tapping a message used to clear the fog off it *and* tell you whether it
+  // was a real problem — so tapping all of them scored full marks without the
+  // player deciding anything. Now they mark the ones worth stopping at and
+  // commit to the set; only an exact match opens the notes up.
+  const [marked, setMarked] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [miss, setMiss] = useState(null);
+
+  const flagIds = useMemo(
+    () => game.messages.filter((m) => m.flag).map((m) => m.id),
+    [game.messages],
+  );
+  const totalFlags = flagIds.length;
+  const foundFlags = marked.filter((id) => flagIds.includes(id)).length;
+  const done = checked;
 
   function open(id) {
-    setOpened((o) => (o.includes(id) ? o : [...o, id]));
+    if (checked) return;
+    setMiss(null);
+    setMarked((o) => (o.includes(id) ? o.filter((x) => x !== id) : [...o, id]));
+  }
+
+  function check() {
+    const got = [...marked].sort();
+    const want = [...flagIds].sort();
+    if (got.length === want.length && got.every((id, i) => id === want[i])) {
+      setChecked(true);
+      setMiss(null);
+      return;
+    }
+    const missed = want.filter((id) => !marked.includes(id)).length;
+    const over = marked.filter((id) => !want.includes(id)).length;
+    setMiss(
+      [
+        missed && `${missed} you haven't marked yet`,
+        over && `${over} that's actually fine`,
+      ]
+        .filter(Boolean)
+        .join(', and '),
+    );
+  }
+
+  function reset() {
+    setMarked([]);
+    setChecked(false);
+    setMiss(null);
   }
 
   return (
@@ -30,15 +70,17 @@ export default function MiniGameSpot({ game, onComplete }) {
       <div className="row" style={{ gap: 8 }}>
         <Flag size={17} color="var(--coral)" />
         <span className="stamp-label">
-          {foundFlags} of {totalFlags} things to stop and think about
+          {checked
+            ? `${foundFlags} of ${totalFlags} — that's the lot`
+            : `${marked.length} marked · ${totalFlags} to find`}
         </span>
       </div>
 
       <div className="chat">
         {game.messages.map((m) => {
-          const isOpen = opened.includes(m.id);
-          const cls = !isOpen
-            ? 'msg'
+          const isMarked = marked.includes(m.id);
+          const cls = !checked
+            ? `msg${isMarked ? ' marked' : ''}`
             : m.flag
               ? 'msg cleared flagged'
               : 'msg cleared was-fine';
@@ -48,11 +90,12 @@ export default function MiniGameSpot({ game, onComplete }) {
               type="button"
               className={cls}
               onClick={() => open(m.id)}
-              disabled={isOpen}
-              aria-label={isOpen ? undefined : 'Tap to clear the fog off this message'}
+              aria-pressed={!checked ? isMarked : undefined}
+              disabled={checked}
+              aria-label={checked ? undefined : 'Mark this one as worth stopping at'}
             >
               <span>{m.text}</span>
-              {isOpen && (
+              {checked && (
                 <span className="msg-note">
                   {m.flag ? <Flag size={15} /> : <Check size={15} />}
                   {m.note}
@@ -62,6 +105,23 @@ export default function MiniGameSpot({ game, onComplete }) {
           );
         })}
       </div>
+
+      {!checked && (
+        <>
+          {miss && <p className="tile-hint">Not yet — there's {miss}. Have another look.</p>}
+          <div className="center">
+            <button
+              type="button"
+              className="btn btn-accent"
+              disabled={marked.length === 0}
+              onClick={check}
+            >
+              <Check size={19} />
+              That's my answer
+            </button>
+          </div>
+        </>
+      )}
 
       {done && (
         <div className="redirect settled">
@@ -76,7 +136,7 @@ export default function MiniGameSpot({ game, onComplete }) {
       )}
 
       <div className="row panel-actions" style={{ justifyContent: 'center' }}>
-        <button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpened([])}>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={reset}>
           <RotateCcw size={16} />
           Fog it back up
         </button>

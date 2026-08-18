@@ -38,6 +38,7 @@ export default function MiniGameSort({ game, onComplete }) {
     [game.bins],
   );
   const firstTryCorrect = placed.filter((p) => p.correct).length;
+  const allCorrect = placed.length > 0 && firstTryCorrect === placed.length;
 
   function place(binId) {
     if (!current) return;
@@ -175,10 +176,20 @@ export default function MiniGameSort({ game, onComplete }) {
           <RotateCcw size={16} />
           Sort again
         </button>
-        {done && (
+        {/* Finishing takes a clean run, not just a finished one. Every item
+            still gets filed into its right bin as you go — that's the teaching
+            — but a misfile means the round doesn't count, otherwise you could
+            hit any bin every time and reach "Done" having judged nothing. No
+            penalty beyond going again (design.md §8). */}
+        {done && allCorrect && (
           <button type="button" className="btn btn-accent" onClick={() => onComplete(firstTryCorrect)}>
             Done sorting
           </button>
+        )}
+        {done && !allCorrect && (
+          <p className="tile-hint">
+            {firstTryCorrect} of {placed.length} filed right first time. Sort again to clear it.
+          </p>
         )}
       </div>
     </div>

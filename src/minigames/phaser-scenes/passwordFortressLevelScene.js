@@ -36,7 +36,7 @@ const DEFAULT_LEVEL_W = 1120;
 
 export function makePasswordFortressLevelConfig(
   Phaser,
-  { game, controlsRef, onDecisionReached, onProgress, onWin, onSceneReady },
+  { game, controlsRef, onDecisionReached, onCollect, onDoorReached, onProgress, onWin, onSceneReady },
 ) {
   const tiles = game.tiles ?? [];
   // `hazards` for a level that wants more than one patrol; `hazard` is still
@@ -209,6 +209,25 @@ export function makePasswordFortressLevelConfig(
         this.physics.add.overlap(this.player, guard, () => this.onHazardHit(guard));
       }
 
+      // ---- the vault door, standing on the last platform ----
+      // Reaching it is what ends the run now, not picking up the last tile:
+      // the Traveler has to face it and say which of what they're carrying
+      // actually belongs in a password.
+      const last = platformLayout[platformLayout.length - 1];
+      const doorX = game.doorX ?? last.x + last.w / 2;
+      const doorBaseY = game.doorY ?? last.y;
+      this.door = this.add.image(doorX, doorBaseY, 'pw-vault-door').setOrigin(0.5, 1);
+      this.doorAnswered = false;
+
+      const doorZone = this.add.zone(doorX, doorBaseY - 34, 74, 84);
+      this.physics.world.enable(doorZone, Phaser.Physics.Arcade.STATIC_BODY);
+      this.physics.add.overlap(this.player, doorZone, () => {
+        if (this.doorAnswered || this.locked) return;
+        this.locked = true;
+        this.player.setVelocity(0, 0);
+        onDoorReached?.();
+      });
+
       // ---- HUD (screen-pinned — setScrollFactor(0) — so it stays put
       // regardless of how far the camera has scrolled) ----
       this.hudText = this.add
@@ -272,6 +291,31 @@ export function makePasswordFortressLevelConfig(
       });
     }
 
+    /**
+     * Called by React when the door's question is resolved.
+     * `passed` opens the vault; anything else hands control back and nudges
+     * the Traveler clear of the door so they aren't re-triggering it on the
+     * spot — there's no penalty either way, they just go and look again.
+     */
+    resolveDoor(passed, message) {
+      if (passed) {
+        this.doorAnswered = true;
+        this.flashToast(message ?? 'The vault knows a strong one when it sees it.');
+        this.tweens.add({
+          targets: this.door,
+          alpha: 0,
+          y: this.door.y - 30,
+          duration: 500,
+          ease: 'Cubic.easeIn',
+          onComplete: () => this.winSequence(),
+        });
+        return;
+      }
+      this.locked = false;
+      if (message) this.flashToast(message);
+      this.player.setVelocity(-170, -150);
+    }
+
     onTileTouch(sprite) {
       if (!sprite.active) return;
       const t = this.tileById.get(sprite.getData('id'));
@@ -279,39 +323,21 @@ export function makePasswordFortressLevelConfig(
 
       const label = sprite.getData('label');
 
+      // Everything goes in the bag, weak ones included — the judgement call
+      // has moved to the door, where the Traveler has to say which of what
+      // they picked up actually belongs in a password. Refusing to let them
+      // pick a decoy up would answer that question for them.
+      this.collectBurst(sprite.x, sprite.y);
+      this.tweens.killTweensOf([sprite, label]);
+      label?.destroy();
+      sprite.destroy();
+
       if (t.kind === 'real') {
-        this.collectBurst(sprite.x, sprite.y);
-        this.tweens.killTweensOf([sprite, label]);
-        label?.destroy();
-        sprite.destroy();
         this.collected.add(t.id);
-        this.updateHud();
         onProgress?.(this.collected.size, this.realTotal);
-        if (this.collected.size >= this.realTotal) this.winSequence();
-      } else {
-        // A decoy shrugs you off — a shake, not a penalty. It stays on the
-        // board so the contrast with the locked tiles keeps teaching.
-        if (!this.decoyShaking) {
-          this.decoyShaking = true;
-          const x0 = sprite.x;
-          this.tweens.add({
-            targets: [sprite, label],
-            x: x0 + 3,
-            duration: 55,
-            yoyo: true,
-            repeat: 3,
-            onComplete: () => {
-              sprite.x = x0;
-              if (label) label.x = x0;
-              this.decoyShaking = false;
-            },
-          });
-        }
-        if (!this.decoyWarned.has(t.id)) {
-          this.decoyWarned.add(t.id);
-          this.flashToast('That one’s easy to guess — look for a locked one instead.');
-        }
       }
+      onCollect?.(t);
+      this.updateHud();
     }
 
     onHazardHit(guard) {
@@ -334,7 +360,7 @@ export function makePasswordFortressLevelConfig(
     updateHud() {
       const n = this.collected.size;
       const strength = n === 0 ? 'Weak' : n < this.realTotal ? 'Building…' : 'Strong';
-      this.hudText.setText(`Password strength: ${strength}  (${n}/${this.realTotal})`);
+      this.hudText.setText(`In the bag: ${n}/${this.realTotal} strong  ·  ${strength}`);
 
       // Tween the fill rather than snapping it, so collecting a tile has a
       // visible consequence up in the HUD and not just on the tile itself.
