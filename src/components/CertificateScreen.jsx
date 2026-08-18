@@ -3,7 +3,7 @@ import { PenLine, RotateCcw, BookMarked } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import StampBadge from './StampBadge';
 import { Comet } from './Characters';
-import { REALMS, REALM_BY_ID, PLEDGE } from '../data/realms';
+import { ACTIVE_REALMS, REALM_BY_ID, activePledge } from '../data/realms';
 
 /** The finale (storyline.md): Wise Traveler certificate + the Traveler's Pledge. */
 export default function CertificateScreen({
@@ -21,7 +21,7 @@ export default function CertificateScreen({
       <div className="stack">
         <DialogueCard
           who="Comet"
-          text="Four stamps. Four realms. You picked curiosity and a second thought, every time — that's the whole trick, honestly."
+          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You picked curiosity and a second thought, every time — that's the whole trick, honestly.`}
         />
 
         <div className="cert" style={{ '--accent': 'var(--gold)' }}>
@@ -30,7 +30,7 @@ export default function CertificateScreen({
           <p className="muted">This traveler has walked the whole Atlas.</p>
 
           <div className="cert-stamps">
-            {REALMS.map((realm) => (
+            {ACTIVE_REALMS.map((realm) => (
               <StampBadge
                 key={realm.id}
                 realmId={realm.id}
@@ -46,7 +46,7 @@ export default function CertificateScreen({
 
           <span className="stamp-label">The Traveler&rsquo;s Pledge</span>
           <div className="pledge" style={{ marginTop: 12 }}>
-            {PLEDGE.map((line) => (
+            {activePledge().map((line) => (
               <div
                 key={line.realm}
                 className="pledge-line"

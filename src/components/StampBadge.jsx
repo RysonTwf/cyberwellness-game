@@ -1,4 +1,4 @@
-import { Key, Compass, Heart, Sun, CircleDashed } from 'lucide-react';
+import { Key, Compass, Heart, Sun, Eye, CircleDashed } from 'lucide-react';
 
 /**
  * The ink stamp badge — the one recurring "wow" moment (design.md §3).
@@ -9,7 +9,7 @@ import { Key, Compass, Heart, Sun, CircleDashed } from 'lucide-react';
  * this doesn't have to compete.
  */
 
-const ICONS = { key: Key, compass: Compass, heart: Heart, sun: Sun };
+const ICONS = { key: Key, compass: Compass, heart: Heart, sun: Sun, eye: Eye };
 
 /** Small deterministic PRNG so a given stamp always roughens the same way. */
 function makeRandom(seed) {

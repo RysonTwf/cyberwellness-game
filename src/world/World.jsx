@@ -26,6 +26,11 @@ export default function World({
   hint = 'Tap the ground to walk · or use the arrow keys',
   paused = false,
   onInteract,
+  // Every realm shares the same 2:1 scene box (`.world`) so their SVGs
+  // (all viewBox="0 0 560 280") render without letterboxing. The Atlas is
+  // the one scene wide enough to want its own ratio — pass a modifier
+  // class rather than changing `.world` itself, so nothing else shifts.
+  className,
 }) {
   const groundRef = useRef(null);
   const { pos, facing, moving, walkTo, placeAt } = useWalker({
@@ -83,7 +88,7 @@ export default function World({
   return (
     <div className="world-wrap">
       <div
-        className={`world${paused ? ' paused' : ''}`}
+        className={`world${paused ? ' paused' : ''}${className ? ` ${className}` : ''}`}
         ref={groundRef}
         onPointerDown={tapGround}
         role="presentation"

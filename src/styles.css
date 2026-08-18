@@ -26,6 +26,7 @@
   --teal: #2d8c7f;
   --coral: #e0637a;
   --periwinkle: #7b6ef6;
+  --sage: #3f9d5b; /* Fable Falls — placeholder pending the designer's own 5th-accent pass */
 
   /* Bound per-realm via inline style on a wrapper; defaults to ink so shared
      UI stays neutral and the four realms read as distinct map regions. */
@@ -895,6 +896,33 @@ p {
 
 .world.paused {
   cursor: default;
+}
+
+/* The Atlas hub gets more horizontal room than a single realm's 2:1 scene
+   box — 5 islands read as cramped at 2:1. viewBox widened to match
+   (700x280, still 280 tall) in AtlasMap.jsx's AtlasScene. */
+.world.atlas-map {
+  aspect-ratio: 2.5 / 1;
+}
+
+/* Phaser-backed mini-games (Milestones Phase 2: Passworld platformer,
+   Privacy Peaks stepping-stones) render into this box — same 2:1 scene
+   proportions as the rest of the game, via minigames/PhaserMiniGame.jsx. */
+.phaser-host {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 260px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--line);
+  background: var(--paper-sunk);
+  overflow: hidden;
+}
+
+.phaser-host canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .world-scene {

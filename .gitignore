@@ -4,6 +4,10 @@ dist-ssr/
 *.local
 .vite/
 
+# Source curriculum materials (school-provided .docx/.pptx) — not ours to
+# publish, referenced locally only.
+docs/
+
 # editor / OS
 .DS_Store
 Thumbs.db

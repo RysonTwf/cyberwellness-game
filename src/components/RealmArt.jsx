@@ -499,11 +499,70 @@ function BayScene({ mood }) {
   );
 }
 
+/* --------------------------------------------------------- Fable Falls -- */
+/* A waterfall of tales, some of which are true. Deliberately minimal —
+   placeholder art (Milestones Phase 3's real designer pass is still
+   pending), just enough that the realm doesn't read as broken/blank. */
+function FableFallsScene({ mood }) {
+  const clear = mood === 'after';
+  const sage = 'var(--sage)';
+
+  return (
+    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+      <Sky tint={sage} opacity="0.12" />
+
+      {/* canyon walls either side */}
+      <path d="M0 0 L70 0 Q40 120 60 280 L0 280 Z" fill={INK} opacity="0.08" />
+      <path d="M560 0 L500 0 Q530 120 510 280 L560 280 Z" fill={INK} opacity="0.08" />
+
+      {/* the falls themselves */}
+      <g opacity={clear ? 0.85 : 0.6}>
+        <path d="M150 0 Q158 90 148 190 Q170 90 162 0 Z" fill={sage} opacity="0.5" />
+        <path d="M190 0 Q198 90 186 190 Q210 90 200 0 Z" fill={sage} opacity="0.4" />
+      </g>
+      <g stroke={sage} strokeWidth="2" fill="none" opacity={clear ? 0.5 : 0.3} strokeLinecap="round">
+        <path d="M158 20 q6 60 -4 150" />
+        <path d="M198 30 q6 60 -6 140" />
+      </g>
+
+      {/* mist at the base — thick and swallowing shapes before, thin after */}
+      <g fill="#f6f9fa" opacity={clear ? 0.4 : 0.75}>
+        <ellipse cx="175" cy="196" rx="90" ry="20" />
+        <ellipse cx="230" cy="188" rx="60" ry="14" />
+      </g>
+
+      {/* floating tales — little lantern shapes drifting downstream; fewer
+          and calmer once the water's settled */}
+      <g fill={sage} opacity="0.55">
+        <ellipse cx="330" cy="90" rx="16" ry="10" />
+        <ellipse cx="380" cy="60" rx="12" ry="8" />
+        {!clear && <ellipse cx="420" cy="110" rx="14" ry="9" />}
+        {!clear && <ellipse cx="290" cy="50" rx="10" ry="7" />}
+      </g>
+
+      {/* the ground the Traveler walks — solid across the whole band */}
+      <path
+        d="M0 196 Q140 186 280 194 T560 190 L560 280 L0 280 Z"
+        fill={sage}
+        opacity="0.28"
+      />
+      <path
+        d="M0 196 Q140 186 280 194 T560 190"
+        fill="none"
+        stroke={INK}
+        strokeWidth="2"
+        opacity="0.16"
+      />
+    </svg>
+  );
+}
+
 const SCENES = {
   passworld: PassworldScene,
   privacy: PrivacyScene,
   bullybog: BogScene,
   balance: BayScene,
+  fablefalls: FableFallsScene,
 };
 
 export default function RealmArt({ realmId, mood = 'before' }) {

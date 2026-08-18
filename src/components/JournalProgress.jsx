@@ -1,9 +1,9 @@
 import { BookMarked } from 'lucide-react';
-import { REALMS } from '../data/realms';
+import { ACTIVE_REALMS } from '../data/realms';
 
 /** Small persistent header showing the stamp count (design.md §6). */
 export default function JournalProgress({ realmProgress, travelerName, onOpenAtlas, showBack }) {
-  const earned = REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
+  const earned = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
 
   return (
     <div className="journal-bar">
@@ -23,9 +23,9 @@ export default function JournalProgress({ realmProgress, travelerName, onOpenAtl
 
       <div className="journal-count">
         <span className="stamp-label">
-          {earned}/{REALMS.length} stamps
+          {earned}/{ACTIVE_REALMS.length} stamps
         </span>
-        {REALMS.map((r) => (
+        {ACTIVE_REALMS.map((r) => (
           <span
             key={r.id}
             className={`dot${realmProgress[r.id]?.stamped ? ' filled' : ''}`}

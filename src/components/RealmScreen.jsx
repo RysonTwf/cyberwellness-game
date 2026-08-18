@@ -1,17 +1,35 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ArrowRight, Key, Compass, Heart, Sun, RefreshCw, Check, X } from 'lucide-react';
+import { ArrowRight, Key, Compass, Heart, Sun, Eye, RefreshCw, Check, X } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
+import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
 import World from '../world/World';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
 import MiniGameSpot from '../minigames/MiniGameSpot';
 import MiniGameBalance from '../minigames/MiniGameBalance';
+import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
+import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
+import PlatformerStoryRealm from './PlatformerStoryRealm';
 
-const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun };
-const GAMES = { sort: MiniGameSort, spot: MiniGameSpot, balance: MiniGameBalance };
+const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
+// 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
+// importing their wrapper components here doesn't pull Phaser itself into
+// the main bundle, only into a separate chunk fetched when one is actually
+// mounted (see minigames/PhaserMiniGame.jsx).
+const GAMES = {
+  sort: MiniGameSort,
+  spot: MiniGameSpot,
+  balance: MiniGameBalance,
+  platformer: MiniGamePlatformer,
+  steppingstones: MiniGameSteppingStones,
+};
+
+// Order the optional post-decision beats appear in, when a realm defines them
+// (Improvement Plan §2: digital footprint, then "who would you tell").
+const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
 
 /**
  * One realm, start to finish.
@@ -26,11 +44,42 @@ const GAMES = { sort: MiniGameSort, spot: MiniGameSpot, balance: MiniGameBalance
  * the decision back, so a child can never dead-end the story (design.md §5).
  */
 export default function RealmScreen({ realm, progress, travelerName, onSettle, onStamp, onBackToAtlas }) {
+  // A realm can opt out of the shared story→decision→game→rule→stamp
+  // pattern entirely and own one continuous experience instead (currently
+  // just Passworld P4–P6 — see PlatformerStoryRealm.jsx for why). This has
+  // to be the first thing in the function, before any hooks below, since
+  // this component never calls its own hooks when it delegates.
+  if (realm.fullMechanic === 'platformerStory') {
+    return (
+      <PlatformerStoryRealm
+        realm={realm}
+        progress={progress}
+        travelerName={travelerName}
+        Icon={REALM_ICONS[realm.id]}
+        onSettle={onSettle}
+        onStamp={onStamp}
+        onBackToAtlas={onBackToAtlas}
+      />
+    );
+  }
+
   const [step, setStep] = useState('story'); // story | decision | game | rule | stamp
   const [open, setOpen] = useState(false); // is the step's panel showing?
   const [beat, setBeat] = useState(0);
   const [pick, setPick] = useState(null);
   const [score, setScore] = useState(0);
+
+  // Optional post-decision beats (digital footprint / "who would you tell",
+  // Improvement Plan §2) — only realms that define `extraBeats` show these.
+  const extraBeatKeys = EXTRA_BEAT_ORDER.filter((k) => realm.extraBeats?.[k]);
+  const [extraIndex, setExtraIndex] = useState(0);
+  const [beatAcked, setBeatAcked] = useState(false);
+  const [tellPick, setTellPick] = useState(null);
+  const advanceExtra = () => {
+    setBeatAcked(false);
+    setTellPick(null);
+    setExtraIndex((i) => i + 1);
+  };
 
   const Icon = REALM_ICONS[realm.id];
   const Game = GAMES[realm.game.type];
@@ -40,6 +89,9 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
   const settled = Boolean(picked?.safe);
   // The world visibly changes once the Traveler makes the safe choice.
   const mood = settled || step === 'game' || step === 'rule' || step === 'stamp' ? 'after' : 'before';
+  const currentExtraKey =
+    picked?.safe && extraIndex < extraBeatKeys.length ? extraBeatKeys[extraIndex] : null;
+  const currentExtra = currentExtraKey ? realm.extraBeats[currentExtraKey] : null;
 
   const OBJECTIVES = {
     story: `Walk over to ${realm.world.stops.story.label}`,
@@ -156,31 +208,120 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
                 {picked && (
                   <>
                     <DialogueCard who={picked.who} text={picked.response} accent={realm.accent} />
-                    <div className="center">
-                      {picked.safe ? (
-                        <button
-                          type="button"
-                          className="btn btn-accent"
-                          onClick={() => {
-                            setStep('game');
-                            setOpen(false);
-                          }}
-                        >
-                          Look around
-                          <ArrowRight size={19} />
-                        </button>
-                      ) : (
-                        // Never a dead end — hand the decision straight back
-                        <button
-                          type="button"
-                          className="btn btn-ghost"
-                          onClick={() => setPick(null)}
-                        >
-                          <RefreshCw size={17} />
-                          Let me look again
-                        </button>
-                      )}
-                    </div>
+
+                    {/* ---- optional post-decision beats (Improvement Plan §2) ---- */}
+                    {currentExtraKey === 'footprint' && (
+                      <>
+                        <DialogueCard
+                          who={currentExtra.who}
+                          text={currentExtra.prompt}
+                          accent={realm.accent}
+                        />
+                        {beatAcked ? (
+                          <>
+                            <DialogueCard
+                              who={currentExtra.who}
+                              text={currentExtra.followUp}
+                              accent={realm.accent}
+                            />
+                            <div className="center">
+                              <button type="button" className="btn btn-accent" onClick={advanceExtra}>
+                                Continue
+                                <ArrowRight size={19} />
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="center">
+                            <button
+                              type="button"
+                              className="btn btn-accent"
+                              onClick={() => setBeatAcked(true)}
+                            >
+                              {currentExtra.accept}
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {currentExtraKey === 'tellSomeone' && (
+                      <>
+                        <DialogueCard
+                          who={currentExtra.who}
+                          text={currentExtra.prompt}
+                          accent={realm.accent}
+                        />
+                        {tellPick ? (
+                          <>
+                            <DialogueCard
+                              who={currentExtra.who}
+                              text={currentExtra.response}
+                              accent={realm.accent}
+                            />
+                            <div className="center">
+                              <button type="button" className="btn btn-accent" onClick={advanceExtra}>
+                                Continue
+                                <ArrowRight size={19} />
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <div
+                            className="row"
+                            style={{ justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}
+                          >
+                            {currentExtra.options.map((o) => (
+                              <button
+                                key={o.id}
+                                type="button"
+                                className="btn btn-ghost btn-sm"
+                                onClick={() => setTellPick(o.id)}
+                              >
+                                {o.text}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {/* ---- move on: game step (safe) or retry (unsafe) ---- */}
+                    {!currentExtraKey && (
+                      <div className="center">
+                        {picked.safe ? (
+                          <button
+                            type="button"
+                            className="btn btn-accent"
+                            onClick={() => {
+                              setStep('game');
+                              setOpen(false);
+                            }}
+                          >
+                            Look around
+                            <ArrowRight size={19} />
+                          </button>
+                        ) : (
+                          <div
+                            className="row"
+                            style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                          >
+                            {/* Never a dead end — hand the decision straight back */}
+                            <button
+                              type="button"
+                              className="btn btn-ghost"
+                              onClick={() => setPick(null)}
+                            >
+                              <RefreshCw size={17} />
+                              Let me look again
+                            </button>
+                            {realm.reportBlockEligible !== false && (
+                              <ReportBlock accent={realm.accent} />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </>
                 )}
               </div>

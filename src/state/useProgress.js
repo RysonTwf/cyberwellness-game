@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer } from 'react';
-import { REALMS } from '../data/realms';
+import { ACTIVE_REALMS } from '../data/realms';
 
 /**
  * Game state (shape follows design.md §7) plus persistence.
@@ -16,7 +16,7 @@ const STORAGE_KEY = 'cyber-wellness-quest/v1';
 
 function freshRealmProgress() {
   return Object.fromEntries(
-    REALMS.map((r) => [
+    ACTIVE_REALMS.map((r) => [
       r.id,
       {
         storyDone: false,
@@ -34,6 +34,9 @@ function freshRealmProgress() {
 function initialState() {
   return {
     travelerName: '',
+    // 'lower' (P1–P3) | 'higher' (P4–P6) | null until the Atlas Gate asks
+    // (Improvement Plan §0 — one game, one entry point; band picked once).
+    band: null,
     currentScreen: 'gate', // gate | atlas | <realmId> | finale
     realmProgress: freshRealmProgress(),
     pledgeSigned: false,
@@ -53,6 +56,9 @@ function reducer(state, action) {
 
     case 'setName':
       return { ...state, travelerName: action.name };
+
+    case 'setBand':
+      return { ...state, band: action.band };
 
     case 'go':
       return { ...state, currentScreen: action.screen };
@@ -114,7 +120,10 @@ function load() {
       ...base,
       ...saved,
       realmProgress: Object.fromEntries(
-        REALMS.map((r) => [r.id, { ...base.realmProgress[r.id], ...saved?.realmProgress?.[r.id] }]),
+        ACTIVE_REALMS.map((r) => [
+          r.id,
+          { ...base.realmProgress[r.id], ...saved?.realmProgress?.[r.id] },
+        ]),
       ),
     };
   } catch {
@@ -139,9 +148,15 @@ export function useProgress() {
     }
   }, [state]);
 
-  const stampsEarned = REALMS.filter((r) => state.realmProgress[r.id]?.stamped).length;
+  const stampsEarned = ACTIVE_REALMS.filter((r) => state.realmProgress[r.id]?.stamped).length;
 
   const reset = useCallback((keepName = false) => dispatch({ type: 'reset', keepName }), []);
 
-  return { state, dispatch, stampsEarned, allStamped: stampsEarned === REALMS.length, reset };
+  return {
+    state,
+    dispatch,
+    stampsEarned,
+    allStamped: stampsEarned === ACTIVE_REALMS.length,
+    reset,
+  };
 }

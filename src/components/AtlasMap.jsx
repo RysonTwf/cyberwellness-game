@@ -1,30 +1,37 @@
 import { Check, Sparkles } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import World from '../world/World';
-import { REALMS } from '../data/realms';
+import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
 
 /**
  * Island positions in the map's own viewBox, and in world (0-100) units.
  *
- * The two are tied together: `world.y` must land just below the island's base
- * (`svg.y + 22`) so the pin sits at the island's shoreline rather than floating
- * in the water in front of it. Scene y = world y x 2.8. The heights are
- * deliberately uneven so the four don't read as a row of identical bumps.
+ * The map runs a wider 700x280 viewBox (`.world.atlas-map`, see styles.css)
+ * rather than every other scene's 560x280 — 5 islands read as cramped at
+ * the narrower width. `world.x` = svg.x / 700 × 100 and `world.y` =
+ * (svg.y + 22) / 2.8, so the pin lands right at the island's shoreline.
+ * The heights are deliberately uneven so the islands don't read as a row
+ * of identical bumps; the x-spacing is roughly even now that there's
+ * actually room for it (~125px, pulled in slightly for Fable Falls so it
+ * keeps clear of the compass rose).
  */
 const ISLANDS = {
-  passworld: { svg: { x: 129, y: 190 }, world: { x: 23, y: 76 } },
-  privacy: { svg: { x: 246, y: 178 }, world: { x: 44, y: 71 } },
-  bullybog: { svg: { x: 364, y: 192 }, world: { x: 65, y: 77 } },
-  balance: { svg: { x: 476, y: 180 }, world: { x: 85, y: 72 } },
+  passworld: { svg: { x: 150, y: 190 }, world: { x: 21, y: 76 } },
+  privacy: { svg: { x: 275, y: 176 }, world: { x: 39, y: 71 } },
+  bullybog: { svg: { x: 400, y: 196 }, world: { x: 57, y: 78 } },
+  balance: { svg: { x: 525, y: 178 }, world: { x: 75, y: 71 } },
+  // Placeholder position pending the designer's real island art (Milestones
+  // Phase 3) — otherwise same even spacing as everyone else now.
+  fablefalls: { svg: { x: 630, y: 184 }, world: { x: 90, y: 74 } },
 };
 
 const GATE = { x: 6, y: 88 };
 
-/** The map itself — four islands strung along a winding Stream. */
+/** The map itself — the islands strung along a winding Stream. */
 function AtlasScene({ realmProgress }) {
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
-      <rect width="560" height="280" rx="18" fill="#e9eff1" />
+    <svg viewBox="0 0 700 280" width="100%" aria-hidden="true">
+      <rect width="700" height="280" rx="18" fill="#e9eff1" />
 
       {/* This is a map drawn in a journal, so it gets a chart's furniture: a
           ruled graticule, clouds, birds and a compass rose. Without them the
@@ -32,15 +39,15 @@ function AtlasScene({ realmProgress }) {
           large empty grey rectangle. */}
       <g stroke="var(--ink)" strokeWidth="1" opacity="0.055">
         {[40, 80, 120, 160, 200, 240].map((y) => (
-          <path key={`h${y}`} d={`M0 ${y} H560`} />
+          <path key={`h${y}`} d={`M0 ${y} H700`} />
         ))}
-        {[70, 140, 210, 280, 350, 420, 490].map((x) => (
+        {[70, 140, 210, 280, 350, 420, 490, 560, 630].map((x) => (
           <path key={`v${x}`} d={`M${x} 0 V280`} />
         ))}
       </g>
 
       {/* a band of open water the Stream runs through */}
-      <rect y="150" width="560" height="130" fill="var(--ink)" opacity="0.05" />
+      <rect y="150" width="700" height="130" fill="var(--ink)" opacity="0.05" />
 
       {/* clouds */}
       <g fill="#f6f9fa" opacity="0.9">
@@ -57,6 +64,10 @@ function AtlasScene({ realmProgress }) {
           <ellipse cx="238" cy="112" rx="26" ry="10" />
           <ellipse cx="256" cy="107" rx="18" ry="12" />
         </g>
+        <g>
+          <ellipse cx="560" cy="52" rx="28" ry="12" />
+          <ellipse cx="584" cy="46" rx="20" ry="14" />
+        </g>
       </g>
 
       {/* birds, because an empty sky reads as unfinished */}
@@ -64,10 +75,11 @@ function AtlasScene({ realmProgress }) {
         <path d="M196 82 q7 -6 14 0" />
         <path d="M211 79 q7 -6 14 0" />
         <path d="M300 60 q6 -5 12 0" />
+        <path d="M470 96 q7 -6 14 0" />
       </g>
 
       {/* compass rose */}
-      <g transform="translate(502 66)">
+      <g transform="translate(642 66)">
         <circle r="27" fill="#f6f9fa" opacity="0.7" />
         <circle r="27" fill="none" stroke="var(--ink)" strokeWidth="1.6" opacity="0.4" />
         <circle r="19" fill="none" stroke="var(--ink)" strokeWidth="1" opacity="0.28" />
@@ -92,11 +104,12 @@ function AtlasScene({ realmProgress }) {
         <path d="M266 258 q10 -6 20 0 t20 0" />
         <path d="M414 246 q10 -6 20 0 t20 0" />
         <path d="M158 268 q10 -6 20 0 t20 0" />
+        <path d="M580 256 q10 -6 20 0 t20 0" />
       </g>
 
       {/* The Stream, running behind the islands */}
       <path
-        d="M 4 222 C 70 214, 60 182, 96 176 S 176 168, 224 174 S 306 184, 352 176 S 436 164, 476 170 S 546 174, 558 156"
+        d="M 4 222 C 70 214, 60 182, 96 176 S 176 168, 224 174 S 306 184, 352 176 S 436 164, 476 170 S 546 174, 558 156 S 618 148, 648 158 S 690 168, 696 150"
         fill="none"
         stroke="var(--ink)"
         strokeWidth="3.5"
@@ -105,7 +118,7 @@ function AtlasScene({ realmProgress }) {
         opacity="0.32"
       />
 
-      {REALMS.map((realm) => {
+      {ACTIVE_REALMS.map((realm) => {
         const { x, y } = ISLANDS[realm.id].svg;
         const visited = realmProgress[realm.id]?.stamped;
         return (
@@ -162,19 +175,22 @@ function AtlasScene({ realmProgress }) {
 }
 
 /**
- * The Atlas — hub screen. The Traveler walks the Stream between the four
+ * The Atlas — hub screen. The Traveler walks the Stream between the
  * islands and steps onto whichever one they like the look of.
  */
-export default function AtlasMap({ travelerName, realmProgress, allStamped, onEnter, onFinale }) {
-  const visitedCount = REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
+export default function AtlasMap({ travelerName, realmProgress, allStamped, band, onEnter, onFinale }) {
+  const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
+  // Suggested play order (Improvement Plan §4) — only orders the list below,
+  // free exploration on the map itself is unaffected.
+  const orderedRealms = orderedActiveRealms(band);
 
   const greeting = allStamped
-    ? `Four stamps, Traveler ${travelerName}. The Gate's been waiting for you.`
+    ? `${ACTIVE_REALMS.length} stamps, Traveler ${travelerName}. The Gate's been waiting for you.`
     : visitedCount === 0
       ? `Here it is — the whole Atlas. Walk the Stream, ${travelerName}, and step onto whichever island you like the look of.`
-      : `${visitedCount} down, ${REALMS.length - visitedCount} to go. Where to next, ${travelerName}?`;
+      : `${visitedCount} down, ${ACTIVE_REALMS.length - visitedCount} to go. Where to next, ${travelerName}?`;
 
-  const hotspots = REALMS.map((realm) => ({
+  const hotspots = ACTIVE_REALMS.map((realm) => ({
     id: realm.id,
     ...ISLANDS[realm.id].world,
     label: realm.name,
@@ -197,12 +213,18 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, onEn
     <div className="fold">
       <div className="atlas-head">
         <h2>The Atlas</h2>
-        <p style={{ marginTop: 6 }}>Four realms, one Stream running between them.</p>
+        <p style={{ marginTop: 6 }}>
+          {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, one Stream running
+          between them.
+        </p>
       </div>
 
       <World
         sceneKey="atlas"
         scene={<AtlasScene realmProgress={realmProgress} />}
+        // Wider than a single realm's 2:1 scene box — 5 islands need the
+        // room (see .world.atlas-map in styles.css + AtlasScene's viewBox).
+        className="atlas-map"
         // The Atlas has no realm colour of its own; gold ties the Traveler to
         // the passport and the Gate, and keeps them from reading as a dark
         // smudge against the pale map.
@@ -219,9 +241,11 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, onEn
       <div className="stack" style={{ marginTop: 18 }}>
         <DialogueCard who="Comet" text={greeting} />
 
-        {/* A plain list as well as the map — walking isn't the only way in. */}
+        {/* A plain list as well as the map — walking isn't the only way in.
+            Ordered per the suggested pacing for this band (Improvement Plan
+            §4); the map above stays free-exploration regardless of order. */}
         <div className="realm-strip">
-          {REALMS.map((realm) => {
+          {orderedRealms.map((realm) => {
             const visited = realmProgress[realm.id]?.stamped;
             return (
               <button
