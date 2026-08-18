@@ -34,6 +34,9 @@ export default function World({
   className,
   // 'boat' on the Atlas hub, since its ground is open water — see Boat.jsx.
   vehicle = 'walk',
+  // Comet only exists once they've unfolded out of the diary (storyline.md
+  // prologue), so the opening room hides them until that happens.
+  showComet = true,
 }) {
   const { pos, facing, moving, placeAt } = useWalker({
     spawn,
@@ -95,19 +98,21 @@ export default function World({
             <span className="hotspot-pin">
               <MapPin size={22} strokeWidth={2.6} />
             </span>
-            <span className="hotspot-label">{spot.label}</span>
+            {spot.label && <span className="hotspot-label">{spot.label}</span>}
           </div>
         ))}
 
         {/* Comet, trailing along behind */}
-        <div
-          className="comet-follow"
-          style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: `scale(${scale})` }}
-        >
-          <span className="floaty">
-            <Comet size={30} />
-          </span>
-        </div>
+        {showComet && (
+          <div
+            className="comet-follow"
+            style={{ left: `${pos.x}%`, top: `${pos.y}%`, transform: `scale(${scale})` }}
+          >
+            <span className="floaty">
+              <Comet size={30} />
+            </span>
+          </div>
+        )}
 
         <div
           className="walker"

@@ -13,8 +13,12 @@ import AtlasGate from './AtlasGate';
  */
 const SPAWN = { x: 50, y: 82 };
 const BOUNDS = { minX: 10, maxX: 90, minY: 30, maxY: 92 };
-const DIARY_SPOT = { id: 'diary', x: 70, y: 47, label: 'the glowing diary', action: 'Open it' };
-const DOOR_SPOT = { id: 'door', x: 50, y: 94, label: 'the door', action: 'Step outside' };
+// Just in front of the table (RoomScene's TABLE_BASE), so the Traveler walks
+// up to it on the floor rather than standing inside the furniture.
+// No label — the diary glows for itself, and the pin is enough of a marker.
+const DIARY_SPOT = { id: 'diary', x: 70, y: 62, action: 'Open it' };
+// On the floor just inside the door, which is set into the back wall.
+const DOOR_SPOT = { id: 'door', x: 68, y: 36, label: 'the door', action: 'Step outside' };
 
 export default function TravelerRoom({ onBegin, onExit }) {
   const [open, setOpen] = useState(false);
@@ -31,6 +35,7 @@ export default function TravelerRoom({ onBegin, onExit }) {
         hotspots={[diaryOpened ? DOOR_SPOT : DIARY_SPOT]}
         objective={diaryOpened ? 'Walk to the door and step outside' : 'Walk up to the diary'}
         paused={open}
+        showComet={diaryOpened}
         onInteract={(spot) => (spot.id === 'diary' ? setOpen(true) : onExit())}
       />
 

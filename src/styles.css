@@ -931,9 +931,15 @@ p {
   height: 100% !important;
 }
 
+/* The backdrop art. `isolation` keeps every z-index *inside* a scene (props,
+   furniture, set dressing) in its own stacking context, so scene art can
+   never outrank the actors and pins layered over it — without this, a prop
+   at z-index 2 paints straight over a hotspot label and eats the text. */
 .world-scene {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  isolation: isolate;
 }
 
 .world-scene svg {
@@ -1047,7 +1053,10 @@ p {
   pointer-events: none;
   z-index: 2;
   opacity: 0.9;
-  transition: left 0.55s ease-out, top 0.55s ease-out;
+  /* Short and linear. A long ease-out restarts every frame while a key is
+     held, so Comet fell far behind and only caught up once the Traveler
+     stopped; this keeps a visible trail without ever losing the pace. */
+  transition: left 0.14s linear, top 0.14s linear;
   transform-origin: bottom center;
 }
 
@@ -1063,7 +1072,9 @@ p {
   align-items: center;
   gap: 4px;
   pointer-events: none;
-  z-index: 1;
+  /* Above the scene art and the Traveler — a label the player can't read is
+     a label that isn't doing its job. Only the interact button sits higher. */
+  z-index: 4;
 }
 
 .hotspot-pin {
@@ -1118,7 +1129,7 @@ p {
   margin-left: -60px;
   margin-top: -114px;
   width: 120px;
-  z-index: 4;
+  z-index: 5;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 14px;

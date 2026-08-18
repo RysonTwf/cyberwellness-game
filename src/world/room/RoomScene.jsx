@@ -37,6 +37,31 @@ function Prop({ src, x, y, width, z = 1 }) {
 }
 
 /**
+ * A soft contact shadow. Several sprites in the pack are cut flat across the
+ * bottom with no shadow of their own, which makes them read as sunk into the
+ * floorboards rather than standing on them; a pooled ellipse under the base
+ * gives them somewhere to sit.
+ */
+function Shadow({ x, y, width }) {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${x}%`,
+        top: `${y}%`,
+        width: `${width}%`,
+        aspectRatio: '3 / 1',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '50%',
+        background: 'radial-gradient(closest-side, rgba(45,26,13,0.38), rgba(45,26,13,0))',
+        zIndex: 1,
+        pointerEvents: 'none',
+      }}
+    />
+  );
+}
+
+/**
  * The glowing journal (storyline.md prologue) — hand-drawn rather than from
  * the tileset, since it's the one prop that has to read as magical, not
  * furniture. Sits on the desk; `lit` fades the glow out once it's been
@@ -118,6 +143,9 @@ function Bed({ x, y, width }) {
 }
 
 const WALL_BOTTOM = 27; // where wall meets floor, in room-percent
+const BACK_ROW = WALL_BOTTOM + 6; // bases of the furniture standing against the wall
+const TABLE_BASE = 57; // where the diary table's pedestal meets the floor
+const TABLE_TOP = 43; // ...and the tabletop surface the diary sits on
 
 /**
  * The Traveler's Room — the game's opening scene (storyline.md prologue).
@@ -156,8 +184,6 @@ export default function RoomScene({ diaryOpened = false }) {
           clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
         }}
       />
-      {/* the wall clock, hung right at the gable peak */}
-      <Prop src={clockImg} x={50} y={13} width={2.6} z={2} />
 
       {/* floor */}
       <div
@@ -186,27 +212,37 @@ export default function RoomScene({ diaryOpened = false }) {
         }}
       />
 
-      {/* the door the Traveler steps out through, once they're ready */}
-      <Prop src={doorImg} x={50} y={99} width={7} z={2} />
+      {/* the grandfather clock, hung on the wall between the door and the gable */}
+      <Prop src={clockImg} x={54} y={23} width={3} z={2} />
 
-      {/* everything below stands with its base right at the wall/floor line.
-          desk.png is tall relative to its width (30x46 native) — at the same
-          9% width as the others it's taller than the wall band itself and
-          pokes out above the room, so it needs to run noticeably narrower. */}
-      <Prop src={deskImg} x={14} y={WALL_BOTTOM} width={5.5} z={2} />
-      <Screen x={14} y={WALL_BOTTOM - 4} width={3.4} />
-      <Prop src={bookshelfImg} x={28} y={WALL_BOTTOM} width={9} z={2} />
-      <Prop src={wardrobeImg} x={42} y={WALL_BOTTOM} width={7} z={2} />
-      <Prop src={cabinetImg} x={86} y={WALL_BOTTOM} width={9} z={2} />
+      {/* The door the Traveler steps out through, once they're ready. It's set
+          *into* the back wall — on the floor it just read as a doormat. */}
+      <Prop src={doorImg} x={68} y={WALL_BOTTOM} width={4} z={2} />
 
-      {/* the desk the diary rests on, right where the Traveler starts nearby —
-          the table sprite is tall relative to its width, so it needs real
-          clearance below the wall line or its top pokes back into the wall */}
-      <Prop src={tableImg} x={70} y={WALL_BOTTOM + 21} width={6} z={2} />
-      <GlowingDiary x={70} y={WALL_BOTTOM + 20} lit={!diaryOpened} />
+      {/* The back-wall row. These stand ON the floor with their bases a little
+          below the wall line and their upper bodies overlapping the wall —
+          basing them exactly *at* WALL_BOTTOM put the whole sprite inside the
+          wall band, so they read as mounted on the wall rather than standing
+          against it. desk.png is tall for its width (30x46 native), so it
+          runs narrower than the rest to stay clear of the ceiling. */}
+      <Prop src={deskImg} x={14} y={BACK_ROW} width={5.5} z={2} />
+      <Screen x={14} y={BACK_ROW - 4} width={3.4} />
+      <Prop src={bookshelfImg} x={28} y={BACK_ROW} width={9} z={2} />
+      <Prop src={wardrobeImg} x={42} y={BACK_ROW} width={7} z={2} />
+      <Prop src={cabinetImg} x={86} y={BACK_ROW} width={5} z={2} />
 
-      {/* reading nook by the bookshelf */}
-      <Prop src={armchairImg} x={28} y={WALL_BOTTOM + 22} width={6} z={2} />
+      {/* The table the diary rests on, out on the open floor, with the reading
+          sofa pulled up beside it. TABLE_TOP is the tabletop surface: the
+          sprite is a round pedestal table whose top ellipse ends about a
+          fifth of the way down, so the diary sits there rather than down at
+          the foot of the pedestal. */}
+      <Shadow x={70} y={TABLE_BASE} width={9} />
+      <Prop src={tableImg} x={70} y={TABLE_BASE} width={6} z={2} />
+      <GlowingDiary x={70} y={TABLE_TOP} lit={!diaryOpened} />
+
+      {/* the reading chair, pulled up facing the table (sprite faces right) */}
+      <Shadow x={63} y={TABLE_BASE} width={5.5} />
+      <Prop src={armchairImg} x={63} y={TABLE_BASE} width={4} z={2} />
 
       {/* bottom row: plant and bed — echoing the reference layout */}
       <Prop src={plantImg} x={12} y={90} width={3.5} z={2} />
