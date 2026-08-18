@@ -157,7 +157,7 @@ export default function RoomScene({ diaryOpened = false }) {
         }}
       />
       {/* the wall clock, hung right at the gable peak */}
-      <Prop src={clockImg} x={50} y={9} width={3.2} z={2} />
+      <Prop src={clockImg} x={50} y={13} width={2.6} z={2} />
 
       {/* floor */}
       <div
@@ -189,9 +189,12 @@ export default function RoomScene({ diaryOpened = false }) {
       {/* the door the Traveler steps out through, once they're ready */}
       <Prop src={doorImg} x={50} y={99} width={7} z={2} />
 
-      {/* everything below stands with its base right at the wall/floor line */}
-      <Prop src={deskImg} x={14} y={WALL_BOTTOM} width={9} z={2} />
-      <Screen x={14} y={WALL_BOTTOM - 6} width={5.5} />
+      {/* everything below stands with its base right at the wall/floor line.
+          desk.png is tall relative to its width (30x46 native) — at the same
+          9% width as the others it's taller than the wall band itself and
+          pokes out above the room, so it needs to run noticeably narrower. */}
+      <Prop src={deskImg} x={14} y={WALL_BOTTOM} width={5.5} z={2} />
+      <Screen x={14} y={WALL_BOTTOM - 4} width={3.4} />
       <Prop src={bookshelfImg} x={28} y={WALL_BOTTOM} width={9} z={2} />
       <Prop src={wardrobeImg} x={42} y={WALL_BOTTOM} width={7} z={2} />
       <Prop src={cabinetImg} x={86} y={WALL_BOTTOM} width={9} z={2} />
