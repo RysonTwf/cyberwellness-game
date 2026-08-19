@@ -88,7 +88,7 @@ colors read as distinct "regions of the map," not a rainbow UI.
 ```
 
 **Mini-game screen** — same header/accent bar, full-width interactive area
-below (drag targets, sort bins, or tap targets depending on realm).
+below (drag targets, sort bins, or click targets depending on realm).
 
 **Stamp moment** — full-bleed accent-colored flash, stamp graphic thunks
 down at a slight rotation onto the journal, then screen returns to the Atlas
@@ -130,16 +130,15 @@ unlocks once every realm's stamp is earned.
 
 ## 5. Interaction Patterns
 
-- **Story beats:** tap/click to advance dialogue cards (no timed text).
-- **Decision points:** two large tappable cards, side by side on desktop,
-  stacked on mobile. Selecting the "unsafe" option doesn't punish or scare —
+- **Story beats:** click to advance dialogue cards (no timed text).
+- **Decision points:** two large clickable cards, side by side. Selecting the "unsafe" option doesn't punish or scare —
   it shows a brief, warm redirect ("Let's think about that one differently…")
   and lets the child pick again, so there's no wrong-answer dead end.
 - **Mini-games:** kept to two mechanics only, reused across realms with
   different content so kids don't have to learn new controls each time:
   - *Sort:* drag items into two labeled bins (used in Passworld, Bully Bog,
     Balance Bay)
-  - *Spot:* tap the flagged items within a scene/message (used in Privacy
+  - *Spot:* click the flagged items within a scene/message (used in Privacy
     Peaks)
 - **Transitions:** a soft page-fold/turn effect between hub and realm
   screens, reinforcing the journal metaphor. Kept short (~250-300ms) and
@@ -180,7 +179,9 @@ built, not before.
 
 ## 8. Accessibility & Kid-Safety UX Notes
 
-- Large tap targets (min ~48px) throughout — this is a touch-first product.
+- Generous, clearly-focusable click targets throughout. **Input scope
+  (decided 19 Aug 2026): keyboard + mouse only** — touch/tablet parity is not
+  a goal, so there are no touch-specific controls to build or maintain.
 - No timers, no fail states, no score pressure — mini-games can be retried
   freely.
 - Every mini-game has a text-equivalent instruction line, not icon-only.

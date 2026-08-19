@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-19)
 
 ## Corpus Check
-- 44 files · ~54,051 words
+- 45 files · ~55,435 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 288 nodes · 402 edges · 34 communities (13 shown, 21 thin omitted)
+- 290 nodes · 405 edges · 34 communities (13 shown, 21 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `984fbe58`
+- Built from commit: `9e3a4afb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -91,8 +91,8 @@ Cohesion: 0.15
 Nodes (9): BY_NAME, CharacterArt(), Comet(), Boat(), Traveler(), distance(), KEY_DIRS, useWalker() (+1 more)
 
 ### Community 2 - "RealmScreen.jsx"
-Cohesion: 0.12
-Nodes (19): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock(), StampMoment() (+11 more)
+Cohesion: 0.11
+Nodes (20): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock(), StampMoment() (+12 more)
 
 ### Community 3 - "passworldArt.js"
 Cohesion: 0.14
@@ -141,7 +141,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasGate.jsx`, `realms.js`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `World()` connect `World.jsx` to `AtlasGate.jsx`, `RealmScreen.jsx`, `realms.js`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
   _129 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `AtlasGate.jsx` be split into smaller, more focused modules?**
@@ -149,6 +149,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `World.jsx` be split into smaller, more focused modules?**
   _Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.11931818181818182 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11092436974789915 - nodes in this community are weakly interconnected._
 - **Should `passworldArt.js` be split into smaller, more focused modules?**
   _Cohesion score 0.14193548387096774 - nodes in this community are weakly interconnected._

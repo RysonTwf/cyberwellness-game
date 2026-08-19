@@ -126,9 +126,9 @@ Share** (favorite color, favorite game, a nickname, a hobby).
   adult."* → The fog thins and drifts away, revealing the real path forward.
 
 **Mini-game — Spot:** "Clear the Fog." A short fake chat/message is shown
-on screen; the player taps the red-flag phrases within it (urgency, "you
+on screen; the player clicks the red-flag phrases within it (urgency, "you
 won," requests for personal info or money, a stranger asking to meet up).
-Tapped flags visually clear the fog around that line.
+Clicked flags visually clear the fog around that line.
 
 **Stamp earned:** The Compass — "Privacy Peaks · Visited."
 
@@ -207,7 +207,7 @@ close:
 
 **Certificate screen:** shows the Traveler's name, the four stamps in a row,
 and a short **Traveler's Pledge** the child "signs" (types their name again
-or taps to confirm) — written in the child's own future voice, not as
+or clicks to confirm) — written in the child's own future voice, not as
 rules handed down:
 
 > *I'll keep my personal info to myself.*

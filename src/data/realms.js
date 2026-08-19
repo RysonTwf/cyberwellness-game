@@ -803,13 +803,19 @@ const balanceHigher = {
  * the official wording in the meantime.
  *
  * Also: no real photographs exist in this game (design.md/README — SVG
- * shapes only, no image assets), so "Compare" here means comparing claims
- * and evidence, not literal side-by-side altered-image spotting the way
- * the SLS "Interactive Images, Compare" activity does. Both mechanics
- * reuse the existing Spot/Sort components rather than a bespoke new
- * "Detective/Compare" mechanic (Milestones Phase 2's original plan) — a
- * pragmatic substitution worth revisiting if a more bespoke feel matters
- * once real art exists.
+ * shapes only, no image assets), so "Compare" here means comparing the
+ * trusted original against the version going around, not literal
+ * side-by-side altered-image spotting the way the SLS "Interactive Images,
+ * Compare" activity does. That reading is deliberate rather than a
+ * shortfall: for a media-literacy lesson the comparison that teaches is
+ * source-against-claim, and it needs no photographs to be real.
+ *
+ * Both bands now run the bespoke **Detective/Compare** mechanic that
+ * Milestones Phase 2 originally specified (`minigames/MiniGameCompare.jsx`),
+ * replacing the Spot (P1–P3) and Sort (P4–P6) stand-ins that stood here
+ * while it was unbuilt. Same component, different `framework`: 'stopcheck'
+ * for P1–P3, 'sure' for P4–P6, where every mismatch also names the S.U.R.E.
+ * question that catches it.
  */
 
 const fableFallsLower = {
@@ -849,48 +855,63 @@ const fableFallsLower = {
   },
 
   game: {
-    type: 'spot',
+    type: 'compare',
+    framework: 'stopcheck',
     title: 'Sort the Tales',
     instruction:
-      'Tap each tale to look closer. Some are just news — fine to believe. Most of these ones need you to STOP and CHECK before you believe or share them.',
-    messages: [
+      "Two versions of the same story, side by side. The left one you can go and check yourself. Click every line on the right that doesn't match it — some lines are perfectly fine, and some were never in the original at all.",
+    original: {
+      label: 'What actually happened',
+      source: 'On the class noticeboard — you can go and read it',
+    },
+    going: { label: "What's going round", source: 'Passed along by The Echo' },
+    pairs: [
       {
-        id: 'f1',
-        text: 'The class trip is on Friday — same as it says on the noticeboard.',
-        flag: false,
-        note: "You can see it yourself, right there on the noticeboard. Fine as it is.",
+        id: 'c1',
+        original: 'Mia was in the office at lunchtime.',
+        going: 'Mia was in the office at lunchtime.',
+        changed: false,
+        note: 'Same in both. This bit really did happen — which is exactly what makes the rest sound believable.',
       },
       {
-        id: 'f2',
-        text: '"Everyone\'s saying" Mia got in trouble for stealing.',
-        flag: true,
-        note: '"Everyone\'s saying" isn\'t where a tale started — it\'s just how far it\'s travelled. STOP and CHECK.',
+        id: 'c2',
+        original: 'She was helping count snacks for the class party.',
+        going: 'She was caught stealing snacks.',
+        changed: true,
+        note: 'Helping became stealing. That is not a small change — it is a completely different story about a real person.',
       },
       {
-        id: 'f3',
-        text: 'A video that looks like your friend saying something mean — but the mouth doesn\'t quite match the words.',
-        flag: true,
-        note: 'If something looks or sounds slightly "off," that\'s exactly the moment to STOP and CHECK, not share.',
+        id: 'c3',
+        original: 'Mrs Tan asked her to help.',
+        going: 'Mrs Tan told her off.',
+        changed: true,
+        note: 'Asked to help became told off. Nobody who was actually there said that.',
       },
       {
-        id: 'f4',
-        text: 'Recess is 20 minutes long, same as every day this term.',
-        flag: false,
-        note: 'Ordinary, checkable, nothing urgent about it. Fine as it is.',
+        id: 'c4',
+        original: 'The class party is on Friday.',
+        going: 'The class party is on Friday.',
+        changed: false,
+        note: 'Same in both, and it is right there on the noticeboard. Not everything inside a rumour is made up.',
       },
       {
-        id: 'f5',
-        text: 'A message says a classmate is "definitely" moving away forever — no one seems to know where it started.',
-        flag: true,
-        note: 'Big news with no clear source and no one who actually confirmed it? STOP and CHECK before you spread it further.',
+        id: 'c5',
+        original: null,
+        going: "Everyone's saying it, so it must be true.",
+        changed: true,
+        note: '"Everyone’s saying it" is not in the original at all. It is not where a story started — it is only how far it has travelled.',
       },
       {
-        id: 'f6',
-        text: 'A "photo" of a classmate that looks stretched weirdly in one corner.',
-        flag: true,
-        note: "Eyes can be fooled by pictures too — something looking stretched, blurry, or just odd in one spot is worth a second look before you believe it.",
+        id: 'c6',
+        original: null,
+        going: 'Send it on quick, before she deletes it!',
+        changed: true,
+        note: 'Nothing in the original is in a hurry. Being rushed is a reason to 🛑 STOP, never a reason to share.',
       },
     ],
+    settled:
+      'Read side by side, the tale falls apart on its own — Mia was helping, not stealing. And the two lines pushing hardest to make you share were never in the original at all. That is what 🛑 STOP and ✅ CHECK actually looks like: put it next to something you can trust, before you pass it on.',
+    doneLabel: 'Done comparing',
   },
 
   rule: {
@@ -943,56 +964,83 @@ const fableFallsHigher = {
   },
 
   game: {
-    type: 'sort',
+    type: 'compare',
+    framework: 'sure',
     title: 'Cyber Defender Quest: The Clue Board',
     instruction:
-      'Eight clues about the video. Sort each one into what it points toward — Points to Fake, or Checks Out — using S.U.R.E. as you go.',
-    bins: [
-      { id: 'fake', title: 'Points to Fake', sub: 'A reason to doubt it', icon: 'lock' },
-      { id: 'real', title: 'Checks Out', sub: 'A reason it holds up', icon: 'unlock' },
+      "The school's own post is on the left. The clip being forwarded around is on the right. Click every line on the right that does not hold up against it — then see which S.U.R.E. question caught each one.",
+    original: {
+      label: 'What the school posted',
+      source: 'Official school account — the one you already follow',
+    },
+    going: { label: 'The clip going round', source: 'Forwarded to you by The Echo' },
+    pairs: [
+      {
+        id: 's1',
+        original: "Posted by the school's official account, which you already follow.",
+        going: 'Posted by an account created yesterday, with no other posts.',
+        changed: true,
+        step: 'Source',
+        note: 'Same story, different messenger. A brand-new account with no history is not a source — it is a stranger.',
+      },
+      {
+        id: 's2',
+        original: 'Assembly ran on Tuesday morning.',
+        going: 'Assembly ran on Tuesday morning.',
+        changed: false,
+        note: 'Matches. This part is simply true, and you could check it a dozen ways.',
+      },
+      {
+        id: 's3',
+        original: 'A student read out a poem about the school fair.',
+        going: 'A student was recorded insulting the whole class.',
+        changed: true,
+        step: 'Understand',
+        note: 'The caption claims far more than any clip could actually show. Ask what is being claimed, exactly.',
+      },
+      {
+        id: 's4',
+        original: 'The full recording runs four minutes.',
+        going: 'An eight-second clip, starting mid-sentence.',
+        changed: true,
+        step: 'Understand',
+        note: 'Eight seconds out of four minutes is not the event — it is the part somebody chose for you.',
+      },
+      {
+        id: 's5',
+        original: 'Two classmates who were there describe the same thing.',
+        going: "Two classmates who were there say it didn't happen that way.",
+        changed: true,
+        step: 'Research',
+        note: 'The people actually in the room disagree with the clip. That outweighs how real it looks.',
+      },
+      {
+        id: 's6',
+        original: 'The school newsletter covers the assembly.',
+        going: 'Searching turns up nothing on any news site or school page.',
+        changed: true,
+        step: 'Research',
+        note: 'If something this big were real, it would not exist only inside one forwarded clip.',
+      },
+      {
+        id: 's7',
+        original: 'Nothing about it is especially surprising.',
+        going: "It's shocking, and it lands the week before the fair.",
+        changed: true,
+        step: 'Evaluate',
+        note: 'Too shocking, too perfectly timed. That is the moment to slow down, not to speed up.',
+      },
+      {
+        id: 's8',
+        original: 'Fine to talk about at home.',
+        going: 'Fine to talk about at home.',
+        changed: false,
+        note: 'Matches. Not every line in a suspicious post is suspicious — calling this one a lie would be its own mistake.',
+      },
     ],
-    items: [
-      {
-        id: 'c1',
-        text: '[Source] The account that posted it was made yesterday and has no other posts.',
-        bin: 'fake',
-      },
-      {
-        id: 'c2',
-        text: '[Source] It was posted by your school\'s official account, which you already follow.',
-        bin: 'real',
-      },
-      {
-        id: 'c3',
-        text: '[Understand] The caption claims way more than the video actually shows.',
-        bin: 'fake',
-      },
-      {
-        id: 'c4',
-        text: '[Research] Searching for it turns up nothing from any real news site or school announcement.',
-        bin: 'fake',
-      },
-      {
-        id: 'c5',
-        text: '[Research] Two trusted classmates who were actually there say it didn\'t happen that way.',
-        bin: 'fake',
-      },
-      {
-        id: 'c6',
-        text: '[Research] A trusted source you already know confirms the same story, separately.',
-        bin: 'real',
-      },
-      {
-        id: 'c7',
-        text: '[Evaluate] The mouth movements don\'t quite match the words, and the lighting shifts partway through.',
-        bin: 'fake',
-      },
-      {
-        id: 'c8',
-        text: '[Evaluate] It\'s something ordinary and believable, not shocking or too perfectly dramatic.',
-        bin: 'real',
-      },
-    ],
+    settled:
+      'Side by side, the clip loses — and notice you never had to prove the video itself was edited. The source was brand new, the caption outran the footage, the people who were there disagreed, and it arrived far too conveniently.',
+    doneLabel: 'Close the case',
   },
 
   rule: {

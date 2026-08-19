@@ -9,6 +9,7 @@ import World from '../world/World';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
 import MiniGameSpot from '../minigames/MiniGameSpot';
+import MiniGameCompare from '../minigames/MiniGameCompare';
 import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
@@ -22,6 +23,7 @@ const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance
 const GAMES = {
   sort: MiniGameSort,
   spot: MiniGameSpot,
+  compare: MiniGameCompare,
   balance: MiniGameBalance,
   platformer: MiniGamePlatformer,
   steppingstones: MiniGameSteppingStones,

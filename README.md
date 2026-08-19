@@ -21,8 +21,9 @@ npm run preview  # serve the built site
 
 Each realm is a 2D scene you walk around in:
 
-- **Move** — tap/click the ground to walk there, or hold the arrow keys / WASD.
-- **Interact** — walk up to the pin and press Space/Enter, or tap the button
+- **Move** — hold the arrow keys / WASD. (Keyboard + mouse is the supported
+  input; there is no click-to-move.)
+- **Interact** — walk up to the pin and press Space/Enter, or click the button
   that appears over the Traveler.
 - Each step (story → decision → mini-game → the rule) puts the pin somewhere
   new, and the scene itself changes once you make the safe choice: the vault
@@ -107,11 +108,11 @@ drift apart:
 
 1. **Walkable world instead of card-based navigation.** `design.md` §5 specified
    point-and-click cards with no moving character. This was changed on request:
-   the realms are now walked, though the mini-games are still tap puzzles.
+   the realms are now walked, though the mini-games are still click puzzles.
 2. **A real Vite app with persistence, not a single-file artifact.**
    `design.md` §9 assumed an artifact (Tailwind, no `localStorage`). §7 had
    already flagged persistence as the follow-up once the base game existed.
 3. **A third mini-game component.** §6 lists only Sort and Spot, but §5's own
    "Balance the Day" description is a scale rather than two bins, so it has its
-   own component — reusing Sort's exact tap-to-place controls so there is no new
+   own component — reusing Sort's exact click-to-place controls so there is no new
    control to learn.

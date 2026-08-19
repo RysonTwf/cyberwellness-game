@@ -128,9 +128,12 @@ export default function MiniGameSpot({ game, onComplete }) {
           <span className="ic">
             <Eye size={22} />
           </span>
+          {/* Comes from the realm, with Privacy Peaks' original line as the
+              fallback. It used to be hardcoded here, which meant any other
+              realm reusing Spot closed on copy about a chat it never had. */}
           <p>
-            Fog's gone. Four things in one short chat — and the one asking your favourite game
-            was fine all along. That's the bit most travelers get wrong in the other direction.
+            {game.settled ??
+              "Fog's gone. Four things in one short chat — and the one asking your favourite game was fine all along. That's the bit most travelers get wrong in the other direction."}
           </p>
         </div>
       )}
