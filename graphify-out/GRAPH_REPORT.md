@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-20)
 
 ## Corpus Check
-- 46 files · ~62,871 words
+- 49 files · ~72,653 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 371 nodes · 427 edges · 102 communities (15 shown, 87 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.5)
+- 407 nodes · 500 edges · 102 communities (15 shown, 87 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `de44a37e`
+- Built from commit: `b00bde5e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,7 +28,7 @@
 - Sort Mechanic
 - Balance Mechanic
 - graphify Workflow
-- Playtest & Launch
+- bogArt.js
 - Step Panel Portal
 - Cyber Wellness Quest
 - Asset pipeline
@@ -124,8 +124,8 @@
 4. `Cyber Wellness Quest — Design Document` - 12 edges
 5. `Cyber Wellness Quest — Storyline` - 11 edges
 6. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
-7. `Cyber Wellness Quest` - 8 edges
-8. `DialogueCard()` - 7 edges
+7. `DialogueCard()` - 8 edges
+8. `Cyber Wellness Quest` - 8 edges
 9. `StampBadge()` - 6 edges
 10. `ACTIVE_REALMS` - 6 edges
 
@@ -136,10 +136,10 @@
   src/App.jsx → src/state/useProgress.js
 - `AtlasMap()` --calls--> `orderedActiveRealms()`  [EXTRACTED]
   src/components/AtlasMap.jsx → src/data/realms.js
+- `BogStoryRealm()` --calls--> `makeBogCurrentConfig()`  [EXTRACTED]
+  src/components/BogStoryRealm.jsx → src/minigames/phaser-scenes/bogCurrentScene.js
 - `CertificateScreen()` --calls--> `activePledge()`  [EXTRACTED]
   src/components/CertificateScreen.jsx → src/data/realms.js
-- `PlatformerStoryRealm()` --calls--> `makePasswordFortressLevelConfig()`  [EXTRACTED]
-  src/components/PlatformerStoryRealm.jsx → src/minigames/phaser-scenes/passwordFortressLevelScene.js
 
 ## Import Cycles
 - None detected.
@@ -160,8 +160,8 @@ Cohesion: 0.12
 Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Quest — Milestones & Team Workstreams, Folder & naming convention, Phase 0 — Foundation (shared design system + content schema), Phase 1 — Content authoring (both bands, all 5 realms), Phase 2 — New mechanics, Phase 3 — Backgrounds: scaling the existing 9 (+8 more)
 
 ### Community 2 - "Atlas Hub, Progress & Realm Data"
-Cohesion: 0.09
-Nodes (34): App(), AtlasGate(), BANDS, BEATS, CertificateScreen(), JournalProgress(), RealmScreen(), ICONS (+26 more)
+Cohesion: 0.08
+Nodes (29): App(), AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, JournalProgress() (+21 more)
 
 ### Community 3 - "Passworld Vault Level & Art"
 Cohesion: 0.14
@@ -172,20 +172,20 @@ Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
 ### Community 5 - "Gate, Characters & Stamp Chrome"
-Cohesion: 0.15
-Nodes (9): BY_NAME, CharacterArt(), Comet(), Boat(), Traveler(), distance(), KEY_DIRS, useWalker() (+1 more)
+Cohesion: 0.13
+Nodes (15): AtlasGate(), BANDS, BEATS, CertificateScreen(), BY_NAME, CharacterArt(), DialogueCard(), ICONS (+7 more)
 
 ### Community 6 - "Traveler Room & Walk System"
-Cohesion: 0.17
-Nodes (6): BOUNDS, DIARY_SPOT, DOOR_SPOT, SPAWN, TravelerRoom(), RoomScene()
+Cohesion: 0.11
+Nodes (13): Comet(), BOUNDS, DIARY_SPOT, DOOR_SPOT, SPAWN, TravelerRoom(), Boat(), RoomScene() (+5 more)
 
 ### Community 7 - "Phaser Mini-Game Wrappers"
-Cohesion: 0.11
-Nodes (21): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), RealmArt(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock() (+13 more)
+Cohesion: 0.10
+Nodes (24): ACTION_LABEL, BogStoryRealm(), KIND_LABEL, ChoiceCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, FULL_MECHANICS, GAMES (+16 more)
 
 ### Community 8 - "Realm Scene Illustration"
 Cohesion: 0.14
-Nodes (5): SPA Root Mount Point, SCENES, REALMS, ArtPreview(), MOODS
+Nodes (6): SPA Root Mount Point, RealmArt(), SCENES, REALMS, ArtPreview(), MOODS
 
 ### Community 9 - "Realm Screen & React Mini-Games"
 Cohesion: 0.12
@@ -199,33 +199,33 @@ Nodes (13): 0. What this game is, 1. Source of truth: what the Overview Plan act
 Cohesion: 0.17
 Nodes (11): Files touched, Handover — Passworld rebuild (2026-08-20), Not done / next up, `src/components/PlatformerStoryRealm.jsx`, `src/data/realms.js`, `src/minigames/phaser-scenes/passwordFortressLevelScene.js`, `src/minigames/phaser-scenes/passworldArt.js`, `src/styles.css` (+3 more)
 
-### Community 13 - "Playtest & Launch"
-Cohesion: 0.20
-Nodes (7): AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, orderedActiveRealms()
+### Community 13 - "bogArt.js"
+Cohesion: 0.12
+Nodes (25): ART_ANIMS, ART_MANIFEST, BOG_COLOURS, bubbleTexture(), buildBogArt(), circle(), drawBoat(), drawHeron() (+17 more)
 
 ### Community 16 - "Cyber Wellness Quest"
 Cohesion: 0.20
 Nodes (9): Cyber Wellness Quest, How it plays, Known deviations from the design docs, Layout, Notes on the build, Running it, Scene contact sheet, The four realms (+1 more)
 
 ## Knowledge Gaps
-- **184 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+179 more)
+- **195 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+190 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **87 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `DialogueCard()` connect `Phaser Mini-Game Wrappers` to `Atlas Hub, Progress & Realm Data`, `Playtest & Launch`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `World()` connect `Gate, Characters & Stamp Chrome` to `Playtest & Launch`, `Traveler Room & Walk System`, `Phaser Mini-Game Wrappers`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `DialogueCard()` connect `Gate, Characters & Stamp Chrome` to `Atlas Hub, Progress & Realm Data`, `Phaser Mini-Game Wrappers`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `World()` connect `Traveler Room & Walk System` to `Atlas Hub, Progress & Realm Data`, `Phaser Mini-Game Wrappers`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `RealmArt()` connect `Realm Scene Illustration` to `Phaser Mini-Game Wrappers`?**
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _204 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _215 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Mechanics, Assets & Build Phases` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
 - **Should `Atlas Hub, Progress & Realm Data` be split into smaller, more focused modules?**
-  _Cohesion score 0.08536585365853659 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07957957957957958 - nodes in this community are weakly interconnected._
 - **Should `Passworld Vault Level & Art` be split into smaller, more focused modules?**
   _Cohesion score 0.13725490196078433 - nodes in this community are weakly interconnected._
-- **Should `Dependencies & Build Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._

@@ -14,6 +14,7 @@ import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
+import BogStoryRealm from './BogStoryRealm';
 
 const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
 // 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
@@ -27,6 +28,14 @@ const GAMES = {
   balance: MiniGameBalance,
   platformer: MiniGamePlatformer,
   steppingstones: MiniGameSteppingStones,
+};
+
+// Realms that run as one continuous experience rather than the shared step
+// machine, keyed by the `fullMechanic` their band content declares. Each takes
+// the same props RealmScreen does and owns everything from story to stamp.
+const FULL_MECHANICS = {
+  platformerStory: PlatformerStoryRealm,
+  bogCurrent: BogStoryRealm,
 };
 
 // Order the optional post-decision beats appear in, when a realm defines them
@@ -47,13 +56,18 @@ const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
  */
 export default function RealmScreen({ realm, progress, travelerName, onSettle, onStamp, onBackToAtlas }) {
   // A realm can opt out of the shared story→decision→game→rule→stamp
-  // pattern entirely and own one continuous experience instead (currently
-  // just Passworld P4–P6 — see PlatformerStoryRealm.jsx for why). This has
-  // to be the first thing in the function, before any hooks below, since
-  // this component never calls its own hooks when it delegates.
-  if (realm.fullMechanic === 'platformerStory') {
+  // pattern entirely and own one continuous, multi-chapter experience
+  // instead — Passworld P4–P6 as a platformer run (PlatformerStoryRealm.jsx)
+  // and Bully Bog P4–P6 as the Bog Current (BogStoryRealm.jsx). Both are
+  // opted into from the band's own content, so the other band of the same
+  // realm still takes the shared path.
+  //
+  // This has to be the first thing in the function, before any hooks below,
+  // since this component never calls its own hooks when it delegates.
+  const FullMechanic = FULL_MECHANICS[realm.fullMechanic];
+  if (FullMechanic) {
     return (
-      <PlatformerStoryRealm
+      <FullMechanic
         realm={realm}
         progress={progress}
         travelerName={travelerName}

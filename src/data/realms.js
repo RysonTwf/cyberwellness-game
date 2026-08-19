@@ -1153,23 +1153,23 @@ const bullybogHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Bully Bog. Look — it's not just one comment this time. It's a pile-on.",
+      text: 'Bully Bog. Pockets posted a song this morning, and the whole bog has been answering ever since — look at the water.',
     },
     {
       who: 'Pockets',
-      text: "🎵 ribbit-a— oh. Everyone's already looking at my post. I probably shouldn't have posted my voice.",
-    },
-    {
-      who: 'A comment appears',
-      text: '"of course it sounds like that, it\'s a frog lol what did u expect"',
-    },
-    {
-      who: 'Another comment appears',
-      text: '"yeah that voice is exactly why nobody picks pockets for anything"',
+      text: '🎵 ribbit-a— oh. Everyone’s already looking at my post. I probably shouldn’t have posted my voice.',
     },
     {
       who: 'Comet',
-      text: "Three more bog creatures have liked both comments. Now they're waiting to see who else joins in.",
+      text: 'Here’s the thing about this bog. Every comment anybody sends floats. It drifts across the water toward Pockets’ lily pad, and whatever gets there is what Pockets ends up sitting in.',
+    },
+    {
+      who: 'Comet',
+      text: 'So: there’s a boat, and there’s a net. You can lift a comment out before it lands. You can carry one over and make sure Pockets actually sees it. Or you can let it drift past — that counts too, and it counts more than people think.',
+    },
+    {
+      who: 'Comet',
+      text: `Fair warning — more will come than you can reach. That isn’t the game being unfair. That’s what being the one who’s watching actually feels like. ${COMET_CATCHPHRASE}`,
     },
   ],
 
@@ -1220,24 +1220,328 @@ const bullybogHigher = {
     },
   },
 
+  // The whole realm — this decision included — runs as three chapters of one
+  // arcade game (components/BogStoryRealm.jsx), not the shared
+  // story→decision→game→rule step machine. `decision` above still supplies
+  // the exact content shown; only *when* it appears differs. It fires part-way
+  // through chapter 2, with the pile-on frozen in the water in front of you.
+  fullMechanic: 'bogCurrent',
+
+  /**
+   * Bully Bog P4–P6 runs as three chapters of "The Bog Current"
+   * (minigames/phaser-scenes/bogCurrentScene.js). The old version was a
+   * drag-eight-comments-into-two-piles sort that took well under a minute and
+   * cost nothing to get wrong — which is a strange way to teach the one realm
+   * where the whole point is that acting is *hard*.
+   *
+   * Now the comments are already in the water and already moving toward
+   * Pockets, and you work the current from a boat. Each chapter adds one thing
+   * that makes standing up harder than knowing what's right:
+   *
+   *   1. One Comment at a Time — the two verbs, and the discovery that taking
+   *      cruel things out only stops the water getting worse. Nothing gets
+   *      *better* until you carry a kind comment over to Pockets yourself.
+   *   2. The Pile-On — mean comments now arrive with a tail of "lol true"
+   *      replies, and gather likes the longer they're left up. Report the
+   *      first one and the tail goes with it; chase the tail and you drown.
+   *   3. About Who You Are — comments about who Pockets *is*, not what they
+   *      did. Those are too heavy to lift alone: the report basket won't take
+   *      them, and the only place they go is the heron. Chapter 3 cannot be
+   *      finished without asking a grown-up for help, on purpose.
+   *
+   * Every comment carries a `why`, and — same rule as Passworld's vault —
+   * nothing reveals which comment was which until the debrief. The cards are
+   * identical paper and the meter moves on everything. Working it out under a
+   * moving current is the entire exercise.
+   *
+   * Copy is written for 10–12s: short sentences, real comment-section voice
+   * for the comments themselves, plain words everywhere else.
+   */
   game: {
-    type: 'sort',
-    title: 'Clear the Water: Level Up',
+    type: 'bogcurrent',
+    title: 'The Bog Current',
     instruction:
-      "Some of these are about what someone did. Some are about who they are. Sort by which kind they are — and which pile you'd add to.",
-    bins: [
-      { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
-      { id: 'leave', title: 'Leave It', sub: 'This would sting', icon: 'trash' },
-    ],
-    items: [
-      { id: 'd1', text: '"Your voice is part of what makes your songs yours. Keep singing."', bin: 'send' },
-      { id: 'd2', text: '"I don\'t care what anyone else says, I\'m still listening."', bin: 'send' },
-      { id: 'd3', text: '"of course it sounds like that, it\'s a frog lol"', bin: 'leave' },
-      { id: 'd4', text: '"that voice is exactly why nobody picks pockets for anything"', bin: 'leave' },
-      { id: 'd5', text: '"not joining in on this one, sorry"', bin: 'send' },
-      { id: 'd6', text: '"everyone else is saying it too so it\'s not that deep"', bin: 'leave' },
-      { id: 'd7', text: '"deleting my comment, that wasn\'t fair"', bin: 'send' },
-      { id: 'd8', text: '"guess we know who\'s getting picked last now"', bin: 'leave' },
+      'Paddle out and work the water. Comments drift toward Pockets whether you touch them or not.',
+    levels: [
+      /* ---------------------------------------------------------------- */
+      /* Chapter 1 — One Comment at a Time                                */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'first',
+        name: 'One Comment at a Time',
+        chapter: 'Chapter 1 of 3',
+        intro:
+          'The bog is answering Pockets’ song one comment at a time, and all of them are drifting the same way. Take the ones that would sting out of the water before they land — and make sure the ones that wouldn’t actually reach Pockets.',
+        goal: 'Find out what the water does with kind words, and with cruel ones.',
+        instruction:
+          'Scoop a comment up, then take it somewhere. Cruel ones go in the Report basket before they land. Kind ones go to Pockets. Only one of those two makes the water clearer — see if you can work out which.',
+        startClarity: 38,
+        target: 88,
+        speed: 30,
+        gap: 3200,
+        pass: 'The water cleared. And look at what cleared it: not the comments you deleted — the ones you carried over.',
+        retry:
+          'Still murky. Count what you did with the kind ones. Taking cruel comments out of the water only stops it getting darker; something has to actively make it lighter, and only one station does that.',
+        lesson:
+          'Deleting the mean comment isn’t the whole job. Nothing actually gets better until somebody says the kind thing out loud, where the person can see it. Quietly being on their side looks exactly like not being there.',
+        comments: [
+          {
+            id: 'c1',
+            text: '"I liked your song, Pockets!"',
+            kind: 'kind',
+            lane: 1,
+            why: 'Six words, and it was the only thing in the water Pockets could hold on to. Kind doesn’t have to be clever.',
+          },
+          {
+            id: 'c2',
+            text: '"nobody wants to hear this, go away"',
+            kind: 'mean',
+            lane: 0,
+            why: 'Says two things at once: your song is bad, and you don’t belong here. The second one is the part that stings next week.',
+          },
+          {
+            id: 'c3',
+            text: '"want to sing the next one together?"',
+            kind: 'kind',
+            lane: 2,
+            why: 'An invitation. It doesn’t only say "that was fine", it says "there’s a next one, and you’re in it".',
+          },
+          {
+            id: 'c4',
+            text: '"lol that was so bad 💀"',
+            kind: 'mean',
+            lane: 1,
+            why: 'The "lol" is doing a job: it lets whoever sent it say "it was only a joke" afterwards. It still landed as a comment about Pockets.',
+          },
+          {
+            id: 'c5',
+            text: '"that took guts. nice one."',
+            kind: 'kind',
+            lane: 0,
+            why: 'Names the brave part rather than the singing. That’s often the truer compliment, and the easier one to believe.',
+          },
+          {
+            id: 'c6',
+            text: '"we\'re not inviting you next time"',
+            kind: 'mean',
+            lane: 2,
+            why: 'Leaving someone out on purpose, and telling them so where everyone can read it. That’s bullying even though there isn’t a single rude word in it.',
+          },
+          {
+            id: 'c7',
+            text: '"I\'m here if you want to talk"',
+            kind: 'kind',
+            lane: 1,
+            why: 'Doesn’t argue with anybody. Just puts a door where Pockets can find it. Support doesn’t have to be a fight.',
+          },
+          {
+            id: 'c8',
+            text: '"everyone agrees with me btw"',
+            kind: 'mean',
+            lane: 0,
+            why: 'The oldest trick in the bog: make one person’s opinion sound like the whole crowd’s, so the person underneath stops arguing.',
+          },
+          {
+            id: 'c9',
+            text: '"your songs are the best part of this bog"',
+            kind: 'kind',
+            lane: 2,
+            why: 'Said the whole thing out loud instead of just thinking it. That’s the only version that reaches anyone.',
+          },
+        ],
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 2 — The Pile-On                                          */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'pileon',
+        name: 'The Pile-On',
+        chapter: 'Chapter 2 of 3',
+        intro:
+          'Word got round. The current is faster now, and the mean comments aren’t arriving alone any more — each one tows a little tail of replies agreeing with it. Worse: a comment left sitting in the water collects likes, and the more it has when it lands, the darker it goes.',
+        goal: 'Find out why a pile-on is a different problem from one comment.',
+        instruction:
+          'Report the *first* comment in a pile and the whole tail goes with it. Pick off the replies one at a time and the leader lands anyway. Watch the little hearts — every one of them makes that comment hit harder.',
+        startClarity: 34,
+        target: 88,
+        speed: 40,
+        gap: 2300,
+        likeEvery: 2700,
+        decisionAfter: 4,
+        // What the Traveler said, dropped into the water as their own card so
+        // the next thing they do is carry their own words over to Pockets.
+        ownComment: {
+          id: 'mine',
+          text: '"Not okay. That’s about who Pockets is, not the song."',
+          kind: 'kind',
+          why: 'Yours. Said out loud, to all of them, while everybody was watching — which is the version that costs something and the version that works.',
+        },
+        beat: 'footprint',
+        pass: 'The water cleared, even the part with a crowd in it. Two of them quietly deleted their own comments after you spoke.',
+        retry:
+          'Still murky, and the likes are why. Go after the first comment in a pile instead of the replies, and go after it early — a comment sitting there gathering hearts gets heavier every second.',
+        lesson:
+          'A pile-on isn’t one comment times five. The replies borrow their nerve from the first one, and everyone piling on gets to feel like they only did a tiny bit. Deal with the first one, deal with it fast, and don’t be the reply that makes it a crowd.',
+        comments: [
+          {
+            id: 'p1',
+            text: '"honestly the second verse was my favourite"',
+            kind: 'kind',
+            lane: 1,
+            why: 'Specific. Specific praise is hard to wave away as somebody being nice out of pity.',
+          },
+          {
+            id: 'p2',
+            text: '"lol who told pockets they could sing"',
+            kind: 'mean',
+            lane: 0,
+            chain: ['"same 😭"', '"lmaooo"'],
+            why: 'The first one in a pile. On its own it’s one rude comment; with two replies under it, it’s the bog agreeing.',
+          },
+          {
+            id: 'p3',
+            text: '"still listening. keep going."',
+            kind: 'kind',
+            lane: 2,
+            why: 'Four words that undo a lot. "Still" is the important one — it says the pile-on didn’t change their mind.',
+          },
+          {
+            id: 'p4',
+            text: '"everyone else is saying it so it’s not deep"',
+            kind: 'mean',
+            lane: 1,
+            why: 'The excuse a pile-on runs on. "Everyone was doing it" has never once made anything lighter for the person underneath it.',
+          },
+          {
+            id: 'p5',
+            text: '"of course it sounds like that, it’s a frog"',
+            kind: 'mean',
+            lane: 0,
+            chain: ['"lol true"', '"was thinking it"', '"💀💀"'],
+            why: 'This is the one the decision stopped the water for. It isn’t about the song any more — it’s about what Pockets is.',
+          },
+          {
+            id: 'p6',
+            text: '"deleting my comment, that wasn’t fair"',
+            kind: 'kind',
+            lane: 2,
+            why: 'Somebody changed their mind in public. That’s worth as much as never joining in, and it’s harder.',
+          },
+          {
+            id: 'p7',
+            text: '"not joining in on this one, sorry"',
+            kind: 'kind',
+            lane: 1,
+            why: 'Small, and it still costs something to type. One person stepping out makes the next person’s stepping out easier.',
+          },
+          {
+            id: 'p8',
+            text: '"guess we know who’s getting picked last"',
+            kind: 'mean',
+            lane: 0,
+            why: 'A threat dressed as a prediction. It tells Pockets what tomorrow is going to be like, which is the real damage.',
+          },
+          {
+            id: 'p9',
+            text: '"you posted something you made. that’s brave."',
+            kind: 'kind',
+            lane: 2,
+            why: 'Points at the thing the crowd was punishing — putting yourself out there — and calls it the good part.',
+          },
+        ],
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 3 — About Who You Are                                    */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'whoyouare',
+        name: 'About Who You Are',
+        chapter: 'Chapter 3 of 3',
+        intro:
+          'Last stretch, and there’s something new in the water. Some comments are heavier than the others — you’ll feel the boat slow when you lift one. Those aren’t about the song at all. The report basket won’t take them, and there’s a heron on the bank who will.',
+        goal: 'Learn which comments aren’t yours to carry on your own.',
+        instruction:
+          'Heavy cards go to the heron — a grown-up — and nowhere else. Watch out for the comments that are just honest: someone saying a verse was off-key isn’t being cruel, and the right move there is to leave it in the water.',
+        startClarity: 30,
+        target: 88,
+        speed: 38,
+        gap: 2500,
+        likeEvery: 3000,
+        hasHeron: true,
+        beat: 'tellSomeone',
+        pass: 'Clear. And the heaviest three didn’t clear because you were strong enough — they cleared because you went and got somebody.',
+        retry:
+          'Still murky. Two things to check: the heavy ones only go to the heron, and the honest-but-unwelcome ones are meant to be left alone. Reporting somebody for telling the truth kindly costs you.',
+        lesson:
+          'The comments that stick are the ones about who somebody is — their voice, their face, their family, their name — rather than something they did. Those aren’t an argument you win. You save them, and you show a grown-up. That isn’t giving up; it’s the part of standing up that actually holds.',
+        comments: [
+          {
+            id: 'w1',
+            text: '"the second verse went a bit off-key tbh"',
+            kind: 'fair',
+            lane: 1,
+            why: 'Honest, a bit unwelcome, and about the song — not about Pockets. Leaving it alone was right. Not everything that stings is bullying.',
+          },
+          {
+            id: 'w2',
+            text: '"that voice is why nobody picks pockets"',
+            kind: 'heavy',
+            lane: 0,
+            why: 'About who Pockets is, and about every day after this one. Too big for a report basket and too big for you on your own.',
+          },
+          {
+            id: 'w3',
+            text: '"your voice is what makes your songs yours"',
+            kind: 'kind',
+            lane: 2,
+            why: 'Takes the exact thing they were mocked for and hands it back as the good part. That’s the strongest kind of reply there is.',
+          },
+          {
+            id: 'w4',
+            text: '"couldn’t hear the words, mic’s too quiet"',
+            kind: 'fair',
+            lane: 1,
+            why: 'Useful, actually. Someone trying to help the next song be better isn’t someone you report.',
+          },
+          {
+            id: 'w5',
+            text: '"frogs like you shouldn’t be allowed to post"',
+            kind: 'heavy',
+            lane: 0,
+            why: '"Frogs like you" is the tell. The moment a comment is about a whole kind of somebody, it stopped being about the song a while ago.',
+          },
+          {
+            id: 'w6',
+            text: '"I don’t care what they say, I’m listening"',
+            kind: 'kind',
+            lane: 2,
+            why: 'Doesn’t pretend the pile-on isn’t there. Says "I saw it, and I’m still here", which is what Pockets needed to know.',
+          },
+          {
+            id: 'w7',
+            text: '"we should find out where pockets lives"',
+            kind: 'heavy',
+            lane: 1,
+            why: 'This one stopped being about the internet. Anything that reaches for where somebody actually is goes to a grown-up immediately, every time.',
+          },
+          {
+            id: 'w8',
+            text: '"you sing every morning and I like that"',
+            kind: 'kind',
+            lane: 2,
+            why: 'Noticed something ordinary and said so. Most kindness looks like this rather than like a speech.',
+          },
+          {
+            id: 'w9',
+            text: '"proud of you for posting it anyway"',
+            kind: 'kind',
+            lane: 0,
+            why: 'Arrived after the worst of it. Late kindness still counts — the water was still dark when it got there.',
+          },
+        ],
+      },
     ],
   },
 

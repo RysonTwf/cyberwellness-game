@@ -373,7 +373,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_atlasgate",
-      "community": 2,
+      "community": 5,
       "norm_label": "atlasgate.jsx"
     },
     {
@@ -383,7 +383,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_atlasgate_beats",
-      "community": 2,
+      "community": 5,
       "norm_label": "beats"
     },
     {
@@ -393,7 +393,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_atlasgate_bands",
-      "community": 2,
+      "community": 5,
       "norm_label": "bands"
     },
     {
@@ -403,7 +403,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_atlasgate_atlasgate",
-      "community": 2,
+      "community": 5,
       "norm_label": "atlasgate()"
     },
     {
@@ -413,7 +413,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_atlasmap",
-      "community": 13,
+      "community": 2,
       "norm_label": "atlasmap.jsx"
     },
     {
@@ -423,7 +423,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_atlasmap_band_info",
-      "community": 13,
+      "community": 2,
       "norm_label": "band_info"
     },
     {
@@ -433,7 +433,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_atlasmap_islands",
-      "community": 13,
+      "community": 2,
       "norm_label": "islands"
     },
     {
@@ -443,7 +443,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate",
-      "community": 13,
+      "community": 2,
       "norm_label": "gate"
     },
     {
@@ -453,7 +453,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate_svg",
-      "community": 13,
+      "community": 2,
       "norm_label": "gate_svg"
     },
     {
@@ -463,7 +463,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_components_atlasmap_branch_ctrl",
-      "community": 13,
+      "community": 2,
       "norm_label": "branch_ctrl"
     },
     {
@@ -473,7 +473,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_components_atlasmap_palmtree",
-      "community": 13,
+      "community": 2,
       "norm_label": "palmtree()"
     },
     {
@@ -483,7 +483,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "src_components_atlasmap_fishmark",
-      "community": 13,
+      "community": 2,
       "norm_label": "fishmark()"
     },
     {
@@ -493,7 +493,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasscene",
-      "community": 13,
+      "community": 2,
       "norm_label": "atlasscene()"
     },
     {
@@ -503,8 +503,58 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasmap",
-      "community": 13,
+      "community": 2,
       "norm_label": "atlasmap()"
+    },
+    {
+      "label": "BogStoryRealm.jsx",
+      "file_type": "code",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_bogstoryrealm",
+      "community": 7,
+      "norm_label": "bogstoryrealm.jsx"
+    },
+    {
+      "label": "BogStoryRealm()",
+      "file_type": "code",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "src_components_bogstoryrealm_bogstoryrealm",
+      "community": 7,
+      "norm_label": "bogstoryrealm()"
+    },
+    {
+      "label": "KIND_LABEL",
+      "file_type": "code",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L487",
+      "_origin": "ast",
+      "id": "src_components_bogstoryrealm_kind_label",
+      "community": 7,
+      "norm_label": "kind_label"
+    },
+    {
+      "label": "ACTION_LABEL",
+      "file_type": "code",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L494",
+      "_origin": "ast",
+      "id": "src_components_bogstoryrealm_action_label",
+      "community": 7,
+      "norm_label": "action_label"
+    },
+    {
+      "label": "Stations()",
+      "file_type": "code",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L508",
+      "_origin": "ast",
+      "id": "src_components_bogstoryrealm_stations",
+      "community": 7,
+      "norm_label": "stations()"
     },
     {
       "label": "CertificateScreen.jsx",
@@ -513,7 +563,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_certificatescreen",
-      "community": 2,
+      "community": 5,
       "norm_label": "certificatescreen.jsx"
     },
     {
@@ -523,7 +573,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
-      "community": 2,
+      "community": 5,
       "norm_label": "certificatescreen()"
     },
     {
@@ -543,7 +593,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_characters_comet",
-      "community": 5,
+      "community": 6,
       "norm_label": "comet()"
     },
     {
@@ -643,7 +693,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_dialoguecard",
-      "community": 7,
+      "community": 5,
       "norm_label": "dialoguecard.jsx"
     },
     {
@@ -653,7 +703,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_dialoguecard_dialoguecard",
-      "community": 7,
+      "community": 5,
       "norm_label": "dialoguecard()"
     },
     {
@@ -783,7 +833,7 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "src_components_realmart_realmart",
-      "community": 7,
+      "community": 8,
       "norm_label": "realmart()"
     },
     {
@@ -800,7 +850,7 @@
       "label": "REALM_ICONS",
       "file_type": "code",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_realmscreen_realm_icons",
       "community": 7,
@@ -810,17 +860,27 @@
       "label": "GAMES",
       "file_type": "code",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_realmscreen_games",
       "community": 7,
       "norm_label": "games"
     },
     {
+      "label": "FULL_MECHANICS",
+      "file_type": "code",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_components_realmscreen_full_mechanics",
+      "community": 7,
+      "norm_label": "full_mechanics"
+    },
+    {
       "label": "EXTRA_BEAT_ORDER",
       "file_type": "code",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L34",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "src_components_realmscreen_extra_beat_order",
       "community": 7,
@@ -830,7 +890,7 @@
       "label": "RealmScreen()",
       "file_type": "code",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L48",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
       "community": 2,
@@ -863,7 +923,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_stampbadge",
-      "community": 2,
+      "community": 5,
       "norm_label": "stampbadge.jsx"
     },
     {
@@ -873,7 +933,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_stampbadge_icons",
-      "community": 2,
+      "community": 5,
       "norm_label": "icons"
     },
     {
@@ -883,7 +943,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_stampbadge_makerandom",
-      "community": 2,
+      "community": 5,
       "norm_label": "makerandom()"
     },
     {
@@ -893,7 +953,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_stampbadge_seedfrom",
-      "community": 2,
+      "community": 5,
       "norm_label": "seedfrom()"
     },
     {
@@ -903,7 +963,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_stampbadge_roughcircle",
-      "community": 2,
+      "community": 5,
       "norm_label": "roughcircle()"
     },
     {
@@ -913,7 +973,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "src_components_stampbadge_stampbadge",
-      "community": 2,
+      "community": 5,
       "norm_label": "stampbadge()"
     },
     {
@@ -923,7 +983,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_stampmoment",
-      "community": 7,
+      "community": 5,
       "norm_label": "stampmoment.jsx"
     },
     {
@@ -1070,7 +1130,7 @@
       "label": "balanceLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1254",
+      "source_location": "L1558",
       "_origin": "ast",
       "id": "src_data_realms_balancelower",
       "community": 2,
@@ -1080,7 +1140,7 @@
       "label": "balanceHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1340",
+      "source_location": "L1644",
       "_origin": "ast",
       "id": "src_data_realms_balancehigher",
       "community": 2,
@@ -1090,7 +1150,7 @@
       "label": "fableFallsLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1437",
+      "source_location": "L1741",
       "_origin": "ast",
       "id": "src_data_realms_fablefallslower",
       "community": 2,
@@ -1100,7 +1160,7 @@
       "label": "fableFallsHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1546",
+      "source_location": "L1850",
       "_origin": "ast",
       "id": "src_data_realms_fablefallshigher",
       "community": 2,
@@ -1110,7 +1170,7 @@
       "label": "REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1671",
+      "source_location": "L1975",
       "_origin": "ast",
       "id": "src_data_realms_realms",
       "community": 8,
@@ -1120,27 +1180,27 @@
       "label": "REALM_BY_ID",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1814",
+      "source_location": "L2118",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
-      "community": 2,
+      "community": 5,
       "norm_label": "realm_by_id"
     },
     {
       "label": "ACTIVE_REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1817",
+      "source_location": "L2121",
       "_origin": "ast",
       "id": "src_data_realms_active_realms",
-      "community": 2,
+      "community": 5,
       "norm_label": "active_realms"
     },
     {
       "label": "REALM_ORDER",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1827",
+      "source_location": "L2131",
       "_origin": "ast",
       "id": "src_data_realms_realm_order",
       "community": 2,
@@ -1150,7 +1210,7 @@
       "label": "HUB_ORDER",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1828",
+      "source_location": "L2132",
       "_origin": "ast",
       "id": "src_data_realms_hub_order",
       "community": 2,
@@ -1160,17 +1220,17 @@
       "label": "orderedActiveRealms()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1834",
+      "source_location": "L2138",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
-      "community": 13,
+      "community": 2,
       "norm_label": "orderedactiverealms()"
     },
     {
       "label": "getBandView()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1845",
+      "source_location": "L2149",
       "_origin": "ast",
       "id": "src_data_realms_getbandview",
       "community": 2,
@@ -1180,7 +1240,7 @@
       "label": "PLEDGE",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1857",
+      "source_location": "L2161",
       "_origin": "ast",
       "id": "src_data_realms_pledge",
       "community": 2,
@@ -1190,10 +1250,10 @@
       "label": "activePledge()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1866",
+      "source_location": "L2170",
       "_origin": "ast",
       "id": "src_data_realms_activepledge",
-      "community": 2,
+      "community": 5,
       "norm_label": "activepledge()"
     },
     {
@@ -1405,6 +1465,306 @@
       "id": "src_minigames_phaserminigame_phaserminigame",
       "community": 7,
       "norm_label": "phaserminigame()"
+    },
+    {
+      "label": "bogArt.js",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart",
+      "community": 13,
+      "norm_label": "bogart.js"
+    },
+    {
+      "label": "SKINS",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_skins",
+      "community": 13,
+      "norm_label": "skins"
+    },
+    {
+      "label": "skin()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_skin",
+      "community": 13,
+      "norm_label": "skin()"
+    },
+    {
+      "label": "rr()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_rr",
+      "community": 13,
+      "norm_label": "rr()"
+    },
+    {
+      "label": "fillRR()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_fillrr",
+      "community": 13,
+      "norm_label": "fillrr()"
+    },
+    {
+      "label": "strokeRR()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_strokerr",
+      "community": 13,
+      "norm_label": "strokerr()"
+    },
+    {
+      "label": "circle()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_circle",
+      "community": 13,
+      "norm_label": "circle()"
+    },
+    {
+      "label": "ellipse()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_ellipse",
+      "community": 13,
+      "norm_label": "ellipse()"
+    },
+    {
+      "label": "drawBoat()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawboat",
+      "community": 13,
+      "norm_label": "drawboat()"
+    },
+    {
+      "label": "drawPockets()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L153",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawpockets",
+      "community": 13,
+      "norm_label": "drawpockets()"
+    },
+    {
+      "label": "drawHeron()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L211",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawheron",
+      "community": 13,
+      "norm_label": "drawheron()"
+    },
+    {
+      "label": "drawReeds()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L254",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawreeds",
+      "community": 13,
+      "norm_label": "drawreeds()"
+    },
+    {
+      "label": "drawPuff()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L275",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawpuff",
+      "community": 13,
+      "norm_label": "drawpuff()"
+    },
+    {
+      "label": "drawHeart()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L281",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawheart",
+      "community": 13,
+      "norm_label": "drawheart()"
+    },
+    {
+      "label": "drawTreeline()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L295",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawtreeline",
+      "community": 13,
+      "norm_label": "drawtreeline()"
+    },
+    {
+      "label": "drawWater()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L316",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_drawwater",
+      "community": 13,
+      "norm_label": "drawwater()"
+    },
+    {
+      "label": "ART_MANIFEST",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L348",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_art_manifest",
+      "community": 13,
+      "norm_label": "art_manifest"
+    },
+    {
+      "label": "ART_ANIMS",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L360",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_art_anims",
+      "community": 13,
+      "norm_label": "art_anims"
+    },
+    {
+      "label": "generate()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L369",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_generate",
+      "community": 13,
+      "norm_label": "generate()"
+    },
+    {
+      "label": "preloadBogArt()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L390",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_preloadbogart",
+      "community": 13,
+      "norm_label": "preloadbogart()"
+    },
+    {
+      "label": "buildBogArt()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L406",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_buildbogart",
+      "community": 13,
+      "norm_label": "buildbogart()"
+    },
+    {
+      "label": "bubbleTexture()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L442",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_bubbletexture",
+      "community": 13,
+      "norm_label": "bubbletexture()"
+    },
+    {
+      "label": "floatTexture()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L467",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_floattexture",
+      "community": 13,
+      "norm_label": "floattexture()"
+    },
+    {
+      "label": "BOG_COLOURS",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L478",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogart_bog_colours",
+      "community": 13,
+      "norm_label": "bog_colours"
+    },
+    {
+      "label": "bogCurrentScene.js",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene",
+      "community": 13,
+      "norm_label": "bogcurrentscene.js"
+    },
+    {
+      "label": "LANES",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene_lanes",
+      "community": 13,
+      "norm_label": "lanes"
+    },
+    {
+      "label": "OUTCOMES",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene_outcomes",
+      "community": 13,
+      "norm_label": "outcomes"
+    },
+    {
+      "label": "REFUSE_NOTE",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene_refuse_note",
+      "community": 13,
+      "norm_label": "refuse_note"
+    },
+    {
+      "label": "WEIGHT",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene_weight",
+      "community": 13,
+      "norm_label": "weight"
+    },
+    {
+      "label": "makeBogCurrentConfig()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_bogcurrentscene_makebogcurrentconfig",
+      "community": 7,
+      "norm_label": "makebogcurrentconfig()"
     },
     {
       "label": "passwordFortressLevelScene.js",
@@ -1863,7 +2223,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_boat",
-      "community": 5,
+      "community": 6,
       "norm_label": "boat.jsx"
     },
     {
@@ -1873,7 +2233,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_world_boat_boat",
-      "community": 5,
+      "community": 6,
       "norm_label": "boat()"
     },
     {
@@ -1883,7 +2243,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_traveler",
-      "community": 5,
+      "community": 6,
       "norm_label": "traveler.jsx"
     },
     {
@@ -1893,7 +2253,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_world_traveler_traveler",
-      "community": 5,
+      "community": 6,
       "norm_label": "traveler()"
     },
     {
@@ -1903,7 +2263,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_world",
-      "community": 5,
+      "community": 6,
       "norm_label": "world.jsx"
     },
     {
@@ -1913,7 +2273,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_world_world_world",
-      "community": 5,
+      "community": 6,
       "norm_label": "world()"
     },
     {
@@ -1993,7 +2353,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_usewalker",
-      "community": 5,
+      "community": 6,
       "norm_label": "usewalker.js"
     },
     {
@@ -2003,7 +2363,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_world_usewalker_key_dirs",
-      "community": 5,
+      "community": 6,
       "norm_label": "key_dirs"
     },
     {
@@ -2013,7 +2373,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_world_usewalker_usewalker",
-      "community": 5,
+      "community": 6,
       "norm_label": "usewalker()"
     },
     {
@@ -2023,7 +2383,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "src_world_usewalker_distance",
-      "community": 5,
+      "community": 6,
       "norm_label": "distance()"
     },
     {
@@ -4951,6 +5311,233 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L494",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_bogstoryrealm_action_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_bogstoryrealm_bogstoryrealm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L487",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_bogstoryrealm_kind_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L508",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_bogstoryrealm_stations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_choicecard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_choicecard_choicecard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_dialoguecard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_dialoguecard_dialoguecard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_realmart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_realmart_realmart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_reportblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_reportblock_reportblock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_stampmoment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_components_stampmoment_stampmoment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_makebogcurrentconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_minigames_phaserminigame",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm",
+      "target": "src_minigames_phaserminigame_phaserminigame",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_components_realmscreen",
+      "target": "src_components_bogstoryrealm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/BogStoryRealm.jsx",
+      "source_location": "L245",
+      "weight": 1.0,
+      "source": "src_components_bogstoryrealm_bogstoryrealm",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_makebogcurrentconfig"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_components_realmscreen",
+      "target": "src_components_bogstoryrealm_bogstoryrealm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
       "source_location": "L9",
       "weight": 1.0,
@@ -5657,7 +6244,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L34",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "src_components_realmscreen",
       "target": "src_components_realmscreen_extra_beat_order",
@@ -5667,7 +6254,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L23",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_components_realmscreen",
+      "target": "src_components_realmscreen_full_mechanics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/RealmScreen.jsx",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "src_components_realmscreen",
       "target": "src_components_realmscreen_games",
@@ -5677,7 +6274,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_components_realmscreen",
       "target": "src_components_realmscreen_realm_icons",
@@ -5687,7 +6284,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L48",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "src_components_realmscreen",
       "target": "src_components_realmscreen_realmscreen",
@@ -6114,7 +6711,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1817",
+      "source_location": "L2121",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_active_realms",
@@ -6124,7 +6721,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1866",
+      "source_location": "L2170",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_activepledge",
@@ -6134,7 +6731,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1340",
+      "source_location": "L1644",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_balancehigher",
@@ -6144,7 +6741,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1254",
+      "source_location": "L1558",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_balancelower",
@@ -6174,7 +6771,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1546",
+      "source_location": "L1850",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_fablefallshigher",
@@ -6184,7 +6781,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1437",
+      "source_location": "L1741",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_fablefallslower",
@@ -6194,7 +6791,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1845",
+      "source_location": "L2149",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_getbandview",
@@ -6204,7 +6801,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1828",
+      "source_location": "L2132",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_hub_order",
@@ -6214,7 +6811,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1834",
+      "source_location": "L2138",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_orderedactiverealms",
@@ -6244,7 +6841,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1857",
+      "source_location": "L2161",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_pledge",
@@ -6274,7 +6871,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1814",
+      "source_location": "L2118",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_realm_by_id",
@@ -6284,7 +6881,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1827",
+      "source_location": "L2131",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_realm_order",
@@ -6294,7 +6891,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1671",
+      "source_location": "L1975",
       "weight": 1.0,
       "source": "src_data_realms",
       "target": "src_data_realms_realms",
@@ -6615,6 +7212,547 @@
       "weight": 1.0,
       "source": "src_minigames_phaserminigame",
       "target": "src_minigames_phaserminigame_phaserminigame",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L360",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_art_anims",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L348",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_art_manifest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L478",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_bog_colours",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L442",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_bubbletexture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L406",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_buildbogart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L349",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawboat",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L354",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawheart",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L351",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawheron",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L350",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawpockets",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L353",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawpuff",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L352",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawreeds",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L355",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawtreeline",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L356",
+      "weight": 1.0,
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_drawwater",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_ellipse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L467",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_floattexture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L390",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_preloadbogart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_rr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_skins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart",
+      "target": "src_minigames_phaser_scenes_bogart_strokerr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L407",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_buildbogart",
+      "target": "src_minigames_phaser_scenes_bogart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L391",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_preloadbogart",
+      "target": "src_minigames_phaser_scenes_bogart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_fillrr",
+      "target": "src_minigames_phaser_scenes_bogart_rr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_strokerr",
+      "target": "src_minigames_phaser_scenes_bogart_rr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L449",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_bubbletexture",
+      "target": "src_minigames_phaser_scenes_bogart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawboat",
+      "target": "src_minigames_phaser_scenes_bogart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L270",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawreeds",
+      "target": "src_minigames_phaser_scenes_bogart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L451",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_bubbletexture",
+      "target": "src_minigames_phaser_scenes_bogart_strokerr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawboat",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L241",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawheron",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawpockets",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawpuff",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawtreeline",
+      "target": "src_minigames_phaser_scenes_bogart_circle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawboat",
+      "target": "src_minigames_phaser_scenes_bogart_ellipse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L226",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawheron",
+      "target": "src_minigames_phaser_scenes_bogart_ellipse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_drawpockets",
+      "target": "src_minigames_phaser_scenes_bogart_ellipse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L472",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_floattexture",
+      "target": "src_minigames_phaser_scenes_bogart_ellipse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogArt.js",
+      "source_location": "L414",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogart_buildbogart",
+      "target": "src_minigames_phaser_scenes_bogart_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogart_preloadbogart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogart_buildbogart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogart_bubbletexture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogart_floattexture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_lanes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_makebogcurrentconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_outcomes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_refuse_note",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/bogCurrentScene.js",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "src_minigames_phaser_scenes_bogcurrentscene",
+      "target": "src_minigames_phaser_scenes_bogcurrentscene_weight",
       "confidence_score": 1.0
     },
     {
@@ -8652,5 +9790,5 @@
       "source_file": "Cyber_Wellness_Quest_Milestones.md"
     }
   ],
-  "built_at_commit": "de44a37eab183fb363710e1bf2d42df233458f66"
+  "built_at_commit": "b00bde5e58170b13b77c355d16038dd6a0596445"
 }

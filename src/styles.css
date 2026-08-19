@@ -2246,3 +2246,159 @@ p {
   font-weight: 700;
   margin-top: 2px;
 }
+
+/* ---------- Bully Bog: the Bog Current ----------------------------------- */
+
+/* The clarity meter. The canvas already shows this as the murk over the water,
+   which is the version a player actually watches — this is the readable copy
+   beside it, for anyone who'd rather have a number than a mood, and for the
+   debrief where the canvas is gone. */
+.bog-meter {
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper-card);
+  padding: 10px 12px;
+}
+
+.bog-meter-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.bog-meter-track {
+  position: relative;
+  height: 12px;
+  margin: 7px 0 5px;
+  border-radius: 6px;
+  background: var(--paper-sunk);
+  overflow: hidden;
+}
+
+.bog-meter-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: var(--gold);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+/* The target notch, so "how much more" is a place rather than a sum. */
+.bog-meter-goal {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: var(--ink);
+  opacity: 0.55;
+}
+
+.bog-meter-read {
+  font-family: var(--font-stamp);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* What the three stations on the bank do. Shown on the chapter card in full
+   and again, tighter, next to the running game — forgetting which one takes
+   what shouldn't cost a whole round to find out. */
+.bog-stations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bog-station {
+  border: 2px solid var(--line);
+  border-left: 4px solid var(--ink-soft);
+  border-radius: var(--radius-sm);
+  background: var(--paper-card);
+  padding: 9px 11px;
+}
+
+.bog-station-report {
+  border-left-color: var(--coral);
+}
+
+.bog-station-pockets {
+  border-left-color: var(--teal);
+}
+
+.bog-station-heron {
+  border-left-color: var(--gold);
+}
+
+.bog-station strong {
+  display: block;
+  font-size: 14px;
+}
+
+.bog-station span {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.bog-stations.compact .bog-station {
+  padding: 6px 9px;
+}
+
+.bog-stations.compact .bog-station span {
+  font-size: 12px;
+}
+
+.bog-controls {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bog-controls kbd {
+  font-family: var(--font-stamp);
+  font-size: 11px;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 4px;
+  background: var(--paper-card);
+  color: var(--ink);
+}
+
+/* The running feed of what just happened. Newest first, only the last few —
+   it's a glance, not a log; the full account is the debrief. */
+.bog-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bog-feed li {
+  border-left: 3px solid var(--line-strong);
+  padding: 3px 0 3px 9px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.bog-feed li.good {
+  border-left-color: var(--teal);
+}
+
+.bog-feed li.weak {
+  border-left-color: var(--coral);
+}
+
+/* Comments are sentences, not password chunks — the monospace treatment the
+   Passworld debrief uses on `code` reads as a terminal here. */
+.bog-debrief code {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
