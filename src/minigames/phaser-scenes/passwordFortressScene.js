@@ -111,11 +111,12 @@ export function makePasswordFortressConfig(Phaser, { game, controlsRef, onProgre
       for (const t of tiles) {
         const sprite = this.tileGroup.create(t.x, t.y, t.kind === 'real' ? 'tile-real' : 'tile-decoy');
         sprite.setData('id', t.id);
-        this.add.text(t.x, t.y, t.label, {
+        const label = this.add.text(t.x, t.y, t.label, {
           fontFamily: 'monospace',
           fontSize: t.label.length > 2 ? '9px' : '14px',
           color: '#ffffff',
         }).setOrigin(0.5);
+        sprite.setData('label', label);
       }
       this.physics.add.overlap(this.player, this.tileGroup, (_player, sprite) =>
         this.onTileTouch(sprite),
@@ -160,6 +161,16 @@ export function makePasswordFortressConfig(Phaser, { game, controlsRef, onProgre
       // ---- input ----
       this.cursors = this.input.keyboard.createCursorKeys();
       this.wasd = this.input.keyboard.addKeys('W,A,S,D');
+      this.input.keyboard.addCapture([
+        Phaser.Input.Keyboard.KeyCodes.LEFT,
+        Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        Phaser.Input.Keyboard.KeyCodes.UP,
+        Phaser.Input.Keyboard.KeyCodes.DOWN,
+        Phaser.Input.Keyboard.KeyCodes.W,
+        Phaser.Input.Keyboard.KeyCodes.A,
+        Phaser.Input.Keyboard.KeyCodes.S,
+        Phaser.Input.Keyboard.KeyCodes.D,
+      ]);
       this.controlsRef = controlsRef;
       this.hitCooldown = 0;
     }
@@ -170,7 +181,7 @@ export function makePasswordFortressConfig(Phaser, { game, controlsRef, onProgre
       if (!t) return;
 
       if (t.kind === 'real') {
-        sprite.destroy();
+        this.collectTile(sprite);
         this.collected.add(t.id);
         this.updateHud();
         onProgress?.(this.collected.size, this.realTotal);
@@ -178,6 +189,41 @@ export function makePasswordFortressConfig(Phaser, { game, controlsRef, onProgre
       } else if (!this.decoyWarned.has(t.id)) {
         this.decoyWarned.add(t.id);
         this.flashToast('That one’s easy to guess — look for a locked one instead.');
+      }
+    }
+
+    /** A satisfying pop instead of the tile just vanishing (design.md §10). */
+    collectTile(sprite) {
+      const label = sprite.getData('label');
+      sprite.body.enable = false;
+      this.tweens.add({
+        targets: [sprite, label],
+        scale: 1.6,
+        alpha: 0,
+        duration: 260,
+        ease: 'Cubic.easeOut',
+        onComplete: () => {
+          sprite.destroy();
+          label?.destroy();
+        },
+      });
+      this.spawnCollectBurst(sprite.x, sprite.y);
+    }
+
+    spawnCollectBurst(x, y) {
+      const colors = [TEAL, GOLD, INK];
+      for (let i = 0; i < 6; i += 1) {
+        const angle = (i / 6) * Math.PI * 2;
+        const dot = this.add.circle(x, y, 3, colors[i % colors.length]);
+        this.tweens.add({
+          targets: dot,
+          x: x + Math.cos(angle) * 28,
+          y: y + Math.sin(angle) * 28,
+          alpha: 0,
+          duration: 380,
+          ease: 'Cubic.easeOut',
+          onComplete: () => dot.destroy(),
+        });
       }
     }
 

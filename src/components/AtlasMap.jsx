@@ -1,7 +1,15 @@
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Sparkles, Sprout, GraduationCap } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import World from '../world/World';
 import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
+
+// Same labels/icons as the band-select step in AtlasGate.jsx — shown again
+// here so a returning player can see which one they picked, since it's
+// asked only once, right at the start.
+const BAND_INFO = {
+  lower: { label: 'P1–P3', Icon: Sprout },
+  higher: { label: 'P4–P6', Icon: GraduationCap },
+};
 
 /**
  * Island positions in the map's own viewBox, and in world (0-100) units.
@@ -225,6 +233,7 @@ export default function AtlasMap({
   onFinale,
 }) {
   const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
+  const { label: bandLabel, Icon: BandIcon } = BAND_INFO[band] ?? BAND_INFO.lower;
   // Suggested play order (Improvement Plan §4) — only orders the list below,
   // free exploration on the map itself is unaffected.
   const orderedRealms = orderedActiveRealms(band);
@@ -263,8 +272,8 @@ export default function AtlasMap({
           <World
         sceneKey="atlas"
         scene={<AtlasScene realmProgress={realmProgress} />}
-        // Wider than a single realm's 2:1 scene box — 5 islands need the
-        // room (see .world.atlas-map in styles.css + AtlasScene's viewBox).
+        // The map's own top-down layout (see ISLANDS' doc comment above) —
+        // named to match its viewBox convention, not the generic 2:1 box.
         className="atlas-map"
         // The Atlas has no realm colour of its own; gold ties the Traveler to
         // the passport and the Gate, and keeps them from reading as a dark
@@ -286,6 +295,10 @@ export default function AtlasMap({
         <aside className="stage-side">
           <div className="atlas-head">
             <h2>The Atlas</h2>
+            <span className="band-chip">
+              <BandIcon size={13} strokeWidth={2.4} />
+              {bandLabel}
+            </span>
             <p style={{ marginTop: 6 }}>
               {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, branching out
               from the Gate.

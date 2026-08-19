@@ -95,7 +95,12 @@ export function makePasswordFortressLevelConfig(
       this.player.play('pw-idle');
       this.facing = 1;
       this.locked = false;
-      this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
+      // Manual smoothed follow, not startFollow — so the camera can lean
+      // toward whichever way the player's facing (lookahead), letting them
+      // see a hazard or platform coming before they reach it, rather than
+      // staying dead-centred on the player at all times.
+      this.lookaheadX = 0;
+      this.cameras.main.centerOn(this.player.x, this.player.y);
 
       // ---- the impersonator + the gate they're blocking ----
       // Stood clear of the gate on the player's side — parked at the gate's
@@ -259,6 +264,20 @@ export function makePasswordFortressLevelConfig(
       // ---- input ----
       this.cursors = this.input.keyboard.createCursorKeys();
       this.wasd = this.input.keyboard.addKeys('W,A,S,D');
+      // Without this, an arrow-key press can scroll the page/panel behind
+      // the canvas at the same time it moves the Traveler — addCapture
+      // makes the browser's default action (scrolling) never fire for
+      // these keys while this scene is active.
+      this.input.keyboard.addCapture([
+        Phaser.Input.Keyboard.KeyCodes.LEFT,
+        Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        Phaser.Input.Keyboard.KeyCodes.UP,
+        Phaser.Input.Keyboard.KeyCodes.DOWN,
+        Phaser.Input.Keyboard.KeyCodes.W,
+        Phaser.Input.Keyboard.KeyCodes.A,
+        Phaser.Input.Keyboard.KeyCodes.S,
+        Phaser.Input.Keyboard.KeyCodes.D,
+      ]);
       this.controlsRef = controlsRef;
       this.hitCooldown = 0;
       this.knockUntil = 0; // ms of knockback left, during which input can't steer
@@ -492,12 +511,27 @@ export function makePasswordFortressLevelConfig(
       } else {
         this.playerAnim(left || right ? 'pw-run' : 'pw-idle');
       }
+
+      this.updateCamera();
     }
 
     /** Switch animation only on change, so the run cycle isn't reset each frame. */
     playerAnim(key) {
       if (this.player.anims.currentAnim?.key === key) return;
       this.player.play(key, true);
+    }
+
+    updateCamera() {
+      // Lean the camera ~70px toward whichever way the player's facing,
+      // eased in over time so it doesn't snap the moment they turn around.
+      const targetLookahead = this.locked ? 0 : this.facing * 70;
+      this.lookaheadX = Phaser.Math.Linear(this.lookaheadX, targetLookahead, 0.05);
+
+      const cam = this.cameras.main;
+      const targetX = this.player.x + this.lookaheadX - cam.width / 2;
+      const targetY = this.player.y - cam.height / 2;
+      cam.scrollX = Phaser.Math.Linear(cam.scrollX, targetX, 0.1);
+      cam.scrollY = Phaser.Math.Linear(cam.scrollY, targetY, 0.1);
     }
   }
 

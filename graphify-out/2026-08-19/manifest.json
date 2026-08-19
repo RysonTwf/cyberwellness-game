@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787063161.6989205,
-    "ast_hash": "293dabd12337dc04b3e278fbd3cd18cd",
+    "mtime": 1787081338.6521738,
+    "ast_hash": "73d342e48cd17686be2fada97d51eb3a",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787065250.5296273,
-    "ast_hash": "c061564a01d44bf6770305e3cda52089",
+    "mtime": 1787081343.0599785,
+    "ast_hash": "c1ad36a72e22badf0f0322d171570e72",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "src/world/room/RoomScene.jsx": {
-    "mtime": 1787065540.5675206,
-    "ast_hash": "ad151d3e2d11caa6987439edf265ba00",
+    "mtime": 1787081403.9810922,
+    "ast_hash": "7b180bf30748e717a1eabdbb7aa1a1a3",
     "semantic_hash": ""
   },
   "assets/platformer_assets/LICENSE & CREDITS (1).txt": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "src/assets/room/cabinet.png": {
-    "mtime": 1787063801.5467696,
-    "ast_hash": "bbd92fc228492f196f40d1a0a71920ae",
+    "mtime": 1787080867.002126,
+    "ast_hash": "a6bcdb48b9df92cf5a27d162661a2dbc",
     "semantic_hash": ""
   },
   "src/assets/room/door.png": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "src/assets/room/armchair.png": {
-    "mtime": 1787065004.8203056,
-    "ast_hash": "50ab8ae25981fb658639946efbd71b6d",
+    "mtime": 1787081261.7288852,
+    "ast_hash": "b5522f26f5ca6c87888d273f3d784489",
     "semantic_hash": ""
   },
   "src/assets/room/bookshelf.png": {

@@ -228,12 +228,22 @@ band and every hotspot on all realms in both moods.
 
 ## 10. Motion & Animation Direction
 
-Spend motion on exactly two moments, keep everything else static:
+**Revised 18 Aug 2026** — the original "exactly two moments" budget below
+made the game read as static/inert rather than calm, especially the
+Phaser mini-games. Direction now: keep the paper/ink aesthetic and the two
+signature moments as the *biggest* beats, but every interaction gets real,
+felt feedback — a button press should feel pressed, a right answer should
+feel like a small win, not just a colour change. Still no neon, no sound
+sting on every click, nothing that fights the two signature moments below
+for attention — "punchier," not "louder."
 
 1. **The stamp thunk** — scale-in + slight rotate + a quick "ink bleed"
-   pulse, on stamp-earned only.
+   pulse, on stamp-earned only. Still the biggest moment in the game.
 2. **Page-fold transition** — between hub and realm screens only.
-
-Choice cards, buttons, and mini-game feedback use quick, subtle
-opacity/scale changes (~150ms) — nothing bouncy or attention-grabbing that
-would compete with the two signature moments above.
+3. **Everyday feedback is no longer just opacity/scale-150ms-and-done**:
+   buttons get an actual press (scale + shift, snappier down than up),
+   a safe choice gets a settle-in pop instead of a flat colour swap, the
+   "walk here to interact" pin invites more visibly, and the Phaser
+   mini-games' pickups get a proper collect animation (scale-pop + a
+   small burst) instead of just disappearing. See styles.css's "Motion"
+   section and the `phaser-scenes/` files for the concrete versions.

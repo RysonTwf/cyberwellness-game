@@ -279,8 +279,12 @@ p {
   box-shadow: var(--shadow);
 }
 
+/* An actual press, not just "cancel the hover" — snappier down than the
+   release, which is what makes a press read as a press (design.md §10,
+   revised). */
 .btn:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.96);
+  transition-duration: 0.08s;
 }
 
 .btn:disabled {
@@ -338,6 +342,12 @@ p {
   border-radius: var(--radius);
   padding: 16px 18px;
   box-shadow: var(--shadow-sm);
+  /* .panel (below) runs full-width for the mini-games it also hosts —
+     capped independently here so a story/decision paragraph doesn't
+     stretch edge-to-edge on a wide screen. */
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dialogue .who {
@@ -400,6 +410,14 @@ p {
   cursor: default;
 }
 
+.choice.picked-safe,
+.choice.picked-rethink {
+  /* A settle-in pop instead of a flat colour swap — this is the moment a
+     child finds out their answer landed, worth more than an opacity fade
+     (design.md §10, revised). */
+  animation: choice-pop 0.34s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
 .choice.picked-safe {
   border-color: var(--teal);
   background: rgba(45, 140, 127, 0.08);
@@ -408,6 +426,18 @@ p {
 .choice.picked-rethink {
   border-color: var(--gold);
   background: rgba(224, 160, 48, 0.1);
+}
+
+@keyframes choice-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.045);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .choice.faded {
@@ -491,6 +521,25 @@ p {
 .atlas-head {
   text-align: center;
   padding: 6px 0 22px;
+}
+
+/* Shows which band the player picked at the gate — asked only once, at the
+   very start, so it's easy to forget which one a returning session is in. */
+.band-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold);
+  background: rgba(224, 160, 48, 0.1);
+  color: var(--ink);
+  font-family: var(--font-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .atlas-map {
@@ -1274,6 +1323,14 @@ p {
   filter: brightness(1.07);
 }
 
+/* `.interact` already animates `transform` continuously (the pin-hover
+   bob, below) — pressing it can't also set `transform` without fighting
+   that, so the press cue is brightness + shadow instead. */
+.interact:active {
+  filter: brightness(0.92);
+  box-shadow: var(--shadow-sm);
+}
+
 /* ---- The bar under the world -------------------------------------------- */
 
 .world-bar {
@@ -1568,7 +1625,7 @@ p {
   outline: none;
 }
 
-/* ---------- Motion (design.md §10) ---------------------------------------- */
+/* ---------- Motion (design.md §10, revised 18 Aug 2026) ------------------- */
 
 /* Page-fold transition between hub and realm screens — the only other motion. */
 .fold {
