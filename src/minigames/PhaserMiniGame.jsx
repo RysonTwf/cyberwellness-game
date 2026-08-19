@@ -45,7 +45,17 @@ export default function PhaserMiniGame({ config, onReady }) {
           parent: hostRef.current,
           width: 560,
           height: 280,
+          // .phaser-host's CSS stretches the canvas element to fill its box
+          // (often 700-900px+), but without this the canvas only ever
+          // *rendered* at 560x280 — the browser was upscaling a low-res
+          // image the whole time, which reads as blur (and on a screen
+          // people stare at for 20 minutes, eye strain). zoom multiplies
+          // the actual backing-store resolution while every game-object
+          // coordinate in the scenes stays in the original 560x280 (or
+          // 1120x280 world) logical space — no scene math changes needed.
+          zoom: 2,
           transparent: true,
+          input: { keyboard: true },
           ...resolvedConfig,
         });
         setLoading(false);

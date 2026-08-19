@@ -89,7 +89,12 @@ body {
 .shell {
   position: relative;
   z-index: 1;
-  width: min(880px, 100%);
+  /* Was 880px — too narrow for the walkable world/Phaser canvases to read
+     as an actual play area rather than a small embedded widget. Dialogue
+     text stays readable via .dialogue's own narrower max-width below, so
+     only the game surfaces (which fill this box at 100%) get the extra
+     room. */
+  width: min(1040px, 100%);
   margin: 0 auto;
   padding: clamp(14px, 3.5vw, 30px) clamp(14px, 4vw, 26px) 72px;
 }
@@ -179,8 +184,12 @@ p {
   box-shadow: var(--shadow);
 }
 
+/* An actual press, not just "cancel the hover" — snappier down than the
+   release, which is what makes a press read as a press (design.md §10,
+   revised). */
 .btn:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.96);
+  transition-duration: 0.08s;
 }
 
 .btn:disabled {
@@ -238,6 +247,12 @@ p {
   border-radius: var(--radius);
   padding: 16px 18px;
   box-shadow: var(--shadow-sm);
+  /* .shell/.panel widened for the game surfaces they also hold (below) —
+     capped independently here so paragraphs don't stretch into
+     uncomfortably long reading lines. */
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dialogue .who {
@@ -300,6 +315,14 @@ p {
   cursor: default;
 }
 
+.choice.picked-safe,
+.choice.picked-rethink {
+  /* A settle-in pop instead of a flat colour swap — this is the moment a
+     child finds out their answer landed, worth more than an opacity fade
+     (design.md §10, revised). */
+  animation: choice-pop 0.34s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
 .choice.picked-safe {
   border-color: var(--teal);
   background: rgba(45, 140, 127, 0.08);
@@ -308,6 +331,18 @@ p {
 .choice.picked-rethink {
   border-color: var(--gold);
   background: rgba(224, 160, 48, 0.1);
+}
+
+@keyframes choice-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.045);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .choice.faded {
@@ -391,6 +426,25 @@ p {
 .atlas-head {
   text-align: center;
   padding: 6px 0 22px;
+}
+
+/* Shows which band the player picked at the gate — asked only once, at the
+   very start, so it's easy to forget which one a returning session is in. */
+.band-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold);
+  background: rgba(224, 160, 48, 0.1);
+  color: var(--ink);
+  font-family: var(--font-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .atlas-map {
@@ -900,8 +954,12 @@ p {
 
 /* The Atlas hub gets more horizontal room than a single realm's 2:1 scene
    box — 5 islands read as cramped at 2:1. viewBox widened to match
-   (700x280, still 280 tall) in AtlasMap.jsx's AtlasScene. */
-.world.atlas-map {
+   (700x280, still 280 tall) in AtlasMap.jsx's AtlasScene.
+   Named `atlas-world`, not `atlas-map` — that name's already taken by an
+   unrelated (and unused-until-now-conflicting) rule below with its own
+   max-width, which was silently re-capping this back down to 560px on
+   anything wider than ~560px. */
+.world.atlas-world {
   aspect-ratio: 2.5 / 1;
 }
 
@@ -1118,6 +1176,14 @@ p {
   filter: brightness(1.07);
 }
 
+/* `.interact` already animates `transform` continuously (the pin-hover
+   bob, below) — pressing it can't also set `transform` without fighting
+   that, so the press cue is brightness + shadow instead. */
+.interact:active {
+  filter: brightness(0.92);
+  box-shadow: var(--shadow-sm);
+}
+
 /* ---- The bar under the world -------------------------------------------- */
 
 .world-bar {
@@ -1163,7 +1229,11 @@ p {
 
 .panel {
   position: relative;
-  width: min(760px, 100%);
+  /* Was 760px — this is where every realm's actual mini-game (Sort, Spot,
+     Balance, and the Phaser stepping-stone run) renders, so it needs the
+     same room as .shell now gets, independent of it (this is portalled to
+     <body>, not nested inside .shell). */
+  width: min(920px, 100%);
   max-height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1412,7 +1482,7 @@ p {
   outline: none;
 }
 
-/* ---------- Motion (design.md §10) ---------------------------------------- */
+/* ---------- Motion (design.md §10, revised 18 Aug 2026) ------------------- */
 
 /* Page-fold transition between hub and realm screens — the only other motion. */
 .fold {

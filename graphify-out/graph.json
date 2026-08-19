@@ -111,8 +111,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 6,
-      "community_name": "package.json",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "scripts"
     },
     {
@@ -122,8 +122,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 6,
-      "community_name": "package.json",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "dev"
     },
     {
@@ -133,8 +133,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 6,
-      "community_name": "package.json",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "build"
     },
     {
@@ -144,8 +144,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_preview",
-      "community": 6,
-      "community_name": "package.json",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "preview"
     },
     {
@@ -232,8 +232,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "package_dependencies_lucide_react",
-      "community": 5,
-      "community_name": "dependencies",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "lucide-react"
     },
     {
@@ -243,8 +243,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "lucide_react",
-      "community": 5,
-      "community_name": "dependencies",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "lucide-react"
     },
     {
@@ -446,10 +446,21 @@
       "norm_label": "atlasmap.jsx"
     },
     {
+      "label": "BAND_INFO",
+      "file_type": "code",
+      "source_file": "src/components/AtlasMap.jsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_components_atlasmap_band_info",
+      "community": 4,
+      "community_name": "realms.js",
+      "norm_label": "band_info"
+    },
+    {
       "label": "ISLANDS",
       "file_type": "code",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L18",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_atlasmap_islands",
       "community": 4,
@@ -460,7 +471,7 @@
       "label": "GATE",
       "file_type": "code",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L28",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate",
       "community": 4,
@@ -471,7 +482,7 @@
       "label": "AtlasScene()",
       "file_type": "code",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L31",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasscene",
       "community": 4,
@@ -482,7 +493,7 @@
       "label": "AtlasMap()",
       "file_type": "code",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L181",
+      "source_location": "L189",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasmap",
       "community": 4,
@@ -518,7 +529,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characters",
-      "community": 3,
+      "community": 0,
       "community_name": "Characters.jsx",
       "norm_label": "characters.jsx"
     },
@@ -529,8 +540,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_characters_comet",
-      "community": 3,
-      "community_name": "Characters.jsx",
+      "community": 4,
+      "community_name": "realms.js",
       "norm_label": "comet()"
     },
     {
@@ -541,7 +552,7 @@
       "_origin": "ast",
       "id": "src_components_characters_vex",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "vex()"
     },
     {
@@ -552,7 +563,7 @@
       "_origin": "ast",
       "id": "src_components_characters_fog",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "fog()"
     },
     {
@@ -563,7 +574,7 @@
       "_origin": "ast",
       "id": "src_components_characters_pockets",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "pockets()"
     },
     {
@@ -574,7 +585,7 @@
       "_origin": "ast",
       "id": "src_components_characters_glimmer",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "glimmer()"
     },
     {
@@ -584,7 +595,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_components_characters_commentbubble",
-      "community": 3,
+      "community": 0,
       "community_name": "Characters.jsx",
       "norm_label": "commentbubble()"
     },
@@ -595,7 +606,7 @@
       "source_location": "L134",
       "_origin": "ast",
       "id": "src_components_characters_by_name",
-      "community": 3,
+      "community": 0,
       "community_name": "Characters.jsx",
       "norm_label": "by_name"
     },
@@ -606,8 +617,8 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "src_components_characters_characterart",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "characterart()"
     },
     {
@@ -706,7 +717,7 @@
       "_origin": "ast",
       "id": "src_components_realmart",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "realmart.jsx"
     },
     {
@@ -717,7 +728,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_sky",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "sky()"
     },
     {
@@ -728,7 +739,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_passworldscene",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "passworldscene()"
     },
     {
@@ -739,7 +750,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_privacyscene",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "privacyscene()"
     },
     {
@@ -750,7 +761,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_bogscene",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "bogscene()"
     },
     {
@@ -761,7 +772,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_bayscene",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "bayscene()"
     },
     {
@@ -772,7 +783,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_fablefallsscene",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "fablefallsscene()"
     },
     {
@@ -783,7 +794,7 @@
       "_origin": "ast",
       "id": "src_components_realmart_scenes",
       "community": 0,
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "norm_label": "scenes"
     },
     {
@@ -793,8 +804,8 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "src_components_realmart_realmart",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 0,
+      "community_name": "Characters.jsx",
       "norm_label": "realmart()"
     },
     {
@@ -999,7 +1010,7 @@
       "label": "privacyLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L189",
+      "source_location": "L194",
       "_origin": "ast",
       "id": "src_data_realms_privacylower",
       "community": 4,
@@ -1010,7 +1021,7 @@
       "label": "privacyHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L276",
+      "source_location": "L281",
       "_origin": "ast",
       "id": "src_data_realms_privacyhigher",
       "community": 4,
@@ -1021,7 +1032,7 @@
       "label": "bullybogLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L367",
+      "source_location": "L372",
       "_origin": "ast",
       "id": "src_data_realms_bullyboglower",
       "community": 4,
@@ -1032,7 +1043,7 @@
       "label": "bullybogHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L473",
+      "source_location": "L478",
       "_origin": "ast",
       "id": "src_data_realms_bullyboghigher",
       "community": 4,
@@ -1043,7 +1054,7 @@
       "label": "balanceLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L575",
+      "source_location": "L580",
       "_origin": "ast",
       "id": "src_data_realms_balancelower",
       "community": 4,
@@ -1054,7 +1065,7 @@
       "label": "balanceHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L655",
+      "source_location": "L660",
       "_origin": "ast",
       "id": "src_data_realms_balancehigher",
       "community": 4,
@@ -1065,7 +1076,7 @@
       "label": "fableFallsLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L746",
+      "source_location": "L751",
       "_origin": "ast",
       "id": "src_data_realms_fablefallslower",
       "community": 4,
@@ -1076,7 +1087,7 @@
       "label": "fableFallsHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L840",
+      "source_location": "L845",
       "_origin": "ast",
       "id": "src_data_realms_fablefallshigher",
       "community": 4,
@@ -1087,7 +1098,7 @@
       "label": "REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L938",
+      "source_location": "L943",
       "_origin": "ast",
       "id": "src_data_realms_realms",
       "community": 4,
@@ -1098,7 +1109,7 @@
       "label": "REALM_BY_ID",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1081",
+      "source_location": "L1086",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
       "community": 4,
@@ -1109,7 +1120,7 @@
       "label": "ACTIVE_REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1084",
+      "source_location": "L1089",
       "_origin": "ast",
       "id": "src_data_realms_active_realms",
       "community": 4,
@@ -1120,7 +1131,7 @@
       "label": "HUB_ORDER",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1093",
+      "source_location": "L1098",
       "_origin": "ast",
       "id": "src_data_realms_hub_order",
       "community": 4,
@@ -1131,7 +1142,7 @@
       "label": "orderedActiveRealms()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1099",
+      "source_location": "L1104",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
       "community": 4,
@@ -1142,7 +1153,7 @@
       "label": "getBandView()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1110",
+      "source_location": "L1115",
       "_origin": "ast",
       "id": "src_data_realms_getbandview",
       "community": 4,
@@ -1153,18 +1164,18 @@
       "label": "PLEDGE",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1122",
+      "source_location": "L1127",
       "_origin": "ast",
       "id": "src_data_realms_pledge",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 1,
+      "community_name": "StampBadge.jsx",
       "norm_label": "pledge"
     },
     {
       "label": "activePledge()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1131",
+      "source_location": "L1136",
       "_origin": "ast",
       "id": "src_data_realms_activepledge",
       "community": 4,
@@ -1520,7 +1531,7 @@
       "_origin": "ast",
       "id": "src_world_traveler",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "traveler.jsx"
     },
     {
@@ -1531,7 +1542,7 @@
       "_origin": "ast",
       "id": "src_world_traveler_traveler",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "traveler()"
     },
     {
@@ -1542,7 +1553,7 @@
       "_origin": "ast",
       "id": "src_world_world",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "world.jsx"
     },
     {
@@ -1553,7 +1564,7 @@
       "_origin": "ast",
       "id": "src_world_world_world",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "world()"
     },
     {
@@ -1564,7 +1575,7 @@
       "_origin": "ast",
       "id": "src_world_usewalker",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "usewalker.js"
     },
     {
@@ -1575,7 +1586,7 @@
       "_origin": "ast",
       "id": "src_world_usewalker_key_dirs",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "key_dirs"
     },
     {
@@ -1586,7 +1597,7 @@
       "_origin": "ast",
       "id": "src_world_usewalker_usewalker",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "usewalker()"
     },
     {
@@ -1597,7 +1608,7 @@
       "_origin": "ast",
       "id": "src_world_usewalker_distance",
       "community": 3,
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "norm_label": "distance()"
     },
     {
@@ -1985,7 +1996,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "field-journal / passport metaphor",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "design_field_journal_metaphor"
     },
     {
@@ -2025,9 +2036,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 5,
       "norm_label": "per-realm accent colors",
-      "community_name": "realms.js",
+      "community_name": "dependencies",
       "id": "design_realm_accent_colors"
     },
     {
@@ -2069,7 +2080,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "point-and-click card navigation",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "design_card_navigation"
     },
     {
@@ -2139,7 +2150,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "no timers, no fail states, no score",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "design_no_fail_states"
     },
     {
@@ -2151,9 +2162,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 5,
+      "community": 0,
       "norm_label": "single-file artifact constraints",
-      "community_name": "dependencies",
+      "community_name": "Characters.jsx",
       "id": "design_artifact_constraints"
     },
     {
@@ -2181,7 +2192,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "the atlas (internet as a map)",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_atlas"
     },
     {
@@ -2193,9 +2204,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 4,
       "norm_label": "the traveler (player)",
-      "community_name": "Characters.jsx",
+      "community_name": "realms.js",
       "id": "storyline_traveler"
     },
     {
@@ -2207,9 +2218,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 4,
       "norm_label": "comet (paper-airplane guide)",
-      "community_name": "Characters.jsx",
+      "community_name": "realms.js",
       "id": "storyline_comet"
     },
     {
@@ -2223,7 +2234,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "keeper vex",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_keeper_vex"
     },
     {
@@ -2237,7 +2248,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "the fog",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_the_fog"
     },
     {
@@ -2251,7 +2262,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "pockets the frog",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_pockets"
     },
     {
@@ -2265,7 +2276,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "the glimmer",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_the_glimmer"
     },
     {
@@ -2293,7 +2304,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "realm 1: passworld",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_passworld"
     },
     {
@@ -2307,7 +2318,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "realm 2: privacy peaks",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_privacy_peaks"
     },
     {
@@ -2321,7 +2332,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "realm 3: bully bog",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_bully_bog"
     },
     {
@@ -2335,7 +2346,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "realm 4: balance bay",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "storyline_balance_bay"
     },
     {
@@ -2347,9 +2358,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 1,
       "norm_label": "finale: the wise traveler",
-      "community_name": "realms.js",
+      "community_name": "StampBadge.jsx",
       "id": "storyline_finale_wise_traveler"
     },
     {
@@ -2361,9 +2372,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 1,
       "norm_label": "the traveler's pledge",
-      "community_name": "realms.js",
+      "community_name": "StampBadge.jsx",
       "id": "storyline_travelers_pledge"
     },
     {
@@ -2391,7 +2402,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "no fear-based framing",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "storyline_no_fear_framing"
     },
     {
@@ -2405,7 +2416,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "choice consequences are reversible",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "storyline_reversible_choices"
     },
     {
@@ -2419,7 +2430,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "cyber wellness quest (project overview)",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "readme_project_overview"
     },
     {
@@ -2433,7 +2444,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "deviation: walkable world, not cards",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "readme_walkable_world_deviation"
     },
     {
@@ -2487,9 +2498,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 0,
       "norm_label": "no image assets: svg shapes only",
-      "community_name": "RealmScreen.jsx",
+      "community_name": "Characters.jsx",
       "id": "readme_svg_only_art"
     },
     {
@@ -2503,7 +2514,7 @@
       "contributor": null,
       "community": 3,
       "norm_label": "requestanimationframe walk loop",
-      "community_name": "Characters.jsx",
+      "community_name": "World.jsx",
       "id": "readme_raf_walk_loop"
     },
     {
@@ -2531,7 +2542,7 @@
       "contributor": null,
       "community": 0,
       "norm_label": "graphify knowledge-graph workflow",
-      "community_name": "RealmArt.jsx",
+      "community_name": "Characters.jsx",
       "id": "claude_graphify_integration"
     }
   ],
@@ -3328,7 +3339,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L181",
+      "source_location": "L189",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_atlasmap",
@@ -3339,7 +3350,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L31",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_atlasmap",
@@ -3350,7 +3361,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L28",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_atlasmap",
+      "target": "src_components_atlasmap_band_info",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/AtlasMap.jsx",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_atlasmap",
@@ -3361,7 +3383,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_atlasmap",
@@ -3489,7 +3511,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/AtlasMap.jsx",
-      "source_location": "L185",
+      "source_location": "L194",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_atlasmap_atlasmap",
@@ -4904,7 +4926,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1084",
+      "source_location": "L1089",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4915,7 +4937,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1131",
+      "source_location": "L1136",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4926,7 +4948,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L655",
+      "source_location": "L660",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4937,7 +4959,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L575",
+      "source_location": "L580",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4948,7 +4970,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L473",
+      "source_location": "L478",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4959,7 +4981,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L367",
+      "source_location": "L372",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4970,7 +4992,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L840",
+      "source_location": "L845",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4981,7 +5003,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L746",
+      "source_location": "L751",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -4992,7 +5014,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1110",
+      "source_location": "L1115",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5003,7 +5025,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1093",
+      "source_location": "L1098",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5014,7 +5036,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1099",
+      "source_location": "L1104",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5047,7 +5069,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1122",
+      "source_location": "L1127",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5058,7 +5080,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L276",
+      "source_location": "L281",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5069,7 +5091,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L189",
+      "source_location": "L194",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5080,7 +5102,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1081",
+      "source_location": "L1086",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -5091,7 +5113,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L938",
+      "source_location": "L943",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -6639,5 +6661,5 @@
       "source_file": "design.md"
     }
   ],
-  "built_at_commit": "7f09726f41168af0613db01623f3c0bea50183b3"
+  "built_at_commit": "119d611b0732ea5fa332a62854ce808059c8e59e"
 }

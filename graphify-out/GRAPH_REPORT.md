@@ -1,24 +1,24 @@
 # Graph Report - cyberwellness-game  (2026-08-18)
 
 ## Corpus Check
-- 41 files · ~37,087 words
+- 41 files · ~37,497 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 215 nodes · 363 edges · 14 communities (13 shown, 1 thin omitted)
+- 216 nodes · 364 edges · 14 communities (13 shown, 1 thin omitted)
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 35 edges (avg confidence: 0.72)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7f09726f`
+- Built from commit: `119d611b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- RealmArt.jsx
+- Characters.jsx
 - StampBadge.jsx
 - RealmScreen.jsx
-- Characters.jsx
+- World.jsx
 - realms.js
 - dependencies
 - package.json
@@ -44,14 +44,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `ISLANDS` --implements--> `The Atlas (internet as a map)`  [INFERRED]
   src/components/AtlasMap.jsx → storyline.md
-- `dev` --references--> `Cyber Wellness Quest (project overview)`  [EXTRACTED]
-  package.json → README.md
-- `App()` --implements--> `Screen Flow: Gate to Atlas to Realm to Stamp`  [INFERRED]
-  src/App.jsx → design.md
 - `REALMS` --shares_data_with--> `Per-Realm Accent Colors`  [INFERRED]
   src/data/realms.js → design.md
+- `App()` --implements--> `Screen Flow: Gate to Atlas to Realm to Stamp`  [INFERRED]
+  src/App.jsx → design.md
 - `REALMS` --shares_data_with--> `The Atlas (internet as a map)`  [INFERRED]
   src/data/realms.js → storyline.md
+- `Accessibility & Kid-Safety UX` --semantically_similar_to--> `No Fear-Based Framing`  [INFERRED] [semantically similar]
+  design.md → storyline.md
 
 ## Import Cycles
 - None detected.
@@ -63,33 +63,33 @@
 
 ## Communities (14 total, 1 thin omitted)
 
-### Community 0 - "RealmArt.jsx"
-Cohesion: 0.10
-Nodes (21): graphify Knowledge-Graph Workflow, Field-Journal / Passport Metaphor, Cyber Wellness Quest (project overview), Fog(), Glimmer(), Pockets(), Vex(), BayScene() (+13 more)
+### Community 0 - "Characters.jsx"
+Cohesion: 0.07
+Nodes (32): graphify Knowledge-Graph Workflow, Single-File Artifact Constraints, Field-Journal / Passport Metaphor, lucide-react, lucide-react, scripts, build, dev (+24 more)
 
 ### Community 1 - "StampBadge.jsx"
-Cohesion: 0.46
-Nodes (7): Ink Stamp Badge (signature element), ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge(), Passport Stamps as Proof of Visit
+Cohesion: 0.29
+Nodes (10): Ink Stamp Badge (signature element), ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge(), PLEDGE, Finale: The Wise Traveler (+2 more)
 
 ### Community 2 - "RealmScreen.jsx"
-Cohesion: 0.12
-Nodes (23): Accessibility & Kid-Safety UX, React Component Inventory, Two-Moment Motion Budget, Only Two Mini-Game Mechanics, No Image Assets: SVG Shapes Only, Deviation: A Third Mini-Game, CharacterArt(), ChoiceCard() (+15 more)
+Cohesion: 0.13
+Nodes (20): Accessibility & Kid-Safety UX, React Component Inventory, Two-Moment Motion Budget, Only Two Mini-Game Mechanics, Deviation: A Third Mini-Game, ChoiceCard(), DialogueCard(), PlatformerStoryRealm() (+12 more)
 
-### Community 3 - "Characters.jsx"
-Cohesion: 0.14
-Nodes (15): Point-and-Click Card Navigation, No Timers, No Fail States, No Score, requestAnimationFrame Walk Loop, Deviation: Walkable World, Not Cards, BY_NAME, Comet(), Traveler(), distance() (+7 more)
+### Community 3 - "World.jsx"
+Cohesion: 0.22
+Nodes (11): Point-and-Click Card Navigation, No Timers, No Fail States, No Score, requestAnimationFrame Walk Loop, Deviation: Walkable World, Not Cards, Traveler(), distance(), KEY_DIRS, useWalker() (+3 more)
 
 ### Community 4 - "realms.js"
 Cohesion: 0.09
-Nodes (32): Per-Realm Accent Colors, Screen Flow: Gate to Atlas to Realm to Stamp, App(), AtlasGate(), BANDS, BEATS, AtlasMap(), GATE (+24 more)
+Nodes (32): Screen Flow: Gate to Atlas to Realm to Stamp, App(), AtlasGate(), BANDS, BEATS, AtlasMap(), BAND_INFO, GATE (+24 more)
 
 ### Community 5 - "dependencies"
-Cohesion: 0.12
-Nodes (18): Rejecting Neon-Cyberspace Visuals, Single-File Artifact Constraints, Design Token System, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies (+10 more)
+Cohesion: 0.14
+Nodes (16): Rejecting Neon-Cyberspace Visuals, Per-Realm Accent Colors, Design Token System, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, dependencies, @fontsource/baloo-2 (+8 more)
 
 ### Community 6 - "package.json"
-Cohesion: 0.14
-Nodes (13): devDependencies, vite, @vitejs/plugin-react, name, private, scripts, build, dev (+5 more)
+Cohesion: 0.20
+Nodes (9): devDependencies, vite, @vitejs/plugin-react, name, private, type, version, vite (+1 more)
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
@@ -116,7 +116,7 @@ Nodes (5): MiniGamePlatformer(), MiniGameSteppingStones(), makePasswordFortressC
   CLAUDE.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **57 isolated node(s):** `name`, `private`, `version`, `type`, `build` (+52 more)
+- **58 isolated node(s):** `name`, `private`, `version`, `type`, `build` (+53 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -125,15 +125,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `Cyber Wellness Quest (project overview)` and `graphify Knowledge-Graph Workflow`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `REALMS` connect `realms.js` to `RealmArt.jsx`, `useProgress.js`, `ArtPreview.jsx`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
-- **Why does `No Image Assets: SVG Shapes Only` connect `RealmScreen.jsx` to `RealmArt.jsx`, `dependencies`?**
-  _High betweenness centrality (0.081) - this node is a cross-community bridge._
-- **Why does `Cyber Wellness Quest (project overview)` connect `RealmArt.jsx` to `RealmScreen.jsx`, `package.json`?**
-  _High betweenness centrality (0.081) - this node is a cross-community bridge._
+- **Why does `REALMS` connect `realms.js` to `Characters.jsx`, `useProgress.js`, `ArtPreview.jsx`, `dependencies`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `REALMS` (e.g. with `Per-Realm Accent Colors` and `The Atlas (internet as a map)`) actually correct?**
   _`REALMS` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `The Atlas (internet as a map)` (e.g. with `Field-Journal / Passport Metaphor` and `ISLANDS`) actually correct?**
   _`The Atlas (internet as a map)` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _57 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _58 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Characters.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.06756756756756757 - nodes in this community are weakly interconnected._
+- **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.1310344827586207 - nodes in this community are weakly interconnected._

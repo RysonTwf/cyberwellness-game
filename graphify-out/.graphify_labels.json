@@ -1,8 +1,8 @@
 {
-  "0": "RealmArt.jsx",
+  "0": "Characters.jsx",
   "1": "StampBadge.jsx",
   "2": "RealmScreen.jsx",
-  "3": "Characters.jsx",
+  "3": "World.jsx",
   "4": "realms.js",
   "5": "dependencies",
   "6": "package.json",

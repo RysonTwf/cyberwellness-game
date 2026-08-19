@@ -73,11 +73,19 @@ export function makePasswordFortressLevelConfig(
       g.strokeRoundedRect(1, 1, 32, 32, 8);
       g.generateTexture('tile-real', 34, 34);
 
+      // Decoys get a different *silhouette*, not just a different colour —
+      // a diamond instead of the real tiles' square — so the distinction
+      // still reads for the ~8% of players with red-green colour vision
+      // deficiency (never signal safe/unsafe by hue alone).
       g.clear();
       g.fillStyle(GOLD, 1);
-      g.fillRoundedRect(0, 0, 34, 34, 8);
+      g.save();
+      g.translateCanvas(17, 17);
+      g.rotateCanvas(Math.PI / 4);
+      g.fillRoundedRect(-13, -13, 26, 26, 5);
       g.lineStyle(2, INK, 0.5);
-      g.strokeRoundedRect(1, 1, 32, 32, 8);
+      g.strokeRoundedRect(-12, -12, 24, 24, 5);
+      g.restore();
       g.generateTexture('tile-decoy', 34, 34);
 
       // The impersonator: same flat-blob language as everyone else, but
@@ -129,7 +137,12 @@ export function makePasswordFortressLevelConfig(
       this.physics.add.collider(this.player, this.platforms);
       this.facing = 1;
       this.locked = false;
-      this.cameras.main.startFollow(this.player, true, 0.12, 0.12);
+      // Manual smoothed follow, not startFollow — so the camera can lean
+      // toward whichever way the player's facing (lookahead), letting them
+      // see a hazard or platform coming before they reach it, rather than
+      // staying dead-centred on the player at all times.
+      this.lookaheadX = 0;
+      this.cameras.main.centerOn(this.player.x, this.player.y);
 
       // ---- the impersonator + the gate they're blocking ----
       this.add.image(encounterX + 14, 234, 'npc');
@@ -156,11 +169,29 @@ export function makePasswordFortressLevelConfig(
       for (const t of tiles) {
         const sprite = this.tileGroup.create(t.x, t.y, t.kind === 'real' ? 'tile-real' : 'tile-decoy');
         sprite.setData('id', t.id);
-        this.add.text(t.x, t.y, t.label, {
+        const label = this.add.text(t.x, t.y, t.label, {
           fontFamily: 'monospace',
           fontSize: t.label.length > 2 ? '9px' : '14px',
           color: '#ffffff',
         }).setOrigin(0.5);
+        // The label is a separate game object sitting on top of the tile —
+        // without this reference, collecting the tile only removed the
+        // graphic underneath it and left the label floating in place.
+        sprite.setData('label', label);
+
+        // Decoys should visually *tempt* — shinier, not just positioned
+        // invitingly — so they get a gentle pulse the real tiles don't.
+        // Tweening sprite+label together keeps the label centred through it.
+        if (t.kind === 'decoy') {
+          this.tweens.add({
+            targets: [sprite, label],
+            scale: 1.14,
+            duration: 620,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+          });
+        }
       }
       this.physics.add.overlap(this.player, this.tileGroup, (_player, sprite) =>
         this.onTileTouch(sprite),
@@ -171,10 +202,14 @@ export function makePasswordFortressLevelConfig(
         this.hazard = this.physics.add.sprite(hazardCfg.patrolFrom, hazardCfg.y, 'hazard');
         this.hazard.body.setAllowGravity(false);
         this.hazard.body.setImmovable(true);
+        // `hold` gives it a beat of dwell time at each end instead of
+        // reversing instantly — a readable, poseable rhythm you can time a
+        // jump around, rather than something that's always mid-motion.
         this.tweens.add({
           targets: this.hazard,
           x: hazardCfg.patrolTo,
-          duration: 1800,
+          duration: 1400,
+          hold: 450,
           yoyo: true,
           repeat: -1,
           ease: 'Sine.inOut',
@@ -212,6 +247,20 @@ export function makePasswordFortressLevelConfig(
       // ---- input ----
       this.cursors = this.input.keyboard.createCursorKeys();
       this.wasd = this.input.keyboard.addKeys('W,A,S,D');
+      // Without this, an arrow-key press can scroll the page/panel behind
+      // the canvas at the same time it moves the Traveler — addCapture
+      // makes the browser's default action (scrolling) never fire for
+      // these keys while this scene is active.
+      this.input.keyboard.addCapture([
+        Phaser.Input.Keyboard.KeyCodes.LEFT,
+        Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        Phaser.Input.Keyboard.KeyCodes.UP,
+        Phaser.Input.Keyboard.KeyCodes.DOWN,
+        Phaser.Input.Keyboard.KeyCodes.W,
+        Phaser.Input.Keyboard.KeyCodes.A,
+        Phaser.Input.Keyboard.KeyCodes.S,
+        Phaser.Input.Keyboard.KeyCodes.D,
+      ]);
       this.controlsRef = controlsRef;
       this.hitCooldown = 0;
 
@@ -241,7 +290,7 @@ export function makePasswordFortressLevelConfig(
       if (!t) return;
 
       if (t.kind === 'real') {
-        sprite.destroy();
+        this.collectTile(sprite);
         this.collected.add(t.id);
         this.updateHud();
         onProgress?.(this.collected.size, this.realTotal);
@@ -249,6 +298,43 @@ export function makePasswordFortressLevelConfig(
       } else if (!this.decoyWarned.has(t.id)) {
         this.decoyWarned.add(t.id);
         this.flashToast('That one’s easy to guess — look for a locked one instead.');
+      }
+    }
+
+    /** A satisfying pop instead of the tile just vanishing (design.md §10). */
+    collectTile(sprite) {
+      const label = sprite.getData('label');
+      sprite.body.enable = false; // stop it firing again mid-tween
+      this.tweens.add({
+        targets: [sprite, label],
+        scale: 1.6,
+        alpha: 0,
+        duration: 260,
+        ease: 'Cubic.easeOut',
+        onComplete: () => {
+          sprite.destroy();
+          label?.destroy();
+        },
+      });
+      this.spawnCollectBurst(sprite.x, sprite.y);
+    }
+
+    /** A handful of dots scattering outward — the "celebration" half of a
+     * collect, cheap enough to not need a real particle system for it. */
+    spawnCollectBurst(x, y) {
+      const colors = [TEAL, GOLD, INK];
+      for (let i = 0; i < 6; i += 1) {
+        const angle = (i / 6) * Math.PI * 2;
+        const dot = this.add.circle(x, y, 3, colors[i % colors.length]);
+        this.tweens.add({
+          targets: dot,
+          x: x + Math.cos(angle) * 28,
+          y: y + Math.sin(angle) * 28,
+          alpha: 0,
+          duration: 380,
+          ease: 'Cubic.easeOut',
+          onComplete: () => dot.destroy(),
+        });
       }
     }
 
@@ -321,6 +407,21 @@ export function makePasswordFortressLevelConfig(
       if (jumpPressed && this.player.body.blocked.down) {
         this.player.setVelocityY(-360);
       }
+
+      this.updateCamera();
+    }
+
+    updateCamera() {
+      // Lean the camera ~70px toward whichever way the player's facing,
+      // eased in over time so it doesn't snap the moment they turn around.
+      const targetLookahead = this.locked ? 0 : this.facing * 70;
+      this.lookaheadX = Phaser.Math.Linear(this.lookaheadX, targetLookahead, 0.05);
+
+      const cam = this.cameras.main;
+      const targetX = this.player.x + this.lookaheadX - cam.width / 2;
+      const targetY = this.player.y - cam.height / 2;
+      cam.scrollX = Phaser.Math.Linear(cam.scrollX, targetX, 0.1);
+      cam.scrollY = Phaser.Math.Linear(cam.scrollY, targetY, 0.1);
     }
   }
 

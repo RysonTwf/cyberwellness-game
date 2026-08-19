@@ -1,12 +1,20 @@
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Sparkles, Sprout, GraduationCap } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import World from '../world/World';
 import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
 
+// Same labels/icons as the band-select step in AtlasGate.jsx — shown again
+// here so a returning player can see which one they picked, since it's
+// asked only once, right at the start.
+const BAND_INFO = {
+  lower: { label: 'P1–P3', Icon: Sprout },
+  higher: { label: 'P4–P6', Icon: GraduationCap },
+};
+
 /**
  * Island positions in the map's own viewBox, and in world (0-100) units.
  *
- * The map runs a wider 700x280 viewBox (`.world.atlas-map`, see styles.css)
+ * The map runs a wider 700x280 viewBox (`.world.atlas-world`, see styles.css)
  * rather than every other scene's 560x280 — 5 islands read as cramped at
  * the narrower width. `world.x` = svg.x / 700 × 100 and `world.y` =
  * (svg.y + 22) / 2.8, so the pin lands right at the island's shoreline.
@@ -180,6 +188,7 @@ function AtlasScene({ realmProgress }) {
  */
 export default function AtlasMap({ travelerName, realmProgress, allStamped, band, onEnter, onFinale }) {
   const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
+  const { label: bandLabel, Icon: BandIcon } = BAND_INFO[band] ?? BAND_INFO.lower;
   // Suggested play order (Improvement Plan §4) — only orders the list below,
   // free exploration on the map itself is unaffected.
   const orderedRealms = orderedActiveRealms(band);
@@ -213,6 +222,10 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
     <div className="fold">
       <div className="atlas-head">
         <h2>The Atlas</h2>
+        <span className="band-chip">
+          <BandIcon size={13} strokeWidth={2.4} />
+          {bandLabel}
+        </span>
         <p style={{ marginTop: 6 }}>
           {ACTIVE_REALMS.length} realm{ACTIVE_REALMS.length === 1 ? '' : 's'}, one Stream running
           between them.
@@ -223,8 +236,8 @@ export default function AtlasMap({ travelerName, realmProgress, allStamped, band
         sceneKey="atlas"
         scene={<AtlasScene realmProgress={realmProgress} />}
         // Wider than a single realm's 2:1 scene box — 5 islands need the
-        // room (see .world.atlas-map in styles.css + AtlasScene's viewBox).
-        className="atlas-map"
+        // room (see .world.atlas-world in styles.css + AtlasScene's viewBox).
+        className="atlas-world"
         // The Atlas has no realm colour of its own; gold ties the Traveler to
         // the passport and the Gate, and keeps them from reading as a dark
         // smudge against the pale map.

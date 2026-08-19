@@ -160,16 +160,21 @@ const passworldHigher = {
       "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and symbol tiles. The \"123456\" and \"password\" tiles on the ground are decoys — shinier, easier to reach, worth nothing. A patrolling guard gives a soft bump if you get too close — no harm done, just try a different way up.",
     encounterX: 260,
     gateX: 300,
+    // A and C used to be identical (same height/width) — a mirrored layout
+    // reads as flatter than an asymmetrical one, and it meant the level's
+    // "resolution" platform (after the hazard) looked no different from its
+    // "teach" platform (before it). C is now higher and narrower: a small
+    // final reach, not a repeat.
     platforms: [
       { x: 0, y: 262, w: 1120, h: 18 }, // ground, full level width
-      { x: 380, y: 192, w: 100, h: 14 }, // A
-      { x: 560, y: 142, w: 100, h: 14 }, // B — the hazard patrols here
-      { x: 760, y: 192, w: 100, h: 14 }, // C
+      { x: 380, y: 192, w: 100, h: 14 }, // A — teach: jump, no hazard yet
+      { x: 560, y: 142, w: 100, h: 14 }, // B — twist: same jump, hazard patrols here
+      { x: 760, y: 172, w: 84, h: 14 }, // C — resolution: higher, narrower
     ],
     tiles: [
       { id: 'letter', label: 'A', kind: 'real', x: 430, y: 175 },
       { id: 'number', label: '7', kind: 'real', x: 610, y: 125 },
-      { id: 'symbol', label: '#', kind: 'real', x: 810, y: 175 },
+      { id: 'symbol', label: '#', kind: 'real', x: 802, y: 155 },
       { id: 'decoy1', label: '123456', kind: 'decoy', x: 340, y: 245 },
       { id: 'decoy2', label: 'password', kind: 'decoy', x: 680, y: 245 },
     ],

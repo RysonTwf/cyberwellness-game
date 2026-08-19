@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
-    "mtime": 1787059503.0384605,
-    "ast_hash": "3b9f9650920ed45d2741782e79828ac2",
+    "mtime": 1787060796.5833714,
+    "ast_hash": "8eb09d39d1f8e27ea9eed9cb041632a6",
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1786005154.3293514,
-    "ast_hash": "802e8b277174671a0c09e94aed2ac59a",
+    "mtime": 1787060063.1905613,
+    "ast_hash": "f8b934c73e8d1a03d99a17c4c5e46b20",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
