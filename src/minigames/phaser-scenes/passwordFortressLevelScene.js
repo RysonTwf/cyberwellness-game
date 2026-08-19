@@ -215,10 +215,19 @@ export function makePasswordFortressLevelConfig(
       this.door = this.add.image(doorX, doorBaseY, 'pw-vault-door').setOrigin(0.5, 1);
       this.doorAnswered = false;
 
-      const doorZone = this.add.zone(doorX, doorBaseY - 34, 74, 84);
-      this.physics.world.enable(doorZone, Phaser.Physics.Arcade.STATIC_BODY);
-      this.physics.add.overlap(this.player, doorZone, () => {
-        if (this.doorAnswered || this.locked) return;
+      // Fires once per approach, then stays disarmed until the Traveler has
+      // actually stepped out of the zone again. Without that latch, "Step
+      // back" was a dead button: it unlocked, but the player was still
+      // standing inside the trigger, so the very next physics step re-fired
+      // the overlap and re-opened the door. Anyone who reached it without
+      // every strong tile was stuck there with only "Restart this vault"
+      // left — a fail state this game isn't supposed to have (design.md §8).
+      this.doorZone = this.add.zone(doorX, doorBaseY - 34, 74, 84);
+      this.physics.world.enable(this.doorZone, Phaser.Physics.Arcade.STATIC_BODY);
+      this.doorArmed = true;
+      this.physics.add.overlap(this.player, this.doorZone, () => {
+        if (this.doorAnswered || this.locked || !this.doorArmed) return;
+        this.doorArmed = false;
         this.locked = true;
         this.player.setVelocity(0, 0);
         onDoorReached?.();
@@ -325,6 +334,11 @@ export function makePasswordFortressLevelConfig(
       this.locked = false;
       if (message) this.flashToast(message);
       this.player.setVelocity(-170, -150);
+      // Same reason `onHazardHit` needs one: `update()` zeroes horizontal
+      // velocity on any frame without an input, so without this window the
+      // nudge away from the door is cancelled on the very next tick and the
+      // Traveler never actually steps back off the threshold.
+      this.knockUntil = 260;
     }
 
     onTileTouch(sprite) {
@@ -475,6 +489,17 @@ export function makePasswordFortressLevelConfig(
       if (this.hitCooldown > 0) this.hitCooldown -= delta;
       if (this.knockUntil > 0) this.knockUntil -= delta;
       if (!this.player?.active || this.physics.world.isPaused) return;
+
+      // Re-arm the vault door once the Traveler is clear of it, so walking
+      // back up to it asks the question again — but standing on the spot
+      // after stepping back doesn't.
+      if (!this.doorArmed && !this.doorAnswered && this.doorZone) {
+        const z = this.doorZone.body;
+        const p = this.player.body;
+        const clear =
+          p.right < z.left || p.left > z.right || p.bottom < z.top || p.top > z.bottom;
+        if (clear) this.doorArmed = true;
+      }
 
       if (this.locked) {
         this.player.setVelocityX(0);

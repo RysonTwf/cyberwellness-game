@@ -216,7 +216,12 @@ export default function PlatformerStoryRealm({
             <div className="stack">
               <h3>The vault door</h3>
 
-              {!hasEveryStrong && verdict !== 'short' && (
+              {/* Whenever there's no verdict to read instead. Gating this on
+                  `!hasEveryStrong` hid the instruction from exactly the player
+                  who could act on it — arrive with every strong piece and the
+                  panel was a bare row of chips with nothing saying what to do
+                  with them. */}
+              {!verdict && (
                 <p className="instruction">
                   The keypad wants the whole password. Tick every piece in your bag that belongs
                   in a strong one.
@@ -235,7 +240,11 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Some of what you ticked is the easy-to-guess kind — look for the closed padlock on the ones that count, and try again."
+                  // Covers both ways of missing: the door wants an exact
+                  // match, so under-ticking lands here too. Blaming decoys
+                  // outright sent a player who'd simply left one out looking
+                  // for a weak tile they never picked up.
+                  text="That's not the set — either something's missing, or something you ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count, and try again."
                 />
               )}
 

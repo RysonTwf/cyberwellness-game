@@ -686,6 +686,12 @@ const balanceLower = {
       { id: 'b2', text: 'Play my game', screen: true },
       { id: 'b3', text: 'Group chat', screen: true },
       { id: 'b4', text: 'Video call my cousin', screen: true },
+      // Six screen cards for six slots, matching the six non-screen ones.
+      // With only four, `screenCount >= slots - 1` could never be true, so
+      // the `allScreen` verdict below was unreachable — the one outcome that
+      // carries the Bay's actual lesson never fired, in either band.
+      { id: 'b11', text: 'Scroll my feed', screen: true },
+      { id: 'b12', text: 'Watch a show', screen: true },
       { id: 'b5', text: 'Homework', screen: false },
       { id: 'b6', text: 'Play outside', screen: false },
       { id: 'b7', text: 'Dinner with family', screen: false },

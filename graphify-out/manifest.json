@@ -1,421 +1,416 @@
 {
   ".claude/settings.json": {
-    "mtime": 1787118849.2995489,
+    "mtime": 1787062604.9966578,
     "ast_hash": "61750be16e55c8b8b487595d8253dc4c",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1787041920.1219263,
+    "mtime": 1787061467.2288916,
     "ast_hash": "8384d95f0aab15b4439e2d7c735d28b0",
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1787118849.3816557,
+    "mtime": 1787085093.0332744,
     "ast_hash": "badac396108a98b7ff38bdbd9e8f2f95",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
-    "mtime": 1787041824.3750756,
-    "ast_hash": "d11c7a8bae36a7497ead3bcbb30e00d0",
+    "mtime": 1787061467.230903,
+    "ast_hash": "42233aaf767089b52964904a64f81c91",
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
-    "mtime": 1787119078.8113368,
+    "mtime": 1787129718.3964386,
     "ast_hash": "f34435b0b1c737c2948e449876ebf556",
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
-    "mtime": 1787057692.243466,
-    "ast_hash": "ec9a223062cac03f465856208d6e17e6",
+    "mtime": 1787061467.230903,
+    "ast_hash": "fbbca72c92d6d781ae4a461bc95c2ee8",
     "semantic_hash": ""
   },
   "src/components/Characters.jsx": {
-    "mtime": 1786005154.3103411,
+    "mtime": 1786034613.3720727,
     "ast_hash": "673870a641180a1d529f13cfc29967b9",
     "semantic_hash": ""
   },
   "src/components/ChoiceCard.jsx": {
-    "mtime": 1786005154.3113415,
+    "mtime": 1786034613.3731432,
     "ast_hash": "d380dde446b9b252c41548af3d42b8ef",
     "semantic_hash": ""
   },
   "src/components/DialogueCard.jsx": {
-    "mtime": 1786005154.312343,
+    "mtime": 1786034613.3741546,
     "ast_hash": "ee5367bcbb7cf3d8db46d7282db4d66f",
     "semantic_hash": ""
   },
   "src/components/JournalProgress.jsx": {
-    "mtime": 1787041849.7988324,
-    "ast_hash": "d7116553a505c98c7c36c57f8f7c425e",
+    "mtime": 1787061467.2429504,
+    "ast_hash": "cc47a6ad5e4b126d278def975a89b00f",
     "semantic_hash": ""
   },
   "src/components/RealmArt.jsx": {
-    "mtime": 1787059547.8216,
+    "mtime": 1787061467.2459302,
     "ast_hash": "37f92aeb3081f674f9048cb2d6a93b37",
     "semantic_hash": ""
   },
   "src/components/RealmScreen.jsx": {
-    "mtime": 1787059458.2344923,
+    "mtime": 1787061467.2503364,
     "ast_hash": "586bb28b01dd836b1d10adf633be6b05",
     "semantic_hash": ""
   },
   "src/components/StampBadge.jsx": {
-    "mtime": 1787059454.2049785,
+    "mtime": 1787061467.2503364,
     "ast_hash": "fee4919aed7288c47ab46f2fa8f11a14",
     "semantic_hash": ""
   },
   "src/components/StampMoment.jsx": {
-    "mtime": 1786005154.3163407,
+    "mtime": 1786034613.3781517,
     "ast_hash": "786be220febefe6916ee92d82fb0bdde",
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1787118991.512966,
-    "ast_hash": "49b912276565f3e59697889a63f4d8a3",
+    "mtime": 1787131275.237209,
+    "ast_hash": "9d1fc66451b21d2b02b20a12eb926098",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
-    "mtime": 1786005154.319339,
+    "mtime": 1786034613.3811567,
     "ast_hash": "e6f95884e72fd43db201505dd19fb8c4",
     "semantic_hash": ""
   },
   "src/main.jsx": {
-    "mtime": 1787118849.3961766,
+    "mtime": 1787084530.885647,
     "ast_hash": "75794b83ea5cdbf00f75736da3f2d9b9",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameBalance.jsx": {
-    "mtime": 1786005154.3223422,
+    "mtime": 1786034613.3831444,
     "ast_hash": "442c0e8684e478314c2dbade904bf884",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSort.jsx": {
-    "mtime": 1787118849.397181,
+    "mtime": 1787086110.5745926,
     "ast_hash": "beb2a8b86f4374d5f5ae5d2978e2c7d7",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSpot.jsx": {
-    "mtime": 1787118849.397181,
+    "mtime": 1787086147.270437,
     "ast_hash": "5c61bb4994e07f1d43097329acb9de50",
     "semantic_hash": ""
   },
   "src/state/useProgress.js": {
-    "mtime": 1787118849.4036975,
+    "mtime": 1787085055.453212,
     "ast_hash": "3dcfd6de1b584a1836b96a7697e27928",
     "semantic_hash": ""
   },
   "src/world/Traveler.jsx": {
-    "mtime": 1787118849.408208,
+    "mtime": 1787064187.854823,
     "ast_hash": "78e933548f6457e529a9a5157ffa394c",
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787118849.408208,
+    "mtime": 1787085073.2340984,
     "ast_hash": "8c1633d0e2fa62cb22b4e567c89fab85",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
-    "mtime": 1787118849.4108977,
+    "mtime": 1787061675.4103415,
     "ast_hash": "30b45a4e03a974b1d99796493d236b32",
     "semantic_hash": ""
   },
   "vite.config.js": {
-    "mtime": 1786005154.3313491,
+    "mtime": 1786034613.3911588,
     "ast_hash": "76afb30d19714fb27adc877e6dffa5c8",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1786005154.271338,
+    "mtime": 1786002964.6832066,
     "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
   "README.md": {
-    "mtime": 1786005154.2723384,
+    "mtime": 1786034613.3518498,
     "ast_hash": "66362a93eeb92d5ee0b9c10702760ae2",
     "semantic_hash": ""
   },
   "design.md": {
-    "mtime": 1787118866.5697968,
+    "mtime": 1787129718.3579977,
     "ast_hash": "34779f81410acb7925408cbb4e125c6a",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1786005154.3013399,
+    "mtime": 1786034613.3648553,
     "ast_hash": "43fc40fb0485ae4cf8b31e24670b2857",
     "semantic_hash": ""
   },
   "storyline.md": {
-    "mtime": 1786005154.330349,
+    "mtime": 1787061467.2787316,
     "ast_hash": "026fda5e83e897289c2cfde5fdfac7b5",
     "semantic_hash": ""
   },
   "src/components/ReportBlock.jsx": {
-    "mtime": 1787041866.091896,
-    "ast_hash": "c949d21adce8ae3ae0b088192a2e703a",
+    "mtime": 1787061467.2503364,
+    "ast_hash": "b44c3a26d9219eb6c4aeb7c483c357fe",
     "semantic_hash": ""
   },
   "src/minigames/PhaserMiniGame.jsx": {
-    "mtime": 1787118866.607118,
+    "mtime": 1787129718.3964386,
     "ast_hash": "b906e716e271a2c767c988dda8d0df7f",
     "semantic_hash": ""
   },
   "Cyber_Wellness_Quest_Improvement_Plan.md": {
-    "mtime": 1787118849.3010564,
+    "mtime": 1787088605.138335,
     "ast_hash": "d4ddbde8425395b1200fb9a38e842997",
     "semantic_hash": ""
   },
   "Cyber_Wellness_Quest_Milestones.md": {
-    "mtime": 1787118849.3025815,
+    "mtime": 1787088605.1363409,
     "ast_hash": "6feba31580b7f5b67fd4c8eb8ce56123",
     "semantic_hash": ""
   },
   "assets/README.md": {
-    "mtime": 1787059583.1043928,
-    "ast_hash": "7ee266760521ca5bb92c8fda6eb22bc7",
+    "mtime": 1787061467.1338506,
+    "ast_hash": "18ee813bad266fd514730384d8dd38c4",
     "semantic_hash": ""
   },
   "src/minigames/MiniGamePlatformer.jsx": {
-    "mtime": 1787043454.556169,
-    "ast_hash": "4c3979e049fd53ebeb03ec4dd6847bdf",
+    "mtime": 1787061467.261336,
+    "ast_hash": "22c70bd03bf6fa5ace1076b2eedd6425",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSteppingStones.jsx": {
-    "mtime": 1787118849.3981807,
+    "mtime": 1787086180.2281938,
     "ast_hash": "890932b2e5094b0d7f935a060e2a4580",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressScene.js": {
-    "mtime": 1787118866.6101305,
+    "mtime": 1787129718.4049966,
     "ast_hash": "2712db7be4475eddecfb3f65184fa0c1",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/steppingStonesScene.js": {
-    "mtime": 1787043442.0375917,
-    "ast_hash": "035dcedfb5c21a722b7a18931d5dcf0b",
+    "mtime": 1787061467.261336,
+    "ast_hash": "f0476f860f1127c1437267388f087275",
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1787118849.392669,
-    "ast_hash": "a77f3145b64a13be32d6f98f9e8eced0",
+    "mtime": 1787131375.2294004,
+    "ast_hash": "8347b1c30092e1dbaa2df08af9d3428d",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
-    "mtime": 1787119214.2991028,
-    "ast_hash": "3f5846ae70efcbfcc8d7990ce436dd9b",
+    "mtime": 1787131264.1847372,
+    "ast_hash": "d2f3f39058e80e51a858dc6740c384bb",
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787118849.3936727,
-    "ast_hash": "fc8e121e08417d4caab675177d12a65d",
+    "mtime": 1787081343.0599785,
+    "ast_hash": "c1ad36a72e22badf0f0322d171570e72",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
-    "mtime": 1787118849.4072077,
-    "ast_hash": "9c3d813ff2cdc7ff3bf0a95226db7f48",
+    "mtime": 1787063131.0892222,
+    "ast_hash": "f4878ad05c2cf231696bb553ac1331e4",
     "semantic_hash": ""
   },
   "src/world/room/RoomScene.jsx": {
-    "mtime": 1787118849.4098933,
-    "ast_hash": "101455da61651bf86f7e66df314fa6e2",
+    "mtime": 1787081403.9810922,
+    "ast_hash": "7b180bf30748e717a1eabdbb7aa1a1a3",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_DoorsAndWindows.png": {
-    "mtime": 1787118849.342563,
+    "mtime": 1787062527.003996,
     "ast_hash": "f70f8a2a50998e40f94b3bb2efd3fe7a",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_FloorsAndWalls.png": {
-    "mtime": 1787118849.342563,
+    "mtime": 1787062527.0079978,
     "ast_hash": "3babc3ef48c1b0c156106f38160bd49c",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_FloorsAndWalls_OpenDoors.png": {
-    "mtime": 1787118849.345439,
+    "mtime": 1787062526.9888499,
     "ast_hash": "e6c9a9fdde44b4482af12778208b1894",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_FurnitureState1.png": {
-    "mtime": 1787118849.346094,
+    "mtime": 1787062526.9918494,
     "ast_hash": "bdc3e1ec1250c24413a8d5406d895843",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_FurnitureState2.png": {
-    "mtime": 1787118849.346094,
+    "mtime": 1787062526.9958494,
     "ast_hash": "1a88cbeafa6074be3bba13b6e7a6b1aa",
     "semantic_hash": ""
   },
   "assets/itch.io/TopDownHouse_SmallItems.png": {
-    "mtime": 1787118849.347601,
+    "mtime": 1787062527.0003777,
     "ast_hash": "d7db65be62c0536e2258fb394233fee9",
     "semantic_hash": ""
   },
   "src/assets/room/bench.png": {
-    "mtime": 1787118849.3841624,
+    "mtime": 1787063801.6094673,
     "ast_hash": "b9cf46310ea962b40174bccc8c89b8b8",
     "semantic_hash": ""
   },
   "src/assets/room/cabinet.png": {
-    "mtime": 1787118849.3851657,
+    "mtime": 1787080867.002126,
     "ast_hash": "a6bcdb48b9df92cf5a27d162661a2dbc",
     "semantic_hash": ""
   },
   "src/assets/room/door.png": {
-    "mtime": 1787118849.3881657,
+    "mtime": 1787063631.6731482,
     "ast_hash": "6b7684489f028c14df6b3cc314e406bc",
     "semantic_hash": ""
   },
   "src/assets/room/floor.png": {
-    "mtime": 1787118849.3881657,
+    "mtime": 1787063631.6706388,
     "ast_hash": "ee9cd727f50ece88246710c385010bdc",
     "semantic_hash": ""
   },
   "src/assets/room/nightstand.png": {
-    "mtime": 1787118849.3891656,
+    "mtime": 1787063801.487168,
     "ast_hash": "88c4a6cf6e986fce64343072d15f717d",
     "semantic_hash": ""
   },
   "src/assets/room/plant.png": {
-    "mtime": 1787118849.3891656,
+    "mtime": 1787063801.764503,
     "ast_hash": "32a4dd909fbd46d73d9230a0e1e2629d",
     "semantic_hash": ""
   },
   "src/assets/room/rug.png": {
-    "mtime": 1787118849.3901658,
+    "mtime": 1787063801.8133857,
     "ast_hash": "eaaeda0e251a212d086d3ea5d518ba92",
     "semantic_hash": ""
   },
   "src/assets/room/table.png": {
-    "mtime": 1787118849.3901658,
+    "mtime": 1787063801.6629443,
     "ast_hash": "e03018f770215fc481f444fba885a007",
     "semantic_hash": ""
   },
   "src/assets/room/wardrobe.png": {
-    "mtime": 1787118849.3911655,
+    "mtime": 1787063801.719607,
     "ast_hash": "7af70743104511fc41080267ff5d57a3",
     "semantic_hash": ""
   },
   "src/assets/room/armchair.png": {
-    "mtime": 1787118849.3831584,
+    "mtime": 1787081261.7288852,
     "ast_hash": "b5522f26f5ca6c87888d273f3d784489",
     "semantic_hash": ""
   },
   "src/assets/room/bookshelf.png": {
-    "mtime": 1787118849.3841624,
+    "mtime": 1787064981.624695,
     "ast_hash": "1cd59cf67efb5a0eaa795546eb5349d8",
     "semantic_hash": ""
   },
   "src/assets/room/clock.png": {
-    "mtime": 1787118849.3861654,
+    "mtime": 1787064970.860816,
     "ast_hash": "3d586296a34dcdf4204b38bc9b024db2",
     "semantic_hash": ""
   },
   "src/assets/room/desk.png": {
-    "mtime": 1787118849.3871655,
+    "mtime": 1787064981.622686,
     "ast_hash": "6db14d9ca5590025b143340952636d93",
     "semantic_hash": ""
   },
-  ".claude/settings.local.json": {
-    "mtime": 1786005278.4750934,
-    "ast_hash": "f4a6c87ca7fd61acdda4d44fad823419",
-    "semantic_hash": ""
-  },
   "src/minigames/phaser-scenes/passworldArt.js": {
-    "mtime": 1787118849.4036975,
+    "mtime": 1787086338.2100496,
     "ast_hash": "e5137472f1647559690978beda981945",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/LICENSE & CREDITS.txt": {
-    "mtime": 1787118849.3046064,
+    "mtime": 1787082485.2826216,
     "ast_hash": "da9b60d55cba78e148ec292845bfa695",
     "semantic_hash": ""
   },
   "public/assets/passworld-brackeys/LICENSE-AND-CREDITS.txt": {
-    "mtime": 1787118849.3786502,
+    "mtime": 1787082680.0979898,
     "ast_hash": "da9b60d55cba78e148ec292845bfa695",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/coin.png": {
-    "mtime": 1787118849.3359315,
+    "mtime": 1787082485.452968,
     "ast_hash": "9972ae36d7f15087663eef880c2522c7",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/fruit.png": {
-    "mtime": 1787118849.3374417,
+    "mtime": 1787082485.4678888,
     "ast_hash": "7a7d687defb0993eec0f1252c820434c",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png": {
-    "mtime": 1787118849.3374417,
+    "mtime": 1787082485.4759655,
     "ast_hash": "96d27ae0abba922809e7360646a831b7",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/platforms.png": {
-    "mtime": 1787118849.338443,
+    "mtime": 1787082485.4893935,
     "ast_hash": "4413093c8c5a127024a9b4930da69496",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/slime_green.png": {
-    "mtime": 1787118849.3399546,
+    "mtime": 1787082485.4993038,
     "ast_hash": "2721669a4b3bd4204bfcb0977915dd6d",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/slime_purple.png": {
-    "mtime": 1787118849.3399546,
+    "mtime": 1787082485.5114367,
     "ast_hash": "54f57af24a12b9a7016da6f96c55a77d",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png": {
-    "mtime": 1787118849.341461,
+    "mtime": 1787082485.515147,
     "ast_hash": "a734921ab0f49083184b01c178d7c01c",
     "semantic_hash": ""
   },
   "public/assets/passworld-brackeys/coin.png": {
-    "mtime": 1787118849.3796515,
+    "mtime": 1787082680.055094,
     "ast_hash": "9972ae36d7f15087663eef880c2522c7",
     "semantic_hash": ""
   },
   "public/assets/passworld-brackeys/knight.png": {
-    "mtime": 1787118849.3796515,
+    "mtime": 1787082680.0218728,
     "ast_hash": "96d27ae0abba922809e7360646a831b7",
     "semantic_hash": ""
   },
   "public/assets/passworld-brackeys/slime_purple.png": {
-    "mtime": 1787118849.3806517,
+    "mtime": 1787082680.0393991,
     "ast_hash": "54f57af24a12b9a7016da6f96c55a77d",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/music/time_for_adventure.mp3": {
-    "mtime": 1787118849.3242881,
+    "mtime": 1787082485.345038,
     "ast_hash": "c958b33ecc83cd7cccd1c5edaa52b11a",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav": {
-    "mtime": 1787118849.3293107,
+    "mtime": 1787082485.3797185,
     "ast_hash": "6f988728484c544c9675000bfcf67bb3",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/explosion.wav": {
-    "mtime": 1787118849.3298194,
+    "mtime": 1787082485.3956668,
     "ast_hash": "03ef6bd08878d13f593b0e958f0cf202",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav": {
-    "mtime": 1787118849.3308272,
+    "mtime": 1787082485.4077885,
     "ast_hash": "c2cb5520b10f32d424e2e94282135783",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/jump.wav": {
-    "mtime": 1787118849.3323457,
+    "mtime": 1787082485.4094102,
     "ast_hash": "9bde24f5373a819463dfc34afaae7607",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/power_up.wav": {
-    "mtime": 1787118849.3328538,
+    "mtime": 1787082485.41947,
     "ast_hash": "dfd1ca4ab2e575948cfa1035a1ba4978",
     "semantic_hash": ""
   },
   "assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/tap.wav": {
-    "mtime": 1787118849.3349204,
+    "mtime": 1787082485.4394083,
     "ast_hash": "f7ecdd4c2c5abecd769d6ccdc20ca95c",
     "semantic_hash": ""
   }
