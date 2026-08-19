@@ -154,91 +154,707 @@ const passworldHigher = {
   // level's encounter trigger fires — only *when*/*how* it's shown differs.
   fullMechanic: 'platformerStory',
 
+  /**
+   * Passworld runs as three chapters of one platformer, played back to back
+   * (components/PlatformerStoryRealm.jsx), rather than a single level. Each
+   * chapter has its own vault door asking its own question, because the realm
+   * has three separate things to teach and one door can only ask one of them:
+   *
+   *   1. The Impostor at the Gate — what belongs in a password, and *why* a
+   *      symbol is worth more than another letter.
+   *   2. The Guess Engine — why a long password beats a clever one, argued
+   *      against a machine visibly chewing through the common-password list.
+   *   3. One Key, Many Doors — why the same password everywhere is how an
+   *      account like Sam's actually gets taken over.
+   *
+   * Every chapter is signposted with `beacons`: lamp-posts standing *on the
+   * platforms*, so reading one is part of the climb rather than something you
+   * stroll past on the floor. Walking through a sign lights it and files its
+   * note; walking back through it says its piece again, because a kid who
+   * missed a line the first time has to be able to go back for it. They exist
+   * because the level used to teach the *what* — a symbol counts, "qwerty"
+   * doesn't — with no *why* attached, so a player could finish the whole realm
+   * and still not know what a symbol was buying them.
+   *
+   * All of this copy is written for a 7–12 year old: short sentences, small
+   * words, and concrete pictures (a robot with a list, a key that opens three
+   * doors) instead of "entropy", "brute force" or "character class".
+   */
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and the tiles scattered through the vault. It's a long climb that doubles back on itself, so take the jumps one at a time. Grab whatever you can reach — they all go in your bag, and nothing you pick up is wasted. The vault door at the far end is where you decide which of them actually belong in a strong password, so read them as you go. Guards patrol the ledges and the floor; a bump only knocks you back, so pick your moment and go again.",
-    encounterX: 260,
-    gateX: 300,
-    // A long climb in five movements: up to the first tile, a gap run, a tight
-    // tower, guarded ledges, then the final approach. Six characters to gather
-    // rather than three, which is the point — a strong password is a *long*
-    // one, so the vault asks for a longer one than it used to.
-    //
-    // Every jump was checked against the actual physics rather than eyeballed.
-    // A standing jump clears 72px of height and 112px of distance (velocity
-    // -360 against gravity 900, 140px/s across); at the 48px rises used here
-    // that leaves 88px of horizontal room, and no gap below exceeds 74px. The
-    // ground runs unbroken the whole way, so a missed jump costs the climb
-    // back and nothing else — still no fail state (design.md §8).
-    levelWidth: 3144,
-    platforms: [
-      { x: 0, y: 262, w: 3144, h: 18 }, // ground, unbroken
-      // climb to the first letter
-      { x: 380, y: 210, w: 62, h: 12 },
-      { x: 486, y: 162, w: 54, h: 12 },
-      { x: 596, y: 114, w: 50, h: 12 },
-      // gap run, down then back up
-      { x: 702, y: 158, w: 48, h: 12 },
-      { x: 806, y: 206, w: 190, h: 12 }, // guard ledge
-      { x: 1052, y: 158, w: 46, h: 12 },
-      { x: 1156, y: 110, w: 46, h: 12 },
-      // the tower
-      { x: 1264, y: 158, w: 190, h: 12 }, // guard ledge
-      { x: 1504, y: 110, w: 44, h: 12 },
-      { x: 1598, y: 62, w: 48, h: 12 },
-      // A low re-entry ledge halfway along. Without it a fall anywhere past
-      // the tower means walking all the way back to x=380 and climbing the
-      // whole thing again; from here it's one hop up to the guarded ledges
-      // (ground->206 is a 56px rise, 206->d2 a 40px one, both well inside a
-      // jump), so a mistake costs a few seconds instead of the entire run.
-      { x: 1590, y: 206, w: 190, h: 12 }, // guard ledge
-      // guarded ledges
-      { x: 1710, y: 118, w: 42, h: 12 },
-      { x: 1810, y: 166, w: 42, h: 12 },
-      { x: 1912, y: 118, w: 190, h: 12 }, // guard ledge
-      { x: 2162, y: 70, w: 46, h: 12 },
-      // final approach
-      { x: 2278, y: 126, w: 44, h: 12 },
-      { x: 2380, y: 174, w: 190, h: 12 }, // guard ledge
-      { x: 2630, y: 126, w: 44, h: 12 },
-      { x: 2734, y: 78, w: 46, h: 12 },
-      { x: 2854, y: 134, w: 50, h: 12 },
-      { x: 2964, y: 186, w: 60, h: 12 }, // the vault door stands here
-    ],
-    tiles: [
-      { id: 'letter', type: 'letter', label: 'A', kind: 'real', x: 621, y: 95 },
-      { id: 'number', type: 'number', label: '7', kind: 'real', x: 1179, y: 91 },
-      { id: 'symbol', type: 'symbol', label: '#', kind: 'real', x: 1622, y: 43 },
-      { id: 'letter2', type: 'letter', label: 'k', kind: 'real', x: 2185, y: 51 },
-      { id: 'number2', type: 'number', label: '4', kind: 'real', x: 2757, y: 59 },
-      { id: 'symbol2', type: 'symbol', label: '!', kind: 'real', x: 2879, y: 115 },
-      // The weak ones are scattered through the climb, not parked on the
-      // floor. If every decoy sat at the bottom the lesson would collapse
-      // into "high is good, low is bad" and the player would never read a
-      // tile — the open padlock is meant to be the tell, so some of these sit
-      // right on the route to a real one.
-      { id: 'decoy1', label: '123456', kind: 'decoy', x: 320, y: 245 },
-      { id: 'decoy2', label: 'password', kind: 'decoy', x: 513, y: 143 },
-      { id: 'decoy3', label: 'qwerty', kind: 'decoy', x: 1075, y: 139 },
-      { id: 'decoy4', label: 'letmein', kind: 'decoy', x: 1731, y: 99 },
-      { id: 'decoy5', label: 'football', kind: 'decoy', x: 1400, y: 245 },
-      { id: 'decoy6', label: 'iloveyou', kind: 'decoy', x: 2652, y: 107 },
-    ],
-    // Each guard walks a platform — the scene snaps them onto the surface
-    // under their patrol and clips the beat to it, so these can't end up
-    // hovering in open air. Two work the floor, the rest hold ledges that
-    // sit on the route to a real tile.
-    hazards: [
-      { patrolFrom: 806, patrolTo: 996, y: 186 }, // the dip
-      { patrolFrom: 1264, patrolTo: 1454, y: 138 }, // foot of the tower
-      { patrolFrom: 1590, patrolTo: 1780, y: 186 }, // the re-entry ledge
-      { patrolFrom: 1912, patrolTo: 2102, y: 98 }, // below letter-2
-      { patrolFrom: 2380, patrolTo: 2570, y: 154 }, // final approach
-      { patrolFrom: 560, patrolTo: 760, y: 242 }, // the one on the floor
+      'Walk right with the arrow keys or the buttons below. Jump up to the glowing signs and read them — they tell you what the vault door is going to ask.',
+    levels: [
+      /* ---------------------------------------------------------------- */
+      /* Chapter 1 — The Impostor at the Gate                             */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'gate',
+        name: 'The Impostor at the Gate',
+        chapter: 'Chapter 1 of 3',
+        intro:
+          "Someone is already inside Sam's vault, and they are standing in your way. Get past them. Then find out what a password is really made of.",
+        goal: 'Find out what belongs in a strong password, and why.',
+        instruction:
+          'Walk right. You will meet whoever is in Sam’s vault first, and the gate will not open until you decide what to do. After that, climb up and grab the tiles. Everything you touch goes in your bag. Jump up to the glowing signs on the way — they explain everything. At the end, the vault door asks which things in your bag really belong in a password.',
+        hint: 'Walk right to see what’s going on.',
+        hintAfterGate: 'Climb up. Grab tiles, and read every glowing sign.',
+        encounterX: 260,
+        gateX: 300,
+        // A long climb in five movements: up to the first tile, a gap run, a
+        // tight tower, guarded ledges, then the final approach.
+        //
+        // Every jump was checked against the actual physics rather than
+        // eyeballed. A standing jump clears 72px of height and 112px of
+        // distance (velocity -360 against gravity 900, 140px/s across); at the
+        // 48px rises used here that leaves 88px of horizontal room, and no gap
+        // below exceeds 74px. The ground runs unbroken the whole way, so a
+        // missed jump costs the climb back and nothing else — still no fail
+        // state (design.md §8).
+        platforms: [
+          { x: 0, y: 262, w: 3144, h: 18 }, // ground, unbroken
+          // A first low step before the gate, purely so the opening sign has
+          // somewhere to stand — signs live on platforms, never on the floor,
+          // so that reading one is part of the climb.
+          { x: 110, y: 206, w: 74, h: 12 },
+          // climb to the first letter
+          { x: 380, y: 210, w: 62, h: 12 },
+          { x: 486, y: 162, w: 54, h: 12 },
+          { x: 596, y: 114, w: 50, h: 12 },
+          // gap run, down then back up
+          { x: 702, y: 158, w: 48, h: 12 },
+          { x: 806, y: 206, w: 190, h: 12 }, // guard ledge
+          { x: 1052, y: 158, w: 46, h: 12 },
+          { x: 1156, y: 110, w: 46, h: 12 },
+          // the tower
+          { x: 1264, y: 158, w: 190, h: 12 }, // guard ledge
+          { x: 1504, y: 110, w: 44, h: 12 },
+          { x: 1598, y: 62, w: 48, h: 12 },
+          // A low re-entry ledge halfway along. Without it a fall anywhere
+          // past the tower means walking all the way back to x=380 and
+          // climbing the whole thing again; from here it's one hop up to the
+          // guarded ledges, so a mistake costs a few seconds instead of the
+          // entire run.
+          { x: 1590, y: 206, w: 190, h: 12 }, // guard ledge
+          // guarded ledges
+          { x: 1710, y: 118, w: 42, h: 12 },
+          { x: 1810, y: 166, w: 42, h: 12 },
+          { x: 1912, y: 118, w: 190, h: 12 }, // guard ledge
+          { x: 2162, y: 70, w: 46, h: 12 },
+          // final approach
+          { x: 2278, y: 126, w: 44, h: 12 },
+          { x: 2380, y: 174, w: 190, h: 12 }, // guard ledge
+          { x: 2630, y: 126, w: 44, h: 12 },
+          { x: 2734, y: 78, w: 46, h: 12 },
+          { x: 2854, y: 134, w: 50, h: 12 },
+          { x: 2964, y: 186, w: 60, h: 12 }, // the vault door stands here
+        ],
+        levelWidth: 3144,
+        tiles: [
+          {
+            id: 'letter',
+            type: 'letter',
+            label: 'A',
+            kind: 'real',
+            x: 621,
+            y: 95,
+            why: 'A big letter. Using BIG and small letters doubles the robot’s work straight away.',
+          },
+          {
+            id: 'number',
+            type: 'number',
+            label: '7',
+            kind: 'real',
+            x: 1179,
+            y: 91,
+            why: 'A number. Numbers are not words, so they push your password off the robot’s word list.',
+          },
+          {
+            id: 'symbol',
+            type: 'symbol',
+            label: '#',
+            kind: 'real',
+            x: 1622,
+            y: 43,
+            why: 'A symbol — the best thing you can add. Symbols give the robot over 90 things to try for that one spot, and no word list has them.',
+          },
+          {
+            id: 'letter2',
+            type: 'letter',
+            label: 'k',
+            kind: 'real',
+            x: 2185,
+            y: 51,
+            why: 'A small letter. Easy on its own, but every spot you fill makes the robot’s job bigger.',
+          },
+          {
+            id: 'number2',
+            type: 'number',
+            label: '4',
+            kind: 'real',
+            x: 2757,
+            y: 59,
+            why: 'Another number, and it goes in the middle. Robots look at the end first.',
+          },
+          {
+            id: 'symbol2',
+            type: 'symbol',
+            label: '!',
+            kind: 'real',
+            x: 2879,
+            y: 115,
+            why: 'A second symbol. Two is better than one — each one makes the guessing much harder again.',
+          },
+          // The weak ones are scattered through the climb, not parked on the
+          // floor. If every decoy sat at the bottom the lesson would collapse
+          // into "high is good, low is bad" and the player would never read a
+          // tile — reading it is meant to be the tell.
+          {
+            id: 'decoy1',
+            label: '123456',
+            kind: 'decoy',
+            x: 320,
+            y: 245,
+            why: 'The most-used password in the world. It is the robot’s very first guess.',
+          },
+          {
+            id: 'decoy2',
+            label: 'password',
+            kind: 'decoy',
+            x: 513,
+            y: 143,
+            why: 'The word “password”. It is on every robot’s list.',
+          },
+          {
+            id: 'decoy3',
+            label: 'qwerty',
+            kind: 'decoy',
+            x: 1075,
+            y: 139,
+            why: 'The top row of the keyboard. Robots know what a keyboard looks like.',
+          },
+          {
+            id: 'decoy4',
+            label: 'letmein',
+            kind: 'decoy',
+            x: 1731,
+            y: 99,
+            why: 'A real phrase. Seven letters, but still only one guess for a robot.',
+          },
+          {
+            id: 'decoy5',
+            label: 'football',
+            kind: 'decoy',
+            x: 1400,
+            y: 245,
+            why: 'A real word. Nice and long — and still one guess, because it is in the dictionary.',
+          },
+          {
+            id: 'decoy6',
+            label: 'iloveyou',
+            kind: 'decoy',
+            x: 2652,
+            y: 107,
+            why: 'A phrase off every list. Sweet message, terrible secret.',
+          },
+        ],
+        // Each guard walks a platform — the scene snaps them onto the surface
+        // under their patrol and clips the beat to it, so these can't end up
+        // hovering in open air. One works the floor, the rest hold ledges that
+        // sit on the route to a real tile.
+        hazards: [
+          { patrolFrom: 806, patrolTo: 996, y: 186 }, // the dip
+          { patrolFrom: 1264, patrolTo: 1454, y: 138 }, // foot of the tower
+          { patrolFrom: 1590, patrolTo: 1780, y: 186 }, // the re-entry ledge
+          { patrolFrom: 1912, patrolTo: 2102, y: 98 }, // below letter-2
+          { patrolFrom: 2380, patrolTo: 2570, y: 154 }, // final approach
+          { patrolFrom: 560, patrolTo: 760, y: 242 }, // the one on the floor
+        ],
+        // Every sign stands on a platform, and every `y` here is that
+        // platform's top edge.
+        beacons: [
+          {
+            id: 'c1-key',
+            title: 'What a password is',
+            short: 'A password is a key. Anyone who guesses it can walk in.',
+            text: 'A password is like the key to your room. The lock is strong. The problem is if someone guesses what your key looks like. So pick a key nobody would ever think of.',
+            x: 147,
+            y: 206,
+          },
+          {
+            id: 'c1-robot',
+            title: 'Robots do the guessing',
+            short: 'A robot can try a million passwords in one second.',
+            text: 'Nobody sits and types guesses. A computer does it. It can try a million passwords every second, all night long. It never gets bored and it never stops.',
+            x: 411,
+            y: 210,
+          },
+          {
+            id: 'c1-symbols',
+            title: 'Why one symbol helps so much',
+            short: 'Letters give the robot 26 things to try. Symbols make it over 90.',
+            text: 'For every spot in your password, the robot tries everything it could be. Small letters only? That is 26 tries per spot. Add BIG letters, numbers, and signs like ! # $ @ and now it is over 90 tries per spot. Same length. Way more work.',
+            x: 860,
+            y: 206,
+          },
+          {
+            id: 'c1-words',
+            title: 'A whole word is one guess',
+            short: 'The robot has a list of every word. A word is one guess.',
+            text: 'The robot keeps a list: every word, every name, every team, every pet. So “football” looks long, but it is on the list, which makes it ONE guess. Signs like ! and # are on no list at all. That is why they help.',
+            x: 1310,
+            y: 158,
+          },
+          {
+            id: 'c1-mix',
+            title: 'Use all three',
+            short: 'Letters + numbers + a symbol. Then no list has you on it.',
+            text: 'Letters, numbers and symbols are three different things to mix. Use all three and the robot cannot find you on any list. It has to go back to guessing one spot at a time, and that takes forever.',
+            x: 1960,
+            y: 118,
+          },
+          {
+            id: 'c1-door',
+            title: 'What the door asks',
+            short: 'The door asks which of your tiles really belong.',
+            text: 'The big door at the end will not just take your bag. It asks which things you picked up really belong in a password. So read each tile before you grab it.',
+            x: 2430,
+            y: 174,
+          },
+        ],
+        door: {
+          mode: 'strong',
+          title: 'The vault door',
+          prompt: 'Tick every tile in your bag that belongs in a strong password.',
+          pass: 'The vault knows a strong one when it sees it.',
+        },
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 2 — The Guess Engine                                     */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'engine',
+        name: 'The Guess Engine',
+        chapter: 'Chapter 2 of 3',
+        intro:
+          'Deeper in there is a machine that never sleeps. All day and all night it works through every password anyone has ever used. You cannot turn it off. You can only build something it will never reach.',
+        goal: 'Find out why a long password beats a clever one.',
+        instruction:
+          'Watch the Guess Engine for a moment, then start climbing. Grab word chunks, numbers and symbols on the way up, and read the signs. At the keypad you will build one password out of what you found: 12 letters or more, with a number and a symbol in it, and nothing the Engine already knows.',
+        hint: 'Watch the Engine for a second, then head right.',
+        levelWidth: 2600,
+        platforms: [
+          { x: 0, y: 262, w: 2600, h: 18 }, // ground, unbroken
+          { x: 300, y: 206, w: 74, h: 12 }, // the step beside the Engine
+          // first climb
+          { x: 520, y: 214, w: 60, h: 12 },
+          { x: 626, y: 166, w: 56, h: 12 },
+          { x: 734, y: 118, w: 52, h: 12 },
+          { x: 840, y: 170, w: 190, h: 12 }, // guard ledge
+          { x: 1090, y: 122, w: 46, h: 12 },
+          { x: 1192, y: 74, w: 48, h: 12 },
+          { x: 1300, y: 206, w: 190, h: 12 }, // guard ledge / re-entry
+          { x: 1550, y: 158, w: 46, h: 12 },
+          { x: 1652, y: 110, w: 46, h: 12 },
+          { x: 1754, y: 62, w: 48, h: 12 },
+          { x: 1866, y: 118, w: 190, h: 12 }, // guard ledge
+          { x: 2116, y: 70, w: 46, h: 12 },
+          // final approach
+          { x: 2232, y: 126, w: 44, h: 12 },
+          { x: 2336, y: 178, w: 60, h: 12 },
+          { x: 2450, y: 200, w: 110, h: 12 }, // the keypad stands here
+        ],
+        props: [
+          {
+            type: 'guessEngine',
+            x: 210,
+            y: 262,
+            // Everything on this screen is a real top-of-the-list password.
+            words: [
+              '123456',
+              'password',
+              'qwerty',
+              'iloveyou',
+              'dragon',
+              'letmein',
+              'monkey',
+              'sunshine',
+            ],
+            startCount: 2400000,
+          },
+        ],
+        tiles: [
+          {
+            id: 'c2-purple',
+            type: 'letter',
+            label: 'Purple',
+            kind: 'real',
+            x: 760,
+            y: 99,
+            why: 'A word chunk. On its own it is easy to guess. Stuck to other chunks it makes your password long without making it hard to remember.',
+          },
+          {
+            id: 'c2-three',
+            type: 'number',
+            label: '3',
+            kind: 'real',
+            x: 653,
+            y: 147,
+            why: 'A number for the middle of your password, not stuck on the end where robots look first.',
+          },
+          {
+            id: 'c2-kite',
+            type: 'letter',
+            label: 'Kite',
+            kind: 'real',
+            x: 1113,
+            y: 103,
+            why: 'Another chunk with nothing to do with you. That is exactly why nobody can look it up.',
+          },
+          {
+            id: 'c2-seven',
+            type: 'number',
+            label: '7',
+            kind: 'real',
+            x: 1216,
+            y: 55,
+            why: 'One more character, and it keeps your password off the plain-words list.',
+          },
+          {
+            id: 'c2-moon',
+            type: 'letter',
+            label: 'Moon',
+            kind: 'real',
+            x: 1675,
+            y: 91,
+            why: 'Four more characters. Every one you add makes the robot’s job much bigger.',
+          },
+          {
+            id: 'c2-taco',
+            type: 'letter',
+            label: 'Taco',
+            kind: 'real',
+            x: 1778,
+            y: 43,
+            why: 'Silly chunks are easy for you to remember and just as hard for a robot. That is the whole trick.',
+          },
+          {
+            id: 'c2-bang',
+            type: 'symbol',
+            label: '!',
+            kind: 'real',
+            x: 2139,
+            y: 51,
+            why: 'A symbol. This is what stops the Engine reading your password as a row of ordinary words.',
+          },
+          {
+            id: 'c2-dollar',
+            type: 'symbol',
+            label: '$',
+            kind: 'real',
+            x: 2254,
+            y: 107,
+            why: 'Another symbol. Each one makes every spot harder to guess all over again.',
+          },
+          {
+            id: 'c2-d1',
+            label: 'password1',
+            kind: 'decoy',
+            x: 420,
+            y: 245,
+            why: 'A list password with a 1 on the end. Robots try that trick before anything else.',
+          },
+          {
+            id: 'c2-d2',
+            label: 'qwerty123',
+            kind: 'decoy',
+            x: 900,
+            y: 151,
+            why: 'Keyboard row plus counting. It looks mixed, but they are two patterns the Engine already has.',
+          },
+          {
+            id: 'c2-d3',
+            label: 'iloveyou',
+            kind: 'decoy',
+            x: 1360,
+            y: 187,
+            why: 'Eight characters and still one guess, because it is a phrase off the list.',
+          },
+          {
+            id: 'c2-d4',
+            label: 'letmein',
+            kind: 'decoy',
+            x: 1930,
+            y: 99,
+            why: 'You watched the Engine crack this one on its screen on the way in.',
+          },
+          {
+            id: 'c2-d5',
+            label: 'dragon',
+            kind: 'decoy',
+            x: 1520,
+            y: 245,
+            why: 'A cool word is still a word, and every word is on the list.',
+          },
+          {
+            id: 'c2-d6',
+            label: 'myname2014',
+            kind: 'decoy',
+            x: 2180,
+            y: 245,
+            why: 'Your name and the year you were born. It feels private, but it is the first personal thing anyone tries.',
+          },
+        ],
+        hazards: [
+          { patrolFrom: 400, patrolTo: 520, y: 242 },
+          { patrolFrom: 840, patrolTo: 1030, y: 150 },
+          { patrolFrom: 1300, patrolTo: 1490, y: 186 },
+          { patrolFrom: 1866, patrolTo: 2056, y: 98 },
+        ],
+        beacons: [
+          {
+            id: 'c2-engine',
+            title: 'Meet the Guess Engine',
+            short: 'It is not clever. It has a list — and it never stops.',
+            text: 'This is the Guess Engine. It is not clever at all. It just has a huge list: every common password, every word, every name and every year. Look at the counter. It never stops.',
+            x: 337,
+            y: 206,
+          },
+          {
+            id: 'c2-length',
+            title: 'Longer is stronger',
+            short: 'Every extra letter makes the robot’s job much bigger.',
+            text: 'Once you are off the list, length is what saves you. A 4-letter password? Cracked before you finish reading this sign. A 12-letter one with a symbol in it? The Engine would still be guessing when you are a grown-up.',
+            x: 550,
+            y: 214,
+          },
+          {
+            id: 'c2-together',
+            title: 'Symbols and length are a team',
+            short: 'A symbol makes each spot harder. Length adds more spots.',
+            text: 'They work together. A symbol makes every spot harder to guess. Length gives the robot more spots to guess. Do both and it gives up on you and goes looking for someone easier.',
+            x: 1000,
+            y: 170,
+          },
+          {
+            id: 'c2-passphrase',
+            title: 'The trick grown-ups use',
+            short: 'Stick silly words together, then add a number and a symbol.',
+            text: 'Try three silly words in a row with a number and a symbol dropped in. “Purple7Taco!Moon” is long, easy for you to remember, and on nobody’s list. Long does not have to mean hard.',
+            x: 1460,
+            y: 206,
+          },
+          {
+            id: 'c2-aboutyou',
+            title: 'Careful with things about you',
+            short: 'Your birthday and your pet’s name are not secrets.',
+            text: 'Watch out for your birthday, your pet, your team, or the year you were born. They feel private, but anyone who has seen your profile can guess them. The Engine has those lists too.',
+            x: 2020,
+            y: 118,
+          },
+          {
+            id: 'c2-door',
+            title: 'What the keypad wants',
+            short: '12 characters or more, with a number and a symbol.',
+            text: 'The keypad ahead wants 12 characters or more, with a letter, a number and a symbol in it, and nothing the Engine already knows. Tick pieces from your bag and it builds the password for you.',
+            x: 2360,
+            y: 178,
+          },
+        ],
+        door: {
+          mode: 'length',
+          title: 'The keypad',
+          prompt:
+            'Build one password from your bag. It needs 12 characters or more, a letter, a number and a symbol — and nothing the Engine already knows.',
+          minLength: 12,
+          requireKinds: ['letter', 'number', 'symbol'],
+          pass: 'The Engine is still guessing. It will still be guessing long after you have forgotten this door.',
+        },
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 3 — One Key, Many Doors                                  */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'reuse',
+        name: 'One Key, Many Doors',
+        chapter: 'Chapter 3 of 3',
+        intro:
+          'Last hall. At the end there are three doors, not one: your game, your school login, and your chat. This is the part that really happened to Sam.',
+        goal: 'Find out why using one password everywhere is the real danger.',
+        instruction:
+          'Grab the finished password cards hidden around this hall, and read the signs on the way. At the end, three accounts need unlocking, and you get to choose which password goes on each one.',
+        hint: 'Three doors are waiting at the end of this hall.',
+        levelWidth: 2400,
+        platforms: [
+          { x: 0, y: 262, w: 2400, h: 18 }, // ground, unbroken
+          { x: 130, y: 206, w: 74, h: 12 }, // the opening step
+          { x: 340, y: 214, w: 60, h: 12 },
+          { x: 446, y: 166, w: 56, h: 12 },
+          { x: 552, y: 118, w: 52, h: 12 },
+          { x: 660, y: 170, w: 190, h: 12 }, // guard ledge
+          { x: 910, y: 122, w: 46, h: 12 },
+          { x: 1012, y: 74, w: 48, h: 12 },
+          { x: 1120, y: 206, w: 190, h: 12 }, // guard ledge / re-entry
+          { x: 1370, y: 158, w: 46, h: 12 },
+          { x: 1472, y: 110, w: 48, h: 12 },
+          { x: 1580, y: 158, w: 190, h: 12 }, // guard ledge
+          { x: 1830, y: 110, w: 46, h: 12 },
+          { x: 1932, y: 62, w: 48, h: 12 },
+          { x: 2046, y: 118, w: 44, h: 12 },
+          { x: 2150, y: 174, w: 200, h: 12 }, // the three doors stand here
+        ],
+        props: [
+          {
+            type: 'keyholes',
+            x: 2186,
+            y: 262,
+            count: 3,
+            gap: 44,
+            label: 'GAME   ·   SCHOOL   ·   CHAT',
+          },
+        ],
+        tiles: [
+          {
+            id: 'c3-a',
+            type: 'password',
+            label: 'Purple7Taco!',
+            kind: 'real',
+            x: 578,
+            y: 99,
+            why: 'Twelve characters, all three kinds mixed, made of words that have nothing to do with you. A good one.',
+          },
+          {
+            id: 'c3-b',
+            type: 'password',
+            label: 'Moon3Kite$',
+            kind: 'real',
+            x: 1036,
+            y: 55,
+            why: 'Different words, different number, different symbol — and different from your other ones. That last bit matters most.',
+          },
+          {
+            id: 'c3-c',
+            type: 'password',
+            label: 'BlueOtter9#',
+            kind: 'real',
+            x: 1496,
+            y: 91,
+            why: 'Long, mixed, and not a phrase anyone says. Nothing in it can be looked up about you.',
+          },
+          {
+            id: 'c3-d',
+            type: 'password',
+            label: 'Jam5Comet&',
+            kind: 'real',
+            x: 1956,
+            y: 43,
+            why: 'A fourth one, so no two accounts ever have to share. That is the whole idea.',
+          },
+          {
+            id: 'c3-d1',
+            label: 'password123',
+            kind: 'decoy',
+            x: 260,
+            y: 245,
+            why: 'Eleven characters and still useless. It is the top of every robot’s list, twice over.',
+          },
+          {
+            id: 'c3-d2',
+            label: 'sam2013',
+            kind: 'decoy',
+            x: 790,
+            y: 151,
+            why: 'A name and a year. Anyone who knows Sam could guess this at lunchtime.',
+          },
+          {
+            id: 'c3-d3',
+            label: 'qwerty!',
+            kind: 'decoy',
+            x: 1250,
+            y: 187,
+            why: 'A symbol cannot rescue a keyboard pattern. Robots try the pattern, then try it again with symbols on the end.',
+          },
+          {
+            id: 'c3-d4',
+            label: 'letmein1',
+            kind: 'decoy',
+            x: 1700,
+            y: 139,
+            why: 'A list phrase with a number stuck on. Robots check for exactly that.',
+          },
+          {
+            id: 'c3-d5',
+            label: 'football99',
+            kind: 'decoy',
+            x: 1300,
+            y: 245,
+            why: 'A word plus numbers. It looks mixed, but the word half is one guess.',
+          },
+        ],
+        hazards: [
+          { patrolFrom: 240, patrolTo: 420, y: 242 },
+          { patrolFrom: 660, patrolTo: 850, y: 150 },
+          { patrolFrom: 1120, patrolTo: 1310, y: 186 },
+          { patrolFrom: 1580, patrolTo: 1770, y: 138 },
+        ],
+        beacons: [
+          {
+            id: 'c3-onekey',
+            title: 'One key, three doors',
+            short: 'One key for every door means one theft opens everything.',
+            text: 'Three doors at the end of this hall, three keyholes. If one key opens all three, then the day somebody takes that key they do not get one thing of yours. They get all of it.',
+            x: 167,
+            y: 206,
+          },
+          {
+            id: 'c3-sam',
+            title: 'This is what happened to Sam',
+            short: 'Sam was not hacked. Sam used one password everywhere.',
+            text: 'Nobody broke Sam’s door down. Sam used the same password on a game site as everywhere else. That game site lost its list of passwords. Whoever got the list tried Sam’s on every other door until one opened.',
+            x: 370,
+            y: 214,
+          },
+          {
+            id: 'c3-different',
+            title: 'A different one for each thing that matters',
+            short: 'Your email, your main game, your chat: each gets its own.',
+            text: 'You do not need a special password for everything. A maths quiz site can share. But your email, your main game account and your chat each get their own. Then one leak cannot spread.',
+            x: 680,
+            y: 170,
+          },
+          {
+            id: 'c3-remember',
+            title: 'You do not have to remember them all',
+            short: 'An app can remember them for you. Paper at home is fine too.',
+            text: 'Grown-ups use a password manager — an app that remembers all of them so you only learn one. Writing them in a notebook you keep safe at home works too. Anything beats one password everywhere.',
+            x: 1160,
+            y: 206,
+          },
+          {
+            id: 'c3-door',
+            title: 'What the wall asks',
+            short: 'Give each of the three accounts its own password.',
+            text: 'Three accounts ahead: your game, your school login, your chat. Give each one a password from your bag. A different one each time, and none of the ones the Engine already knows.',
+            x: 2068,
+            y: 118,
+          },
+        ],
+        door: {
+          mode: 'unique',
+          title: 'Three accounts, three keyholes',
+          prompt: 'Give each account a password. Tap a card, then tap the account you want it on.',
+          accounts: [
+            { id: 'game', label: 'Your game account' },
+            { id: 'school', label: 'Your school login' },
+            { id: 'chat', label: 'Your chat app' },
+          ],
+          pass: 'Three doors, three keys. Lose one and the other two never even notice.',
+        },
+      },
     ],
   },
-
   rule: {
     who: 'Comet',
     text: "Here's the Passworld rule for older travelers: accounts don't usually get \"stolen\" by someone breaking down the door — they get taken over because a password got shared, reused, or guessed. So: a different password for everything that matters, never hand yours over even to a friend who \"really needs it,\" and if a message ever feels off — even from someone you know — check with them a different way before you trust it.",

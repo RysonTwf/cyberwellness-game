@@ -114,6 +114,27 @@ body {
   gap: 10px;
 }
 
+/* Document-shaped screens (the certificate) are as tall as their content, not
+   as tall as the fold. The shell is `overflow: hidden`, so anything past the
+   fold's bottom edge used to be cut off with no way to scroll to it — and on a
+   wide monitor the document stretched the full width of the glass. This
+   variant scrolls itself and keeps the page a readable column. */
+.fold-doc {
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: center;
+  padding-right: 4px;
+}
+
+.fold-doc > .stack {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  /* content height, not fold height: a column flex item defaults to shrinking,
+     which would squash the card instead of letting the fold scroll. */
+  flex: 0 0 auto;
+}
+
 /* ---- The stage: game window on one side, everything else on the other ----
    Stacking the heading, dialogue and controls *under* the scene box is what
    forced the page to scroll — the box wants most of the height on its own.
@@ -1678,7 +1699,7 @@ p {
   background: var(--paper-card);
   border: 3px double var(--ink);
   border-radius: var(--radius-lg);
-  padding: clamp(22px, 5vw, 44px);
+  padding: clamp(18px, 3vw, 28px);
   text-align: center;
   box-shadow: var(--shadow-lift);
 }
@@ -1686,27 +1707,27 @@ p {
 .cert-stamps {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin: 22px 0;
+  margin: 14px 0;
 }
 
 .pledge {
   text-align: left;
   display: grid;
-  gap: 9px;
-  margin: 8px 0 22px;
+  gap: 7px;
+  margin: 8px 0 18px;
 }
 
 .pledge-line {
   display: flex;
   gap: 11px;
   align-items: flex-start;
-  padding: 13px 15px;
+  padding: 9px 14px;
   border-radius: var(--radius-sm);
   background: var(--paper-sunk);
   border-left: 4px solid var(--accent);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   font-style: italic;
   color: var(--ink);
@@ -2007,4 +2028,221 @@ p {
 .msg.marked {
   border-color: var(--coral);
   box-shadow: inset 0 0 0 2px var(--coral);
+}
+
+/* ---------- Passworld: chapters, field notes, the three door modes ------- */
+
+/* The card that tops and tails each of Passworld's three chapters — a title,
+   what this chapter is about, and (on the way in) what it's for. */
+.chapter-card {
+  border: 2px solid var(--line-strong);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.chapter-kicker {
+  display: block;
+  font-family: var(--font-stamp);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.chapter-card h3 {
+  margin: 6px 0 8px;
+}
+
+.chapter-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.chapter-goal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px !important;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line-strong);
+  font-weight: 700;
+  color: var(--ink) !important;
+}
+
+/* Field notes — the explanations picked up from the signposts in the level.
+   Collapsed behind a button during play so it can't crowd out the d-pad, and
+   laid out flat in the debrief where there's room to actually read it. */
+.notes-block {
+  margin-top: 14px;
+}
+
+.notes-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-card {
+  border: 2px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm);
+  background: var(--paper-card);
+  padding: 11px 13px;
+}
+
+.note-card strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.note-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* The post-door debrief: the one place the game finally says which piece was
+   which. Colour is backed up by the wording on every row, never carrying the
+   verdict on its own (design.md §8). */
+.debrief-head {
+  margin: 20px 0 0;
+  font-size: 15px;
+}
+
+.debrief-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.debrief-list li {
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-card);
+  padding: 10px 12px;
+}
+
+.debrief-list li.good {
+  border-left: 4px solid var(--teal);
+}
+
+.debrief-list li.weak {
+  border-left: 4px solid var(--coral);
+}
+
+.debrief-list code {
+  font-family: var(--font-stamp);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.debrief-verdict {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.debrief-list p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Chapter 2's keypad builds a real password out of the ticked chunks and
+   shows it assembling, with the character count running up beside it — the
+   number climbing is most of the argument that chapter is making. */
+.pw-preview {
+  border: 2px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 11px 13px;
+  background: var(--paper-sunk);
+}
+
+.pw-preview-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.pw-preview-value {
+  display: block;
+  font-family: var(--font-stamp);
+  font-size: 17px;
+  font-weight: 700;
+  word-break: break-all;
+  margin: 5px 0;
+}
+
+.pw-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.pw-count.ok {
+  color: var(--teal);
+}
+
+/* Chapter 3's wall of accounts. One slot per account, filled by tapping a
+   card then tapping the slot — the same tap-then-tap the sorting game uses. */
+.pw-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pw-slot {
+  appearance: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  min-height: 56px;
+  padding: 9px 13px;
+  border-radius: var(--radius-sm);
+  border: 2.5px dashed var(--line-strong);
+  background: var(--paper-sunk);
+  color: var(--ink);
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.pw-slot:hover {
+  border-color: var(--accent);
+}
+
+.pw-slot.filled {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--paper-card);
+}
+
+.pw-slot-label {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pw-slot-value {
+  display: block;
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 2px;
 }

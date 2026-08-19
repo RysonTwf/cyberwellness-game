@@ -381,6 +381,88 @@ function drawVaultDoor(ctx, { w, h }) {
   circle(ctx, w / 2, cy, 4, GOLD_DEEP);
 }
 
+/**
+ * A lamp-post sign the Traveler walks through to learn *why* a password is
+ * strong. Two frames: unlit (frame 0) and lit (frame 1) — the scene swaps to
+ * the lit one once its note has been read, so the level itself shows what's
+ * been picked up and what's still out there.
+ *
+ * These exist because the level used to teach the *what* (a symbol counts,
+ * "qwerty" doesn't) with no *why* attached to it. Signposting the reasoning
+ * in the world, on the route to the tiles, is the point of the whole realm.
+ */
+function makeBeaconDrawer(lit) {
+  return (ctx, { w, h }) => {
+    const glass = lit ? GOLD : NEUTRAL;
+    const bulb = lit ? '#fff3d6' : PAPER_DIM;
+    // post
+    fillRR(ctx, w / 2 - 2.5, 12, 5, h - 14, 2, INK_SOFT);
+    // base
+    fillRR(ctx, w / 2 - 8, h - 5, 16, 5, 2, INK);
+    // lantern housing
+    fillRR(ctx, w / 2 - 9, 0, 18, 18, 4, INK);
+    fillRR(ctx, w / 2 - 6.5, 2.5, 13, 13, 3, glass);
+    circle(ctx, w / 2, 9, 3.4, bulb);
+    if (lit) {
+      // a soft halo, so a read sign reads as read from across the level
+      ctx.globalAlpha = 0.28;
+      circle(ctx, w / 2, 9, 11, GOLD);
+      ctx.globalAlpha = 1;
+    }
+    // the "i" plate hanging off the post
+    fillRR(ctx, w / 2 - 7, 20, 14, 11, 3, lit ? GOLD_DEEP : INK_SOFT);
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(w / 2 - 1, 23, 2, 2);
+    ctx.fillRect(w / 2 - 1, 26, 2, 4);
+  };
+}
+
+/**
+ * The Guess Engine: the level-2 set piece. A cracking machine, drawn big
+ * enough to read as a threat, with a blank screen the scene writes its
+ * live guess ticker onto. Seeing a robot rip through "password", "qwerty",
+ * "football" at thousands a second is the whole argument for why a real
+ * word is a bad password and a symbol is a good one.
+ */
+function drawGuessEngine(ctx, { w, h }) {
+  // chassis
+  fillRR(ctx, 0, 8, w, h - 8, 8, '#2c4a6d');
+  strokeRR(ctx, 0.75, 8.75, w - 1.5, h - 9.5, 8, INK, 1.5);
+  // screen bed — the scene draws the scrolling guesses over this
+  fillRR(ctx, 7, 15, w - 14, 26, 4, '#12203a');
+  strokeRR(ctx, 7, 15, w - 14, 26, 4, 'rgba(224,160,48,0.5)', 1);
+  // vents
+  ctx.fillStyle = 'rgba(255,255,255,0.14)';
+  for (let x = 10; x < w - 10; x += 7) ctx.fillRect(x, h - 13, 4, 7);
+  // status lamps
+  circle(ctx, 12, h - 20, 2.6, HAZARD);
+  circle(ctx, 21, h - 20, 2.6, GOLD);
+  // a grabby little claw on top, so it reads as a machine that *takes* things
+  ctx.strokeStyle = INK;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(w / 2 - 9, 8);
+  ctx.lineTo(w / 2 - 5, 1);
+  ctx.moveTo(w / 2 + 9, 8);
+  ctx.lineTo(w / 2 + 5, 1);
+  ctx.stroke();
+  circle(ctx, w / 2, 3, 3, HAZARD);
+}
+
+/**
+ * A keyhole plate for the level-3 "one key, many doors" wall — three of
+ * these stand side by side, each wanting its own password.
+ */
+function drawKeyholePlate(ctx, { w, h }) {
+  fillRR(ctx, 0, 0, w, h, 5, '#2c4a6d');
+  strokeRR(ctx, 0.75, 0.75, w - 1.5, h - 1.5, 5, INK, 1.5);
+  fillRR(ctx, 4, 4, w - 8, h - 8, 3, 'rgba(255,255,255,0.08)');
+  circle(ctx, w / 2, h * 0.42, 5.5, '#12203a');
+  ctx.fillStyle = '#12203a';
+  ctx.fillRect(w / 2 - 2.5, h * 0.42, 5, h * 0.3);
+  circle(ctx, w / 2, h * 0.42, 2, GOLD);
+}
+
 /** A single sparkle particle for the collect burst. */
 function drawSpark(ctx) {
   sparkle(ctx, 5, 5, 5, PAPER);
@@ -506,6 +588,10 @@ export const ART_MANIFEST = [
   { key: 'pw-tile', file: 'tile.png', frameWidth: 34, frameHeight: 34, draw: drawTile },
   { key: 'pw-gate', file: 'gate.png', frameWidth: 60, frameHeight: 120, draw: drawGate },
   { key: 'pw-vault-door', file: 'vault-door.png', frameWidth: 46, frameHeight: 68, draw: drawVaultDoor },
+  { key: 'pw-beacon', file: 'beacon.png', frameWidth: 22, frameHeight: 40, draw: makeBeaconDrawer(false) },
+  { key: 'pw-beacon-lit', file: 'beacon-lit.png', frameWidth: 22, frameHeight: 40, draw: makeBeaconDrawer(true) },
+  { key: 'pw-engine', file: 'guess-engine.png', frameWidth: 100, frameHeight: 62, draw: drawGuessEngine },
+  { key: 'pw-keyhole', file: 'keyhole-plate.png', frameWidth: 30, frameHeight: 44, draw: drawKeyholePlate },
   { key: 'pw-spark', file: 'spark.png', frameWidth: 10, frameHeight: 10, draw: drawSpark },
   { key: 'pw-meter', file: 'meter-ui.png', frameWidth: 96, frameHeight: 14, draw: drawMeterFrame },
   { key: 'pw-door-left', file: 'vault-door-left.png', frameWidth: 280, frameHeight: 280, draw: makeDoorDrawer('left') },

@@ -1,11 +1,11 @@
 # Graph Report - cyberwellness-game  (2026-08-19)
 
 ## Corpus Check
-- 44 files · ~54,051 words
+- 45 files · ~55,435 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 288 nodes · 383 edges · 36 communities (15 shown, 21 thin omitted)
+- 290 nodes · 405 edges · 34 communities (13 shown, 21 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
@@ -29,8 +29,6 @@
 - Asset pipeline
 - AtlasMap.jsx
 - CLAUDE.md
-- AtlasGate.jsx
-- package.json
 - graphify Knowledge-Graph Workflow
 - localStorage Persistence (cyber-wellness-quest/v1)
 - Cyber Wellness Quest (project overview)
@@ -59,21 +57,21 @@
 5. `circle()` - 9 edges
 6. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
 7. `Cyber Wellness Quest` - 8 edges
-8. `ACTIVE_REALMS` - 6 edges
-9. `DialogueCard()` - 6 edges
-10. `StampBadge()` - 6 edges
+8. `DialogueCard()` - 7 edges
+9. `StampBadge()` - 6 edges
+10. `ACTIVE_REALMS` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `PlatformerStoryRealm()` --calls--> `makePasswordFortressLevelConfig()`  [EXTRACTED]
-  src/components/PlatformerStoryRealm.jsx → src/minigames/phaser-scenes/passwordFortressLevelScene.js
-- `AtlasMap()` --calls--> `orderedActiveRealms()`  [EXTRACTED]
-  src/components/AtlasMap.jsx → src/data/realms.js
 - `App()` --calls--> `getBandView()`  [EXTRACTED]
   src/App.jsx → src/data/realms.js
-- `CertificateScreen()` --calls--> `activePledge()`  [EXTRACTED]
-  src/components/CertificateScreen.jsx → src/data/realms.js
 - `App()` --calls--> `useProgress()`  [EXTRACTED]
   src/App.jsx → src/state/useProgress.js
+- `AtlasMap()` --calls--> `orderedActiveRealms()`  [EXTRACTED]
+  src/components/AtlasMap.jsx → src/data/realms.js
+- `CertificateScreen()` --calls--> `activePledge()`  [EXTRACTED]
+  src/components/CertificateScreen.jsx → src/data/realms.js
+- `PlatformerStoryRealm()` --calls--> `makePasswordFortressLevelConfig()`  [EXTRACTED]
+  src/components/PlatformerStoryRealm.jsx → src/minigames/phaser-scenes/passwordFortressLevelScene.js
 
 ## Import Cycles
 - None detected.
@@ -82,31 +80,31 @@
 - **The Atlas Cast** — storyline_comet, storyline_keeper_vex, storyline_the_fog, storyline_pockets, storyline_the_glimmer, storyline_traveler [EXTRACTED 1.00]
 - **Documented Deviations from the Design Docs** — readme_walkable_world_deviation, readme_vite_app_deviation, readme_third_minigame_deviation [EXTRACTED 1.00]
 
-## Communities (36 total, 21 thin omitted)
+## Communities (34 total, 21 thin omitted)
 
 ### Community 0 - "AtlasGate.jsx"
-Cohesion: 0.17
-Nodes (6): BOUNDS, DIARY_SPOT, DOOR_SPOT, SPAWN, TravelerRoom(), RoomScene()
+Cohesion: 0.11
+Nodes (14): AtlasGate(), BANDS, BEATS, ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge() (+6 more)
 
 ### Community 1 - "World.jsx"
-Cohesion: 0.13
-Nodes (14): AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, Comet(), orderedActiveRealms() (+6 more)
+Cohesion: 0.15
+Nodes (9): BY_NAME, CharacterArt(), Comet(), Boat(), Traveler(), distance(), KEY_DIRS, useWalker() (+1 more)
 
 ### Community 2 - "RealmScreen.jsx"
 Cohesion: 0.11
-Nodes (17): ChoiceCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock(), MiniGameBalance(), MiniGamePlatformer() (+9 more)
+Nodes (20): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock(), StampMoment() (+12 more)
 
 ### Community 3 - "passworldArt.js"
 Cohesion: 0.14
-Nodes (27): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+19 more)
+Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+20 more)
 
 ### Community 4 - "realms.js"
-Cohesion: 0.11
-Nodes (26): App(), CertificateScreen(), JournalProgress(), RealmScreen(), ACTIVE_REALMS, activePledge(), balanceHigher, balanceLower (+18 more)
+Cohesion: 0.08
+Nodes (33): App(), AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, CertificateScreen() (+25 more)
 
 ### Community 5 - "dependencies"
-Cohesion: 0.13
-Nodes (15): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+7 more)
+Cohesion: 0.07
+Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
 ### Community 6 - "package.json"
 Cohesion: 0.17
@@ -132,33 +130,25 @@ Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Dire
 Cohesion: 0.20
 Nodes (9): Cyber Wellness Quest, How it plays, Known deviations from the design docs, Layout, Notes on the build, Running it, Scene contact sheet, The four realms (+1 more)
 
-### Community 15 - "AtlasGate.jsx"
-Cohesion: 0.14
-Nodes (12): AtlasGate(), BANDS, BEATS, BY_NAME, CharacterArt(), DialogueCard(), ICONS, makeRandom() (+4 more)
-
-### Community 16 - "package.json"
-Cohesion: 0.14
-Nodes (13): devDependencies, vite, @vitejs/plugin-react, name, private, scripts, build, dev (+5 more)
-
 ## Knowledge Gaps
-- **124 isolated node(s):** `passworldLower`, `passworldHigher`, `privacyLower`, `privacyHigher`, `bullybogLower` (+119 more)
+- **124 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+119 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `World()` connect `World.jsx` to `AtlasGate.jsx`, `RealmScreen.jsx`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `AtlasGate.jsx` to `World.jsx`, `RealmScreen.jsx`, `realms.js`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **What connects `passworldLower`, `passworldHigher`, `privacyLower` to the rest of the system?**
+- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasGate.jsx`, `realms.js`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `World()` connect `World.jsx` to `AtlasGate.jsx`, `RealmScreen.jsx`, `realms.js`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **What connects `name`, `private`, `version` to the rest of the system?**
   _129 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `AtlasGate.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.11462450592885376 - nodes in this community are weakly interconnected._
 - **Should `World.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.12554112554112554 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.10804597701149425 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11092436974789915 - nodes in this community are weakly interconnected._
 - **Should `passworldArt.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.135632183908046 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14193548387096774 - nodes in this community are weakly interconnected._

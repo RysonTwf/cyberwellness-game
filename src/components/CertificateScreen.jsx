@@ -17,7 +17,7 @@ export default function CertificateScreen({
   const [farewell, setFarewell] = useState(false);
 
   return (
-    <div className="fold">
+    <div className="fold fold-doc">
       <div className="stack">
         <DialogueCard
           who="Comet"
@@ -39,7 +39,7 @@ export default function CertificateScreen({
                 accent={realm.accent}
                 earned={realmProgress[realm.id]?.stamped}
                 angle={realmProgress[realm.id]?.stampAngle ?? 0}
-                size={92}
+                size={78}
               />
             ))}
           </div>

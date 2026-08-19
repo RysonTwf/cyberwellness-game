@@ -1,60 +1,128 @@
-# Graph Report - cyberwellness-game  (2026-08-19)
+# Graph Report - cyberwellness-game  (2026-08-20)
 
 ## Corpus Check
-- 45 files · ~55,435 words
+- 46 files · ~62,871 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 290 nodes · 405 edges · 34 communities (13 shown, 21 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.5)
+- 371 nodes · 427 edges · 102 communities (15 shown, 87 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9e3a4afb`
+- Built from commit: `de44a37e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- AtlasGate.jsx
-- World.jsx
-- RealmScreen.jsx
-- passworldArt.js
-- realms.js
-- dependencies
-- package.json
-- Cyber Wellness Quest — Milestones & Team Workstreams
-- RealmArt.jsx
-- Cyber Wellness Quest — Improvement Plan (Living Doc)
-- Cyber Wellness Quest — Design Document
+- Curriculum Scope & Band Split
+- Mechanics, Assets & Build Phases
+- Atlas Hub, Progress & Realm Data
+- Passworld Vault Level & Art
+- Dependencies & Build Config
+- Gate, Characters & Stamp Chrome
+- Traveler Room & Walk System
+- Phaser Mini-Game Wrappers
+- Realm Scene Illustration
+- Realm Screen & React Mini-Games
+- Sort Mechanic
+- Balance Mechanic
+- graphify Workflow
+- Playtest & Launch
+- Step Panel Portal
+- Cyber Wellness Quest
 - Asset pipeline
-- AtlasMap.jsx
 - CLAUDE.md
-- graphify Knowledge-Graph Workflow
-- localStorage Persistence (cyber-wellness-quest/v1)
-- Cyber Wellness Quest (project overview)
-- requestAnimationFrame Walk Loop
-- No Image Assets: SVG Shapes Only
-- Deviation: A Third Mini-Game
-- Deviation: Vite App with Persistence
-- Deviation: Walkable World, Not Cards
-- The Atlas (internet as a map)
-- Comet (paper-airplane guide)
+- Asset Folder & Naming Convention
+- Asset Specs Table
+- Band Differentiation as Design Enrichment
+- P1-P3 / P4-P6 Band Split
+- Cyber Defender Quest
+- Digital Footprint / Positive Digital Trail
+- Engage and Support
+- Fable Falls Realm
+- Fifth Traveler's Pledge Line
+- Final Recap Experience
+- One Game, One App, One Entry Point
+- P4-5 vs P4-6 Resolution
+- Respect Others' Work (Plagiarism / IP)
+- Realm Plan by Band
+- Report & Block Resolution Option
+- STOP & CHECK Method (P1-P3)
+- Suggested Play Order per Band
+- S.U.R.E. Framework (P4-P6)
+- Term 1 - Healthy Digital Habits
+- Term 2 - Recess Activities
+- The Echo
+- 3 Tips to CHECK (Unsourced SLS Content)
+- Reduced-Motion Coverage Gap
+- ART_MANIFEST Texture Declaration
+- Asset Pipeline (Placeholders & Specs)
+- Band Select in the Atlas Gate
+- Brackeys CC0 Placeholder Skin
+- Branching Atlas Map
+- Detective/Compare Mechanic (MiniGameCompare)
+- Fixed Viewport, No Page Scrolling
+- Latin-Only Font Subsets
+- Hub Order Doc Disagreement
+- Input Scope: Keyboard + Mouse Only
+- A Mini-Game Must Not Be Passable Without Judgement
+- No Godot - Stay on React/Vite
+- Phase 0 - Foundation
+- Phase 1 - Content Authoring
+- Phase 3 - Backgrounds
+- PhaserMiniGame Wrapper
+- Phaser Scoped to Two Mechanics, Lazy-Loaded
+- Platformer Mechanic (Guard the Vault: Level Up)
+- Per-Band Realm Content Schema
+- Removed Visual Tells
+- ReportBlock Component
+- Session Persistence (localStorage)
+- Skin-Based Art Swap-In (SKINS / ACTIVE_SKIN)
+- Stepping-Stone Decision Run
+- The Traveler's Room Prologue
+- Vault Door Judgement Gate
+- Accessibility & Kid-Safety UX Notes
+- The Atlas Concept
+- Avoided Tropes (Neon Cyberspace, Warm Cream)
+- Balance the Day Mechanic
+- Component Inventory
+- Field-Journal / Passport Metaphor
+- The Ink Stamp Badge
+- Motion & Animation Direction
+- Scene Construction Rules
+- Screen Flow
+- Sort Mechanic
+- Spot Mechanic
+- State & Data Model
+- Technical Constraints
+- Design Token System
+- Ground Rule: scene_y = world_y x 2.8
+- Known Deviations from the Design Docs
+- No Fail State, Warm Redirect
+- Walkable Realm Scene
+- Atlas Gate (Prologue)
+- Balance Bay
+- Bully Bog
+- Comet
 - Keeper Vex
 - No Fear-Based Framing
-- Passport Stamps as Proof of Visit
+- Passworld
 - Pockets the Frog
-- Choice Consequences Are Reversible
+- Privacy Peaks
+- The Atlas
 - The Fog
 - The Glimmer
-- The Traveler (player)
+- The Traveler
 - The Traveler's Pledge
+- Wise Traveler Certificate
 
 ## God Nodes (most connected - your core abstractions)
-1. `Cyber Wellness Quest — Milestones & Team Workstreams` - 13 edges
-2. `fillRR()` - 12 edges
-3. `Cyber Wellness Quest — Design Document` - 12 edges
-4. `Cyber Wellness Quest — Storyline` - 11 edges
-5. `circle()` - 9 edges
+1. `fillRR()` - 15 edges
+2. `Cyber Wellness Quest — Milestones & Team Workstreams` - 13 edges
+3. `circle()` - 12 edges
+4. `Cyber Wellness Quest — Design Document` - 12 edges
+5. `Cyber Wellness Quest — Storyline` - 11 edges
 6. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
 7. `Cyber Wellness Quest` - 8 edges
 8. `DialogueCard()` - 7 edges
@@ -77,78 +145,87 @@
 - None detected.
 
 ## Hyperedges (group relationships)
-- **The Atlas Cast** — storyline_comet, storyline_keeper_vex, storyline_the_fog, storyline_pockets, storyline_the_glimmer, storyline_traveler [EXTRACTED 1.00]
-- **Documented Deviations from the Design Docs** — readme_walkable_world_deviation, readme_vite_app_deviation, readme_third_minigame_deviation [EXTRACTED 1.00]
+- **Fable Falls Realm Delivery** — cyber_wellness_quest_improvement_plan_fable_falls, cyber_wellness_quest_improvement_plan_stop_and_check, cyber_wellness_quest_improvement_plan_sure_framework, cyber_wellness_quest_improvement_plan_cyber_defender_quest, cyber_wellness_quest_improvement_plan_the_echo, cyber_wellness_quest_milestones_compare_mechanic, cyber_wellness_quest_improvement_plan_fifth_pledge_line [EXTRACTED 1.00]
+- **Judgement Rule Applied Across the Five Mini-Games** — cyber_wellness_quest_milestones_judgement_design_rule, design_sort_mechanic, design_spot_mechanic, design_balance_mechanic, cyber_wellness_quest_milestones_stepping_stones_mechanic, cyber_wellness_quest_milestones_platformer_mechanic, cyber_wellness_quest_milestones_vault_door_gate [EXTRACTED 1.00]
+- **Phaser Art Manifest and Skin Swap Pipeline** — cyber_wellness_quest_milestones_art_manifest, cyber_wellness_quest_milestones_skin_system, cyber_wellness_quest_milestones_brackeys_cc0_skin, cyber_wellness_quest_milestones_platformer_mechanic, cyber_wellness_quest_milestones_asset_pipeline, assets_readme_specs_table [EXTRACTED 1.00]
 
-## Communities (34 total, 21 thin omitted)
+## Communities (102 total, 87 thin omitted)
 
-### Community 0 - "AtlasGate.jsx"
-Cohesion: 0.11
-Nodes (14): AtlasGate(), BANDS, BEATS, ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge() (+6 more)
-
-### Community 1 - "World.jsx"
-Cohesion: 0.15
-Nodes (9): BY_NAME, CharacterArt(), Comet(), Boat(), Traveler(), distance(), KEY_DIRS, useWalker() (+1 more)
-
-### Community 2 - "RealmScreen.jsx"
-Cohesion: 0.11
-Nodes (20): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock(), StampMoment() (+12 more)
-
-### Community 3 - "passworldArt.js"
-Cohesion: 0.14
-Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+20 more)
-
-### Community 4 - "realms.js"
-Cohesion: 0.08
-Nodes (33): App(), AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, CertificateScreen() (+25 more)
-
-### Community 5 - "dependencies"
-Cohesion: 0.07
-Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
-
-### Community 6 - "package.json"
+### Community 0 - "Curriculum Scope & Band Split"
 Cohesion: 0.17
 Nodes (11): Characters, Cyber Wellness Quest — Storyline, Finale: The Wise Traveler, Prologue: The Atlas Gate, Realm 1: Passworld, Realm 2: Privacy Peaks, Realm 3: Bully Bog, Realm 4: Balance Bay (+3 more)
 
-### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
+### Community 1 - "Mechanics, Assets & Build Phases"
 Cohesion: 0.12
 Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Quest — Milestones & Team Workstreams, Folder & naming convention, Phase 0 — Foundation (shared design system + content schema), Phase 1 — Content authoring (both bands, all 5 realms), Phase 2 — New mechanics, Phase 3 — Backgrounds: scaling the existing 9 (+8 more)
 
-### Community 8 - "RealmArt.jsx"
-Cohesion: 0.14
-Nodes (6): SPA Root Mount Point, RealmArt(), SCENES, REALMS, ArtPreview(), MOODS
+### Community 2 - "Atlas Hub, Progress & Realm Data"
+Cohesion: 0.09
+Nodes (34): App(), AtlasGate(), BANDS, BEATS, CertificateScreen(), JournalProgress(), RealmScreen(), ICONS (+26 more)
 
-### Community 10 - "Cyber Wellness Quest — Improvement Plan (Living Doc)"
+### Community 3 - "Passworld Vault Level & Art"
 Cohesion: 0.14
-Nodes (13): 0. What this game is, 1. Source of truth: what the Overview Plan actually requires, 1a. How much does the source material actually differentiate by band?, 2. Consolidated content gaps (in priority order), 3. Realm plan by band, 4. Suggested play order (per band) — pacing, not calendar order, 5. Open items / needs from the team, 6. Changelog (+5 more)
+Nodes (31): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawGuessEngine(), drawHacker() (+23 more)
 
-### Community 11 - "Cyber Wellness Quest — Design Document"
+### Community 4 - "Dependencies & Build Config"
+Cohesion: 0.07
+Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
+
+### Community 5 - "Gate, Characters & Stamp Chrome"
+Cohesion: 0.15
+Nodes (9): BY_NAME, CharacterArt(), Comet(), Boat(), Traveler(), distance(), KEY_DIRS, useWalker() (+1 more)
+
+### Community 6 - "Traveler Room & Walk System"
+Cohesion: 0.17
+Nodes (6): BOUNDS, DIARY_SPOT, DOOR_SPOT, SPAWN, TravelerRoom(), RoomScene()
+
+### Community 7 - "Phaser Mini-Game Wrappers"
+Cohesion: 0.11
+Nodes (21): ChoiceCard(), DialogueCard(), PlatformerStoryRealm(), RealmArt(), EXTRA_BEAT_ORDER, GAMES, REALM_ICONS, ReportBlock() (+13 more)
+
+### Community 8 - "Realm Scene Illustration"
+Cohesion: 0.14
+Nodes (5): SPA Root Mount Point, SCENES, REALMS, ArtPreview(), MOODS
+
+### Community 9 - "Realm Screen & React Mini-Games"
 Cohesion: 0.12
 Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Direction & Rationale, 3. Token System, 4. Screen Flow, 5. Interaction Patterns, 6. Component Inventory (for the eventual React build), 7. State & Data Model (rough shape) (+8 more)
 
-### Community 13 - "AtlasMap.jsx"
+### Community 10 - "Sort Mechanic"
+Cohesion: 0.14
+Nodes (13): 0. What this game is, 1. Source of truth: what the Overview Plan actually requires, 1a. How much does the source material actually differentiate by band?, 2. Consolidated content gaps (in priority order), 3. Realm plan by band, 4. Suggested play order (per band) — pacing, not calendar order, 5. Open items / needs from the team, 6. Changelog (+5 more)
+
+### Community 11 - "Balance Mechanic"
+Cohesion: 0.17
+Nodes (11): Files touched, Handover — Passworld rebuild (2026-08-20), Not done / next up, `src/components/PlatformerStoryRealm.jsx`, `src/data/realms.js`, `src/minigames/phaser-scenes/passwordFortressLevelScene.js`, `src/minigames/phaser-scenes/passworldArt.js`, `src/styles.css` (+3 more)
+
+### Community 13 - "Playtest & Launch"
+Cohesion: 0.20
+Nodes (7): AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, orderedActiveRealms()
+
+### Community 16 - "Cyber Wellness Quest"
 Cohesion: 0.20
 Nodes (9): Cyber Wellness Quest, How it plays, Known deviations from the design docs, Layout, Notes on the build, Running it, Scene contact sheet, The four realms (+1 more)
 
 ## Knowledge Gaps
-- **124 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+119 more)
+- **184 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+179 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **87 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasGate.jsx`, `realms.js`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `World()` connect `World.jsx` to `AtlasGate.jsx`, `RealmScreen.jsx`, `realms.js`?**
+- **Why does `DialogueCard()` connect `Phaser Mini-Game Wrappers` to `Atlas Hub, Progress & Realm Data`, `Playtest & Launch`?**
   _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `World()` connect `Gate, Characters & Stamp Chrome` to `Playtest & Launch`, `Traveler Room & Walk System`, `Phaser Mini-Game Wrappers`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _129 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `AtlasGate.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.11462450592885376 - nodes in this community are weakly interconnected._
-- **Should `World.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected._
-- **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.11092436974789915 - nodes in this community are weakly interconnected._
-- **Should `passworldArt.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.14193548387096774 - nodes in this community are weakly interconnected._
+  _204 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Mechanics, Assets & Build Phases` be split into smaller, more focused modules?**
+  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+- **Should `Atlas Hub, Progress & Realm Data` be split into smaller, more focused modules?**
+  _Cohesion score 0.08536585365853659 - nodes in this community are weakly interconnected._
+- **Should `Passworld Vault Level & Art` be split into smaller, more focused modules?**
+  _Cohesion score 0.13725490196078433 - nodes in this community are weakly interconnected._
+- **Should `Dependencies & Build Config` be split into smaller, more focused modules?**
+  _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
