@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, RefreshCw } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
@@ -7,6 +7,7 @@ import StampMoment from './StampMoment';
 import RealmArt from './RealmArt';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
+import { playMusic, stopMusic } from '../lib/music';
 
 /**
  * A realm whose entire experience — story, the decision, the mini-game —
@@ -53,6 +54,17 @@ export default function PlatformerStoryRealm({
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
   const total = realm.game.tiles.filter((t) => t.kind === 'real').length;
   const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
+
+  // Music plays for the level itself, not the story/rule beats either side of
+  // it — starts the moment the vault becomes playable, stops the moment it
+  // isn't (leaving early via the journal's back button unmounts this
+  // component mid-step too, which the cleanup below still catches). Retrying
+  // (round bumps, step stays 'level') deliberately doesn't restart it.
+  useEffect(() => {
+    if (step !== 'level') return undefined;
+    playMusic('platformer');
+    return () => stopMusic();
+  }, [step]);
 
   function choose(optionId) {
     setPick(optionId);

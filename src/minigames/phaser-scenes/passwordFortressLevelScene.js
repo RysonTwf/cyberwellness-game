@@ -24,6 +24,7 @@ import {
   spriteScale,
   tileTextureFor,
 } from './passworldArt';
+import { playSfx } from '../../lib/sfx';
 
 // Only the few tints the scene applies at runtime live here — everything the
 // art itself is drawn with belongs to passworldArt.js.
@@ -483,6 +484,10 @@ export function makePasswordFortressLevelConfig(
 
       if (jumpPressed && this.player.body.blocked.down) {
         this.player.setVelocityY(-360);
+        // Gravity clears `blocked.down` the very next tick, so this branch
+        // naturally only fires once per grounded press — no extra edge
+        // tracking needed to keep the sound single-shot per jump.
+        playSfx('jump');
       }
 
       // Airborne beats grounded: rising reads as jump, descending as fall,
