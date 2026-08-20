@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1787254898.1353211,
-    "ast_hash": "2611030a2e79c6274dfbb4b5e89f677f",
+    "mtime": 1787251064.7475138,
+    "ast_hash": "5d655aec277e6f0da52dc2dffd9ef47b",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -25,7 +25,7 @@
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
-    "mtime": 1787254836.1919303,
+    "mtime": 1787251091.6438289,
     "ast_hash": "2536782bb539820f4fa04cb7f5910760",
     "semantic_hash": ""
   },
@@ -110,13 +110,13 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787254906.675109,
-    "ast_hash": "6fed7824f71e084530fedb8f40a6f053",
+    "mtime": 1787246546.6028924,
+    "ast_hash": "e738fd76ecd84ccc81ad3ad0dc89dd99",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
-    "mtime": 1787254919.511656,
-    "ast_hash": "f6c82b578842f574c4b798a09c0681de",
+    "mtime": 1787246538.0330982,
+    "ast_hash": "5ba2d0f24419d9e85821ddeb06553837",
     "semantic_hash": ""
   },
   "vite.config.js": {
@@ -205,7 +205,7 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787254777.7448654,
+    "mtime": 1787246844.375425,
     "ast_hash": "1b73ccc76dc9ab73aae05a9e1f5baba8",
     "semantic_hash": ""
   },
@@ -29205,8 +29205,8 @@
     "semantic_hash": ""
   },
   "src/lib/sfx.js": {
-    "mtime": 1787251758.048904,
-    "ast_hash": "cc620058196d2935ca1d92c3ec9fcefd",
+    "mtime": 1787251292.2942555,
+    "ast_hash": "02c206213e53fe39e96494fa75e351a0",
     "semantic_hash": ""
   },
   "public/audio/gameplay/platformer_music_8bit.mp3": {
@@ -29255,28 +29255,8 @@
     "semantic_hash": ""
   },
   "src/lib/music.js": {
-    "mtime": 1787251771.3688161,
-    "ast_hash": "668d0d1a102bfecdcdcc7946b5abb9c1",
-    "semantic_hash": ""
-  },
-  "src/components/SettingsMenu.jsx": {
-    "mtime": 1787251812.7177906,
-    "ast_hash": "1f1ce289a2004ee40c7ae42f4bbcc890",
-    "semantic_hash": ""
-  },
-  "src/hooks/useAudioSettings.js": {
-    "mtime": 1787251794.2425978,
-    "ast_hash": "93202eb554a34e24b3c5934a668f1e0b",
-    "semantic_hash": ""
-  },
-  "src/lib/audioSettings.js": {
-    "mtime": 1787251733.4773412,
-    "ast_hash": "b050f092470019297b8d971c8e5506ad",
-    "semantic_hash": ""
-  },
-  "src/lib/inputLock.js": {
-    "mtime": 1787251739.126317,
-    "ast_hash": "980a0fbd7136f5687a371376437b5b99",
+    "mtime": 1787251300.87837,
+    "ast_hash": "5d6022b5b3128993f9e613004edab3d5",
     "semantic_hash": ""
   }
 }
