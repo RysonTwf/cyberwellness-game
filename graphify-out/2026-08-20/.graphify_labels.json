@@ -7,11 +7,11 @@
   "5": "Gate, Characters & Stamp Chrome",
   "6": "Traveler Room & Walk System",
   "7": "Phaser Mini-Game Wrappers",
-  "8": "Realm Scene Illustration",
   "9": "Realm Screen & React Mini-Games",
   "10": "Sort Mechanic",
   "11": "Balance Mechanic",
   "12": "graphify Workflow",
+  "13": "bogArt.js",
   "14": "Step Panel Portal",
   "15": "Vite Config",
   "16": "Cyber Wellness Quest",
@@ -99,5 +99,6 @@
   "98": "The Glimmer",
   "99": "The Traveler",
   "100": "The Traveler's Pledge",
-  "101": "Wise Traveler Certificate"
+  "101": "Wise Traveler Certificate",
+  "103": "MiniGameSort.jsx"
 }

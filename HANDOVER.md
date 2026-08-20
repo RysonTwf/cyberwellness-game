@@ -1,185 +1,249 @@
-# Handover — Bully Bog rebuild (2026-08-20)
+# Handover — Privacy Peaks + Balance Bay rebuilds (2026-08-20)
 
-Branch: `merge/ryson-plus-mine`. The Passworld work described in the previous
-handover is now **committed and pushed** (`b00bde5`). Everything below is
-**new uncommitted working-tree state** on top of it. `npx vite build` passes;
-all three chapters were played through end to end in a browser.
+Branch: `merge/ryson-plus-mine`. The Bully Bog work is **committed**
+(`7762f96`). Everything below is **new uncommitted working-tree state** on top
+of it, from two sessions: Privacy Peaks first, then Balance Bay. `npx vite
+build` passes; both realms were played end to end in a browser, and every
+failure mode each one claims was measured rather than assumed.
 
----
-
-## What was asked for, and what shipped
-
-Previous handover's open item #1: *"the other four realms are still short."*
-The ask this session was **Bully Bog only**, and — asked mid-session — to make
-it **"more game-like instead of text-like"**, with a free hand on the mechanic.
-
-So Bully Bog P4–P6 is no longer a story → decision → sort → rule sequence. It's
-three chapters of a real arcade game, **The Bog Current**, built on the same
-`fullMechanic` seam Passworld uses.
-
-| Ask | Where it landed |
-| --- | --- |
-| Lengthen Bully Bog | 3 chapters, 27 comments + a pile-on tail of 5, ~2.5 min of actual play |
-| Make it game-like | New Phaser scene: a current, a boat, a net, three drop stations, a live clarity meter |
-| Keep the curriculum | Every comment carries a `why`; the two `extraBeats` now land on the chapter debriefs they belong to |
-| Keyboard + mouse only | Arrows/WASD **or** the boat follows the pointer; Space **or** click for the one verb |
+Four of the five realms now run as full multi-chapter experiences. **Fable
+Falls is the only one left.**
 
 ---
 
-## The game
+## The pattern all four now share
 
-Comments float right-to-left along three lanes toward Pockets' lily pad. You
-paddle a coracle anywhere in the water. **Space or a click** scoops the nearest
-comment into your net; press again over one of the stations on the near bank to
-drop it there.
+Each of these realms had the same disease, and it wasn't length: **the mechanic
+taught against its own rule.**
 
-| Station | What it does |
-| --- | --- |
-| **Report** | Takes a comment out of the water before it lands |
-| **Pockets** | Shows a comment to Pockets |
-| **The heron** | Fetches a grown-up (chapter 3 only) |
+| Realm | The old mechanic quietly taught… | …but the rule says |
+| --- | --- | --- |
+| Bully Bog | sorting comments into two tidy piles | acting is *hard*, and doing nothing is the easy option |
+| Privacy Peaks | judge a message by reading it | looking official is the easiest part to fake |
+| Balance Bay | plan a tidy day from a god's-eye view | notice how you feel *in the moment*, while it's still fun |
 
-Anything you never touch drifts off the left edge and **lands**.
+So in each case the fix was to make the mechanic *be* the rule, and — the part
+worth keeping — **to enforce it with arithmetic rather than assert it in a text
+box.** Every one of these realms now has a scoring curve in which the tempting
+wrong strategy is measurably unable to reach the target. That's the house
+style now; hold the next realm to it.
 
-**The mechanic is the lesson, and it's enforced by the scoring, not asserted in
-a text box:**
+`FULL_MECHANICS` in `RealmScreen.jsx` is the seam. It is now four lines.
 
-- Only carrying a **kind** comment to Pockets raises clarity. Reporting mean
-  ones merely stops it falling. A player who spends the round deleting bad
-  comments and never says anything kind **mathematically cannot clear the
-  water.** Bystander → upstander, in arithmetic.
-- Mean comments **gather likes** while they sit, and hit harder for each one
-  (`base × (1 + likes × 0.25)`). Acting early beats acting perfectly.
-- A **pile-on** spawns as a leader with followers stacked behind it. Report the
-  leader and the whole tail pops with it; pick off followers one at a time and
-  the leader lands anyway.
-- **Heavy** cards (about who somebody *is*) slow the boat and the report basket
-  refuses them outright. They only drop at the heron — chapter 3 **cannot be
-  finished without asking an adult for help**, on purpose.
-- **Doing nothing is a legal move**, and sometimes right: `fair` comments
-  (honest, unwelcome, not cruel) are best left in the water. Reporting one
-  costs you.
+---
 
-Every station × kind combination has a scored, worded outcome — see `OUTCOMES`
-in the scene. There is no combination that just silently does nothing.
+# Part 1 — Privacy Peaks: "The Fog Line"
 
-## The three chapters
+Three chapters. Messages arrive pegged to a line along a ridge, all on
+identical white paper. You lift one down, carry it to a post and **hold** to
+check — the spyglass (who actually sent it), the signal fire (check by a route
+*you* chose), the ranger's hut (ask a grown-up) — then commit at one end of the
+ridge or the other: the drop, or the waypost.
 
-Data lives in `src/data/realms.js` → `bullybogHigher.game.levels`.
+**The arithmetic:** committing unchecked scores a token +2/+3 *even when you're
+right*; committing after the check that would have caught it scores +10/+12.
+Being suspicious of everything fails too, because some messages are genuine and
+matter. Checks cost seconds, the line holds two notes, and the wind takes what
+you leave hanging — so you must triage.
 
-| # | Name | Teaches | New mechanic |
+| # | Chapter | Adds |
+| --- | --- | --- |
+| 1 | Who's Actually Talking | the two commits, the spyglass |
+| 2 | Looks Right, Isn't | the signal fire, and senders who genuinely *are* who they claim |
+| 3 | What They're Really After | `heavy` messages; only the ranger's hut resolves them |
+
+The decision fires the moment the "Atlas Security" message arrives
+(`decisionOn: 'q3'` — keyed to a message id, not a count as the Bog does), with
+it still hanging on the line.
+
+### Measured
+
+| Play style | Ch1 (t 82) | Ch2 (t 82) | Ch3 (t 80) |
 | --- | --- | --- | --- |
-| 1 | One Comment at a Time | Deleting the cruel one isn't the job; nothing improves until you say the kind thing where it can be seen | the two verbs |
-| 2 | The Pile-On | A pile-on isn't one comment × 5 — the replies borrow their nerve from the first one | `chain` tails, `likeEvery` |
-| 3 | About Who You Are | The comments that stick are about who somebody is; those aren't yours to carry alone | `heavy` cards, the heron, `fair` cards |
+| Check, then commit | **100** ✓ | **100** ✓ | **100** ✓ |
+| Perfect instincts, never checks | 56 ✗ | — | — |
+| Touches nothing | 30 ✗ | — | — |
+| Spyglass only, never the fire | — | 70 ✗ | — |
+| Never asks the ranger | — | — | 50 ✗ |
 
-**The realm's decision fires mid-round in chapter 2.** The current freezes with
-the pile-on still sitting in the water and the panel asks. An unsafe answer
-darkens the water by 14 and hands the decision straight back without unfreezing
-(no dead ends, design.md §5); the safe answer drops **the player's own words
-into the water as a card** (`level.ownComment`) that they then have to carry
-over to Pockets themselves.
+**A balance bug worth knowing about:** chapter 2 originally let a
+spyglass-only player pass at 87/82 — its entire claim, undone by its own
+scoring, because only three cards were fire-decided and the clamp at 100 hid
+the penalty. Fixed in the *data*, not the dials: `q5` and `q9` became
+`caughtBy: ['fire']`, and their `spy` lines were reworded to be **true but not
+decisive** ("The school address, as always. Which is also what a good fake
+would look like."). That wording pattern is the chapter — imitate it if you add
+cards there.
 
----
+### Files
 
-## Files touched
+- `src/minigames/phaser-scenes/fogLineScene.js` (new) — the scene.
+- `src/minigames/phaser-scenes/peakArt.js` (new) — procedural art; the far
+  lookout's 4 frames are the visibility readout.
+- `src/components/PeaksStoryRealm.jsx` (new) — the React frame.
+- `src/data/realms.js` — `privacyHigher` rewritten; story re-sequenced, new
+  `extraBeats`, `rule` rewritten to pull three chapters together.
 
-### `src/minigames/phaser-scenes/bogCurrentScene.js` (new, ~700 lines)
-The scene. One class replayed per chapter, everything data-driven: `comments`,
-`speed`, `gap`, `likeEvery`, `hasHeron`, `decisionAfter`, `startClarity`,
-`target`.
+**Don't undo these three; each cost a debugging pass:** a carried note is
+x-clamped (the commits sit within half a note of the canvas edges); the hold
+ring sits *beside* the post at depth 25 (a carried note hangs over the post
+you're standing at and covered it); a note's spawn pop is scale-only, never
+alpha. Also: `drawReach()` owns every note's `y` every frame, so nothing else
+may tween `y` on a note.
 
-Two numbers that were chosen **together** and must stay that way: `CARD_W`
-(190) and `LANES` (114/158/202, i.e. 44 apart). 44px is exactly the tallest a
-two-line card gets; narrower cards push the longest comments to three lines and
-neighbouring lanes start colliding. **If you add a comment longer than ~60
-characters, check it still wraps to two lines.**
-
-Grab range is measured to the nearest **edge** of a card, not its centre — at
-190px wide, a centre-distance test made a card ungrabbable from either end. The
-reach ring around the boat is therefore literally true: if it touches a
-comment, you can lift it.
-
-Draw order is explicit: cards depth 1, boat 10, a carried card 20, HUD 30.
-
-### `src/minigames/phaser-scenes/bogArt.js` (new)
-Procedural art set, same swap-in contract as `passworldArt.js` — `ART_MANIFEST`
-declares both the eventual sprite-sheet file and a `draw()` stand-in; a `SKINS`
-entry can replace any subset. Boat (2 frames), **Pockets (4 frames, driven by
-the clarity meter — the frog's face is the readout you actually watch)**, heron
-(2), reeds, puff, heart, treeline, water.
-
-Comment cards aren't in the manifest: they're sized by their own text at
-runtime (`bubbleTexture`). They're deliberately **not** colour-coded by kind —
-only `heavy` ones look different, and that difference says "this one is not
-like the others", never which side of the line it's on.
-
-### `src/components/BogStoryRealm.jsx` (new)
-The React frame: `story → chapter → round → debrief → (next chapter…) → rule →
-stamp`. Owns the chapter cards, the clarity meter, the station legend, the live
-feed, the decision, and the debrief.
-
-**Same design constraint as Passworld, don't break it:** nothing reveals what a
-comment actually was until the debrief. The cards are identical paper, the
-meter moves on everything, and each comment's `why` is only read out afterwards.
-
-The `extraBeats` (`footprint`, `tellSomeone`) that RealmScreen used to show in a
-run after the decision now land on the chapter debrief whose lesson they match —
-footprint on chapter 2, "who would you tell" on chapter 3, right after the game
-has just made the player go and fetch an adult. They **gate** the Next button.
-
-### `src/components/RealmScreen.jsx`
-The `fullMechanic === 'platformerStory'` special case became a `FULL_MECHANICS`
-lookup, so a third realm that wants to own its whole experience is one line.
-
-### `src/data/realms.js`
-`bullybogHigher.story` re-sequenced — it used to open straight onto the pile-on,
-which now belongs to chapter 2, so it introduces the bog, the boat and the net
-instead. `bullybogHigher.game` replaced with `{ type: 'bogcurrent', levels: [×3] }`
-and `fullMechanic: 'bogCurrent'` added. `decision`, `extraBeats` and `rule` are
-unchanged — the decision content fits chapter 2 exactly as written.
-
-### `src/styles.css`
-Appended: `.bog-meter*`, `.bog-stations`/`.bog-station-*`, `.bog-controls`,
-`.bog-feed`, `.bog-debrief`.
+`CARD_W` (210) and `SLOTS` (140/376) were chosen together. **Keep message
+`text` under ~95 characters** or a note wraps to four lines and reaches into
+the posts.
 
 ---
 
-## Verified in-browser
+# Part 2 — Balance Bay: "One More"
 
-All three chapters played to completion, then the rule and the stamp.
-Confirmed: kind→Pockets +14, mean→Report 0 and no landing damage, the pile-on
-leader taking 3 followers with it, heavy cards refused at both Report and
-Pockets and accepted at the heron (+10), the decision freezing the current at
-`decisionAfter`, the unsafe answer darkening the water and re-asking without
-unfreezing, the safe answer spawning the player's own card, both extra beats
-gating their Next button, and the debrief naming every comment correctly.
+Three chapters. You play with the Glimmer — actually play, catching motes it
+throws you — and the only question the game ever asks is *one more?*
 
-**Testing note for whoever picks this up:** the browser-automation tab runs
-`document.hidden`, so `requestAnimationFrame` never fires and the Phaser loop
-sits at frame 0 — the scene renders its `create()` output and then appears
-frozen. That is *not* a bug in the game. Drive it by hand instead:
-`game.step(t, 16.67)` in a loop, with a temporary `window.__bog = this` at the
-end of `create()`. (Both were removed again; `grep -rn "__bog" src/` is clean.)
+**The arithmetic, and it's the good bit:** the toy genuinely gets worse. Each
+round throws fewer motes, duller ones, and pays less. Meanwhile the bonfire
+burns down, faster the longer you stay. So there's a hump, it's in the middle,
+and **both** failure modes lose: quitting immediately fails, and playing every
+round scores *worse than never playing at all*.
+
+| # | Chapter | Adds |
+| --- | --- | --- |
+| 1 | One More | the loop, numbers on — the decline is visible |
+| 2 | You're Basically Fine | **the numbers go away.** Only the Traveler's posture, the bonfire, the sky and the tide are left |
+| 3 | The Bonfire | **autoplay** — the next round starts unless you stop it — plus a friend who waves, with a deadline |
+
+The decision fires at a "one more?" after round 3 of chapter 2, with the
+Glimmer already insisting you're fine and the numbers already switched off. The
+safe answer buys a **notice beat**: the scene points, once, at the three things
+that were already on screen.
+
+### Measured
+
+Chapter 1, every stopping point (target 82, ~85% catch rate):
+
+| Stopped after | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Evening | 60 ✗ | 71 ✗ | 82 ✓ | 88 ✓ | **89** ✓ | 87 ✓ | 77 ✗ | 56 ✗ |
+
+Note **56 < 60**: playing every round really is worse than never playing.
+
+Chapter 3 (target 82): stopping at 2 → 78 ✗; **3 → 94 ✓; 4 → 94 ✓**; 5 → 63 ✗;
+6 → 58 ✗. The pass window is exactly the wave window. A **fully passive player
+— one who never touches the choice after the first round — lands at 56**, which
+is the chapter's whole claim about autoplay, in a number.
+
+Full clean run: 88 / 84 / 93, rule, stamp saved.
+
+### Files
+
+- `src/minigames/phaser-scenes/oneMoreScene.js` (new) — the scene.
+- `src/minigames/phaser-scenes/bayArt.js` (new) — procedural art. **Two sprites
+  are readouts, not scenery:** the Traveler's 4-frame posture and the bonfire's
+  4 frames. Chapter 2 has nothing else, so treat them as load-bearing.
+- `src/components/BayStoryRealm.jsx` (new) — the React frame **and the evening
+  chart** (see below).
+- `src/data/realms.js` — `balanceHigher` rewritten. `balanceLower` is now
+  self-contained (this band used to borrow `balanceLower.game.items`), and
+  `MiniGameBalance` stays registered because P1–P3 still uses it.
+
+**Three things not to undo:**
+
+1. **The choice buttons sit over the water, not the beach**, and the veil
+   covers only the sky and sea. They were originally at the bottom and covered
+   the Traveler — i.e. hid the posture readout at the exact moment chapter 2
+   needs it.
+2. **"One more" is bright and big; "I'm done for now" is quiet and further
+   away.** That asymmetry is deliberate — it's a real dark pattern, it's why
+   stopping takes effort, and the debrief names it out loud. Both are equally
+   clickable and equally keyboard-reachable; **the weight is visual, never
+   mechanical.** Don't "fix" it, and don't make it actually harder to press.
+3. **The Glimmer is drawn pretty and stays pretty.** Making it sinister would
+   answer "am I still enjoying this?" for the player and teach the wrong thing
+   — the claim is not that screens are bad.
+
+### The evening chart (`EveningChart` in `BayStoryRealm.jsx`)
+
+This realm's teaching happens in the debrief, because the thing it wants you to
+notice is invisible while it's happening. The chart is one axis (evening
+points) diverging around a neutral zero rule: what each round was **worth**
+above it, what it **cost** below. Read left to right, the moment the gold bar
+outgrows the periwinkle one is the moment "one more" stopped paying for
+itself. Rounds you never reached are drawn faintly from the chapter's design
+values, so the quit-immediately failure can still see the hump it stopped short
+of.
+
+Built against the `dataviz` skill, and two of its rules bit for real:
+
+- **One scale, both directions.** The first version scaled up-bars and
+  down-bars independently, which put the visual crossover somewhere other than
+  the real one — a covert dual-axis on precisely the thing the chart exists to
+  show. Both are the same unit; they now share one pixels-per-point. **Don't
+  re-split them.**
+- **The palette is validated, and the gold has a debt.** periwinkle/gold pass
+  the categorical checks (adjacent ΔE 34.3 protan, 24.4 tritan, 35.4 normal),
+  but gold is 2.27:1 on white — under 3:1. That's why every bar is directly
+  labelled *and* there's a visible table under the chart. That relief is
+  required, not decoration; if you restyle the chart, keep both.
+
+---
+
+## Verified in-browser (both realms)
+
+Story → three chapters → rule → stamp, progress saved, no console errors, on
+each realm. Plus, on Privacy Peaks: the decision freezing as `q3` spawns with
+the message still hanging; the unsafe answer costing 12 and re-asking
+**without** unfreezing; heavy notes refused at the waypost and +14 at the hut;
+both extra beats gating Next. On Balance Bay: the numbers genuinely hidden in
+chapter 2 (`hudBar.visible === false`); the decision firing after round 3; the
+unsafe answer costing 8 and re-asking; the notice beat naming its three tells;
+autoplay starting round 4 by itself after 4 s; the wave opening after round 3
+and closing one round later.
+
+**Testing note, same as the last two sessions:** the browser-automation tab
+reports `document.hidden`, so `requestAnimationFrame` never fires and the
+Phaser loop sits at frame 0. Drive it by hand: a temporary `window.__peak` /
+`window.__bay = this` at the end of `create()`, then `game.step(t, 16.67)` in a
+loop. **`scene.update` and `time.delayedCall` advance under hand-stepping but
+tweens barely do** (a 260 ms tween moved ~38 ms across 60 hand-steps), so
+anything mid-tween looks frozen or half-faded in screenshots — a harness
+artifact, not a bug. Both hooks were removed; `grep -rn "__peak\|__bay" src/`
+is clean.
 
 ---
 
 ## Not done / next up
 
-1. **Three realms still short.** Privacy Peaks, Balance Bay and Fable Falls are
-   all still one story → one decision → one mini-game → one rule. Bully Bog and
-   Passworld now give two different worked examples of how to extend one, and
-   `FULL_MECHANICS` in `RealmScreen.jsx` is the seam to hang the next off.
-2. **Lower band (P1–P3) Bully Bog is untouched** — still the card-sorting game,
-   same as lower-band Passworld.
-3. **`bullybogHigher.rule`** still reads as a single-lesson wrap-up written for
-   the old one-comment scenario. It now follows three chapters and could pull
-   the three threads together explicitly — same open item Passworld's `rule` has.
-4. **Balance for real players is untested.** Every clarity number was checked by
-   scripted play, which acts instantly and never misses. A child at 40px/s with
-   a mouse will drop things. If chapter 2 or 3 turns out to be too tight, the
-   dial is `target` (currently 88 on all three) rather than the outcome values —
-   those carry the lesson.
-5. The old `MiniGameSort` path is still in the tree and still correct: it's what
-   both bands' P1–P3 content uses.
-6. `graphify update .` has been run.
+1. **Fable Falls is the last short realm.** Still one story → one decision →
+   one Detective/Compare board → one rule. It's in better shape than the other
+   three were — the Compare mechanic is bespoke and recent (`de44a37`) — so the
+   question there is more "does it need three chapters?" than "is the mechanic
+   wrong?". Worth actually asking before rebuilding it: it may be that Fable
+   Falls needs *lengthening* rather than *replacing*, which would be a first.
+2. **`MiniGameSteppingStones` + `steppingStonesScene` are unused** since the
+   Peaks rebuild. Correct, still registered in `GAMES`, pointed at by nothing.
+   Delete or reuse deliberately.
+3. **Lower band (P1–P3) is untouched everywhere.** Passworld, Bully Bog,
+   Privacy Peaks and Balance Bay all still run their original simple mechanics
+   for the younger band — which is fine and probably right, but it is now a
+   very large gap between the two bands' P4–P6 and P1–P3 experiences.
+4. **Balance for real players is untested in all four realms.** Every number in
+   this document came from scripted play, which reads instantly, never
+   hesitates, and catches ~85% of everything. A real child spends 3–5 s reading
+   each message and will dither at every "one more?". Expect both new realms to
+   be harder in a classroom than they were in the harness. The dials:
+   - Peaks: `patience` (14/12/11.5 s) and `gap`, then `target`.
+   - Bay: `target` and `bonfireStart`. **Not `fun`/`cost`** — those carry the
+     lesson, and the whole curve was tuned as one shape.
+5. **A pre-existing cosmetic issue, not introduced here:** several
+   player-visible strings in `bullybogHigher` use `*asterisk*` emphasis, which
+   renders literally (debrief text is plain React children, not markdown). The
+   new Peaks and Bay copy avoids it; Bully Bog's
+   `game.levels[1].instruction` and a couple of `lesson` lines still have it.
+6. **A small improvement in `BayStoryRealm` worth back-porting:** it infers the
+   *shape* of an extra beat from the data (a beat with `options` is a question,
+   anything else is an acknowledgement) instead of hard-coding the two known
+   keys the way the Bog and the Peaks do. That's why Balance Bay could add a
+   `noticing` beat without touching the component.
+7. `graphify update .` has been run.

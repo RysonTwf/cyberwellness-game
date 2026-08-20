@@ -948,19 +948,52 @@ const privacyLower = {
 };
 
 /**
- * P4–P6 variant — subtler scam/phishing nuance (Improvement Plan §3), paired
- * with the Phase 2 Phaser stepping-stone mechanic ("Clear the Fog: Level
- * Up" — minigames/MiniGameSteppingStones.jsx).
+ * P4–P6 variant — subtler scam/phishing nuance (Improvement Plan §3).
+ *
+ * The realm now runs as three chapters of one arcade game, "The Fog Line"
+ * (components/PeaksStoryRealm.jsx + minigames/phaser-scenes/fogLineScene.js),
+ * rather than the shared story → decision → mini-game → rule step machine.
+ *
+ * The old mechanic was six Phaser stepping stones: read a message, step on it
+ * or skip it. Two problems. It was over in about forty seconds — and, worse,
+ * it asked the player to *judge a message by reading it*, which is exactly the
+ * skill a decent scam is built to defeat. This realm's own rule says so:
+ * looking official is the easiest part to fake, so go and check by a route you
+ * chose. A mechanic that pays out for reading teaches against its own lesson.
+ *
+ * So the game pays out for *checking* instead. Messages hang on a line, all on
+ * identical paper; the only way to learn anything about one is to carry it to
+ * a post and spend seconds you haven't got. Committing unchecked scores a
+ * token amount even when you're right; committing after the check that would
+ * have caught it scores five times as much. Being suspicious of everything
+ * fails too, because some of the messages are genuine and matter.
+ *
+ * `MiniGameSteppingStones` and `steppingStonesScene` are left in the tree —
+ * they're correct, they're still registered in RealmScreen's `GAMES`, and any
+ * future band or realm that wants a stone-hopping quiz can point at them. As
+ * of this change nothing does.
  */
 const privacyHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Privacy Peaks, but the fog's cleverer this time — it's learned to sound official.",
+      text: "Privacy Peaks again — and the fog's cleverer this time. It's learned to sound official.",
     },
     {
-      who: '"Atlas Security"',
-      text: '⚠️ URGENT: Unusual activity detected on your account. Verify your identity within 24 hours or your account will be permanently suspended. Tap here to confirm your password and continue.',
+      who: 'Comet',
+      text: 'Up here the messages arrive pegged to a line strung along the ridge. Look at them. Every single one is the same white paper.',
+    },
+    {
+      who: 'Comet',
+      text: "That's the whole trick of this place. A logo, a warning triangle, a countdown — those are the cheapest parts of a message to fake. You cannot tell by looking, and anyone who says they can is about to get caught.",
+    },
+    {
+      who: 'Comet',
+      text: 'So there are posts along the ridge. A spyglass, for seeing who actually sent a thing. Later on, a signal fire — that one means going and checking the official way, by a route you picked. Then you commit: over the edge, or through the waypost to do what it says.',
+    },
+    {
+      who: 'Comet',
+      text: `Fair warning — a check costs you seconds, and the wind takes anything left hanging. More will arrive than you can possibly check. Working out which ones are worth the walk is most of the job. ${COMET_CATCHPHRASE}`,
     },
   ],
 
@@ -988,54 +1021,396 @@ const privacyHigher = {
     ],
   },
 
+  extraBeats: {
+    footprint: {
+      who: 'Comet',
+      prompt:
+        'One more thing, while the fire\'s still lit. Say you had typed your password into that page. How would you get it back?',
+      accept: "You couldn't.",
+      followUp:
+        "That's the difference between this realm and the others. A click you can usually undo. Something you handed over is gone the second you send it — it's been copied before you've finished reading the next message. Which is why the check has to come first, not after.",
+    },
+    tellSomeone: {
+      who: 'Comet',
+      prompt:
+        "Some of those weren't asking you to click anything. They wanted to know where you live, or what you look like, or for a secret kept from your grown-ups. If one of those arrived when nobody was standing next to you, who's a trusted adult you'd show it to?",
+      options: [
+        { id: 'parent', text: 'A parent or family member' },
+        { id: 'teacher', text: 'A teacher' },
+        { id: 'other-adult', text: 'Another trusted adult' },
+      ],
+      response:
+        "Good answer. And notice the ranger's hut wasn't the last resort up there — for that kind of message it was the one thing on the whole ridge that worked. Showing someone isn't giving up. It's the move.",
+    },
+  },
+
+  // The whole realm — this decision included — runs as three chapters of one
+  // arcade game (components/PeaksStoryRealm.jsx), not the shared
+  // story→decision→game→rule step machine. `decision` above still supplies the
+  // exact content shown; only *when* it appears differs. It fires the moment
+  // the "Atlas Security" message arrives part-way through chapter 2, with that
+  // message still hanging on the line in front of you.
+  fullMechanic: 'fogLine',
+
+  /**
+   * Privacy Peaks P4–P6 as three chapters of "The Fog Line".
+   *
+   * Each chapter adds one thing that makes checking harder than knowing you
+   * should:
+   *
+   *   1. Who's Actually Talking — the two commits and the spyglass, and the
+   *      discovery that the same right answer pays five times as much once
+   *      you've actually looked.
+   *   2. Looks Right, Isn't — the signal fire, and messages whose sender
+   *      genuinely *is* who it says. The spyglass confirms them and they're
+   *      still fake. Only going and looking for yourself catches those.
+   *   3. What They're Really After — `heavy` messages, asking for something
+   *      about *you*. The waypost refuses them and the drop costs you; the
+   *      ranger's hut is the only thing that resolves one.
+   *
+   * Every message carries a `why`, and — same rule as Passworld's vault and
+   * the Bog's water — nothing reveals which was which until the debrief. The
+   * notes are identical paper and the meter moves on everything.
+   *
+   * `kind` is the truth about a message: 'bait' (a scam), 'real' (genuine and
+   * it mattered), 'noise' (genuine and harmless), 'heavy' (asking for
+   * something about you). `caughtBy` names the post whose check would actually
+   * settle it — checking the *other* one costs the same seconds and tells you
+   * something true but not decisive, which is chapter 2's entire point.
+   *
+   * Copy is written for 10–12s: real message-app voice for the messages
+   * themselves, plain words everywhere else. **Keep message `text` under about
+   * 95 characters** — longer than that and a note wraps to four lines and
+   * reaches down into the posts (see CARD_W in fogLineScene.js).
+   */
   game: {
-    type: 'steppingstones',
-    title: 'Clear the Fog: Level Up',
+    type: 'fogline',
+    title: 'The Fog Line',
     instruction:
-      "Six stones, six messages — one at a time. Step on the ones that are fine. Skip the ones with a red flag, rather than just walking into them. These are trickier than before: official-looking doesn't mean official.",
-    stones: [
+      'Walk the ridge and work the line. Every message is the same paper until you go and check it.',
+    levels: [
+      /* ---------------------------------------------------------------- */
+      /* Chapter 1 — Who's Actually Talking                               */
+      /* ---------------------------------------------------------------- */
       {
-        id: 'q1',
-        text: '"Your order has shipped — no action needed."',
-        flag: false,
-        note: 'No link to click, no urgency, nothing asked of you. Fine to step on.',
+        id: 'talking',
+        name: "Who's Actually Talking",
+        chapter: 'Chapter 1 of 3',
+        intro:
+          'Eight messages, all on the same white paper, all arriving faster than you can deal with them. There is one post open on the ridge — the spyglass, which shows you who actually sent a thing rather than whose name is printed on top.',
+        goal: 'Find out what a guess is worth up here, and what a check is worth.',
+        instruction:
+          'Lift a message down, then take it somewhere. Hold at the spyglass to see who really sent it. Then commit: over the edge to let it go, or through the waypost to do what it says.',
+        posts: ['spy'],
+        startVisibility: 36,
+        target: 82,
+        gap: 4200,
+        patience: 14000,
+        pass: 'The fog lifted. And look at what lifted it — not the ones you got right, the ones you found out about first.',
+        retry:
+          'Still fogged in. Count how many you committed without walking to the spyglass: a guess that happens to be right only ever pays a little, on purpose. And check what happened to the genuine ones — letting those blow off the line costs you too.',
+        lesson:
+          'You cannot tell by looking, and the scoring just proved it: the same right answer was worth five times as much once you had actually checked. Being right by luck is not a skill — you cannot use it again tomorrow, and a scam only has to catch you once.',
+        messages: [
+          {
+            id: 'c1',
+            from: 'Northwind Parcels',
+            text: 'Your parcel is out for delivery today. Nothing you need to do.',
+            kind: 'noise',
+            caughtBy: ['spy'],
+            spy: 'Same tracking number that has been on your account all week.',
+            why: 'No link, no rush, nothing asked of you. Not everything official-looking wants something.',
+          },
+          {
+            id: 'c2',
+            from: 'PRIZE TEAM 🎁',
+            text: 'You WON a tablet! Claim in the next 10 minutes or it goes to someone else!',
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'Forty other accounts are sending this exact message right now.',
+            why: 'A prize you never entered for, and a clock. Both of those are only there to stop you thinking.',
+          },
+          {
+            id: 'c3',
+            from: 'Atlas Camp',
+            text: 'Change of plan — the bus leaves at 8:10 tomorrow, not 8:30.',
+            kind: 'real',
+            caughtBy: ['spy'],
+            spy: 'The same account that has sent every camp note this term.',
+            why: 'Real, ordinary, and it mattered. Binning it because it might have been fake costs you something too.',
+          },
+          {
+            id: 'c4',
+            from: 'Atlas Support',
+            text: 'New sign-in detected. Confirm your password here to keep your account.',
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'The address underneath reads atlas-support.help-desk-live.co.',
+            why: 'No support team anywhere needs your password typed into a message. Read the address, not the name on top of it.',
+          },
+          {
+            id: 'c5',
+            from: 'School library',
+            text: 'Reminder: your book is due back on Friday.',
+            kind: 'noise',
+            caughtBy: ['spy'],
+            spy: 'Comes from the library address, same as it always has.',
+            why: 'Dull. Dull is usually a good sign, and it is fine to just let a dull one go.',
+          },
+          {
+            id: 'c6',
+            from: 'Mia (new number!)',
+            text: 'lost my phone, this is my new number!! can you send me your login so i can get back in 😭',
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'That number belongs to nobody in your contacts, and never has.',
+            why: "A friend's name is the easiest part of a message to type. The panic is in there so that you don't stop to check.",
+          },
+          {
+            id: 'c7',
+            from: 'Ms Oyelaran',
+            text: 'Bring your reading journal on Monday, please.',
+            kind: 'real',
+            caughtBy: ['spy'],
+            spy: 'Sent from the school address you have had all year.',
+            why: 'Genuine, and worth doing. The skill is not "trust nothing" — it is "find out".',
+          },
+          {
+            id: 'c8',
+            from: 'Atlas Rewards',
+            text: 'One click to confirm your details: atlas-rewards-verify.net',
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'Read the part just before the .net — that is where the real name lives, and it is not Atlas.',
+            why: 'Anyone can put the word "atlas" at the front of an address. The bit at the end is the part that decides where you actually go.',
+          },
+        ],
       },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 2 — Looks Right, Isn't                                   */
+      /* ---------------------------------------------------------------- */
       {
-        id: 'q2',
-        text: '"URGENT: verify within 24 hours or lose your account — tap here"',
-        flag: true,
-        note: 'A countdown and a threat, both designed to rush you past thinking. Worth skipping.',
+        id: 'looksright',
+        name: "Looks Right, Isn't",
+        chapter: 'Chapter 2 of 3',
+        intro:
+          'Word got round, and the fog got better at it. Some of these really are from who they say — the spyglass will tell you so, and they are still lying. There is a second post now: the signal fire, which means going and checking the official way, by a route you picked instead of the one you were handed.',
+        goal: 'Find out what the spyglass cannot settle, and what can.',
+        instruction:
+          'Two posts now, and both take time you do not have. The spyglass says who sent it. The fire says whether the thing it claims is actually true. Work out which question each message needs.',
+        posts: ['spy', 'fire'],
+        startVisibility: 32,
+        target: 82,
+        gap: 3900,
+        patience: 12000,
+        decisionOn: 'q3',
+        afterDecision: 'You said you would check it yourself. The fire is over there.',
+        beat: 'footprint',
+        pass: 'The fog lifted, including the part of it that was telling the truth about who it was. Nicely done — that is the harder half.',
+        retry:
+          'Still fogged in, and the sender is why. Look at which ones you settled with the spyglass alone: on some of them the name really was genuine, and the thing it was claiming still was not. Those need the fire.',
+        lesson:
+          'A real name on top is not proof, and neither is a real logo. The only thing that settles a message is going and looking somewhere the message did not choose for you — open the app, type the address in yourself, ring the number you already had. And it works both ways: that is also how you find out a warning is real.',
+        messages: [
+          {
+            id: 'q1',
+            from: 'Atlas Camp',
+            text: 'Kit list for Saturday is up on the noticeboard. No reply needed.',
+            kind: 'noise',
+            spy: 'The camp account, same as ever.',
+            fire: 'The list is on the noticeboard, exactly as it says.',
+            why: 'Nothing asked of you, and both checks agree. Some messages really are just information.',
+          },
+          {
+            id: 'q2',
+            from: 'Atlas',
+            text: "A new sign-in happened on your account. If it wasn't you, open the app and check.",
+            kind: 'real',
+            caughtBy: ['fire'],
+            spy: 'Genuinely from Atlas — the address underneath checks out.',
+            fire: 'You open the app yourself: yes. A sign-in from the school library computer, an hour ago.',
+            why: 'Real warnings do exist. This one told you to go and look for yourself instead of handing you a link — that is the difference, and it is the only one that matters.',
+          },
+          {
+            id: 'q3',
+            from: '"Atlas Security"',
+            text: '⚠️ Unusual activity. Your account is suspended in 24 hours unless you verify now.',
+            kind: 'bait',
+            caughtBy: ['fire'],
+            spy: 'Display name reads "Atlas Security". So does the real one. A name proves nothing at all.',
+            fire: 'You open the app the ordinary way. No warning. Nothing wrong with your account whatsoever.',
+            why: 'A logo, a warning triangle and a countdown, and every one of those is free to fake. The only thing that settled it was looking somewhere the message did not pick for you.',
+          },
+          {
+            id: 'q4',
+            from: 'forwarded by a classmate',
+            text: 'Sign up for the trip here — needs your full name, address and date of birth.',
+            kind: 'bait',
+            caughtBy: ['fire'],
+            spy: 'Sent by someone you know, who was forwarding it on from somewhere else.',
+            fire: "The school's own trip form asks for none of that. It already knows who you are.",
+            why: 'Forwarded by somebody you trust is not the same as written by somebody you trust. And a real form never asks for what it already has.',
+          },
+          {
+            id: 'q5',
+            from: 'Ms Oyelaran',
+            text: 'Swimming has moved to Thursday this week.',
+            kind: 'real',
+            caughtBy: ['fire'],
+            spy: 'The school address, as always. Which is also what a good fake would look like.',
+            fire: 'The timetable on the school page says Thursday too.',
+            why: 'Genuine and it mattered — but notice that the address alone never proved that. The timetable did.',
+          },
+          {
+            id: 'q6',
+            from: 'freebies_now',
+            text: 'FREE coins generator — 2 minutes left! no password needed (just log in first)',
+            kind: 'bait',
+            spy: 'An account made yesterday, with no other posts on it.',
+            fire: 'Nothing anywhere says this exists. Nothing ever will.',
+            why: '"No password needed — just log in" is the same sentence twice, and it is asking both times.',
+          },
+          {
+            id: 'q7',
+            from: 'Atlas',
+            text: "Your password turned up in a data leak. Change it now — here's the link.",
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'That link goes to atlas.security-check.io. Atlas does not live there.',
+            fire: 'There genuinely was a leak this month. The advice is right. The link is not.',
+            why: 'The cleverest kind there is: the advice is real, which is exactly what makes people click. Do the right thing — and do it by your own route.',
+          },
+          {
+            id: 'q8',
+            from: 'Council',
+            text: 'Bin day moves to Wednesday next week.',
+            kind: 'noise',
+            spy: 'From the council address. Riveting.',
+            fire: 'It is on the council site. It is also still about bins.',
+            why: 'Real, checkable, and none of your business. Not every message needs the whole ritual — the seconds you spend here are seconds you did not spend on something that mattered.',
+          },
+          {
+            id: 'q9',
+            from: '"the Atlas team"',
+            text: "Reply with the 6-digit code we just texted you and we'll fix your account.",
+            kind: 'bait',
+            caughtBy: ['fire'],
+            spy: 'Sent from a plain mobile number. So are plenty of real messages.',
+            fire: 'Atlas never texts you a code and then asks for it back. That code is the lock.',
+            why: 'That code is the last thing standing between somebody else and your account. Anybody asking for it is the exact reason it exists.',
+          },
+        ],
       },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 3 — What They're Really After                            */
+      /* ---------------------------------------------------------------- */
       {
-        id: 'q3',
-        text: '"This is the Atlas Team. Please confirm your password to continue."',
-        flag: true,
-        note: 'No real team ever needs your password typed into a message. Worth skipping.',
-      },
-      {
-        id: 'q4',
-        text: '"Reminder: your library book is due Friday."',
-        flag: false,
-        note: 'Ordinary, boring, no ask. Not everything official-looking is a trap — fine to step on.',
-      },
-      {
-        id: 'q5',
-        text: 'atlas-security-verify.free-rewards.net',
-        flag: true,
-        note: "Look at the actual address, not just the words around it — that's not where the real Atlas lives. Worth skipping.",
-      },
-      {
-        id: 'q6',
-        text: '"Hi, it\'s your teacher — can you send me your login so I can check something on your account?"',
-        flag: true,
-        note: 'A real adult in charge can look into your account their own way — they never need your password to do it. Worth skipping.',
+        id: 'reallyafter',
+        name: "What They're Really After",
+        chapter: 'Chapter 3 of 3',
+        intro:
+          'Last stretch, and some of what is coming is not after your password at all. It wants to know where you live, or what you look like, or for you to keep something from your grown-ups. Those notes are on darker paper — you can see they are different, but not which way. The ranger\'s hut is open now.',
+        goal: 'Find out which messages stop being a puzzle you solve on your own.',
+        instruction:
+          'Three posts. Some of these will not go through the waypost at all, and letting them blow away costs you. When one of them will not go anywhere else, that is the game telling you something.',
+        posts: ['spy', 'fire', 'hut'],
+        startVisibility: 30,
+        target: 80,
+        gap: 3800,
+        patience: 11500,
+        beat: 'tellSomeone',
+        pass: 'The fog lifted all the way down to the tree line — and the part of it you could not have cleared on your own, you did not try to.',
+        retry:
+          'Still fogged in. Look at the ones on the darker paper. The waypost would not take them and the edge charged you for them; there is exactly one place left on this ridge, and walking to it is not losing.',
+        lesson:
+          'The messages that ask for something about you — where you live, what you look like, a secret from your grown-ups — are not a harder version of the same puzzle. They are a different one, and it is not yours to solve alone. That is why the waypost refused them and the ranger did not.',
+        messages: [
+          {
+            id: 'r1',
+            from: 'Atlas Camp',
+            text: 'Photo day is Friday. Nothing to bring.',
+            kind: 'noise',
+            spy: 'The camp account. Still the camp account.',
+            fire: 'On the noticeboard, same as the kit list was.',
+            why: 'Harmless. Worth being able to tell the harmless ones apart quickly, so you have time for the rest.',
+          },
+          {
+            id: 'r2',
+            from: 'someone new',
+            text: "you seem cool! what school do you go to? don't tell your parents — they'll make it weird",
+            kind: 'heavy',
+            caughtBy: ['spy'],
+            spy: 'An account four days old. Yours is the only conversation on it.',
+            fire: 'Nothing to check. This one is not making a claim — it is asking about you.',
+            why: 'Two things at once: where to find you, and a reason to keep it quiet. The second one is always the bigger of the two, and it is the part to tell somebody about.',
+          },
+          {
+            id: 'r3',
+            from: 'Atlas Billing',
+            text: "Your parent's card was declined. Enter the card number to keep your account.",
+            kind: 'bait',
+            caughtBy: ['spy', 'fire'],
+            spy: 'The address underneath is atlas-billing.secure-pay.link.',
+            fire: 'Nothing is wrong with the account. Nothing was ever billed to it.',
+            why: 'Not your card, not your decision, and no real service asks a child to type one in. Two reasons to stop, and either one is enough.',
+          },
+          {
+            id: 'r4',
+            from: 'Coach Ade',
+            text: "Saturday's match moved to 9am. Kit on, at the gate for 8:45.",
+            kind: 'real',
+            spy: 'The number you have had in your phone since September.',
+            fire: 'The club page says 9am too.',
+            why: 'Genuine, and you would have been an hour late. Being careful is not the same as ignoring everybody.',
+          },
+          {
+            id: 'r5',
+            from: 'xX_trader',
+            text: "i'll send you the rare skin — just send a photo of you first. it deletes after, promise",
+            kind: 'heavy',
+            caughtBy: ['spy'],
+            spy: 'This account has sent that exact line to eleven other people this week.',
+            fire: 'There is no skin. There never is.',
+            why: '"It deletes after" is not a thing that is true. A picture you send is a picture somebody else has, forever, and that is not a trade.',
+          },
+          {
+            id: 'r6',
+            from: 'School library',
+            text: 'Your book has been renewed automatically.',
+            kind: 'noise',
+            spy: 'The library address again.',
+            fire: 'Renewed. It really is about a book.',
+            why: 'Quick to clear once you know the shape of a boring one. That speed is what buys you time for the heavy ones.',
+          },
+          {
+            id: 'r7',
+            from: 'GiveawayBot',
+            text: "you've won! just send your home address so we can post the prize 🎉",
+            kind: 'heavy',
+            caughtBy: ['spy', 'fire'],
+            spy: 'The same message, word for word, on two hundred other accounts.',
+            fire: 'No competition exists, so nobody needs anywhere to post anything.',
+            why: 'Your address is the prize. That is the whole shape of it — and an adult would want to know somebody asked.',
+          },
+          {
+            id: 'r8',
+            from: 'Atlas Help',
+            text: 'one click and it is fixed: atlas-help.verify-now.link',
+            kind: 'bait',
+            caughtBy: ['spy'],
+            spy: 'verify-now.link is where that goes. Atlas is just the word in front.',
+            why: 'By now you can read an address the way you read a name. That is the whole of chapter one, and it still works.',
+          },
+        ],
       },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'The upgraded rule for the Peaks: scams get better at looking real the older you get — logos, official language, countdowns. None of that is proof. The tell is always the same underneath: rushing you, and asking for something (a password, a click, a link) a real message wouldn\'t need. When in doubt, go check the official way yourself, and loop in a trusted adult.',
+    text: "The upgraded rule for the Peaks, and it's the three chapters in order. One: you cannot tell by looking — a logo, official wording and a countdown are the cheapest parts of a message to fake, and the older you get the better the fakes get. Two: so check, by a route you picked yourself. Open the app, type the address in, ring the number you already had. Never the link you were handed — and remember that's also how you find out a real warning is real. Three: some messages aren't a puzzle to solve at all. Anything asking where you live, what you look like, or for a secret from your grown-ups goes straight to a trusted adult. That isn't giving up. On this mountain it was the only thing that worked.",
   },
 };
 
@@ -1637,23 +2012,51 @@ const balanceLower = {
 };
 
 /**
- * P4–P6 variant — same mechanic, reframed around noticing how tech makes
- * you feel rather than just counting hours (Improvement Plan §3). Reuses
- * `balanceLower.game.items` — same ten cards, just a different lens on them.
+ * P4–P6 variant — reframed around noticing how tech makes you feel rather
+ * than counting hours (Improvement Plan §3).
+ *
+ * The realm now runs as three chapters of one arcade game, "One More"
+ * (components/BayStoryRealm.jsx + minigames/phaser-scenes/oneMoreScene.js),
+ * rather than the shared story → decision → mini-game → rule step machine.
+ *
+ * The old mechanic was `balance`: fill six hours from a pool of twelve cards,
+ * watch a beam tilt, done in about forty seconds. It taught against its own
+ * lesson twice over. It's a *god's-eye view* — full information, no time
+ * pressure, nothing at stake — which is the one situation in which balance is
+ * easy; and it scored a tidy screen-to-life ratio, when this band's whole
+ * point is that counting is the junior version of the skill and noticing is
+ * the real one.
+ *
+ * So the game is the moment itself. You play with the Glimmer — actually
+ * play — and the only question it ever asks is "one more?". The toy really
+ * does get worse round by round, the evening really does cost more the longer
+ * you stay, and nobody tells you when to stop.
+ *
+ * `MiniGameBalance` is left in the tree and still registered in RealmScreen's
+ * `GAMES`: the P1–P3 band still uses it, and `balanceLower` is now
+ * self-contained (this band used to borrow `balanceLower.game.items`).
  */
 const balanceHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Balance Bay again. The tide's high, same as always — but look closer this time.",
+      text: "Balance Bay again. The tide's high, same as always — and there's the Glimmer, out in the water, already pleased to see you.",
     },
     {
       who: 'The Glimmer',
-      text: "Stay a little longer! You don't even look tired. You're basically fine, right?",
+      text: 'Come and play! I throw, you catch. It’s the best thing on this whole beach and you know it.',
     },
     {
       who: 'Comet',
-      text: 'Down the beach, the bonfire\'s still going. But notice — how does it actually feel, sitting here with the Glimmer this long?',
+      text: 'And it isn’t lying. That’s the part people get wrong about this place — the Glimmer really is fun. Go on, play. I mean it.',
+    },
+    {
+      who: 'Comet',
+      text: 'Down the beach there’s a bonfire, and your friends are round it. It’s burning now. It won’t be burning all night.',
+    },
+    {
+      who: 'Comet',
+      text: `So the only question here is the one the Glimmer keeps asking: one more? Nothing on this beach is going to answer it for you. ${COMET_CATCHPHRASE}`,
     },
   ],
 
@@ -1681,26 +2084,183 @@ const balanceHigher = {
     ],
   },
 
-  game: {
-    type: 'balance',
-    title: 'Balance the Day: Level Up',
-    instruction:
-      "Same six hours — but this time, as you fill them, notice which ones you'd actually look forward to versus just fall into.",
-    slots: 6,
-    items: balanceLower.game.items,
-    verdicts: {
-      allScreen:
-        "All screens, and be honest — does that actually feel good right now, or just familiar? A day that's only screens doesn't leave room to find out.",
-      noScreen:
-        "Zero screens isn't the goal either — that's swinging just as hard the other way. Screens can be one of the things that feels good. The question was never really \"how many,\" it's \"does this still feel good, or am I just still here.\"",
-      level:
-        "Look at that — level, and probably because some of this actually sounded good to choose, not just easy to default to. That's the whole trick at this age: noticing, not counting.",
+  extraBeats: {
+    // A beat with `options` renders as a question, anything else as something
+    // to acknowledge — BayStoryRealm infers the shape from the data, so a new
+    // beat here needs no component change (unlike the Bog and the Peaks,
+    // where the two known keys are hard-coded).
+    noticing: {
+      who: 'Comet',
+      prompt:
+        'One question, and it’s the only one that really matters in this bay. Next time you’re partway through something and it has quietly stopped being as good as it was — what would you notice first?',
+      options: [
+        { id: 'body', text: 'That I’ve stopped sitting up' },
+        { id: 'face', text: 'That I’ve stopped smiling' },
+        { id: 'attention', text: 'That I’m not really looking at it any more' },
+      ],
+      response:
+        'Any of those will do. The trick isn’t which one you pick — it’s that you have one, and that you go and look for it on purpose instead of waiting for the feeling to get loud enough to notice by itself. It usually doesn’t.',
     },
+    tellSomeone: {
+      who: 'Comet',
+      prompt:
+        'Last thing. Some people find putting a thing down much harder than others, and that isn’t a character flaw — plenty of them are built to be hard to put down. If you ever couldn’t stop when you actually wanted to, who’s a trusted adult you’d tell?',
+      options: [
+        { id: 'parent', text: 'A parent or family member' },
+        { id: 'teacher', text: 'A teacher' },
+        { id: 'other-adult', text: 'Another trusted adult' },
+      ],
+      response:
+        'Good answer. And notice it’s the same answer as three realms ago — the grown-up isn’t only for scary things. "I keep meaning to stop and I don’t" is a completely normal thing to say out loud.',
+    },
+  },
+
+  // The whole realm — this decision included — runs as three chapters of one
+  // arcade game (components/BayStoryRealm.jsx), not the shared
+  // story→decision→game→rule step machine. `decision` above still supplies the
+  // exact content shown; only *when* it appears differs. It fires at a "one
+  // more?" part-way through chapter 2, with the Glimmer already insisting
+  // you're fine and the numbers already switched off.
+  fullMechanic: 'oneMore',
+
+  /**
+   * Balance Bay P4–P6 as three chapters of "One More".
+   *
+   * Each chapter adds one thing that makes stopping harder than knowing you
+   * should:
+   *
+   *   1. One More — the loop, with the numbers on. The toy gets duller and the
+   *      evening gets pricier, and both are visible.
+   *   2. You're Basically Fine — the numbers go away. Only the Traveler's
+   *      posture, the bonfire, the sky and the tide are left.
+   *   3. The Bonfire — the next round starts by itself unless you stop it, and
+   *      the thing you're missing now has a time on it.
+   *
+   * **The curve is the curriculum.** `fun` falls fast and `cost` climbs fast,
+   * and they were tuned together so that both failure modes genuinely lose:
+   * playing every round scores *worse* than never playing, and stopping
+   * immediately fails too. There is a hump, it's in the middle, and the
+   * debrief chart draws it. If a chapter needs balancing, move `target` or
+   * `bonfireStart` — changing `fun`/`cost` changes the lesson.
+   *
+   * `motes` is how many things the Glimmer throws that round; `dim` makes them
+   * duller. Those two are the honest version of "it stopped being as fun",
+   * because they are the round actually having less in it.
+   */
+  game: {
+    type: 'onemore',
+    title: 'One More',
+    instruction: 'Play with the Glimmer. Decide when you’ve had enough.',
+    levels: [
+      /* ---------------------------------------------------------------- */
+      /* Chapter 1 — One More                                             */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'onemore',
+        name: 'One More',
+        chapter: 'Chapter 1 of 3',
+        intro:
+          'The Glimmer throws, you catch. That’s the whole game, and it’s genuinely good — so play it. After every round it will ask whether you want another, and there is no right number of rounds written down anywhere.',
+        goal: 'Find out what a round is actually worth, and what it costs.',
+        instruction:
+          'Catch what the Glimmer throws. Between rounds, watch two things: how much that round was worth, and how much of the bonfire went while you were playing.',
+        opener: 'Come and play! I’ve got so many for you.',
+        bonfireStart: 60,
+        target: 82,
+        showNumbers: true,
+        beat: null,
+        rounds: [
+          { fun: 18, cost: 5, motes: 14, glimmer: 'Ready?' },
+          { fun: 16, cost: 5, motes: 13, glimmer: 'That was nothing. One more?' },
+          { fun: 13, cost: 6, motes: 11, glimmer: 'One more! You’re good at this.' },
+          { fun: 9, cost: 7, motes: 8, glimmer: 'One more. It’s early.' },
+          { fun: 5, cost: 9, motes: 6, dim: true, glimmer: 'You don’t want to stop now, do you?' },
+          { fun: 2, cost: 12, motes: 4, dim: true, glimmer: 'One more. Time doesn’t really pass here.' },
+          { fun: 1, cost: 16, motes: 3, dim: true, glimmer: 'Stay. One more. Stay.' },
+        ],
+        pass: 'Good evening. You had a proper amount of fun and you still got to the bonfire while it was worth getting to.',
+        retry:
+          'Not quite. Look at the chart: if you stopped almost straight away you barely had any fun, and if you kept going the rounds were paying you almost nothing while the evening was costing you the most. The good answer is in the middle, and it moves.',
+        lesson:
+          'Two things were happening at once and only one of them was obvious. The rounds were quietly getting worse — fewer things thrown, duller ones, worth less — while every extra round cost more of the evening than the one before it. Nothing announced either. They just happened while you were busy.',
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 2 — You're Basically Fine                                */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'basicallyfine',
+        name: "You're Basically Fine",
+        chapter: 'Chapter 2 of 3',
+        intro:
+          'Same beach, same game — except the Glimmer has made the numbers go away. No score, no round value, nothing to check. It would like you to go on how you feel, and it is very confident that you feel fine.',
+        goal: 'Find out what’s left to go on when nothing is telling you.',
+        instruction:
+          'No numbers tonight. Watch yourself, the bonfire, the sky and the tide — those four were on screen the whole of last chapter too.',
+        opener: 'No boring numbers tonight. Just us. Ready?',
+        bonfireStart: 62,
+        target: 78,
+        showNumbers: false,
+        decisionAfter: 3,
+        beat: 'noticing',
+        rounds: [
+          { fun: 17, cost: 5, motes: 13, glimmer: 'Ready?' },
+          { fun: 15, cost: 6, motes: 12, glimmer: 'One more. You’re barely warmed up.' },
+          { fun: 12, cost: 6, motes: 10, glimmer: 'One more! See, isn’t this better without the counting?' },
+          { fun: 8, cost: 8, motes: 7, glimmer: 'You don’t even look tired. You’re basically fine, right?' },
+          { fun: 4, cost: 10, motes: 5, dim: true, glimmer: 'One more. What else were you going to do?' },
+          { fun: 2, cost: 13, motes: 3, dim: true, glimmer: 'One more. You’re fine. You’re fine.' },
+          { fun: 1, cost: 16, motes: 3, dim: true, glimmer: 'Stay.' },
+        ],
+        pass: 'You called it without a single number on the screen. That’s the version of this skill you actually get to use.',
+        retry:
+          'Not quite — and the numbers were never coming. Go again and watch your own shoulders, and the bonfire down the beach. Both of them were saying it well before you were ready to hear it.',
+        lesson:
+          '"Do I feel fine?" is a terrible stop sign for something built to feel fine. Feelings arrive late and quiet. What arrives on time is the ordinary physical stuff — you stop sitting up, you stop smiling, you stop really looking at it — and the thing you were going to do instead, still waiting, getting smaller.',
+      },
+
+      /* ---------------------------------------------------------------- */
+      /* Chapter 3 — The Bonfire                                          */
+      /* ---------------------------------------------------------------- */
+      {
+        id: 'bonfire',
+        name: 'The Bonfire',
+        chapter: 'Chapter 3 of 3',
+        intro:
+          'Last evening in the Bay, and the Glimmer has stopped waiting for an answer — if you don’t say anything, it just starts the next round. Meanwhile, down the beach, something is happening at the bonfire that won’t wait either.',
+        goal: 'Find out what doing nothing counts as.',
+        instruction:
+          'The next round starts on its own unless you stop it — the gold line filling on "One more" is the Glimmer deciding for you. And keep half an eye down the beach.',
+        opener: 'Come on, quick, before it gets dark!',
+        bonfireStart: 58,
+        target: 82,
+        showNumbers: true,
+        autoplayMs: 4000,
+        waveAfter: 3,
+        waveWindow: 1,
+        waveBonus: 12,
+        waveMissPenalty: 8,
+        beat: 'tellSomeone',
+        rounds: [
+          { fun: 18, cost: 5, motes: 13, glimmer: 'Ready?' },
+          { fun: 15, cost: 6, motes: 12, glimmer: 'One more — starting it for you, don’t worry about it.' },
+          { fun: 12, cost: 7, motes: 10, glimmer: 'One more. You didn’t say no.' },
+          { fun: 8, cost: 9, motes: 7, glimmer: 'Ignore that. One more.' },
+          { fun: 4, cost: 11, motes: 5, dim: true, glimmer: 'They’ll still be there. One more.' },
+          { fun: 2, cost: 14, motes: 3, dim: true, glimmer: 'One more. One more. One more.' },
+        ],
+        pass: 'You looked up, and you got there while they were still waving. That is a very specific kind of good evening.',
+        retry:
+          'Two different ways to miss it: leave before anything has happened down the beach, or still be playing when it does. And notice what happened if you just let the gold line fill — the Glimmer picked for you every time, and it never once picked the bonfire.',
+        lesson:
+          'The hardest one, and it isn’t about willpower. When the next thing starts by itself, doing nothing stops being neutral — it becomes a yes that somebody else said on your behalf. And what it costs usually isn’t a vague "balance": it’s one particular thing, happening down the beach, that was only happening for a little while.',
+      },
+    ],
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bay: counting hours matters less as you get older than noticing how you actually feel. Glimmer-type stuff is built to feel fine in the moment, so \"do I feel fine\" isn't always a reliable stop sign — check in with yourself, on purpose, sometimes, and let that be the thing that decides when enough's enough.",
+    text: "The upgraded rule for the Bay, and it's the three evenings in order. One: the fun runs out before the time does. Almost everything is best early and thinner later, so \"am I still enjoying this?\" is a real question with a real answer, and it changes while you're not looking. Two: don't wait to feel bad — feelings turn up late. Pick something you can actually see, like your own shoulders or the thing you meant to do instead, and check it on purpose. Three: when the next one starts by itself, doing nothing is not staying neutral. It's saying yes, and something else said it. Screens were never the enemy here. Losing the choice was.",
   },
 };
 

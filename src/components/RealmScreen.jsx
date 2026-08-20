@@ -15,6 +15,8 @@ import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BogStoryRealm from './BogStoryRealm';
+import PeaksStoryRealm from './PeaksStoryRealm';
+import BayStoryRealm from './BayStoryRealm';
 
 const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
 // 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
@@ -36,6 +38,8 @@ const GAMES = {
 const FULL_MECHANICS = {
   platformerStory: PlatformerStoryRealm,
   bogCurrent: BogStoryRealm,
+  fogLine: PeaksStoryRealm,
+  oneMore: BayStoryRealm,
 };
 
 // Order the optional post-decision beats appear in, when a realm defines them
