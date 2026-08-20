@@ -6,6 +6,7 @@ import AtlasMap from './components/AtlasMap';
 import RealmScreen from './components/RealmScreen';
 import CertificateScreen from './components/CertificateScreen';
 import JournalProgress from './components/JournalProgress';
+import SettingsMenu from './components/SettingsMenu';
 import { useProgress } from './state/useProgress';
 import { useUiClickSfx } from './hooks/useUiClickSfx';
 import { useUiHoverSfx } from './hooks/useUiHoverSfx';
@@ -36,6 +37,8 @@ export default function App() {
 
   return (
     <div className="app">
+      <SettingsMenu />
+
       <div className="shell">
         {currentScreen !== 'title' && currentScreen !== 'character' && currentScreen !== 'room' && (
           <JournalProgress

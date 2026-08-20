@@ -4,6 +4,7 @@ import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
 import Boat from './Boat';
 import { useWalker, distance } from './useWalker';
+import { isInputLocked } from '../lib/inputLock';
 
 /**
  * A walkable 2D space — used for both a realm and the Atlas hub.
@@ -86,6 +87,7 @@ export default function World({
   useEffect(() => {
     if (paused || !active) return undefined;
     const onKey = (e) => {
+      if (isInputLocked()) return;
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         onInteract(active);

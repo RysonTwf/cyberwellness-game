@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { isInputLocked } from '../lib/inputLock';
 
 /**
  * Movement for the Traveler inside a 2D realm.
@@ -76,6 +77,9 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     if (!enabled) return undefined;
 
     const down = (e) => {
+      // A floating overlay (the settings menu) sitting on top doesn't stop
+      // this window-level listener on its own — see lib/inputLock.js.
+      if (isInputLocked()) return;
       if (KEY_DIRS[e.key]) {
         // Don't let arrow keys scroll the page out from under the world.
         e.preventDefault();
@@ -114,11 +118,16 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
       let dx = 0;
       let dy = 0;
 
-      for (const key of keys.current) {
-        const dir = KEY_DIRS[key];
-        if (dir) {
-          dx += dir[0];
-          dy += dir[1];
+      // Freezes movement immediately even if a key was already held down the
+      // instant the overlay opened (the `down` guard above only stops *new*
+      // presses from registering).
+      if (!isInputLocked()) {
+        for (const key of keys.current) {
+          const dir = KEY_DIRS[key];
+          if (dir) {
+            dx += dir[0];
+            dy += dir[1];
+          }
         }
       }
 

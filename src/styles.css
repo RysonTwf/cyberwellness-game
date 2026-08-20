@@ -465,7 +465,10 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 0 20px;
+  /* Right padding reserves a gutter for the fixed settings gear
+     (.settings-fab, App.jsx) sitting in the viewport's top-right corner —
+     without it the stamp dots run in right underneath it. */
+  padding: 10px 52px 20px 0;
 }
 
 .journal-count {
@@ -1903,4 +1906,85 @@ p {
 .msg.marked {
   border-color: var(--coral);
   box-shadow: inset 0 0 0 2px var(--coral);
+}
+
+/* ---------- Settings menu (SettingsMenu.jsx) --------------------------- */
+/* The gear sits above every screen, .panel-scrim (30) and .stamp-flash (40)
+   included — it needs to stay reachable no matter what's open underneath.
+   The panel it opens goes higher still, so it's never the thing buried. */
+
+.settings-fab {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 45;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--paper-card);
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.settings-fab:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.settings-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(31, 52, 82, 0.42);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 4vh, 48px) clamp(12px, 4vw, 24px);
+  animation: settle 0.18s ease both;
+}
+
+.settings-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 4vw, 26px);
+  box-shadow: var(--shadow-lift);
+  animation: panel-in 0.22s ease both;
+}
+
+.volume-row {
+  display: grid;
+  grid-template-columns: 108px 1fr 42px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.volume-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.volume-pct {
+  font-family: var(--font-stamp);
+  font-size: 0.85em;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.volume-slider {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--gold);
 }
