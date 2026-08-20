@@ -7,11 +7,16 @@ import RealmScreen from './components/RealmScreen';
 import CertificateScreen from './components/CertificateScreen';
 import JournalProgress from './components/JournalProgress';
 import { useProgress } from './state/useProgress';
+import { useUiClickSfx } from './hooks/useUiClickSfx';
+import { useUiHoverSfx } from './hooks/useUiHoverSfx';
 import { REALM_BY_ID, getBandView } from './data/realms';
 
 export default function App() {
   const { state, dispatch, allStamped, reset } = useProgress();
   const { currentScreen, travelerName, realmProgress, band } = state;
+
+  useUiClickSfx();
+  useUiHoverSfx();
 
   const rawRealm = REALM_BY_ID[currentScreen] ?? null;
   // Every screen downstream of the gate reads content for the band chosen

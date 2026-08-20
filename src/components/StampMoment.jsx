@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { playSfx } from '../lib/sfx';
 import StampBadge from './StampBadge';
 import DialogueCard from './DialogueCard';
 
@@ -12,6 +13,7 @@ export default function StampMoment({ realm, angle, travelerName, onBackToAtlas 
   const [flash, setFlash] = useState(true);
 
   useEffect(() => {
+    playSfx('yay');
     const t = setTimeout(() => setFlash(false), 640);
     return () => clearTimeout(t);
   }, []);

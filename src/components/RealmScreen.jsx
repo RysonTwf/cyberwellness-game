@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ArrowRight, Key, Compass, Heart, Sun, Eye, RefreshCw, Check, X } from 'lucide-react';
+import { playSfx } from '../lib/sfx';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
@@ -103,6 +104,9 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
   function choose(optionId) {
     setPick(optionId);
     const option = realm.decision.options.find((o) => o.id === optionId);
+    // Never a "wrong answer" buzzer here (design.md §5) — just settled vs.
+    // "let's think about that again."
+    playSfx(option.safe ? 'confirm' : 'error');
     if (option.safe) onSettle(realm.id, optionId);
   }
 
@@ -341,6 +345,7 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
                 <Game
                   game={realm.game}
                   onComplete={(result) => {
+                    playSfx('complete');
                     setScore(result);
                     setStep('rule');
                     setOpen(false);

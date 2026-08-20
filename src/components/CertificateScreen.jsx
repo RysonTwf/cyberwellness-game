@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PenLine, RotateCcw, BookMarked } from 'lucide-react';
+import { playSfx } from '../lib/sfx';
 import DialogueCard from './DialogueCard';
 import StampBadge from './StampBadge';
 import { Comet } from './Characters';
@@ -69,7 +70,10 @@ export default function CertificateScreen({
               type="button"
               className="btn btn-accent"
               style={{ '--accent': 'var(--gold)' }}
-              onClick={onSign}
+              onClick={() => {
+                playSfx('yay');
+                onSign();
+              }}
             >
               <PenLine size={19} />
               Sign it, {travelerName}
