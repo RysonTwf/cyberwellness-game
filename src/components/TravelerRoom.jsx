@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import World from '../world/World';
-import RoomScene from '../world/room/RoomScene';
+import RoomScene, { ROOM_OBSTACLES } from '../world/room/RoomScene';
 import AtlasGate from './AtlasGate';
 
 /**
@@ -32,6 +32,7 @@ export default function TravelerRoom({ onBegin, onExit }) {
         accent="var(--gold)"
         spawn={SPAWN}
         bounds={BOUNDS}
+        obstacles={ROOM_OBSTACLES}
         hotspots={[diaryOpened ? DOOR_SPOT : DIARY_SPOT]}
         objective={diaryOpened ? 'Walk to the door and step outside' : 'Walk up to the diary'}
         paused={open}

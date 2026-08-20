@@ -24,7 +24,7 @@ const KEY_DIRS = {
   S: [0, 1],
 };
 
-export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
+export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles = [] }) {
   const [pos, setPos] = useState(spawn);
   const [facing, setFacing] = useState(1);
   const [moving, setMoving] = useState(false);
@@ -41,6 +41,20 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
     ],
     [bounds.maxX, bounds.minX, bounds.maxY, bounds.minY],
   );
+
+  // Kept in a ref, not a hook dependency — callers that don't memoize their
+  // `obstacles` array (a fresh `[]` every render, by default) would
+  // otherwise restart the tick loop below on every single render.
+  const obstaclesRef = useRef(obstacles);
+  obstaclesRef.current = obstacles;
+
+  /** Is this point standing inside a piece of furniture? */
+  const blocked = useCallback((x, y) => {
+    for (const o of obstaclesRef.current) {
+      if (Math.abs(x - o.x) < o.w / 2 && Math.abs(y - o.y) < o.h / 2) return true;
+    }
+    return false;
+  }, []);
 
   const stop = useCallback(() => {
     keys.current.clear();
@@ -112,9 +126,22 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
       if (len > 0 && dt > 0) {
         // Vertical movement is compressed: the walkable strip is shallow, and
         // moving up/down as fast as left/right reads as sliding, not walking.
-        const nx = posRef.current.x + (dx / len) * speed * dt;
-        const ny = posRef.current.y + (dy / len) * speed * 0.55 * dt;
-        const [cx, cy] = clamp(nx, ny);
+        const stepX = (dx / len) * speed * dt;
+        const stepY = (dy / len) * speed * 0.55 * dt;
+
+        // Axis-separated, so walking diagonally into a piece of furniture
+        // slides you along its edge instead of just stopping dead — the
+        // same trick bounds-clamping already uses per axis, just checked
+        // against obstacles too now.
+        let cx = posRef.current.x;
+        let cy = posRef.current.y;
+
+        const tryX = clamp(cx + stepX, cy)[0];
+        if (!blocked(tryX, cy)) cx = tryX;
+
+        const tryY = clamp(cx, cy + stepY)[1];
+        if (!blocked(cx, tryY)) cy = tryY;
+
         posRef.current = { x: cx, y: cy };
         setPos({ x: cx, y: cy });
         setMoving(true);
@@ -131,7 +158,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true }) {
       cancelAnimationFrame(frame.current);
       lastTime.current = 0;
     };
-  }, [clamp, enabled, speed]);
+  }, [blocked, clamp, enabled, speed]);
 
   return { pos, facing, moving, stop, placeAt };
 }

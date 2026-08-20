@@ -40,11 +40,16 @@ export default function World({
   // Called as the Traveler moves, so a space that wants to be resumable
   // (the Atlas) can remember where they were and spawn them back there.
   onMove,
+  // Furniture/props the Traveler can't walk into — { x, y, w, h } rects in
+  // the same 0-100 room-percent space as everything else. Empty by default;
+  // only the Traveler's Room passes any in right now.
+  obstacles = [],
 }) {
   const { pos, facing, moving, placeAt } = useWalker({
     spawn,
     bounds,
     enabled: !paused,
+    obstacles,
   });
 
   // Re-place whenever the space changes, so each one starts at its own gate.

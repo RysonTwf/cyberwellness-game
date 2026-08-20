@@ -8,6 +8,8 @@ import wardrobeImg from '../../assets/room/wardrobe.png';
 import cabinetImg from '../../assets/room/cabinet.png';
 import armchairImg from '../../assets/room/armchair.png';
 import plantImg from '../../assets/room/plant.png';
+import bedImg from '../../assets/room/bed.png';
+import rugImg from '../../assets/room/rug.png';
 
 /**
  * A piece of furniture, positioned in the room's 0-100 world space and
@@ -115,44 +117,72 @@ function Screen({ x, y, width }) {
   );
 }
 
-/** A simple bed — hand-drawn (no bed sprite in the itch.io pack). */
-function Bed({ x, y, width }) {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: `${x}%`,
-        top: `${y}%`,
-        width: `${width}%`,
-        aspectRatio: '4 / 5',
-        transform: 'translate(-50%, -100%)',
-        zIndex: 2,
-        pointerEvents: 'none',
-      }}
-    >
-      <svg viewBox="0 0 40 50" width="100%" height="100%">
-        <rect x="1" y="1" width="38" height="48" rx="3" fill="#7a5233" />
-        <rect x="4" y="13" width="32" height="34" rx="2" fill="#e0637a" />
-        <rect x="4" y="13" width="32" height="34" rx="2" fill="none" stroke="#b94f61" strokeWidth="1.4" />
-        <rect x="6" y="3" width="28" height="12" rx="2.5" fill="#fdf6e3" stroke="#d8c9a3" strokeWidth="1.2" />
-        <rect x="6" y="24" width="28" height="2" fill="#b94f61" opacity="0.5" />
-        <rect x="6" y="32" width="28" height="2" fill="#b94f61" opacity="0.5" />
-      </svg>
-    </div>
-  );
-}
-
 const WALL_BOTTOM = 27; // where wall meets floor, in room-percent
 const BACK_ROW = WALL_BOTTOM + 6; // bases of the furniture standing against the wall
 const TABLE_BASE = 57; // where the diary table's pedestal meets the floor
 const TABLE_TOP = 43; // ...and the tabletop surface the diary sits on
 
+/** .world's default width:height (styles.css `--scene-ar`) — used to convert
+ * a sprite's width-as-percentage into its real on-screen height. */
+const ROOM_ASPECT = 2;
+
+/**
+ * Single source of truth for every piece of standing furniture: where it
+ * sits, how big it renders, and its real pixel dimensions. Both the <Prop>
+ * tags below and ROOM_OBSTACLES (World's `obstacles` prop, world/useWalker.js)
+ * are generated from this one array — a furniture piece can't visually move
+ * or resize without its collision box moving with it. (It used to be two
+ * separate hand-kept-in-sync lists, which is exactly how they drifted apart
+ * — one report of missing collision, then another of it not reaching the
+ * top of the bed.)
+ *
+ * `footprintFrac` is how much of a sprite's real on-screen height counts as
+ * its floor footprint, default 0.45 — just the base, for tall vertical
+ * pieces like the wardrobe, so standing "in front of" the tall part above
+ * head height is still allowed. The bed is the one piece here that isn't
+ * tall-and-vertical: the whole sprite *is* the floor space it occupies, so
+ * it gets near-full coverage instead — 0.45 was leaving the pillow end
+ * walkable, which is what the "no collision at the top" report was.
+ */
+const FURNITURE = [
+  // desk/bookshelf sized up freely (79/28% and 90% clear of the roof gable
+  // at x:38-62, see the wall/gable block below); wardrobe sits inside that
+  // gable's x-range, so it's capped a bit tighter to stay clear of it.
+  { key: 'desk', src: deskImg, x: 14, y: BACK_ROW, width: 7.5, nativeW: 30, nativeH: 46 },
+  { key: 'bookshelf', src: bookshelfImg, x: 28, y: BACK_ROW, width: 11.5, nativeW: 40, nativeH: 41 },
+  { key: 'wardrobe', src: wardrobeImg, x: 42, y: BACK_ROW, width: 9.5, nativeW: 41, nativeH: 46 },
+  { key: 'cabinet', src: cabinetImg, x: 86, y: BACK_ROW, width: 5.8, nativeW: 16, nativeH: 23 },
+  { key: 'table', src: tableImg, x: 70, y: TABLE_BASE, width: 7, nativeW: 30, nativeH: 29, footprintFrac: 0.55 },
+  // Bigger, per request — was 4.
+  { key: 'armchair', src: armchairImg, x: 63, y: TABLE_BASE, width: 6, nativeW: 23, nativeH: 26, footprintFrac: 0.55 },
+  { key: 'plant', src: plantImg, x: 12, y: 90, width: 4.3, nativeW: 10, nativeH: 23 },
+  // footprintFrac > 1 on purpose — see comment above.
+  { key: 'bed', src: bedImg, x: 84, y: 92, width: 9.5, nativeW: 35, nativeH: 36, footprintFrac: 1.1 },
+];
+
+const F = Object.fromEntries(FURNITURE.map((f) => [f.key, f]));
+
+export const ROOM_OBSTACLES = FURNITURE.map((f) => {
+  const height = f.width * (f.nativeH / f.nativeW) * ROOM_ASPECT; // true on-screen %
+  const footprint = Math.max(height * (f.footprintFrac ?? 0.45), 5);
+  return { x: f.x, y: f.y - footprint / 2 + 1.5, w: f.width + 2.5, h: footprint };
+});
+
 /**
  * The Traveler's Room — the game's opening scene (storyline.md prologue).
  * Composition takes its cue from a classic top-down RPG bedroom (desk
  * corner, wall clock under the roof peak, bookshelf, rug, bed) rebuilt
- * with the itch.io top-down house pack; only the screen, diary and bed
- * are hand-drawn, where the pack has no matching piece.
+ * with the itch.io top-down house pack; only the screen and diary are
+ * hand-drawn now, where no pack has a matching piece.
+ *
+ * wardrobe/bookshelf/table/armchair/bed were re-cropped 21 Aug 2026 from
+ * the "Farm RPG - Tiny Asset Pack" in /assets — genuinely higher-detail
+ * pixel art than the original itch.io house-pack placeholders they
+ * replace. desk/cabinet/clock/door/plant/floor stayed as they were —
+ * nothing in the Farm pack read as a clear improvement on those specific
+ * pieces. The rug (same day) was already sitting unused in /assets/room —
+ * pure floor decoration, no collision needed, and a cheap way to make the
+ * reading nook feel furnished rather than just less empty everywhere.
  */
 export default function RoomScene({ diaryOpened = false }) {
   return (
@@ -212,8 +242,26 @@ export default function RoomScene({ diaryOpened = false }) {
         }}
       />
 
+      {/* the rug, under the reading nook — flat on the floor, so it sits
+          below the table/armchair/shadows drawn after it, and needs no
+          collision box of its own. */}
+      <img
+        src={rugImg}
+        alt=""
+        style={{
+          position: 'absolute',
+          left: '66.5%',
+          top: `${TABLE_BASE + 3}%`,
+          width: '24%',
+          transform: 'translate(-50%, -50%)',
+          imageRendering: 'pixelated',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* the grandfather clock, hung on the wall between the door and the gable */}
-      <Prop src={clockImg} x={54} y={23} width={3} z={2} />
+      <Prop src={clockImg} x={54} y={23} width={4.5} z={2} />
 
       {/* The door the Traveler steps out through, once they're ready. It's set
           *into* the back wall — on the floor it just read as a doormat. */}
@@ -223,30 +271,29 @@ export default function RoomScene({ diaryOpened = false }) {
           below the wall line and their upper bodies overlapping the wall —
           basing them exactly *at* WALL_BOTTOM put the whole sprite inside the
           wall band, so they read as mounted on the wall rather than standing
-          against it. desk.png is tall for its width (30x46 native), so it
-          runs narrower than the rest to stay clear of the ceiling. */}
-      <Prop src={deskImg} x={14} y={BACK_ROW} width={5.5} z={2} />
-      <Screen x={14} y={BACK_ROW - 4} width={3.4} />
-      <Prop src={bookshelfImg} x={28} y={BACK_ROW} width={9} z={2} />
-      <Prop src={wardrobeImg} x={42} y={BACK_ROW} width={7} z={2} />
-      <Prop src={cabinetImg} x={86} y={BACK_ROW} width={5} z={2} />
+          against it. */}
+      <Prop src={F.desk.src} x={F.desk.x} y={F.desk.y} width={F.desk.width} z={2} />
+      <Screen x={F.desk.x} y={F.desk.y - 4} width={3.4} />
+      <Prop src={F.bookshelf.src} x={F.bookshelf.x} y={F.bookshelf.y} width={F.bookshelf.width} z={2} />
+      <Prop src={F.wardrobe.src} x={F.wardrobe.x} y={F.wardrobe.y} width={F.wardrobe.width} z={2} />
+      <Prop src={F.cabinet.src} x={F.cabinet.x} y={F.cabinet.y} width={F.cabinet.width} z={2} />
 
       {/* The table the diary rests on, out on the open floor, with the reading
           sofa pulled up beside it. TABLE_TOP is the tabletop surface: the
           sprite is a round pedestal table whose top ellipse ends about a
           fifth of the way down, so the diary sits there rather than down at
           the foot of the pedestal. */}
-      <Shadow x={70} y={TABLE_BASE} width={9} />
-      <Prop src={tableImg} x={70} y={TABLE_BASE} width={6} z={2} />
-      <GlowingDiary x={70} y={TABLE_TOP} lit={!diaryOpened} />
+      <Shadow x={F.table.x} y={F.table.y} width={F.table.width + 3} />
+      <Prop src={F.table.src} x={F.table.x} y={F.table.y} width={F.table.width} z={2} />
+      <GlowingDiary x={F.table.x} y={TABLE_TOP} lit={!diaryOpened} />
 
       {/* the reading chair, pulled up facing the table (sprite faces right) */}
-      <Shadow x={63} y={TABLE_BASE} width={5.5} />
-      <Prop src={armchairImg} x={63} y={TABLE_BASE} width={4} z={2} />
+      <Shadow x={F.armchair.x} y={F.armchair.y} width={F.armchair.width + 1.5} />
+      <Prop src={F.armchair.src} x={F.armchair.x} y={F.armchair.y} width={F.armchair.width} z={2} />
 
       {/* bottom row: plant and bed — echoing the reference layout */}
-      <Prop src={plantImg} x={12} y={90} width={3.5} z={2} />
-      <Bed x={84} y={92} width={13} />
+      <Prop src={F.plant.src} x={F.plant.x} y={F.plant.y} width={F.plant.width} z={2} />
+      <Prop src={F.bed.src} x={F.bed.x} y={F.bed.y} width={F.bed.width} z={2} />
     </div>
   );
 }
