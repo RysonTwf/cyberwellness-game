@@ -7,29 +7,39 @@ import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
 import World from '../world/World';
 import RealmArt from './RealmArt';
-import MiniGameSort from '../minigames/MiniGameSort';
-import MiniGameSpot from '../minigames/MiniGameSpot';
-import MiniGameCompare from '../minigames/MiniGameCompare';
-import MiniGameBalance from '../minigames/MiniGameBalance';
-import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
-import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
+import MiniGameVaultDoor from '../minigames/MiniGameVaultDoor';
+import MiniGameFogChat from '../minigames/MiniGameFogChat';
+import MiniGameBogWater from '../minigames/MiniGameBogWater';
+import MiniGameBayPlan from '../minigames/MiniGameBayPlan';
+import MiniGameFallsCheck from '../minigames/MiniGameFallsCheck';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BogStoryRealm from './BogStoryRealm';
 import PeaksStoryRealm from './PeaksStoryRealm';
 import BayStoryRealm from './BayStoryRealm';
+import FallsStoryRealm from './FallsStoryRealm';
 
 const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
-// 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
-// importing their wrapper components here doesn't pull Phaser itself into
-// the main bundle, only into a separate chunk fetched when one is actually
-// mounted (see minigames/PhaserMiniGame.jsx).
+
+// The mini-game each band's content asks for by `game.type`.
+//
+// Every entry here is now P1–P3, because every P4–P6 band runs a full
+// mechanic instead (see FULL_MECHANICS below). All five are bespoke: the
+// generic Sort/Spot/Compare/Balance components they replaced are still in the
+// tree but no longer registered, and the headers on those files say why. In
+// short — a mechanic general enough to fit five realms is a mechanic that
+// teaches none of them, and four of those five were quietly teaching against
+// their own realm's rule. Rules and arithmetic live in the plain reducer next
+// to each component, so `scripts/simulate-lower.mjs` can play them for real.
+//
+// Note that nothing here is Phaser-backed any more either. The two arcade
+// mini-games are reached through FULL_MECHANICS, which pull PhaserMiniGame in
+// themselves, so this module no longer touches the Phaser chunk at all.
 const GAMES = {
-  sort: MiniGameSort,
-  spot: MiniGameSpot,
-  compare: MiniGameCompare,
-  balance: MiniGameBalance,
-  platformer: MiniGamePlatformer,
-  steppingstones: MiniGameSteppingStones,
+  vaultdoor: MiniGameVaultDoor,
+  fogchat: MiniGameFogChat,
+  bogwater: MiniGameBogWater,
+  bayplan: MiniGameBayPlan,
+  fallscheck: MiniGameFallsCheck,
 };
 
 // Realms that run as one continuous experience rather than the shared step
@@ -40,6 +50,7 @@ const FULL_MECHANICS = {
   bogCurrent: BogStoryRealm,
   fogLine: PeaksStoryRealm,
   oneMore: BayStoryRealm,
+  fallsBoard: FallsStoryRealm,
 };
 
 // Order the optional post-decision beats appear in, when a realm defines them

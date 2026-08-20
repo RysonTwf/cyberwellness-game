@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-20)
 
 ## Corpus Check
-- 52 files · ~86,287 words
+- 58 files · ~106,821 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 450 nodes · 593 edges · 102 communities (15 shown, 87 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.5)
+- 513 nodes · 740 edges · 104 communities (17 shown, 87 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 55 edges (avg confidence: 0.51)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7762f96b`
+- Built from commit: `0b54d68a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,6 +23,7 @@
 - Gate, Characters & Stamp Chrome
 - Traveler Room & Walk System
 - Phaser Mini-Game Wrappers
+- bayArt.js
 - Realm Screen & React Mini-Games
 - Sort Mechanic
 - Balance Mechanic
@@ -115,6 +116,7 @@
 - The Traveler
 - The Traveler's Pledge
 - Wise Traveler Certificate
+- RealmScreen.jsx
 - MiniGameSort.jsx
 
 ## God Nodes (most connected - your core abstractions)
@@ -122,24 +124,24 @@
 2. `Cyber Wellness Quest — Milestones & Team Workstreams` - 13 edges
 3. `circle()` - 12 edges
 4. `Cyber Wellness Quest — Design Document` - 12 edges
-5. `fillRR()` - 11 edges
-6. `Cyber Wellness Quest — Storyline` - 11 edges
-7. `DialogueCard()` - 9 edges
-8. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
-9. `Cyber Wellness Quest` - 8 edges
-10. `circle()` - 7 edges
+5. `DialogueCard()` - 11 edges
+6. `fillRR()` - 11 edges
+7. `Cyber Wellness Quest — Storyline` - 11 edges
+8. `circle()` - 10 edges
+9. `commit()` - 9 edges
+10. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `App()` --calls--> `getBandView()`  [EXTRACTED]
-  src/App.jsx → src/data/realms.js
-- `App()` --calls--> `useProgress()`  [EXTRACTED]
-  src/App.jsx → src/state/useProgress.js
-- `AtlasMap()` --calls--> `orderedActiveRealms()`  [EXTRACTED]
-  src/components/AtlasMap.jsx → src/data/realms.js
-- `BogStoryRealm()` --calls--> `makeBogCurrentConfig()`  [EXTRACTED]
-  src/components/BogStoryRealm.jsx → src/minigames/phaser-scenes/bogCurrentScene.js
-- `CertificateScreen()` --calls--> `activePledge()`  [EXTRACTED]
-  src/components/CertificateScreen.jsx → src/data/realms.js
+- `play()` --calls--> `answerDecision()`  [EXTRACTED]
+  scripts/simulate-falls.mjs → src/minigames/fallsBoard.js
+- `play()` --calls--> `ask()`  [EXTRACTED]
+  scripts/simulate-falls.mjs → src/minigames/fallsBoard.js
+- `play()` --calls--> `commit()`  [EXTRACTED]
+  scripts/simulate-falls.mjs → src/minigames/fallsBoard.js
+- `play()` --calls--> `createBoard()`  [EXTRACTED]
+  scripts/simulate-falls.mjs → src/minigames/fallsBoard.js
+- `useWalker()` --indirect_call--> `tick()`  [INFERRED]
+  src/world/useWalker.js → src/minigames/fallsBoard.js
 
 ## Import Cycles
 - None detected.
@@ -149,7 +151,7 @@
 - **Judgement Rule Applied Across the Five Mini-Games** — cyber_wellness_quest_milestones_judgement_design_rule, design_sort_mechanic, design_spot_mechanic, design_balance_mechanic, cyber_wellness_quest_milestones_stepping_stones_mechanic, cyber_wellness_quest_milestones_platformer_mechanic, cyber_wellness_quest_milestones_vault_door_gate [EXTRACTED 1.00]
 - **Phaser Art Manifest and Skin Swap Pipeline** — cyber_wellness_quest_milestones_art_manifest, cyber_wellness_quest_milestones_skin_system, cyber_wellness_quest_milestones_brackeys_cc0_skin, cyber_wellness_quest_milestones_platformer_mechanic, cyber_wellness_quest_milestones_asset_pipeline, assets_readme_specs_table [EXTRACTED 1.00]
 
-## Communities (102 total, 87 thin omitted)
+## Communities (104 total, 87 thin omitted)
 
 ### Community 0 - "Curriculum Scope & Band Split"
 Cohesion: 0.17
@@ -160,8 +162,8 @@ Cohesion: 0.12
 Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Quest — Milestones & Team Workstreams, Folder & naming convention, Phase 0 — Foundation (shared design system + content schema), Phase 1 — Content authoring (both bands, all 5 realms), Phase 2 — New mechanics, Phase 3 — Backgrounds: scaling the existing 9 (+8 more)
 
 ### Community 2 - "Atlas Hub, Progress & Realm Data"
-Cohesion: 0.05
-Nodes (44): SPA Root Mount Point, App(), AtlasGate(), BANDS, BEATS, CertificateScreen(), JournalProgress(), RealmScreen() (+36 more)
+Cohesion: 0.07
+Nodes (37): SPA Root Mount Point, App(), AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS (+29 more)
 
 ### Community 3 - "Passworld Vault Level & Art"
 Cohesion: 0.14
@@ -172,16 +174,20 @@ Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
 ### Community 5 - "Gate, Characters & Stamp Chrome"
-Cohesion: 0.08
-Nodes (28): ACTION_LABEL, BogStoryRealm(), KIND_LABEL, ChoiceCard(), DialogueCard(), ACTION_LABEL, KIND_LABEL, PeaksStoryRealm() (+20 more)
+Cohesion: 0.07
+Nodes (33): BayStoryRealm(), ACTION_LABEL, BogStoryRealm(), KIND_LABEL, ChoiceCard(), DialogueCard(), ACTION_LABEL, FallsStoryRealm() (+25 more)
 
 ### Community 6 - "Traveler Room & Walk System"
-Cohesion: 0.09
-Nodes (16): AtlasMap(), BAND_INFO, BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, BY_NAME, CharacterArt() (+8 more)
+Cohesion: 0.07
+Nodes (23): AtlasGate(), BANDS, BEATS, BY_NAME, CharacterArt(), Comet(), ICONS, makeRandom() (+15 more)
 
 ### Community 7 - "Phaser Mini-Game Wrappers"
 Cohesion: 0.12
 Nodes (33): BLOWN, OUTCOMES, POSTS, REFUSE_NOTE, SLOTS, ART_ANIMS, ART_MANIFEST, buildPeakArt() (+25 more)
+
+### Community 8 - "bayArt.js"
+Cohesion: 0.14
+Nodes (24): ART_ANIMS, ART_MANIFEST, BAY_COLOURS, buildBayArt(), circle(), drawBeach(), drawBonfire(), drawCatch() (+16 more)
 
 ### Community 9 - "Realm Screen & React Mini-Games"
 Cohesion: 0.12
@@ -192,8 +198,8 @@ Cohesion: 0.14
 Nodes (13): 0. What this game is, 1. Source of truth: what the Overview Plan actually requires, 1a. How much does the source material actually differentiate by band?, 2. Consolidated content gaps (in priority order), 3. Realm plan by band, 4. Suggested play order (per band) — pacing, not calendar order, 5. Open items / needs from the team, 6. Changelog (+5 more)
 
 ### Community 11 - "Balance Mechanic"
-Cohesion: 0.14
-Nodes (13): Files touched, Handover — Bully Bog rebuild (2026-08-20), Not done / next up, `src/components/BogStoryRealm.jsx` (new), `src/components/RealmScreen.jsx`, `src/data/realms.js`, `src/minigames/phaser-scenes/bogArt.js` (new), `src/minigames/phaser-scenes/bogCurrentScene.js` (new, ~700 lines) (+5 more)
+Cohesion: 0.17
+Nodes (11): Files, Files, Handover — Privacy Peaks + Balance Bay rebuilds (2026-08-20), Measured, Measured, Not done / next up, Part 1 — Privacy Peaks: "The Fog Line", Part 2 — Balance Bay: "One More" (+3 more)
 
 ### Community 13 - "bogArt.js"
 Cohesion: 0.12
@@ -203,12 +209,16 @@ Nodes (25): ART_ANIMS, ART_MANIFEST, BOG_COLOURS, bubbleTexture(), buildBogArt()
 Cohesion: 0.20
 Nodes (9): Cyber Wellness Quest, How it plays, Known deviations from the design docs, Layout, Notes on the build, Running it, Scene contact sheet, The four realms (+1 more)
 
+### Community 102 - "RealmScreen.jsx"
+Cohesion: 0.14
+Nodes (20): claim(), crackers(), duds(), play(), RIGHT, STYLES, answerDecision(), ask() (+12 more)
+
 ### Community 103 - "MiniGameSort.jsx"
 Cohesion: 0.67
 Nodes (3): BIN_ICONS, MiniGameSort(), shuffle()
 
 ## Knowledge Gaps
-- **208 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+203 more)
+- **216 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+211 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **87 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -216,16 +226,16 @@ Nodes (3): BIN_ICONS, MiniGameSort(), shuffle()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `DialogueCard()` connect `Gate, Characters & Stamp Chrome` to `Atlas Hub, Progress & Realm Data`, `Traveler Room & Walk System`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `RealmArt()` connect `Gate, Characters & Stamp Chrome` to `Atlas Hub, Progress & Realm Data`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Why does `World()` connect `Traveler Room & Walk System` to `Atlas Hub, Progress & Realm Data`, `Gate, Characters & Stamp Chrome`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _228 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _236 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Mechanics, Assets & Build Phases` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
 - **Should `Atlas Hub, Progress & Realm Data` be split into smaller, more focused modules?**
-  _Cohesion score 0.053551912568306013 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06717687074829932 - nodes in this community are weakly interconnected._
 - **Should `Passworld Vault Level & Art` be split into smaller, more focused modules?**
   _Cohesion score 0.13725490196078433 - nodes in this community are weakly interconnected._

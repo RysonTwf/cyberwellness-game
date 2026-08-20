@@ -4,6 +4,16 @@ import PhaserMiniGame from './PhaserMiniGame';
 import { makeSteppingStonesConfig } from './phaser-scenes/steppingStonesScene';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * Unused since the Privacy Peaks P4-P6 rebuild replaced it with the Fog Line
+ * (PeaksStoryRealm.jsx + phaser-scenes/fogLineScene.js). Its Phaser scene,
+ * phaser-scenes/steppingStonesScene.js, is unused with it.
+ *
+ * Kept in the tree rather than deleted. Delete or reuse deliberately.
+ */
+
+/**
  * P4–P6 Privacy Peaks mechanic ("Clear the Fog: Level Up", Milestones
  * Phase 2). One stone at a time, in order — same underlying judgement as
  * MiniGameSpot (design.md §6), but paced as a run rather than a static

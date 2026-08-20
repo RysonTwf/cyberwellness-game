@@ -2,6 +2,19 @@ import { useMemo, useState } from 'react';
 import { Flag, Check, RotateCcw, Eye } from 'lucide-react';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * This was Privacy Peaks' "Clear the Fog": one nasty message, pre-cut into
+ * six cards, mark the bad ones. Replaced by minigames/fogChat.js, whose
+ * header carries the full argument — in short, the cutting-up was the hard
+ * part and this board did it for you; the rule's verbs (stop, don't reply,
+ * tell an adult) were nowhere in the mechanic; and it opened
+ * already-obviously-bad, which is the one thing a real one never does.
+ *
+ * Kept in the tree rather than deleted. Delete or reuse deliberately.
+ */
+
+/**
  * Generic spot mini-game (design.md §6): a scene config + flagged targets.
  * Used by Privacy Peaks ("Clear the Fog").
  *

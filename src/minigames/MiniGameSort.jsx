@@ -2,6 +2,26 @@ import { useMemo, useState } from 'react';
 import { Lock, LockOpen, Send, Trash2, Check, Info, RotateCcw } from 'lucide-react';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * This was the two-bin board behind Passworld's "Guard the Vault" and Bully
+ * Bog's "Clear the Water", and both realms lost it in the P1-P3 rebuild for
+ * the same reason, one realm at a time:
+ *
+ *  - Passworld's sort said danger is a property of the *fact* — that the word
+ *    "address" is hazardous — when the realm's story is about a person
+ *    asking. Replaced by minigames/vaultDoor.js, where the same card comes
+ *    round from different mouths.
+ *  - Bully Bog's sort asked children to identify unkindness, which no child
+ *    finds hard, against a rule about how hard it is to *say something while
+ *    it is happening*. Replaced by minigames/bogWater.js.
+ *
+ * Kept in the tree rather than deleted: it is a clean, well-behaved component
+ * and the drag/tap control scheme in it is worth reading before anyone builds
+ * another one. Delete or reuse deliberately.
+ */
+
+/**
  * Generic sort mini-game (design.md §6): takes items + two labelled bins.
  * Used by Passworld ("Guard the Vault") and Bully Bog ("Clear the Water").
  *

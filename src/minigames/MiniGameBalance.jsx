@@ -2,6 +2,18 @@ import { useState } from 'react';
 import { RotateCcw, Scale } from 'lucide-react';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * This was Balance Bay's "Balance the Day" scale. The planner idea survives
+ * in P1-P3 — see minigames/bayPlan.js, which argues for keeping one here when
+ * the P4-P6 band threw one out — but this version graded the plan and
+ * stopped. Nothing ever came along and asked you to break it, so it was a
+ * promise nobody tested.
+ *
+ * Kept in the tree rather than deleted. Delete or reuse deliberately.
+ */
+
+/**
  * "Balance the Day" — Balance Bay (storyline.md).
  *
  * design.md §6 lists only Sort and Spot, but §5's description of this game is

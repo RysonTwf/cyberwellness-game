@@ -101,5 +101,13 @@
   "99": "The Traveler",
   "100": "The Traveler's Pledge",
   "101": "Wise Traveler Certificate",
-  "103": "MiniGameSort.jsx"
+  "102": "RealmScreen.jsx",
+  "103": "MiniGameSort.jsx",
+  "104": "simulate-lower.mjs",
+  "105": "MiniGameBogWater.jsx",
+  "106": "MiniGameFogChat.jsx",
+  "107": "MiniGamePlatformer.jsx",
+  "108": "MiniGameBalance.jsx",
+  "109": "MiniGameCompare.jsx",
+  "110": "MiniGameSpot.jsx"
 }

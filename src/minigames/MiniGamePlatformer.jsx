@@ -4,6 +4,17 @@ import PhaserMiniGame from './PhaserMiniGame';
 import { makePasswordFortressConfig } from './phaser-scenes/passwordFortressScene';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * Superseded by PlatformerStoryRealm.jsx, which owns Passworld P4-P6 end to
+ * end and mounts PhaserMiniGame itself. Unregistering this was the last thing
+ * holding a Phaser import inside RealmScreen.jsx, which no longer touches
+ * that chunk at all.
+ *
+ * Kept in the tree rather than deleted. Delete or reuse deliberately.
+ */
+
+/**
  * P4–P6 Passworld mechanic ("Guard the Vault: Level Up", Milestones Phase 2).
  * Phaser owns the actual gameplay (physics, collision, the win animation);
  * this wrapper is the thin, accessible shell around it — a text-equivalent

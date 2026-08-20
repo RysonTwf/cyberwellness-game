@@ -2,6 +2,19 @@ import { useMemo, useState } from 'react';
 import { Check, RotateCcw, ScanSearch, ShieldCheck, X } from 'lucide-react';
 
 /**
+ * RETIRED — not registered in RealmScreen's GAMES, referenced by nothing.
+ *
+ * Both bands have now lost this board, for the same reason at two sizes: it
+ * hands the player the verified original for free in the left-hand column,
+ * and going and getting the original *is* the check. P4-P6 lost it first (it
+ * had pre-completed Research, one of the four letters S.U.R.E. is made of)
+ * and runs minigames/fallsBoard.js; P1-P3 now runs minigames/fallsCheck.js,
+ * where the two checks its rule names are two buttons.
+ *
+ * Kept in the tree rather than deleted. Delete or reuse deliberately.
+ */
+
+/**
  * "Detective / Compare" — Fable Falls (Milestones Phase 2's original plan for
  * this realm, finally built rather than substituted).
  *
@@ -15,11 +28,17 @@ import { Check, RotateCcw, ScanSearch, ShieldCheck, X } from 'lucide-react';
  * Text-first also means the text-equivalent instruction Phase 4 asks for is
  * the mechanic itself, not a caption bolted on.
  *
- * Both bands run the same component, differing only in `framework`:
+ * **Only P1–P3 runs this now.** The 'sure' branch below (`framework:
+ * 'sure'` — every change carrying the S.U.R.E. step that catches it, with a
+ * tally in the summary) is currently unreferenced: P4–P6 moved to the Falls
+ * board (`minigames/fallsBoard.js`) because handing over the verified
+ * original for free pre-completes Research, which is one of the four
+ * S.U.R.E. questions that band is supposed to be learning to ask. Kept
+ * rather than deleted because it is the natural shape for a *third* band or
+ * a shorter revisit; delete it deliberately if that never arrives.
+ *
  *   - 'stopcheck' (P1–P3) — a found change is simply something to STOP at.
- *   - 'sure'      (P4–P6) — every change also carries the S.U.R.E. step that
- *                           catches it, and the summary tallies them, which
- *                           is what makes this the "clue board" version.
+ *   - 'sure'      (unused) — see above.
  *
  * Controls are Sort's and Spot's, deliberately: click to mark, click again to
  * unmark, then commit the set (design.md §5 — no new control to learn).
