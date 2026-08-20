@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import MainScreen from './components/MainScreen';
+import CharacterSelect from './components/CharacterSelect';
 import TravelerRoom from './components/TravelerRoom';
 import AtlasMap from './components/AtlasMap';
 import RealmScreen from './components/RealmScreen';
@@ -30,12 +32,23 @@ export default function App() {
   return (
     <div className="app">
       <div className="shell">
-        {currentScreen !== 'room' && (
+        {currentScreen !== 'title' && currentScreen !== 'character' && currentScreen !== 'room' && (
           <JournalProgress
             realmProgress={realmProgress}
             travelerName={travelerName}
             showBack={!onAtlas}
             onOpenAtlas={() => go('atlas')}
+          />
+        )}
+
+        {currentScreen === 'title' && <MainScreen onStart={() => go('character')} />}
+
+        {currentScreen === 'character' && (
+          <CharacterSelect
+            onSelect={(avatar) => {
+              dispatch({ type: 'setAvatar', avatar });
+              go('room');
+            }}
           />
         )}
 

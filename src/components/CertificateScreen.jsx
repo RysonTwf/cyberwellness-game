@@ -25,7 +25,7 @@ export default function CertificateScreen({
         />
 
         <div className="cert" style={{ '--accent': 'var(--gold)' }}>
-          <span className="stamp-label">Cyber Wellness Quest</span>
+          <span className="stamp-label">Cyber Defender Quest</span>
           <h2 style={{ margin: '10px 0 4px' }}>Wise Traveler</h2>
           <p className="muted">This traveler has walked the whole Atlas.</p>
 
