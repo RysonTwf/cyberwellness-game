@@ -1382,6 +1382,83 @@ p {
   border-color: var(--line-strong);
 }
 
+/* ---- The diary (AtlasGate, opened from the Traveler's Room) --------------
+   .panel itself now runs full-width (it also has to host every realm's
+   mini-game), which read as a wide, characterless sheet for something
+   that's supposed to be a physical diary sitting on a table. This caps and
+   centres it as its own page, and warms the shared paper/ink tokens via
+   custom-property overrides — DialogueCard/.card/etc. nested inside pick
+   up the warmer parchment automatically, no need to touch those shared
+   components themselves. */
+.diary {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 32px) clamp(20px, 5vw, 30px) clamp(24px, 5vw, 34px);
+  border-radius: 14px;
+  border: 3px solid #7a5233;
+  border-left-width: 11px;
+  background-color: #f4ecd6;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 31px,
+    rgba(122, 82, 51, 0.1) 31px 32px
+  );
+  box-shadow: var(--shadow-lift);
+
+  /* scoped warm palette — everything nested (.dialogue, .card, .btn-ghost's
+     border, etc.) reads these instead of the app's cooler defaults */
+  --paper: #f4ecd6;
+  --paper-card: #fbf4e4;
+  --paper-sunk: #ecdfc0;
+  --ink: #4a2f1c;
+  --ink-soft: #7a5d43;
+  --line: rgba(122, 82, 51, 0.22);
+  --line-strong: rgba(122, 82, 51, 0.4);
+}
+
+.diary-title {
+  color: #4a2f1c;
+}
+
+/* A little stitched ribbon bookmark, hanging off the top edge — the one
+   purely decorative touch, just enough to say "this is a book" at a
+   glance before reading a word of it. */
+.diary-ribbon {
+  position: absolute;
+  top: -4px;
+  right: 38px;
+  width: 16px;
+  height: 46px;
+  background: var(--gold);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+  opacity: 0.9;
+}
+
+/* AtlasGate's centred content (a header, a "Keep reading"/"Next"/"Back"
+   button) isn't a "push to the bottom of a long scroll" action bar the way
+   RealmScreen's panel steps use .center — but `.panel .center` above can't
+   tell the difference, and its negative margins are tuned to bleed out to
+   .panel's own edges. With .diary's padding and border sitting in between
+   now, that bleed overshoots and reads as content clipped against the
+   diary's border. Reset back to plain centred content in here; same
+   specificity as `.panel .center`, so source order (this comes later)
+   is what makes it win. */
+.diary .center {
+  position: static;
+  bottom: auto;
+  margin: 18px 0 0;
+  padding: 0;
+  background: none;
+  border-top: none;
+}
+
+@media (max-width: 560px) {
+  .diary {
+    max-width: 100%;
+  }
+}
+
 /* ---- Atlas realm strip (the non-walking way in) -------------------------- */
 
 .realm-strip {

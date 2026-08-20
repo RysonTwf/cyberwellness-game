@@ -42,13 +42,15 @@ export default function AtlasGate({ onBegin }) {
   }
 
   return (
-    <div className="fold">
-      <div className="center" style={{ padding: '18px 0 26px' }}>
-        <div style={{ display: 'grid', placeItems: 'center', marginBottom: 14 }}>
-          <Comet size={78} />
+    <div className="diary">
+      <div className="diary-ribbon" aria-hidden="true" />
+
+      <div className="center" style={{ padding: '4px 0 22px' }}>
+        <div style={{ display: 'grid', placeItems: 'center', marginBottom: 10 }}>
+          <Comet size={60} />
         </div>
-        <h1>Cyber Wellness Quest</h1>
-        <p className="lede" style={{ marginTop: 10 }}>
+        <h1 className="diary-title">Cyber Defender Quest</h1>
+        <p className="lede" style={{ marginTop: 8 }}>
           A journal, a map, and realms worth visiting.
         </p>
       </div>

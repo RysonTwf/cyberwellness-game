@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { X } from 'lucide-react';
 import World from '../world/World';
 import RoomScene, { ROOM_OBSTACLES } from '../world/room/RoomScene';
 import AtlasGate from './AtlasGate';
@@ -43,6 +44,18 @@ export default function TravelerRoom({ onBegin, onExit }) {
       {open && (
         <div className="panel-scrim">
           <div className="panel">
+            {/* Closing back out doesn't lose anything — AtlasGate's own local
+                state (typed name, intro beat reached) just resets, same as
+                walking away from any other realm's step panel and coming
+                back to it. */}
+            <button
+              type="button"
+              className="panel-close"
+              onClick={() => setOpen(false)}
+              aria-label="Close the diary and step back"
+            >
+              <X size={18} />
+            </button>
             <AtlasGate
               onBegin={(name, band) => {
                 setDiaryOpened(true);
