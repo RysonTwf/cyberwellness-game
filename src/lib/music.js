@@ -9,12 +9,13 @@
 import { getVolumes, subscribeAudioSettings } from './audioSettings';
 
 const TRACK_FILES = {
-  platformer: '/audio/gameplay/platformer_music_8bit.mp3',
+  platformer: '/audio/gameplay/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3',
 };
 
-// The 8-bit loop reads louder than it measures — lowered from an earlier
-// 0.32 per direct feedback. This is the volume at the settings menu's 100%;
-// the music slider scales down from here, it never scales up past it.
+// This is the volume at the settings menu's 100% — the music slider scales
+// down from here, it never scales up past it. Tune this if a future track
+// swap reads too loud/quiet again rather than just living with it, since
+// the slider can only go down from whatever this is set to.
 const BASE_VOLUME = 0.16;
 const FADE_MS = 280;
 
