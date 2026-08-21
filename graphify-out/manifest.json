@@ -29209,11 +29209,6 @@
     "ast_hash": "cc620058196d2935ca1d92c3ec9fcefd",
     "semantic_hash": ""
   },
-  "public/audio/gameplay/platformer_music_8bit.mp3": {
-    "mtime": 1787250529.1908214,
-    "ast_hash": "71c5e40646246ef150500a54b0aa1289",
-    "semantic_hash": ""
-  },
   "public/audio/sfx/Puzzle_Complete.mp3": {
     "mtime": 1785258770.2108326,
     "ast_hash": "0cf596a524761956858877e3b2066f83",
@@ -29255,8 +29250,8 @@
     "semantic_hash": ""
   },
   "src/lib/music.js": {
-    "mtime": 1787251771.3688161,
-    "ast_hash": "668d0d1a102bfecdcdcc7946b5abb9c1",
+    "mtime": 1787295526.95744,
+    "ast_hash": "15f25efed3f7f56a0ba79294927b0320",
     "semantic_hash": ""
   },
   "src/components/SettingsMenu.jsx": {
@@ -29277,6 +29272,11 @@
   "src/lib/inputLock.js": {
     "mtime": 1787251739.126317,
     "ast_hash": "980a0fbd7136f5687a371376437b5b99",
+    "semantic_hash": ""
+  },
+  "public/audio/gameplay/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3": {
+    "mtime": 1787295445.1058893,
+    "ast_hash": "08d6c5ce5ad48beed8856fd05052b51a",
     "semantic_hash": ""
   }
 }
