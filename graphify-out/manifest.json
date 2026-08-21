@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
-    "mtime": 1787254836.1919303,
-    "ast_hash": "2536782bb539820f4fa04cb7f5910760",
+    "mtime": 1787295872.552421,
+    "ast_hash": "4bb76ec898027cb2ea7f1e653ac7f5dd",
     "semantic_hash": ""
   },
   "src/components/Characters.jsx": {
@@ -65,8 +65,8 @@
     "semantic_hash": ""
   },
   "src/components/StampMoment.jsx": {
-    "mtime": 1787251084.632994,
-    "ast_hash": "dd5e397b8623275bbc8b39d644475e49",
+    "mtime": 1787295863.8120172,
+    "ast_hash": "786be220febefe6916ee92d82fb0bdde",
     "semantic_hash": ""
   },
   "src/data/realms.js": {
@@ -29205,8 +29205,8 @@
     "semantic_hash": ""
   },
   "src/lib/sfx.js": {
-    "mtime": 1787251758.048904,
-    "ast_hash": "cc620058196d2935ca1d92c3ec9fcefd",
+    "mtime": 1787295853.8727238,
+    "ast_hash": "b28e6eea6849e4bbd478564570eab450",
     "semantic_hash": ""
   },
   "public/audio/sfx/Puzzle_Complete.mp3": {
@@ -29232,11 +29232,6 @@
   "public/audio/sfx/rollover2.wav": {
     "mtime": 1785258770.260494,
     "ast_hash": "c788b64a8d10b762676a83203febaec8",
-    "semantic_hash": ""
-  },
-  "public/audio/sfx/yayy.ogg": {
-    "mtime": 1785258770.26788,
-    "ast_hash": "5cd37c2abd2aecc21f170dbdbe7cdc5b",
     "semantic_hash": ""
   },
   "src/hooks/useUiHoverSfx.js": {

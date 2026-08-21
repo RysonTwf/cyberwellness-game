@@ -362,7 +362,7 @@
       "_origin": "ast",
       "id": "src_app",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "app.jsx"
     },
     {
@@ -373,7 +373,7 @@
       "_origin": "ast",
       "id": "src_app_app",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "app()"
     },
     {
@@ -427,8 +427,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_atlasmap",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasmap.jsx"
     },
     {
@@ -438,8 +438,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_atlasmap_islands",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "islands"
     },
     {
@@ -449,8 +449,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "gate"
     },
     {
@@ -460,8 +460,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate_svg",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "gate_svg"
     },
     {
@@ -471,8 +471,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_atlasmap_branch_ctrl",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "branch_ctrl"
     },
     {
@@ -482,8 +482,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_atlasmap_palmtree",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "palmtree()"
     },
     {
@@ -493,8 +493,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_components_atlasmap_fishmark",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "fishmark()"
     },
     {
@@ -504,8 +504,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasscene",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasscene()"
     },
     {
@@ -515,8 +515,8 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasmap",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasmap()"
     },
     {
@@ -527,18 +527,18 @@
       "_origin": "ast",
       "id": "src_components_certificatescreen",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen.jsx"
     },
     {
       "label": "CertificateScreen()",
       "file_type": "code",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L10",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen()"
     },
     {
@@ -549,7 +549,7 @@
       "_origin": "ast",
       "id": "src_components_characterselect",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "characterselect.jsx"
     },
     {
@@ -560,7 +560,7 @@
       "_origin": "ast",
       "id": "src_components_characterselect_options",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "options"
     },
     {
@@ -571,7 +571,7 @@
       "_origin": "ast",
       "id": "src_components_characterselect_characterselect",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "characterselect()"
     },
     {
@@ -725,7 +725,7 @@
       "_origin": "ast",
       "id": "src_components_journalprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "journalprogress.jsx"
     },
     {
@@ -736,7 +736,7 @@
       "_origin": "ast",
       "id": "src_components_journalprogress_journalprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "journalprogress()"
     },
     {
@@ -933,8 +933,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "realmscreen()"
     },
     {
@@ -1084,7 +1084,7 @@
       "label": "StampMoment()",
       "file_type": "code",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L12",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_stampmoment_stampmoment",
       "community": 2,
@@ -1165,7 +1165,7 @@
       "_origin": "ast",
       "id": "src_data_realms",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realms.js"
     },
     {
@@ -1176,7 +1176,7 @@
       "_origin": "ast",
       "id": "src_data_realms_passworldlower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "passworldlower"
     },
     {
@@ -1187,7 +1187,7 @@
       "_origin": "ast",
       "id": "src_data_realms_passworldhigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "passworldhigher"
     },
     {
@@ -1198,7 +1198,7 @@
       "_origin": "ast",
       "id": "src_data_realms_privacylower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "privacylower"
     },
     {
@@ -1209,7 +1209,7 @@
       "_origin": "ast",
       "id": "src_data_realms_privacyhigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "privacyhigher"
     },
     {
@@ -1220,7 +1220,7 @@
       "_origin": "ast",
       "id": "src_data_realms_bullyboglower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "bullyboglower"
     },
     {
@@ -1231,7 +1231,7 @@
       "_origin": "ast",
       "id": "src_data_realms_bullyboghigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "bullyboghigher"
     },
     {
@@ -1242,7 +1242,7 @@
       "_origin": "ast",
       "id": "src_data_realms_balancelower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "balancelower"
     },
     {
@@ -1253,7 +1253,7 @@
       "_origin": "ast",
       "id": "src_data_realms_balancehigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "balancehigher"
     },
     {
@@ -1264,7 +1264,7 @@
       "_origin": "ast",
       "id": "src_data_realms_fablefallslower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "fablefallslower"
     },
     {
@@ -1275,7 +1275,7 @@
       "_origin": "ast",
       "id": "src_data_realms_fablefallshigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "fablefallshigher"
     },
     {
@@ -1297,7 +1297,7 @@
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realm_by_id"
     },
     {
@@ -1308,7 +1308,7 @@
       "_origin": "ast",
       "id": "src_data_realms_active_realms",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "active_realms"
     },
     {
@@ -1319,7 +1319,7 @@
       "_origin": "ast",
       "id": "src_data_realms_realm_order",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realm_order"
     },
     {
@@ -1330,7 +1330,7 @@
       "_origin": "ast",
       "id": "src_data_realms_hub_order",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "hub_order"
     },
     {
@@ -1340,8 +1340,8 @@
       "source_location": "L1164",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
-      "community": 13,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "orderedactiverealms()"
     },
     {
@@ -1352,7 +1352,7 @@
       "_origin": "ast",
       "id": "src_data_realms_getbandview",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "getbandview()"
     },
     {
@@ -1363,7 +1363,7 @@
       "_origin": "ast",
       "id": "src_data_realms_pledge",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "pledge"
     },
     {
@@ -1374,7 +1374,7 @@
       "_origin": "ast",
       "id": "src_data_realms_activepledge",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "activepledge()"
     },
     {
@@ -1450,8 +1450,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -1461,8 +1461,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -1472,8 +1472,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -1483,8 +1483,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -1736,8 +1736,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_sfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sfx.js"
     },
     {
@@ -1747,63 +1747,63 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sound_files"
     },
     {
       "label": "VOLUMES",
       "file_type": "code",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L29",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "volumes"
     },
     {
       "label": "pools",
       "file_type": "code",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L46",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "pools"
     },
     {
       "label": "nextIndex",
       "file_type": "code",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L47",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "nextindex"
     },
     {
       "label": "getPool()",
       "file_type": "code",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L49",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "getpool()"
     },
     {
       "label": "playSfx()",
       "file_type": "code",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L66",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "playsfx()"
     },
     {
@@ -2375,7 +2375,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "useprogress.js"
     },
     {
@@ -2386,7 +2386,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_freshrealmprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "freshrealmprogress()"
     },
     {
@@ -2397,7 +2397,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_initialstate",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "initialstate()"
     },
     {
@@ -2408,7 +2408,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_reducer",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "reducer()"
     },
     {
@@ -2419,7 +2419,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_load",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "load()"
     },
     {
@@ -2430,7 +2430,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_useprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "useprogress()"
     },
     {
@@ -4549,7 +4549,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L10",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4561,7 +4561,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4573,7 +4573,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4585,7 +4585,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4597,7 +4597,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4609,7 +4609,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4621,7 +4621,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4633,7 +4633,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4645,7 +4645,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4657,7 +4657,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4669,7 +4669,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -4677,52 +4677,16 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_certificatescreen",
-      "target": "src_lib_sfx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_certificatescreen",
-      "target": "src_lib_sfx_playsfx",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen_certificatescreen",
       "target": "src_data_realms_activepledge"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L74",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_certificatescreen_certificatescreen",
-      "target": "src_lib_sfx_playsfx"
     },
     {
       "relation": "contains",
@@ -5011,7 +4975,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_stampmoment",
@@ -5047,7 +5011,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_stampmoment",
@@ -5940,7 +5904,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_stampmoment",
@@ -5988,7 +5952,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_stampmoment",
@@ -5999,48 +5963,12 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L12",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_stampmoment",
       "target": "src_components_stampmoment_stampmoment",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_stampmoment",
-      "target": "src_lib_sfx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_stampmoment",
-      "target": "src_lib_sfx_playsfx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/components/StampMoment.jsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_stampmoment_stampmoment",
-      "target": "src_lib_sfx_playsfx"
     },
     {
       "relation": "contains",
@@ -6955,7 +6883,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/sfx.js",
-      "source_location": "L75",
+      "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx_playsfx",
@@ -7185,7 +7113,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L49",
+      "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx",
@@ -7196,7 +7124,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L47",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx",
@@ -7207,7 +7135,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L66",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx",
@@ -7218,7 +7146,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L46",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx",
@@ -7240,7 +7168,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L29",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx",
@@ -7264,7 +7192,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/sfx.js",
-      "source_location": "L67",
+      "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_sfx_playsfx",
@@ -9257,5 +9185,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "851963c1a928fe4e07b2214bf8f663a73228723f"
+  "built_at_commit": "d0fd723bd77710fa6f475e82ad724c1882958d1d"
 }
