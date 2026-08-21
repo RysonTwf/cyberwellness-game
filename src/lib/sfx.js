@@ -19,9 +19,6 @@ const SOUND_FILES = {
   complete: '/audio/sfx/Puzzle_Complete.mp3',
   // The Passworld platformer level (passwordFortressLevelScene.js).
   jump: '/audio/sfx/jofae-swing-whoosh-110410.mp3',
-  // Bigger celebration beats: earning a stamp (StampMoment) and signing the
-  // Traveler's Pledge (CertificateScreen).
-  yay: '/audio/sfx/yayy.ogg',
 };
 
 // Hover fires far more often than anything else here (every pointer move
@@ -33,7 +30,6 @@ const VOLUMES = {
   error: 0.4,
   complete: 0.55,
   jump: 0.4,
-  yay: 0.6,
 };
 const DEFAULT_VOLUME = 0.45;
 
