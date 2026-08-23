@@ -636,6 +636,12 @@ const bullybogHigher = {
 /* ------------------------------------------------------------------------ */
 
 const balanceLower = {
+  // P1–3 gets the beach as a real walkable place (components/BalanceBeachRealm.jsx)
+  // instead of the shared story→decision→game→rule→stamp panel flow — same
+  // "opt out of the shared pattern" trick as Passworld/Privacy Peaks' own
+  // single-band Phase 2 upgrades, scoped to `balanceLower` only so P4–6
+  // (balanceHigher, below) keeps the original tap-list MiniGameBalance.
+  fullMechanic: 'balanceBeach',
   story: [
     {
       who: 'Comet',
@@ -679,7 +685,7 @@ const balanceLower = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. Tap a card to add it, tap it again in a slot to take it back. There’s no one right answer — just see how the tide sits.',
+      'Fill the six hours between school and bed. Walk up to something you might do to add it — tap it in the list to take it back. There’s no one right answer — just watch how the seesaw sits.',
     slots: 6,
     items: [
       { id: 'b1', text: 'Watch videos', screen: true },

@@ -14,6 +14,7 @@ import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
+import BalanceBeachRealm from './BalanceBeachRealm';
 
 const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
 // 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
@@ -53,6 +54,19 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
   if (realm.fullMechanic === 'platformerStory') {
     return (
       <PlatformerStoryRealm
+        realm={realm}
+        progress={progress}
+        travelerName={travelerName}
+        Icon={REALM_ICONS[realm.id]}
+        onSettle={onSettle}
+        onStamp={onStamp}
+        onBackToAtlas={onBackToAtlas}
+      />
+    );
+  }
+  if (realm.fullMechanic === 'balanceBeach') {
+    return (
+      <BalanceBeachRealm
         realm={realm}
         progress={progress}
         travelerName={travelerName}
