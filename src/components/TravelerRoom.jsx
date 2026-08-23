@@ -21,7 +21,7 @@ const DIARY_SPOT = { id: 'diary', x: 70, y: 62, action: 'Open it' };
 // On the floor just inside the door, which is set into the back wall.
 const DOOR_SPOT = { id: 'door', x: 68, y: 36, label: 'the door', action: 'Step outside' };
 
-export default function TravelerRoom({ onBegin, onExit }) {
+export default function TravelerRoom({ onBegin, onExit, avatar }) {
   const [open, setOpen] = useState(false);
   const [diaryOpened, setDiaryOpened] = useState(false);
 
@@ -34,6 +34,7 @@ export default function TravelerRoom({ onBegin, onExit }) {
         spawn={SPAWN}
         bounds={BOUNDS}
         obstacles={ROOM_OBSTACLES}
+        avatar={avatar}
         hotspots={[diaryOpened ? DOOR_SPOT : DIARY_SPOT]}
         objective={diaryOpened ? 'Walk to the door and step outside' : 'Walk up to the diary'}
         paused={open}

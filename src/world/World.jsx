@@ -45,6 +45,10 @@ export default function World({
   // the same 0-100 room-percent space as everything else. Empty by default;
   // only the Traveler's Room passes any in right now.
   obstacles = [],
+  // 'boy' | 'girl' | null — which CharacterSelect pick to render as, forwarded
+  // straight to Traveler (world/Traveler.jsx decides what that means; only
+  // 'boy' has real art so far). Irrelevant on 'boat' scenes.
+  avatar = null,
 }) {
   const { pos, facing, moving, placeAt } = useWalker({
     spawn,
@@ -141,7 +145,7 @@ export default function World({
           {vehicle === 'boat' ? (
             <Boat facing={facing} moving={moving} accent={accent} />
           ) : (
-            <Traveler facing={facing} moving={moving} accent={accent} />
+            <Traveler facing={facing} moving={moving} accent={accent} avatar={avatar} />
           )}
         </div>
 

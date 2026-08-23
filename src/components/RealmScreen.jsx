@@ -45,7 +45,7 @@ const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
  * The unsafe choice is always reversible: it shows a warm redirect and hands
  * the decision back, so a child can never dead-end the story (design.md §5).
  */
-export default function RealmScreen({ realm, progress, travelerName, onSettle, onStamp, onBackToAtlas }) {
+export default function RealmScreen({ realm, progress, travelerName, avatar, onSettle, onStamp, onBackToAtlas }) {
   // A realm can opt out of the shared story→decision→game→rule→stamp
   // pattern entirely and own one continuous experience instead (currently
   // just Passworld P4–P6 — see PlatformerStoryRealm.jsx for why). This has
@@ -70,6 +70,7 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
         realm={realm}
         progress={progress}
         travelerName={travelerName}
+        avatar={avatar}
         Icon={REALM_ICONS[realm.id]}
         onSettle={onSettle}
         onStamp={onStamp}
@@ -158,6 +159,7 @@ export default function RealmScreen({ realm, progress, travelerName, onSettle, o
         accent={realm.accent}
         spawn={realm.world.spawn}
         bounds={realm.world.bounds}
+        avatar={avatar}
         hotspots={[realm.world.stops[step]]}
         objective={OBJECTIVES[step]}
         paused={open}

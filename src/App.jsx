@@ -14,7 +14,7 @@ import { REALM_BY_ID, getBandView } from './data/realms';
 
 export default function App() {
   const { state, dispatch, allStamped, reset } = useProgress();
-  const { currentScreen, travelerName, realmProgress, band } = state;
+  const { currentScreen, travelerName, realmProgress, band, avatar } = state;
 
   useUiClickSfx();
   useUiHoverSfx();
@@ -62,6 +62,7 @@ export default function App() {
 
         {currentScreen === 'room' && (
           <TravelerRoom
+            avatar={avatar}
             onBegin={(name, chosenBand) => {
               dispatch({ type: 'setName', name });
               dispatch({ type: 'setBand', band: chosenBand });
@@ -90,6 +91,7 @@ export default function App() {
             realm={realm}
             progress={realmProgress[realm.id]}
             travelerName={travelerName}
+            avatar={avatar}
             onSettle={(realmId, choiceId) =>
               dispatch({ type: 'settleChoice', realm: realmId, choiceId })
             }

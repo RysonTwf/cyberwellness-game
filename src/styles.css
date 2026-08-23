@@ -1090,6 +1090,36 @@ p {
   transform-origin: center bottom;
 }
 
+/* BoyTraveler (world/Traveler.jsx) — a real 2-frame sprite instead of the
+   neutral SVG. The frame-swap itself is JS-driven; this just gives it the
+   same subtle vertical bob the SVG figure gets, reusing that keyframe. */
+.traveler-sprite {
+  position: relative;
+  transform-origin: center bottom;
+}
+
+.traveler-sprite img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.traveler-sprite.walking {
+  animation: walk-bob 0.42s ease-in-out infinite;
+}
+
+.tv-shadow-sprite {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 58%;
+  aspect-ratio: 3 / 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(31, 52, 82, 0.24), rgba(31, 52, 82, 0));
+  z-index: -1;
+}
+
 .traveler .tv-body {
   transform-origin: 20px 52px;
 }
