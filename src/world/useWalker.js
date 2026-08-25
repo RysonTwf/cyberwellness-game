@@ -10,19 +10,25 @@ import { isInputLocked } from '../lib/inputLock';
  * doesn't compete with clicks on hotspots/UI.
  */
 
+// Keyed by e.code (the physical key), not e.key. e.key for a letter flips
+// case with Shift/Caps Lock ('w' vs 'W') — mash enough keys at once and it's
+// easy to clip Shift for an instant while a movement key is already held,
+// which fires a fresh keydown for the *same* held key under the other case.
+// That adds a second, distinct entry below; the eventual keyup only ever
+// matches whichever case was current at release, so the other one is
+// orphaned in `keys.current` forever, permanently contributing to movement —
+// the "stuck moving in one direction" bug. e.code doesn't have this problem:
+// it's the physical key, so down and up always agree regardless of modifier
+// state. (Arrow keys were never affected — ArrowUp has no shifted variant.)
 const KEY_DIRS = {
   ArrowLeft: [-1, 0],
   ArrowRight: [1, 0],
   ArrowUp: [0, -1],
   ArrowDown: [0, 1],
-  a: [-1, 0],
-  d: [1, 0],
-  w: [0, -1],
-  s: [0, 1],
-  A: [-1, 0],
-  D: [1, 0],
-  W: [0, -1],
-  S: [0, 1],
+  KeyA: [-1, 0],
+  KeyD: [1, 0],
+  KeyW: [0, -1],
+  KeyS: [0, 1],
 };
 
 export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles = [] }) {
@@ -80,24 +86,30 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
       // A floating overlay (the settings menu) sitting on top doesn't stop
       // this window-level listener on its own — see lib/inputLock.js.
       if (isInputLocked()) return;
-      if (KEY_DIRS[e.key]) {
+      if (KEY_DIRS[e.code]) {
         // Don't let arrow keys scroll the page out from under the world.
         e.preventDefault();
-        keys.current.add(e.key);
+        keys.current.add(e.code);
       }
     };
     const up = (e) => {
-      if (KEY_DIRS[e.key]) keys.current.delete(e.key);
+      if (KEY_DIRS[e.code]) keys.current.delete(e.code);
     };
-    const blur = () => keys.current.clear();
+    // Both a safety net for the rare case a keyup genuinely never arrives
+    // (some keyboards drop events under heavy multi-key rollover) — losing
+    // focus or the tab going background is as good a signal as any that
+    // whatever's in `keys.current` can no longer be trusted.
+    const clear = () => keys.current.clear();
 
     window.addEventListener('keydown', down, { passive: false });
     window.addEventListener('keyup', up);
-    window.addEventListener('blur', blur);
+    window.addEventListener('blur', clear);
+    document.addEventListener('visibilitychange', clear);
     return () => {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup', up);
-      window.removeEventListener('blur', blur);
+      window.removeEventListener('blur', clear);
+      document.removeEventListener('visibilitychange', clear);
       keys.current.clear();
     };
   }, [enabled]);
