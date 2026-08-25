@@ -1,7 +1,7 @@
 # Graph Report - cyberwellness-game  (2026-08-26)
 
 ## Corpus Check
-- 57 files · ~422,030 words
+- 57 files · ~421,853 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
