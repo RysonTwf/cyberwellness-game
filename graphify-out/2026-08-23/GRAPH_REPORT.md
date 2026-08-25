@@ -1,11 +1,11 @@
-# Graph Report - cyberwellness-game  (2026-08-24)
+# Graph Report - cyberwellness-game  (2026-08-23)
 
 ## Corpus Check
-- 57 files · ~402,127 words
+- 57 files · ~384,603 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 325 nodes · 520 edges · 34 communities (14 shown, 20 thin omitted)
+- 322 nodes · 517 edges · 34 communities (14 shown, 20 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
@@ -19,9 +19,9 @@
 - Characters.jsx
 - RealmScreen.jsx
 - passworldArt.js
-- App.jsx
+- realms.js
 - dependencies
-- sfx.js
+- App.jsx
 - Cyber Wellness Quest — Milestones & Team Workstreams
 - audioSettings.js
 - Cyber Wellness Quest — Improvement Plan (Living Doc)
@@ -64,14 +64,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `SettingsPanel()` --calls--> `useAudioSettings()`  [EXTRACTED]
   src/components/SettingsMenu.jsx → src/hooks/useAudioSettings.js
-- `App()` --calls--> `useUiClickSfx()`  [EXTRACTED]
-  src/App.jsx → src/hooks/useUiClickSfx.js
-- `App()` --calls--> `useUiHoverSfx()`  [EXTRACTED]
-  src/App.jsx → src/hooks/useUiHoverSfx.js
 - `useAudioSettings()` --indirect_call--> `setMusicVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
 - `useAudioSettings()` --indirect_call--> `setSfxVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
+- `targetVolume()` --calls--> `getVolumes()`  [EXTRACTED]
+  src/lib/music.js → src/lib/audioSettings.js
+- `playSfx()` --calls--> `getVolumes()`  [EXTRACTED]
+  src/lib/sfx.js → src/lib/audioSettings.js
 
 ## Import Cycles
 - None detected.
@@ -87,36 +87,36 @@ Cohesion: 0.15
 Nodes (9): BOUNDS, DIARY_SPOT, DOOR_SPOT, SPAWN, TravelerRoom(), F, FURNITURE, ROOM_OBSTACLES (+1 more)
 
 ### Community 1 - "Characters.jsx"
-Cohesion: 0.13
-Nodes (12): AtlasGate(), BANDS, BEATS, BY_NAME, CharacterArt(), Comet(), MainScreen(), ICONS (+4 more)
+Cohesion: 0.12
+Nodes (17): AtlasGate(), BANDS, BEATS, CertificateScreen(), BY_NAME, CharacterArt(), Comet(), DialogueCard() (+9 more)
 
 ### Community 2 - "RealmScreen.jsx"
-Cohesion: 0.08
-Nodes (24): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SHORT_LABELS, SPAWN, ChoiceCard(), DialogueCard(), RealmArt() (+16 more)
+Cohesion: 0.07
+Nodes (28): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SPAWN, ChoiceCard(), PlatformerStoryRealm(), RealmArt(), SCENES (+20 more)
 
 ### Community 3 - "passworldArt.js"
 Cohesion: 0.14
 Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+20 more)
 
-### Community 4 - "App.jsx"
+### Community 4 - "realms.js"
 Cohesion: 0.07
-Nodes (37): SPA Root Mount Point, App(), AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, CertificateScreen() (+29 more)
+Nodes (25): SPA Root Mount Point, AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, JournalProgress(), ACTIVE_REALMS (+17 more)
 
 ### Community 5 - "dependencies"
 Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
-### Community 6 - "sfx.js"
-Cohesion: 0.24
-Nodes (9): RealmScreen(), useUiClickSfx(), useUiHoverSfx(), getPool(), nextIndex, playSfx(), pools, SOUND_FILES (+1 more)
+### Community 6 - "App.jsx"
+Cohesion: 0.16
+Nodes (18): App(), CharacterSelect(), OPTIONS, RealmScreen(), getBandView(), useUiClickSfx(), useUiHoverSfx(), getPool() (+10 more)
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
 Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Quest — Milestones & Team Workstreams, Folder & naming convention, Phase 0 — Foundation (shared design system + content schema), Phase 1 — Content authoring (both bands, all 5 realms), Phase 2 — New mechanics, Phase 3 — Backgrounds: scaling the existing 9 (+8 more)
 
 ### Community 8 - "audioSettings.js"
-Cohesion: 0.19
-Nodes (19): PlatformerStoryRealm(), useAudioSettings(), clamp01(), DEFAULTS, getVolumes(), listeners, load(), notify() (+11 more)
+Cohesion: 0.31
+Nodes (12): useAudioSettings(), clamp01(), DEFAULTS, getVolumes(), listeners, load(), notify(), save() (+4 more)
 
 ### Community 10 - "Cyber Wellness Quest — Improvement Plan (Living Doc)"
 Cohesion: 0.14
@@ -131,28 +131,28 @@ Cohesion: 0.33
 Nodes (5): MiniGamePlatformer(), MiniGameSteppingStones(), makePasswordFortressConfig(), makeSteppingStonesConfig(), PhaserMiniGame()
 
 ### Community 18 - "World.jsx"
-Cohesion: 0.18
-Nodes (12): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unlockInput(), Boat(), BOY_FRAMES, Traveler() (+4 more)
+Cohesion: 0.21
+Nodes (11): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unlockInput(), Boat(), Traveler(), distance() (+3 more)
 
 ## Knowledge Gaps
-- **124 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+119 more)
+- **122 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+117 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `playSfx()` connect `sfx.js` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
+- **Why does `playSfx()` connect `App.jsx` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `Characters.jsx`, `App.jsx`?**
+- **Why does `DialogueCard()` connect `Characters.jsx` to `RealmScreen.jsx`, `realms.js`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `World()` connect `World.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`, `App.jsx`?**
+- **Why does `World()` connect `World.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`, `realms.js`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _124 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _122 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Characters.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.12857142857142856 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11576354679802955 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08139534883720931 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07215541165587419 - nodes in this community are weakly interconnected._
 - **Should `passworldArt.js` be split into smaller, more focused modules?**
   _Cohesion score 0.14193548387096774 - nodes in this community are weakly interconnected._

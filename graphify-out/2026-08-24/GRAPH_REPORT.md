@@ -1,11 +1,11 @@
-# Graph Report - cyberwellness-game  (2026-08-24)
+# Graph Report - cyberwellness-game  (2026-08-23)
 
 ## Corpus Check
-- 57 files · ~402,127 words
+- 57 files · ~384,803 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 325 nodes · 520 edges · 34 communities (14 shown, 20 thin omitted)
+- 323 nodes · 518 edges · 34 communities (14 shown, 20 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
@@ -131,11 +131,11 @@ Cohesion: 0.33
 Nodes (5): MiniGamePlatformer(), MiniGameSteppingStones(), makePasswordFortressConfig(), makeSteppingStonesConfig(), PhaserMiniGame()
 
 ### Community 18 - "World.jsx"
-Cohesion: 0.18
-Nodes (12): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unlockInput(), Boat(), BOY_FRAMES, Traveler() (+4 more)
+Cohesion: 0.21
+Nodes (11): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unlockInput(), Boat(), Traveler(), distance() (+3 more)
 
 ## Knowledge Gaps
-- **124 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+119 more)
+- **123 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+118 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -143,13 +143,13 @@ Nodes (12): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unloc
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `playSfx()` connect `sfx.js` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Why does `DialogueCard()` connect `RealmScreen.jsx` to `Characters.jsx`, `App.jsx`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Why does `World()` connect `World.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`, `App.jsx`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _124 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _123 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Characters.jsx` be split into smaller, more focused modules?**
   _Cohesion score 0.12857142857142856 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**

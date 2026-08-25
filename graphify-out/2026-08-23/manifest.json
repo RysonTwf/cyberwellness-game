@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1787506745.9171977,
-    "ast_hash": "41897b703ddafa283ef36eab85c292cc",
+    "mtime": 1787254898.1353211,
+    "ast_hash": "2611030a2e79c6274dfbb4b5e89f677f",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "src/components/RealmScreen.jsx": {
-    "mtime": 1787508039.4801714,
-    "ast_hash": "3d120aeded22e84603d22d316c1d9b37",
+    "mtime": 1787466149.482004,
+    "ast_hash": "d8b1a5d7af05169475c95fa95dd8d666",
     "semantic_hash": ""
   },
   "src/components/StampBadge.jsx": {
@@ -105,13 +105,13 @@
     "semantic_hash": ""
   },
   "src/world/Traveler.jsx": {
-    "mtime": 1787506878.2710114,
-    "ast_hash": "43d4fcf9ccb9df806522a73241cdc8fa",
+    "mtime": 1787118849.408208,
+    "ast_hash": "78e933548f6457e529a9a5157ffa394c",
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787506691.6320012,
-    "ast_hash": "9c5d2843d2022378f07b06dfc51e2f47",
+    "mtime": 1787254906.675109,
+    "ast_hash": "6fed7824f71e084530fedb8f40a6f053",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787506702.8868418,
-    "ast_hash": "4a473c86dba69a57df8d1ecb0bfa0aa5",
+    "mtime": 1787254777.7448654,
+    "ast_hash": "1b73ccc76dc9ab73aae05a9e1f5baba8",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "src/components/CharacterSelect.jsx": {
-    "mtime": 1787506765.871052,
-    "ast_hash": "562e67f2e3d6726265465be57337932d",
+    "mtime": 1787245134.050715,
+    "ast_hash": "2216e8096fa22ac3792c882f7165e94a",
     "semantic_hash": ""
   },
   "src/components/MainScreen.jsx": {
@@ -29275,8 +29275,8 @@
     "semantic_hash": ""
   },
   "src/components/BalanceBeachRealm.jsx": {
-    "mtime": 1787506731.9082508,
-    "ast_hash": "31512a61bfcd27029a5d8347bff83723",
+    "mtime": 1787466137.5557,
+    "ast_hash": "079e5c05eb31a3b0bf7157fd9026c3ce",
     "semantic_hash": ""
   },
   "src/world/beach/BeachScene.jsx": {
@@ -29292,26 +29292,6 @@
   "src/assets/beach/seesaw.png": {
     "mtime": 1787465940.6195395,
     "ast_hash": "41e252aecef9804cf717fc328a32c558",
-    "semantic_hash": ""
-  },
-  "public/assets/animation/BOY_WALK/BOY_WALK_01.png": {
-    "mtime": 1787504883.991126,
-    "ast_hash": "175c670b8e0c9bfab545792a754007c9",
-    "semantic_hash": ""
-  },
-  "public/assets/animation/BOY_WALK/BOY_WALK_02.png": {
-    "mtime": 1787504884.0204072,
-    "ast_hash": "534edcca3afa0550925a01c70b7eee5e",
-    "semantic_hash": ""
-  },
-  "src/assets/characters/boy-walk-1.png": {
-    "mtime": 1787506563.3747308,
-    "ast_hash": "65f0effe220d89e88f8797763b24a439",
-    "semantic_hash": ""
-  },
-  "src/assets/characters/boy-walk-2.png": {
-    "mtime": 1787506563.404077,
-    "ast_hash": "3debab361d474ab8859a2e289bff26b7",
     "semantic_hash": ""
   }
 }
