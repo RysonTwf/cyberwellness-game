@@ -1,28 +1,35 @@
 import { useEffect, useState } from 'react';
 import boyWalk1 from '../assets/characters/boy-walk-1.png';
 import boyWalk2 from '../assets/characters/boy-walk-2.png';
+import girlWalk1 from '../assets/characters/girl-walk-1.png';
+import girlWalk2 from '../assets/characters/girl-walk-2.png';
 
-const BOY_FRAMES = [boyWalk1, boyWalk2];
-const BOY_FRAME_MS = 240;
+const FRAME_SETS = {
+  boy: [boyWalk1, boyWalk2],
+  girl: [girlWalk1, girlWalk2],
+};
+const FRAME_MS = 240;
 
 /**
- * Real character art for players who picked "boy" at CharacterSelect — a
- * 2-frame walk cycle, swapped on a timer while moving and held on the idle
- * frame otherwise. Cropped to a 664x931 bounding box (~0.713:1), which is
- * close enough to the neutral SVG's own 40:56 (~0.714:1) that rendering it
- * at the same 64px-wide footprint lands in World.jsx's existing `.walker`
- * positioning (styles.css, calibrated for that footprint) without any
- * changes there. No "girl" art exists yet, so Traveler below only reaches
- * for this when avatar === 'boy'; everyone else keeps the neutral figure.
+ * Real character art for players who picked "boy" or "girl" at
+ * CharacterSelect — a 2-frame walk cycle, swapped on a timer while moving
+ * and held on the idle frame (frame 0 — also each avatar's CharacterSelect
+ * portrait) otherwise. Both sets are cropped to the same 664x931 bounding
+ * box (~0.713:1, close enough to the neutral SVG's own 40:56 — ~0.714:1 —
+ * that rendering either at the same 64px-wide footprint lands in
+ * World.jsx's existing `.walker` positioning, styles.css, calibrated for
+ * that footprint, without any changes there).
  *
  * One correction on top of that footprint match: the SVG's own feet sit
  * ~8.9% up from its rendered bottom edge (viewBox y=51 of 56 — the shadow
  * ellipse lives in that gap), which is what `.walker`'s -81px offset was
- * actually calibrated against. This crop is tight to the shoe tips instead
- * (no such gap), so without a correction the sprite would visibly sit ~8px
- * lower than pos.y/the hotspots actually anchor it. -8.9% here restores it.
+ * actually calibrated against. Both crops are tight to the shoe tips
+ * instead (no such gap), so without a correction the sprite would visibly
+ * sit ~8px lower than pos.y/the hotspots actually anchor it. -8.9% here
+ * restores it for either set.
  */
-function BoyTraveler({ facing = 1, moving = false }) {
+function SpriteTraveler({ avatar, facing = 1, moving = false }) {
+  const frames = FRAME_SETS[avatar];
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
@@ -30,8 +37,11 @@ function BoyTraveler({ facing = 1, moving = false }) {
       setFrame(0); // hold the idle pose the instant they stop, not mid-stride
       return undefined;
     }
-    const id = setInterval(() => setFrame((f) => (f + 1) % BOY_FRAMES.length), BOY_FRAME_MS);
+    const id = setInterval(() => setFrame((f) => (f + 1) % frames.length), FRAME_MS);
     return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `frames` is
+    // keyed off `avatar`, which this component remounts on (see Traveler
+    // below), so it can't change without a fresh mount already resetting this.
   }, [moving]);
 
   return (
@@ -40,7 +50,7 @@ function BoyTraveler({ facing = 1, moving = false }) {
       style={{ width: 64, transform: `scaleX(${facing}) translateY(-8.9%)` }}
     >
       <div className="tv-shadow-sprite" />
-      <img src={BOY_FRAMES[frame]} alt="" width={64} draggable={false} />
+      <img src={frames[frame]} alt="" width={64} draggable={false} />
     </div>
   );
 }
@@ -52,12 +62,17 @@ function BoyTraveler({ facing = 1, moving = false }) {
  * default is built from plain shapes: no skin tone, no hair, no gendered
  * silhouette. Just a small figure in a scarf, which takes the realm's
  * accent colour so the player visibly belongs to whichever realm they're
- * standing in. Picking "boy" at CharacterSelect opts out of that — real art
- * (BoyTraveler above), fixed appearance, no per-realm recolour.
+ * standing in. Picking "boy" or "girl" at CharacterSelect opts out of that
+ * — real art (SpriteTraveler above), fixed appearance, no per-realm
+ * recolour. Anything else (no pick yet, or a future avatar with no art)
+ * keeps the neutral figure.
  */
 export default function Traveler({ facing = 1, moving = false, accent = 'var(--ink)', avatar = null }) {
-  if (avatar === 'boy') {
-    return <BoyTraveler facing={facing} moving={moving} />;
+  if (FRAME_SETS[avatar]) {
+    // key={avatar}: a fresh mount (not a prop update) if the pick ever
+    // changes mid-session, so the frame-swap timer above can't carry stale
+    // state from one avatar's cycle into another's.
+    return <SpriteTraveler key={avatar} avatar={avatar} facing={facing} moving={moving} />;
   }
 
   return (
