@@ -6,10 +6,15 @@
  * and exposes one method, `hopTo(index, correct)`, that the React wrapper
  * calls after each choice to move the Traveler token and tint the resolved
  * stone. One-directional (React → Phaser) keeps this simple to reason about.
+ *
+ * The stone/token/fog art itself is declared once in `steppingStonesArt.js`
+ * (Milestones Phase 4) — this scene only ever refers to its texture keys.
  */
 
-const INK = 0x1f3452;
-const PAPER_SUNK = 0xe7edef;
+import { buildSteppingStonesArt, preloadSteppingStonesArt } from './steppingStonesArt';
+
+// Only the few tints this scene applies at runtime live here — everything the
+// art itself is drawn with belongs to steppingStonesArt.js.
 const TEAL = 0x2d8c7f;
 const GOLD = 0xe0a030;
 
@@ -19,28 +24,27 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
       super('stepping-stones');
     }
 
+    preload() {
+      // Real sprite sheets if a skin's been set, otherwise the built-in
+      // stand-ins — see steppingStonesArt.js for how to swap them.
+      preloadSteppingStonesArt(this);
+    }
+
     create() {
+      buildSteppingStonesArt(this);
+
       const n = stones.length;
       const marginX = 46;
       const usableW = 560 - marginX * 2;
 
-      // fog bank behind everything
-      const fog = this.add.graphics();
-      fog.fillStyle(0xffffff, 0.4);
-      fog.fillRect(0, 60, 560, 220);
-
-      const stoneTex = this.add.graphics();
-      stoneTex.fillStyle(PAPER_SUNK, 1);
-      stoneTex.fillEllipse(25, 15, 46, 24);
-      stoneTex.lineStyle(2, INK, 0.3);
-      stoneTex.strokeEllipse(25, 15, 46, 24);
-      stoneTex.generateTexture('stone', 50, 30);
-      stoneTex.destroy();
+      // fog bank behind everything — the 560x220 texture is drawn centred on
+      // the same band the old fillRect(0, 60, 560, 220) covered.
+      this.add.image(280, 170, 'ss-fog');
 
       this.stoneSprites = stones.map((s, i) => {
         const x = marginX + (usableW * i) / Math.max(n - 1, 1);
         const y = 150 + (i % 2 === 0 ? -20 : 20);
-        const sprite = this.add.image(x, y, 'stone');
+        const sprite = this.add.image(x, y, 'ss-stone');
         this.add
           .text(x, y, String(i + 1), {
             fontFamily: 'sans-serif',
@@ -51,16 +55,8 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
         return { x, y, sprite };
       });
 
-      const tg = this.add.graphics();
-      tg.fillStyle(INK, 1);
-      tg.fillRoundedRect(0, 6, 20, 18, 6);
-      tg.fillStyle(TEAL, 1);
-      tg.fillRoundedRect(0, 2, 20, 9, 4);
-      tg.generateTexture('traveler-token', 20, 26);
-      tg.destroy();
-
       const start = this.stoneSprites[0];
-      this.traveler = this.add.image(start?.x ?? 40, (start?.y ?? 150) - 22, 'traveler-token');
+      this.traveler = this.add.image(start?.x ?? 40, (start?.y ?? 150) - 22, 'ss-token');
 
       onSceneReady?.(this);
     }
