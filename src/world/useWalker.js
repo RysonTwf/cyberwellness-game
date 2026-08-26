@@ -6,11 +6,18 @@ import { isInputLocked } from '../lib/inputLock';
  *
  * The world is a 100x100 unit space mapped onto whatever the scene box is, so
  * every position in realms.js is resolution-independent. Two input sources
- * feed the same direction set: physical keys (arrow keys or WASD) and the
- * on-screen d-pad (World.jsx's `press`/`release`, held via pointer/touch).
- * Both are deliberately dedicated controls rather than click/tap-to-move
- * anywhere — that's what used to compete with clicks on hotspots/UI (see
- * Milestones Phase 4 changelog) and is why it was pulled once before.
+ * both drive the same position: physical keys (arrow keys or WASD), and
+ * tap/click-to-move (World.jsx's `goTo`, a one-shot destination the
+ * Traveler walks toward each tick until they arrive or a key interrupts).
+ *
+ * Click/tap-to-move was tried once before (pre-`ef16cce`) as a single
+ * whole-scene click handler and got pulled for competing with clicks on
+ * hotspots/UI — tapping the interact button also walked the Traveler out
+ * from under it. This version avoids that the same way the interact button
+ * already guarded for it (`onPointerDown` + `stopPropagation`, present
+ * before this hook existed): World.jsx's tap handler sits on the scene
+ * background, and every clickable thing layered over it stops the event
+ * from reaching that background before it can be read as "walk here".
  */
 
 // Keyed by e.code (the physical key), not e.key. e.key for a letter flips
@@ -34,6 +41,10 @@ const KEY_DIRS = {
   KeyS: [0, 1],
 };
 
+// Close enough to a tap/click target to call it "arrived" — snap and stop
+// rather than asymptotically creeping the last fraction of a unit forever.
+const ARRIVE_EPS = 1.2;
+
 export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles = [] }) {
   const [pos, setPos] = useState(spawn);
   const [facing, setFacing] = useState(1);
@@ -41,6 +52,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
 
   const posRef = useRef(spawn);
   const keys = useRef(new Set());
+  const target = useRef(null); // { x, y } | null — pending tap/click destination
   const frame = useRef(0);
   const lastTime = useRef(0);
 
@@ -68,22 +80,20 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
 
   const stop = useCallback(() => {
     keys.current.clear();
+    target.current = null;
     setMoving(false);
   }, []);
 
-  // ---- on-screen d-pad ----------------------------------------------------
-  // Shares `keys.current` with the keyboard listener below rather than a
-  // second parallel set: same KEY_DIRS codes, so the tick loop, the input
-  // lock check, and the blur/visibilitychange safety net all apply to touch
-  // presses for free, with nothing to keep in sync.
-  const press = useCallback((code) => {
-    if (!enabled || isInputLocked() || !KEY_DIRS[code]) return;
-    keys.current.add(code);
-  }, [enabled]);
-
-  const release = useCallback((code) => {
-    keys.current.delete(code);
-  }, []);
+  // ---- tap/click-to-move ---------------------------------------------------
+  // World.jsx calls this with a percentage-space point tapped/clicked on the
+  // scene background. One-shot: the tick loop below walks toward it each
+  // frame until arrival (or a key press interrupts, see the keyboard `down`
+  // handler) — no continuous drag-tracking, just "go there".
+  const goTo = useCallback((x, y) => {
+    if (!enabled || isInputLocked()) return;
+    const [cx, cy] = clamp(x, y);
+    target.current = { x: cx, y: cy };
+  }, [enabled, clamp]);
 
   /** Teleport without animating — used when a realm remounts. */
   const placeAt = useCallback(
@@ -107,6 +117,9 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
         // Don't let arrow keys scroll the page out from under the world.
         e.preventDefault();
         keys.current.add(e.code);
+        // A real key press takes over from a walk-to-tap in progress —
+        // otherwise the two fight over posRef every frame.
+        target.current = null;
       }
     };
     const up = (e) => {
@@ -116,7 +129,10 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     // (some keyboards drop events under heavy multi-key rollover) — losing
     // focus or the tab going background is as good a signal as any that
     // whatever's in `keys.current` can no longer be trusted.
-    const clear = () => keys.current.clear();
+    const clear = () => {
+      keys.current.clear();
+      target.current = null;
+    };
 
     window.addEventListener('keydown', down, { passive: false });
     window.addEventListener('keyup', up);
@@ -128,6 +144,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
       window.removeEventListener('blur', clear);
       document.removeEventListener('visibilitychange', clear);
       keys.current.clear();
+      target.current = null;
     };
   }, [enabled]);
 
@@ -160,6 +177,25 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
         }
       }
 
+      // No key held — if a tap/click set a destination, steer toward it
+      // instead. Keys always win when both are present (checked above).
+      const seekingTarget = dx === 0 && dy === 0 && !isInputLocked() && target.current;
+      if (seekingTarget) {
+        dx = target.current.x - posRef.current.x;
+        dy = target.current.y - posRef.current.y;
+        if (Math.hypot(dx, dy) < ARRIVE_EPS) {
+          // Close enough — snap exactly onto it rather than creeping the
+          // last fraction of a unit forever, and stop seeking.
+          const [fx, fy] = clamp(target.current.x, target.current.y);
+          target.current = null;
+          posRef.current = { x: fx, y: fy };
+          setPos({ x: fx, y: fy });
+          setMoving(false);
+          frame.current = requestAnimationFrame(tick);
+          return;
+        }
+      }
+
       const len = Math.hypot(dx, dy);
       if (len > 0 && dt > 0) {
         // Vertical movement is compressed: the walkable strip is shallow, and
@@ -171,19 +207,41 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
         // slides you along its edge instead of just stopping dead — the
         // same trick bounds-clamping already uses per axis, just checked
         // against obstacles too now.
-        let cx = posRef.current.x;
-        let cy = posRef.current.y;
+        const startX = posRef.current.x;
+        const startY = posRef.current.y;
+        let cx = startX;
+        let cy = startY;
 
-        const tryX = clamp(cx + stepX, cy)[0];
+        let tryX = clamp(cx + stepX, cy)[0];
+        // Walking toward a tapped point: don't overshoot past it on either
+        // axis just because the per-frame step was larger than what's left.
+        if (seekingTarget) {
+          const overshotX = (stepX > 0 && tryX > target.current.x) || (stepX < 0 && tryX < target.current.x);
+          if (overshotX) tryX = target.current.x;
+        }
         if (!blocked(tryX, cy)) cx = tryX;
 
-        const tryY = clamp(cx, cy + stepY)[1];
+        let tryY = clamp(cx, cy + stepY)[1];
+        if (seekingTarget) {
+          const overshotY = (stepY > 0 && tryY > target.current.y) || (stepY < 0 && tryY < target.current.y);
+          if (overshotY) tryY = target.current.y;
+        }
         if (!blocked(cx, tryY)) cy = tryY;
 
         posRef.current = { x: cx, y: cy };
         setPos({ x: cx, y: cy });
         setMoving(true);
         if (dx !== 0) setFacing(dx > 0 ? 1 : -1);
+
+        // Reached the tap target, or walked as far as an obstacle/bound lets
+        // — either way, stop seeking it (a target stuck behind furniture
+        // would otherwise sit there forever quietly failing to arrive, which
+        // reads as a bug more than "there was furniture in the way").
+        if (seekingTarget) {
+          const arrived = cx === target.current.x && cy === target.current.y;
+          const stuck = cx === startX && cy === startY;
+          if (arrived || stuck) target.current = null;
+        }
       } else {
         setMoving(false);
       }
@@ -198,7 +256,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     };
   }, [blocked, clamp, enabled, speed]);
 
-  return { pos, facing, moving, stop, placeAt, press, release };
+  return { pos, facing, moving, stop, placeAt, goTo };
 }
 
 /** Distance in world units — used for "am I close enough to interact?" */

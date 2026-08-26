@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { MapPin, CornerDownLeft, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react';
+import { MapPin, CornerDownLeft } from 'lucide-react';
 import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
 import Boat from './Boat';
@@ -25,7 +25,7 @@ export default function World({
   bounds,
   hotspots = [],
   objective,
-  hint = 'Use WASD, the arrow keys, or the on-screen pad to walk',
+  hint = 'Use WASD/arrow keys, or tap where you want to go',
   paused = false,
   onInteract,
   // Every realm shares the same 2:1 scene box (`.world`) so their SVGs
@@ -50,26 +50,27 @@ export default function World({
   // Irrelevant on 'boat' scenes.
   avatar = null,
 }) {
-  const { pos, facing, moving, placeAt, press, release } = useWalker({
+  const { pos, facing, moving, placeAt, goTo } = useWalker({
     spawn,
     bounds,
     enabled: !paused,
     obstacles,
   });
 
-  // Held via mouse *and* touch (matching minigames/MiniGamePlatformer.jsx's
-  // pattern) so the pad works the same whether it's clicked or tapped.
-  // stopPropagation keeps a press from also registering as a tap on
-  // whatever's underneath; preventDefault on touch stops the page from
-  // scrolling/zooming under a held finger.
-  const holdDir = (code) => ({
-    onMouseDown: (e) => { e.stopPropagation(); press(code); },
-    onMouseUp: () => release(code),
-    onMouseLeave: () => release(code),
-    onTouchStart: (e) => { e.preventDefault(); e.stopPropagation(); press(code); },
-    onTouchEnd: (e) => { e.preventDefault(); release(code); },
-    onTouchCancel: (e) => { e.preventDefault(); release(code); },
-  });
+  // Tap/click-to-move: touch's primary control, and available to mouse too.
+  // Lives on the scene background (`.world` itself), not the whole document,
+  // so everything layered over it — the interact button, and any future
+  // clickable UI — can opt out just by stopping the event before it gets
+  // here (the interact button already does, see its own onPointerDown
+  // below). Pointer events unify mouse/touch/pen, so one handler covers all
+  // three; e.button !== 0 filters out right/middle-click.
+  const handleWalkTap = (e) => {
+    if (paused || e.button !== 0) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    goTo(x, y);
+  };
 
   // Re-place whenever the space changes, so each one starts at its own gate.
   useEffect(() => {
@@ -124,6 +125,7 @@ export default function World({
       <div
         className={`world${paused ? ' paused' : ''}${className ? ` ${className}` : ''}`}
         role="presentation"
+        onPointerDown={handleWalkTap}
       >
         <div className="world-scene">{scene}</div>
 
@@ -174,27 +176,6 @@ export default function World({
             {active.action ?? 'Look'}
             <CornerDownLeft size={15} />
           </button>
-        )}
-
-        {/* On-screen d-pad — the touch-first counterpart to WASD/arrow keys
-            (Milestones Phase 4). A dedicated corner control, not tap-anywhere
-            movement, so it never competes with taps on hotspots/the interact
-            button the way the old click-to-move did. */}
-        {!paused && (
-          <div className="dpad" role="group" aria-label="Walk">
-            <button type="button" className="dpad-btn dpad-up" aria-label="Walk up" {...holdDir('ArrowUp')}>
-              <ArrowUp size={18} />
-            </button>
-            <button type="button" className="dpad-btn dpad-left" aria-label="Walk left" {...holdDir('ArrowLeft')}>
-              <ArrowLeft size={18} />
-            </button>
-            <button type="button" className="dpad-btn dpad-right" aria-label="Walk right" {...holdDir('ArrowRight')}>
-              <ArrowRight size={18} />
-            </button>
-            <button type="button" className="dpad-btn dpad-down" aria-label="Walk down" {...holdDir('ArrowDown')}>
-              <ArrowDown size={18} />
-            </button>
-          </div>
         )}
       </div>
 

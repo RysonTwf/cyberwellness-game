@@ -110,13 +110,13 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787678710.4713738,
-    "ast_hash": "063256ed98641086acabad10925248b3",
+    "mtime": 1787749046.4113235,
+    "ast_hash": "898bd2198a68b7e0a165e921a540e8fb",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
-    "mtime": 1787682014.1529996,
-    "ast_hash": "7a6a1cfd0f392665df381d86ddfe19ba",
+    "mtime": 1787749022.9519506,
+    "ast_hash": "025e91c4706b6719c52551f37422a33b",
     "semantic_hash": ""
   },
   "vite.config.js": {
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "Cyber_Wellness_Quest_Milestones.md": {
-    "mtime": 1787118849.3025815,
-    "ast_hash": "6feba31580b7f5b67fd4c8eb8ce56123",
+    "mtime": 1787749273.3401904,
+    "ast_hash": "df2dfa1a2bfa2b3a1c1959a1988a36a3",
     "semantic_hash": ""
   },
   "assets/README.md": {
