@@ -5,9 +5,12 @@ import { isInputLocked } from '../lib/inputLock';
  * Movement for the Traveler inside a 2D realm.
  *
  * The world is a 100x100 unit space mapped onto whatever the scene box is, so
- * every position in realms.js is resolution-independent. Movement is
- * keyboard-only — hold arrow keys or WASD — so it stays predictable and
- * doesn't compete with clicks on hotspots/UI.
+ * every position in realms.js is resolution-independent. Two input sources
+ * feed the same direction set: physical keys (arrow keys or WASD) and the
+ * on-screen d-pad (World.jsx's `press`/`release`, held via pointer/touch).
+ * Both are deliberately dedicated controls rather than click/tap-to-move
+ * anywhere — that's what used to compete with clicks on hotspots/UI (see
+ * Milestones Phase 4 changelog) and is why it was pulled once before.
  */
 
 // Keyed by e.code (the physical key), not e.key. e.key for a letter flips
@@ -66,6 +69,20 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
   const stop = useCallback(() => {
     keys.current.clear();
     setMoving(false);
+  }, []);
+
+  // ---- on-screen d-pad ----------------------------------------------------
+  // Shares `keys.current` with the keyboard listener below rather than a
+  // second parallel set: same KEY_DIRS codes, so the tick loop, the input
+  // lock check, and the blur/visibilitychange safety net all apply to touch
+  // presses for free, with nothing to keep in sync.
+  const press = useCallback((code) => {
+    if (!enabled || isInputLocked() || !KEY_DIRS[code]) return;
+    keys.current.add(code);
+  }, [enabled]);
+
+  const release = useCallback((code) => {
+    keys.current.delete(code);
   }, []);
 
   /** Teleport without animating — used when a realm remounts. */
@@ -181,7 +198,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     };
   }, [blocked, clamp, enabled, speed]);
 
-  return { pos, facing, moving, stop, placeAt };
+  return { pos, facing, moving, stop, placeAt, press, release };
 }
 
 /** Distance in world units — used for "am I close enough to interact?" */

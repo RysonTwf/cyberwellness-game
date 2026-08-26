@@ -1307,6 +1307,64 @@ p {
   filter: brightness(1.07);
 }
 
+/* ---- On-screen d-pad ------------------------------------------------------
+   Touch-first counterpart to WASD/arrow keys (Milestones Phase 4) — a
+   dedicated corner cross, not tap-anywhere movement, so it can't compete
+   with taps on hotspots/the interact button the way click-to-move once did.
+   ≥48px targets throughout, per the Phase 4 touch-parity requirement. */
+
+.dpad {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 6;
+  display: grid;
+  grid-template-areas:
+    '.    up    .'
+    'left .     right'
+    '.    down  .';
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(3, 48px);
+  gap: 3px;
+  opacity: 0.88;
+}
+
+.dpad-up {
+  grid-area: up;
+}
+.dpad-left {
+  grid-area: left;
+}
+.dpad-right {
+  grid-area: right;
+}
+.dpad-down {
+  grid-area: down;
+}
+
+.dpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dpad-btn:hover {
+  filter: brightness(1.05);
+}
+
+.dpad-btn:active {
+  background: var(--paper-sunk);
+  transform: scale(0.93);
+}
+
 /* ---- The bar under the world -------------------------------------------- */
 
 .world-bar {
