@@ -115,7 +115,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
           <span className="ic">
             <Check size={22} />
           </span>
-          <p>Nice work reading each one before you moved — that pause is the whole skill.</p>
+          <p>Nice work reading each one before you moved — pausing to think is the real skill.</p>
         </div>
       )}
 
@@ -125,7 +125,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
             <Info size={22} />
           </span>
           <p>
-            You made it across, but {stones.length - correctCount} of them caught you out. Read
+            You made it across, but {stones.length - correctCount} of them tricked you. Read
             what each one said again and cross it clean.
           </p>
         </div>

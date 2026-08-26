@@ -271,7 +271,7 @@ export function makePasswordFortressLevelConfig(
     resolveSafe() {
       this.locked = false;
       this.hintText?.setText('Collect the letter, number, and symbol tiles up on the platforms.');
-      this.flashToast('Gate’s open — the real Sam never needed your password anyway.');
+      this.flashToast('Gate’s open — that wasn’t really Sam. The real Sam never needs your password.');
       this.tweens.add({
         targets: this.gateBody,
         alpha: 0,
@@ -293,7 +293,7 @@ export function makePasswordFortressLevelConfig(
     resolveDoor(passed, message) {
       if (passed) {
         this.doorAnswered = true;
-        this.flashToast(message ?? 'The vault knows a strong one when it sees it.');
+        this.flashToast(message ?? 'That’s a strong password.');
         this.tweens.add({
           targets: this.door,
           alpha: 0,

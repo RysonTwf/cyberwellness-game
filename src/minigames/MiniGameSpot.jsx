@@ -71,7 +71,7 @@ export default function MiniGameSpot({ game, onComplete }) {
         <Flag size={17} color="var(--coral)" />
         <span className="stamp-label">
           {checked
-            ? `${foundFlags} of ${totalFlags} — that's the lot`
+            ? `${foundFlags} of ${totalFlags} — you found them all`
             : `${marked.length} marked · ${totalFlags} to find`}
         </span>
       </div>
@@ -130,7 +130,7 @@ export default function MiniGameSpot({ game, onComplete }) {
           </span>
           <p>
             Fog's gone. Four things in one short chat — and the one asking your favourite game
-            was fine all along. That's the bit most travelers get wrong in the other direction.
+            was fine all along. Lots of travelers mark that one by mistake too.
           </p>
         </div>
       )}

@@ -49,7 +49,7 @@ export default function MiniGameSort({ game, onComplete }) {
     setNote(
       correct
         ? null
-        : `Not quite — "${current.text}" goes in ${target.title}: ${target.sub.toLowerCase()}. Popped it over there for you.`,
+        : `Not quite — "${current.text}" goes in ${target.title}: ${target.sub.toLowerCase()}. Moved it there for you.`,
     );
     setOver(null);
     setDragging(false);
@@ -100,7 +100,7 @@ export default function MiniGameSort({ game, onComplete }) {
               All sorted — {firstTryCorrect} of {game.items.length} filed right the first time.
               {firstTryCorrect < game.items.length
                 ? ' The ones that moved are the ones worth remembering.'
-                : ' Not one slip.'}
+                : ' No mistakes at all.'}
             </p>
           </div>
         </div>

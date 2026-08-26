@@ -25,7 +25,7 @@
  */
 
 export const COMET_CATCHPHRASE =
-  'Every good traveler carries two things: curiosity, and a second thought.';
+  'Every good traveler carries two things: curiosity, and a bit of caution.';
 
 /**
  * Universal "Report & Block" resolution option (Improvement Plan §2): rather
@@ -46,7 +46,7 @@ const passworldLower = {
     },
     {
       who: 'Keeper Vex',
-      text: "A visitor! Wonderful. Before I let you through, I just need a few things — your full name, your school, your address, and — oh, while we're at it, what's your password? Just so I know you're trustworthy.",
+      text: "A visitor! Wonderful. I just need a few things first: your full name, your school, and your address. Oh — and your password too. Just so I know you're trustworthy.",
     },
   ],
 
@@ -61,7 +61,7 @@ const passworldLower = {
         who: 'Comet',
         // Warm redirect, not a punishment (design.md §5)
         response:
-          "Vex's vault door creaks open — and there's nothing behind it but more fog. Vex means well, but a stranger, even a friendly one, never needs your real info or your password to prove anything. Want to look at that again?",
+          "Vex's vault door creaks open — but there's nothing behind it, just fog. Vex seems nice, but even a friendly stranger never needs your real info or your password. Want to try again?",
       },
       {
         id: 'decline',
@@ -100,7 +100,7 @@ const passworldLower = {
   // The realm's real-world rule, stated once and plainly (storyline.md).
   rule: {
     who: 'Comet',
-    text: "Here's the rule that works everywhere in the Atlas: your name, your address, your school and your passwords stay locked. Your favourite colour, your nickname, the games you love — share away. And a real grown-up who needs something will never need your password to get it.",
+    text: "Here's the rule for the whole Atlas: your name, your address, your school, and your passwords stay locked. Your favourite colour, your nickname, and the games you love are fine to share. And remember — a real grown-up will never need your password for anything.",
   },
 };
 
@@ -157,7 +157,7 @@ const passworldHigher = {
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys (or the on-screen buttons). You'll meet whoever's in Sam's vault first — the gate past them won't open until you've decided what to do. Past that: jump between platforms to collect the letter, number, and the tiles scattered through the vault. It's a long climb that doubles back on itself, so take the jumps one at a time. Grab whatever you can reach — they all go in your bag, and nothing you pick up is wasted. The vault door at the far end is where you decide which of them actually belong in a strong password, so read them as you go. Guards patrol the ledges and the floor; a bump only knocks you back, so pick your moment and go again.",
+      "Walk right with the arrow keys (or the on-screen buttons). First, you'll meet whoever's in Sam's vault — the gate won't open until you decide what to do. After that, jump between platforms to collect the letters, numbers, and symbols scattered through the vault. It's a long climb that doubles back on itself, so take the jumps one at a time. Grab everything you can reach — it all goes in your bag, and nothing is wasted. At the vault door, you decide which of them actually belong in a strong password, so read them as you go. Guards patrol the ledges and the floor — a bump only knocks you back, so pick your moment and try again.",
     encounterX: 260,
     gateX: 300,
     // A long climb in five movements: up to the first tile, a gap run, a tight
@@ -253,7 +253,7 @@ const privacyLower = {
   story: [
     {
       who: 'Comet',
-      text: `Privacy Peaks. Careful — the fog up here isn't dangerous, it just hides who's really on the other side of a message. ${COMET_CATCHPHRASE}`,
+      text: `Privacy Peaks. Careful — the fog up here isn't dangerous, but it hides who's really sending you a message. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Fog',
@@ -271,7 +271,7 @@ const privacyLower = {
         safe: false,
         who: 'Comet',
         response:
-          "The fog gets thicker and… nothing good happens. Look at that message again — that's three signs at once. A prize you never entered for, a rush to click fast, and someone asking for your address. Let's look again.",
+          "The fog gets thicker and… nothing good happens. Look at that message again: it promised a prize you never entered for, it rushed you to click fast, and it asked for your address. Let's look again.",
       },
       {
         id: 'refuse',
@@ -280,7 +280,7 @@ const privacyLower = {
         safe: true,
         who: 'Comet',
         response:
-          'The fog thins out and drifts away, and there’s the real path, right where it always was. Telling someone is the part most travelers forget — nice work.',
+          'The fog thins out and drifts away — there’s the real path again. Telling someone is the part most travelers forget. Nice work.',
       },
     ],
   },
@@ -327,7 +327,7 @@ const privacyLower = {
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Peaks: you can’t see through fog, so don’t guess. If a message rushes you, promises you something, asks where you live, or asks you to keep a secret from your grown-ups — stop, don’t reply, and show it to an adult you trust.',
+    text: 'The rule for the Peaks: you can’t see through fog, so don’t guess. Watch for a message that rushes you, promises you something, asks where you live, or asks you to keep a secret from your grown-ups. If you see any of these, stop, don’t reply, and show it to an adult you trust.',
   },
 };
 
@@ -367,7 +367,7 @@ const privacyHigher = {
         safe: true,
         who: 'Comet',
         response:
-          "You open the Atlas app directly, the ordinary way — and there's no warning waiting for you there. The fog wanted you to click before you could check. Slowing down was the whole trick.",
+          "You open the Atlas app directly, the ordinary way — and there's no warning waiting for you there. The fog wanted you to click before you could check. Slowing down was all it took.",
       },
     ],
   },
@@ -431,7 +431,7 @@ const bullybogLower = {
   story: [
     {
       who: 'Comet',
-      text: `Bully Bog. The water here shows whatever people post about the ones who live in it. ${COMET_CATCHPHRASE}`,
+      text: `Bully Bog. Whatever people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Pockets',
@@ -457,7 +457,7 @@ const bullybogLower = {
         safe: false,
         who: 'Comet',
         response:
-          'The water goes darker still, and Pockets sinks a little lower in it. That made it heavier for Pockets, not lighter — even though it was only four words. Want to try a different response?',
+          'The water goes darker still, and Pockets sinks a little lower in it. Those four words hurt more than you might think. Want to try a different response?',
       },
       {
         id: 'standup',
@@ -482,7 +482,7 @@ const bullybogLower = {
         'One more thing, before it goes up for good — would it be okay if what you just typed stayed online forever? Posts don’t really disappear, even the kind ones.',
       accept: 'Good point.',
       followUp:
-        'That’s the habit hiding inside this one moment: not just "is it kind," but "would I still be okay with this next year." You just did both.',
+        'That’s a good habit: think about whether it’s kind, and whether you’d still be okay with it next year. You just did both!',
     },
     tellSomeone: {
       who: 'Comet',
@@ -494,7 +494,7 @@ const bullybogLower = {
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        'Good answer. Seeking help isn’t a last resort — it’s one of the habits, same as being kind or checking a fact. Knowing who, before you need to, is half the job done.',
+        'Good answer. Asking for help is just as important as being kind or checking a fact. It’s smart to know who to tell before you ever need to.',
     },
   },
 
@@ -510,10 +510,10 @@ const bullybogLower = {
     items: [
       { id: 'c1', text: '"I liked your song, Pockets!"', bin: 'send' },
       { id: 'c2', text: '"Want to sing the next one together?"', bin: 'send' },
-      { id: 'c3', text: '"That took guts. Nice one."', bin: 'send' },
+      { id: 'c3', text: '"That was brave. Nice one."', bin: 'send' },
       { id: 'c4', text: '"I\'m here if you want to talk."', bin: 'send' },
       { id: 'c5', text: '"nobody wants to hear this"', bin: 'leave' },
-      { id: 'c6', text: '"lol that was so bad 💀"', bin: 'leave' },
+      { id: 'c6', text: '"lol that was so bad"', bin: 'leave' },
       { id: 'c7', text: '"we\'re not inviting you next time"', bin: 'leave' },
       { id: 'c8', text: '"everyone agrees with me btw"', bin: 'leave' },
     ],
@@ -706,13 +706,13 @@ const balanceLower = {
       noScreen:
         'The tide’s all the way out! You don’t have to cut screens completely — they’re fun, and that’s allowed. Try adding one back in.',
       level:
-        'Look at that — the tide’s sitting level. Some screen time, plenty of everything else. That’s the whole trick.',
+        'Look at that — the tide’s sitting level. Some screen time, plenty of everything else. That’s really all it takes.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay: screens aren’t the enemy — losing track is. Decide when you’ll stop before you start, and make sure sleep, moving about, and actual people all still get their turn.',
+    text: 'The rule for the Bay: screens aren’t bad — losing track of time is. Decide when you’ll stop before you start, and make sure sleep, moving around, and real people all still get their turn.',
   },
 };
 
@@ -774,13 +774,13 @@ const balanceHigher = {
       noScreen:
         "Zero screens isn't the goal either — that's swinging just as hard the other way. Screens can be one of the things that feels good. The question was never really \"how many,\" it's \"does this still feel good, or am I just still here.\"",
       level:
-        "Look at that — level, and probably because some of this actually sounded good to choose, not just easy to default to. That's the whole trick at this age: noticing, not counting.",
+        "Look at that — level, and probably because some of this actually sounded good to choose, not just easy to default to. That's the real skill at this age: noticing, not counting.",
     },
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bay: counting hours matters less as you get older than noticing how you actually feel. Glimmer-type stuff is built to feel fine in the moment, so \"do I feel fine\" isn't always a reliable stop sign — check in with yourself, on purpose, sometimes, and let that be the thing that decides when enough's enough.",
+    text: "The upgraded rule for the Bay: counting hours matters less as you get older than noticing how you actually feel. Things like the Glimmer are built to feel fine in the moment, so \"do I feel fine\" isn't always a reliable stop sign — check in with yourself on purpose, sometimes, and let that be what decides when enough's enough.",
   },
 };
 
@@ -816,7 +816,7 @@ const fableFallsLower = {
   story: [
     {
       who: 'Comet',
-      text: `Fable Falls. Every tale that's ever been told in the Atlas ends up in this water eventually — some of it true, some of it made up along the way. ${COMET_CATCHPHRASE}`,
+      text: `Fable Falls. Every story told in the Atlas ends up here in the water — some of it true, some of it made up. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Echo',
@@ -834,7 +834,7 @@ const fableFallsLower = {
         safe: false,
         who: 'Comet',
         response:
-          "The tale tumbles further down the Falls, getting a little bigger each time. Here's the thing about The Echo: it repeats whatever it hears, loudly and confidently — but it never once checked if any of it was true. Want to look again?",
+          "The tale tumbles further down the Falls, getting a little bigger each time. The Echo repeats whatever it hears, loudly and confidently — but it never checks if any of it is true. Want to look again?",
       },
       {
         id: 'stopcheck',
@@ -937,7 +937,7 @@ const fableFallsHigher = {
         safe: true,
         who: 'Comet',
         response:
-          "Good call. Four questions, in order: where did this actually come from, what is it actually claiming, can you find it anywhere else trustworthy, and does it really add up? That's the whole method — and it takes less time than the embarrassment does to undo.",
+          "Good call. Four questions, in order: where did this actually come from? What is it actually claiming? Can you find it anywhere else trustworthy? Does it really add up? That's the whole method — and it's faster than dealing with the embarrassment afterward.",
       },
     ],
   },
