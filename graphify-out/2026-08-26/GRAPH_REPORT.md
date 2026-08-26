@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-26)
 
 ## Corpus Check
-- 57 files · ~422,869 words
+- 58 files · ~424,179 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 325 nodes · 520 edges · 34 communities (14 shown, 20 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.57)
+- 338 nodes · 541 edges · 34 communities (14 shown, 20 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.56)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0f088931`
+- Built from commit: `ef1a0d62`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,13 +21,13 @@
 - passworldArt.js
 - App.jsx
 - dependencies
-- sfx.js
+- AtlasMap.jsx
 - Cyber Wellness Quest — Milestones & Team Workstreams
 - audioSettings.js
 - Cyber Wellness Quest — Improvement Plan (Living Doc)
 - Cyber Wellness Quest — Design Document
 - Asset pipeline
-- MiniGamePlatformer.jsx
+- steppingStonesArt.js
 - graphify Knowledge-Graph Workflow
 - World.jsx
 - localStorage Persistence (cyber-wellness-quest/v1)
@@ -64,14 +64,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `SettingsPanel()` --calls--> `useAudioSettings()`  [EXTRACTED]
   src/components/SettingsMenu.jsx → src/hooks/useAudioSettings.js
-- `App()` --calls--> `useUiClickSfx()`  [EXTRACTED]
-  src/App.jsx → src/hooks/useUiClickSfx.js
-- `App()` --calls--> `useUiHoverSfx()`  [EXTRACTED]
-  src/App.jsx → src/hooks/useUiHoverSfx.js
 - `useAudioSettings()` --indirect_call--> `setMusicVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
 - `useAudioSettings()` --indirect_call--> `setSfxVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
+- `playSfx()` --calls--> `getVolumes()`  [EXTRACTED]
+  src/lib/sfx.js → src/lib/audioSettings.js
+- `App()` --calls--> `getBandView()`  [EXTRACTED]
+  src/App.jsx → src/data/realms.js
 
 ## Import Cycles
 - None detected.
@@ -100,15 +100,15 @@ Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, c
 
 ### Community 4 - "App.jsx"
 Cohesion: 0.07
-Nodes (37): SPA Root Mount Point, App(), AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, CertificateScreen() (+29 more)
+Nodes (40): SPA Root Mount Point, App(), CertificateScreen(), CharacterSelect(), OPTIONS, JournalProgress(), RealmScreen(), ACTIVE_REALMS (+32 more)
 
 ### Community 5 - "dependencies"
 Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
-### Community 6 - "sfx.js"
-Cohesion: 0.24
-Nodes (9): RealmScreen(), useUiClickSfx(), useUiHoverSfx(), getPool(), nextIndex, playSfx(), pools, SOUND_FILES (+1 more)
+### Community 6 - "AtlasMap.jsx"
+Cohesion: 0.22
+Nodes (6): AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, orderedActiveRealms()
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
@@ -126,30 +126,30 @@ Nodes (13): 0. What this game is, 1. Source of truth: what the Overview Plan act
 Cohesion: 0.12
 Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Direction & Rationale, 3. Token System, 4. Screen Flow, 5. Interaction Patterns, 6. Component Inventory (for the eventual React build), 7. State & Data Model (rough shape) (+8 more)
 
-### Community 13 - "MiniGamePlatformer.jsx"
-Cohesion: 0.33
-Nodes (5): MiniGamePlatformer(), MiniGameSteppingStones(), makePasswordFortressConfig(), makeSteppingStonesConfig(), PhaserMiniGame()
+### Community 13 - "steppingStonesArt.js"
+Cohesion: 0.14
+Nodes (15): MiniGamePlatformer(), MiniGameSteppingStones(), makePasswordFortressConfig(), ART_MANIFEST, buildSteppingStonesArt(), drawToken(), fillRR(), generate() (+7 more)
 
 ### Community 18 - "World.jsx"
 Cohesion: 0.18
 Nodes (12): SettingsMenu(), SettingsPanel(), isInputLocked(), lockInput(), unlockInput(), Boat(), FRAME_SETS, Traveler() (+4 more)
 
 ## Knowledge Gaps
-- **124 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+119 more)
+- **126 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+121 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `playSfx()` connect `sfx.js` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `Characters.jsx`, `App.jsx`?**
+- **Why does `playSfx()` connect `App.jsx` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `Characters.jsx`, `App.jsx`, `AtlasMap.jsx`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `World()` connect `World.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`, `App.jsx`?**
+- **Why does `World()` connect `World.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`, `AtlasMap.jsx`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _124 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _126 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Characters.jsx` be split into smaller, more focused modules?**
   _Cohesion score 0.12857142857142856 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**

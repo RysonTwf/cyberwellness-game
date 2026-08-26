@@ -427,8 +427,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_atlasmap",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "atlasmap.jsx"
     },
     {
@@ -438,8 +438,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_atlasmap_islands",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "islands"
     },
     {
@@ -449,8 +449,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "gate"
     },
     {
@@ -460,8 +460,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate_svg",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "gate_svg"
     },
     {
@@ -471,8 +471,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_atlasmap_branch_ctrl",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "branch_ctrl"
     },
     {
@@ -482,8 +482,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_atlasmap_palmtree",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "palmtree()"
     },
     {
@@ -493,8 +493,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_components_atlasmap_fishmark",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "fishmark()"
     },
     {
@@ -504,8 +504,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasscene",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "atlasscene()"
     },
     {
@@ -515,8 +515,8 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasmap",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "atlasmap()"
     },
     {
@@ -999,8 +999,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "realmscreen()"
     },
     {
@@ -1406,8 +1406,8 @@
       "source_location": "L1170",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "orderedactiverealms()"
     },
     {
@@ -1516,8 +1516,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -1527,8 +1527,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -1538,8 +1538,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -1549,8 +1549,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -1802,8 +1802,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_sfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "sfx.js"
     },
     {
@@ -1813,8 +1813,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "sound_files"
     },
     {
@@ -1824,8 +1824,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "volumes"
     },
     {
@@ -1835,8 +1835,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "pools"
     },
     {
@@ -1846,8 +1846,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "nextindex"
     },
     {
@@ -1857,8 +1857,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "getpool()"
     },
     {
@@ -1868,8 +1868,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
-      "community": 6,
-      "community_name": "sfx.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "playsfx()"
     },
     {
@@ -1913,7 +1913,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigameplatformer",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "minigameplatformer.jsx"
     },
     {
@@ -1924,7 +1924,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigameplatformer_minigameplatformer",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "minigameplatformer()"
     },
     {
@@ -2001,7 +2001,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "minigamesteppingstones.jsx"
     },
     {
@@ -2012,7 +2012,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones_minigamesteppingstones",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "minigamesteppingstones()"
     },
     {
@@ -2023,7 +2023,7 @@
       "_origin": "ast",
       "id": "src_minigames_phaserminigame",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "phaserminigame.jsx"
     },
     {
@@ -2034,7 +2034,7 @@
       "_origin": "ast",
       "id": "src_minigames_phaserminigame_phaserminigame",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "phaserminigame()"
     },
     {
@@ -2067,7 +2067,7 @@
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortressscene",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "passwordfortressscene.js"
     },
     {
@@ -2078,7 +2078,7 @@
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortressscene_makepasswordfortressconfig",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "makepasswordfortressconfig()"
     },
     {
@@ -2412,6 +2412,149 @@
       "norm_label": "tiletexturefor()"
     },
     {
+      "label": "steppingStonesArt.js",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "steppingstonesart.js"
+    },
+    {
+      "label": "SKINS",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_skins",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "skins"
+    },
+    {
+      "label": "skin()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_skin",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "skin()"
+    },
+    {
+      "label": "spriteScale()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_spritescale",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "spritescale()"
+    },
+    {
+      "label": "rr()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_rr",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "rr()"
+    },
+    {
+      "label": "fillRR()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_fillrr",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "fillrr()"
+    },
+    {
+      "label": "drawStone()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_drawstone",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "drawstone()"
+    },
+    {
+      "label": "drawToken()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_drawtoken",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "drawtoken()"
+    },
+    {
+      "label": "drawFog()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_drawfog",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "drawfog()"
+    },
+    {
+      "label": "ART_MANIFEST",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_art_manifest",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "art_manifest"
+    },
+    {
+      "label": "generate()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_generate",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "generate()"
+    },
+    {
+      "label": "preloadSteppingStonesArt()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L171",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_preloadsteppingstonesart",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "preloadsteppingstonesart()"
+    },
+    {
+      "label": "buildSteppingStonesArt()",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L190",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesart_buildsteppingstonesart",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "buildsteppingstonesart()"
+    },
+    {
       "label": "steppingStonesScene.js",
       "file_type": "code",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
@@ -2419,18 +2562,18 @@
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "steppingstonesscene.js"
     },
     {
       "label": "makeSteppingStonesConfig()",
       "file_type": "code",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L16",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene_makesteppingstonesconfig",
       "community": 13,
-      "community_name": "MiniGamePlatformer.jsx",
+      "community_name": "steppingStonesArt.js",
       "norm_label": "makesteppingstonesconfig()"
     },
     {
@@ -8674,8 +8817,251 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_art_manifest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L190",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_buildsteppingstonesart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_drawfog",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_drawstone",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L140",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_drawtoken",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_preloadsteppingstonesart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_rr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_skins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_spritescale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L16",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_minigames_phaser_scenes_steppingstonesart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L191",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_buildsteppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L172",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_preloadsteppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_spritescale",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_skin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_fillrr",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_rr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_drawtoken",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_fillrr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesArt.js",
+      "source_location": "L201",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesart_buildsteppingstonesart",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_preloadsteppingstonesart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_minigames_phaser_scenes_steppingstonesart_buildsteppingstonesart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_minigames_phaser_scenes_steppingstonesscene",
@@ -9719,5 +10105,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "0f088931dcf69d6a2881a7cfa326d27a8fb64789"
+  "built_at_commit": "ef1a0d621c8c48c2a1f7ce1b2ed643edf578c330"
 }

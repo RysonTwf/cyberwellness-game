@@ -427,8 +427,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_atlasmap",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasmap.jsx"
     },
     {
@@ -438,8 +438,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_atlasmap_islands",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "islands"
     },
     {
@@ -449,8 +449,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "gate"
     },
     {
@@ -460,8 +460,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_atlasmap_gate_svg",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "gate_svg"
     },
     {
@@ -471,8 +471,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_atlasmap_branch_ctrl",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "branch_ctrl"
     },
     {
@@ -482,8 +482,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_atlasmap_palmtree",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "palmtree()"
     },
     {
@@ -493,8 +493,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "src_components_atlasmap_fishmark",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "fishmark()"
     },
     {
@@ -504,8 +504,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasscene",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasscene()"
     },
     {
@@ -515,8 +515,8 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "src_components_atlasmap_atlasmap",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "atlasmap()"
     },
     {
@@ -768,8 +768,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_dialoguecard",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 1,
+      "community_name": "Characters.jsx",
       "norm_label": "dialoguecard.jsx"
     },
     {
@@ -779,8 +779,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_dialoguecard_dialoguecard",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 1,
+      "community_name": "Characters.jsx",
       "norm_label": "dialoguecard()"
     },
     {
@@ -845,8 +845,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_components_platformerstoryrealm_platformerstoryrealm",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "platformerstoryrealm()"
     },
     {
@@ -856,8 +856,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_realmart",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "realmart.jsx"
     },
     {
@@ -867,8 +867,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_realmart_sky",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "sky()"
     },
     {
@@ -878,8 +878,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_realmart_passworldscene",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "passworldscene()"
     },
     {
@@ -889,8 +889,8 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "src_components_realmart_privacyscene",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "privacyscene()"
     },
     {
@@ -900,8 +900,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "src_components_realmart_bogscene",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "bogscene()"
     },
     {
@@ -911,8 +911,8 @@
       "source_location": "L373",
       "_origin": "ast",
       "id": "src_components_realmart_bayscene",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "bayscene()"
     },
     {
@@ -922,8 +922,8 @@
       "source_location": "L506",
       "_origin": "ast",
       "id": "src_components_realmart_fablefallsscene",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "fablefallsscene()"
     },
     {
@@ -933,8 +933,8 @@
       "source_location": "L560",
       "_origin": "ast",
       "id": "src_components_realmart_scenes",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "scenes"
     },
     {
@@ -944,8 +944,8 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "src_components_realmart_realmart",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "realmart()"
     },
     {
@@ -999,8 +999,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "realmscreen()"
     },
     {
@@ -1142,8 +1142,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_stampmoment",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 1,
+      "community_name": "Characters.jsx",
       "norm_label": "stampmoment.jsx"
     },
     {
@@ -1351,8 +1351,8 @@
       "source_location": "L1007",
       "_origin": "ast",
       "id": "src_data_realms_realms",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "realms"
     },
     {
@@ -1406,8 +1406,8 @@
       "source_location": "L1170",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
-      "community": 6,
-      "community_name": "AtlasMap.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "orderedactiverealms()"
     },
     {
@@ -1450,8 +1450,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_dev_artpreview",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "artpreview.jsx"
     },
     {
@@ -1461,8 +1461,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_dev_artpreview_moods",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "moods"
     },
     {
@@ -1472,8 +1472,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_dev_artpreview_scene",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "scene()"
     },
     {
@@ -1483,8 +1483,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_dev_artpreview_artpreview",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "artpreview()"
     },
     {
@@ -1516,8 +1516,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -1527,8 +1527,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -1538,8 +1538,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -1549,8 +1549,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -1730,14 +1730,47 @@
       "norm_label": "isinputlocked()"
     },
     {
+      "label": "motion.js",
+      "file_type": "code",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_motion",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "motion.js"
+    },
+    {
+      "label": "prefersReducedMotion()",
+      "file_type": "code",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_lib_motion_prefersreducedmotion",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "prefersreducedmotion()"
+    },
+    {
+      "label": "motionTween()",
+      "file_type": "code",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "src_lib_motion_motiontween",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "motiontween()"
+    },
+    {
       "label": "music.js",
       "file_type": "code",
       "source_file": "src/lib/music.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_music",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "music.js"
     },
     {
@@ -1747,8 +1780,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_lib_music_track_files",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "track_files"
     },
     {
@@ -1758,8 +1791,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_lib_music_targetvolume",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "targetvolume()"
     },
     {
@@ -1769,8 +1802,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_lib_music_clearfade",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "clearfade()"
     },
     {
@@ -1780,8 +1813,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_lib_music_playmusic",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "playmusic()"
     },
     {
@@ -1791,8 +1824,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_music_stopmusic",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "stopmusic()"
     },
     {
@@ -1802,8 +1835,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_sfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sfx.js"
     },
     {
@@ -1813,8 +1846,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sound_files"
     },
     {
@@ -1824,8 +1857,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "volumes"
     },
     {
@@ -1835,8 +1868,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "pools"
     },
     {
@@ -1846,8 +1879,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "nextindex"
     },
     {
@@ -1857,8 +1890,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "getpool()"
     },
     {
@@ -1868,8 +1901,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "playsfx()"
     },
     {
@@ -1879,8 +1912,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 4,
-      "community_name": "App.jsx",
+      "community": 6,
+      "community_name": "RealmArt.jsx",
       "norm_label": "main.jsx"
     },
     {
@@ -1912,8 +1945,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigameplatformer",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigameplatformer.jsx"
     },
     {
@@ -1923,8 +1956,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_minigames_minigameplatformer_minigameplatformer",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigameplatformer()"
     },
     {
@@ -2000,8 +2033,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesteppingstones.jsx"
     },
     {
@@ -2011,8 +2044,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones_minigamesteppingstones",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesteppingstones()"
     },
     {
@@ -2022,8 +2055,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_phaserminigame",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "phaserminigame.jsx"
     },
     {
@@ -2033,8 +2066,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_minigames_phaserminigame_phaserminigame",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "phaserminigame()"
     },
     {
@@ -2052,11 +2085,11 @@
       "label": "makePasswordFortressLevelConfig()",
       "file_type": "code",
       "source_file": "src/minigames/phaser-scenes/passwordFortressLevelScene.js",
-      "source_location": "L38",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortresslevelscene_makepasswordfortresslevelconfig",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "makepasswordfortresslevelconfig()"
     },
     {
@@ -2066,8 +2099,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortressscene",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "passwordfortressscene.js"
     },
     {
@@ -2077,8 +2110,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortressscene_makepasswordfortressconfig",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "makepasswordfortressconfig()"
     },
     {
@@ -2569,11 +2602,11 @@
       "label": "makeSteppingStonesConfig()",
       "file_type": "code",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L21",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene_makesteppingstonesconfig",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "makesteppingstonesconfig()"
     },
     {
@@ -2671,41 +2704,41 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_traveler",
-      "community": 18,
-      "community_name": "World.jsx",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
       "norm_label": "traveler.jsx"
     },
     {
       "label": "FRAME_SETS",
       "file_type": "code",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "src_world_traveler_frame_sets",
-      "community": 18,
-      "community_name": "World.jsx",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
       "norm_label": "frame_sets"
     },
     {
       "label": "SpriteTraveler()",
       "file_type": "code",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "src_world_traveler_spritetraveler",
-      "community": 18,
-      "community_name": "World.jsx",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
       "norm_label": "spritetraveler()"
     },
     {
       "label": "Traveler()",
       "file_type": "code",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L70",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "src_world_traveler_traveler",
-      "community": 18,
-      "community_name": "World.jsx",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
       "norm_label": "traveler()"
     },
     {
@@ -3794,9 +3827,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 4,
+      "community": 6,
       "norm_label": "spa root mount point",
-      "community_name": "App.jsx",
+      "community_name": "RealmArt.jsx",
       "id": "index_root_mount"
     },
     {
@@ -7587,6 +7620,136 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_motion",
+      "target": "src_lib_motion_motiontween",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_motion",
+      "target": "src_lib_motion_prefersreducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/passwordFortressLevelScene.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_passwordfortresslevelscene",
+      "target": "src_lib_motion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_lib_motion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/Traveler.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_world_traveler",
+      "target": "src_lib_motion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/motion.js",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_motion_motiontween",
+      "target": "src_lib_motion_prefersreducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/passwordFortressLevelScene.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_passwordfortresslevelscene",
+      "target": "src_lib_motion_prefersreducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/Traveler.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_world_traveler",
+      "target": "src_lib_motion_prefersreducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/world/Traveler.jsx",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_world_traveler_spritetraveler",
+      "target": "src_lib_motion_prefersreducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/passwordFortressLevelScene.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_passwordfortresslevelscene",
+      "target": "src_lib_motion_motiontween",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_lib_motion_motiontween",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
       "source_location": "L29",
       "weight": 1.0,
@@ -8023,7 +8186,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/minigames/phaser-scenes/passwordFortressLevelScene.js",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_minigames_phaser_scenes_passwordfortresslevelscene",
@@ -9061,7 +9224,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_minigames_phaser_scenes_steppingstonesscene",
@@ -9234,7 +9397,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_world_traveler",
@@ -9245,7 +9408,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_world_traveler",
@@ -9256,7 +9419,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/world/Traveler.jsx",
-      "source_location": "L70",
+      "source_location": "L76",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_world_traveler",
@@ -10105,5 +10268,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "ef1a0d621c8c48c2a1f7ce1b2ed643edf578c330"
+  "built_at_commit": "3d2944bd55b8ff3c55f09500f2446b2c779d1148"
 }

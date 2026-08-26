@@ -3,6 +3,7 @@ import boyWalk1 from '../assets/characters/boy-walk-1.png';
 import boyWalk2 from '../assets/characters/boy-walk-2.png';
 import girlWalk1 from '../assets/characters/girl-walk-1.png';
 import girlWalk2 from '../assets/characters/girl-walk-2.png';
+import { prefersReducedMotion } from '../lib/motion';
 
 const FRAME_SETS = {
   boy: [boyWalk1, boyWalk2],
@@ -33,7 +34,12 @@ function SpriteTraveler({ avatar, facing = 1, moving = false }) {
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
-    if (!moving) {
+    // This frame-swap is a `setInterval`, not a CSS animation, so it's
+    // outside styles.css's blanket reduced-motion rule (which only catches
+    // the neutral SVG traveler's leg/scarf bob) — holding the idle frame
+    // here keeps the two travelers consistent under reduced motion instead
+    // of only one of them respecting it.
+    if (!moving || prefersReducedMotion()) {
       setFrame(0); // hold the idle pose the instant they stop, not mid-stride
       return undefined;
     }

@@ -12,6 +12,7 @@
  */
 
 import { buildSteppingStonesArt, preloadSteppingStonesArt } from './steppingStonesArt';
+import { motionTween } from '../../lib/motion';
 
 // Only the few tints this scene applies at runtime live here — everything the
 // art itself is drawn with belongs to steppingStonesArt.js.
@@ -65,13 +66,17 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
       const target = this.stoneSprites[index];
       if (!target) return;
       target.sprite.setTint(correct ? TEAL : GOLD);
-      this.tweens.add({
+      // Purely the visual slide — the actual feedback (safe/unsafe, the
+      // explanation) is DOM text in MiniGameSteppingStones.jsx, so this can
+      // collapse to a near-instant snap under reduced motion with nothing
+      // lost.
+      this.tweens.add(motionTween({
         targets: this.traveler,
         x: target.x,
         y: target.y - 22,
         duration: 380,
         ease: 'Sine.inOut',
-      });
+      }));
     }
   }
 

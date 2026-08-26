@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "Cyber_Wellness_Quest_Milestones.md": {
-    "mtime": 1787750010.0983775,
-    "ast_hash": "c4bc5f17eca2ea0a8b8bf606f5aa9ebf",
+    "mtime": 1787751758.7659094,
+    "ast_hash": "35dac2681c9bfce10a1f54d339992215",
     "semantic_hash": ""
   },
   "assets/README.md": {
@@ -190,8 +190,8 @@
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/steppingStonesScene.js": {
-    "mtime": 1787043442.0375917,
-    "ast_hash": "035dcedfb5c21a722b7a18931d5dcf0b",
+    "mtime": 1787751671.4221578,
+    "ast_hash": "f3bb03afbb231bd1ebac8df8742f5c54",
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
@@ -29332,6 +29332,11 @@
   "src/assets/characters/girl-walk-2.png": {
     "mtime": 1787678446.5325458,
     "ast_hash": "718a54d259093adf1f1c52f19f93d0ea",
+    "semantic_hash": ""
+  },
+  "src/minigames/phaser-scenes/steppingStonesArt.js": {
+    "mtime": 1787751654.9749334,
+    "ast_hash": "69154e31500124646299f72248053262",
     "semantic_hash": ""
   }
 }

@@ -25,6 +25,7 @@ import {
   tileTextureFor,
 } from './passworldArt';
 import { playSfx } from '../../lib/sfx';
+import { motionTween, prefersReducedMotion } from '../../lib/motion';
 
 // Only the few tints the scene applies at runtime live here — everything the
 // art itself is drawn with belongs to passworldArt.js.
@@ -139,14 +140,19 @@ export function makePasswordFortressLevelConfig(
         // The same slow hover on every tile. Giving the real ones a lift and
         // the decoys a glint marked them apart before the player read them,
         // which is exactly the call the vault door is there to ask for.
-        this.tweens.add({
-          targets: [sprite, label],
-          y: '-=3',
-          duration: 1100,
-          yoyo: true,
-          repeat: -1,
-          ease: 'Sine.inOut',
-        });
+        // Purely decorative and infinite — under reduced motion there's
+        // nothing useful about running it very fast, so it's skipped
+        // outright rather than routed through motionTween.
+        if (!prefersReducedMotion()) {
+          this.tweens.add({
+            targets: [sprite, label],
+            y: '-=3',
+            duration: 1100,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+          });
+        }
       }
       this.physics.add.overlap(this.player, this.tileGroup, (_player, sprite) =>
         this.onTileTouch(sprite),
@@ -186,6 +192,11 @@ export function makePasswordFortressLevelConfig(
         }
         guard.x = from;
 
+        // Deliberately exempt from reduced-motion (unlike the tile hover
+        // above): this is the hazard itself, not a flourish — timing around
+        // its patrol is the actual gameplay, so stopping or fast-forwarding
+        // it under reduced motion would change what the level asks of the
+        // player, not just how it looks.
         if (to > from) {
           this.tweens.add({
             targets: guard,
@@ -272,7 +283,7 @@ export function makePasswordFortressLevelConfig(
       this.locked = false;
       this.hintText?.setText('Collect the letter, number, and symbol tiles up on the platforms.');
       this.flashToast('Gate’s open — that wasn’t really Sam. The real Sam never needs your password.');
-      this.tweens.add({
+      this.tweens.add(motionTween({
         targets: this.gateBody,
         alpha: 0,
         y: this.gateBody.y - 40,
@@ -281,7 +292,7 @@ export function makePasswordFortressLevelConfig(
         onComplete: () => {
           this.gateBody.body.enable = false;
         },
-      });
+      }));
     }
 
     /**
@@ -294,14 +305,14 @@ export function makePasswordFortressLevelConfig(
       if (passed) {
         this.doorAnswered = true;
         this.flashToast(message ?? 'That’s a strong password.');
-        this.tweens.add({
+        this.tweens.add(motionTween({
           targets: this.door,
           alpha: 0,
           y: this.door.y - 30,
           duration: 500,
           ease: 'Cubic.easeIn',
           onComplete: () => this.winSequence(),
-        });
+        }));
         return;
       }
       this.locked = false;
@@ -359,7 +370,10 @@ export function makePasswordFortressLevelConfig(
       this.toastText.setText(msg);
       this.tweens.killTweensOf(this.toastText);
       this.toastText.setAlpha(1);
-      this.tweens.add({ targets: this.toastText, alpha: 0, delay: 1600, duration: 500 });
+      // `delay` is how long the message stays fully readable before it
+      // starts fading — that's dwell time, not motion, so motionTween
+      // leaves it alone and only shrinks the fade itself.
+      this.tweens.add(motionTween({ targets: this.toastText, alpha: 0, delay: 1600, duration: 500 }));
     }
 
     updateHud() {
@@ -374,7 +388,7 @@ export function makePasswordFortressLevelConfig(
       // pickup and sat still for a decoy.
       const target = tiles.length ? this.bagged / tiles.length : 0;
       this.tweens.killTweensOf(this.meter);
-      this.tweens.add({
+      this.tweens.add(motionTween({
         targets: this.meter,
         v: target,
         duration: 420,
@@ -386,7 +400,7 @@ export function makePasswordFortressLevelConfig(
           this.meter.v = target;
           this.drawMeter();
         },
-      });
+      }));
     }
 
     drawMeter() {
@@ -405,6 +419,10 @@ export function makePasswordFortressLevelConfig(
 
     /** A little burst of sparks where a tile was picked up. */
     collectBurst(x, y) {
+      // Purely decorative flourish, nothing else depends on it — skip it
+      // outright under reduced motion rather than shrinking it to a
+      // flicker.
+      if (prefersReducedMotion()) return;
       for (let i = 0; i < 7; i += 1) {
         const s = this.add.image(x, y, 'pw-spark').setScale(0.7);
         const a = (Math.PI * 2 * i) / 7 + Math.random() * 0.4;
@@ -434,23 +452,27 @@ export function makePasswordFortressLevelConfig(
       // The doors thump shut, hold a beat, then swing wide — the vault
       // sealing *then* opening for the Traveler is the stamp-earning moment,
       // so it wants a pause in the middle rather than one continuous slide.
-      this.tweens.add({ targets: left, x: 130, duration: 180, yoyo: true, ease: 'Quad.easeOut' });
-      this.tweens.add({ targets: right, x: 430, duration: 180, yoyo: true, ease: 'Quad.easeOut' });
-      this.tweens.add({
+      // The `delay`s pace that beat rather than animate anything, so
+      // motionTween (duration-only) leaves them alone — reduced motion
+      // still gets the win noticeably sooner (each slide collapses to
+      // near-instant), just without cutting the staged pause entirely.
+      this.tweens.add(motionTween({ targets: left, x: 130, duration: 180, yoyo: true, ease: 'Quad.easeOut' }));
+      this.tweens.add(motionTween({ targets: right, x: 430, duration: 180, yoyo: true, ease: 'Quad.easeOut' }));
+      this.tweens.add(motionTween({
         targets: left,
         x: -140,
         delay: 620,
         duration: 760,
         ease: 'Back.easeIn',
-      });
-      this.tweens.add({
+      }));
+      this.tweens.add(motionTween({
         targets: right,
         x: 700,
         delay: 620,
         duration: 760,
         ease: 'Back.easeIn',
         onComplete: () => onWin?.(this.realTotal),
-      });
+      }));
     }
 
     update(_time, delta) {

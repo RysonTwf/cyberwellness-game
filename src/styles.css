@@ -308,7 +308,10 @@ p {
 .btn-sm {
   font-size: 15px;
   padding: 9px 18px;
-  min-height: 42px;
+  /* Same 48px floor as .btn (design.md §8) — this is what every mini-game's
+     retry button uses ("Sort again", "Try again", etc.), so undershooting
+     it here undersizes the one control "no fail state, just retry" leans on. */
+  min-height: 48px;
 }
 
 :where(button, input, [tabindex]):focus-visible {
@@ -945,7 +948,7 @@ p {
   border: 2px solid var(--line);
   border-radius: 999px;
   padding: 10px 16px;
-  min-height: 44px;
+  min-height: 48px; /* touch target floor, design.md §8 */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -1285,7 +1288,10 @@ p {
 .interact {
   position: absolute;
   margin-left: -60px;
-  margin-top: -114px;
+  /* -4px vs. the old -114px: min-height grew 40px→48px below, and this keeps
+     the button's vertical centre (hence its distance above the Traveler's
+     head) the same as before that growth rather than creeping 8px lower. */
+  margin-top: -118px;
   width: 120px;
   z-index: 5;
   font-family: var(--font-display);
@@ -1296,7 +1302,8 @@ p {
   border: 0;
   border-radius: 999px;
   padding: 9px 14px;
-  min-height: 40px;
+  min-height: 48px; /* touch target floor, design.md §8 — this is the button
+    every story beat in every realm is reached through */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -1401,8 +1408,8 @@ p {
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 38px;
-  height: 38px;
+  width: 48px; /* touch target floor, design.md §8 */
+  height: 48px;
   border-radius: 50%;
   border: 1.5px solid var(--line);
   background: var(--paper-card);
@@ -1951,8 +1958,8 @@ p {
   top: 14px;
   right: 14px;
   z-index: 45;
-  width: 40px;
-  height: 40px;
+  width: 48px; /* touch target floor, design.md §8 — present on every screen */
+  height: 48px;
   border-radius: 50%;
   border: 1.5px solid var(--line);
   background: var(--paper-card);
