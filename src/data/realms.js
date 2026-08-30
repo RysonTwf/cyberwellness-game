@@ -512,7 +512,7 @@ const bullybogLower = {
       text: `Bully Bog. What people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
     },
     {
-      who: 'Pockets',
+      who: 'Pockets the frog',
       text: 'Ribbit-a-doo... oh, hello! I am just practising my song.',
     },
     {
@@ -542,7 +542,7 @@ const bullybogLower = {
         text: '"That is not kind. I love your song, Pockets."',
         tag: 'Option B',
         safe: true,
-        who: 'Pockets',
+        who: 'Pockets the frog',
         response:
           'Oh! You do? The water is going clear, right where you typed. Thank you, Traveller.',
       },
@@ -613,7 +613,7 @@ const bullybogHigher = {
       text: `Bully Bog. Whatever people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
     },
     {
-      who: 'Pockets',
+      who: 'Pockets the frog',
       text: 'Ribbit-a-doo, ribbit-a-day... oh, hello! Sorry, I am just practising my song. I do it a lot.',
     },
     {
@@ -643,7 +643,7 @@ const bullybogHigher = {
         text: '"That is not kind. I love your song, Pockets."',
         tag: 'Option B',
         safe: true,
-        who: 'Pockets',
+        who: 'Pockets the frog',
         response:
           'Oh. You do? Nobody usually says that. The water is clearing, right where you typed. Thank you, Traveller.',
       },

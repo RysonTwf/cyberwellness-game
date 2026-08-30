@@ -125,6 +125,7 @@ const BY_NAME = {
   'Keeper Vex': Vex,
   'The Fog': Fog,
   Pockets,
+  'Pockets the frog': Pockets,
   'A comment appears': CommentBubble,
 };
 
