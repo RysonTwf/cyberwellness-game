@@ -15,6 +15,7 @@ import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import MiniGameQuiz from '../minigames/MiniGameQuiz';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
+import BalanceBeachRealm from './BalanceBeachRealm';
 
 // Realm icons moved to JournalProgress.jsx along with the realm heading —
 // the bar is now the one place a realm's identity is drawn.
@@ -52,9 +53,9 @@ const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
  */
 export default function RealmScreen({ realm, progress, travelerName, avatar, onSettle, onStamp, onBackToAtlas }) {
   // A realm can opt out of the shared story→decision→game→rule→stamp
-  // pattern entirely and own one continuous experience instead (currently
-  // just Passworld P4–P6 — see PlatformerStoryRealm.jsx for why). This has
-  // to be the first thing in the function, before any hooks below, since
+  // pattern entirely and own one continuous experience instead (Passworld
+  // P4–P6's platformer; Balance Bay's walkable beach for both bands). This
+  // has to be the first thing in the function, before any hooks below, since
   // this component never calls its own hooks when it delegates.
   if (realm.fullMechanic === 'platformerStory') {
     return (
@@ -63,6 +64,18 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
         progress={progress}
         travelerName={travelerName}
         onSettle={onSettle}
+        onStamp={onStamp}
+        onBackToAtlas={onBackToAtlas}
+      />
+    );
+  }
+  if (realm.fullMechanic === 'balanceBeach') {
+    return (
+      <BalanceBeachRealm
+        realm={realm}
+        progress={progress}
+        travelerName={travelerName}
+        avatar={avatar}
         onStamp={onStamp}
         onBackToAtlas={onBackToAtlas}
       />

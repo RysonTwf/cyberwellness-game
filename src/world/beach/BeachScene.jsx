@@ -53,8 +53,8 @@ function Shadow({ x, y, width }) {
 }
 
 const WATER_LINE = 46; // where the tide's edge sits, in scene-percent
-export const SEESAW_SPOT = { x: 52, y: 70 };
-const HAMMOCK_SPOT = { x: 20, y: 60 };
+export const SEESAW_SPOT = { x: 50, y: 76 };
+const HAMMOCK_SPOT = { x: 20, y: 62 };
 
 /** .world's default width:height (styles.css `--scene-ar`) — same role as
  * RoomScene's ROOM_ASPECT: converts a sprite's width-as-percentage into its
@@ -79,18 +79,16 @@ export const BEACH_OBSTACLES = PROPS.map((p) => {
 });
 
 /**
- * Balance Bay's beach — flat CSS fills for sand/water, matching RoomScene's
- * CSS-only wall/floor; the seesaw and the palm-tree hammock are real sprites
- * cropped from the Farm RPG pack (see src/assets/beach/).
+ * Balance Bay's walkable beach (components/BalanceBeachRealm.jsx, both
+ * bands). Flat CSS fills for sand/water, matching RoomScene's CSS-only
+ * wall/floor; the seesaw and the palm-tree hammock are real sprites cropped
+ * from the Farm RPG pack (see src/assets/beach/) — visible landmarks the
+ * Traveler walks around while picking activities up as hotspots.
  *
- * Originally the backdrop for the walkable P1–3 scene; that scene was cut in
- * the school revision pass, and this is now the shared visual inside both
- * bands' panel game (minigames/MiniGameBalance.jsx). `tilt` is the seesaw's
- * live rotation in degrees (MiniGameBalance's -((screen - life) / slots) * 15);
- * `seesawWidth` is its width as a percent of the scene, bumped from the
- * walkable-scene default when it sits in the narrower game panel.
+ * `tilt` is the seesaw's live rotation in degrees, from BalanceBeachRealm's
+ * -((screenCount - lifeCount) / slots) * 15.
  */
-export default function BeachScene({ tilt = 0, seesawWidth = 16 }) {
+export default function BeachScene({ tilt = 0 }) {
   return (
     <div style={{ position: 'absolute', inset: 0, background: '#e8d5a3' }}>
       {/* the tide, along the top edge */}
@@ -131,15 +129,8 @@ export default function BeachScene({ tilt = 0, seesawWidth = 16 }) {
       <Shadow x={HAMMOCK_SPOT.x} y={HAMMOCK_SPOT.y} width={22} />
       <Prop src={palmHammockImg} x={HAMMOCK_SPOT.x} y={HAMMOCK_SPOT.y} width={20} z={2} />
 
-      <Shadow x={SEESAW_SPOT.x} y={SEESAW_SPOT.y} width={seesawWidth + 2} />
-      <Prop
-        src={seesawImg}
-        x={SEESAW_SPOT.x}
-        y={SEESAW_SPOT.y}
-        width={seesawWidth}
-        rotate={tilt}
-        z={2}
-      />
+      <Shadow x={SEESAW_SPOT.x} y={SEESAW_SPOT.y} width={18} />
+      <Prop src={seesawImg} x={SEESAW_SPOT.x} y={SEESAW_SPOT.y} width={16} rotate={tilt} z={2} />
     </div>
   );
 }

@@ -139,8 +139,9 @@ unlocks once every realm's stamp is earned.
   have to learn new controls each time:
   - *Sort:* drag items into two labeled bins (Passworld, Bully Bog)
   - *Spot:* tap the flagged items within a scene/message
-  - *Balance:* a seesaw that tips as you fill a day (Balance Bay) — story
-    leads straight into it, no branching choice
+  - *Balance:* Balance Bay's walkable beach (both bands, `fullMechanic`) —
+    walk the sand picking activities up for the day while a seesaw sprite
+    tips; no branching choice
   - *Quiz:* five one-at-a-time questions, each answer with its own warm
     explanation, no fail state (Privacy Peaks P1–3, Fable Falls) — added in
     the school revision pass, which found "mark a whole pile then commit"

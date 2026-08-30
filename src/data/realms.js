@@ -705,13 +705,13 @@ const bullybogHigher = {
 /* Realm 4 — Balance Bay                                                    */
 /* ------------------------------------------------------------------------ */
 /**
- * Both bands run the shared story→game→rule flow with the seesaw
- * (minigames/MiniGameBalance.jsx). The school's revision pass cut the
- * walkable beach scene, the branching "stay vs go" choice, and the Glimmer
- * character (too much of a riddle for the youngest pupils): the realm now
- * talks plainly about balancing time on screens with school, hobbies,
- * family and rest, then goes straight into the seesaw. Neither band defines
- * a `decision` — RealmScreen.jsx handles that (see `hasDecision`).
+ * Both bands run the walkable beach (components/BalanceBeachRealm.jsx, via
+ * `fullMechanic: 'balanceBeach'` on the realm below): story → walk the sand
+ * picking activities up while the seesaw tips → rule. The school's revision
+ * pass cut the branching "stay vs go" choice and the Glimmer character (too
+ * much of a riddle for the youngest pupils), so the story just talks plainly
+ * about balancing screen time with school, hobbies, family and rest. Neither
+ * band defines a `decision`.
  */
 
 const balanceLower = {
@@ -1273,6 +1273,11 @@ export const REALMS = [
     topic: 'Screen time balance',
     stamp: { icon: 'sun', label: 'Balance Bay · Visited' },
     enabled: true,
+    // Both bands run the walkable beach (components/BalanceBeachRealm.jsx):
+    // the Traveler walks around the sand picking activities up while a real
+    // seesaw (world/beach/BeachScene.jsx) tips. Realm-level so the spread in
+    // bandViewRaw carries it to both bands.
+    fullMechanic: 'balanceBeach',
     intro: {
       lore: 'Balance Bay is a quiet beach at the end of the Atlas. It is a good place to stop and think about how your day is split: how much time goes to screens, and how much is left for school, hobbies, family and rest. Getting that balance right is a skill, and this is where you practise it.',
       learn: [
@@ -1283,18 +1288,16 @@ export const REALMS = [
       learnShort: 'Learn: balancing screen time',
     },
 
+    // `world` is unused for this realm now that `fullMechanic: 'balanceBeach'`
+    // delegates the whole flow to BalanceBeachRealm (which carries its own
+    // SPAWN / BOUNDS / activity spots), but the key is kept so anything that
+    // reads `realm.world` defensively still finds an object.
     world: {
       spawn: { x: 8, y: 88 },
-      // Stops measured against the real background art (BalanceBayBG.png):
-      // the sparkle over the water sits at x 49-68% (centre ~58%), the wet
-      // tide band crosses at y ~62-67% (so the stop stands at the top of the
-      // walkable sand, right against it), and the bonfire burns at x 76-88%
-      // — the stop sits just left of the flames, not in them.
       bounds: { minX: 5, maxX: 93, minY: 74, maxY: 93 },
       stops: {
         story: { x: 58, y: 78, label: 'the water', action: 'Stop here' },
-        decision: { x: 58, y: 78, label: 'the water', action: 'Stop here' },
-        game: { x: 22, y: 78, label: 'the tide line', action: 'Plan the day' },
+        game: { x: 50, y: 78, label: 'the seesaw', action: 'Plan the day' },
         rule: { x: 78, y: 88, label: 'the bonfire', action: 'Sit down' },
       },
     },

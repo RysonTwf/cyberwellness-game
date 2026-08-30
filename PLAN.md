@@ -116,11 +116,15 @@ what actually changed.
         forwarded screenshot/post), not by word of mouth, and the questions
         after teach source-checking, "looks real vs is real", and edited /
         AI-photo tells.
-      - **Balance Bay:** the walkable "Glimmer beach" scene and the
-        "stay vs go" choice are both gone, for both bands. Story now leads
-        straight into the seesaw. `RealmScreen` gained `hasDecision` support
-        for realms with no `decision`; `BalanceBeachRealm.jsx`,
-        `src/world/beach/` and `src/assets/beach/` were deleted.
+      - **Balance Bay:** the branching "stay vs go" choice and the Glimmer
+        character are gone (the story just talks plainly about balancing
+        screen time). The walkable beach was briefly cut and then restored —
+        it now runs for **both bands** via realm-level
+        `fullMechanic: 'balanceBeach'`: the Traveler walks the sand picking
+        activities up while a real seesaw sprite (`world/beach/BeachScene.jsx`,
+        `seesaw.png` + `palm-hammock.png`) tips. `RealmScreen` gained
+        `hasDecision` support for a decision-less non-delegated realm (now
+        unused but kept defensive).
       - **Copy Editor** (`contentOverrides.js`) learns the quiz field shape
         (`feedback` key + `game.questions.*` humanize labels).
 
@@ -141,14 +145,25 @@ what actually changed.
       scene SVG letterboxes inside it (`preserveAspectRatio` default) — worth
       a look on a phone now that backgrounds are real art rather than
       procedural shapes that tolerated any crop.
-- [ ] Balance Bay P1–3 beach (`BalanceBeachRealm` ITEM_SPOTS) uses its own
-      `BeachScene`, not the new BG art — unaffected by this pass, but if that
-      scene ever gets real art the same re-measuring applies.
+- [ ] Balance Bay's walkable beach (`BalanceBeachRealm` ITEM_SPOTS, both
+      bands now) uses `BeachScene`'s CSS sand/water + the two pixel sprites,
+      not the `BalanceBayBG.png` art the story/rule steps show — if that
+      scene ever gets real art the ITEM_SPOTS want re-measuring against it.
 
 ---
 
 ## Log
 
+- **31 Aug 2026 — Balance Bay follow-ups**: retired the Glimmer character
+  (plain talk about screen-time balance instead); then, per the school,
+  restored the walkable beach for **both bands** — realm-level
+  `fullMechanic: 'balanceBeach'`, seesaw + palm-hammock sprites visible as
+  landmarks, spawn moved clear of the seesaw, ITEM_SPOTS re-laid. The
+  panel `MiniGameBalance` reverted to its plain CSS beam (now unused by any
+  realm but still registered). Files: `src/components/BalanceBeachRealm.jsx`
+  (recreated), `src/components/RealmScreen.jsx`, `src/data/realms.js`,
+  `src/world/beach/*`, `src/assets/beach/*`, `src/minigames/MiniGameBalance.jsx`,
+  `src/styles.css`.
 - **31 Aug 2026 — school content revision**: language rewrite across all
   player copy; new `MiniGameQuiz` mechanic for Privacy Peaks P1–3 and Fable
   Falls (both bands); Fable Falls reframed around an online rumour + fake-news

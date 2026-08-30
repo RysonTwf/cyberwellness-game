@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { RotateCcw, Scale } from 'lucide-react';
-import BeachScene from '../world/beach/BeachScene';
 
 /**
  * "Balance the Day" — Balance Bay (storyline.md).
@@ -63,12 +62,7 @@ export default function MiniGameBalance({ game, onComplete }) {
           </span>
         </div>
 
-        {/* The seesaw itself — the same tilting beach sprite Balance Bay's
-            walkable P1–3 scene used to carry (world/beach/BeachScene.jsx),
-            now the shared visual for both bands' panel game. */}
-        <div className="seesaw-stage">
-          <BeachScene tilt={tilt} seesawWidth={26} />
-        </div>
+        <div className="scale-beam" style={{ transform: `rotate(${tilt}deg)` }} />
 
         <div className="scale-legend">
           <span style={{ color: 'var(--periwinkle)' }}>Screen time · {screenCount}</span>

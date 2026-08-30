@@ -49,8 +49,10 @@ two things: curiosity, and a second thought."*
 >   Balance Bay.
 > - **Privacy Peaks P1–3** and **Fable Falls** teach through a plain
 >   5-question Q&A rather than a Spot/Sort pile.
-> - **Balance Bay** has no walkable beach and no branching choice: the story
->   leads straight into the seesaw.
+> - **Balance Bay** has no branching choice and no Glimmer character (plain
+>   talk about balancing screen time). It runs a walkable beach for both
+>   bands: the Traveler walks the sand picking activities up while a seesaw
+>   sprite tips.
 > - **Fable Falls'** rumour spreads online (a forwarded screenshot about
 >   Mia), not by word of mouth.
 > - Each band (P1–3 / P4–6) has its own story and mechanic.
