@@ -55,7 +55,12 @@ two things: curiosity, and a second thought."*
 >   sprite tips.
 > - **Fable Falls'** rumour spreads online (a forwarded screenshot about
 >   Mia), not by word of mouth.
-> - Each band (P1–3 / P4–6) has its own story and mechanic.
+> - The game is played once, so P4–P6 is **not** framed as a "level up" of
+>   P1–P3. **Bully Bog** and **Balance Bay** run the exact same scenario,
+>   mechanic and items for both bands — only the wording changes (short for
+>   P1–P3, a little fuller for P4–P6). Passworld, Privacy Peaks and Fable
+>   Falls do differ by band (harder scenarios for the older pupils), but
+>   without any "again / this time / Level Up" language.
 
 | Order | Realm | Topic | Mini-game type | Stamp icon |
 |---|---|---|---|---|

@@ -117,7 +117,7 @@ const passworldHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Passworld again. Something is different this time. That side door, the one to Sam\'s vault, is wide open.',
+      text: 'Passworld! Every door here is a vault, and every vault has a keeper. But Sam\'s vault, the side door, is wide open.',
     },
     {
       who: '"Sam"',
@@ -158,7 +158,7 @@ const passworldHigher = {
   fullMechanic: 'platformerStory',
 
   game: {
-    title: 'Guard the Vault: Level Up',
+    title: 'Guard the Vault',
     instruction:
       'Walk to the right with the arrow keys, or the buttons on screen. First you meet whoever is in Sam\'s vault. The gate stays shut until you decide what to do. After that, jump between the platforms and collect the letters, numbers and symbols. The climb is long and folds back on itself, so take the jumps one at a time. Everything you grab goes in your bag. At the vault door you choose which pieces make a strong password, so read them as you go. Guards walk the ledges. A bump only knocks you back, so wait for your moment and try again.',
     encounterX: 260,
@@ -410,7 +410,7 @@ const privacyHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Privacy Peaks again. The fog is cleverer this time. It has learned to sound official.',
+      text: 'Privacy Peaks. Some of the fog up here has learned to sound very official. That does not make it real.',
     },
     {
       who: '"Atlas Security"',
@@ -444,7 +444,7 @@ const privacyHigher = {
 
   game: {
     type: 'steppingstones',
-    title: 'Clear the Fog: Level Up',
+    title: 'Clear the Fog',
     instruction:
       'Six stones, six messages, one at a time. Step on the ones that are safe. Skip the ones with a warning sign. These are trickier than before. Looking official does not make something official.',
     stones: [
@@ -489,7 +489,7 @@ const privacyHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the upgraded rule for the Peaks. Tricks get better at looking real as you get older. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real message never would, like a password or a tap on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
+    text: 'Here is the rule for the Peaks. Some tricks look very real. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real message never would, like a password or a tap on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
   },
 };
 
@@ -497,15 +497,23 @@ const privacyHigher = {
 /* Realm 3 — Bully Bog                                                      */
 /* ------------------------------------------------------------------------ */
 
+/**
+ * Bully Bog runs the *same* scenario for both bands — Pockets is singing, a
+ * mean comment lands, others are watching, you choose whether to join in or
+ * stand up, then sort replies. Only the wording changes: `bullybogLower` is
+ * kept very short for P1–P3, `bullybogHigher` fills the sentences out a
+ * little for P4–P6 without getting long. Structure, ids, decision and game
+ * items are identical.
+ */
 const bullybogLower = {
   story: [
     {
       who: 'Comet',
-      text: `Bully Bog. Whatever people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
+      text: `Bully Bog. What people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Pockets',
-      text: 'Ribbit-a-doo, ribbit-a-day... oh, hello! Sorry, I am just practising my song. I do that a lot.',
+      text: 'Ribbit-a-doo... oh, hello! I am just practising my song.',
     },
     {
       who: 'A comment appears',
@@ -513,12 +521,12 @@ const bullybogLower = {
     },
     {
       who: 'Comet',
-      text: 'Pockets has stopped singing. Two other bog creatures are typing, and now they are both looking at you.',
+      text: 'Pockets has stopped singing. Two others are typing, and looking at you.',
     },
   ],
 
   decision: {
-    prompt: 'The water is turning darker. What do you type?',
+    prompt: 'The water is going dark. What do you type?',
     options: [
       {
         id: 'joinin',
@@ -527,7 +535,7 @@ const bullybogLower = {
         safe: false,
         who: 'Comet',
         response:
-          'The water turns darker, and Pockets sinks a little lower. Those few words sting more than you would think. Shall we try a kinder reply?',
+          'The water goes darker. Pockets sinks lower. Those words sting. Shall we try a kinder reply?',
       },
       {
         id: 'standup',
@@ -536,7 +544,7 @@ const bullybogLower = {
         safe: true,
         who: 'Pockets',
         response:
-          'Oh. You do? Nobody ever says that. The water is going clear, right where you typed. Thank you, Traveller.',
+          'Oh! You do? The water is going clear, right where you typed. Thank you, Traveller.',
       },
     ],
   },
@@ -549,30 +557,28 @@ const bullybogLower = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before this goes up for good. Would you be happy for it to stay online forever? Posts do not really disappear, even the kind ones.',
+        'One more thing. This stays online for good. Would you be happy for that? Posts do not really go away.',
       accept: 'Good point.',
-      followUp:
-        'That is a good habit. First ask if it is kind. Then ask if you would still be happy with it next year. You are doing both right now.',
+      followUp: 'Good habit. Ask if it is kind. Then ask if you would still be happy with it next year.',
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        'You sorted this one yourself, but you do not always have to. If the water ever turned much darker, which grown-up would you tell?',
+        'You did this one yourself. But you do not have to. If the water got much darker, which grown-up would you tell?',
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        'Good answer. Asking for help matters just as much as being kind or checking a fact. It is worth knowing who to tell before you need to.',
+        'Good answer. Asking for help matters as much as being kind. Know who to tell before you need to.',
     },
   },
 
   game: {
     type: 'sort',
     title: 'Clear the Water',
-    instruction:
-      'These are replies people could send Pockets. Sort each one. Which would you send, and which would sting?',
+    instruction: 'Replies people could send Pockets. Which would you send, and which would sting?',
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
@@ -591,62 +597,55 @@ const bullybogLower = {
 
   rule: {
     who: 'Comet',
-    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, and show an adult you trust. Standing up for someone can be one kind sentence.',
+    text: 'If it is ever about you, not Pockets, the rule is the same. Do not be mean back. Save it, and show an adult you trust. Standing up can be one kind sentence.',
   },
 };
 
 /**
- * P4–P6 variant — same mechanic, identity-based harassment and bystander
- * responsibility (Improvement Plan §3, confirmed age-appropriate with the
- * school contact, §1a). Note this band defines its own `extraBeats` — the
- * schema swaps the whole band object in, not a per-field merge, so the
- * digital-footprint/tell-someone beats have to be repeated here rather than
- * inherited from `bullybogLower`.
+ * P4–P6 — the same Bully Bog scenario as `bullybogLower`, just with fuller
+ * sentences. Not a harder level: this game is played once, so P4–P6 pupils
+ * meet the scenario for the first time here too.
  */
 const bullybogHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Bully Bog. Look, it is not just one comment this time. It is a pile-on.',
+      text: `Bully Bog. Whatever people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Pockets',
-      text: 'Ribbit-a... oh. Everyone is already looking at my post. Maybe sharing my voice is a mistake.',
+      text: 'Ribbit-a-doo, ribbit-a-day... oh, hello! Sorry, I am just practising my song. I do it a lot.',
     },
     {
       who: 'A comment appears',
-      text: '"Of course it sounds like that. It is a frog. What do you expect?"',
-    },
-    {
-      who: 'Another comment appears',
-      text: '"That voice is exactly why nobody picks Pockets for anything."',
+      text: '"Nobody wants to hear this. Go away."',
     },
     {
       who: 'Comet',
-      text: 'Three more bog creatures have liked both comments. Now they are waiting to see who joins in.',
+      text: 'Pockets has stopped singing. Two other bog creatures are typing, and now they are watching to see what you will do.',
     },
   ],
 
   decision: {
-    prompt: 'Going along with a crowd is easier than being the one who does not. What do you type?',
+    prompt: 'The water is turning darker. Going along with the others is easier than being the one who does not. What do you type?',
     options: [
       {
-        id: 'jointhepile',
-        text: '"True", just to fit in.',
+        id: 'joinin',
+        text: '"Yes, that is bad."',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          'The water turns darker. This time it is not only your words, it is everyone\'s, all stacked up. "Everyone else is doing it" does not make a pile-on any lighter for the person underneath. Shall we try again?',
+          'The water turns darker, and Pockets sinks a little lower. "Everyone else said it too" does not make those words any lighter for the one reading them. Shall we try a kinder reply?',
       },
       {
-        id: 'standupharder',
-        text: '"That is making fun of who Pockets is, not something they do. That is not okay, and not from any of you."',
+        id: 'standup',
+        text: '"That is not kind. I love your song, Pockets."',
         tag: 'Option B',
         safe: true,
         who: 'Pockets',
         response:
-          'The water clears. Slower this time, because more of it was dark. But it clears. Two of the others quietly delete their comments. Thank you for saying it to all of them, not only to me.',
+          'Oh. You do? Nobody usually says that. The water is clearing, right where you typed. Thank you, Traveller.',
       },
     ],
   },
@@ -655,49 +654,49 @@ const bullybogHigher = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before any of this goes up for good. Would you be happy for it to stay online forever? That means the pile-on comments too, not only the first one.',
+        'One more thing, before this goes up for good. Would you be happy for it to stay online forever? Posts do not really disappear, even the kind ones.',
       accept: 'Good point.',
       followUp:
-        'Same habit as before, just harder to hold on to in the middle of a pile-on. Not only "is this kind", but "would I still stand by this next year".',
+        'A good habit to keep. First ask if it is kind. Then ask if you would still stand by it next year.',
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        'Standing up right then is hard, especially against a group. If a pile-on ever gets bigger than you can handle alone, which grown-up would you tell?',
+        'You handled this one yourself, but you do not always have to. If it ever got bigger than you could deal with alone, which grown-up would you tell?',
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        'Good answer. Standing up does not mean handling a whole pile-on by yourself. Telling a grown-up is part of standing up too.',
+        'Good answer. Telling a grown-up is part of standing up too, just as much as the comment you send.',
     },
   },
 
   game: {
     type: 'sort',
-    title: 'Clear the Water: Level Up',
+    title: 'Clear the Water',
     instruction:
-      'Some of these comments are about what someone does. Some are about who they are. Sort each one, then pick the pile you would add to.',
+      'Replies people could send Pockets. Sort each one, then pick the pile you would add to. Which would you send, and which would sting?',
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
     ],
     items: [
-      { id: 'd1', text: '"Your voice is part of what makes your songs yours. Keep singing."', bin: 'send' },
-      { id: 'd2', text: '"I do not care what anyone else says, I am still listening."', bin: 'send' },
-      { id: 'd3', text: '"Of course it sounds like that, it is a frog."', bin: 'leave' },
-      { id: 'd4', text: '"That voice is exactly why nobody picks Pockets for anything."', bin: 'leave' },
-      { id: 'd5', text: '"I am not joining in on this one, sorry."', bin: 'send' },
-      { id: 'd6', text: '"Everyone else is saying it too, so it is not a big deal."', bin: 'leave' },
-      { id: 'd7', text: '"You should not have to delete your comment. That is not fair."', bin: 'send' },
-      { id: 'd8', text: '"I suppose we know who is getting picked last now."', bin: 'leave' },
+      { id: 'c1', text: '"I love your song, Pockets!"', bin: 'send' },
+      { id: 'c2', text: '"Do you want to sing the next one together?"', bin: 'send' },
+      { id: 'c3', text: '"That is brave. Nice one."', bin: 'send' },
+      { id: 'c4', text: '"I am here if you want to talk."', bin: 'send' },
+      { id: 'c5', text: '"Nobody wants to hear this."', bin: 'leave' },
+      { id: 'c6', text: '"That is so bad."', bin: 'leave' },
+      { id: 'c7', text: '"We are not inviting you next time."', bin: 'leave' },
+      { id: 'c8', text: '"Everyone agrees with me, by the way."', bin: 'leave' },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'Here is the upgraded rule for the Bog. The meanest comments are usually not about what someone does. They are about who they are, and those sting the longest. A pile-on feels different from one comment, but the rule is the same. Do not add to it. And it counts even more when you speak up while others are watching. That is the hardest kind of standing up, and it matters most.',
+    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, show an adult you trust, and use block or report if you need to. Standing up for someone can be one kind sentence, and it counts most when other people are watching.',
   },
 };
 
@@ -705,28 +704,29 @@ const bullybogHigher = {
 /* Realm 4 — Balance Bay                                                    */
 /* ------------------------------------------------------------------------ */
 /**
- * Both bands run the walkable beach (components/BalanceBeachRealm.jsx, via
- * `fullMechanic: 'balanceBeach'` on the realm below): story → walk the sand
- * picking activities up while the seesaw tips → rule. The school's revision
- * pass cut the branching "stay vs go" choice and the Glimmer character (too
- * much of a riddle for the youngest pupils), so the story just talks plainly
- * about balancing screen time with school, hobbies, family and rest. Neither
- * band defines a `decision`.
+ * Balance Bay runs the *same* walkable beach for both bands
+ * (components/BalanceBeachRealm.jsx, via `fullMechanic: 'balanceBeach'` on
+ * the realm below): walk the sand picking activities up for one evening
+ * while a seesaw tips. There is no branching choice and no Glimmer
+ * character. Only the wording changes: `balanceLower` is very short for
+ * P1–P3; `balanceHigher` says a little more for P4–P6 (noticing how screen
+ * time feels, not just how long) without getting long. Same ten activity
+ * cards, same verdict thresholds.
  */
 
 const balanceLower = {
   story: [
     {
       who: 'Comet',
-      text: `Balance Bay, the last realm. This is where we talk about balancing your time, especially your time on screens. ${COMET_CATCHPHRASE}`,
+      text: `Balance Bay, the last realm. This one is about balancing your time, especially time on screens. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Comet',
-      text: 'Screens are fun. Games, videos, messages with friends. But a day only has so many hours, and screens can take up more of them than you mean to give.',
+      text: 'Screens are fun. But a day only has so many hours, and screens can take up more than you mean to give.',
     },
     {
       who: 'Comet',
-      text: 'Let us plan one evening. You have six hours between school and bed. Fill them in, and watch how the seesaw sits.',
+      text: 'Let us plan one evening. Six hours between school and bed. Fill them in, and watch the seesaw.',
     },
   ],
 
@@ -734,7 +734,7 @@ const balanceLower = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. Add something to an hour, or tap it in your list to take it back. There is no single right answer. Just watch how the seesaw sits.',
+      'Fill the six hours between school and bed. Add something, or tap it in your list to take it back. Watch how the seesaw sits.',
     slots: 6,
     items: [
       { id: 'b1', text: 'Watch videos', screen: true },
@@ -751,61 +751,55 @@ const balanceLower = {
     // No single correct split; only the extremes tip the scale hard.
     verdicts: {
       allScreen:
-        'The seesaw has tipped right over. A day of only screens leaves no room for the rest of you. Swap one or two things out.',
+        'The seesaw tipped right over. A day of only screens leaves no room for the rest of you. Swap one or two out.',
       noScreen:
-        'The seesaw has tipped the other way. You do not have to cut screens out completely. They are fun, and that is fine. Add one back in.',
-      level:
-        'The seesaw is sitting level. Some screen time, and plenty of everything else. That is all it takes.',
+        'The seesaw tipped the other way. You do not have to cut screens out completely. Add one back in.',
+      level: 'The seesaw is level. Some screen time, plenty of everything else. That is it.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for the Bay. Screens are not bad. Losing track of time is the problem. Decide when you will stop before you start, and leave room for sleep, moving about, and real people.',
+    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. Leave room for sleep, playing, and real people.',
   },
 };
 
-/**
- * P4–P6 variant — same mechanic, reframed around noticing how screen time
- * feels rather than just counting hours (Improvement Plan §3). Reuses
- * `balanceLower.game.items` — same ten cards, just a different lens on them.
- */
 const balanceHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Balance Bay again. Same idea, a bit deeper. Balancing screen time is not only about counting hours.',
+      text: `Balance Bay, the last realm. This one is about balancing your time, especially the time you spend on screens. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Comet',
-      text: 'It is about noticing. Some screen time leaves you feeling good. Some just fills the time and leaves you flat. School, hobbies, family and sleep all need room too.',
+      text: 'Screens are fun, and that is fine. But the day only has so many hours, and they can quietly take up more than you meant to give. School, hobbies, family and sleep all need room too.',
     },
     {
       who: 'Comet',
-      text: 'Plan your six hours between school and bed. As you go, notice which parts you would look forward to, and which you would just fall into.',
+      text: 'Plan one evening: six hours between school and bed. As you fill them, notice which parts you would look forward to, and which you would just fall into. Then watch the seesaw.',
     },
   ],
 
   game: {
     type: 'balance',
-    title: 'Balance the Day: Level Up',
+    title: 'Balance the Day',
     instruction:
-      'The same six hours. This time, as you fill them, notice which ones you would look forward to, and which you would just fall into.',
+      'Fill the six hours between school and bed. Add something, or tap it in your list to take it back. Notice which parts you would look forward to, and watch how the seesaw sits.',
     slots: 6,
     items: balanceLower.game.items,
     verdicts: {
       allScreen:
-        'All screens. Be honest: does that feel good right now, or just familiar? A day of only screens does not leave room to find out.',
+        'The seesaw tipped right over. Be honest: does a day of only screens feel good, or just familiar? It does not leave room to find out.',
       noScreen:
-        'Zero screens is not the goal either. That is swinging just as hard the other way. Screens can be one of the good things. The question is not "how many hours", it is "does this still feel good, or am I just still here".',
+        'The seesaw tipped the other way. Zero screens is not the goal either. Screens can be one of the good things. Add one back in.',
       level:
-        'Look at that: level. Probably because some of this sounds good to choose, not just easy to fall into. That is the real skill now. Noticing, not counting.',
+        'The seesaw is level. Probably because some of this sounds good to choose, not just easy to fall into. That is the real skill: noticing, not counting.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'Here is the upgraded rule for the Bay. As you get older, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
+    text: 'The rule for the Bay. Screens are not bad, and losing track of time is the real problem. As you get older, it helps to notice how screen time feels, not just how long it lasts. Decide when you will stop before you start, and leave room for sleep, hobbies and real people.',
   },
 };
 
@@ -990,7 +984,7 @@ const fableFallsHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Fable Falls, Cyber Defender level. A video is going round. It puts words in a classmate\'s mouth, and it looks almost real.',
+      text: 'Fable Falls. A video is going round. It puts words in a classmate\'s mouth, and it looks almost real.',
     },
     {
       who: 'The Echo',
@@ -1279,7 +1273,7 @@ export const REALMS = [
     // bandViewRaw carries it to both bands.
     fullMechanic: 'balanceBeach',
     intro: {
-      lore: 'Balance Bay is a quiet beach at the end of the Atlas. It is a good place to stop and think about how your day is split: how much time goes to screens, and how much is left for school, hobbies, family and rest. Getting that balance right is a skill, and this is where you practise it.',
+      lore: 'Balance Bay is a quiet beach. It is a good place to stop and think about how your day is split. How much time goes to screens, and how much is left for school, hobbies, family and rest. Getting that balance right is a skill, and this is where you practice it.',
       learn: [
         'How screen time can take up more of your day than you notice',
         'How to tell when screen time feels good, and when it just fills time',

@@ -154,6 +154,15 @@ what actually changed.
 
 ## Log
 
+- **31 Aug 2026 — de-"level up" the band split**: the game is played once, so
+  P4–P6 shouldn't read as a sequel to P1–P3. **Bully Bog** and **Balance
+  Bay** now run the identical scenario / decision / mechanic / items for both
+  bands — only the wording differs (terse for P1–P3, fuller-but-tight for
+  P4–P6). Dropped every ": Level Up" game title and "upgraded rule" /
+  "again" / "this time" phrasing across Passworld, Privacy Peaks and Fable
+  Falls too (their P4–P6 *content* still differs — account takeover,
+  official-looking phishing, deepfakes). `src/data/realms.js` only; also
+  `storyline.md`, `design.md`.
 - **31 Aug 2026 — Balance Bay follow-ups**: retired the Glimmer character
   (plain talk about screen-time balance instead); then, per the school,
   restored the walkable beach for **both bands** — realm-level
