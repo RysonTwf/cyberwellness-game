@@ -622,7 +622,7 @@
       "label": "OPTIONS",
       "file_type": "code",
       "source_file": "src/components/CharacterSelect.jsx",
-      "source_location": "L14",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_characterselect_options",
       "community": 4,
@@ -633,7 +633,7 @@
       "label": "CharacterSelect()",
       "file_type": "code",
       "source_file": "src/components/CharacterSelect.jsx",
-      "source_location": "L19",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_characterselect_characterselect",
       "community": 4,
@@ -5259,7 +5259,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CharacterSelect.jsx",
-      "source_location": "L19",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_characterselect",
@@ -5270,7 +5270,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CharacterSelect.jsx",
-      "source_location": "L14",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_characterselect",
@@ -10118,5 +10118,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "371e6a578eafba9f516b70a89fb5363b47776bf1"
+  "built_at_commit": "515820202188f705b040728b3da25f55f47378e0"
 }

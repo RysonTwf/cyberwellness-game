@@ -1110,7 +1110,12 @@ p {
   height: auto;
 }
 
-.traveler-sprite.walking {
+/* The bob lives on the inner img, not the wrapper — the wrapper's inline
+   transform carries the scaleX(facing) flip and the foot-line offset, and a
+   transform animation here would override that inline transform for the
+   whole walk (the sprite could never face left). Same split as the SVG
+   figure: flip on the outer element, bob on an inner one (.tv-body). */
+.traveler-sprite.walking img {
   animation: walk-bob 0.42s ease-in-out infinite;
 }
 

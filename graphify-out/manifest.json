@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/components/CharacterSelect.jsx": {
-    "mtime": 1787678604.052714,
-    "ast_hash": "004fc64b4dcb3d6e4ac04348f0d7e21e",
+    "mtime": 1788067465.7026799,
+    "ast_hash": "b957b77bc0b7d4294bd5b9e4286642f6",
     "semantic_hash": ""
   },
   "src/components/MainScreen.jsx": {
@@ -29402,6 +29402,21 @@
   "public/assets/PRIVACYPEAKS/PrivacyPeaksBG.png": {
     "mtime": 1788063804.6149042,
     "ast_hash": "5841a620015c1ca91e2ae4a052f180f3",
+    "semantic_hash": ""
+  },
+  "public/assets/Mascots/BOY_MASCOT.jpg": {
+    "mtime": 1788067109.5154524,
+    "ast_hash": "52583727a15d9f02d6d42fda29f9a354",
+    "semantic_hash": ""
+  },
+  "public/assets/Mascots/BOY_MASCOT.png": {
+    "mtime": 1788067109.5765011,
+    "ast_hash": "25735878153451149af58fdbdb730a80",
+    "semantic_hash": ""
+  },
+  "public/assets/Mascots/GIRL_MASCOT.png": {
+    "mtime": 1788067109.6220264,
+    "ast_hash": "6602fa794d90eed7e59ec1ddb7b4f77c",
     "semantic_hash": ""
   }
 }

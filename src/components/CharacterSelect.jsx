@@ -10,10 +10,26 @@ import girlPortrait from '../assets/characters/girl-walk-1.png';
  * used in-world, idle frame). The choice is stored (`state.avatar`) and
  * read downstream by World.jsx/Traveler.jsx to pick which figure walks
  * around for the rest of the game.
+ *
+ * The full-body school-uniform mascots (public/assets/Mascots/) appear only
+ * here, standing above each pick — everywhere else in the game still uses
+ * the walk-cycle sprites.
  */
 const OPTIONS = [
-  { id: 'boy', label: 'Boy', accent: 'var(--teal)', portrait: boyPortrait },
-  { id: 'girl', label: 'Girl', accent: 'var(--coral)', portrait: girlPortrait },
+  {
+    id: 'boy',
+    label: 'Boy',
+    accent: 'var(--teal)',
+    portrait: boyPortrait,
+    mascot: '/assets/Mascots/BOY_MASCOT.png',
+  },
+  {
+    id: 'girl',
+    label: 'Girl',
+    accent: 'var(--coral)',
+    portrait: girlPortrait,
+    mascot: '/assets/Mascots/GIRL_MASCOT.png',
+  },
 ];
 
 export default function CharacterSelect({ onSelect }) {
@@ -27,46 +43,54 @@ export default function CharacterSelect({ onSelect }) {
 
         <div className="row" style={{ justifyContent: 'center', gap: 18, flexWrap: 'wrap' }}>
           {OPTIONS.map((opt) => (
-            <button
-              key={opt.id}
-              type="button"
-              className="card center"
-              style={{
-                '--accent': opt.accent,
-                width: 160,
-                cursor: 'pointer',
-                border: '2px solid var(--line)',
-                appearance: 'none',
-                font: 'inherit',
-                color: 'inherit',
-              }}
-              onClick={() => onSelect(opt.id)}
-            >
-              <div
+            <div key={opt.id} className="stack" style={{ alignItems: 'center', gap: 12 }}>
+              <img
+                src={opt.mascot}
+                alt=""
+                aria-hidden="true"
+                draggable={false}
+                style={{ width: 130, height: 'auto' }}
+              />
+              <button
+                type="button"
+                className="card center"
                 style={{
-                  display: 'grid',
-                  placeItems: 'center',
-                  width: 84,
-                  height: 84,
-                  margin: '0 auto 12px',
-                  borderRadius: '50%',
-                  background: 'var(--paper-sunk)',
-                  color: opt.accent,
-                  overflow: 'hidden',
+                  '--accent': opt.accent,
+                  width: 160,
+                  cursor: 'pointer',
+                  border: '2px solid var(--line)',
+                  appearance: 'none',
+                  font: 'inherit',
+                  color: 'inherit',
                 }}
+                onClick={() => onSelect(opt.id)}
               >
-                <img
-                  src={opt.portrait}
-                  alt=""
-                  width={84}
-                  height={84}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
-                />
-              </div>
-              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18 }}>
-                {opt.label}
-              </span>
-            </button>
+                <div
+                  style={{
+                    display: 'grid',
+                    placeItems: 'center',
+                    width: 84,
+                    height: 84,
+                    margin: '0 auto 12px',
+                    borderRadius: '50%',
+                    background: 'var(--paper-sunk)',
+                    color: opt.accent,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <img
+                    src={opt.portrait}
+                    alt=""
+                    width={84}
+                    height={84}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                  />
+                </div>
+                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18 }}>
+                  {opt.label}
+                </span>
+              </button>
+            </div>
           ))}
         </div>
       </div>
