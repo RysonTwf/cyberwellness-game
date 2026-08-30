@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/minigames/MiniGameBalance.jsx": {
-    "mtime": 1788114488.441675,
-    "ast_hash": "47e304b05f99d862a765ebe2e0d5f488",
+    "mtime": 1788114907.0258715,
+    "ast_hash": "04a5496ce0ea7e9208e980a2340a3745",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSort.jsx": {
@@ -29447,6 +29447,21 @@
   "src/minigames/MiniGameQuiz.jsx": {
     "mtime": 1788108859.7353408,
     "ast_hash": "b7628fb764b1d3e9492d0a3c607e8925",
+    "semantic_hash": ""
+  },
+  "src/world/beach/BeachScene.jsx": {
+    "mtime": 1788115159.6047425,
+    "ast_hash": "f3537f8ef11401355f256c7308a916d5",
+    "semantic_hash": ""
+  },
+  "src/assets/beach/palm-hammock.png": {
+    "mtime": 1788114860.9004526,
+    "ast_hash": "1eb4e0bb7977ea669bb5eb75e1f94836",
+    "semantic_hash": ""
+  },
+  "src/assets/beach/seesaw.png": {
+    "mtime": 1788114860.9059591,
+    "ast_hash": "41e252aecef9804cf717fc328a32c558",
     "semantic_hash": ""
   }
 }
