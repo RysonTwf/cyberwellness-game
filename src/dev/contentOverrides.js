@@ -302,6 +302,13 @@ export const SCREENS = [
     fields: ['title', 'text'],
     labelFor: (i, f) => `Step ${i + 1} — ${f === 'title' ? 'heading' : 'text'}`,
   },
+  {
+    id: 'diary',
+    label: 'The diary (room)',
+    file: 'src/components/AtlasGate.jsx',
+    fields: ['text'],
+    labelFor: (i, f, item) => item?.label ?? `Line ${i + 1}`,
+  },
 ];
 
 export const SCREEN_BY_ID = Object.fromEntries(SCREENS.map((s) => [s.id, s]));

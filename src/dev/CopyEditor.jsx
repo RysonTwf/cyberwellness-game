@@ -5,6 +5,7 @@ import { INTRO_BEATS } from '../components/IntroStory';
 import { ROOM_TOUR } from '../components/TravelerRoom';
 import { ATLAS_TOUR } from '../components/AtlasMap';
 import { REALM_TOUR } from '../components/RealmIntro';
+import { DIARY_COPY } from '../components/AtlasGate';
 import {
   collectEditable,
   collectScreenEditable,
@@ -28,6 +29,7 @@ const SCREEN_DATA = {
   roomTour: ROOM_TOUR,
   atlasTour: ATLAS_TOUR,
   realmTour: REALM_TOUR,
+  diary: DIARY_COPY,
 };
 
 /* ---- turning a plain string into / out of a JS source literal ------------- */

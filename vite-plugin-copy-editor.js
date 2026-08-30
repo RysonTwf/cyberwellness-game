@@ -21,6 +21,7 @@ const ALLOWED = [
   'src/components/TravelerRoom.jsx',
   'src/components/AtlasMap.jsx',
   'src/components/RealmIntro.jsx',
+  'src/components/AtlasGate.jsx',
 ];
 
 export default function copyEditorPlugin() {

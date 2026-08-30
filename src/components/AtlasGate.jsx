@@ -4,37 +4,63 @@ import DialogueCard from './DialogueCard';
 import { Comet } from './Characters';
 import StampBadge from './StampBadge';
 import { ACTIVE_REALMS } from '../data/realms';
+import { applyScreenOverrides } from '../dev/contentOverrides';
 
 /**
  * The diary, opened in the Traveler's Room. Comet and the lore were already
  * covered in the opening story (components/IntroStory.jsx); this is the
  * practical part — grab the passport, put a name on it, pick a grade band.
+ *
+ * Every player-facing line lives in DIARY_COPY as a flat { id, label, text }
+ * list so the dev-only Copy Editor (src/dev/CopyEditor.jsx) can list and edit
+ * it; `applyScreenOverrides` merges any live edits at render.
  */
-const BEATS = [
+export const DIARY_COPY = [
+  { id: 'title', label: 'Diary title', text: 'Cyber Defender Quest' },
+  { id: 'lede', label: 'Diary tagline', text: 'A journal, a map, and realms worth visiting.' },
   {
-    who: 'Comet',
-    text: "There you are. This is your passport now. Five empty stamps, one for each realm. I just need a name for the cover.",
+    id: 'intro',
+    label: 'Comet — passport intro',
+    text: 'There you are. This is your passport now. Five empty stamps, one for each realm. I just need a name for the cover.',
   },
-];
-
-/**
- * Band-select options (Milestones Phase 0). Asked once, right after naming —
- * everything downstream reads content for whichever band is picked here
- * (Improvement Plan §0: one game, one entry point, band chosen up front).
- */
-const BANDS = [
-  { id: 'lower', label: 'P1–P3', sub: 'Primary 1 to 3', Icon: Sprout },
-  { id: 'higher', label: 'P4–P6', sub: 'Primary 4 to 6', Icon: GraduationCap },
+  { id: 'letsDo', label: 'Button — start', text: "Let's do it" },
+  { id: 'passportLabel', label: 'Passport heading', text: 'Your passport' },
+  { id: 'nameLabel', label: 'Name field label', text: 'Traveller name' },
+  { id: 'namePlaceholder', label: 'Name field placeholder', text: 'Type your first name' },
+  {
+    id: 'nameHint',
+    label: 'Name field hint',
+    text: 'Just a first name, and only so Comet knows what to call you.',
+  },
+  {
+    id: 'nameNudge',
+    label: 'Comet — after the name field',
+    text: 'Type it in, then tap Next. One quick question after that, and the door is yours.',
+  },
+  { id: 'next', label: 'Button — Next', text: 'Next' },
+  { id: 'bandPrefix', label: 'Grade band — lead-in', text: 'One last thing' },
+  { id: 'bandQuestion', label: 'Grade band — question', text: 'Which grade band are you in?' },
+  { id: 'bandLowerLabel', label: 'Grade band — lower name', text: 'P1–P3' },
+  { id: 'bandLowerSub', label: 'Grade band — lower detail', text: 'Primary 1 to 3' },
+  { id: 'bandHigherLabel', label: 'Grade band — higher name', text: 'P4–P6' },
+  { id: 'bandHigherSub', label: 'Grade band — higher detail', text: 'Primary 4 to 6' },
+  { id: 'back', label: 'Button — Back', text: 'Back' },
 ];
 
 export default function AtlasGate({ onBegin }) {
-  // intro (BEATS) -> naming -> band -> onBegin(name, band)
-  const [beat, setBeat] = useState(0);
+  // intro -> naming -> band -> onBegin(name, band)
   const [phase, setPhase] = useState('intro');
   const [name, setName] = useState('');
 
+  const dc = Object.fromEntries(
+    applyScreenOverrides(DIARY_COPY, 'diary').map((e) => [e.id, e.text]),
+  );
+  const BANDS = [
+    { id: 'lower', label: dc.bandLowerLabel, sub: dc.bandLowerSub, Icon: Sprout },
+    { id: 'higher', label: dc.bandHigherLabel, sub: dc.bandHigherSub, Icon: GraduationCap },
+  ];
+
   const trimmed = name.trim().slice(0, 18);
-  const introDone = beat >= BEATS.length;
 
   function submitName() {
     if (!trimmed) return;
@@ -49,28 +75,19 @@ export default function AtlasGate({ onBegin }) {
         <div style={{ display: 'grid', placeItems: 'center', marginBottom: 10 }}>
           <Comet size={60} />
         </div>
-        <h1 className="diary-title">Cyber Defender Quest</h1>
+        <h1 className="diary-title">{dc.title}</h1>
         <p className="lede" style={{ marginTop: 8 }}>
-          A journal, a map, and realms worth visiting.
+          {dc.lede}
         </p>
       </div>
 
       <div className="stack">
-        {BEATS.slice(0, Math.min(beat + 1, BEATS.length)).map((b, i) => (
-          <DialogueCard key={i} who={b.who} text={b.text} />
-        ))}
+        <DialogueCard who="Comet" text={dc.intro} />
 
-        {phase === 'intro' && !introDone && (
+        {phase === 'intro' && (
           <div className="center">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => {
-                if (beat < BEATS.length - 1) setBeat((b) => b + 1);
-                else setPhase('naming');
-              }}
-            >
-              {beat < BEATS.length - 1 ? 'Keep reading' : "Let's do it"}
+            <button type="button" className="btn" onClick={() => setPhase('naming')}>
+              {dc.letsDo}
               <ArrowRight size={19} />
             </button>
           </div>
@@ -82,7 +99,7 @@ export default function AtlasGate({ onBegin }) {
             <div className="card center">
               <div className="row" style={{ justifyContent: 'center', gap: 8, marginBottom: 6 }}>
                 <BookMarked size={18} color="var(--ink-soft)" />
-                <span className="stamp-label">Your passport</span>
+                <span className="stamp-label">{dc.passportLabel}</span>
               </div>
               <div
                 className="row"
@@ -102,7 +119,7 @@ export default function AtlasGate({ onBegin }) {
               </div>
 
               <label htmlFor="traveler-name" className="stamp-label">
-                Traveller name
+                {dc.nameLabel}
               </label>
               <div style={{ maxWidth: 340, margin: '10px auto 0' }}>
                 <input
@@ -113,26 +130,23 @@ export default function AtlasGate({ onBegin }) {
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') submitName();
                   }}
-                  placeholder="Type your first name"
+                  placeholder={dc.namePlaceholder}
                   maxLength={18}
                   autoComplete="off"
                   spellCheck="false"
                 />
                 {/* design.md §8 — no real personal data beyond an in-session first name */}
                 <p className="muted" style={{ marginTop: 10 }}>
-                  Just a first name, and only so Comet knows what to call you.
+                  {dc.nameHint}
                 </p>
               </div>
             </div>
 
-            <DialogueCard
-              who="Comet"
-              text="Type it in, then tap Next. One quick question after that, and the door is yours."
-            />
+            <DialogueCard who="Comet" text={dc.nameNudge} />
 
             <div className="center">
               <button type="button" className="btn" disabled={!trimmed} onClick={submitName}>
-                Next
+                {dc.next}
                 <ArrowRight size={19} />
               </button>
             </div>
@@ -142,8 +156,10 @@ export default function AtlasGate({ onBegin }) {
         {phase === 'band' && (
           <>
             <div className="card center">
-              <span className="stamp-label">One last thing, {trimmed}</span>
-              <p style={{ marginTop: 10 }}>Which grade band are you in?</p>
+              <span className="stamp-label">
+                {dc.bandPrefix}, {trimmed}
+              </span>
+              <p style={{ marginTop: 10 }}>{dc.bandQuestion}</p>
 
               <div
                 className="row"
@@ -169,7 +185,7 @@ export default function AtlasGate({ onBegin }) {
 
             <div className="center">
               <button type="button" className="btn btn-ghost btn-sm" onClick={() => setPhase('naming')}>
-                Back
+                {dc.back}
               </button>
             </div>
           </>
