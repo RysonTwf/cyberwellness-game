@@ -4,6 +4,7 @@ import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
+import StepTrail from './StepTrail';
 import RealmArt from './RealmArt';
 import World from '../world/World';
 import BeachScene, { BEACH_OBSTACLES } from '../world/beach/BeachScene';
@@ -151,6 +152,10 @@ export default function BalanceBeachRealm({
 
       {/* Realm name/topic/icon are in the journal bar (JournalProgress) —
           see RealmScreen for why the heading row moved up there. */}
+      <StepTrail
+        steps={['Story', 'Choice', 'Your day', 'Rule']}
+        current={{ story: 0, decision: 1, beach: 2, rule: 3 }[step] ?? 0}
+      />
 
       {/* ---------------------------------------------------------- story -- */}
       {step === 'story' && (

@@ -21,7 +21,7 @@ export default function CertificateScreen({
       <div className="stack">
         <DialogueCard
           who="Comet"
-          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You pick curiosity and a bit of caution, every time, and that's really all it takes.`}
+          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You pick curiosity and a bit of caution, every time. That's all it takes.`}
         />
 
         <div className="cert" style={{ '--accent': 'var(--gold)' }}>

@@ -40,7 +40,7 @@ export default function RealmIntro({ realm, showIntro, showTutorial, onTutorialD
           {
             target: '.hotspot',
             title: 'Follow the pin',
-            text: 'A glowing pin always marks where the story continues. Walk over to it: tap where you want to go, or use WASD/the arrow keys.',
+            text: 'A glowing pin marks where the story goes next. Walk to it. Tap where you want to go, or use WASD or the arrow keys.',
           },
           {
             title: 'Say hello',

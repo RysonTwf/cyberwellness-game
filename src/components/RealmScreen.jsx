@@ -6,6 +6,7 @@ import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
+import StepTrail from './StepTrail';
 import World from '../world/World';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
@@ -35,6 +36,11 @@ const GAMES = {
 // Order the optional post-decision beats appear in, when a realm defines them
 // (Improvement Plan §2: digital footprint, then "who would you tell").
 const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
+
+// Every realm runs the same four steps; the trail at the top of the panel
+// keeps a player oriented (StepTrail.jsx).
+const TRAIL_STEPS = ['Story', 'Choice', 'Game', 'Rule'];
+const TRAIL_INDEX = { story: 0, decision: 1, game: 2, rule: 3 };
 
 /**
  * One realm, start to finish.
@@ -150,7 +156,10 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
 
       {/* The realm's name/topic/icon live in the journal bar above
           (JournalProgress `realm` prop) — a heading row here cost the
-          height-bound scene box ~110px of width on short viewports. */}
+          height-bound scene box ~110px of width on short viewports. The
+          step trail is a thin exception: it keeps a player oriented across
+          the whole realm, not just while a panel is open. */}
+      <StepTrail steps={TRAIL_STEPS} current={TRAIL_INDEX[step] ?? 0} />
 
       <World
         sceneKey={realm.id}
@@ -228,7 +237,15 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                   <>
                     <DialogueCard who={picked.who} text={picked.response} accent={realm.accent} />
 
-                    {/* ---- optional post-decision beats (Improvement Plan §2) ---- */}
+                    {/* ---- optional post-decision beats (Improvement Plan §2) ----
+                        Flagged so a player knows this is a bonus question, not
+                        part of the main decision they already made. */}
+                    {currentExtraKey && (
+                      <span className="beat-tag">
+                        Follow-up question {extraIndex + 1} of {extraBeatKeys.length}
+                      </span>
+                    )}
+
                     {currentExtraKey === 'footprint' && (
                       <>
                         <DialogueCard

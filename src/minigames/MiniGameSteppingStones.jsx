@@ -107,7 +107,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
           </span>
           <p>
             You get across, but {stones.length - correctCount} of them trick you. Read
-            what each one says again and cross it clean.
+            each one again, and cross it clean.
           </p>
         </div>
       )}

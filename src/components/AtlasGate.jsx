@@ -13,7 +13,7 @@ import { ACTIVE_REALMS } from '../data/realms';
 const BEATS = [
   {
     who: 'Comet',
-    text: "There you are. That is your passport now: five empty stamps, one for each realm. I just need a name to put on the cover.",
+    text: "There you are. This is your passport now. Five empty stamps, one for each realm. I just need a name for the cover.",
   },
 ];
 
@@ -127,7 +127,7 @@ export default function AtlasGate({ onBegin }) {
 
             <DialogueCard
               who="Comet"
-              text="Type it in and tap Next. One quick question after that, and the door is all yours."
+              text="Type it in, then tap Next. One quick question after that, and the door is yours."
             />
 
             <div className="center">

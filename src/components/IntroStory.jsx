@@ -17,31 +17,31 @@ import { Comet } from './Characters';
 const BEATS = [
   {
     kind: 'scene',
-    text: "It's late. On the shelf, behind everything else, there's a journal you don't remember owning: a brass clasp, blank pages, and a soft glow coming off it.",
+    text: "It's late. On the shelf, behind everything else, there's a journal you don't remember owning. A brass clasp. Blank pages. A soft glow coming off it.",
   },
   {
     kind: 'scene',
-    text: 'You open it. Ink races across the pages on its own, drawing coastlines and islands and a whole map, and something folds itself up out of the last page.',
+    text: 'You open it. Ink races across the pages on its own, drawing coasts and islands and a whole map. Then something folds itself up out of the last page.',
   },
   {
     kind: 'comet',
-    text: 'Oh, hello! You actually opened it. Most people dust these off and put them straight back on the shelf.',
+    text: 'Oh, hello! You actually opened it. Most people dust these off and put them straight back.',
   },
   {
     kind: 'comet',
-    text: "I'm Comet. I carry messages across the Atlas: every path the internet takes, drawn out as a map. Five islands, five realms.",
+    text: "I'm Comet. I carry messages across the Atlas. It's a map of every path the internet takes. Five islands, five realms.",
   },
   {
     kind: 'comet',
-    text: "Each realm teaches a traveller something about getting around out here, safely and kindly. Visit one and it stamps your passport, which is this journal you're holding.",
+    text: "Each realm teaches a traveller something about getting around out here, safely and kindly. Visit one and it stamps your passport. That's this journal you're holding.",
   },
   {
     kind: 'comet',
-    text: "Collect all five stamps and you're a Wise Traveller, and the Atlas Gate opens for those. Curiosity and a bit of caution is really all it takes.",
+    text: "Collect all five stamps and you're a Wise Traveller. The Atlas Gate only opens for those. Curiosity and a bit of caution is all it takes.",
   },
   {
     kind: 'comet',
-    text: "Every journey starts at home, though. Let's get you ready first. Who's walking the Atlas with me?",
+    text: "But every journey starts at home. Let's get you ready first. Who's walking the Atlas with me?",
     cta: 'Choose my traveller',
   },
 ];

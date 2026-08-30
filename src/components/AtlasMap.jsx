@@ -10,12 +10,12 @@ const ATLAS_TOUR = [
   {
     target: '.world.atlas-map',
     title: 'The Atlas',
-    text: 'Every path the internet takes, drawn out as a map. Tap the water to sail your paper boat, then pull up close to an island to step ashore.',
+    text: 'A map of every path the internet takes. Tap the water to sail your paper boat. Pull up close to an island to step ashore.',
   },
   {
     target: '.realm-strip',
     title: 'Five realms',
-    text: 'Each island teaches something different. Read here what a realm is about and what you’ll learn there, then tap a card to travel straight to it.',
+    text: 'Each island teaches something different. Read here what a realm is about, and what you’ll learn. Tap a card to travel straight there.',
   },
   {
     target: '.journal-count',
@@ -259,7 +259,7 @@ export default function AtlasMap({
   const greeting = allStamped
     ? `${ACTIVE_REALMS.length} stamps, Traveller ${travelerName}. The Gate's been waiting for you.`
     : visitedCount === 0
-      ? `Here it is: the whole Atlas. Pick a branch, ${travelerName}, and step onto whichever island you like the look of.`
+      ? `Here it is: the whole Atlas. Pick a branch, ${travelerName}, and step onto any island you like.`
       : `${visitedCount} down, ${ACTIVE_REALMS.length - visitedCount} to go. Where to next, ${travelerName}?`;
 
   const hotspots = ACTIVE_REALMS.map((realm) => ({

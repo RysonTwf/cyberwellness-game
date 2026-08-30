@@ -4,6 +4,7 @@ import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
+import StepTrail from './StepTrail';
 import RealmArt from './RealmArt';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
@@ -150,7 +151,12 @@ export default function PlatformerStoryRealm({
       <div className="accent-bar" />
 
       {/* Realm name/topic/icon are in the journal bar (JournalProgress) —
-          see RealmScreen for why the heading row moved up there. */}
+          see RealmScreen for why the heading row moved up there. Only three
+          steps here: the choice and the game are one continuous vault run. */}
+      <StepTrail
+        steps={['Story', 'The vault', 'Rule']}
+        current={{ story: 0, level: 1, rule: 2 }[step] ?? 0}
+      />
 
       {/* ---------------------------------------------------------- story -- */}
       {step === 'story' && (
@@ -233,7 +239,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text={`Not all the correct pieces are in your bag yet. You've got ${strongInBag.length} of ${total}. The door won't open on a half-built password. Go back and find the rest.`}
+                  text={`You don't have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door won't open on a half-built password. Go back and find the rest.`}
                 />
               )}
 
@@ -241,7 +247,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Some of what you have ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count, and try again."
+                  text="That's not the set. Some of what you ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count. Try again."
                 />
               )}
 

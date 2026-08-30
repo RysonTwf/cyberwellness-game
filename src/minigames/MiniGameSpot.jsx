@@ -116,8 +116,8 @@ export default function MiniGameSpot({ game, onComplete }) {
             <Eye size={22} />
           </span>
           <p>
-            Fog's gone. Four things in one short chat, and the one asking your favourite game
-            is fine all along. Lots of travellers mark that one by mistake too.
+            Fog's gone. Four warning signs in one short chat. The one asking your favourite game
+            is fine, though. Lots of travellers mark that by mistake.
           </p>
         </div>
       )}
