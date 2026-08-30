@@ -1,7 +1,7 @@
 # Graph Report - cyberwellness-game  (2026-08-30)
 
 ## Corpus Check
-- 60 files · ~580,191 words
+- 60 files · ~580,341 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3d8b06f0`
+- Built from commit: `b2db4ab5`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
