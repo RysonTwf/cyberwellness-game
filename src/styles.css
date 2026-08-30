@@ -470,8 +470,11 @@ p {
   gap: 12px;
   /* Right padding reserves a gutter for the fixed settings gear
      (.settings-fab, App.jsx) sitting in the viewport's top-right corner —
-     without it the stamp dots run in right underneath it. */
-  padding: 10px 52px 20px 0;
+     without it the stamp dots run in right underneath it. Vertical padding
+     is deliberately tight: every px of chrome height comes straight out of
+     the scene box below (2:1 ratio — each chrome px costs 2px of box width),
+     and short laptop viewports are the common case. */
+  padding: 6px 52px 10px 0;
 }
 
 .journal-count {
@@ -573,23 +576,30 @@ p {
 /* ---------- Realm screen -------------------------------------------------- */
 
 .accent-bar {
-  height: 7px;
+  height: 5px;
   border-radius: 999px;
   background: var(--accent);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
+/* Kept deliberately compact (smaller heading than the base h2, tight
+   margins): on a short laptop viewport the realm's scene box is height-bound,
+   so every px this header gives up widens the box below it by two. */
 .realm-head {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
+}
+
+.realm-head h2 {
+  font-size: clamp(20px, 3.4vw, 26px);
 }
 
 .realm-head .badge-ic {
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
   display: grid;
   place-items: center;
   background: var(--accent-wash);
@@ -982,24 +992,17 @@ p {
 
 
 
-/* Every scene box — realm, Atlas hub, Phaser level — sizes itself off the
-   viewport *height*, not just its width, so the game window is always fully
-   visible without scrolling. Capping the width alone was never enough: a
-   1100px-wide 2:1 box is 550px tall, which on a laptop leaves nothing for the
-   header and controls around it.
-
-   The cap is expressed as a width (height budget x the box's own aspect
-   ratio) rather than a `max-height`, because clamping the height of a box
-   that has `aspect-ratio` just letterboxes it — this keeps the ratio exact.
-
-   --scene-vh is the share of the viewport height that screen's box may take;
-   whatever's left is the budget for its chrome. It differs per screen because
-   the chrome does: the room has almost none, a Phaser level carries a
-   journal bar, a realm heading, an instruction line and a control row. */
+/* Every scene box — realm, Atlas hub, Phaser level — takes its height from
+   the space its container has left over (flex below), and derives width from
+   that via aspect-ratio; --scene-max-w then reins width in on wide-and-short
+   windows, and aspect-ratio walks the height back down to match. The cap is
+   deliberately generous (1600px) so on a typical desktop the *height* is
+   what binds and the box fills the screen — it exists only so an ultrawide
+   monitor doesn't blow the scene up past the point of comfortable play. */
 .world,
 .phaser-host {
   --scene-ar: 2;
-  --scene-max-w: 1100px;
+  --scene-max-w: 1600px;
   position: relative;
   /* The box takes its *height* from the space its container actually has
      left over, and derives its width from that via aspect-ratio. Sizing it
@@ -1041,15 +1044,13 @@ p {
    wins regardless of source order. */
 .world.atlas-map {
   --scene-ar: 1.8;
-  --scene-max-w: 840px;
-  --scene-vh: 72;
+  --scene-max-w: 1200px;
 }
 
 /* Phaser-backed mini-games (Milestones Phase 2: Passworld platformer,
    Privacy Peaks stepping-stones) render into this box — same 2:1 scene
    proportions as the rest of the game, via minigames/PhaserMiniGame.jsx. */
 .phaser-host {
-  --scene-vh: 74;
   border-radius: var(--radius-lg);
   border: 1.5px solid var(--line);
   background: var(--paper-sunk);
@@ -1233,6 +1234,12 @@ p {
   margin-left: -50px;
   margin-top: -64px;
   width: 100px;
+  /* --ws (set inline by World.jsx) grows in-world elements in proportion
+     when the box runs past the 1100px width these px sizes were calibrated
+     at; the origin is the anchor point the negative margins aim at, so the
+     pin tip stays planted on its (x, y) while scaling. */
+  transform: scale(var(--ws, 1));
+  transform-origin: 50px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1298,6 +1305,9 @@ p {
      head) the same as before that growth rather than creeping 8px lower. */
   margin-top: -118px;
   width: 120px;
+  /* Same proportional growth as .hotspot — see the --ws note there. */
+  transform: scale(var(--ws, 1));
+  transform-origin: 60px 118px;
   z-index: 5;
   font-family: var(--font-display);
   font-weight: 700;
@@ -1797,12 +1807,10 @@ p {
   }
 
   /* Give the world a bit more height on a phone so the Traveler isn't tiny.
-     Goes through --scene-ar/--scene-vh rather than setting aspect-ratio and
-     max-height directly, or it would fight the viewport-height cap above and
-     letterbox the scene. */
+     Goes through --scene-ar rather than setting aspect-ratio directly, or it
+     would fight the width cap above and letterbox the scene. */
   .world {
     --scene-ar: 1.333;
-    --scene-vh: 58;
   }
 
   .world-bar {

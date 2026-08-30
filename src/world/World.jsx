@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MapPin, CornerDownLeft } from 'lucide-react';
 import { Comet } from '../components/Characters';
 import Traveler from './Traveler';
@@ -16,6 +16,15 @@ import { isInputLocked } from '../lib/inputLock';
  */
 
 const INTERACT_RANGE = 12;
+
+// Dev-only pin calibration: run the app with `?pins` in the URL
+// (e.g. http://localhost:5174/?pins) and every world shows a live x/y
+// readout in stop-space percent — the same numbers realms.js stops use.
+// Clicking copies `x: NN, y: NN` to the clipboard (and logs it) so a
+// misplaced pin can be re-measured by eye and pasted straight into
+// realms.js. Stripped from production builds via the DEV guard.
+const CALIBRATE =
+  import.meta.env.DEV && new URLSearchParams(window.location.search).has('pins');
 
 export default function World({
   sceneKey,
@@ -69,8 +78,26 @@ export default function World({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
+    if (CALIBRATE) {
+      const snippet = `x: ${Math.round(x)}, y: ${Math.round(y)}`;
+      // eslint-disable-next-line no-console
+      console.log(`[pins] ${sceneKey}: { ${snippet} }`);
+      navigator.clipboard?.writeText(snippet).catch(() => {});
+    }
     goTo(x, y);
   };
+
+  // Calibration readout state — only ever set while ?pins is active.
+  const [probe, setProbe] = useState(null);
+  const handleProbeMove = CALIBRATE
+    ? (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        setProbe({
+          x: Math.round(((e.clientX - rect.left) / rect.width) * 100),
+          y: Math.round(((e.clientY - rect.top) / rect.height) * 100),
+        });
+      }
+    : undefined;
 
   // Re-place whenever the space changes, so each one starts at its own gate.
   useEffect(() => {
@@ -116,18 +143,62 @@ export default function World({
     return () => window.removeEventListener('keydown', onKey);
   }, [active, onInteract, paused]);
 
+  // Everything placed *in* the world (walker, pins, interact button, Comet)
+  // is sized in fixed CSS px, calibrated for the box at its old 1100px width
+  // cap — but the box itself is fluid and can now run up to 1600px. Without
+  // compensation the actors visibly shrink relative to the scene as the box
+  // grows (most noticeable on browser zoom-out, where the box re-expands
+  // into the freed space while fixed-px pins get smaller). This factor
+  // scales them back up in proportion, never below 1 — so phones and small
+  // windows (and their 48px touch floors) behave exactly as before.
+  const worldRef = useRef(null);
+  const [worldScale, setWorldScale] = useState(1);
+  useEffect(() => {
+    const el = worldRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(([entry]) => {
+      const w = entry?.contentRect?.width ?? el.clientWidth;
+      setWorldScale(Math.min(Math.max(w / 1100, 1), 1.5));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   // Fake a little depth: the Traveler is smaller further "back" in the scene.
   const depth = (pos.y - bounds.minY) / Math.max(1, bounds.maxY - bounds.minY);
-  const scale = 0.82 + depth * 0.34;
+  const scale = (0.82 + depth * 0.34) * worldScale;
 
   return (
     <div className="world-wrap">
       <div
+        ref={worldRef}
         className={`world${paused ? ' paused' : ''}${className ? ` ${className}` : ''}`}
+        style={{ '--ws': worldScale }}
         role="presentation"
         onPointerDown={handleWalkTap}
+        onPointerMove={handleProbeMove}
       >
         <div className="world-scene">{scene}</div>
+
+        {CALIBRATE && probe && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 8,
+              left: 8,
+              zIndex: 10,
+              padding: '4px 10px',
+              borderRadius: 8,
+              background: 'rgba(31, 52, 82, 0.85)',
+              color: '#fff',
+              fontFamily: 'monospace',
+              fontSize: 14,
+              pointerEvents: 'none',
+            }}
+          >
+            x: {probe.x}, y: {probe.y} — click copies
+          </div>
+        )}
 
         {hotspots.map((spot) => (
           <div

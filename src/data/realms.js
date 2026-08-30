@@ -1018,14 +1018,17 @@ export const REALMS = [
 
     world: {
       spawn: { x: 10, y: 84 },
-      // minY keeps the Traveler below the wall's base (scene y=188), so they
-      // can't walk up into the stonework.
-      bounds: { minX: 5, maxX: 94, minY: 68, maxY: 90 },
+      // Stops measured against the real background art (PassworldBG.png,
+      // 1920x960 = exactly the 2:1 scene box, so % maps straight onto it):
+      // Vex overlay centre x~67%, the left gold vault door x 13-20% (centre
+      // ~17%), the main archway centre ~50%. minY keeps the Traveler below
+      // the wall's grass line (~scene y 195 → 69.6%).
+      bounds: { minX: 5, maxX: 94, minY: 70, maxY: 90 },
       stops: {
         story: { x: 68, y: 72, label: 'Keeper Vex', action: 'Talk' },
         decision: { x: 68, y: 72, label: 'Keeper Vex', action: 'Answer' },
-        game: { x: 20, y: 78, label: 'the vault doors', action: 'Sort' },
-        rule: { x: 51, y: 74, label: 'the open gate', action: 'Go through' },
+        game: { x: 17, y: 78, label: 'the vault doors', action: 'Sort' },
+        rule: { x: 50, y: 74, label: 'the open gate', action: 'Go through' },
       },
     },
 
@@ -1047,14 +1050,17 @@ export const REALMS = [
 
     world: {
       spawn: { x: 12, y: 86 },
-      // The near ridge dips to scene y=198; minY clears it so the Traveler
-      // always stands in front of the mountain rather than inside its face.
+      // Stops measured against the real background art (PrivacyPeaksBG.png +
+      // FOG.png overlay): the silhouetted figure baked into the fog art sits
+      // at ~69% x, and the torii gate with its stepping-stone path — what the
+      // fog actually reveals when it clears — stands at x 24-36% (centre
+      // ~30%), so "the clear path" now points there instead of at empty snow.
       bounds: { minX: 6, maxX: 93, minY: 72, maxY: 92 },
       stops: {
-        story: { x: 72, y: 76, label: 'the shape in the fog', action: 'Look' },
-        decision: { x: 72, y: 76, label: 'the message', action: 'Reply' },
+        story: { x: 69, y: 76, label: 'the shape in the fog', action: 'Look' },
+        decision: { x: 69, y: 76, label: 'the message', action: 'Reply' },
         game: { x: 18, y: 82, label: 'the lookout', action: 'Read' },
-        rule: { x: 84, y: 76, label: 'the clear path', action: 'Take it' },
+        rule: { x: 30, y: 78, label: 'the clear path', action: 'Take it' },
       },
     },
 
@@ -1075,14 +1081,17 @@ export const REALMS = [
 
     world: {
       spawn: { x: 10, y: 88 },
-      // The bank starts at scene y=188; minY keeps the Traveler on it instead
-      // of out on the open water.
+      // Stops measured against the real pond overlays (RealmArt.jsx BogScene):
+      // PONDLEFT (Pockets alone) spans x 11-46% with the frog itself at ~27%;
+      // PONDRIGHT (the unkind crowd) spans x 55-91% with its big frog at
+      // ~73%. Pockets/murky-water pins sit on the left pond, "the comment"
+      // on the right one.
       bounds: { minX: 5, maxX: 92, minY: 70, maxY: 92 },
       stops: {
-        story: { x: 48, y: 76, label: 'Pockets', action: 'Listen' },
-        decision: { x: 66, y: 74, label: 'the comment', action: 'Respond' },
-        game: { x: 24, y: 74, label: 'the murky water', action: 'Clear it' },
-        rule: { x: 48, y: 78, label: 'Pockets', action: 'Talk' },
+        story: { x: 27, y: 76, label: 'Pockets', action: 'Listen' },
+        decision: { x: 73, y: 73, label: 'the comment', action: 'Respond' },
+        game: { x: 17, y: 76, label: 'the murky water', action: 'Clear it' },
+        rule: { x: 27, y: 78, label: 'Pockets', action: 'Talk' },
       },
     },
 
@@ -1103,12 +1112,17 @@ export const REALMS = [
 
     world: {
       spawn: { x: 8, y: 88 },
+      // Stops measured against the real background art (BalanceBayBG.png):
+      // the Glimmer sparkle hangs over the water at x 49-68% (centre ~58%),
+      // the wet tide band crosses at y ~62-67% (so the stop stands at the
+      // top of the walkable sand, right against it), and the bonfire burns
+      // at x 76-88% — the stop sits just left of the flames, not in them.
       bounds: { minX: 5, maxX: 93, minY: 74, maxY: 93 },
       stops: {
-        story: { x: 40, y: 80, label: 'The Glimmer', action: 'Listen' },
-        decision: { x: 40, y: 80, label: 'The Glimmer', action: 'Answer' },
-        game: { x: 22, y: 90, label: 'the tide line', action: 'Plan the day' },
-        rule: { x: 84, y: 84, label: 'the bonfire', action: 'Sit down' },
+        story: { x: 58, y: 78, label: 'The Glimmer', action: 'Listen' },
+        decision: { x: 58, y: 78, label: 'The Glimmer', action: 'Answer' },
+        game: { x: 22, y: 78, label: 'the tide line', action: 'Plan the day' },
+        rule: { x: 78, y: 88, label: 'the bonfire', action: 'Sit down' },
       },
     },
 
