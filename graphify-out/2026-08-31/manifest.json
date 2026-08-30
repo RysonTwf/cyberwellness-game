@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1788105666.848958,
-    "ast_hash": "289c41eb0c56d74d24d5004b80b2a134",
+    "mtime": 1788094311.559705,
+    "ast_hash": "b996274060f2955c66b9853e7b556638",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1788106024.72219,
-    "ast_hash": "67ea9b054d8534aef6406521f42f4b8c",
+    "mtime": 1788104309.071284,
+    "ast_hash": "0e478f5c1d36a5a1ce9d24128952d75d",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "vite.config.js": {
-    "mtime": 1788105534.4892342,
-    "ast_hash": "eefb9022d2b6b2a208a40a7ee2bd1b44",
+    "mtime": 1786005154.3313491,
+    "ast_hash": "76afb30d19714fb27adc877e6dffa5c8",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -29447,21 +29447,6 @@
   "src/components/StepTrail.jsx": {
     "mtime": 1788103798.1530979,
     "ast_hash": "a2647a0f7e3c28ff2a76a1b332149879",
-    "semantic_hash": ""
-  },
-  "src/dev/CopyEditor.jsx": {
-    "mtime": 1788105625.5972493,
-    "ast_hash": "f84df37109288891d2b9dda64ea4c5c9",
-    "semantic_hash": ""
-  },
-  "src/dev/contentOverrides.js": {
-    "mtime": 1788105508.4889753,
-    "ast_hash": "1a709ad627ff5cb22461d84b5d5b28b9",
-    "semantic_hash": ""
-  },
-  "vite-plugin-copy-editor.js": {
-    "mtime": 1788105528.553158,
-    "ast_hash": "add0c2213607e6e0fc9fb2004aeede27",
     "semantic_hash": ""
   }
 }
