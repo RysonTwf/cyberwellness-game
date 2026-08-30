@@ -15,6 +15,14 @@
 
 import { buildSteppingStonesArt, preloadSteppingStonesArt } from './steppingStonesArt';
 import { motionTween, prefersReducedMotion } from '../../lib/motion';
+import boyWalk from '../../assets/characters/boy-walk-1.png';
+import girlWalk from '../../assets/characters/girl-walk-1.png';
+
+// The player's CharacterSelect pick, if any — the idle walk frame, the same
+// one world/Traveler.jsx and CharacterSelect.jsx show. Loaded into the scene
+// so the figure that hops the stones is the one the player chose, not the
+// neutral 'ss-token' stand-in. Anything but 'boy'/'girl' keeps the token.
+const AVATAR_SRC = { boy: boyWalk, girl: girlWalk };
 
 // Only the runtime tints live here — everything the art is drawn with belongs
 // to steppingStonesArt.js. Light tints so a resolved stone still reads as a
@@ -27,7 +35,7 @@ const SKIP_GLOW = 0xe0a030;
 const W = 560;
 const H = 190;
 
-export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
+export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady, avatar = null }) {
   class SteppingStonesScene extends Phaser.Scene {
     constructor() {
       super('stepping-stones');
@@ -37,6 +45,10 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
       // Real sprite sheets if a skin's been set, otherwise the built-in
       // stand-ins — see steppingStonesArt.js for how to swap them.
       preloadSteppingStonesArt(this);
+      // The player's chosen avatar, when they picked one — used in place of
+      // the neutral token below.
+      const src = AVATAR_SRC[avatar];
+      if (src) this.load.image('ss-avatar', src);
     }
 
     create() {
@@ -89,9 +101,21 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
       });
 
       const start = this.stoneSprites[0];
+      const hasAvatar = this.textures.exists('ss-avatar');
+      // How far above a stone's centre the figure's feet rest. The token frame
+      // carries its own headroom/legroom, so it wants a big lift; the avatar
+      // sprite is cropped tight to the shoe tips, so it plants much closer.
+      this.footLift = hasAvatar ? 6 : 19;
       this.traveler = this.add
-        .image(start?.x ?? marginL, (start?.y ?? 120) - 19, 'ss-token')
+        .image(start?.x ?? marginL, (start?.y ?? 120) - this.footLift, hasAvatar ? 'ss-avatar' : 'ss-token')
         .setOrigin(0.5, 1);
+      if (hasAvatar) {
+        // The walk sprite is delivered at full size (a ~664x931 bounding box);
+        // scale it to about the neutral token's height so it reads at the same
+        // weight on a stone.
+        const h = 48;
+        this.traveler.setDisplaySize((h * this.traveler.width) / this.traveler.height, h);
+      }
       this.footY = this.traveler.y;
 
       this.idleBob(reduced);
@@ -137,7 +161,7 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
       // The hop: kill anything still moving the Traveler (the idle bob, a
       // half-finished earlier hop), then slide x across while y arcs up and
       // settles onto the new stone. Restart the bob once it lands.
-      const footY = target.y - 19;
+      const footY = target.y - this.footLift;
       this.footY = footY;
       this.tweens.killTweensOf(this.traveler);
       this.tweens.add(motionTween({

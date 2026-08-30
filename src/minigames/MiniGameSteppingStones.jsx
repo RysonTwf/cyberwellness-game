@@ -13,7 +13,7 @@ import { makeSteppingStonesConfig } from './phaser-scenes/steppingStonesScene';
  * Phaser is only the visual run of stones + fog + the Traveler hopping
  * across (see phaser-scenes/steppingStonesScene.js).
  */
-export default function MiniGameSteppingStones({ game, onComplete }) {
+export default function MiniGameSteppingStones({ game, onComplete, avatar = null }) {
   const stones = game.stones;
   const [index, setIndex] = useState(0);
   const [resolved, setResolved] = useState([]); // { id, action, correct }
@@ -60,6 +60,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
         config={(Phaser) =>
           makeSteppingStonesConfig(Phaser, {
             stones,
+            avatar,
             onSceneReady: (scene) => {
               sceneRef.current = scene;
             },

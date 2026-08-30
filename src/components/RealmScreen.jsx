@@ -394,6 +394,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                 </button>
                 <Game
                   game={realm.game}
+                  avatar={avatar}
                   onComplete={(result) => {
                     playSfx('complete');
                     setScore(result);
