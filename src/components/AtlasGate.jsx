@@ -21,7 +21,7 @@ export const DIARY_COPY = [
   {
     id: 'intro',
     label: 'Comet — passport intro',
-    text: 'There you are. This is your passport now. Five empty stamps, one for each realm. I just need a name for the cover.',
+    text: 'There you are. This is your passport now. Five empty stamps, one for each realm. You just need a name for the cover.',
   },
   { id: 'letsDo', label: 'Button — start', text: "Let's do it" },
   { id: 'passportLabel', label: 'Passport heading', text: 'Your passport' },

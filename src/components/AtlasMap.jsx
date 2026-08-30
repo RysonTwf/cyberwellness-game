@@ -12,7 +12,7 @@ export const ATLAS_TOUR = [
   {
     target: '.world.atlas-map',
     title: 'The Atlas',
-    text: 'A map of every path the internet takes. Tap the water to sail your paper boat. Pull up close to an island to step ashore.',
+    text: 'A map of every path the internet takes. Tap the water or WASD or arrow keys to sail your paper boat. Pull up close to an island to step ashore.',
   },
   {
     target: '.realm-strip',
@@ -22,7 +22,7 @@ export const ATLAS_TOUR = [
   {
     target: '.journal-count',
     title: 'Your passport',
-    text: 'Finish a realm and it stamps your passport. Collect all five stamps and the Atlas Gate itself will open…',
+    text: 'Finish a realm and it stamps your passport. Collect all five stamps and the Atlas Gate itself will open.',
   },
   {
     title: 'Off you go!',
