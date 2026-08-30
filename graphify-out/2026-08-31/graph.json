@@ -721,7 +721,7 @@
       "label": "CharacterArt()",
       "file_type": "code",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L131",
+      "source_location": "L132",
       "_origin": "ast",
       "id": "src_components_characters_characterart",
       "community": 6,
@@ -6225,7 +6225,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L131",
+      "source_location": "L132",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_characters",
@@ -6248,7 +6248,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L128",
+      "source_location": "L129",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -12812,5 +12812,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "9b6703c9b76d027c280927fb9e014a1677c83041"
+  "built_at_commit": "8a7122019ae51b0b18838b1d03f61b6113a18093"
 }
