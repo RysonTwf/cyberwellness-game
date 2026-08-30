@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
-    "mtime": 1788104408.8094015,
-    "ast_hash": "25a95fa784b4b72ce165646820a2a5c5",
+    "mtime": 1788112575.745225,
+    "ast_hash": "8b8cb90800e93eb6593f8769f184b025",
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1788110937.4964192,
-    "ast_hash": "1e6994c69a7cf92fd15630b850e3fb1d",
+    "mtime": 1788112312.8773677,
+    "ast_hash": "4fe09001137b622f7544d0de5619347c",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -29430,18 +29430,18 @@
     "semantic_hash": ""
   },
   "src/dev/CopyEditor.jsx": {
-    "mtime": 1788106644.3987195,
-    "ast_hash": "f51b1b4b77db82cbede28aacaad05120",
+    "mtime": 1788112511.3712213,
+    "ast_hash": "2100f6ea4f4de29cf204237a8888e2bb",
     "semantic_hash": ""
   },
   "src/dev/contentOverrides.js": {
-    "mtime": 1788109515.4665306,
-    "ast_hash": "52a90bd3a6cbdcd6a0f27d455f77f474",
+    "mtime": 1788112499.5424259,
+    "ast_hash": "941268c2b80d76ef16ed697f7a614695",
     "semantic_hash": ""
   },
   "vite-plugin-copy-editor.js": {
-    "mtime": 1788106603.7932749,
-    "ast_hash": "08fad47c7a6950995b60436963753a01",
+    "mtime": 1788112493.6122518,
+    "ast_hash": "412430311d105fe28dd4cc8cf1cacb3b",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameQuiz.jsx": {
