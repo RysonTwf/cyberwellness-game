@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "src/components/MainScreen.jsx": {
-    "mtime": 1788102676.6703439,
-    "ast_hash": "4113273f5007df32db5822dfcaf30906",
+    "mtime": 1788124286.7727456,
+    "ast_hash": "b15cd39ea3e9255d2fe57f5a5a9e29ee",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passworldArt.js": {
@@ -29395,8 +29395,8 @@
     "semantic_hash": ""
   },
   "PLAN.md": {
-    "mtime": 1788123195.7807884,
-    "ast_hash": "9c584605de6f5a7735913881bd28e962",
+    "mtime": 1788124489.654876,
+    "ast_hash": "205173f952f248c8aecc4bd4e7590116",
     "semantic_hash": ""
   },
   "src/components/RealmIntro.jsx": {
@@ -29467,6 +29467,11 @@
   "src/components/BalanceBeachRealm.jsx": {
     "mtime": 1788116666.5469303,
     "ast_hash": "c0677eb6bc8a1d2daec50220b84f933c",
+    "semantic_hash": ""
+  },
+  "src/components/TitleScene.jsx": {
+    "mtime": 1788124379.8567877,
+    "ast_hash": "695c212b140fbd46140ed7ecdbb9afd7",
     "semantic_hash": ""
   }
 }

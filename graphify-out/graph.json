@@ -361,7 +361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "app.jsx"
     },
@@ -384,7 +384,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "atlasgate.jsx"
     },
     {
@@ -395,7 +395,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate_diary_copy",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "diary_copy"
     },
     {
@@ -406,7 +406,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate_atlasgate",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "atlasgate()"
     },
     {
@@ -592,7 +592,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_certificatescreen",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "certificatescreen.jsx"
     },
@@ -603,7 +603,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificate_copy",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "certificate_copy"
     },
@@ -614,7 +614,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "certificatescreen()"
     },
@@ -625,7 +625,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characterselect",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "characterselect.jsx"
     },
@@ -636,7 +636,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_characterselect_options",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "options"
     },
@@ -647,7 +647,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_characterselect_characterselect",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "characterselect()"
     },
@@ -658,7 +658,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characters",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "characters.jsx"
     },
@@ -669,7 +669,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_characters_comet",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "comet()"
     },
@@ -680,7 +680,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_characters_vex",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "vex()"
     },
@@ -691,7 +691,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_components_characters_fog",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "fog()"
     },
@@ -702,7 +702,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_components_characters_pockets",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "pockets()"
     },
@@ -713,7 +713,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_components_characters_commentbubble",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "commentbubble()"
     },
@@ -724,7 +724,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "src_components_characters_by_name",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "by_name"
     },
@@ -735,7 +735,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "src_components_characters_characterart",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "characterart()"
     },
@@ -790,7 +790,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_introstory",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "introstory.jsx"
     },
@@ -801,7 +801,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_components_introstory_intro_beats",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "intro_beats"
     },
@@ -812,7 +812,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_components_introstory_journal",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "journal()"
     },
@@ -823,7 +823,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_components_introstory_introstory",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "introstory()"
     },
@@ -867,7 +867,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_mainscreen",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "mainscreen.jsx"
     },
@@ -875,10 +875,10 @@
       "label": "MainScreen()",
       "file_type": "code",
       "source_file": "src/components/MainScreen.jsx",
-      "source_location": "L16",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_mainscreen_mainscreen",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "mainscreen()"
     },
@@ -1077,7 +1077,7 @@
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "realmscreen()"
     },
     {
@@ -1109,7 +1109,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_schoollogo",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "schoollogo.jsx"
     },
@@ -1120,7 +1120,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_schoollogo_schoollogo",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "schoollogo()"
     },
@@ -1176,7 +1176,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "stampbadge.jsx"
     },
     {
@@ -1187,7 +1187,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_icons",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "icons"
     },
     {
@@ -1198,7 +1198,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_makerandom",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "makerandom()"
     },
     {
@@ -1209,7 +1209,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_seedfrom",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "seedfrom()"
     },
     {
@@ -1220,7 +1220,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_roughcircle",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "roughcircle()"
     },
     {
@@ -1231,7 +1231,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_stampbadge",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "stampbadge()"
     },
     {
@@ -1279,6 +1279,50 @@
       "norm_label": "steptrail()"
     },
     {
+      "label": "TitleScene.jsx",
+      "file_type": "code",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_titlescene",
+      "community": 6,
+      "community_name": "App.jsx",
+      "norm_label": "titlescene.jsx"
+    },
+    {
+      "label": "Flower()",
+      "file_type": "code",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_components_titlescene_flower",
+      "community": 6,
+      "community_name": "App.jsx",
+      "norm_label": "flower()"
+    },
+    {
+      "label": "Tree()",
+      "file_type": "code",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "src_components_titlescene_tree",
+      "community": 6,
+      "community_name": "App.jsx",
+      "norm_label": "tree()"
+    },
+    {
+      "label": "TitleScene()",
+      "file_type": "code",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_components_titlescene_titlescene",
+      "community": 6,
+      "community_name": "App.jsx",
+      "norm_label": "titlescene()"
+    },
+    {
       "label": "TravelerRoom.jsx",
       "file_type": "code",
       "source_file": "src/components/TravelerRoom.jsx",
@@ -1286,7 +1330,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "travelerroom.jsx"
     },
     {
@@ -1297,7 +1341,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_room_tour",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "room_tour"
     },
     {
@@ -1308,7 +1352,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_spawn",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "spawn"
     },
     {
@@ -1319,7 +1363,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_bounds",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "bounds"
     },
     {
@@ -1330,7 +1374,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_diary_spot",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "diary_spot"
     },
     {
@@ -1341,7 +1385,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_door_spot",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "door_spot"
     },
     {
@@ -1352,7 +1396,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_travelerroom",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "travelerroom()"
     },
     {
@@ -1516,7 +1560,7 @@
       "source_location": "L1352",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
-      "community": 15,
+      "community": 6,
       "community_name": "App.jsx",
       "norm_label": "realm_by_id"
     },
@@ -2001,7 +2045,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_applyscreenoverrides",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "applyscreenoverrides()"
     },
     {
@@ -2045,7 +2089,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -2056,7 +2100,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -2067,7 +2111,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -2078,7 +2122,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -2364,7 +2408,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "sfx.js"
     },
     {
@@ -2375,7 +2419,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "sound_files"
     },
     {
@@ -2386,7 +2430,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "volumes"
     },
     {
@@ -2397,7 +2441,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "pools"
     },
     {
@@ -2408,7 +2452,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "nextindex"
     },
     {
@@ -2419,7 +2463,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "getpool()"
     },
     {
@@ -2430,7 +2474,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "playsfx()"
     },
     {
@@ -2474,7 +2518,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamequiz",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "minigamequiz.jsx"
     },
     {
@@ -2485,7 +2529,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamequiz_minigamequiz",
       "community": 15,
-      "community_name": "App.jsx",
+      "community_name": "sfx.js",
       "norm_label": "minigamequiz()"
     },
     {
@@ -3398,7 +3442,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "roomscene.jsx"
     },
     {
@@ -3409,7 +3453,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_prop",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "prop()"
     },
     {
@@ -3420,7 +3464,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_shadow",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "shadow()"
     },
     {
@@ -3431,7 +3475,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_glowingdiary",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "glowingdiary()"
     },
     {
@@ -3442,7 +3486,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_screen",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "screen()"
     },
     {
@@ -3453,7 +3497,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_furniture",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "furniture"
     },
     {
@@ -3464,7 +3508,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_f",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "f"
     },
     {
@@ -3475,7 +3519,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_room_obstacles",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "room_obstacles"
     },
     {
@@ -3486,7 +3530,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_roomscene",
       "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community_name": "App.jsx",
       "norm_label": "roomscene()"
     },
     {
@@ -3966,7 +4010,7 @@
       "label": "To do",
       "file_type": "document",
       "source_file": "PLAN.md",
-      "source_location": "L131",
+      "source_location": "L139",
       "_origin": "ast",
       "id": "plan_to_do",
       "community": 14,
@@ -3977,7 +4021,7 @@
       "label": "Log",
       "file_type": "document",
       "source_file": "PLAN.md",
-      "source_location": "L155",
+      "source_location": "L163",
       "_origin": "ast",
       "id": "plan_log",
       "community": 14,
@@ -6709,7 +6753,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/MainScreen.jsx",
-      "source_location": "L16",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_mainscreen",
@@ -6738,6 +6782,30 @@
       "_origin": "ast",
       "source": "src_components_mainscreen",
       "target": "src_components_schoollogo_schoollogo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/MainScreen.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_mainscreen",
+      "target": "src_components_titlescene",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/MainScreen.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_mainscreen",
+      "target": "src_components_titlescene_titlescene",
       "confidence_score": 1.0
     },
     {
@@ -7893,6 +7961,39 @@
       "_origin": "ast",
       "source": "src_components_steptrail",
       "target": "src_components_steptrail_steptrail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_titlescene",
+      "target": "src_components_titlescene_flower",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_titlescene",
+      "target": "src_components_titlescene_titlescene",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TitleScene.jsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_titlescene",
+      "target": "src_components_titlescene_tree",
       "confidence_score": 1.0
     },
     {
@@ -12591,7 +12692,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PLAN.md",
-      "source_location": "L155",
+      "source_location": "L163",
       "weight": 1.0,
       "_origin": "ast",
       "source": "plan_working_plan_change_log",
@@ -12613,7 +12714,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PLAN.md",
-      "source_location": "L131",
+      "source_location": "L139",
       "weight": 1.0,
       "_origin": "ast",
       "source": "plan_checklist",
@@ -12850,5 +12951,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "6f2df82d8d5881fcd21066fbedd126e3d4be0e4a"
+  "built_at_commit": "d65243f63e6e0fe58d44b42c71a26bedefe642fa"
 }

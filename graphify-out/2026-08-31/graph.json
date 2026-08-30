@@ -372,8 +372,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 1,
+      "community_name": "CopyEditor.jsx",
       "norm_label": "app()"
     },
     {
@@ -394,8 +394,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_atlasgate_diary_copy",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "diary_copy"
     },
     {
@@ -527,7 +527,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "balancebeachrealm.jsx"
     },
     {
@@ -538,7 +538,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm_spawn",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "spawn"
     },
     {
@@ -549,7 +549,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm_bounds",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "bounds"
     },
     {
@@ -560,7 +560,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm_item_spots",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "item_spots"
     },
     {
@@ -571,7 +571,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm_short_labels",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "short_labels"
     },
     {
@@ -582,7 +582,7 @@
       "_origin": "ast",
       "id": "src_components_balancebeachrealm_balancebeachrealm",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "balancebeachrealm()"
     },
     {
@@ -592,19 +592,30 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_certificatescreen",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen.jsx"
+    },
+    {
+      "label": "CERTIFICATE_COPY",
+      "file_type": "code",
+      "source_file": "src/components/CertificateScreen.jsx",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_components_certificatescreen_certificate_copy",
+      "community": 15,
+      "community_name": "App.jsx",
+      "norm_label": "certificate_copy"
     },
     {
       "label": "CertificateScreen()",
       "file_type": "code",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L9",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen()"
     },
     {
@@ -647,8 +658,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characters",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "characters.jsx"
     },
     {
@@ -658,8 +669,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_characters_comet",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "comet()"
     },
     {
@@ -669,8 +680,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_characters_vex",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "vex()"
     },
     {
@@ -680,8 +691,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_components_characters_fog",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "fog()"
     },
     {
@@ -691,8 +702,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_components_characters_pockets",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "pockets()"
     },
     {
@@ -702,8 +713,8 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_components_characters_commentbubble",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "commentbubble()"
     },
     {
@@ -713,8 +724,8 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "src_components_characters_by_name",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "by_name"
     },
     {
@@ -724,8 +735,8 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "src_components_characters_characterart",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "characterart()"
     },
     {
@@ -736,7 +747,7 @@
       "_origin": "ast",
       "id": "src_components_choicecard",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "choicecard.jsx"
     },
     {
@@ -747,7 +758,7 @@
       "_origin": "ast",
       "id": "src_components_choicecard_choicecard",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "choicecard()"
     },
     {
@@ -758,7 +769,7 @@
       "_origin": "ast",
       "id": "src_components_dialoguecard",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "dialoguecard.jsx"
     },
     {
@@ -769,7 +780,7 @@
       "_origin": "ast",
       "id": "src_components_dialoguecard_dialoguecard",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "dialoguecard()"
     },
     {
@@ -779,8 +790,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_introstory",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "introstory.jsx"
     },
     {
@@ -790,8 +801,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_components_introstory_intro_beats",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "intro_beats"
     },
     {
@@ -801,8 +812,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_components_introstory_journal",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "journal()"
     },
     {
@@ -812,8 +823,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_components_introstory_introstory",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "introstory()"
     },
     {
@@ -856,8 +867,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_mainscreen",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "mainscreen.jsx"
     },
     {
@@ -867,8 +878,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_mainscreen_mainscreen",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "mainscreen()"
     },
     {
@@ -879,7 +890,7 @@
       "_origin": "ast",
       "id": "src_components_platformerstoryrealm",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "platformerstoryrealm.jsx"
     },
     {
@@ -889,8 +900,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_platformerstoryrealm_platformerstoryrealm",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "platformerstoryrealm()"
     },
     {
@@ -900,8 +911,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_realmart",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "realmart.jsx"
     },
     {
@@ -911,8 +922,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_realmart_sky",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "sky()"
     },
     {
@@ -922,8 +933,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_components_realmart_passworldscene",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "passworldscene()"
     },
     {
@@ -933,8 +944,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "src_components_realmart_privacyscene",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "privacyscene()"
     },
     {
@@ -944,8 +955,8 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "src_components_realmart_bogscene",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "bogscene()"
     },
     {
@@ -955,8 +966,8 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "src_components_realmart_bayscene",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "bayscene()"
     },
     {
@@ -966,8 +977,8 @@
       "source_location": "L166",
       "_origin": "ast",
       "id": "src_components_realmart_fablefallsscene",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "fablefallsscene()"
     },
     {
@@ -977,8 +988,8 @@
       "source_location": "L223",
       "_origin": "ast",
       "id": "src_components_realmart_scenes",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "scenes"
     },
     {
@@ -988,8 +999,8 @@
       "source_location": "L231",
       "_origin": "ast",
       "id": "src_components_realmart_realmart",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "realmart()"
     },
     {
@@ -1010,8 +1021,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_realmintro_realm_tour",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 18,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "realm_tour"
     },
     {
@@ -1032,8 +1043,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_realmscreen",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "realmscreen.jsx"
     },
     {
@@ -1043,8 +1054,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_realmscreen_games",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "games"
     },
     {
@@ -1054,8 +1065,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_components_realmscreen_extra_beat_order",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "extra_beat_order"
     },
     {
@@ -1077,7 +1088,7 @@
       "_origin": "ast",
       "id": "src_components_reportblock",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "reportblock.jsx"
     },
     {
@@ -1088,7 +1099,7 @@
       "_origin": "ast",
       "id": "src_components_reportblock_reportblock",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "reportblock()"
     },
     {
@@ -1098,8 +1109,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_schoollogo",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "schoollogo.jsx"
     },
     {
@@ -1109,8 +1120,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_schoollogo_schoollogo",
-      "community": 6,
-      "community_name": "TravelerRoom.jsx",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "schoollogo()"
     },
     {
@@ -1120,8 +1131,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_settingsmenu",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 18,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "settingsmenu.jsx"
     },
     {
@@ -1153,8 +1164,8 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "src_components_settingsmenu_volumerow",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 18,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "volumerow()"
     },
     {
@@ -1231,7 +1242,7 @@
       "_origin": "ast",
       "id": "src_components_stampmoment",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "stampmoment.jsx"
     },
     {
@@ -1242,7 +1253,7 @@
       "_origin": "ast",
       "id": "src_components_stampmoment_stampmoment",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "stampmoment()"
     },
     {
@@ -1253,7 +1264,7 @@
       "_origin": "ast",
       "id": "src_components_steptrail",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "steptrail.jsx"
     },
     {
@@ -1264,7 +1275,7 @@
       "_origin": "ast",
       "id": "src_components_steptrail_steptrail",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "steptrail()"
     },
     {
@@ -1285,8 +1296,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_travelerroom_room_tour",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "room_tour"
     },
     {
@@ -1494,8 +1505,8 @@
       "source_location": "L1146",
       "_origin": "ast",
       "id": "src_data_realms_realms",
-      "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community": 1,
+      "community_name": "CopyEditor.jsx",
       "norm_label": "realms"
     },
     {
@@ -1505,8 +1516,8 @@
       "source_location": "L1352",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
-      "community": 4,
-      "community_name": "realms.js",
+      "community": 15,
+      "community_name": "App.jsx",
       "norm_label": "realm_by_id"
     },
     {
@@ -1561,7 +1572,7 @@
       "_origin": "ast",
       "id": "src_data_realms_bandviewraw",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "bandviewraw()"
     },
     {
@@ -1571,31 +1582,9 @@
       "source_location": "L1394",
       "_origin": "ast",
       "id": "src_data_realms_getbandview",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 1,
+      "community_name": "CopyEditor.jsx",
       "norm_label": "getbandview()"
-    },
-    {
-      "label": "PLEDGE",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L1405",
-      "_origin": "ast",
-      "id": "src_data_realms_pledge",
-      "community": 4,
-      "community_name": "realms.js",
-      "norm_label": "pledge"
-    },
-    {
-      "label": "activePledge()",
-      "file_type": "code",
-      "source_file": "src/data/realms.js",
-      "source_location": "L1414",
-      "_origin": "ast",
-      "id": "src_data_realms_activepledge",
-      "community": 4,
-      "community_name": "realms.js",
-      "norm_label": "activepledge()"
     },
     {
       "label": "ArtPreview.jsx",
@@ -1605,7 +1594,7 @@
       "_origin": "ast",
       "id": "src_dev_artpreview",
       "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "norm_label": "artpreview.jsx"
     },
     {
@@ -1616,7 +1605,7 @@
       "_origin": "ast",
       "id": "src_dev_artpreview_moods",
       "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "norm_label": "moods"
     },
     {
@@ -1627,7 +1616,7 @@
       "_origin": "ast",
       "id": "src_dev_artpreview_scene",
       "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "norm_label": "scene()"
     },
     {
@@ -1638,7 +1627,7 @@
       "_origin": "ast",
       "id": "src_dev_artpreview_artpreview",
       "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "norm_label": "artpreview()"
     },
     {
@@ -1649,95 +1638,95 @@
       "_origin": "ast",
       "id": "src_dev_copyeditor",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "copyeditor.jsx"
     },
     {
       "label": "SCREEN_DATA",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "src_dev_copyeditor_screen_data",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "screen_data"
     },
     {
       "label": "escapeFor()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "src_dev_copyeditor_escapefor",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "escapefor()"
     },
     {
       "label": "count()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "src_dev_copyeditor_count",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "count()"
     },
     {
       "label": "locate()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L52",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "src_dev_copyeditor_locate",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "locate()"
     },
     {
       "label": "sectionOf()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L71",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "src_dev_copyeditor_sectionof",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "sectionof()"
     },
     {
       "label": "whereOf()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L84",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "src_dev_copyeditor_whereof",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "whereof()"
     },
     {
       "label": "CopyEditor()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L94",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "src_dev_copyeditor_copyeditor",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "copyeditor()"
     },
     {
       "label": "getAtPath()",
       "file_type": "code",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L319",
+      "source_location": "L321",
       "_origin": "ast",
       "id": "src_dev_copyeditor_getatpath",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "getatpath()"
     },
     {
@@ -1748,7 +1737,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "contentoverrides.js"
     },
     {
@@ -1759,7 +1748,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_store",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "store"
     },
     {
@@ -1770,7 +1759,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_listeners",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "listeners"
     },
     {
@@ -1781,7 +1770,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_load",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "load()"
     },
     {
@@ -1792,7 +1781,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_persist",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "persist()"
     },
     {
@@ -1803,7 +1792,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_emit",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "emit()"
     },
     {
@@ -1813,8 +1802,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_subscribe",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 1,
+      "community_name": "CopyEditor.jsx",
       "norm_label": "subscribe()"
     },
     {
@@ -1824,8 +1813,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_overridesversion",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 1,
+      "community_name": "CopyEditor.jsx",
       "norm_label": "overridesversion()"
     },
     {
@@ -1836,7 +1825,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_getoverrides",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "getoverrides()"
     },
     {
@@ -1847,7 +1836,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_overridecount",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "overridecount()"
     },
     {
@@ -1858,7 +1847,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_setoverride",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "setoverride()"
     },
     {
@@ -1869,7 +1858,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_removeoverride",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "removeoverride()"
     },
     {
@@ -1880,7 +1869,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_clearoverrides",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "clearoverrides()"
     },
     {
@@ -1891,7 +1880,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_scopefor",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "scopefor()"
     },
     {
@@ -1902,7 +1891,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_overridekey",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "overridekey()"
     },
     {
@@ -1913,7 +1902,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_setdeep",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "setdeep()"
     },
     {
@@ -1924,7 +1913,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_applyoverrides",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "applyoverrides()"
     },
     {
@@ -1935,7 +1924,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_editable_keys",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "editable_keys"
     },
     {
@@ -1946,7 +1935,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_skip_keys",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "skip_keys"
     },
     {
@@ -1957,7 +1946,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_humanize",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "humanize()"
     },
     {
@@ -1968,7 +1957,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_collecteditable",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "collecteditable()"
     },
     {
@@ -1979,36 +1968,36 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_screens",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "screens"
     },
     {
       "label": "SCREEN_BY_ID",
       "file_type": "code",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L314",
+      "source_location": "L321",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_screen_by_id",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "screen_by_id"
     },
     {
       "label": "screenKey()",
       "file_type": "code",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L316",
+      "source_location": "L323",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_screenkey",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "screenkey()"
     },
     {
       "label": "applyScreenOverrides()",
       "file_type": "code",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L323",
+      "source_location": "L330",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_applyscreenoverrides",
       "community": 6,
@@ -2019,11 +2008,11 @@
       "label": "collectScreenEditable()",
       "file_type": "code",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L336",
+      "source_location": "L343",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_collectscreeneditable",
       "community": 1,
-      "community_name": "contentOverrides.js",
+      "community_name": "CopyEditor.jsx",
       "norm_label": "collectscreeneditable()"
     },
     {
@@ -2308,8 +2297,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_music",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "music.js"
     },
     {
@@ -2319,8 +2308,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_lib_music_track_files",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "track_files"
     },
     {
@@ -2330,8 +2319,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_lib_music_targetvolume",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "targetvolume()"
     },
     {
@@ -2341,8 +2330,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_lib_music_clearfade",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "clearfade()"
     },
     {
@@ -2352,8 +2341,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_lib_music_playmusic",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "playmusic()"
     },
     {
@@ -2363,8 +2352,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_music_stopmusic",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "stopmusic()"
     },
     {
@@ -2452,7 +2441,7 @@
       "_origin": "ast",
       "id": "src_main",
       "community": 20,
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "norm_label": "main.jsx"
     },
     {
@@ -2462,8 +2451,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigamebalance",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamebalance.jsx"
     },
     {
@@ -2473,8 +2462,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_minigames_minigamebalance_minigamebalance",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamebalance()"
     },
     {
@@ -2507,7 +2496,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesort",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesort.jsx"
     },
     {
@@ -2518,7 +2507,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesort_bin_icons",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "bin_icons"
     },
     {
@@ -2529,7 +2518,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesort_shuffle",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "shuffle()"
     },
     {
@@ -2540,7 +2529,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamesort_minigamesort",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesort()"
     },
     {
@@ -2550,8 +2539,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigamespot",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamespot.jsx"
     },
     {
@@ -2561,8 +2550,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_minigames_minigamespot_minigamespot",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamespot()"
     },
     {
@@ -2572,8 +2561,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesteppingstones.jsx"
     },
     {
@@ -2583,8 +2572,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_minigames_minigamesteppingstones_minigamesteppingstones",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "minigamesteppingstones()"
     },
     {
@@ -2594,8 +2583,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_phaserminigame",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "phaserminigame.jsx"
     },
     {
@@ -2605,8 +2594,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_minigames_phaserminigame_phaserminigame",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "phaserminigame()"
     },
     {
@@ -2627,8 +2616,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortresslevelscene_makepasswordfortresslevelconfig",
-      "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "makepasswordfortresslevelconfig()"
     },
     {
@@ -3155,8 +3144,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene_makesteppingstonesconfig",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "makesteppingstonesconfig()"
     },
     {
@@ -3321,7 +3310,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "beachscene.jsx"
     },
     {
@@ -3332,7 +3321,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_prop",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "prop()"
     },
     {
@@ -3343,7 +3332,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_shadow",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "shadow()"
     },
     {
@@ -3354,7 +3343,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_seesaw_spot",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "seesaw_spot"
     },
     {
@@ -3365,7 +3354,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_hammock_spot",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "hammock_spot"
     },
     {
@@ -3376,7 +3365,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_props",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "props"
     },
     {
@@ -3387,7 +3376,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_beach_obstacles",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "beach_obstacles"
     },
     {
@@ -3398,7 +3387,7 @@
       "_origin": "ast",
       "id": "src_world_beach_beachscene_beachscene",
       "community": 2,
-      "community_name": "PlatformerStoryRealm.jsx",
+      "community_name": "RealmScreen.jsx",
       "norm_label": "beachscene()"
     },
     {
@@ -3570,7 +3559,7 @@
       "label": "copyEditorPlugin()",
       "file_type": "code",
       "source_file": "vite-plugin-copy-editor.js",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "vite_plugin_copy_editor_copyeditorplugin",
       "community": 9,
@@ -4478,7 +4467,7 @@
       "contributor": null,
       "community": 20,
       "norm_label": "spa root mount point",
-      "community_name": "RealmArt.jsx",
+      "community_name": "ArtPreview.jsx",
       "id": "index_root_mount"
     },
     {
@@ -6049,7 +6038,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L9",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_certificatescreen",
+      "target": "src_components_certificatescreen_certificate_copy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CertificateScreen.jsx",
+      "source_location": "L75",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
@@ -6161,7 +6161,19 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
-      "target": "src_data_realms_activepledge",
+      "target": "src_data_realms_realm_by_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CertificateScreen.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_certificatescreen",
+      "target": "src_dev_contentoverrides",
       "confidence_score": 1.0
     },
     {
@@ -6169,11 +6181,35 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen",
-      "target": "src_data_realms_realm_by_id",
+      "target": "src_dev_contentoverrides_applyscreenoverrides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/dev/CopyEditor.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_dev_copyeditor",
+      "target": "src_components_certificatescreen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/dev/CopyEditor.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_dev_copyeditor",
+      "target": "src_components_certificatescreen_certificate_copy",
       "confidence_score": 1.0
     },
     {
@@ -6182,11 +6218,11 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/CertificateScreen.jsx",
-      "source_location": "L49",
+      "source_location": "L85",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_certificatescreen_certificatescreen",
-      "target": "src_data_realms_activepledge"
+      "target": "src_dev_contentoverrides_applyscreenoverrides"
     },
     {
       "relation": "contains",
@@ -8155,17 +8191,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1414",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_data_realms",
-      "target": "src_data_realms_activepledge",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/realms.js",
       "source_location": "L787",
       "weight": 1.0,
       "_origin": "ast",
@@ -8292,17 +8317,6 @@
       "_origin": "ast",
       "source": "src_data_realms",
       "target": "src_data_realms_passworldlower",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/realms.js",
-      "source_location": "L1405",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_data_realms",
-      "target": "src_data_realms_pledge",
       "confidence_score": 1.0
     },
     {
@@ -8450,7 +8464,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L98",
+      "source_location": "L100",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8510,7 +8524,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L110",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8590,7 +8604,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8602,7 +8616,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8614,7 +8628,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8626,7 +8640,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8638,7 +8652,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8650,7 +8664,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8662,7 +8676,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8674,7 +8688,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8686,7 +8700,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8698,7 +8712,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8710,7 +8724,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8722,7 +8736,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8733,7 +8747,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L94",
+      "source_location": "L96",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8744,7 +8758,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8755,7 +8769,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8766,7 +8780,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L319",
+      "source_location": "L321",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8777,7 +8791,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L52",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8788,7 +8802,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8799,7 +8813,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L71",
+      "source_location": "L73",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8810,7 +8824,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L84",
+      "source_location": "L86",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor",
@@ -8822,7 +8836,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L54",
+      "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_locate",
@@ -8834,7 +8848,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L55",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_locate",
@@ -8846,7 +8860,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L191",
+      "source_location": "L193",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8858,7 +8872,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L119",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8870,7 +8884,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L137",
+      "source_location": "L139",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8883,7 +8897,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L276",
+      "source_location": "L278",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8895,7 +8909,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L110",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8907,7 +8921,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L111",
+      "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8919,7 +8933,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L135",
+      "source_location": "L137",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8931,7 +8945,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L126",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8943,7 +8957,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L95",
+      "source_location": "L97",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8955,7 +8969,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L130",
+      "source_location": "L132",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8967,7 +8981,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L131",
+      "source_location": "L133",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8979,7 +8993,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L95",
+      "source_location": "L97",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -8990,7 +9004,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/CopyEditor.jsx",
-      "source_location": "L157",
+      "source_location": "L159",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_copyeditor_copyeditor",
@@ -9012,7 +9026,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L323",
+      "source_location": "L330",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides",
@@ -9045,7 +9059,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L336",
+      "source_location": "L343",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides",
@@ -9188,7 +9202,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L314",
+      "source_location": "L321",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides",
@@ -9199,7 +9213,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L316",
+      "source_location": "L323",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides",
@@ -9397,7 +9411,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L329",
+      "source_location": "L336",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides_applyscreenoverrides",
@@ -9445,7 +9459,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/dev/contentOverrides.js",
-      "source_location": "L345",
+      "source_location": "L352",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_dev_contentoverrides_collectscreeneditable",
@@ -12213,7 +12227,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "vite-plugin-copy-editor.js",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "vite_plugin_copy_editor",
@@ -12836,5 +12850,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "3ff84e14608c016c42f3b575c4fbf75ec6263c26"
+  "built_at_commit": "6f2df82d8d5881fcd21066fbedd126e3d4be0e4a"
 }

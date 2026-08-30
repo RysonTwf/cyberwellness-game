@@ -1,6 +1,6 @@
 {
-  "1": "contentOverrides.js",
-  "2": "PlatformerStoryRealm.jsx",
+  "1": "CopyEditor.jsx",
+  "2": "RealmScreen.jsx",
   "3": "passworldArt.js",
   "4": "realms.js",
   "5": "dependencies",
@@ -16,7 +16,7 @@
   "15": "App.jsx",
   "17": "graphify Knowledge-Graph Workflow",
   "18": "AtlasMap.jsx",
-  "20": "RealmArt.jsx",
+  "20": "ArtPreview.jsx",
   "30": "localStorage Persistence (cyber-wellness-quest/v1)",
   "31": "Cyber Wellness Quest (project overview)",
   "32": "requestAnimationFrame Walk Loop",
