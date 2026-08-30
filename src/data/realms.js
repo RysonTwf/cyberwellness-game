@@ -1015,6 +1015,18 @@ export const REALMS = [
     topic: 'Passwords & personal info',
     stamp: { icon: 'key', label: 'Passworld · Visited' },
     enabled: true,
+    // Shown in the Atlas sidebar (learnShort) and the entry popup
+    // (RealmIntro.jsx — lore + learn). Same for both bands; the band only
+    // changes *how* it's taught, not what the realm is about.
+    intro: {
+      lore: 'Passworld is a walled kingdom built to keep secrets safe. Every treasure a traveler carries, like names, addresses and favourite things, sits locked behind a vault door, and Keeper Vex guards the gate with sharp questions. The walls only hold if every key stays strong… and lately, someone has been rattling the doors.',
+      learn: [
+        'What makes a password strong, and what makes it easy to guess',
+        'Which things count as personal info that should stay locked away',
+        'Who it is safe to share secrets with, and who it isn’t',
+      ],
+      learnShort: 'Learn: strong passwords & what to keep private',
+    },
 
     world: {
       spawn: { x: 10, y: 84 },
@@ -1047,6 +1059,15 @@ export const REALMS = [
     topic: 'Strangers & scams online',
     stamp: { icon: 'compass', label: 'Privacy Peaks · Visited' },
     enabled: true,
+    intro: {
+      lore: 'High in Privacy Peaks the fog rolls thick, and through it you can never quite see who you’re talking to. Friendly voices drift out of the mist with gifts and promises, but some of the shapes in the fog are not what they claim to be.',
+      learn: [
+        'Why you can’t always know who is really behind a message',
+        'How to spot offers that are too good to be true',
+        'What to do when a stranger reaches out to you online',
+      ],
+      learnShort: 'Learn: spotting strangers & scams',
+    },
 
     world: {
       spawn: { x: 12, y: 86 },
@@ -1078,6 +1099,15 @@ export const REALMS = [
     topic: 'Cyberbullying & kindness',
     stamp: { icon: 'heart', label: 'Bully Bog · Visited' },
     enabled: true,
+    intro: {
+      lore: 'The bog’s still water reflects every word posted about the folks who live here, and lately the ponds have turned murky, because unkind comments sink in and cloud everything. Pockets the frog has been sitting alone in the murkiest one. The bog needs someone who knows how to clear the water.',
+      learn: [
+        'How unkind words online really make others feel',
+        'What you can do when you see someone being bullied',
+        'When to report, block, and tell an adult you trust',
+      ],
+      learnShort: 'Learn: kindness online & standing up to bullying',
+    },
 
     world: {
       spawn: { x: 10, y: 88 },
@@ -1109,6 +1139,15 @@ export const REALMS = [
     topic: 'Screen time balance',
     stamp: { icon: 'sun', label: 'Balance Bay · Visited' },
     enabled: true,
+    intro: {
+      lore: 'In Balance Bay, time goes strange: one more video, one more level, and suddenly the tide has swallowed half the beach. The Glimmer, a sparkle that lives where the water meets the sky, wants to show you how the tide really works, and how to get your beach back.',
+      learn: [
+        'How screen time can quietly swallow the rest of your day',
+        'How to notice what tech makes you feel',
+        'How to plan a day that balances screens with everything else',
+      ],
+      learnShort: 'Learn: balancing screen time',
+    },
 
     world: {
       spawn: { x: 8, y: 88 },
@@ -1145,6 +1184,15 @@ export const REALMS = [
     stamp: { icon: 'eye', label: 'Fable Falls · Visited' },
     enabled: true,
     reportBlockEligible: true,
+    intro: {
+      lore: 'Fable Falls is a waterfall of stories, and every tale, rumour and picture that tumbles down the internet passes through here on its way somewhere else. Some of it is true. Some of it only looks true. The Echo, who lives behind the falls, can teach you to tell the difference.',
+      learn: [
+        'How fake news and altered pictures spread so fast',
+        'The questions to ask before believing, or sharing, a story',
+        'How to check facts like a real Cyber Defender',
+      ],
+      learnShort: 'Learn: spotting fake news & checking facts',
+    },
 
     world: {
       spawn: { x: 10, y: 86 },

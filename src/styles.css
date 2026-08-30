@@ -1577,6 +1577,26 @@ p {
   line-height: 1.35;
 }
 
+/* What the realm is about + what's taught there (data/realms.js `blurb` and
+   `intro.learnShort`) — the fuller story lives in the RealmIntro popup. */
+.strip-blurb {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.strip-learn {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  line-height: 1.35;
+}
+
 /* ---------- Stamp badge — the signature element (design.md §3) ------------ */
 
 .stamp {
@@ -1832,6 +1852,125 @@ p {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+}
+
+/* ---------- Realm entry popup (components/RealmIntro.jsx) ----------------- */
+
+/* .panel runs full-width to host mini-games; the intro is prose, so cap and
+   centre it like the diary does. */
+.realm-intro {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.realm-intro .pin-label {
+  color: var(--accent);
+}
+
+.realm-lore {
+  margin: 14px 0 4px;
+  line-height: 1.6;
+}
+
+.realm-learn {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--accent-wash);
+  border: 1.5px solid var(--accent);
+}
+
+.realm-learn-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--accent);
+}
+
+.realm-learn ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.realm-learn li {
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+/* ---------- Tutorial coach marks (components/Tutorial.jsx) ----------------- */
+
+/* Above everything interactive — the panel scrim (30) and the settings gear
+   (45) both stay underneath while a tour runs. */
+.tutorial-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+}
+
+/* Dark enough to focus, light enough that the game stays readable under it. */
+.tutorial-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 33, 54, 0.55);
+}
+
+/* The spotlight: a hole in the dim (giant box-shadow trick) with an accent
+   ring around whatever the step points at. */
+.tutorial-spot {
+  position: absolute;
+  border-radius: 14px;
+  box-shadow: 0 0 0 200vmax rgba(20, 33, 54, 0.55);
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  transition: left 0.25s ease, top 0.25s ease, width 0.25s ease, height 0.25s ease;
+  pointer-events: none;
+}
+
+.tutorial-card {
+  position: absolute;
+  width: min(340px, calc(100vw - 24px));
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-lift);
+  animation: settle 0.18s ease both;
+}
+
+.tutorial-card p {
+  margin: 8px 0 14px;
+  line-height: 1.5;
+}
+
+.tutorial-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tutorial-dots {
+  display: flex;
+  gap: 5px;
+  margin-right: auto;
+}
+
+.tutorial-dots .dot {
+  width: 9px;
+  height: 9px;
+}
+
+.tutorial-dots .dot.filled {
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-spot {
+    transition: none;
   }
 }
 

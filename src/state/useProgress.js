@@ -48,6 +48,10 @@ function initialState() {
     // otherwise every trip out and back costs the same sail across the map.
     // null until they've moved at all, which is when the Gate is right.
     atlasPos: null,
+    // Which one-time tutorial tours have been finished (or skipped):
+    // { room?: true, atlas?: true, realm?: true }. Cleared by a reset, so
+    // starting over runs the tour again.
+    tutorialsSeen: {},
     // Nothing is written to storage until the load has happened. Without this
     // the first render's empty state overwrites the saved journal before it's
     // ever read (and StrictMode's double-invoked effects then clobber it for
@@ -109,6 +113,12 @@ function reducer(state, action) {
 
     case 'signPledge':
       return { ...state, pledgeSigned: true };
+
+    case 'tutorialDone':
+      return {
+        ...state,
+        tutorialsSeen: { ...state.tutorialsSeen, [action.key]: true },
+      };
 
     case 'reset':
       return {

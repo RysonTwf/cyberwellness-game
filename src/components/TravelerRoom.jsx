@@ -3,6 +3,31 @@ import { X } from 'lucide-react';
 import World from '../world/World';
 import RoomScene, { ROOM_OBSTACLES } from '../world/room/RoomScene';
 import AtlasGate from './AtlasGate';
+import Tutorial from './Tutorial';
+
+// First-ever screen with a walkable world, so this is where the controls get
+// taught (Tutorial.jsx; runs once, tracked in progress `tutorialsSeen.room`).
+const ROOM_TOUR = [
+  {
+    title: 'Welcome, Traveler!',
+    text: 'This is Cyber Defender Quest, a journey across the Atlas to become a Wise Traveler of the internet. Every journey starts at home, so let’s learn the ropes.',
+  },
+  {
+    target: '.world',
+    title: 'Your room',
+    text: 'This is you! Tap or click anywhere on the floor to walk there, or use WASD or the arrow keys.',
+  },
+  {
+    target: '.hotspot',
+    title: 'The glowing pin',
+    text: 'A pin like this always marks the next thing worth walking to. Get close and a button pops up: press it (or hit Enter) to interact. Something on the table is glowing…',
+  },
+  {
+    target: '.objective',
+    title: 'Never lost',
+    text: 'If you ever wonder what to do next, the bar down here always says. That’s everything, go open that diary!',
+  },
+];
 
 /**
  * The opening scene (storyline.md prologue): the Traveler wakes in their
@@ -21,12 +46,15 @@ const DIARY_SPOT = { id: 'diary', x: 70, y: 62, action: 'Open it' };
 // On the floor just inside the door, which is set into the back wall.
 const DOOR_SPOT = { id: 'door', x: 68, y: 36, label: 'the door', action: 'Step outside' };
 
-export default function TravelerRoom({ onBegin, onExit, avatar }) {
+export default function TravelerRoom({ onBegin, onExit, avatar, showTutorial, onTutorialDone }) {
   const [open, setOpen] = useState(false);
   const [diaryOpened, setDiaryOpened] = useState(false);
 
   return (
     <div className="fold">
+      {showTutorial && !open && (
+        <Tutorial steps={ROOM_TOUR} accent="var(--gold)" onDone={onTutorialDone} />
+      )}
       <World
         sceneKey="room"
         scene={<RoomScene diaryOpened={diaryOpened} />}

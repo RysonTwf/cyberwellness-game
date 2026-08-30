@@ -80,6 +80,24 @@ what actually changed.
       713 → 982px on the test viewport — +57% total vs. before this pass.
       The topic pill hides under 720px so the bar doesn't crowd on phones.
 
+- [x] **Lore, level descriptions, and tutorial** (this pass):
+      - Every realm has an `intro` block in realms.js — a lore paragraph,
+        three "you'll learn" bullets, and a one-line `learnShort` tagline.
+      - Atlas sidebar cards now show each realm's blurb + "Learn: …" line.
+      - `RealmIntro.jsx`: entering a not-yet-stamped realm pops the lore +
+        what-you'll-learn panel over the visible realm ("Step in" dismisses;
+        stamped realms skip it).
+      - `Tutorial.jsx`: reusable coach-mark overlay — screen dims (dark but
+        see-through), the current step's element is spotlit via a cutout
+        with an accent ring, a card gives the guidance (Next/Back/Skip,
+        keyboard Enter/arrows/Esc). Input-locked while running.
+      - Tours wired: Traveler's Room (welcome → walk → pin → objective),
+        Atlas (map → realm list → stamps → go explore), and first walkable
+        realm (pin → interact → objective), chained after its intro popup.
+        Each runs once (`tutorialsSeen` in progress state, cleared by
+        reset); fullMechanic realms skip the realm tour.
+      - All verified live in Chrome end-to-end on a fresh save.
+
 ### To do
 
 - [ ] Verify Passworld lower-band pins live (needs a lower-band save).

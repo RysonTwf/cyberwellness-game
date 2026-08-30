@@ -4,6 +4,7 @@ import CharacterSelect from './components/CharacterSelect';
 import TravelerRoom from './components/TravelerRoom';
 import AtlasMap from './components/AtlasMap';
 import RealmScreen from './components/RealmScreen';
+import RealmIntro from './components/RealmIntro';
 import CertificateScreen from './components/CertificateScreen';
 import JournalProgress from './components/JournalProgress';
 import SettingsMenu from './components/SettingsMenu';
@@ -14,7 +15,7 @@ import { REALM_BY_ID, getBandView } from './data/realms';
 
 export default function App() {
   const { state, dispatch, allStamped, reset } = useProgress();
-  const { currentScreen, travelerName, realmProgress, band, avatar } = state;
+  const { currentScreen, travelerName, realmProgress, band, avatar, tutorialsSeen } = state;
 
   useUiClickSfx();
   useUiHoverSfx();
@@ -69,6 +70,8 @@ export default function App() {
               dispatch({ type: 'setBand', band: chosenBand });
             }}
             onExit={() => go('atlas')}
+            showTutorial={!tutorialsSeen?.room}
+            onTutorialDone={() => dispatch({ type: 'tutorialDone', key: 'room' })}
           />
         )}
 
@@ -82,23 +85,40 @@ export default function App() {
             onAtlasMove={(pos) => dispatch({ type: 'setAtlasPos', pos })}
             onEnter={(id) => go(id)}
             onFinale={() => go('finale')}
+            showTutorial={!tutorialsSeen?.atlas}
+            onTutorialDone={() => dispatch({ type: 'tutorialDone', key: 'atlas' })}
           />
         )}
 
         {realm && (
-          <RealmScreen
-            // Remount on realm change so each visit starts at its first beat
-            key={realm.id}
-            realm={realm}
-            progress={realmProgress[realm.id]}
-            travelerName={travelerName}
-            avatar={avatar}
-            onSettle={(realmId, choiceId) =>
-              dispatch({ type: 'settleChoice', realm: realmId, choiceId })
-            }
-            onStamp={(realmId, score) => dispatch({ type: 'earnStamp', realm: realmId, score })}
-            onBackToAtlas={() => go('atlas')}
-          />
+          <>
+            <RealmScreen
+              // Remount on realm change so each visit starts at its first beat
+              key={realm.id}
+              realm={realm}
+              progress={realmProgress[realm.id]}
+              travelerName={travelerName}
+              avatar={avatar}
+              onSettle={(realmId, choiceId) =>
+                dispatch({ type: 'settleChoice', realm: realmId, choiceId })
+              }
+              onStamp={(realmId, score) => dispatch({ type: 'earnStamp', realm: realmId, score })}
+              onBackToAtlas={() => go('atlas')}
+            />
+            <RealmIntro
+              // Fresh intro per realm entered, same remount trick as above
+              key={`intro-${realm.id}`}
+              realm={realm}
+              // The lore popup greets every visit until the realm is stamped;
+              // revisits go straight in.
+              showIntro={!realmProgress[realm.id]?.stamped}
+              // The "how a realm works" tour runs once, on the first realm
+              // with the walkable pin flow (fullMechanic realms teach their
+              // own mechanics on-screen).
+              showTutorial={!tutorialsSeen?.realm && !realm.fullMechanic}
+              onTutorialDone={() => dispatch({ type: 'tutorialDone', key: 'realm' })}
+            />
+          </>
         )}
 
         {currentScreen === 'finale' && (

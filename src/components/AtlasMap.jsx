@@ -1,7 +1,32 @@
 import { Check, Sparkles } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import World from '../world/World';
+import Tutorial from './Tutorial';
 import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
+
+// First look at the hub — taught once (progress `tutorialsSeen.atlas`),
+// right after the room tour taught the basic walking controls.
+const ATLAS_TOUR = [
+  {
+    target: '.world.atlas-map',
+    title: 'The Atlas',
+    text: 'Every path the internet takes, drawn out as a map. Tap the water to sail your paper boat, then pull up close to an island to step ashore.',
+  },
+  {
+    target: '.realm-strip',
+    title: 'Five realms',
+    text: 'Each island teaches something different. Read here what a realm is about and what you’ll learn there, then tap a card to travel straight to it.',
+  },
+  {
+    target: '.journal-count',
+    title: 'Your passport',
+    text: 'Finish a realm and it stamps your passport. Collect all five stamps and the Atlas Gate itself will open…',
+  },
+  {
+    title: 'Off you go!',
+    text: 'Explore in any order you like. The list is only a suggestion. Pick an island that looks interesting and sail over!',
+  },
+];
 
 /**
  * Island positions in the map's own viewBox, and in world (0-100) units.
@@ -223,6 +248,8 @@ export default function AtlasMap({
   onAtlasMove,
   onEnter,
   onFinale,
+  showTutorial,
+  onTutorialDone,
 }) {
   const visitedCount = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
   // Suggested play order (Improvement Plan §4) — only orders the list below,
@@ -256,6 +283,8 @@ export default function AtlasMap({
 
   return (
     <div className="fold">
+      {showTutorial && <Tutorial steps={ATLAS_TOUR} accent="var(--gold)" onDone={onTutorialDone} />}
+
       {/* Map on one side, Comet and the realm list on the other, so the whole
           hub fits the window without the page ever scrolling. */}
       <div className="stage">
@@ -313,6 +342,12 @@ export default function AtlasMap({
                   {visited && <Check size={15} strokeWidth={3} style={{ color: realm.accent }} />}
                 </span>
                 <span className="strip-topic">{realm.topic}</span>
+                {/* What the realm is about and what's taught there — the
+                    entry popup (RealmIntro) tells the fuller story. */}
+                <span className="strip-blurb">{realm.blurb}</span>
+                {realm.intro?.learnShort && (
+                  <span className="strip-learn">{realm.intro.learnShort}</span>
+                )}
               </button>
             );
           })}
