@@ -9,12 +9,12 @@ import Tutorial from './Tutorial';
 // taught (Tutorial.jsx; runs once, tracked in progress `tutorialsSeen.room`).
 const ROOM_TOUR = [
   {
-    title: 'Welcome, Traveler!',
-    text: 'This is Cyber Defender Quest, a journey across the Atlas to become a Wise Traveler of the internet. Every journey starts at home, so let’s learn the ropes.',
+    title: 'Home base',
+    text: 'One stop before the Atlas. A quick look at how to get around, then you can open that diary.',
   },
   {
     target: '.world',
-    title: 'Your room',
+    title: 'Moving around',
     text: 'This is you! Tap or click anywhere on the floor to walk there, or use WASD or the arrow keys.',
   },
   {

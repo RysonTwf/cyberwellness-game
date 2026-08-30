@@ -114,6 +114,20 @@ body {
   gap: 10px;
 }
 
+/* Screens that stack more than a laptop viewport holds (the finale: Comet's
+   line, the certificate with five stamps, the pledge, then the sign + goodbye
+   steps) scroll their own content instead of clipping it — clipping is what
+   forced a browser zoom-out to read the bottom. */
+.fold-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
+}
+
+.fold-scroll > .stack {
+  padding: 4px 0 28px;
+}
+
 /* ---- The stage: game window on one side, everything else on the other ----
    Stacking the heading, dialogue and controls *under* the scene box is what
    forced the page to scroll — the box wants most of the height on its own.
@@ -1683,6 +1697,106 @@ p {
   background: var(--accent);
   pointer-events: none;
   animation: flash 0.62s ease-out both;
+}
+
+/* ---------- Opening story (IntroStory.jsx) ------------------------------- */
+
+.intro-story {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-skip {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
+  opacity: 0.75;
+}
+
+.intro-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  max-width: 34rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.intro-beat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: intro-fade 0.4s ease both;
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.intro-journal-glow {
+  transform-origin: 50% 50%;
+  animation: intro-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes intro-glow {
+  0%, 100% { opacity: 0.5; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.intro-line {
+  margin: 0;
+  font-size: clamp(17px, 2.7vw, 21px);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Scene-setting beats read as storybook narration; Comet's beats read as
+   Comet talking. */
+.intro-line-scene {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.intro-who {
+  display: block;
+  font-family: var(--font-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 7px;
+}
+
+.intro-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.intro-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  opacity: 0.4;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.intro-dot.seen {
+  opacity: 0.7;
+}
+
+.intro-dot.on {
+  opacity: 1;
+  background: var(--teal);
 }
 
 /* ---------- Certificate --------------------------------------------------- */

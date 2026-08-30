@@ -37,7 +37,7 @@ function initialState() {
     // 'lower' (P1–P3) | 'higher' (P4–P6) | null until the Atlas Gate asks
     // (Improvement Plan §0 — one game, one entry point; band picked once).
     band: null,
-    currentScreen: 'title', // title | character | room | atlas | <realmId> | finale
+    currentScreen: 'title', // title | intro | character | room | atlas | <realmId> | finale
     // 'boy' | 'girl' | null until picked. Placeholder pick, no real art yet
     // (see components/CharacterSelect.jsx) — nothing reads this downstream.
     avatar: null,

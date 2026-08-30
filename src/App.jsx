@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import MainScreen from './components/MainScreen';
+import IntroStory from './components/IntroStory';
 import CharacterSelect from './components/CharacterSelect';
 import TravelerRoom from './components/TravelerRoom';
 import AtlasMap from './components/AtlasMap';
@@ -48,7 +49,7 @@ export default function App() {
       )}
 
       <div className="shell">
-        {currentScreen !== 'title' && currentScreen !== 'character' && currentScreen !== 'room' && (
+        {!['title', 'intro', 'character', 'room'].includes(currentScreen) && (
           <JournalProgress
             realmProgress={realmProgress}
             travelerName={travelerName}
@@ -58,7 +59,9 @@ export default function App() {
           />
         )}
 
-        {currentScreen === 'title' && <MainScreen onStart={() => go('character')} />}
+        {currentScreen === 'title' && <MainScreen onStart={() => go('intro')} />}
+
+        {currentScreen === 'intro' && <IntroStory onDone={() => go('character')} />}
 
         {currentScreen === 'character' && (
           <CharacterSelect

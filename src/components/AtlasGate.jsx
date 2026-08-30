@@ -3,17 +3,17 @@ import { ArrowRight, BookMarked, Sprout, GraduationCap } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import { Comet } from './Characters';
 import StampBadge from './StampBadge';
-import { ACTIVE_REALMS, COMET_CATCHPHRASE } from '../data/realms';
+import { ACTIVE_REALMS } from '../data/realms';
 
-/** Prologue: Comet unfolds from the journal, and the player gets a name. */
+/**
+ * The diary, opened in the Traveler's Room. Comet and the lore were already
+ * covered in the opening story (components/IntroStory.jsx); this is the
+ * practical part — grab the passport, put a name on it, pick a grade band.
+ */
 const BEATS = [
   {
     who: 'Comet',
-    text: 'Oh, hello! You opened it. Most people just put these back on the shelf without looking.',
-  },
-  {
-    who: 'Comet',
-    text: "I'm Comet. This is the Atlas: every path the internet takes, drawn out as a map. And you're about to become a Traveler.",
+    text: "There you are. That is your passport now: five empty stamps, one for each realm. I just need a name to put on the cover.",
   },
 ];
 
@@ -70,7 +70,7 @@ export default function AtlasGate({ onBegin }) {
                 else setPhase('naming');
               }}
             >
-              Keep reading
+              {beat < BEATS.length - 1 ? 'Keep reading' : "Let's do it"}
               <ArrowRight size={19} />
             </button>
           </div>
@@ -125,7 +125,10 @@ export default function AtlasGate({ onBegin }) {
               </div>
             </div>
 
-            <DialogueCard who="Comet" text={`${COMET_CATCHPHRASE} You'll need both. Ready to see the map?`} />
+            <DialogueCard
+              who="Comet"
+              text="Type it in and hit Next. One quick question after that, and the door is all yours."
+            />
 
             <div className="center">
               <button type="button" className="btn" disabled={!trimmed} onClick={submitName}>

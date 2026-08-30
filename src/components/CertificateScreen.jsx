@@ -17,7 +17,7 @@ export default function CertificateScreen({
   const [farewell, setFarewell] = useState(false);
 
   return (
-    <div className="fold">
+    <div className="fold fold-scroll">
       <div className="stack">
         <DialogueCard
           who="Comet"
