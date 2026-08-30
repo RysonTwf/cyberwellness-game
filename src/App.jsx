@@ -65,9 +65,10 @@ export default function App() {
     <div className="app">
       <SettingsMenu />
 
-      {/* The school crest sits top-left on every screen after the opening
-          sequence (the title + intro story feature it full-size instead). */}
-      {currentScreen !== 'title' && currentScreen !== 'intro' && (
+      {/* The school crest sits top-left from the Traveler's Room onward. The
+          three prologue screens (title, opening story, character pick) share
+          the meadow scene and the crest on the title cover instead. */}
+      {!['title', 'intro', 'character'].includes(currentScreen) && (
         <SchoolLogo variant="mark" className="corner-logo" />
       )}
 

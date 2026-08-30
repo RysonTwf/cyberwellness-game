@@ -14,7 +14,7 @@ import TitleScene from './TitleScene';
  */
 export default function MainScreen({ onStart }) {
   return (
-    <div className="fold title-screen">
+    <div className="fold prologue title-screen">
       <TitleScene />
       <span className="title-comet" aria-hidden="true">
         <Comet size={46} />

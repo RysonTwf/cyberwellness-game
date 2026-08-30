@@ -98,13 +98,17 @@ what actually changed.
         reset); fullMechanic realms skip the realm tour.
       - All verified live in Chrome end-to-end on a fresh save.
 
-- [x] **Title screen redesign** (31 Aug 2026): the plain centred logo/title is
-      now a green dawn-meadow scene (`TitleScene.jsx` — layered hills, a hazy
-      sun, a winding trail leading to it, trees, wildflowers in the five realm
-      accent colours, drifting pollen; same flat-SVG vocabulary as RealmArt)
-      with Comet looping in over it, and the title on a field-journal cover
-      (the closed version of the room's `.diary` — leather spine, ruled
-      parchment, gold ribbon). All motion holds under `prefers-reduced-motion`.
+- [x] **Prologue screens redesign** (31 Aug 2026): the title, opening story
+      and character pick now share one green dawn-meadow scene
+      (`TitleScene.jsx` — layered hills, a hazy sun, a winding trail to it,
+      trees, wildflowers in the five realm accent colours, drifting pollen;
+      same flat-SVG vocabulary as RealmArt), so the opening reads as one
+      place until the Traveler steps into their room. `.prologue` bleeds the
+      scene edge to edge; content sits on warm parchment cards (`.title-cover`
+      = the closed version of the room's `.diary`; `.intro-stage` /
+      `.character-heading` are lighter). Comet loops in over the title. All
+      motion holds under `prefers-reduced-motion`. Corner crest now hidden on
+      all three (it's on the title cover instead).
 
 - [x] **School content revision pass** (31 Aug 2026): the school reviewed the
       game and returned a change list.

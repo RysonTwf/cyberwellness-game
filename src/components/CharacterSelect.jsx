@@ -1,5 +1,6 @@
 import boyPortrait from '../assets/characters/boy-walk-1.png';
 import girlPortrait from '../assets/characters/girl-walk-1.png';
+import TitleScene from './TitleScene';
 
 /**
  * Boy/girl character pick, shown once between the title screen and the
@@ -34,9 +35,14 @@ const OPTIONS = [
 
 export default function CharacterSelect({ onSelect }) {
   return (
-    <div className="fold">
+    <div className="fold prologue character-select">
+      <TitleScene />
+
       <div className="center" style={{ flex: 1, display: 'grid', placeItems: 'center', gap: 26 }}>
-        <div className="stack" style={{ alignItems: 'center', textAlign: 'center', gap: 8 }}>
+        <div
+          className="stack character-heading"
+          style={{ alignItems: 'center', textAlign: 'center', gap: 6 }}
+        >
           <h2>Who are you today?</h2>
           <p className="muted">Pick who walks the Atlas with Comet.</p>
         </div>

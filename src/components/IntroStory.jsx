@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowRight, SkipForward } from 'lucide-react';
 import { Comet } from './Characters';
+import TitleScene from './TitleScene';
 import { applyScreenOverrides } from '../dev/contentOverrides';
 
 /**
@@ -87,7 +88,9 @@ export default function IntroStory({ onDone }) {
   const next = () => (last ? onDone() : setI((n) => n + 1));
 
   return (
-    <div className="fold intro-story">
+    <div className="fold prologue intro-story">
+      <TitleScene />
+
       <button type="button" className="btn btn-ghost btn-sm intro-skip" onClick={onDone}>
         <SkipForward size={15} />
         Skip
