@@ -98,6 +98,32 @@ what actually changed.
         reset); fullMechanic realms skip the realm tour.
       - All verified live in Chrome end-to-end on a fresh save.
 
+- [x] **School content revision pass** (31 Aug 2026): the school reviewed the
+      game and returned a change list.
+      - **Language:** hand rewrite of every player-facing string in
+        `realms.js` plus the screen copy (`IntroStory`, the three tutorial
+        tours, `AtlasGate`, `CertificateScreen`, `StampMoment`) — proper word
+        forms, no chat short-forms anywhere (including inside the in-fiction
+        scam / bully / rumour messages), UK English, present tense,
+        P3–P4 reading level, no em dashes.
+      - **Privacy Peaks P1–3 and Fable Falls (both bands)** swapped their
+        Spot/Sort "judge the whole pile" games for a plain 5-question Q&A
+        (`game.type: 'quiz'`, new `src/minigames/MiniGameQuiz.jsx`,
+        registered in `RealmScreen`). Same no-fail rule — a wrong answer
+        explains itself and you pick again. Step trail shows "Questions" for
+        these. Privacy Peaks P4–6 keeps its Phaser stepping-stones.
+      - **Fable Falls** reframed: the rumour about Mia now spreads online (a
+        forwarded screenshot/post), not by word of mouth, and the questions
+        after teach source-checking, "looks real vs is real", and edited /
+        AI-photo tells.
+      - **Balance Bay:** the walkable "Glimmer beach" scene and the
+        "stay vs go" choice are both gone, for both bands. Story now leads
+        straight into the seesaw. `RealmScreen` gained `hasDecision` support
+        for realms with no `decision`; `BalanceBeachRealm.jsx`,
+        `src/world/beach/` and `src/assets/beach/` were deleted.
+      - **Copy Editor** (`contentOverrides.js`) learns the quiz field shape
+        (`feedback` key + `game.questions.*` humanize labels).
+
 ### To do
 
 - [ ] Verify Passworld lower-band pins live (needs a lower-band save).
@@ -123,6 +149,15 @@ what actually changed.
 
 ## Log
 
+- **31 Aug 2026 — school content revision**: language rewrite across all
+  player copy; new `MiniGameQuiz` mechanic for Privacy Peaks P1–3 and Fable
+  Falls (both bands); Fable Falls reframed around an online rumour + fake-news
+  / AI-photo questions; Balance Bay loses its walkable beach and its choice
+  step (story → seesaw); `RealmScreen` handles decision-less realms; beach
+  component/scene/assets deleted; Copy Editor covers quiz fields. Files:
+  `src/data/realms.js`, `src/minigames/MiniGameQuiz.jsx` (new),
+  `src/components/RealmScreen.jsx`, `src/dev/contentOverrides.js`, screen-copy
+  components, `design.md`.
 - **30 Aug 2026 — this pass**: scene-box size + hotspot alignment + `?pins`
   calibration overlay + proportional in-world scaling (details in the bold
   checklist entries above). Files touched: `src/styles.css` (`--scene-max-w`,

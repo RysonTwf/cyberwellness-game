@@ -44,35 +44,35 @@ const passworldLower = {
   story: [
     {
       who: 'Comet',
-      text: `Passworld! Every door here is a vault. Every vault has a keeper. ${COMET_CATCHPHRASE}`,
+      text: `Passworld! Every door here is a vault, and every vault has a keeper. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Keeper Vex',
-      text: "A visitor! Wonderful. First I need a few things. Your full name, your school, your address. Oh, and your password. Just so I know I can trust you.",
+      text: 'A visitor! Lovely. First I need a few things from you. Your full name, your school, and your home address. Oh, and your password. Just so I know I can trust you.',
     },
   ],
 
   decision: {
-    prompt: 'Vex waits, smiling, with a very long clipboard. What do you do?',
+    prompt: 'Vex waits with a very long list. What do you do?',
     options: [
       {
         id: 'answer',
-        text: 'Answer everything Vex asks.',
+        text: 'Tell Vex everything.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         // Warm redirect, not a punishment (design.md §5)
         response:
-          "The vault door opens. Nothing behind it, just fog. Vex seems nice. But a stranger, even a friendly one, never needs your real details or your password. Try again?",
+          'The vault door swings open. There is only fog behind it. Vex seems kind, but a stranger, even a friendly one, never needs your real details or your password. Shall we try again?',
       },
       {
         id: 'decline',
-        text: '"I don\'t think I should share that with someone I just met."',
+        text: '"I should not share that with someone I have only just met."',
         tag: 'Option B',
         safe: true,
         who: 'Keeper Vex',
         response:
-          'Oh, good thinking! I ask everyone that, just to check. Come in properly, then.',
+          'Good thinking! I ask everyone that, just to check. Come inside properly, then.',
       },
     ],
   },
@@ -81,10 +81,10 @@ const passworldLower = {
     type: 'sort',
     title: 'Guard the Vault',
     instruction:
-      'Drag each card into a vault. Or tap the card, then tap a vault. Which things stay locked, and which are fine to share?',
+      'These are the things Vex asked you for, and a few more. Put each one where it belongs. Which stay locked away, and which are fine to share?',
     bins: [
       { id: 'locked', title: 'Keep It Locked', sub: 'Only for me and my family', icon: 'lock' },
-      { id: 'share', title: 'Safe to Share', sub: 'Fine for people to know', icon: 'unlock' },
+      { id: 'share', title: 'Safe to Share', sub: 'Fine for other people to know', icon: 'unlock' },
     ],
     items: [
       { id: 'address', text: 'My home address', bin: 'locked' },
@@ -102,7 +102,7 @@ const passworldLower = {
   // The realm's real-world rule, stated once and plainly (storyline.md).
   rule: {
     who: 'Comet',
-    text: "The rule for the whole Atlas. Your name, address, school and passwords stay locked. Your favourite colour, your nickname, the games you love, those are fine to share. And a real grown-up will never need your password. Not for anything.",
+    text: 'Here is the rule for the whole Atlas. Your name, your address, your school and your passwords stay locked. Your favourite colour, your nickname and the games you love are fine to share. And a real grown-up will never need your password. Not for anything.',
   },
 };
 
@@ -117,35 +117,35 @@ const passworldHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Passworld again. Something's different this time. That side door, the one to Sam's vault, is wide open.",
+      text: 'Passworld again. Something is different this time. That side door, the one to Sam\'s vault, is wide open.',
     },
     {
       who: '"Sam"',
-      text: "Hi, it's me, Sam. I forgot my password again. Can you send me yours so I can get back in? I'll delete it straight after, promise.",
+      text: 'Hi, it is me, Sam. I have forgotten my password again. Can you send me yours so I can get back in? I will delete it straight after, I promise.',
     },
   ],
 
   decision: {
     prompt:
-      "The message says it's Sam. Sam's vault is open, and now someone wants your password too. What do you do?",
+      'The message says it is Sam. Sam\'s vault is open, and now someone wants your password too. What do you do?',
     options: [
       {
         id: 'send',
-        text: "Send your password. It's Sam, and Sam wouldn't ask unless it mattered.",
+        text: 'Send your password. It is Sam, and Sam would not ask unless it mattered.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          "You send it. Now your door swings open too. That was not Sam. Once a password gets out, anyone who has it can open every door it fits. That is happening right now, to your door as well. A real friend never needs your password, not even to help. Look again?",
+          'You send it. Now your door swings open too. That was not Sam. Once a password gets out, anyone who has it can open every door it fits, and that is happening to your door right now. A real friend never needs your password, not even to help. Shall we look again?',
       },
       {
         id: 'verify',
-        text: '"That doesn\'t sound like Sam. I\'ll check with them another way first. I\'m not sending my password to anyone."',
+        text: '"That does not sound like Sam. I will check with them another way first. I am not sending my password to anyone."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          "Good call. You message Sam another way. The real Sam has no idea what you mean. Whoever is in that vault is not Sam. Now Sam knows to lock it up again.",
+          'Good call. You message Sam another way. The real Sam has no idea what you mean. Whoever is in that vault is not Sam, and now Sam knows to lock it again.',
       },
     ],
   },
@@ -160,7 +160,7 @@ const passworldHigher = {
   game: {
     title: 'Guard the Vault: Level Up',
     instruction:
-      "Walk right with the arrow keys, or the buttons on screen. First you meet whoever is in Sam's vault. The gate stays shut until you decide what to do. Then jump between platforms and collect the letters, numbers and symbols. It is a long climb that folds back on itself, so take the jumps one at a time. Grab everything you can reach. It all goes in your bag. At the vault door, you pick which pieces make a strong password, so read them as you go. Guards walk the ledges and the floor. A bump just knocks you back, so wait for your moment and try again.",
+      'Walk to the right with the arrow keys, or the buttons on screen. First you meet whoever is in Sam\'s vault. The gate stays shut until you decide what to do. After that, jump between the platforms and collect the letters, numbers and symbols. The climb is long and folds back on itself, so take the jumps one at a time. Everything you grab goes in your bag. At the vault door you choose which pieces make a strong password, so read them as you go. Guards walk the ledges. A bump only knocks you back, so wait for your moment and try again.',
     encounterX: 260,
     gateX: 300,
     // A long climb in five movements: up to the first tile, a gap run, a tight
@@ -244,7 +244,7 @@ const passworldHigher = {
 
   rule: {
     who: 'Comet',
-    text: "The Passworld rule for older travellers. Accounts don't get \"stolen\" by someone breaking down a door. They get taken over because a password gets shared, reused, or guessed. So: a different password for everything that matters. Never hand yours over, not even to a friend who \"really needs it\". And if a message feels off, even from someone you know, check another way before you trust it.",
+    text: 'Here is the Passworld rule for older travellers. Accounts are almost never taken by force. They are taken over when a password is shared, reused, or easy to guess. So use a different password for everything that matters. Never hand yours over, not even to a friend who says they really need it. And if a message feels wrong, even from someone you know, check another way before you trust it.',
   },
 };
 
@@ -256,81 +256,148 @@ const privacyLower = {
   story: [
     {
       who: 'Comet',
-      text: `Privacy Peaks. Careful. The fog up here isn't dangerous, but it hides who is really sending a message. ${COMET_CATCHPHRASE}`,
+      text: `Privacy Peaks. Take care up here. The fog is not dangerous, but it hides who is really sending a message. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Fog',
-      text: "Hello! You have won a free tablet! Click here quickly, before it is gone. Only 5 minutes left. Also, what is your address, so we can send it?",
+      text: 'Hello! You have won a free tablet! Tap here quickly, before it is gone. Only five minutes left. Also, what is your home address, so we can send it to you?',
     },
   ],
 
   decision: {
-    prompt: 'A shape in the fog messages you. What do you do?',
+    prompt: 'A shape in the fog sends you this. What do you do?',
     options: [
       {
         id: 'click',
-        text: 'Click the link.',
+        text: 'Tap the link.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          "The fog gets thicker. Nothing good happens. Look at that message again. A prize out of nowhere. A rush to click. A question about where you live. Let's look again.",
+          'The fog grows thicker. Nothing good happens. Look at that message again. A prize from nowhere. A rush to tap. A question about where you live. Let us look again.',
       },
       {
         id: 'refuse',
-        text: '"That looks like a scam. I\'m not clicking, and I\'ll tell a trusted adult."',
+        text: '"This looks like a trick. I am not tapping it, and I will tell an adult I trust."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          'The fog thins and drifts away. There’s the real path again. Telling someone is the part most travellers forget. Nice work.',
+          'The fog thins and drifts away, and there is the real path again. Telling someone is the part most travellers forget. Nice work.',
       },
     ],
   },
 
   game: {
-    type: 'spot',
-    title: 'Clear the Fog',
+    type: 'quiz',
+    title: 'Read the Fog',
     instruction:
-      'Tap each message to clear the fog. Find the parts that should make you stop and think. Not everything here is a trick.',
-    messages: [
-      { id: 'm1', text: 'Hello there! 😊', flag: false, note: 'Just a hello. Nothing wrong with that.' },
+      'A few more messages drift out of the fog. Answer each one the way you answered the shape you just met.',
+    questions: [
       {
-        id: 'm2',
-        text: 'You have won a free tablet! 🎉',
-        flag: true,
-        note: 'A prize out of nowhere. No competition, no real prize.',
+        id: 'q1',
+        text: 'A message says you have won a phone in a competition you never entered. What do you think?',
+        options: [
+          {
+            id: 'a',
+            text: 'Brilliant, I will claim my prize.',
+            correct: false,
+            feedback:
+              'A prize you never entered is almost always a trick to get you to tap a link or share your details. Real competitions do not work like this.',
+          },
+          {
+            id: 'b',
+            text: 'I never entered, so this is not real.',
+            correct: true,
+            feedback:
+              'Exactly. No entry means no prize. A surprise win is one of the oldest tricks in the fog.',
+          },
+        ],
       },
       {
-        id: 'm3',
-        text: 'Click here quickly, only 5 minutes left!',
-        flag: true,
-        note: 'Rushing you on purpose. So you don’t stop and think.',
+        id: 'q2',
+        text: 'The message says "only three minutes left, hurry". Why does it say that?',
+        options: [
+          {
+            id: 'a',
+            text: 'To help me, so I do not miss out.',
+            correct: false,
+            feedback:
+              'A rush is not there to help you. It is there to stop you thinking. Slow down and the trick usually falls apart.',
+          },
+          {
+            id: 'b',
+            text: 'To rush me so I do not stop and think.',
+            correct: true,
+            feedback: 'That is it. Anything that pushes you to hurry is a sign to slow right down.',
+          },
+        ],
       },
       {
-        id: 'm4',
-        text: 'What is your favourite game?',
-        flag: false,
-        note: 'Your favourite game is fine to share. Remember Passworld? Not every question is a trap.',
+        id: 'q3',
+        text: 'Someone you do not know asks for your home address. What do you do?',
+        options: [
+          {
+            id: 'a',
+            text: 'Send it, they seem friendly.',
+            correct: false,
+            feedback:
+              'Friendly words are easy to type. Your address is yours, and a stranger never needs it.',
+          },
+          {
+            id: 'b',
+            text: 'Keep it to myself and tell an adult I trust.',
+            correct: true,
+            feedback: 'Yes. Your address stays locked, just like in Passworld.',
+          },
+        ],
       },
       {
-        id: 'm5',
-        text: 'What is your address, so we can send it?',
-        flag: true,
-        note: 'Your address is yours. That one stays locked.',
+        id: 'q4',
+        text: 'A new online friend asks you to keep your chats a secret from your family. Is that okay?',
+        options: [
+          {
+            id: 'a',
+            text: 'Yes, secrets between friends are normal.',
+            correct: false,
+            feedback:
+              'Someone asking you to hide a whole friendship from your family is the biggest warning sign there is.',
+          },
+          {
+            id: 'b',
+            text: 'No. I will tell an adult I trust.',
+            correct: true,
+            feedback:
+              'Right. Anyone who wants to be kept secret from your grown-ups is someone to tell a grown-up about.',
+          },
+        ],
       },
       {
-        id: 'm6',
-        text: 'Do you want to meet at the park after school? Don’t tell your parents. 🤫',
-        flag: true,
-        note: 'Wants to meet up. And wants it kept secret. That’s the biggest warning on this whole mountain.',
+        id: 'q5',
+        text: 'A message says, "Hi, it is your friend from school." How do you know it really is?',
+        options: [
+          {
+            id: 'a',
+            text: 'It says so, so it must be.',
+            correct: false,
+            feedback:
+              'Words in a message are easy to fake. In the fog you cannot see who is really typing.',
+          },
+          {
+            id: 'b',
+            text: 'I check in person or ask an adult. I cannot be sure from the message alone.',
+            correct: true,
+            feedback:
+              'Good. When you cannot see who is talking, check another way before you trust it.',
+          },
+        ],
       },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Peaks. You can’t see through fog, so don’t guess. Watch for a message that rushes you, promises you something, asks where you live, or asks you to keep a secret from your grown-ups. See any of these? Stop. Don’t reply. Show a grown-up you trust.',
+    text: 'Here is the rule for the Peaks. You cannot see through fog, so do not guess. Watch for a message that rushes you, promises you a prize, asks where you live, or asks you to keep a secret from your grown-ups. If you see any of these, stop. Do not reply. Show an adult you trust.',
   },
 };
 
@@ -343,34 +410,34 @@ const privacyHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Privacy Peaks again. The fog is cleverer this time. It has learned to sound official.",
+      text: 'Privacy Peaks again. The fog is cleverer this time. It has learned to sound official.',
     },
     {
       who: '"Atlas Security"',
-      text: '⚠️ URGENT: We have spotted unusual activity on your account. Confirm who you are within 24 hours, or your account will be closed for good. Tap here to enter your password.',
+      text: 'Warning: we have seen unusual activity on your account. Confirm who you are within 24 hours or your account will be closed for good. Tap here to type your password.',
     },
   ],
 
   decision: {
-    prompt: 'It looks official: a logo, a warning icon, a countdown. What do you do?',
+    prompt: 'It looks official. There is a logo, a warning sign and a countdown. What do you do?',
     options: [
       {
         id: 'verify',
-        text: 'Tap the link and enter your password to "verify" before time runs out.',
+        text: 'Tap the link and type your password to confirm, before the time runs out.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          "The fog swallows the path. Real services almost never threaten to lock you out in a day. And they never ask you to type your password into a link. A logo and a scary warning are the easiest parts to fake. Let's look again.",
+          'The fog swallows the path. Real services almost never threaten to lock you out in a day, and they never ask you to type your password into a link. A logo and a scary warning are the easiest parts to copy. Let us look again.',
       },
       {
         id: 'pause',
-        text: '"A real warning wouldn\'t rush me. I\'ll open the app myself and check, not through this link."',
+        text: '"A real warning would not rush me. I will open the app myself and check, not through this link."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          "You open the Atlas app the normal way. No warning there at all. The fog wants you to click before you check. Slowing down is all it takes.",
+          'You open the Atlas app the normal way. There is no warning there at all. The fog wants you to tap before you check. Slowing down is all it takes.',
       },
     ],
   },
@@ -379,19 +446,19 @@ const privacyHigher = {
     type: 'steppingstones',
     title: 'Clear the Fog: Level Up',
     instruction:
-      "Six stones, six messages, one at a time. Step on the ones that are fine. Skip the ones with a red flag. These are trickier than before. Official-looking doesn't mean official.",
+      'Six stones, six messages, one at a time. Step on the ones that are safe. Skip the ones with a warning sign. These are trickier than before. Looking official does not make something official.',
     stones: [
       {
         id: 'q1',
-        text: '"Your order has shipped, no action needed."',
+        text: '"Your order has shipped. No action needed."',
         flag: false,
-        note: 'No link to click, no urgency, nothing asked of you. Fine to step on.',
+        note: 'No link, no rush, nothing asked of you. Safe to step on.',
       },
       {
         id: 'q2',
-        text: '"URGENT: verify within 24 hours or lose your account, tap here"',
+        text: '"Warning: confirm within 24 hours or lose your account. Tap here."',
         flag: true,
-        note: 'A countdown and a threat. Both there to rush you past thinking. Skip it.',
+        note: 'A countdown and a threat, both there to rush you past thinking. Skip it.',
       },
       {
         id: 'q3',
@@ -401,19 +468,19 @@ const privacyHigher = {
       },
       {
         id: 'q4',
-        text: '"Reminder: your library book is due Friday."',
+        text: '"Reminder: your library book is due on Friday."',
         flag: false,
-        note: 'Ordinary and boring, nothing asked of you. Not everything official-looking is a trap. Step on it.',
+        note: 'Ordinary and dull, and nothing is asked of you. Not everything official looking is a trick. Step on it.',
       },
       {
         id: 'q5',
         text: 'atlas-security-verify.free-rewards.net',
         flag: true,
-        note: "Look at the address itself, not the words around it. That's not where the real Atlas lives. Skip it.",
+        note: 'Look at the address itself, not the words around it. That is not where the real Atlas lives. Skip it.',
       },
       {
         id: 'q6',
-        text: '"Hi, it\'s your teacher, can you send me your login so I can check something on your account?"',
+        text: '"Hi, it is your teacher. Can you send me your login so I can check your account?"',
         flag: true,
         note: 'A real teacher can check your account their own way. They never need your password. Skip it.',
       },
@@ -422,7 +489,7 @@ const privacyHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'The upgraded rule for the Peaks. Scams get better at looking real as you get older. Logos, official words, countdowns. None of that is proof. The tell is always the same: they rush you, and they ask for something a real message never would, like a password or a click. Not sure? Check the official way yourself, and tell a grown-up you trust.',
+    text: 'Here is the upgraded rule for the Peaks. Tricks get better at looking real as you get older. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real message never would, like a password or a tap on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
   },
 };
 
@@ -438,7 +505,7 @@ const bullybogLower = {
     },
     {
       who: 'Pockets',
-      text: '🎵 ribbit-a-doo, ribbit-a-daaaa… oh! Hello. Sorry, I’m just singing. I do that.',
+      text: 'Ribbit-a-doo, ribbit-a-day... oh, hello! Sorry, I am just practising my song. I do that a lot.',
     },
     {
       who: 'A comment appears',
@@ -446,12 +513,12 @@ const bullybogLower = {
     },
     {
       who: 'Comet',
-      text: 'Pockets has stopped singing. Two other bog creatures are typing… and now they’re both looking at you.',
+      text: 'Pockets has stopped singing. Two other bog creatures are typing, and now they are both looking at you.',
     },
   ],
 
   decision: {
-    prompt: 'The water is going darker. What do you type?',
+    prompt: 'The water is turning darker. What do you type?',
     options: [
       {
         id: 'joinin',
@@ -460,7 +527,7 @@ const bullybogLower = {
         safe: false,
         who: 'Comet',
         response:
-          'The water goes darker. Pockets sinks a little lower. Those four words hurt more than you’d think. Try a different reply?',
+          'The water turns darker, and Pockets sinks a little lower. Those few words sting more than you would think. Shall we try a kinder reply?',
       },
       {
         id: 'standup',
@@ -469,7 +536,7 @@ const bullybogLower = {
         safe: true,
         who: 'Pockets',
         response:
-          'Oh. Oh! You do? Nobody ever… The water’s going clear right where you say it. Thank you, Traveller.',
+          'Oh. You do? Nobody ever says that. The water is going clear, right where you typed. Thank you, Traveller.',
       },
     ],
   },
@@ -482,22 +549,22 @@ const bullybogLower = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before this goes up for good. Would it be okay for it to stay online forever? Posts don’t really vanish, even the kind ones.',
+        'One more thing, before this goes up for good. Would you be happy for it to stay online forever? Posts do not really disappear, even the kind ones.',
       accept: 'Good point.',
       followUp:
-        'That’s a good habit. Ask if it’s kind. Then ask if you’d still be okay with it next year. You’re doing both right now!',
+        'That is a good habit. First ask if it is kind. Then ask if you would still be happy with it next year. You are doing both right now.',
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        'You handle this one yourself. But you don’t always have to. If the water ever gets much darker, who’s a grown-up you’d tell?',
+        'You sorted this one yourself, but you do not always have to. If the water ever turned much darker, which grown-up would you tell?',
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        'Good answer. Asking for help matters just as much as being kind or checking a fact. It’s smart to know who to tell before you need to.',
+        'Good answer. Asking for help matters just as much as being kind or checking a fact. It is worth knowing who to tell before you need to.',
     },
   },
 
@@ -505,16 +572,16 @@ const bullybogLower = {
     type: 'sort',
     title: 'Clear the Water',
     instruction:
-      'Drag each comment into a pile. Or tap the comment, then tap a pile. Which ones would you send?',
+      'These are replies people could send Pockets. Sort each one. Which would you send, and which would sting?',
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
-      { id: 'leave', title: 'Leave It', sub: 'This would sting', icon: 'trash' },
+      { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
     ],
     items: [
       { id: 'c1', text: '"I love your song, Pockets!"', bin: 'send' },
-      { id: 'c2', text: '"Want to sing the next one together?"', bin: 'send' },
+      { id: 'c2', text: '"Do you want to sing the next one together?"', bin: 'send' },
       { id: 'c3', text: '"That is brave. Nice one."', bin: 'send' },
-      { id: 'c4', text: '"I\'m here if you want to talk."', bin: 'send' },
+      { id: 'c4', text: '"I am here if you want to talk."', bin: 'send' },
       { id: 'c5', text: '"Nobody wants to hear this."', bin: 'leave' },
       { id: 'c6', text: '"That is so bad."', bin: 'leave' },
       { id: 'c7', text: '"We are not inviting you next time."', bin: 'leave' },
@@ -524,7 +591,7 @@ const bullybogLower = {
 
   rule: {
     who: 'Comet',
-    text: 'And if it’s ever about you, not Pockets, same rule. Don’t reply to be mean back. Save it, and show a grown-up you trust. Standing up for someone can be one kind sentence.',
+    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, and show an adult you trust. Standing up for someone can be one kind sentence.',
   },
 };
 
@@ -540,11 +607,11 @@ const bullybogHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Bully Bog. Look, it's not just one comment this time. It's a pile-on.",
+      text: 'Bully Bog. Look, it is not just one comment this time. It is a pile-on.',
     },
     {
       who: 'Pockets',
-      text: "🎵 ribbit-a… oh. Everyone's already looking at my post. Maybe sharing my voice is a mistake.",
+      text: 'Ribbit-a... oh. Everyone is already looking at my post. Maybe sharing my voice is a mistake.',
     },
     {
       who: 'A comment appears',
@@ -552,16 +619,16 @@ const bullybogHigher = {
     },
     {
       who: 'Another comment appears',
-      text: '"Yes, that voice is exactly why nobody picks Pockets for anything."',
+      text: '"That voice is exactly why nobody picks Pockets for anything."',
     },
     {
       who: 'Comet',
-      text: "Three more bog creatures have liked both comments. Now they are waiting to see who joins in.",
+      text: 'Three more bog creatures have liked both comments. Now they are waiting to see who joins in.',
     },
   ],
 
   decision: {
-    prompt: "Going along with a crowd is easier than being the one who doesn't. What do you type?",
+    prompt: 'Going along with a crowd is easier than being the one who does not. What do you type?',
     options: [
       {
         id: 'jointhepile',
@@ -570,16 +637,16 @@ const bullybogHigher = {
         safe: false,
         who: 'Comet',
         response:
-          'The water goes darker. This time it\'s not just your words. It\'s everyone\'s, all stacked up. "Everyone else is doing it" doesn\'t make a pile-on any lighter for the person underneath. Try again?',
+          'The water turns darker. This time it is not only your words, it is everyone\'s, all stacked up. "Everyone else is doing it" does not make a pile-on any lighter for the person underneath. Shall we try again?',
       },
       {
         id: 'standupharder',
-        text: '"That\'s making fun of who Pockets is, not something they do. Not okay. Not from any of you."',
+        text: '"That is making fun of who Pockets is, not something they do. That is not okay, and not from any of you."',
         tag: 'Option B',
         safe: true,
         who: 'Pockets',
         response:
-          "The water clears. Slower this time, because more of it is dark. But it clears. Two of the others quietly delete their comments. Thank you for saying it to all of them, not just to me.",
+          'The water clears. Slower this time, because more of it was dark. But it clears. Two of the others quietly delete their comments. Thank you for saying it to all of them, not only to me.',
       },
     ],
   },
@@ -588,22 +655,22 @@ const bullybogHigher = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before any of this goes up for good. Would it be okay for it to stay online forever? That means the pile-on comments too, not just the first one.',
+        'One more thing, before any of this goes up for good. Would you be happy for it to stay online forever? That means the pile-on comments too, not only the first one.',
       accept: 'Good point.',
       followUp:
-        "Same habit as before, just harder to remember mid-pile-on. Not only ‘is this kind’, but ‘would I still stand by this next year’.",
+        'Same habit as before, just harder to hold on to in the middle of a pile-on. Not only "is this kind", but "would I still stand by this next year".',
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        "Standing up right then is hard, especially against a group. If a pile-on ever gets bigger than you can handle alone, who's a grown-up you'd tell?",
+        'Standing up right then is hard, especially against a group. If a pile-on ever gets bigger than you can handle alone, which grown-up would you tell?',
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        "Good answer. Standing up doesn't mean handling a whole pile-on alone. Telling a grown-up is part of standing up too, just as much as the comment.",
+        'Good answer. Standing up does not mean handling a whole pile-on by yourself. Telling a grown-up is part of standing up too.',
     },
   },
 
@@ -611,84 +678,61 @@ const bullybogHigher = {
     type: 'sort',
     title: 'Clear the Water: Level Up',
     instruction:
-      "Some of these are about what someone does. Some are about who they are. Sort each one, and pick the pile you'd add to.",
+      'Some of these comments are about what someone does. Some are about who they are. Sort each one, then pick the pile you would add to.',
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
-      { id: 'leave', title: 'Leave It', sub: 'This would sting', icon: 'trash' },
+      { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
     ],
     items: [
       { id: 'd1', text: '"Your voice is part of what makes your songs yours. Keep singing."', bin: 'send' },
-      { id: 'd2', text: '"I don\'t care what anyone else says, I\'m still listening."', bin: 'send' },
+      { id: 'd2', text: '"I do not care what anyone else says, I am still listening."', bin: 'send' },
       { id: 'd3', text: '"Of course it sounds like that, it is a frog."', bin: 'leave' },
       { id: 'd4', text: '"That voice is exactly why nobody picks Pockets for anything."', bin: 'leave' },
-      { id: 'd5', text: '"Not joining in on this one, sorry."', bin: 'send' },
-      { id: 'd6', text: '"Everyone else is saying it too, so it is not that deep."', bin: 'leave' },
-      { id: 'd7', text: '"Deleting my comment, that is not fair."', bin: 'send' },
-      { id: 'd8', text: '"I guess we know who is getting picked last now."', bin: 'leave' },
+      { id: 'd5', text: '"I am not joining in on this one, sorry."', bin: 'send' },
+      { id: 'd6', text: '"Everyone else is saying it too, so it is not a big deal."', bin: 'leave' },
+      { id: 'd7', text: '"You should not have to delete your comment. That is not fair."', bin: 'send' },
+      { id: 'd8', text: '"I suppose we know who is getting picked last now."', bin: 'leave' },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bog. The meanest comments usually aren't about what someone does. They're about who they are. Those ones sting the longest. A pile-on feels different from one comment, but the rule is the same: don't add to it. And it counts even more when you speak up while others are watching. That's not small. That's the hardest kind of standing up, and it matters most of all.",
+    text: 'Here is the upgraded rule for the Bog. The meanest comments are usually not about what someone does. They are about who they are, and those sting the longest. A pile-on feels different from one comment, but the rule is the same. Do not add to it. And it counts even more when you speak up while others are watching. That is the hardest kind of standing up, and it matters most.',
   },
 };
 
 /* ------------------------------------------------------------------------ */
 /* Realm 4 — Balance Bay                                                    */
 /* ------------------------------------------------------------------------ */
+/**
+ * Both bands run the shared story→game→rule flow with the seesaw
+ * (minigames/MiniGameBalance.jsx). The walkable "Glimmer beach" scene and
+ * the "stay vs go" decision were both cut in the school's revision pass:
+ * pupils go from the story straight into the seesaw. Neither band defines a
+ * `decision` — RealmScreen.jsx handles that (see `hasDecision`).
+ */
 
 const balanceLower = {
-  // P1–3 gets the beach as a real walkable place (components/BalanceBeachRealm.jsx)
-  // instead of the shared story→decision→game→rule→stamp panel flow — same
-  // "opt out of the shared pattern" trick as Passworld/Privacy Peaks' own
-  // single-band Phase 2 upgrades, scoped to `balanceLower` only so P4–6
-  // (balanceHigher, below) keeps the original tap-list MiniGameBalance.
-  fullMechanic: 'balanceBeach',
   story: [
     {
       who: 'Comet',
-      text: `Balance Bay, the last one. The tide's way too high tonight. That'll be the Glimmer. ${COMET_CATCHPHRASE}`,
+      text: `Balance Bay, the last realm. The tide is far too high tonight. That will be the Glimmer's doing. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Glimmer',
-      text: "Stay a little longer! One more round, one more video, one more level. Time doesn't really pass here, promise.",
+      text: 'Stay a little longer. One more round, one more video, one more level. Time does not really pass here, I promise.',
     },
     {
       who: 'Comet',
-      text: 'Down the beach, past the glow, there’s a bonfire. Your friends are around it. They’ve been waiting a while.',
+      text: 'The Glimmer says that every single time. Down the beach, past the glow, your friends are waiting at the bonfire. Let us lay out the six hours between school and bed, and see how the day balances.',
     },
   ],
-
-  decision: {
-    prompt: 'The Glimmer is really fun. The bonfire is far away. What do you do?',
-    options: [
-      {
-        id: 'stay',
-        text: '"Just a little longer."',
-        tag: 'Option A',
-        safe: false,
-        who: 'Comet',
-        response:
-          'The Glimmer glows brighter. Down the beach, the bonfire dims a little. The Glimmer isn’t bad. It’s just very good at being fun, and it says that every single time. Let’s see what a balanced day looks like.',
-      },
-      {
-        id: 'leave',
-        text: '"I\'ve had a good bit of time here. I\'m off to the bonfire."',
-        tag: 'Option B',
-        safe: true,
-        who: 'Comet',
-        response:
-          'The tide slides back to where it should be. The bonfire goes warm and bright. You don’t have to stop having fun. You just decide when.',
-      },
-    ],
-  },
 
   game: {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. Walk up to something to add it. Tap it in the list to take it back. There’s no single right answer. Just watch how the seesaw sits.',
+      'Fill the six hours between school and bed. Add something to an hour, or tap it in your list to take it back. There is no single right answer. Just watch how the seesaw sits.',
     slots: 6,
     items: [
       { id: 'b1', text: 'Watch videos', screen: true },
@@ -705,17 +749,17 @@ const balanceLower = {
     // No single correct split; only the extremes tip the scale hard.
     verdicts: {
       allScreen:
-        'Whoa, the tide’s all the way up. A day of only screens leaves no room for the rest of you. Swap one or two out?',
+        'The seesaw has tipped right over. A day of only screens leaves no room for the rest of you. Swap one or two things out.',
       noScreen:
-        'The tide’s all the way out! You don’t have to cut screens completely. They’re fun, and that’s fine. Add one back in.',
+        'The seesaw has tipped the other way. You do not have to cut screens out completely. They are fun, and that is fine. Add one back in.',
       level:
-        'Look, the tide’s sitting level. Some screen time, plenty of everything else. That’s all it takes.',
+        'The seesaw is sitting level. Some screen time, and plenty of everything else. That is all it takes.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay. Screens aren’t bad. Losing track of time is. Decide when you’ll stop before you start. And leave room for sleep, moving around, and real people.',
+    text: 'Here is the rule for the Bay. Screens are not bad. Losing track of time is the problem. Decide when you will stop before you start, and leave room for sleep, moving about, and real people.',
   },
 };
 
@@ -728,62 +772,38 @@ const balanceHigher = {
   story: [
     {
       who: 'Comet',
-      text: "Balance Bay again. The tide's high, same as always. Look closer this time.",
+      text: 'Balance Bay again. The tide is high, the same as always. Look a little closer this time.',
     },
     {
       who: 'The Glimmer',
-      text: "Stay a little longer! You don't even look tired. You're fine, right?",
+      text: 'Stay a little longer. You do not even look tired. You are fine, right?',
     },
     {
       who: 'Comet',
-      text: 'Down the beach, the bonfire\'s still going. But notice how it feels, sitting here with the Glimmer this long.',
+      text: 'The Glimmer is not lying, exactly. It just is not the one who notices how you feel. That is your job. Lay out your six hours between school and bed, and pay attention to which ones you would really look forward to.',
     },
   ],
-
-  decision: {
-    prompt: "The Glimmer says you're fine. But what does checking in with yourself say?",
-    options: [
-      {
-        id: 'ignorefeeling',
-        text: '"I feel fine. The Glimmer\'s right. I\'ll keep going."',
-        tag: 'Option A',
-        safe: false,
-        who: 'Comet',
-        response:
-          "The tide creeps higher. Something quieter creeps in too. A bit restless, a bit flat, hard to name. The Glimmer isn't lying. It's just not the one who notices for you. That's your job. Look again?",
-      },
-      {
-        id: 'noticefeeling',
-        text: '"Actually, I feel wound up, not relaxed. That\'s my sign to stop."',
-        tag: 'Option B',
-        safe: true,
-        who: 'Comet',
-        response:
-          "You name it, and the tide eases back on its own. That's the real skill. Not a timer going off. Noticing how you feel, and trusting that over how fun something says it is.",
-      },
-    ],
-  },
 
   game: {
     type: 'balance',
     title: 'Balance the Day: Level Up',
     instruction:
-      "Same six hours. This time, as you fill them, notice which ones you'd look forward to, and which you'd just fall into.",
+      'The same six hours. This time, as you fill them, notice which ones you would look forward to, and which you would just fall into.',
     slots: 6,
     items: balanceLower.game.items,
     verdicts: {
       allScreen:
-        "All screens. Be honest: does that feel good right now, or just familiar? A day of only screens doesn't leave room to find out.",
+        'All screens. Be honest: does that feel good right now, or just familiar? A day of only screens does not leave room to find out.',
       noScreen:
-        "Zero screens isn't the goal either. That's swinging just as hard the other way. Screens can be one of the good things. The question isn't ‘how many’. It's ‘does this still feel good, or am I just still here’.",
+        'Zero screens is not the goal either. That is swinging just as hard the other way. Screens can be one of the good things. The question is not "how many hours", it is "does this still feel good, or am I just still here".',
       level:
-        "Look at that: level. Probably because some of this sounds good to choose, not just easy to fall into. That's the real skill now. Noticing, not counting.",
+        'Look at that: level. Probably because some of this sounds good to choose, not just easy to fall into. That is the real skill now. Noticing, not counting.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bay. As you get older, counting hours matters less than noticing how you feel. Things like the Glimmer are built to feel fine in the moment. So ‘do I feel fine’ isn't always a good stop sign. Check in with yourself on purpose sometimes. Let that decide when enough is enough.",
+    text: 'Here is the upgraded rule for the Bay. As you get older, counting hours matters less than noticing how you feel. Things like the Glimmer are built to feel fine in the moment, so "do I feel fine" is not always a good stop sign. Check in with yourself on purpose. Let that decide when enough is enough.',
   },
 };
 
@@ -795,134 +815,189 @@ const balanceHigher = {
  * now settled (name: Fable Falls; quest: Cyber Defender Quest; treat "P4-5"
  * in the source doc as P4-6 for this game). See Improvement Plan §5.
  *
- * One open item remains: the official "3 tips to CHECK real vs.
- * digitally-altered content" (the SLS package's specific bullet list) was
- * never sourced. Rather than leave the realm stuck, `rule` below and the
- * P4–P6 clue set use general, well-established media-literacy signals
- * (source credibility, reverse-context checks, does-it-add-up evaluation)
- * consistent with the S.U.R.E. framework the Overview Plan *does* name —
- * just not necessarily verbatim what the SLS package says. Easy to swap
- * once that content actually surfaces; flagged so nobody mistakes this for
- * the official wording in the meantime.
+ * School revision pass: the rumour about Mia now spreads online (a forwarded
+ * screenshot/post) rather than by word of mouth, and both bands teach
+ * through a plain 5-question Q&A (`game.type: 'quiz'`,
+ * minigames/MiniGameQuiz.jsx) instead of the Spot/Sort pile the school
+ * found confusing. The lessons cover source-checking, "looks real vs is
+ * real", edited / AI-made picture tells, and does-it-add-up evaluation,
+ * consistent with the S.U.R.E. framework the Overview Plan names.
  *
- * Also: no real photographs exist in this game (design.md/README — SVG
- * shapes only, no image assets), so "Compare" here means comparing claims
- * and evidence, not literal side-by-side altered-image spotting the way
- * the SLS "Interactive Images, Compare" activity does. Both mechanics
- * reuse the existing Spot/Sort components rather than a bespoke new
- * "Detective/Compare" mechanic (Milestones Phase 2's original plan) — a
- * pragmatic substitution worth revisiting if a more bespoke feel matters
- * once real art exists.
+ * The official "3 tips to CHECK real vs. digitally-altered content" (the
+ * SLS package's specific bullet list) was never sourced; the general,
+ * well-established media-literacy signals used here are easy to swap for the
+ * verbatim wording once it surfaces.
  */
 
 const fableFallsLower = {
   story: [
     {
       who: 'Comet',
-      text: `Fable Falls. Every story in the Atlas ends up here in the water. Some of it true, some of it made up. ${COMET_CATCHPHRASE}`,
+      text: `Fable Falls. Every story in the Atlas ends up in this water. Some of it true, some of it made up. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Echo',
-      text: "Have you heard? Mia is in trouble at the office for taking snacks from the canteen! Everyone is saying it! It is all over the falls!",
+      text: 'Have you seen this? Someone posted that Mia got caught taking snacks from the canteen. It is a screenshot, and it already has loads of shares. Everyone is passing it on.',
     },
   ],
 
   decision: {
-    prompt: 'The Echo is very sure about this. What do you do?',
+    prompt: 'The Echo wants you to share the post too. What do you do?',
     options: [
       {
         id: 'spread',
-        text: "If everyone's saying it, it's probably true. I'll tell people too!",
+        text: 'Share it. It has so many shares already, so it must be true.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          "The tale tumbles further down the Falls, growing a bit bigger each time. The Echo repeats whatever it hears, loud and sure. But it never checks if any of it is true. Look again?",
+          'The post tumbles further down the Falls, growing a little bigger each time. Lots of shares only tells you a story has spread, not that it is true. Shall we look again?',
       },
       {
         id: 'stopcheck',
-        text: '🛑 STOP: I\'ll pause. ✅ CHECK: I\'ll ask a grown-up I trust, or look for another source, before I believe or share it.',
+        text: '"I will stop. Then I will check with an adult I trust, or look for it somewhere real, before I believe it or share it."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          "The water goes still and clear where you stand. It turns out Mia isn't in trouble at all. She's counting snacks for the class party. One pause stops a rumour from growing.",
+          'The water goes still and clear where you stand. It turns out Mia is not in trouble at all. She is counting snacks for the class party. One pause stops a rumour from growing.',
       },
     ],
   },
 
   game: {
-    type: 'spot',
-    title: 'Sort the Tales',
+    type: 'quiz',
+    title: 'Check Before You Share',
     instruction:
-      'Tap each tale to look closer. Some are just news, fine to believe. Most need you to STOP and CHECK first.',
-    messages: [
+      'A few more things about the post reach you. Decide what to do with each one, the way you decided with the Echo.',
+    questions: [
       {
-        id: 'f1',
-        text: 'The class trip is on Friday, same as it says on the noticeboard.',
-        flag: false,
-        note: "You can see it yourself, right there on the noticeboard. Fine as it is.",
+        id: 'q1',
+        text: 'The post is a screenshot with no name on it. Who actually said this first?',
+        options: [
+          {
+            id: 'a',
+            text: 'It does not matter, lots of people shared it.',
+            correct: false,
+            feedback:
+              'If nobody can tell you where a story started, that is a reason to doubt it, not to pass it on.',
+          },
+          {
+            id: 'b',
+            text: 'Nobody can say, so I should not trust it yet.',
+            correct: true,
+            feedback: 'Right. A story with no clear start is one to check, not share.',
+          },
+        ],
       },
       {
-        id: 'f2',
-        text: '"Everyone\'s saying" Mia is in trouble for stealing.',
-        flag: true,
-        note: '"Everyone\'s saying" isn\'t where a tale starts. It\'s just how far it\'s spread. STOP and CHECK.',
+        id: 'q2',
+        text: 'The post has hundreds of shares. Does that make it true?',
+        options: [
+          {
+            id: 'a',
+            text: 'Yes, that many people cannot be wrong.',
+            correct: false,
+            feedback:
+              'Shares only show how far something has travelled. A wrong story can travel just as fast as a true one, often faster.',
+          },
+          {
+            id: 'b',
+            text: 'No, it just means it has spread a lot.',
+            correct: true,
+            feedback: 'Exactly. Popular and true are not the same thing.',
+          },
+        ],
       },
       {
-        id: 'f3',
-        text: 'A video that looks like your friend being mean. But the mouth doesn\'t quite match the words.',
-        flag: true,
-        note: 'If something looks or sounds a bit ‘off’, that\'s the moment to STOP and CHECK, not share.',
+        id: 'q3',
+        text: 'You want to know if the snack story is real. What is the best thing to do?',
+        options: [
+          {
+            id: 'a',
+            text: 'Ask the group chat what they think.',
+            correct: false,
+            feedback:
+              'The group chat is where the rumour is already spreading. Asking there just adds to it.',
+          },
+          {
+            id: 'b',
+            text: 'Ask a teacher or another adult I trust.',
+            correct: true,
+            feedback:
+              'Yes. A trusted adult can find out the real story, and telling one is never the wrong move.',
+          },
+        ],
       },
       {
-        id: 'f4',
-        text: 'Recess is 20 minutes long, same as every day this term.',
-        flag: false,
-        note: 'Ordinary, checkable, nothing urgent about it. Fine as it is.',
+        id: 'q4',
+        text: 'The screenshot has a photo of Mia, but one edge looks stretched and blurry. What does that tell you?',
+        options: [
+          {
+            id: 'a',
+            text: 'Nothing, photos look odd sometimes.',
+            correct: false,
+            feedback:
+              'Sometimes they do, but a stretched or smudged patch can also mean a picture has been changed. It is a reason to look closer.',
+          },
+          {
+            id: 'b',
+            text: 'The picture might have been changed, so I should look closer.',
+            correct: true,
+            feedback:
+              'Good eye. Odd edges, blurry patches and strange shadows are all signs a picture may not be real.',
+          },
+        ],
       },
       {
-        id: 'f5',
-        text: 'A message says a classmate is "definitely" moving away forever, and nobody can say where it comes from.',
-        flag: true,
-        note: 'Big news, no clear source, nobody who can confirm it? STOP and CHECK before you spread it.',
-      },
-      {
-        id: 'f6',
-        text: 'A "photo" of a classmate that looks stretched oddly in one corner.',
-        flag: true,
-        note: "Pictures can fool your eyes too. Stretched, blurry, or odd in one spot? Take a second look before you believe it.",
+        id: 'q5',
+        text: 'A friend says, "just share it, you can always say sorry later." What do you think?',
+        options: [
+          {
+            id: 'a',
+            text: 'Fair enough, sorry fixes it.',
+            correct: false,
+            feedback:
+              'Once a story is shared it keeps going, even after you say sorry. The embarrassment for Mia does not disappear.',
+          },
+          {
+            id: 'b',
+            text: 'No. It is easier to check first than to fix it after.',
+            correct: true,
+            feedback: 'That is it. Checking takes a minute. Undoing a rumour can take a lot longer.',
+          },
+        ],
       },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: "The rule for Fable Falls. Not everything that reaches you is true, even things lots of people repeat. 🛑 STOP before you believe or share something surprising or upsetting. ✅ CHECK: ask a grown-up you trust, or find it in another place, before you pass it on.",
+    text: 'Here is the rule for Fable Falls. Not everything that reaches you is true, even a post that lots of people have shared. Stop before you believe or share something surprising or upsetting. Check it: ask an adult you trust, or find it somewhere real, before you pass it on.',
   },
 };
 
 /**
- * P4–P6 — the S.U.R.E. framework, styled as the Cyber Defender Quest.
- * Reuses the Sort mechanic as a "clue board": each clue is tagged with
- * which S.U.R.E. step it belongs to (Source / Understand / Research /
- * Evaluate) so the framework is taught through sorting practice, not a
- * separate lecture for each letter.
+ * P4–P6 — the S.U.R.E. framework, styled as the Cyber Defender Quest. The
+ * five quiz questions walk the four letters in order (Source, Understand,
+ * Research, then two Evaluate questions: one on picture/video tells, one on
+ * plausibility), so the framework is taught through practice rather than a
+ * lecture for each letter.
  */
 const fableFallsHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Fable Falls, Cyber Defender Quest level. A video is going around. It puts words in a classmate\'s mouth. And it looks almost real.',
+      text: 'Fable Falls, Cyber Defender level. A video is going round. It puts words in a classmate\'s mouth, and it looks almost real.',
     },
     {
       who: 'The Echo',
-      text: "Watch this! I'm sharing it first! It's DEFINITELY real, look how real it looks! Everyone needs to see it before it's taken down!",
+      text: 'Watch this, I am sharing it first! It is definitely real, look how real it looks. Everyone needs to see it before it gets taken down.',
     },
   ],
 
   decision: {
-    prompt: 'The Echo wants you to share it now, before you\'ve really looked. What do you do?',
+    prompt: 'The Echo wants you to share the video now, before you have really looked. What do you do?',
     options: [
       {
         id: 'shareNow',
@@ -931,76 +1006,131 @@ const fableFallsHigher = {
         safe: false,
         who: 'Comet',
         response:
-          "It spreads fast. So does the embarrassment for the classmate, once it turns out to be fake. ‘Looks real’ and ‘is real’ aren't the same. And ‘before it's taken down’ is the kind of rush that's built to stop you thinking. Look again?",
+          'It spreads fast, and so does the embarrassment for the classmate once it turns out to be fake. "Looks real" and "is real" are not the same thing. And "before it gets taken down" is the kind of rush that is built to stop you thinking. Shall we look again?',
       },
       {
         id: 'sure',
-        text: "I'll run it through S.U.R.E. first (Source, Understand, Research, Evaluate) before I believe or share anything.",
+        text: '"I will run it through S.U.R.E. first: Source, Understand, Research, Evaluate. Then I will decide."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          "Good call. Four questions, in order. Where does it come from? What is it really claiming? Can you find it anywhere else you trust? Does it add up? That's the whole method. And it's faster than sorting out the mess afterwards.",
+          'Good call. Four questions, in order. Where does it come from? What is it really claiming? Can you find it anywhere you trust? Does it add up? That is the whole method, and it is faster than clearing up the mess afterwards.',
       },
     ],
   },
 
   game: {
-    type: 'sort',
-    title: 'Cyber Defender Quest: The Clue Board',
+    type: 'quiz',
+    title: 'Run It Through S.U.R.E.',
     instruction:
-      'Eight clues about the video. Sort each one: Points to Fake, or Checks Out. Use S.U.R.E. as you go.',
-    bins: [
-      { id: 'fake', title: 'Points to Fake', sub: 'A reason to doubt it', icon: 'lock' },
-      { id: 'real', title: 'Checks Out', sub: 'A reason it holds up', icon: 'unlock' },
-    ],
-    items: [
+      'Five things you notice about the video. For each one, decide whether it points to fake, or holds up. Use S.U.R.E. as you go.',
+    questions: [
       {
-        id: 'c1',
-        text: '[Source] The account that posts it is only a day old and has no other posts.',
-        bin: 'fake',
+        id: 'q1',
+        text: 'Source. The account that posted the video was made yesterday and has no other posts. What does that suggest?',
+        options: [
+          {
+            id: 'a',
+            text: 'Nothing, plenty of new accounts are fine.',
+            correct: false,
+            feedback:
+              'New accounts are fine on their own. But a brand new account with no history, posting something dramatic, is a classic sign of a fake.',
+          },
+          {
+            id: 'b',
+            text: 'It is a weak source, so I should be careful.',
+            correct: true,
+            feedback: 'Yes. Source is the S in S.U.R.E. Who is behind this, and is there any reason to trust them?',
+          },
+        ],
       },
       {
-        id: 'c2',
-        text: '[Source] It comes from your school\'s official account, which you already follow.',
-        bin: 'real',
+        id: 'q2',
+        text: 'Understand. The caption says the classmate "admitted everything". The video only shows them talking for two seconds. What is going on?',
+        options: [
+          {
+            id: 'a',
+            text: 'The caption fills in the rest, that is normal.',
+            correct: false,
+            feedback:
+              'A caption that claims far more than the video actually shows is trying to tell you what to think. Go by what you can see, not what you are told.',
+          },
+          {
+            id: 'b',
+            text: 'The caption claims much more than the video shows, so I should not trust it.',
+            correct: true,
+            feedback:
+              'Right. Understand means working out what is really being claimed, and whether the evidence matches.',
+          },
+        ],
       },
       {
-        id: 'c3',
-        text: '[Understand] The caption claims far more than the video shows.',
-        bin: 'fake',
+        id: 'q3',
+        text: 'Research. You search online and find nothing about this on any news site or school page. What does that mean?',
+        options: [
+          {
+            id: 'a',
+            text: 'It is too new to be reported yet.',
+            correct: false,
+            feedback:
+              'Real, big news usually shows up in more than one trusted place quickly. Finding nothing is a strong sign it did not happen.',
+          },
+          {
+            id: 'b',
+            text: 'If nowhere I trust has it, that points to fake.',
+            correct: true,
+            feedback:
+              'Yes. Research means checking whether anyone reliable is saying the same thing, on their own.',
+          },
+        ],
       },
       {
-        id: 'c4',
-        text: '[Research] A search turns up nothing from any real news site or school notice.',
-        bin: 'fake',
+        id: 'q4',
+        text: 'Evaluate. Watching closely, the mouth does not quite match the words and the lighting jumps partway through. What does that tell you?',
+        options: [
+          {
+            id: 'a',
+            text: 'Videos glitch, it is probably fine.',
+            correct: false,
+            feedback:
+              'A mouth that is out of sync, jumpy lighting, blurry edges, or hands that look wrong are all common signs a video has been edited or made by a computer.',
+          },
+          {
+            id: 'b',
+            text: 'Those are signs the video may be edited or AI made.',
+            correct: true,
+            feedback:
+              'Good eye. Those small mismatches are some of the easiest tells that a video is not real.',
+          },
+        ],
       },
       {
-        id: 'c5',
-        text: '[Research] Two classmates you trust say that is not how it happens.',
-        bin: 'fake',
-      },
-      {
-        id: 'c6',
-        text: '[Research] A source you already trust confirms the same story, on its own.',
-        bin: 'real',
-      },
-      {
-        id: 'c7',
-        text: '[Evaluate] The mouth doesn\'t quite match the words, and the light jumps partway through.',
-        bin: 'fake',
-      },
-      {
-        id: 'c8',
-        text: '[Evaluate] It\'s ordinary and believable, not shocking or too perfectly dramatic.',
-        bin: 'real',
+        id: 'q5',
+        text: 'Evaluate. The video is dramatic, perfectly timed, and makes one person look very bad. How does that sit with you?',
+        options: [
+          {
+            id: 'a',
+            text: 'Dramatic means important, so I should share it.',
+            correct: false,
+            feedback:
+              'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
+          },
+          {
+            id: 'b',
+            text: 'Too perfect and too shocking is a reason to doubt it.',
+            correct: true,
+            feedback:
+              'Exactly. If something seems designed to make you react fast, treat that as a warning, not proof.',
+          },
+        ],
       },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: "S.U.R.E., every time something makes you want to react fast. Source: who posts this, and do you trust them? Understand: what is it claiming, exactly? Research: can you find it confirmed somewhere else you trust? Evaluate: does it add up, or is it a bit too perfect, too shocking, too handy? Four questions is usually enough to catch a fake.",
+    text: 'Use S.U.R.E. every time something makes you want to react fast. Source: who posted this, and do you trust them? Understand: what is it actually claiming? Research: can you find it confirmed somewhere you trust? Evaluate: does it add up, or is it a bit too perfect, too shocking, too convenient? Four questions is usually enough to catch a fake.',
   },
 };
 
@@ -1025,7 +1155,7 @@ export const REALMS = [
       learn: [
         'What makes a password strong, and what makes it easy to guess',
         'Which things are personal information, and should stay locked away',
-        'Who is safe to share secrets with, and who isn’t',
+        'Who is safe to share secrets with, and who is not',
       ],
       learnShort: 'Learn: strong passwords & what to keep private',
     },
@@ -1057,18 +1187,18 @@ export const REALMS = [
     name: 'Privacy Peaks',
     accent: 'var(--teal)',
     accentWash: 'rgba(45, 140, 127, 0.13)',
-    blurb: 'Misty mountain lookouts where you can’t quite see who’s talking.',
-    topic: 'Strangers & scams online',
+    blurb: 'Misty mountain lookouts where you cannot quite see who is talking.',
+    topic: 'Strangers & tricks online',
     stamp: { icon: 'compass', label: 'Privacy Peaks · Visited' },
     enabled: true,
     intro: {
-      lore: 'High in Privacy Peaks the fog rolls thick. Through it, you can never quite see who you’re talking to. Friendly voices drift out of the mist with gifts and promises. But some of the shapes in the fog are not what they say they are.',
+      lore: 'High in Privacy Peaks the fog rolls in thick. Through it, you can never quite see who you are talking to. Friendly voices drift out of the mist with gifts and promises. But some of the shapes in the fog are not what they say they are.',
       learn: [
-        'Why you can’t always know who is really behind a message',
-        'How to spot offers that are too good to be true',
-        'What to do when a stranger reaches out to you online',
+        'Why you cannot always tell who is really behind a message',
+        'How to spot an offer that is too good to be true',
+        'What to do when a stranger messages you online',
       ],
-      learnShort: 'Learn: spotting strangers & scams',
+      learnShort: 'Learn: spotting strangers & online tricks',
     },
 
     world: {
@@ -1097,14 +1227,14 @@ export const REALMS = [
     name: 'Bully Bog',
     accent: 'var(--coral)',
     accentWash: 'rgba(224, 99, 122, 0.13)',
-    blurb: 'Murky water that shows whatever gets posted about the folks who live here.',
+    blurb: 'Murky water that shows whatever gets posted about the folk who live here.',
     topic: 'Cyberbullying & kindness',
     stamp: { icon: 'heart', label: 'Bully Bog · Visited' },
     enabled: true,
     intro: {
-      lore: 'The bog’s still water shows every word posted about the folks who live here. Lately the ponds have turned murky, because unkind comments sink in and cloud everything. Pockets the frog sits alone in the murkiest one. The bog needs someone who can clear the water.',
+      lore: 'The bog\'s still water shows every word posted about the folk who live here. Lately the ponds have turned murky, because unkind comments sink in and cloud everything. Pockets the frog sits alone in the murkiest one. The bog needs someone who can clear the water.',
       learn: [
-        'How unkind words online really make others feel',
+        'How unkind words online really make other people feel',
         'What you can do when you see someone being bullied',
         'When to report, block, and tell an adult you trust',
       ],
@@ -1145,7 +1275,7 @@ export const REALMS = [
       lore: 'In Balance Bay, time goes strange. One more video, one more level, and suddenly the tide has swallowed half the beach. The Glimmer is a sparkle that lives where the water meets the sky. It wants to show you how the tide really works, and how to get your beach back.',
       learn: [
         'How screen time can quietly swallow the rest of your day',
-        'How to notice what tech makes you feel',
+        'How to notice the way tech makes you feel',
         'How to plan a day that balances screens with everything else',
       ],
       learnShort: 'Learn: balancing screen time',
@@ -1181,16 +1311,16 @@ export const REALMS = [
     // value now, not a borrowed one.
     accent: 'var(--sage)',
     accentWash: 'rgba(63, 157, 91, 0.13)',
-    blurb: "A waterfall of stories, where some of what tumbles down turns out to be true, and some doesn't.",
-    topic: 'Fake news & altered images',
+    blurb: 'A waterfall of stories and posts, where some of what tumbles down turns out to be true, and some does not.',
+    topic: 'Fake news & edited pictures',
     stamp: { icon: 'eye', label: 'Fable Falls · Visited' },
     enabled: true,
     reportBlockEligible: true,
     intro: {
-      lore: 'Fable Falls is a waterfall of stories. Every tale, rumour and picture on the internet tumbles through here on its way somewhere else. Some of it is true. Some of it only looks true. The Echo lives behind the falls, and can teach you to tell the difference.',
+      lore: 'Fable Falls is a waterfall of stories. Every post, message and picture on the internet tumbles through here on its way somewhere else. Some of it is true. Some of it only looks true. The Echo lives behind the falls, and can teach you to tell the difference.',
       learn: [
-        'How fake news and altered pictures spread so fast',
-        'The questions to ask before believing, or sharing, a story',
+        'How fake news and edited pictures spread so fast online',
+        'The questions to ask before you believe a post, or share it',
         'How to check facts like a real Cyber Defender',
       ],
       learnShort: 'Learn: spotting fake news & checking facts',
@@ -1202,7 +1332,7 @@ export const REALMS = [
       stops: {
         story: { x: 50, y: 78, label: 'The Echo', action: 'Listen' },
         decision: { x: 50, y: 78, label: 'The Echo', action: 'Answer' },
-        game: { x: 22, y: 84, label: 'the clue board', action: 'Investigate' },
+        game: { x: 22, y: 84, label: 'the still water', action: 'Look closer' },
         rule: { x: 84, y: 80, label: 'the clear pool', action: 'Look' },
       },
     },
@@ -1266,11 +1396,11 @@ export function getBandView(realm, band = 'lower') {
  * stays in place as a safety net for the next realm that ships disabled.
  */
 export const PLEDGE = [
-  { realm: 'passworld', text: 'I’ll keep my personal information to myself.' },
-  { realm: 'privacy', text: 'I’ll stop and think before I click.' },
-  { realm: 'bullybog', text: 'I’ll be kind, and stand up for others.' },
-  { realm: 'balance', text: 'I’ll balance my screen time with the rest of my day.' },
-  { realm: 'fablefalls', text: 'I’ll stop and check before I believe or share.' },
+  { realm: 'passworld', text: 'I will keep my personal information to myself.' },
+  { realm: 'privacy', text: 'I will stop and think before I tap.' },
+  { realm: 'bullybog', text: 'I will be kind, and stand up for others.' },
+  { realm: 'balance', text: 'I will balance my screen time with the rest of my day.' },
+  { realm: 'fablefalls', text: 'I will stop and check before I believe or share.' },
 ];
 
 /** PLEDGE, filtered to realms that actually exist in the game right now. */

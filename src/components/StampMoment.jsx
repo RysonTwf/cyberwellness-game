@@ -43,7 +43,7 @@ export default function StampMoment({ realm, angle, travelerName, onBackToAtlas 
 
         <DialogueCard
           who="Comet"
-          text="Into the passport it goes. Nothing gets un-stamped. That stamp is yours forever."
+          text="Into the passport it goes. Once a stamp is in, it stays. That one is yours for good."
           accent={realm.accent}
         />
 

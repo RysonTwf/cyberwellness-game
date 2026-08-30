@@ -135,12 +135,17 @@ unlocks once every realm's stamp is earned.
   stacked on mobile. Selecting the "unsafe" option doesn't punish or scare —
   it shows a brief, warm redirect ("Let's think about that one differently…")
   and lets the child pick again, so there's no wrong-answer dead end.
-- **Mini-games:** kept to two mechanics only, reused across realms with
-  different content so kids don't have to learn new controls each time:
-  - *Sort:* drag items into two labeled bins (used in Passworld, Bully Bog,
-    Balance Bay)
-  - *Spot:* tap the flagged items within a scene/message (used in Privacy
-    Peaks)
+- **Mini-games:** reused across realms with different content so kids don't
+  have to learn new controls each time:
+  - *Sort:* drag items into two labeled bins (Passworld, Bully Bog)
+  - *Spot:* tap the flagged items within a scene/message
+  - *Balance:* a seesaw that tips as you fill a day (Balance Bay) — story
+    leads straight into it, no branching choice
+  - *Quiz:* five one-at-a-time questions, each answer with its own warm
+    explanation, no fail state (Privacy Peaks P1–3, Fable Falls) — added in
+    the school revision pass, which found "mark a whole pile then commit"
+    (Sort/Spot) too confusing for those two realms. P4–6 Privacy Peaks keeps
+    its Phaser stepping-stones.
 - **Transitions:** a soft page-fold/turn effect between hub and realm
   screens, reinforcing the journal metaphor. Kept short (~250-300ms) and
   respects `prefers-reduced-motion`.
@@ -153,6 +158,8 @@ unlocks once every realm's stamp is earned.
 - `ChoiceCard` (x2 per decision)
 - `MiniGameSort` (generic, takes items + two bin labels as props)
 - `MiniGameSpot` (generic, takes a scene config + flagged targets as props)
+- `MiniGameBalance` (the seesaw), `MiniGameSteppingStones` (Phaser),
+  `MiniGameQuiz` (five Q&A questions, one at a time)
 - `StampBadge` (renders one of the 4 realm stamps, "earned" or "locked")
 - `JournalProgress` — small persistent header showing stamp count
 - `CertificateScreen` — finale, name + 4 stamps + pledge lines

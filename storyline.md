@@ -41,14 +41,28 @@ two things: curiosity, and a second thought."*
 
 ## Story Arc Overview
 
+> This document is the original outline. Since the school's revision pass
+> (31 Aug 2026) the shipped game differs in a few places — `src/data/realms.js`
+> is the source of truth:
+> - A 5th realm, **Fable Falls** (fake news & edited pictures), sits after
+>   Balance Bay.
+> - **Privacy Peaks P1–3** and **Fable Falls** teach through a plain
+>   5-question Q&A rather than a Spot/Sort pile.
+> - **Balance Bay** has no walkable beach and no branching choice: the story
+>   leads straight into the seesaw.
+> - **Fable Falls'** rumour spreads online (a forwarded screenshot about
+>   Mia), not by word of mouth.
+> - Each band (P1–3 / P4–6) has its own story and mechanic.
+
 | Order | Realm | Topic | Mini-game type | Stamp icon |
 |---|---|---|---|---|
 | 0 | Atlas Gate | Intro | — | — |
 | 1 | Passworld | Passwords & personal info | Sort | Key |
-| 2 | Privacy Peaks | Strangers & scams online | Spot | Compass |
+| 2 | Privacy Peaks | Strangers & tricks online | Quiz (P1–3) / stepping-stones (P4–6) | Compass |
 | 3 | Bully Bog | Cyberbullying & kindness | Sort | Heart |
-| 4 | Balance Bay | Screen time balance | Sort | Sun |
-| — | Finale | Wise Traveler certificate | — | — |
+| 4 | Balance Bay | Screen time balance | Balance (seesaw) | Sun |
+| 5 | Fable Falls | Fake news & edited pictures | Quiz | Eye |
+| — | Finale | Wise Traveller certificate | — | — |
 
 Realms can be visited in any order; the table order is the suggested default
 path shown in the hub.
