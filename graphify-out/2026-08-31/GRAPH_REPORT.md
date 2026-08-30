@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-31)
 
 ## Corpus Check
-- 67 files · ~589,111 words
+- 68 files · ~589,795 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 399 nodes · 718 edges · 36 communities (15 shown, 21 thin omitted)
+- 403 nodes · 723 edges · 36 communities (15 shown, 21 thin omitted)
 - Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f2df82d`
+- Built from commit: `d65243f6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,7 +20,7 @@
 - passworldArt.js
 - realms.js
 - dependencies
-- TravelerRoom.jsx
+- App.jsx
 - Cyber Wellness Quest — Milestones & Team Workstreams
 - audioSettings.js
 - vite-plugin-copy-editor.js
@@ -29,7 +29,7 @@
 - Asset pipeline
 - steppingStonesArt.js
 - Checklist
-- App.jsx
+- sfx.js
 - graphify Knowledge-Graph Workflow
 - AtlasMap.jsx
 - ArtPreview.jsx
@@ -105,9 +105,9 @@ Nodes (20): JournalProgress(), REALM_ICONS, ACTIVE_REALMS, balanceHigher, balanc
 Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
 
-### Community 6 - "TravelerRoom.jsx"
-Cohesion: 0.11
-Nodes (18): AtlasGate(), DIARY_COPY, ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge(), BOUNDS (+10 more)
+### Community 6 - "App.jsx"
+Cohesion: 0.06
+Nodes (31): AtlasGate(), DIARY_COPY, CERTIFICATE_COPY, CertificateScreen(), BY_NAME, CharacterArt(), Comet(), CharacterSelect() (+23 more)
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
@@ -133,9 +133,9 @@ Nodes (17): motionTween(), prefersReducedMotion(), ART_MANIFEST, buildSteppingSt
 Cohesion: 0.33
 Nodes (5): Checklist, Done, Log, To do, Working Plan & Change Log
 
-### Community 15 - "App.jsx"
-Cohesion: 0.09
-Nodes (22): CERTIFICATE_COPY, CertificateScreen(), BY_NAME, CharacterArt(), Comet(), CharacterSelect(), OPTIONS, INTRO_BEATS (+14 more)
+### Community 15 - "sfx.js"
+Cohesion: 0.21
+Nodes (10): RealmScreen(), useUiClickSfx(), useUiHoverSfx(), getPool(), nextIndex, playSfx(), pools, SOUND_FILES (+2 more)
 
 ### Community 18 - "AtlasMap.jsx"
 Cohesion: 0.12
@@ -153,11 +153,11 @@ Nodes (3): SPA Root Mount Point, ArtPreview(), MOODS
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `playSfx()` connect `App.jsx` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
+- **Why does `playSfx()` connect `sfx.js` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasMap.jsx`, `TravelerRoom.jsx`, `App.jsx`?**
+- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasMap.jsx`, `App.jsx`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
-- **Why does `World()` connect `AtlasMap.jsx` to `RealmScreen.jsx`, `TravelerRoom.jsx`?**
+- **Why does `World()` connect `AtlasMap.jsx` to `RealmScreen.jsx`, `App.jsx`?**
   _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `CopyEditor()` (e.g. with `overridesVersion()` and `subscribe()`) actually correct?**
   _`CopyEditor()` has 2 INFERRED edges - model-reasoned connections that need verification._
