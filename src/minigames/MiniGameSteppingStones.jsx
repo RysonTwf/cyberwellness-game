@@ -72,37 +72,18 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
       </p>
 
       {!done && current && !feedback && (
-        <>
-          <div className="tile-stage">
-            <div className="tile">{current.text}</div>
-          </div>
-          <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
-            <button type="button" className="btn btn-accent" onClick={() => choose('step')}>
-              <Footprints size={17} />
-              Step on it
-            </button>
-            <button type="button" className="btn btn-ghost" onClick={() => choose('skip')}>
-              <ShieldAlert size={17} />
-              Skip it
-            </button>
-          </div>
-        </>
+        <div className="tile-stage">
+          <div className="tile">{current.text}</div>
+        </div>
       )}
 
       {feedback && (
-        <>
-          <div className={`redirect${feedback.correct ? ' settled' : ''}`}>
-            <span className="ic">
-              {feedback.correct ? <Check size={22} /> : <Info size={22} />}
-            </span>
-            <p>{feedback.text}</p>
-          </div>
-          <div className="center">
-            <button type="button" className="btn btn-accent" onClick={onward}>
-              Onward
-            </button>
-          </div>
-        </>
+        <div className={`redirect${feedback.correct ? ' settled' : ''}`}>
+          <span className="ic">
+            {feedback.correct ? <Check size={22} /> : <Info size={22} />}
+          </span>
+          <p>{feedback.text}</p>
+        </div>
       )}
 
       {/* A clean crossing is the one that counts. Every stone resolves either
@@ -131,11 +112,34 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
         </div>
       )}
 
-      <div className="row panel-actions" style={{ justifyContent: 'center' }}>
+      {/* One sticky action row for every state — the Step/Skip choice, Onward,
+          Done crossing — so the panel isn't stacking loose button rows that
+          scroll out of reach on a short screen. */}
+      <div
+        className="row panel-actions"
+        style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+      >
         <button type="button" className="btn btn-ghost btn-sm" onClick={retry}>
           <RotateCcw size={16} />
           Cross again
         </button>
+        {!done && current && !feedback && (
+          <>
+            <button type="button" className="btn btn-ghost" onClick={() => choose('skip')}>
+              <ShieldAlert size={17} />
+              Skip it
+            </button>
+            <button type="button" className="btn btn-accent" onClick={() => choose('step')}>
+              <Footprints size={17} />
+              Step on it
+            </button>
+          </>
+        )}
+        {feedback && (
+          <button type="button" className="btn btn-accent" onClick={onward}>
+            Onward
+          </button>
+        )}
         {done && allRight && (
           <button type="button" className="btn btn-accent" onClick={() => onComplete(correctCount)}>
             <Check size={19} />

@@ -339,7 +339,7 @@ p {
   border: 1.5px solid var(--line);
   border-left: 5px solid var(--accent);
   border-radius: var(--radius);
-  padding: 16px 18px;
+  padding: 13px 16px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -369,7 +369,7 @@ p {
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 12px;
 }
 
 .choice {
@@ -382,12 +382,12 @@ p {
   background: var(--paper-card);
   border: 2px solid var(--line);
   border-radius: var(--radius);
-  padding: 18px;
-  min-height: 96px;
+  padding: 14px 15px;
+  min-height: 72px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease,
     opacity 0.15s ease;
@@ -431,6 +431,13 @@ p {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+/* The step panel is height-bound; a roomy 18px between blocks is what tips a
+   long step (a decision with a reply, the fog game's six messages) into
+   needing a scroll. */
+.panel .stack {
+  gap: 13px;
 }
 
 .stack-sm {
@@ -667,7 +674,7 @@ p {
 /* ---------- Mini-game shared --------------------------------------------- */
 
 .game-head {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .game-head h3 {
@@ -676,7 +683,7 @@ p {
 
 .instruction {
   /* Text-equivalent instruction, never icon-only (design.md §8) */
-  font-size: 16px;
+  font-size: 15px;
   color: var(--ink-soft);
 }
 
@@ -761,6 +768,12 @@ p {
   margin-top: 6px;
 }
 
+/* In the height-bound step panel the tile carries a short line of text; the
+   full 120px stage + 24px padding is a chunk the panel can't spare. */
+.panel .tile-stage {
+  min-height: 84px;
+}
+
 .tile {
   background: var(--paper-card);
   border: 2.5px solid var(--accent);
@@ -774,6 +787,11 @@ p {
   cursor: grab;
   max-width: 100%;
   animation: settle 0.22s ease both;
+}
+
+.panel .tile {
+  padding: 13px 18px;
+  font-size: clamp(16px, 3vw, 19px);
 }
 
 .tile:active {
@@ -803,24 +821,26 @@ p {
 .chat {
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .msg {
   position: relative;
   font-family: var(--font-body);
-  font-size: 16.5px;
+  font-size: 15.5px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
   text-align: left;
   color: var(--ink);
   background: var(--paper-card);
   border: 2px solid var(--line);
   border-radius: 18px;
   border-bottom-left-radius: 5px;
-  padding: 13px 16px;
-  max-width: 90%;
+  padding: 10px 14px;
+  /* Full width, not 90%: a narrower bubble wraps more lines, and six of them
+     stacked is exactly what was pushing the fog game past the fold. */
+  max-width: 100%;
   cursor: pointer;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -1386,7 +1406,10 @@ p {
   display: grid;
   place-items: start center;
   overflow-y: auto;
-  padding: clamp(12px, 4vh, 48px) clamp(12px, 4vw, 24px);
+  /* Kept tight top/bottom: the panel it holds is height-bound on a laptop or
+     Chromebook, and every px of scrim padding is a px the panel has to give
+     back as internal scroll. */
+  padding: clamp(8px, 2vh, 20px) clamp(12px, 4vw, 24px);
   animation: settle 0.18s ease both;
 }
 

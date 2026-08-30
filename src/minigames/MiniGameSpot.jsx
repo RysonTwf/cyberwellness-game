@@ -106,21 +106,8 @@ export default function MiniGameSpot({ game, onComplete }) {
         })}
       </div>
 
-      {!checked && (
-        <>
-          {miss && <p className="tile-hint">Not yet. There's {miss}. Have another look.</p>}
-          <div className="center">
-            <button
-              type="button"
-              className="btn btn-accent"
-              disabled={marked.length === 0}
-              onClick={check}
-            >
-              <Check size={19} />
-              That's my answer
-            </button>
-          </div>
-        </>
+      {miss && !checked && (
+        <p className="tile-hint">Not yet. There's {miss}. Have another look.</p>
       )}
 
       {done && (
@@ -135,14 +122,30 @@ export default function MiniGameSpot({ game, onComplete }) {
         </div>
       )}
 
-      <div className="row panel-actions" style={{ justifyContent: 'center' }}>
+      {/* One sticky action row, not two: the "answer" and "done" buttons share
+          the reset button's bar so the panel isn't carrying ~130px of pinned
+          chrome on a short screen. */}
+      <div
+        className="row panel-actions"
+        style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+      >
         <button type="button" className="btn btn-ghost btn-sm" onClick={reset}>
           <RotateCcw size={16} />
           Fog it back up
         </button>
-        {done && (
+        {checked ? (
           <button type="button" className="btn btn-accent" onClick={() => onComplete(foundFlags)}>
             Done looking
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-accent"
+            disabled={marked.length === 0}
+            onClick={check}
+          >
+            <Check size={19} />
+            That's my answer
           </button>
         )}
       </div>
