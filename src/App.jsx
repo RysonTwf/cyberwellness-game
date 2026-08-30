@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useSyncExternalStore, lazy, Suspense } from 'react';
 import MainScreen from './components/MainScreen';
 import IntroStory from './components/IntroStory';
 import CharacterSelect from './components/CharacterSelect';
@@ -14,6 +14,11 @@ import { useProgress } from './state/useProgress';
 import { useUiClickSfx } from './hooks/useUiClickSfx';
 import { useUiHoverSfx } from './hooks/useUiHoverSfx';
 import { REALM_BY_ID, getBandView } from './data/realms';
+import { DEV, subscribe, overridesVersion } from './dev/contentOverrides';
+
+// Dev-only in-browser copy editor (src/dev/CopyEditor.jsx). Code-split so it
+// never lands in a production bundle.
+const CopyEditor = DEV ? lazy(() => import('./dev/CopyEditor')) : null;
 
 export default function App() {
   const { state, dispatch, allStamped, reset } = useProgress();
@@ -21,6 +26,24 @@ export default function App() {
 
   useUiClickSfx();
   useUiHoverSfx();
+
+  // Re-render the whole tree when a Copy Editor override changes so the game
+  // reflects it live (no-op version counter in a production build).
+  useSyncExternalStore(subscribe, overridesVersion, () => 0);
+  const [editorOpen, setEditorOpen] = useState(
+    () => DEV && typeof window !== 'undefined' && window.location.hash === '#edit',
+  );
+  useEffect(() => {
+    if (!DEV) return undefined;
+    const onKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
+        e.preventDefault();
+        setEditorOpen((o) => !o);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   const rawRealm = REALM_BY_ID[currentScreen] ?? null;
   // Every screen downstream of the gate reads content for the band chosen
@@ -142,6 +165,28 @@ export default function App() {
           />
         )}
       </div>
+
+      {DEV && (
+        <>
+          <button
+            type="button"
+            className="copy-editor-fab"
+            onClick={() => setEditorOpen((o) => !o)}
+            title="Edit copy (Ctrl/Cmd + Shift + E)"
+          >
+            ✏️
+          </button>
+          {editorOpen && (
+            <Suspense fallback={null}>
+              <CopyEditor
+                initialRealm={rawRealm?.id}
+                initialBand={band ?? 'lower'}
+                onClose={() => setEditorOpen(false)}
+              />
+            </Suspense>
+          )}
+        </>
+      )}
     </div>
   );
 }

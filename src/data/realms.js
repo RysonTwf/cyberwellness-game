@@ -1,3 +1,5 @@
+import { applyOverrides } from '../dev/contentOverrides';
+
 /**
  * All game content, lifted from storyline.md.
  *
@@ -1232,7 +1234,10 @@ export const HUB_ORDER = {
 /** ACTIVE_REALMS, sorted per the suggested order for the given band. */
 export function orderedActiveRealms(band = 'lower') {
   const order = HUB_ORDER[band] ?? HUB_ORDER.lower;
-  return [...ACTIVE_REALMS].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  const sorted = [...ACTIVE_REALMS].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  // Only the shared name/blurb/topic show in the Atlas strip; apply any
+  // dev Copy Editor overrides for those (no-op in a production build).
+  return sorted.map((r) => applyOverrides(r, r.id, band));
 }
 
 /**
@@ -1240,10 +1245,17 @@ export function orderedActiveRealms(band = 'lower') {
  * (`realm.story`, `.decision`, `.game`, `.rule`, alongside the always-shared
  * `.world`/`.accent`/etc.). Falls back to `bands.lower` when a band's content
  * hasn't been authored yet, so the app never breaks mid-development.
+ *
+ * `bandViewRaw` is the plain merge; `getBandView` layers any dev Copy Editor
+ * overrides on top (src/dev/contentOverrides.js — inert in production).
  */
-export function getBandView(realm, band = 'lower') {
+export function bandViewRaw(realm, band = 'lower') {
   const content = realm.bands[band] ?? realm.bands.lower;
   return { ...realm, ...content };
+}
+
+export function getBandView(realm, band = 'lower') {
+  return applyOverrides(bandViewRaw(realm, band), realm.id, band);
 }
 
 /**

@@ -1,0 +1,257 @@
+/**
+ * Dev-only content override layer for the in-browser Copy Editor
+ * (src/dev/CopyEditor.jsx).
+ *
+ * Edits are stored in localStorage and merged over the realm data at read
+ * time (see getBandView in src/data/realms.js), so the game shows them live
+ * without touching source. "Save to source" in the editor is what writes
+ * them into src/data/realms.js for real, via the dev-server plugin
+ * (vite-plugin-copy-editor.js).
+ *
+ * Everything here is inert in a production build: `import.meta.env.DEV` is
+ * false, so the store stays empty and `applyOverrides` returns its input
+ * untouched.
+ */
+
+const KEY = 'cwq-copy-overrides/v1';
+export const DEV = import.meta.env.DEV;
+
+let store = load();
+let version = 0;
+const listeners = new Set();
+
+function load() {
+  if (!DEV || typeof localStorage === 'undefined') return {};
+  try {
+    return JSON.parse(localStorage.getItem(KEY) || '{}') || {};
+  } catch {
+    return {};
+  }
+}
+
+function persist() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(store));
+  } catch {
+    /* private mode / quota — the in-memory copy still works this session */
+  }
+}
+
+function emit() {
+  version += 1;
+  listeners.forEach((fn) => fn());
+}
+
+export function subscribe(fn) {
+  listeners.add(fn);
+  return () => listeners.delete(fn);
+}
+
+/** Stable-across-renders snapshot for useSyncExternalStore. */
+export function overridesVersion() {
+  return version;
+}
+
+export function getOverrides() {
+  return store;
+}
+
+export function overrideCount() {
+  return Object.keys(store).length;
+}
+
+export function setOverride(key, value) {
+  store = { ...store, [key]: value };
+  persist();
+  emit();
+}
+
+export function removeOverride(key) {
+  if (!(key in store)) return;
+  const next = { ...store };
+  delete next[key];
+  store = next;
+  persist();
+  emit();
+}
+
+export function clearOverrides() {
+  store = {};
+  persist();
+  emit();
+}
+
+/* --------------------------------------------------------------------------
+ * Path scheme
+ *   <realmId>|<scope>|<dotPath>
+ * scope is the band ('lower' / 'higher') for band content, or 'shared' for
+ * the realm-level name / blurb / topic / intro (which both bands display).
+ * ------------------------------------------------------------------------ */
+
+const SHARED = /^(name|blurb|topic)$/;
+
+export function scopeFor(dotPath, band) {
+  return SHARED.test(dotPath) || dotPath.startsWith('intro') ? 'shared' : band;
+}
+
+export function overrideKey(realmId, dotPath, band) {
+  return `${realmId}|${scopeFor(dotPath, band)}|${dotPath}`;
+}
+
+function setDeep(obj, dotPath, value) {
+  const parts = dotPath.split('.');
+  let node = obj;
+  for (let i = 0; i < parts.length - 1; i += 1) {
+    const p = parts[i];
+    node = node[/^\d+$/.test(p) ? Number(p) : p];
+    if (node == null) return;
+  }
+  const last = parts[parts.length - 1];
+  node[/^\d+$/.test(last) ? Number(last) : last] = value;
+}
+
+const clone =
+  typeof structuredClone === 'function'
+    ? structuredClone
+    : (x) => JSON.parse(JSON.stringify(x));
+
+/** Return `view` with any matching overrides applied (a fresh clone), or the
+ *  same reference when nothing matches. */
+export function applyOverrides(view, realmId, band) {
+  if (!DEV) return view;
+  const prefixes = [`${realmId}|${band}|`, `${realmId}|shared|`];
+  const hits = Object.keys(store).filter((k) => prefixes.some((p) => k.startsWith(p)));
+  if (!hits.length) return view;
+  const out = clone(view);
+  for (const k of hits) {
+    const dotPath = k.slice(k.indexOf('|', k.indexOf('|') + 1) + 1);
+    setDeep(out, dotPath, store[k]);
+  }
+  return out;
+}
+
+/* --------------------------------------------------------------------------
+ * Introspection — walk a raw band view and list every editable string.
+ * ------------------------------------------------------------------------ */
+
+// Keys whose string value is player-facing copy.
+const EDITABLE_KEYS = new Set([
+  'text',
+  'note',
+  'prompt',
+  'response',
+  'followUp',
+  'accept',
+  'instruction',
+  'title',
+  'sub',
+  'lore',
+  'learnShort',
+  'name',
+  'blurb',
+  'topic',
+]);
+
+// Branches that never hold editable copy.
+const SKIP_KEYS = new Set([
+  'world',
+  'stamp',
+  'bands',
+  'accent',
+  'accentWash',
+  'id',
+  'enabled',
+  'fullMechanic',
+  'reportBlockEligible',
+  'type',
+  'slots',
+  'items', // items[].text is editable — handled below via a targeted walk
+]);
+
+function humanize(dotPath, view) {
+  const seg = dotPath.split('.');
+  const n = (i) => Number(seg[i]) + 1;
+  if (dotPath === 'name') return 'Realm name';
+  if (dotPath === 'blurb') return 'Atlas blurb';
+  if (dotPath === 'topic') return 'Topic line';
+  if (dotPath === 'intro.lore') return 'Intro — the story';
+  if (dotPath === 'intro.learnShort') return 'Intro — short "Learn:" line';
+  if (dotPath.startsWith('intro.learn.')) return `Intro — "you'll learn" ${n(2)}`;
+  if (dotPath === 'decision.prompt') return 'The question';
+  if (dotPath === 'rule.text') return 'The rule';
+  if (dotPath === 'game.title') return 'Mini-game — title';
+  if (dotPath === 'game.instruction') return 'Mini-game — how to play';
+  if (/^story\.\d+\.text$/.test(dotPath)) {
+    const who = view?.story?.[seg[1]]?.who ?? '';
+    return `Story line ${n(1)}${who ? ` — ${who}` : ''}`;
+  }
+  if (/^decision\.options\.\d+\.text$/.test(dotPath)) return `Choice ${String.fromCharCode(65 + Number(seg[2]))} — the option`;
+  if (/^decision\.options\.\d+\.response$/.test(dotPath)) return `Choice ${String.fromCharCode(65 + Number(seg[2]))} — what happens`;
+  if (/^extraBeats\.\w+\.prompt$/.test(dotPath)) return `Follow-up (${seg[1]}) — question`;
+  if (/^extraBeats\.\w+\.followUp$/.test(dotPath)) return `Follow-up (${seg[1]}) — reply`;
+  if (/^extraBeats\.\w+\.accept$/.test(dotPath)) return `Follow-up (${seg[1]}) — button`;
+  if (/^extraBeats\.\w+\.response$/.test(dotPath)) return `Follow-up (${seg[1]}) — reply`;
+  if (/^extraBeats\.\w+\.options\.\d+\.text$/.test(dotPath)) return `Follow-up (${seg[1]}) — option ${n(3)}`;
+  if (/^game\.bins\.\d+\.title$/.test(dotPath)) return `Mini-game — bin ${n(2)} name`;
+  if (/^game\.bins\.\d+\.sub$/.test(dotPath)) return `Mini-game — bin ${n(2)} hint`;
+  if (/^game\.items\.\d+\.text$/.test(dotPath)) return `Mini-game — card ${n(2)}`;
+  if (/^game\.messages\.\d+\.text$/.test(dotPath)) return `Mini-game — message ${n(2)}`;
+  if (/^game\.messages\.\d+\.note$/.test(dotPath)) return `Mini-game — message ${n(2)} (why)`;
+  if (/^game\.stones\.\d+\.text$/.test(dotPath)) return `Mini-game — stone ${n(2)}`;
+  if (/^game\.stones\.\d+\.note$/.test(dotPath)) return `Mini-game — stone ${n(2)} (why)`;
+  if (/^game\.verdicts\.\w+$/.test(dotPath)) return `Mini-game — result (${seg[2]})`;
+  return dotPath;
+}
+
+/**
+ * @returns {{ key, dotPath, scope, label, original, current, overridden }[]}
+ */
+export function collectEditable(rawView, realmId, band) {
+  const out = [];
+
+  const push = (dotPath, original) => {
+    const key = overrideKey(realmId, dotPath, band);
+    out.push({
+      key,
+      dotPath,
+      scope: scopeFor(dotPath, band),
+      label: humanize(dotPath, rawView),
+      original,
+      current: key in store ? store[key] : original,
+      overridden: key in store,
+    });
+  };
+
+  const walk = (node, prefix) => {
+    if (Array.isArray(node)) {
+      node.forEach((v, i) => {
+        if (typeof v === 'string') {
+          if (v.trim() && /(^|\.)learn$/.test(prefix)) push(`${prefix}.${i}`, v);
+        } else {
+          walk(v, `${prefix}.${i}`);
+        }
+      });
+      return;
+    }
+    if (!node || typeof node !== 'object') return;
+    for (const [k, v] of Object.entries(node)) {
+      if (SKIP_KEYS.has(k)) continue;
+      const p = prefix ? `${prefix}.${k}` : k;
+      if (typeof v === 'string') {
+        if (EDITABLE_KEYS.has(k) && v.trim()) push(p, v);
+      } else {
+        walk(v, p);
+      }
+    }
+  };
+
+  walk(rawView, '');
+
+  // `items` is skipped wholesale above (to dodge items[].id/.bin/etc); pick
+  // its text back up here.
+  (rawView.game?.items ?? []).forEach((it, i) => {
+    if (typeof it.text === 'string' && it.text.trim()) push(`game.items.${i}.text`, it.text);
+  });
+
+  return out;
+}
