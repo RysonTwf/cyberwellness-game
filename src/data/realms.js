@@ -1239,22 +1239,20 @@ export const REALMS = [
 
     world: {
       spawn: { x: 10, y: 88 },
-      // Stops measured against the real pond overlays (RealmArt.jsx BogScene):
-      // PONDLEFT (Pockets alone) spans x 11-46% with the frog itself at ~27%;
-      // PONDRIGHT (the unkind crowd) spans x 55-91% with its big frog at
-      // ~73%. Pockets/murky-water pins sit on the left pond, "the comment"
-      // on the right one.
+      // Pin positions hand-placed against the pond art: Pockets sits in the
+      // right-hand pond (story / decision / rule all talk to Pockets there),
+      // and the murky water to clear is the left-hand pond.
       bounds: { minX: 5, maxX: 92, minY: 70, maxY: 92 },
       stops: {
-        story: { x: 27, y: 76, label: 'Pockets', action: 'Listen' },
-        decision: { x: 73, y: 73, label: 'the comment', action: 'Respond' },
-        game: { x: 17, y: 76, label: 'the murky water', action: 'Clear it' },
-        rule: { x: 27, y: 78, label: 'Pockets', action: 'Talk' },
+        story: { x: 72, y: 69, label: 'Pockets', action: 'Listen' },
+        decision: { x: 72, y: 69, label: 'the comment', action: 'Respond' },
+        game: { x: 26, y: 73, label: 'the murky water', action: 'Clear it' },
+        rule: { x: 72, y: 69, label: 'Pockets', action: 'Talk' },
       },
     },
 
-    // higher: same mechanic, harder scenario — identity-based harassment,
-    // bystander responsibility (Phase 1, done).
+    // Both bands run the same scenario / mechanic (see the bullybog objects
+    // above); only the wording is shorter for P1–P3.
     bands: { lower: bullybogLower, higher: bullybogHigher },
   },
 
