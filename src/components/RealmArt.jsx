@@ -35,7 +35,7 @@ function PassworldScene({ mood }) {
   const open = mood === 'after';
 
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // (PlatformerStoryRealm's two-column layout leaves it
   // wider than tall), so the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -78,7 +78,7 @@ function PrivacyScene({ mood }) {
   const clear = mood === 'after';
 
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // (PlatformerStoryRealm's two-column layout leaves it
   // wider than tall), so the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -113,7 +113,7 @@ function BogScene({ mood }) {
   const clear = mood === 'after';
 
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // (PlatformerStoryRealm's two-column layout leaves it
   // wider than tall), so the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -149,7 +149,7 @@ function BogScene({ mood }) {
  * anything the way it would elsewhere. */
 function BayScene() {
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // (PlatformerStoryRealm's two-column layout leaves it
   // wider than tall), so the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -168,7 +168,7 @@ function FableFallsScene({ mood }) {
   const sage = 'var(--sage)';
 
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // (PlatformerStoryRealm's two-column layout leaves it
   // wider than tall), so the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">

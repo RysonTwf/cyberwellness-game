@@ -142,6 +142,7 @@ const EDITABLE_KEYS = new Set([
   'response',
   'followUp',
   'accept',
+  'feedback',
   'instruction',
   'title',
   'sub',
@@ -181,6 +182,11 @@ function humanize(dotPath, view) {
   if (dotPath === 'rule.text') return 'The rule';
   if (dotPath === 'game.title') return 'Mini-game — title';
   if (dotPath === 'game.instruction') return 'Mini-game — how to play';
+  if (/^game\.questions\.\d+\.text$/.test(dotPath)) return `Quiz — question ${n(2)}`;
+  if (/^game\.questions\.\d+\.options\.\d+\.text$/.test(dotPath))
+    return `Quiz — Q${n(2)} answer ${String.fromCharCode(65 + Number(seg[4]))}`;
+  if (/^game\.questions\.\d+\.options\.\d+\.feedback$/.test(dotPath))
+    return `Quiz — Q${n(2)} answer ${String.fromCharCode(65 + Number(seg[4]))} — feedback`;
   if (/^story\.\d+\.text$/.test(dotPath)) {
     const who = view?.story?.[seg[1]]?.who ?? '';
     return `Story line ${n(1)}${who ? ` — ${who}` : ''}`;

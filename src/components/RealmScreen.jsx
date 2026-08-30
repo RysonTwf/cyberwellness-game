@@ -13,8 +13,8 @@ import MiniGameSort from '../minigames/MiniGameSort';
 import MiniGameSpot from '../minigames/MiniGameSpot';
 import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
+import MiniGameQuiz from '../minigames/MiniGameQuiz';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
-import BalanceBeachRealm from './BalanceBeachRealm';
 
 // Realm icons moved to JournalProgress.jsx along with the realm heading —
 // the bar is now the one place a realm's identity is drawn.
@@ -31,16 +31,12 @@ const GAMES = {
   spot: MiniGameSpot,
   balance: MiniGameBalance,
   steppingstones: MiniGameSteppingStones,
+  quiz: MiniGameQuiz,
 };
 
 // Order the optional post-decision beats appear in, when a realm defines them
 // (Improvement Plan §2: digital footprint, then "who would you tell").
 const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
-
-// Every realm runs the same four steps; the trail at the top of the panel
-// keeps a player oriented (StepTrail.jsx).
-const TRAIL_STEPS = ['Story', 'Choice', 'Game', 'Rule'];
-const TRAIL_INDEX = { story: 0, decision: 1, game: 2, rule: 3 };
 
 /**
  * One realm, start to finish.
@@ -72,20 +68,6 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
       />
     );
   }
-  if (realm.fullMechanic === 'balanceBeach') {
-    return (
-      <BalanceBeachRealm
-        realm={realm}
-        progress={progress}
-        travelerName={travelerName}
-        avatar={avatar}
-        onSettle={onSettle}
-        onStamp={onStamp}
-        onBackToAtlas={onBackToAtlas}
-      />
-    );
-  }
-
   const [step, setStep] = useState('story'); // story | decision | game | rule | stamp
   const [open, setOpen] = useState(false); // is the step's panel showing?
   const [beat, setBeat] = useState(0);
@@ -107,7 +89,19 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   const Game = GAMES[realm.game.type];
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
 
-  const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
+  // A realm can skip the branching decision and go story -> game (Balance Bay,
+  // where the "what do you do" moment was cut per the school's revision). The
+  // step trail and the story panel's forward button both adapt.
+  const hasDecision = Boolean(realm.decision);
+  const gameLabel = realm.game.type === 'quiz' ? 'Questions' : 'Game';
+  const trailSteps = hasDecision
+    ? ['Story', 'Choice', gameLabel, 'Rule']
+    : ['Story', gameLabel, 'Rule'];
+  const trailIndex = hasDecision
+    ? { story: 0, decision: 1, game: 2, rule: 3 }
+    : { story: 0, game: 1, rule: 2 };
+
+  const picked = pick && realm.decision ? realm.decision.options.find((o) => o.id === pick) : null;
   // The world visibly changes only once the whole level's work is done —
   // decision made AND mini-game completed. Flipping at the safe choice (as
   // this used to) showed the reward early and broke the game step's own
@@ -159,7 +153,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
           height-bound scene box ~110px of width on short viewports. The
           step trail is a thin exception: it keeps a player oriented across
           the whole realm, not just while a panel is open. */}
-      <StepTrail steps={TRAIL_STEPS} current={TRAIL_INDEX[step] ?? 0} />
+      <StepTrail steps={trailSteps} current={trailIndex[step] ?? 0} />
 
       <World
         sceneKey={realm.id}
@@ -194,14 +188,23 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                     className="btn btn-accent"
                     onClick={() => {
                       if (beat < realm.story.length - 1) setBeat((b) => b + 1);
-                      else {
+                      else if (hasDecision) {
                         setStep('decision');
                         // Stay open — the decision happens right here, in the
                         // same conversation, rather than sending them walking.
+                      } else {
+                        // No decision (Balance Bay) — head straight out to the
+                        // game pin, same as the safe-choice path does.
+                        setStep('game');
+                        setOpen(false);
                       }
                     }}
                   >
-                    {beat < realm.story.length - 1 ? 'Next' : 'What do I say?'}
+                    {beat < realm.story.length - 1
+                      ? 'Next'
+                      : hasDecision
+                        ? 'What do I say?'
+                        : 'Take a look'}
                     <ArrowRight size={19} />
                   </button>
                 </div>
