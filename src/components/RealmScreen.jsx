@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ArrowRight, Key, Compass, Heart, Sun, Eye, RefreshCw, Check, X } from 'lucide-react';
+import { ArrowRight, RefreshCw, Check, X } from 'lucide-react';
 import { playSfx } from '../lib/sfx';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
@@ -15,7 +15,8 @@ import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BalanceBeachRealm from './BalanceBeachRealm';
 
-const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
+// Realm icons moved to JournalProgress.jsx along with the realm heading —
+// the bar is now the one place a realm's identity is drawn.
 // 'steppingstones' is Phaser-backed (Milestones Phase 2) — importing its
 // wrapper component here doesn't pull Phaser itself into the main bundle,
 // only into a separate chunk fetched when it's actually mounted (see
@@ -59,7 +60,6 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
         realm={realm}
         progress={progress}
         travelerName={travelerName}
-        Icon={REALM_ICONS[realm.id]}
         onSettle={onSettle}
         onStamp={onStamp}
         onBackToAtlas={onBackToAtlas}
@@ -73,7 +73,6 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
         progress={progress}
         travelerName={travelerName}
         avatar={avatar}
-        Icon={REALM_ICONS[realm.id]}
         onSettle={onSettle}
         onStamp={onStamp}
         onBackToAtlas={onBackToAtlas}
@@ -99,7 +98,6 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
     setExtraIndex((i) => i + 1);
   };
 
-  const Icon = REALM_ICONS[realm.id];
   const Game = GAMES[realm.game.type];
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
 
@@ -145,15 +143,9 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
     <div className="fold" style={accentVars}>
       <div className="accent-bar" />
 
-      <div className="realm-head">
-        <span className="badge-ic">
-          <Icon size={22} strokeWidth={2.2} />
-        </span>
-        <div>
-          <h2>{realm.name}</h2>
-          <span className="pin-label">{realm.topic}</span>
-        </div>
-      </div>
+      {/* The realm's name/topic/icon live in the journal bar above
+          (JournalProgress `realm` prop) — a heading row here cost the
+          height-bound scene box ~110px of width on short viewports. */}
 
       <World
         sceneKey={realm.id}

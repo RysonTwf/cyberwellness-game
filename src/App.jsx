@@ -46,6 +46,7 @@ export default function App() {
             travelerName={travelerName}
             showBack={!onAtlas}
             onOpenAtlas={() => go('atlas')}
+            realm={realm}
           />
         )}
 

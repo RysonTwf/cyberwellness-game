@@ -582,29 +582,44 @@ p {
   margin-bottom: 10px;
 }
 
-/* Kept deliberately compact (smaller heading than the base h2, tight
-   margins): on a short laptop viewport the realm's scene box is height-bound,
-   so every px this header gives up widens the box below it by two. */
-.realm-head {
+/* The realm's identity, drawn inside the journal bar's empty middle
+   (JournalProgress `realm` prop). The realms used to render a full heading
+   row of their own below the bar — on short viewports the scene box is
+   height-bound, so that row's ~55px cost the box ~110px of width. */
+.journal-realm {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 9px;
+  min-width: 0;
 }
 
-.realm-head h2 {
-  font-size: clamp(20px, 3.4vw, 26px);
+.journal-realm-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.realm-head .badge-ic {
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
+.journal-realm .badge-ic {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
   display: grid;
   place-items: center;
   background: var(--accent-wash);
   color: var(--accent);
   flex: 0 0 auto;
+}
+
+@media (max-width: 720px) {
+  /* The bar gets crowded on a phone — the topic pill is the first to go
+     (the realm name and stamps matter more). */
+  .journal-realm-topic {
+    display: none;
+  }
 }
 
 .scene {

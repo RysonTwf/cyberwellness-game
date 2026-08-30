@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1788064763.180394,
-    "ast_hash": "26a5328af9f867bba403b1bb8f616cd0",
+    "mtime": 1788068863.548886,
+    "ast_hash": "4ede62d66269d7ac9668489b9bc7cf2a",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
@@ -29404,11 +29404,6 @@
     "ast_hash": "5841a620015c1ca91e2ae4a052f180f3",
     "semantic_hash": ""
   },
-  "public/assets/Mascots/BOY_MASCOT.jpg": {
-    "mtime": 1788067109.5154524,
-    "ast_hash": "52583727a15d9f02d6d42fda29f9a354",
-    "semantic_hash": ""
-  },
   "public/assets/Mascots/BOY_MASCOT.png": {
     "mtime": 1788067109.5765011,
     "ast_hash": "25735878153451149af58fdbdb730a80",
@@ -29417,6 +29412,11 @@
   "public/assets/Mascots/GIRL_MASCOT.png": {
     "mtime": 1788067109.6220264,
     "ast_hash": "6602fa794d90eed7e59ec1ddb7b4f77c",
+    "semantic_hash": ""
+  },
+  "PLAN.md": {
+    "mtime": 1788068900.6260126,
+    "ast_hash": "6b3e32d9068d64277db0e3be3a1e5226",
     "semantic_hash": ""
   }
 }

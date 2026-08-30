@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1787506745.9171977,
-    "ast_hash": "41897b703ddafa283ef36eab85c292cc",
+    "mtime": 1788075232.56592,
+    "ast_hash": "f14496736d56381c3a2f8bd27ce45427",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "src/components/JournalProgress.jsx": {
-    "mtime": 1787041849.7988324,
-    "ast_hash": "d7116553a505c98c7c36c57f8f7c425e",
+    "mtime": 1788075227.3839912,
+    "ast_hash": "90c1ce6f025cf5c953203b6090923a26",
     "semantic_hash": ""
   },
   "src/components/RealmArt.jsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "src/components/RealmScreen.jsx": {
-    "mtime": 1788064752.9111743,
-    "ast_hash": "e5201cafc8b6388969ce36347be7246a",
+    "mtime": 1788075277.525199,
+    "ast_hash": "4e342ea6532c5bfefbdd4223543c6335",
     "semantic_hash": ""
   },
   "src/components/StampBadge.jsx": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787749905.484953,
-    "ast_hash": "ce1161e39f58c28c4a1a8dff342fe687",
+    "mtime": 1788070534.764958,
+    "ast_hash": "3a2d6c58b77ad6b0a0df3daa7fa88a55",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1787251322.4749959,
-    "ast_hash": "a895a6859eb98383bb7763959498902a",
+    "mtime": 1788075287.5274503,
+    "ast_hash": "745c6b80f0347bb4645b1442f7f058d3",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
@@ -29265,8 +29265,8 @@
     "semantic_hash": ""
   },
   "src/components/BalanceBeachRealm.jsx": {
-    "mtime": 1787506731.9082508,
-    "ast_hash": "31512a61bfcd27029a5d8347bff83723",
+    "mtime": 1788075286.4846005,
+    "ast_hash": "82fe1948aad70c0d71a9fb1c6246d487",
     "semantic_hash": ""
   },
   "src/world/beach/BeachScene.jsx": {
@@ -29415,8 +29415,8 @@
     "semantic_hash": ""
   },
   "PLAN.md": {
-    "mtime": 1788068900.6260126,
-    "ast_hash": "6b3e32d9068d64277db0e3be3a1e5226",
+    "mtime": 1788075355.65494,
+    "ast_hash": "0184d94a8afe3d689384d0187c2a79ce",
     "semantic_hash": ""
   }
 }

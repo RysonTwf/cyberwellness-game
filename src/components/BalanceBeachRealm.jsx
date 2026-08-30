@@ -66,7 +66,6 @@ export default function BalanceBeachRealm({
   progress,
   travelerName,
   avatar,
-  Icon,
   onSettle,
   onStamp,
   onBackToAtlas,
@@ -150,15 +149,8 @@ export default function BalanceBeachRealm({
     <div className="fold" style={accentVars}>
       <div className="accent-bar" />
 
-      <div className="realm-head">
-        <span className="badge-ic">
-          <Icon size={22} strokeWidth={2.2} />
-        </span>
-        <div>
-          <h2>{realm.name}</h2>
-          <span className="pin-label">{realm.topic}</span>
-        </div>
-      </div>
+      {/* Realm name/topic/icon are in the journal bar (JournalProgress) —
+          see RealmScreen for why the heading row moved up there. */}
 
       {/* ---------------------------------------------------------- story -- */}
       {step === 'story' && (

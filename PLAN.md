@@ -73,13 +73,16 @@ what actually changed.
       journal-bar padding, accent-bar, and realm-head (smaller heading +
       badge, tighter margins): box grew 627 → 713px (+14%) on that viewport.
 
+- [x] **Realm heading merged into the journal bar** (this pass): the realm's
+      icon/name/topic now render in the bar's empty middle (JournalProgress
+      `realm` prop, passed from App); the standalone `.realm-head` row is
+      gone from RealmScreen/PlatformerStoryRealm/BalanceBeachRealm. Box grew
+      713 → 982px on the test viewport — +57% total vs. before this pass.
+      The topic pill hides under 720px so the bar doesn't crowd on phones.
+
 ### To do
 
 - [ ] Verify Passworld lower-band pins live (needs a lower-band save).
-- [ ] If the realm box still feels small on short viewports, the next lever
-      is merging the realm name into the journal-bar row (its middle is
-      empty) — saves another ~55px of chrome height (~110px of box width).
-      Layout change in RealmScreen/JournalProgress, not just CSS.
 - [ ] Fable Falls real background art (designer pass still pending —
       Milestones Phase 3). Re-align its stops when the art lands, same
       measure-against-the-PNG process as the other four.
