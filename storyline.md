@@ -61,6 +61,9 @@ two things: curiosity, and a second thought."*
 >   P1–P3, a little fuller for P4–P6). Passworld, Privacy Peaks and Fable
 >   Falls do differ by band (harder scenarios for the older pupils), but
 >   without any "again / this time / Level Up" language.
+> - **Bully Bog** dropped the "which trusted adult would you tell" follow-up
+>   and any "show an adult you trust" line from its rule (per the school).
+>   It keeps the digital-footprint follow-up and the block/report option.
 
 | Order | Realm | Topic | Mini-game type | Stamp icon |
 |---|---|---|---|---|

@@ -521,7 +521,7 @@ const bullybogLower = {
     },
     {
       who: 'Comet',
-      text: 'Pockets has stopped singing. Two others are typing, and looking at you.',
+      text: 'Pockets is sad and has stopped singing. ',
     },
   ],
 
@@ -549,10 +549,9 @@ const bullybogLower = {
     ],
   },
 
-  // Improvement Plan §2 "Recommended fixes" — digital footprint and
-  // Engage-and-Support both land here, right after the kindness choice
-  // settles, since the curriculum pairs "respectful" with "positive trail"
-  // in the same sentence (Term 1: Think Before You Act).
+  // One follow-up beat: digital footprint (Improvement Plan §2, Term 1
+  // "Think Before You Act" — respectful + positive trail). The "who would
+  // you tell" beat was dropped from Bully Bog per the school.
   extraBeats: {
     footprint: {
       who: 'Comet',
@@ -560,18 +559,6 @@ const bullybogLower = {
         'One more thing. This stays online for good. Would you be happy for that? Posts do not really go away.',
       accept: 'Good point.',
       followUp: 'Good habit. Ask if it is kind. Then ask if you would still be happy with it next year.',
-    },
-    tellSomeone: {
-      who: 'Comet',
-      prompt:
-        'You did this one yourself. But you do not have to. If the water got much darker, which grown-up would you tell?',
-      options: [
-        { id: 'parent', text: 'A parent or family member' },
-        { id: 'teacher', text: 'A teacher' },
-        { id: 'other-adult', text: 'Another trusted adult' },
-      ],
-      response:
-        'Good answer. Asking for help matters as much as being kind. Know who to tell before you need to.',
     },
   },
 
@@ -597,7 +584,7 @@ const bullybogLower = {
 
   rule: {
     who: 'Comet',
-    text: 'If it is ever about you, not Pockets, the rule is the same. Do not be mean back. Save it, and show an adult you trust. Standing up can be one kind sentence.',
+    text: 'If it is ever about you, not Pockets, the rule is the same. Do not be mean back. Standing up can be one kind sentence.',
   },
 };
 
@@ -650,6 +637,8 @@ const bullybogHigher = {
     ],
   },
 
+  // One follow-up beat only: digital footprint. The "who would you tell"
+  // beat was dropped from Bully Bog per the school.
   extraBeats: {
     footprint: {
       who: 'Comet',
@@ -658,18 +647,6 @@ const bullybogHigher = {
       accept: 'Good point.',
       followUp:
         'A good habit to keep. First ask if it is kind. Then ask if you would still stand by it next year.',
-    },
-    tellSomeone: {
-      who: 'Comet',
-      prompt:
-        'You handled this one yourself, but you do not always have to. If it ever got bigger than you could deal with alone, which grown-up would you tell?',
-      options: [
-        { id: 'parent', text: 'A parent or family member' },
-        { id: 'teacher', text: 'A teacher' },
-        { id: 'other-adult', text: 'Another trusted adult' },
-      ],
-      response:
-        'Good answer. Telling a grown-up is part of standing up too, just as much as the comment you send.',
     },
   },
 
@@ -696,7 +673,7 @@ const bullybogHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, show an adult you trust, and use block or report if you need to. Standing up for someone can be one kind sentence, and it counts most when other people are watching.',
+    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, and use block or report if you need to. Standing up for someone can be one kind sentence, and it counts most when other people are watching.',
   },
 };
 
@@ -799,7 +776,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay. Screens are not bad, and losing track of time is the real problem. As you get older, it helps to notice how screen time feels, not just how long it lasts. Decide when you will stop before you start, and leave room for sleep, hobbies and real people.',
+    text: 'As you get older, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
   },
 };
 
@@ -1223,16 +1200,16 @@ export const REALMS = [
     name: 'Bully Bog',
     accent: 'var(--coral)',
     accentWash: 'rgba(224, 99, 122, 0.13)',
-    blurb: 'Murky water that shows whatever gets posted about the folk who live here.',
+    blurb: 'Murky water that shows whatever gets posted about the folks who live here.',
     topic: 'Cyberbullying & kindness',
     stamp: { icon: 'heart', label: 'Bully Bog · Visited' },
     enabled: true,
     intro: {
-      lore: 'The bog\'s still water shows every word posted about the folk who live here. Lately the ponds have turned murky, because unkind comments sink in and cloud everything. Pockets the frog sits alone in the murkiest one. The bog needs someone who can clear the water.',
+      lore: 'The bog\'s still water shows every word posted about the folks who live here. Lately the ponds have turned murky, because unkind comments sink in and cloud everything. Pockets the frog sits alone in the murkiest one. The bog needs someone who can clear the water.',
       learn: [
         'How unkind words online really make other people feel',
         'What you can do when you see someone being bullied',
-        'When to report, block, and tell an adult you trust',
+        'When to use block or report',
       ],
       learnShort: 'Learn: kindness online & standing up to bullying',
     },
