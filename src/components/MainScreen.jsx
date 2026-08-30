@@ -1,37 +1,36 @@
 import { Play } from 'lucide-react';
 import { Comet } from './Characters';
 import SchoolLogo from './SchoolLogo';
+import TitleScene from './TitleScene';
 
 /**
- * The actual first thing a player sees — before the Traveler's Room, before
- * any of the room's own walk-up-to-the-diary staging. A real title screen:
- * the game's name, and one button. Everything else (the room, meeting
- * Comet, naming, band-select) still happens exactly as it did, just one
- * screen later than before.
+ * The title screen — the first thing a fresh player sees. A soft green
+ * dawn landscape (TitleScene.jsx) with Comet looping in over it, and the
+ * game's name on a field-journal cover: the closed version of the same
+ * journal the Traveler opens in their room a screen later.
  *
  * Only ever shown on a genuinely fresh session — a saved game's
- * `currentScreen` already points past 'title' the moment the player has
- * started, so a returning player never sees this again (state/useProgress.js).
+ * `currentScreen` already points past 'title' (state/useProgress.js).
  */
 export default function MainScreen({ onStart }) {
   return (
-    <div className="fold">
-      <div className="center" style={{ flex: 1, display: 'grid', placeItems: 'center', gap: 22 }}>
-        <div className="stack" style={{ alignItems: 'center', textAlign: 'center' }}>
-          <div className="title-logos">
-            <Comet size={92} />
-            <span className="title-logos-x" aria-hidden="true" />
-            <SchoolLogo />
-          </div>
-          <h1 style={{ marginTop: 10 }}>Cyber Defender Quest</h1>
-          <p className="lede" style={{ marginTop: 8, maxWidth: '38ch' }}>
-            Travel the Atlas with Comet, and become a Wise Traveller.
-          </p>
-        </div>
+    <div className="fold title-screen">
+      <TitleScene />
+      <span className="title-comet" aria-hidden="true">
+        <Comet size={46} />
+      </span>
 
-        <button type="button" className="btn btn-accent" onClick={onStart}>
+      <div className="title-cover">
+        <span className="title-cover-ribbon" aria-hidden="true" />
+        <SchoolLogo variant="full" className="title-cover-crest" />
+        <p className="title-cover-kicker">A Cyber Wellness field journal</p>
+        <h1 className="title-cover-name">Cyber Defender Quest</h1>
+        <p className="title-cover-lede">
+          Travel the Atlas with Comet, and become a Wise Traveller.
+        </p>
+        <button type="button" className="btn btn-accent title-cover-start" onClick={onStart}>
           <Play size={19} />
-          Start
+          Start the journey
         </button>
       </div>
     </div>

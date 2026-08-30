@@ -2327,21 +2327,153 @@ p {
    included — it needs to stay reachable no matter what's open underneath.
    The panel it opens goes higher still, so it's never the thing buried. */
 
-/* ---------- Greendale school crest (SchoolLogo.jsx) ------------------------ */
+/* ---------- Title screen (MainScreen.jsx + TitleScene.jsx) --------------- */
 
-/* Title screen: the full logo, matched in height to Comet and set beside it. */
-.title-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+.title-screen {
+  position: relative;
+  overflow: hidden;
+  /* cancel the shell's padding so the landscape runs edge to edge */
+  margin: calc(-1 * clamp(10px, 2vw, 20px)) calc(-1 * clamp(14px, 4vw, 26px));
 }
 
-.title-logos-x {
-  width: 1px;
-  align-self: stretch;
-  margin: 6px 0;
-  background: var(--line);
+.title-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.title-mote {
+  animation: title-mote-float 9s ease-in-out infinite;
+}
+
+@keyframes title-mote-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-14px);
+    opacity: 0.9;
+  }
+}
+
+/* Comet flies a slow loop across the sky above the cover. */
+.title-comet {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  z-index: 2;
+  line-height: 0;
+  animation: title-comet-loop 16s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(31, 52, 82, 0.18));
+}
+
+@keyframes title-comet-loop {
+  0% {
+    transform: translate(0, 0) rotate(-4deg);
+  }
+  25% {
+    transform: translate(34vw, -6vh) rotate(6deg);
+  }
+  50% {
+    transform: translate(62vw, 4vh) rotate(-2deg);
+  }
+  60% {
+    transform: translate(58vw, 10vh) rotate(-18deg);
+  }
+  72% {
+    transform: translate(40vw, 6vh) rotate(-30deg);
+  }
+  85% {
+    transform: translate(16vw, -2vh) rotate(-14deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(-4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-mote,
+  .title-comet {
+    animation: none;
+  }
+  .title-comet {
+    transform: translate(30vw, -3vh) rotate(4deg);
+  }
+}
+
+/* The field-journal cover the title sits on — the closed version of the
+   diary the Traveler opens in their room (see .diary). */
+.title-cover {
+  position: relative;
+  z-index: 3;
+  margin: auto;
+  width: min(440px, calc(100% - 32px));
+  padding: clamp(24px, 5vw, 38px) clamp(22px, 5vw, 34px) clamp(28px, 5vw, 38px);
+  text-align: center;
+  border-radius: 16px;
+  border: 3px solid #7a5233;
+  border-left-width: 11px;
+  background-color: #f4ecd6;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 30px,
+    rgba(122, 82, 51, 0.08) 30px 31px
+  );
+  box-shadow: var(--shadow-lift);
+  --ink: #4a2f1c;
+  --ink-soft: #7a5d43;
+}
+
+.title-cover-ribbon {
+  position: absolute;
+  top: -4px;
+  right: 34px;
+  width: 16px;
+  height: 46px;
+  background: var(--gold);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+  opacity: 0.9;
+}
+
+.title-cover-crest {
+  height: 58px;
+  width: auto;
+  border: 1.5px solid rgba(122, 82, 51, 0.28);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+}
+
+.title-cover-kicker {
+  font-family: var(--font-stamp);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7a5d43;
+  margin: 0 0 6px;
+}
+
+.title-cover-name {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.4vw, 34px);
+  color: #4a2f1c;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.title-cover-lede {
+  color: #6a4f38;
+  max-width: 30ch;
+  margin: 10px auto 0;
+}
+
+.title-cover-start {
+  margin-top: 20px;
+  --accent: var(--teal);
 }
 
 .school-logo {
