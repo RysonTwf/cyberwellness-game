@@ -42,6 +42,13 @@ export default function PhaserMiniGame({ config, onReady }) {
         if (cancelled || !hostRef.current) return;
         const Phaser = mod.default ?? mod;
         const resolvedConfig = typeof config === 'function' ? config(Phaser) : config;
+        const w = resolvedConfig.width ?? 560;
+        const h = resolvedConfig.height ?? 280;
+        // Match the host box to the scene's own aspect ratio (the shared
+        // `.phaser-host` rule assumes 2:1; a scene that returns its own
+        // width/height — e.g. the wide-and-short stepping-stone ravine —
+        // would otherwise be stretched by the `canvas { height: 100% }` rule).
+        hostRef.current.style.setProperty('--scene-ar', String(w / h));
         gameRef.current = new Phaser.Game({
           type: Phaser.AUTO,
           parent: hostRef.current,

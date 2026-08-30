@@ -2,22 +2,30 @@
  * Privacy Peaks' P4–P6 mechanic (Milestones Phase 2): the stepping-stone
  * decision run. The actual decision logic (which stone, correct/incorrect,
  * progress, when it's done) lives in React — same pattern as MiniGameSpot —
- * so this scene is deliberately dumb: it draws the run of stones and fog,
- * and exposes one method, `hopTo(index, correct)`, that the React wrapper
- * calls after each choice to move the Traveler token and tint the resolved
- * stone. One-directional (React → Phaser) keeps this simple to reason about.
+ * so this scene is deliberately dumb: it draws the misty ravine, the run of
+ * stones and the Traveler, and exposes one method, `hopTo(index, correct)`,
+ * that the React wrapper calls after each choice to move the Traveler and
+ * mark the resolved stone. One-directional (React → Phaser) keeps this
+ * simple to reason about.
  *
- * The stone/token/fog art itself is declared once in `steppingStonesArt.js`
- * (Milestones Phase 4) — this scene only ever refers to its texture keys.
+ * The stone/token/fog/backdrop art is declared once in
+ * `steppingStonesArt.js` (Milestones Phase 4) — this scene only ever refers
+ * to its texture keys.
  */
 
 import { buildSteppingStonesArt, preloadSteppingStonesArt } from './steppingStonesArt';
-import { motionTween } from '../../lib/motion';
+import { motionTween, prefersReducedMotion } from '../../lib/motion';
 
-// Only the few tints this scene applies at runtime live here — everything the
-// art itself is drawn with belongs to steppingStonesArt.js.
-const TEAL = 0x2d8c7f;
-const GOLD = 0xe0a030;
+// Only the runtime tints live here — everything the art is drawn with belongs
+// to steppingStonesArt.js. Light tints so a resolved stone still reads as a
+// stone (the top face keeps its form) rather than a flat coloured disc.
+const STEP_TINT = 0xa9d9cd; // stepped on — a safe one
+const SKIP_TINT = 0xf1dcaf; // skipped — a flagged one
+const STEP_GLOW = 0x2d8c7f;
+const SKIP_GLOW = 0xe0a030;
+
+const W = 560;
+const H = 190;
 
 export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
   class SteppingStonesScene extends Phaser.Scene {
@@ -33,52 +41,132 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady }) {
 
     create() {
       buildSteppingStonesArt(this);
+      const reduced = prefersReducedMotion();
 
+      this.add.image(W / 2, H / 2, 'ss-backdrop');
+
+      // One wide fog mass over the ravine. It drifts gently, and `hopTo`
+      // slides it off toward the far side and fades it as the crossing is
+      // made — the run literally clears the fog. Drawn wider than the canvas
+      // and fully feathered, so shifting it never shows an edge.
+      this.fog = this.add.image(W * 0.5, H * 0.5, 'ss-fog').setAlpha(0.78);
+      this.fogBaseX = this.fog.x;
+
+      if (!reduced) {
+        this.tweens.add({
+          targets: this.fog, x: this.fog.x + 12, duration: 6000,
+          ease: 'Sine.inOut', yoyo: true, repeat: -1,
+        });
+        // a couple of loose wisps for depth
+        [[-60, H * 0.46, 24000], [W + 60, H * 0.64, 31000]].forEach(([fromX, y, dur], i) => {
+          const wisp = this.add.image(fromX, y, 'ss-wisp').setAlpha(0.45);
+          const toX = i === 0 ? W + 80 : -80;
+          this.tweens.add({ targets: wisp, x: toX, duration: dur, repeat: -1, ease: 'Linear' });
+        });
+      }
+
+      // Stones on a shallow S so the run reads as a path, not a hard zigzag.
+      // The right margin is wider so the last stone doesn't crowd the gate.
       const n = stones.length;
-      const marginX = 46;
-      const usableW = 560 - marginX * 2;
-
-      // fog bank behind everything — the 560x220 texture is drawn centred on
-      // the same band the old fillRect(0, 60, 560, 220) covered.
-      this.add.image(280, 170, 'ss-fog');
-
+      const marginL = 42;
+      const marginR = 70;
+      const usableW = W - marginL - marginR;
       this.stoneSprites = stones.map((s, i) => {
-        const x = marginX + (usableW * i) / Math.max(n - 1, 1);
-        const y = 150 + (i % 2 === 0 ? -20 : 20);
+        const t = n === 1 ? 0 : i / (n - 1);
+        const x = marginL + usableW * t;
+        const y = 120 + Math.sin(t * Math.PI * 1.6) * 16;
+        this.add.image(x, y + 12, 'ss-stone-shadow').setAlpha(0.5);
         const sprite = this.add.image(x, y, 'ss-stone');
         this.add
-          .text(x, y, String(i + 1), {
-            fontFamily: 'sans-serif',
-            fontSize: '12px',
-            color: '#1f3452',
+          .text(x, y - 1, String(i + 1), {
+            fontFamily: 'Baloo 2, Nunito, sans-serif',
+            fontSize: '11px',
+            fontStyle: 'bold',
+            color: '#5c7185',
           })
           .setOrigin(0.5);
-        return { x, y, sprite };
+        return { x, y, sprite, glow: null };
       });
 
       const start = this.stoneSprites[0];
-      this.traveler = this.add.image(start?.x ?? 40, (start?.y ?? 150) - 22, 'ss-token');
+      this.traveler = this.add
+        .image(start?.x ?? marginL, (start?.y ?? 120) - 19, 'ss-token')
+        .setOrigin(0.5, 1);
+      this.footY = this.traveler.y;
+
+      this.idleBob(reduced);
 
       onSceneReady?.(this);
     }
 
+    /** A small resting bob, restarted after each hop lands. */
+    idleBob(reduced = prefersReducedMotion()) {
+      if (reduced) return;
+      this.bob = this.tweens.add({
+        targets: this.traveler, y: this.footY - 2, duration: 1400,
+        ease: 'Sine.inOut', yoyo: true, repeat: -1,
+      });
+    }
+
+    /** Move the Traveler to stone `index` and mark how that choice landed. */
     hopTo(index, correct) {
       const target = this.stoneSprites[index];
       if (!target) return;
-      target.sprite.setTint(correct ? TEAL : GOLD);
-      // Purely the visual slide — the actual feedback (safe/unsafe, the
-      // explanation) is DOM text in MiniGameSteppingStones.jsx, so this can
-      // collapse to a near-instant snap under reduced motion with nothing
-      // lost.
+
+      // Mark the resolved stone: a light tint that keeps its form, a soft
+      // glow that stays under it, and a quick scale pop. The explanation
+      // itself is DOM text in the wrapper.
+      const tint = correct ? STEP_TINT : SKIP_TINT;
+      const glowColour = correct ? STEP_GLOW : SKIP_GLOW;
+      target.sprite.setTint(tint);
+      if (target.glow) target.glow.destroy();
+      target.glow = this.add
+        .image(target.x, target.y + 3, 'ss-stone-shadow')
+        .setTint(glowColour)
+        .setAlpha(0)
+        .setScale(1.4);
+      this.children.moveBelow(target.glow, target.sprite); // glow sits under the stone
       this.tweens.add(motionTween({
-        targets: this.traveler,
-        x: target.x,
-        y: target.y - 22,
-        duration: 380,
-        ease: 'Sine.inOut',
+        targets: target.glow, alpha: 0.45, duration: 260, ease: 'Sine.out',
+      }));
+      this.tweens.add(motionTween({
+        targets: target.sprite, scaleX: 1.14, scaleY: 1.14,
+        duration: 130, yoyo: true, ease: 'Quad.out',
+      }));
+
+      // The hop: kill anything still moving the Traveler (the idle bob, a
+      // half-finished earlier hop), then slide x across while y arcs up and
+      // settles onto the new stone. Restart the bob once it lands.
+      const footY = target.y - 19;
+      this.footY = footY;
+      this.tweens.killTweensOf(this.traveler);
+      this.tweens.add(motionTween({
+        targets: this.traveler, x: target.x, duration: 380, ease: 'Sine.inOut',
+      }));
+      this.tweens.add(motionTween({
+        targets: this.traveler, y: footY - 20, duration: 180, ease: 'Sine.out',
+        onComplete: () => {
+          this.tweens.add(motionTween({
+            targets: this.traveler, y: footY, duration: 200, ease: 'Sine.in',
+            onComplete: () => this.idleBob(),
+          }));
+        },
+      }));
+
+      // Clear the fog as the crossing is made: it slides toward the far side
+      // and thins, so the last stone lands on an almost-clear ravine and the
+      // gate reads plainly. Kill the ambient drift first so it doesn't fight
+      // this for the same `x`.
+      this.tweens.killTweensOf(this.fog);
+      const progress = (index + 1) / this.stoneSprites.length;
+      this.tweens.add(motionTween({
+        targets: this.fog,
+        x: this.fogBaseX + progress * 150,
+        alpha: Math.max(0.12, 0.82 - progress * 0.7),
+        duration: 480, ease: 'Sine.out',
       }));
     }
   }
 
-  return { scene: SteppingStonesScene };
+  return { width: W, height: H, scene: SteppingStonesScene };
 }
