@@ -35,9 +35,10 @@ two things: curiosity, and a second thought."*
 - **Pockets the frog** (Bully Bog) — a shy bog-dweller who gets a mean
   comment posted about their singing. Central to the "stand up, don't join
   in" lesson.
-- **The Glimmer** (Balance Bay) — a shimmering tide-spirit that makes "just
-  five more minutes" feel like no time has passed at all. Not evil, just
-  very good at being fun.
+- ~~**The Glimmer** (Balance Bay)~~ — retired in the school revision pass
+  (too much of a riddle for the youngest pupils). Balance Bay now has Comet
+  talk plainly about splitting your time between screens, school, hobbies
+  and rest, then goes straight into the seesaw.
 
 ## Story Arc Overview
 

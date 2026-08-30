@@ -55,7 +55,7 @@ export default function MiniGameBalance({ game, onComplete }) {
         <div className="row-between">
           <span className="stamp-label">
             <Scale size={14} style={{ verticalAlign: '-2px', marginRight: 6 }} />
-            The tide
+            The seesaw
           </span>
           <span className="stamp-label">
             {day.length} / {slots} hours filled

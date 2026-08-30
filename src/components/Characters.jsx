@@ -102,17 +102,6 @@ function Pockets({ size = 44, accent = 'var(--coral)' }) {
   );
 }
 
-/** The Glimmer — very good at being fun, which is exactly the problem. */
-function Glimmer({ size = 44, accent = 'var(--periwinkle)' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="24" cy="24" r="15" fill={accent} opacity="0.16" />
-      <path d="M24 6 L28 20 L42 24 L28 28 L24 42 L20 28 L6 24 L20 20 Z" fill={accent} />
-      <circle cx="24" cy="24" r="4.5" fill="var(--paper-card)" opacity="0.85" />
-    </svg>
-  );
-}
-
 /** An unattributed comment appearing over the bog water. */
 function CommentBubble({ size = 44, accent = 'var(--coral)' }) {
   return (
@@ -136,7 +125,6 @@ const BY_NAME = {
   'Keeper Vex': Vex,
   'The Fog': Fog,
   Pockets,
-  'The Glimmer': Glimmer,
   'A comment appears': CommentBubble,
 };
 

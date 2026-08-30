@@ -140,7 +140,7 @@ function BogScene({ mood }) {
 
 /* --------------------------------------------------------- Balance Bay -- */
 /* Real background art (30 Aug 2026, public/assets/BALANCEBAY/) — a single
- * sunset beach scene, fire already lit and the Glimmer already out; no
+ * sunset beach scene, fire already lit and a sparkle over the water; no
  * separate before/after pair was delivered for this one, unlike the other
  * three realms. That's a reasonable fit rather than a gap: Balance Bay is
  * already the one realm exempted from a right/wrong "solved" state

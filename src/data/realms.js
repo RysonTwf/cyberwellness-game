@@ -706,25 +706,27 @@ const bullybogHigher = {
 /* ------------------------------------------------------------------------ */
 /**
  * Both bands run the shared story→game→rule flow with the seesaw
- * (minigames/MiniGameBalance.jsx). The walkable "Glimmer beach" scene and
- * the "stay vs go" decision were both cut in the school's revision pass:
- * pupils go from the story straight into the seesaw. Neither band defines a
- * `decision` — RealmScreen.jsx handles that (see `hasDecision`).
+ * (minigames/MiniGameBalance.jsx). The school's revision pass cut the
+ * walkable beach scene, the branching "stay vs go" choice, and the Glimmer
+ * character (too much of a riddle for the youngest pupils): the realm now
+ * talks plainly about balancing time on screens with school, hobbies,
+ * family and rest, then goes straight into the seesaw. Neither band defines
+ * a `decision` — RealmScreen.jsx handles that (see `hasDecision`).
  */
 
 const balanceLower = {
   story: [
     {
       who: 'Comet',
-      text: `Balance Bay, the last realm. The tide is far too high tonight. That will be the Glimmer's doing. ${COMET_CATCHPHRASE}`,
-    },
-    {
-      who: 'The Glimmer',
-      text: 'Stay a little longer. One more round, one more video, one more level. Time does not really pass here, I promise.',
+      text: `Balance Bay, the last realm. This is where we talk about balancing your time, especially your time on screens. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'Comet',
-      text: 'The Glimmer says that every single time. Down the beach, past the glow, your friends are waiting at the bonfire. Let us lay out the six hours between school and bed, and see how the day balances.',
+      text: 'Screens are fun. Games, videos, messages with friends. But a day only has so many hours, and screens can take up more of them than you mean to give.',
+    },
+    {
+      who: 'Comet',
+      text: 'Let us plan one evening. You have six hours between school and bed. Fill them in, and watch how the seesaw sits.',
     },
   ],
 
@@ -764,23 +766,23 @@ const balanceLower = {
 };
 
 /**
- * P4–P6 variant — same mechanic, reframed around noticing how tech makes
- * you feel rather than just counting hours (Improvement Plan §3). Reuses
+ * P4–P6 variant — same mechanic, reframed around noticing how screen time
+ * feels rather than just counting hours (Improvement Plan §3). Reuses
  * `balanceLower.game.items` — same ten cards, just a different lens on them.
  */
 const balanceHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Balance Bay again. The tide is high, the same as always. Look a little closer this time.',
-    },
-    {
-      who: 'The Glimmer',
-      text: 'Stay a little longer. You do not even look tired. You are fine, right?',
+      text: 'Balance Bay again. Same idea, a bit deeper. Balancing screen time is not only about counting hours.',
     },
     {
       who: 'Comet',
-      text: 'The Glimmer is not lying, exactly. It just is not the one who notices how you feel. That is your job. Lay out your six hours between school and bed, and pay attention to which ones you would really look forward to.',
+      text: 'It is about noticing. Some screen time leaves you feeling good. Some just fills the time and leaves you flat. School, hobbies, family and sleep all need room too.',
+    },
+    {
+      who: 'Comet',
+      text: 'Plan your six hours between school and bed. As you go, notice which parts you would look forward to, and which you would just fall into.',
     },
   ],
 
@@ -803,7 +805,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the upgraded rule for the Bay. As you get older, counting hours matters less than noticing how you feel. Things like the Glimmer are built to feel fine in the moment, so "do I feel fine" is not always a good stop sign. Check in with yourself on purpose. Let that decide when enough is enough.',
+    text: 'Here is the upgraded rule for the Bay. As you get older, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
   },
 };
 
@@ -1267,16 +1269,16 @@ export const REALMS = [
     name: 'Balance Bay',
     accent: 'var(--periwinkle)',
     accentWash: 'rgba(123, 110, 246, 0.13)',
-    blurb: 'A beach at dusk where the tide is much too high, and time goes strange.',
+    blurb: 'A calm beach at the end of the Atlas, for weighing up screens against everything else in your day.',
     topic: 'Screen time balance',
     stamp: { icon: 'sun', label: 'Balance Bay · Visited' },
     enabled: true,
     intro: {
-      lore: 'In Balance Bay, time goes strange. One more video, one more level, and suddenly the tide has swallowed half the beach. The Glimmer is a sparkle that lives where the water meets the sky. It wants to show you how the tide really works, and how to get your beach back.',
+      lore: 'Balance Bay is a quiet beach at the end of the Atlas. It is a good place to stop and think about how your day is split: how much time goes to screens, and how much is left for school, hobbies, family and rest. Getting that balance right is a skill, and this is where you practise it.',
       learn: [
-        'How screen time can quietly swallow the rest of your day',
-        'How to notice the way tech makes you feel',
-        'How to plan a day that balances screens with everything else',
+        'How screen time can take up more of your day than you notice',
+        'How to tell when screen time feels good, and when it just fills time',
+        'How to plan a day that balances screens with school, hobbies and rest',
       ],
       learnShort: 'Learn: balancing screen time',
     },
@@ -1284,21 +1286,21 @@ export const REALMS = [
     world: {
       spawn: { x: 8, y: 88 },
       // Stops measured against the real background art (BalanceBayBG.png):
-      // the Glimmer sparkle hangs over the water at x 49-68% (centre ~58%),
-      // the wet tide band crosses at y ~62-67% (so the stop stands at the
-      // top of the walkable sand, right against it), and the bonfire burns
-      // at x 76-88% — the stop sits just left of the flames, not in them.
+      // the sparkle over the water sits at x 49-68% (centre ~58%), the wet
+      // tide band crosses at y ~62-67% (so the stop stands at the top of the
+      // walkable sand, right against it), and the bonfire burns at x 76-88%
+      // — the stop sits just left of the flames, not in them.
       bounds: { minX: 5, maxX: 93, minY: 74, maxY: 93 },
       stops: {
-        story: { x: 58, y: 78, label: 'The Glimmer', action: 'Listen' },
-        decision: { x: 58, y: 78, label: 'The Glimmer', action: 'Answer' },
+        story: { x: 58, y: 78, label: 'the water', action: 'Stop here' },
+        decision: { x: 58, y: 78, label: 'the water', action: 'Stop here' },
         game: { x: 22, y: 78, label: 'the tide line', action: 'Plan the day' },
         rule: { x: 78, y: 88, label: 'the bonfire', action: 'Sit down' },
       },
     },
 
-    // higher: same mechanic, reframed around noticing how tech makes you
-    // feel rather than just time limits (Phase 1, done).
+    // higher: same seesaw, reframed around noticing how screen time feels
+    // rather than just counting hours.
     bands: { lower: balanceLower, higher: balanceHigher },
   },
 
