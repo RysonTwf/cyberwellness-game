@@ -1395,23 +1395,7 @@ export function getBandView(realm, band = 'lower') {
   return applyOverrides(bandViewRaw(realm, band), realm.id, band);
 }
 
-/**
- * Traveler's Pledge, written in the child's own voice (storyline.md finale).
- * Drafted per Improvement Plan §5's open item, but only realms currently in
- * `ACTIVE_REALMS` should ever render — see `activePledge()` below. Now that
- * Fable Falls is enabled its line renders like everyone else's; the filter
- * stays in place as a safety net for the next realm that ships disabled.
- */
-export const PLEDGE = [
-  { realm: 'passworld', text: 'I will keep my personal information to myself.' },
-  { realm: 'privacy', text: 'I will stop and think before I tap.' },
-  { realm: 'bullybog', text: 'I will be kind, and stand up for others.' },
-  { realm: 'balance', text: 'I will balance my screen time with the rest of my day.' },
-  { realm: 'fablefalls', text: 'I will stop and check before I believe or share.' },
-];
-
-/** PLEDGE, filtered to realms that actually exist in the game right now. */
-export function activePledge() {
-  const activeIds = new Set(ACTIVE_REALMS.map((r) => r.id));
-  return PLEDGE.filter((line) => activeIds.has(line.realm));
-}
+// The Traveller's Pledge (storyline.md finale) moved to
+// components/CertificateScreen.jsx (CERTIFICATE_COPY) so the whole passport
+// scene is editable from one place in the dev Copy Editor. Each pledge entry
+// there carries a `realm` id and only renders for an active realm.

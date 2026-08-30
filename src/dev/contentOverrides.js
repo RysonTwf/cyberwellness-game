@@ -309,6 +309,13 @@ export const SCREENS = [
     fields: ['text'],
     labelFor: (i, f, item) => item?.label ?? `Line ${i + 1}`,
   },
+  {
+    id: 'certificate',
+    label: 'The passport (end)',
+    file: 'src/components/CertificateScreen.jsx',
+    fields: ['text'],
+    labelFor: (i, f, item) => item?.label ?? `Line ${i + 1}`,
+  },
 ];
 
 export const SCREEN_BY_ID = Object.fromEntries(SCREENS.map((s) => [s.id, s]));

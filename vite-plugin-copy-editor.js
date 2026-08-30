@@ -22,6 +22,7 @@ const ALLOWED = [
   'src/components/AtlasMap.jsx',
   'src/components/RealmIntro.jsx',
   'src/components/AtlasGate.jsx',
+  'src/components/CertificateScreen.jsx',
 ];
 
 export default function copyEditorPlugin() {

@@ -154,6 +154,15 @@ what actually changed.
 
 ## Log
 
+- **31 Aug 2026 — Copy Editor covers the finale**: added a "The passport
+  (end)" screen to the dev Copy Editor — `CERTIFICATE_COPY` in
+  `CertificateScreen.jsx` (flat `{ id, label, text }` list, `{count}` /
+  `{name}` tokens filled at render). `PLEDGE` / `activePledge()` moved out of
+  `realms.js` into that list (each pledge entry carries a `realm` id and only
+  renders for an active realm), so the whole passport scene is editable from
+  one place. Fable Falls P4–P6 also reworked to reuse the P1–P3 Mia
+  screenshot scenario with S.U.R.E. layered on (`fableFallsHigher.story =
+  fableFallsLower.story`).
 - **31 Aug 2026 — Passworld personal-information coverage**: P1–P3 gained a
   "which password is hardest to guess" follow-up (new `strongPassword`
   extraBeat; RealmScreen's beat renderer generalised to any `options` /
