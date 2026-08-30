@@ -15,7 +15,10 @@ export const ROOM_TOUR = [
     text: 'One stop before the Atlas. A quick look at how to get around, then you can open that diary.',
   },
   {
-    target: '.world',
+    // Point at the character, not the whole scene box — a full-box spotlight
+    // parks the card over the lower edge, right on top of the walker the step
+    // is talking about. Targeting `.walker` lifts the card clear of it.
+    target: '.walker',
     title: 'Moving around',
     text: 'This is you! Tap or click anywhere on the floor to walk there, or use WASD or the arrow keys.',
   },
