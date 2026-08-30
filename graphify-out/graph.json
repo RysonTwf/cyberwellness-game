@@ -361,7 +361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "app.jsx"
     },
@@ -527,7 +527,7 @@
       "_origin": "ast",
       "id": "src_components_certificatescreen",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen.jsx"
     },
     {
@@ -538,7 +538,7 @@
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "certificatescreen()"
     },
     {
@@ -548,7 +548,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characterselect",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "characterselect.jsx"
     },
@@ -559,7 +559,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_characterselect_options",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "options"
     },
@@ -570,7 +570,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_characterselect_characterselect",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "characterselect()"
     },
@@ -581,8 +581,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characters",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "characters.jsx"
     },
     {
@@ -592,8 +592,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_characters_comet",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "comet()"
     },
     {
@@ -603,8 +603,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_characters_vex",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "vex()"
     },
     {
@@ -614,8 +614,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_components_characters_fog",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "fog()"
     },
     {
@@ -625,52 +625,41 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_components_characters_pockets",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "pockets()"
-    },
-    {
-      "label": "Glimmer()",
-      "file_type": "code",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L106",
-      "_origin": "ast",
-      "id": "src_components_characters_glimmer",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
-      "norm_label": "glimmer()"
     },
     {
       "label": "CommentBubble()",
       "file_type": "code",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L117",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "src_components_characters_commentbubble",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "commentbubble()"
     },
     {
       "label": "BY_NAME",
       "file_type": "code",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L134",
+      "source_location": "L123",
       "_origin": "ast",
       "id": "src_components_characters_by_name",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "by_name"
     },
     {
       "label": "CharacterArt()",
       "file_type": "code",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L143",
+      "source_location": "L131",
       "_origin": "ast",
       "id": "src_components_characters_characterart",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "characterart()"
     },
     {
@@ -724,8 +713,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_introstory",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "introstory.jsx"
     },
     {
@@ -735,8 +724,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_components_introstory_intro_beats",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "intro_beats"
     },
     {
@@ -746,8 +735,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_components_introstory_journal",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "journal()"
     },
     {
@@ -757,8 +746,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "src_components_introstory_introstory",
-      "community": 0,
-      "community_name": "TravelerRoom.jsx",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "introstory()"
     },
     {
@@ -769,7 +758,7 @@
       "_origin": "ast",
       "id": "src_components_journalprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "journalprogress.jsx"
     },
     {
@@ -780,7 +769,7 @@
       "_origin": "ast",
       "id": "src_components_journalprogress_realm_icons",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realm_icons"
     },
     {
@@ -791,7 +780,7 @@
       "_origin": "ast",
       "id": "src_components_journalprogress_journalprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "journalprogress()"
     },
     {
@@ -801,7 +790,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_mainscreen",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "mainscreen.jsx"
     },
@@ -812,7 +801,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_mainscreen_mainscreen",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "mainscreen()"
     },
@@ -955,8 +944,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_realmintro_realm_tour",
-      "community": 18,
-      "community_name": "AtlasMap.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "realm_tour"
     },
     {
@@ -1010,8 +999,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "realmscreen()"
     },
     {
@@ -1043,7 +1032,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_schoollogo",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "schoollogo.jsx"
     },
@@ -1054,7 +1043,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_schoollogo_schoollogo",
-      "community": 15,
+      "community": 4,
       "community_name": "App.jsx",
       "norm_label": "schoollogo()"
     },
@@ -1087,8 +1076,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_components_settingsmenu_settingspanel",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 18,
+      "community_name": "AtlasMap.jsx",
       "norm_label": "settingspanel()"
     },
     {
@@ -1319,7 +1308,7 @@
       "_origin": "ast",
       "id": "src_data_realms",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realms.js"
     },
     {
@@ -1330,7 +1319,7 @@
       "_origin": "ast",
       "id": "src_data_realms_passworldlower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "passworldlower"
     },
     {
@@ -1341,7 +1330,7 @@
       "_origin": "ast",
       "id": "src_data_realms_passworldhigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "passworldhigher"
     },
     {
@@ -1352,7 +1341,7 @@
       "_origin": "ast",
       "id": "src_data_realms_privacylower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "privacylower"
     },
     {
@@ -1363,7 +1352,7 @@
       "_origin": "ast",
       "id": "src_data_realms_privacyhigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "privacyhigher"
     },
     {
@@ -1374,7 +1363,7 @@
       "_origin": "ast",
       "id": "src_data_realms_bullyboglower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "bullyboglower"
     },
     {
@@ -1385,58 +1374,58 @@
       "_origin": "ast",
       "id": "src_data_realms_bullyboghigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "bullyboghigher"
     },
     {
       "label": "balanceLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L715",
+      "source_location": "L717",
       "_origin": "ast",
       "id": "src_data_realms_balancelower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "balancelower"
     },
     {
       "label": "balanceHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L771",
+      "source_location": "L773",
       "_origin": "ast",
       "id": "src_data_realms_balancehigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "balancehigher"
     },
     {
       "label": "fableFallsLower",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L832",
+      "source_location": "L834",
       "_origin": "ast",
       "id": "src_data_realms_fablefallslower",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "fablefallslower"
     },
     {
       "label": "fableFallsHigher",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L987",
+      "source_location": "L989",
       "_origin": "ast",
       "id": "src_data_realms_fablefallshigher",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "fablefallshigher"
     },
     {
       "label": "REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1140",
+      "source_location": "L1142",
       "_origin": "ast",
       "id": "src_data_realms_realms",
       "community": 1,
@@ -1447,51 +1436,51 @@
       "label": "REALM_BY_ID",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1345",
+      "source_location": "L1347",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realm_by_id"
     },
     {
       "label": "ACTIVE_REALMS",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1348",
+      "source_location": "L1350",
       "_origin": "ast",
       "id": "src_data_realms_active_realms",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "active_realms"
     },
     {
       "label": "REALM_ORDER",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1358",
+      "source_location": "L1360",
       "_origin": "ast",
       "id": "src_data_realms_realm_order",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "realm_order"
     },
     {
       "label": "HUB_ORDER",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1359",
+      "source_location": "L1361",
       "_origin": "ast",
       "id": "src_data_realms_hub_order",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "hub_order"
     },
     {
       "label": "orderedActiveRealms()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1365",
+      "source_location": "L1367",
       "_origin": "ast",
       "id": "src_data_realms_orderedactiverealms",
       "community": 18,
@@ -1502,44 +1491,44 @@
       "label": "bandViewRaw()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1382",
+      "source_location": "L1384",
       "_origin": "ast",
       "id": "src_data_realms_bandviewraw",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "bandviewraw()"
     },
     {
       "label": "getBandView()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1387",
+      "source_location": "L1389",
       "_origin": "ast",
       "id": "src_data_realms_getbandview",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "getbandview()"
     },
     {
       "label": "PLEDGE",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1398",
+      "source_location": "L1400",
       "_origin": "ast",
       "id": "src_data_realms_pledge",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "pledge"
     },
     {
       "label": "activePledge()",
       "file_type": "code",
       "source_file": "src/data/realms.js",
-      "source_location": "L1407",
+      "source_location": "L1409",
       "_origin": "ast",
       "id": "src_data_realms_activepledge",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "activepledge()"
     },
     {
@@ -1549,8 +1538,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_dev_artpreview",
-      "community": 6,
-      "community_name": "ArtPreview.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "artpreview.jsx"
     },
     {
@@ -1560,8 +1549,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_dev_artpreview_moods",
-      "community": 6,
-      "community_name": "ArtPreview.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "moods"
     },
     {
@@ -1571,8 +1560,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_dev_artpreview_scene",
-      "community": 6,
-      "community_name": "ArtPreview.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "scene()"
     },
     {
@@ -1582,8 +1571,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_dev_artpreview_artpreview",
-      "community": 6,
-      "community_name": "ArtPreview.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "artpreview()"
     },
     {
@@ -1857,8 +1846,8 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_setdeep",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "setdeep()"
     },
     {
@@ -1868,8 +1857,8 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_dev_contentoverrides_applyoverrides",
-      "community": 1,
-      "community_name": "contentOverrides.js",
+      "community": 4,
+      "community_name": "App.jsx",
       "norm_label": "applyoverrides()"
     },
     {
@@ -2000,8 +1989,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -2011,8 +2000,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -2022,8 +2011,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -2033,8 +2022,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -2319,8 +2308,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_sfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sfx.js"
     },
     {
@@ -2330,8 +2319,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "sound_files"
     },
     {
@@ -2341,8 +2330,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "volumes"
     },
     {
@@ -2352,8 +2341,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "pools"
     },
     {
@@ -2363,8 +2352,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "nextindex"
     },
     {
@@ -2374,8 +2363,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "getpool()"
     },
     {
@@ -2385,8 +2374,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "playsfx()"
     },
     {
@@ -2396,8 +2385,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 6,
-      "community_name": "ArtPreview.jsx",
+      "community": 1,
+      "community_name": "contentOverrides.js",
       "norm_label": "main.jsx"
     },
     {
@@ -2429,8 +2418,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_minigamequiz",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "minigamequiz.jsx"
     },
     {
@@ -2440,8 +2429,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_minigames_minigamequiz_minigamequiz",
-      "community": 15,
-      "community_name": "App.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "minigamequiz()"
     },
     {
@@ -3112,7 +3101,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "useprogress.js"
     },
     {
@@ -3123,7 +3112,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_freshrealmprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "freshrealmprogress()"
     },
     {
@@ -3134,7 +3123,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_initialstate",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "initialstate()"
     },
     {
@@ -3145,7 +3134,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_reducer",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "reducer()"
     },
     {
@@ -3156,7 +3145,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_load",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "load()"
     },
     {
@@ -3167,7 +3156,7 @@
       "_origin": "ast",
       "id": "src_state_useprogress_useprogress",
       "community": 4,
-      "community_name": "realms.js",
+      "community_name": "App.jsx",
       "norm_label": "useprogress()"
     },
     {
@@ -4333,9 +4322,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 6,
+      "community": 1,
       "norm_label": "spa root mount point",
-      "community_name": "ArtPreview.jsx",
+      "community_name": "contentOverrides.js",
       "id": "index_root_mount"
     },
     {
@@ -5836,7 +5825,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L134",
+      "source_location": "L123",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_characters",
@@ -5847,7 +5836,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L143",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_characters",
@@ -5858,7 +5847,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L135",
+      "source_location": "L124",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -5870,7 +5859,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L140",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -5882,7 +5871,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L137",
+      "source_location": "L126",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -5894,19 +5883,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L139",
-      "weight": 1.0,
-      "_origin": "ast",
-      "context": "collection",
-      "source": "src_components_characters",
-      "target": "src_components_characters_glimmer",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "indirect_call",
-      "confidence": "INFERRED",
-      "source_file": "src/components/Characters.jsx",
-      "source_location": "L138",
+      "source_location": "L127",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -5918,7 +5895,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "src/components/Characters.jsx",
-      "source_location": "L136",
+      "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -7754,7 +7731,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1348",
+      "source_location": "L1350",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7765,7 +7742,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1407",
+      "source_location": "L1409",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7776,7 +7753,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L771",
+      "source_location": "L773",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7787,7 +7764,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L715",
+      "source_location": "L717",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7798,7 +7775,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1382",
+      "source_location": "L1384",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7831,7 +7808,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L987",
+      "source_location": "L989",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7842,7 +7819,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L832",
+      "source_location": "L834",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7853,7 +7830,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1387",
+      "source_location": "L1389",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7864,7 +7841,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1359",
+      "source_location": "L1361",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7875,7 +7852,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1365",
+      "source_location": "L1367",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7908,7 +7885,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1398",
+      "source_location": "L1400",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7941,7 +7918,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1345",
+      "source_location": "L1347",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7952,7 +7929,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1358",
+      "source_location": "L1360",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -7963,7 +7940,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1140",
+      "source_location": "L1142",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms",
@@ -8084,7 +8061,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/data/realms.js",
-      "source_location": "L1370",
+      "source_location": "L1372",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms_orderedactiverealms",
@@ -8095,7 +8072,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/data/realms.js",
-      "source_location": "L1388",
+      "source_location": "L1390",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms_getbandview",
@@ -8132,7 +8109,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/data/realms.js",
-      "source_location": "L1388",
+      "source_location": "L1390",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_data_realms_getbandview",
@@ -12369,5 +12346,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "ec8fff43726898dad597babdbbd92a854e8d7208"
+  "built_at_commit": "70c4d184305b21b249020912166cd6fe5a09b17e"
 }
