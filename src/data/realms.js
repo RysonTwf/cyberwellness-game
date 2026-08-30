@@ -108,7 +108,8 @@ const passworldLower = {
  * P4–P6 variant — the *Sam & Tom* account-takeover/impersonation scenario
  * (Improvement Plan §3, confirmed age-appropriate with the school contact,
  * §1a), paired with the Phase 2 Phaser platformer ("Guard the Vault: Level
- * Up" — minigames/MiniGamePlatformer.jsx).
+ * Up" — components/PlatformerStoryRealm.jsx, via `fullMechanic:
+ * 'platformerStory'` below rather than this object's own `game`).
  */
 const passworldHigher = {
   story: [

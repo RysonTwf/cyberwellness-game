@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 /**
  * Phaser integration wrapper (Milestones Phase 0 → used by Phase 2's
- * Passworld platformer and Privacy Peaks stepping-stone mechanics).
+ * Passworld platformer, now the full-level version in
+ * `phaser-scenes/passwordFortressLevelScene.js`, and Privacy Peaks
+ * stepping-stone mechanics).
  *
  * Phaser is scoped to exactly those two mechanics (Milestones "Tech stack
  * decisions") — every other mini-game stays plain React. This wrapper is
@@ -22,7 +24,7 @@ import { useEffect, useRef, useState } from 'react';
  * so it matches the rest of the game's scene box).
  *
  *   <PhaserMiniGame
- *     config={(Phaser) => makePasswordFortressConfig(Phaser, { game, onWin })}
+ *     config={(Phaser) => makePasswordFortressLevelConfig(Phaser, { game, onWin })}
  *     onReady={(game) => {...}}   // optional: fires once with the Phaser.Game instance
  *   />
  */

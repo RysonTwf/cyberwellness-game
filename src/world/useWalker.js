@@ -198,10 +198,12 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
 
       const len = Math.hypot(dx, dy);
       if (len > 0 && dt > 0) {
-        // Vertical movement is compressed: the walkable strip is shallow, and
-        // moving up/down as fast as left/right reads as sliding, not walking.
+        // Vertical used to be compressed to 0.55x horizontal (the walkable
+        // strip is shallow, and the worry was that full speed would read as
+        // sliding rather than walking) — dropped on request: it read as
+        // up/down just being slower, not as a deliberate stylistic choice.
         const stepX = (dx / len) * speed * dt;
-        const stepY = (dy / len) * speed * 0.55 * dt;
+        const stepY = (dy / len) * speed * dt;
 
         // Axis-separated, so walking diagonally into a piece of furniture
         // slides you along its edge instead of just stopping dead — the

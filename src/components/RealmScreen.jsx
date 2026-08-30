@@ -11,21 +11,23 @@ import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
 import MiniGameSpot from '../minigames/MiniGameSpot';
 import MiniGameBalance from '../minigames/MiniGameBalance';
-import MiniGamePlatformer from '../minigames/MiniGamePlatformer';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BalanceBeachRealm from './BalanceBeachRealm';
 
 const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance: Sun, fablefalls: Eye };
-// 'platformer' and 'steppingstones' are Phaser-backed (Milestones Phase 2) —
-// importing their wrapper components here doesn't pull Phaser itself into
-// the main bundle, only into a separate chunk fetched when one is actually
-// mounted (see minigames/PhaserMiniGame.jsx).
+// 'steppingstones' is Phaser-backed (Milestones Phase 2) — importing its
+// wrapper component here doesn't pull Phaser itself into the main bundle,
+// only into a separate chunk fetched when it's actually mounted (see
+// minigames/PhaserMiniGame.jsx). Passworld's platformer mechanic used to be
+// a second Phaser-backed entry here ('platformer') but it's been P4–P6's
+// `fullMechanic: 'platformerStory'` (PlatformerStoryRealm.jsx, below) for a
+// while now — no realm's `game.type` is 'platformer' any more, and the
+// mechanic + its Phaser scene were removed 30 Aug 2026 as dead code.
 const GAMES = {
   sort: MiniGameSort,
   spot: MiniGameSpot,
   balance: MiniGameBalance,
-  platformer: MiniGamePlatformer,
   steppingstones: MiniGameSteppingStones,
 };
 
