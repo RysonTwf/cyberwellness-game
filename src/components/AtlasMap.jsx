@@ -3,10 +3,12 @@ import DialogueCard from './DialogueCard';
 import World from '../world/World';
 import Tutorial from './Tutorial';
 import { ACTIVE_REALMS, orderedActiveRealms } from '../data/realms';
+import { applyScreenOverrides } from '../dev/contentOverrides';
 
 // First look at the hub — taught once (progress `tutorialsSeen.atlas`),
 // right after the room tour taught the basic walking controls.
-const ATLAS_TOUR = [
+// Exported for the dev-only Copy Editor (src/dev/CopyEditor.jsx).
+export const ATLAS_TOUR = [
   {
     target: '.world.atlas-map',
     title: 'The Atlas',
@@ -283,7 +285,13 @@ export default function AtlasMap({
 
   return (
     <div className="fold">
-      {showTutorial && <Tutorial steps={ATLAS_TOUR} accent="var(--gold)" onDone={onTutorialDone} />}
+      {showTutorial && (
+        <Tutorial
+          steps={applyScreenOverrides(ATLAS_TOUR, 'atlasTour')}
+          accent="var(--gold)"
+          onDone={onTutorialDone}
+        />
+      )}
 
       {/* Map on one side, Comet and the realm list on the other, so the whole
           hub fits the window without the page ever scrolling. */}

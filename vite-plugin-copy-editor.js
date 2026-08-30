@@ -15,7 +15,13 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
 // Files the editor is allowed to read and write.
-const ALLOWED = ['src/data/realms.js'];
+const ALLOWED = [
+  'src/data/realms.js',
+  'src/components/IntroStory.jsx',
+  'src/components/TravelerRoom.jsx',
+  'src/components/AtlasMap.jsx',
+  'src/components/RealmIntro.jsx',
+];
 
 export default function copyEditorPlugin() {
   let root = process.cwd();

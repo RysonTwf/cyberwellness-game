@@ -4,10 +4,12 @@ import World from '../world/World';
 import RoomScene, { ROOM_OBSTACLES } from '../world/room/RoomScene';
 import AtlasGate from './AtlasGate';
 import Tutorial from './Tutorial';
+import { applyScreenOverrides } from '../dev/contentOverrides';
 
 // First-ever screen with a walkable world, so this is where the controls get
 // taught (Tutorial.jsx; runs once, tracked in progress `tutorialsSeen.room`).
-const ROOM_TOUR = [
+// Exported for the dev-only Copy Editor (src/dev/CopyEditor.jsx).
+export const ROOM_TOUR = [
   {
     title: 'Home base',
     text: 'One stop before the Atlas. A quick look at how to get around, then you can open that diary.',
@@ -53,7 +55,11 @@ export default function TravelerRoom({ onBegin, onExit, avatar, showTutorial, on
   return (
     <div className="fold">
       {showTutorial && !open && (
-        <Tutorial steps={ROOM_TOUR} accent="var(--gold)" onDone={onTutorialDone} />
+        <Tutorial
+          steps={applyScreenOverrides(ROOM_TOUR, 'roomTour')}
+          accent="var(--gold)"
+          onDone={onTutorialDone}
+        />
       )}
       <World
         sceneKey="room"

@@ -3,6 +3,26 @@ import { createPortal } from 'react-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { lockInput, unlockInput } from '../lib/inputLock';
 import Tutorial from './Tutorial';
+import { applyScreenOverrides } from '../dev/contentOverrides';
+
+// The one-time "how a realm works" tour, run on the first walkable realm.
+// Exported for the dev-only Copy Editor (src/dev/CopyEditor.jsx).
+export const REALM_TOUR = [
+  {
+    target: '.hotspot',
+    title: 'Follow the pin',
+    text: 'A glowing pin marks where the story goes next. Walk to it. Tap where you want to go, or use WASD or the arrow keys.',
+  },
+  {
+    title: 'Say hello',
+    text: 'When you get close enough, a button pops up over your head. Press it (or press Enter) to talk, look, and play.',
+  },
+  {
+    target: '.objective',
+    title: 'Never lost',
+    text: 'The bar down here always says what to do next. That’s the whole game: follow the pins, make your choices, earn the stamp!',
+  },
+];
 
 /**
  * The moment of stepping into a realm: a popup telling the story of the
@@ -36,22 +56,7 @@ export default function RealmIntro({ realm, showIntro, showTutorial, onTutorialD
     return (
       <Tutorial
         accent={realm.accent}
-        steps={[
-          {
-            target: '.hotspot',
-            title: 'Follow the pin',
-            text: 'A glowing pin marks where the story goes next. Walk to it. Tap where you want to go, or use WASD or the arrow keys.',
-          },
-          {
-            title: 'Say hello',
-            text: 'When you get close enough, a button pops up over your head. Press it (or press Enter) to talk, look, and play.',
-          },
-          {
-            target: '.objective',
-            title: 'Never lost',
-            text: 'The bar down here always says what to do next. That’s the whole game: follow the pins, make your choices, earn the stamp!',
-          },
-        ]}
+        steps={applyScreenOverrides(REALM_TOUR, 'realmTour')}
         onDone={() => {
           setTouring(false);
           onTutorialDone?.();

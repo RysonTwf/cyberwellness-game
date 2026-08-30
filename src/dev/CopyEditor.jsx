@@ -1,8 +1,13 @@
 import { useSyncExternalStore, useState, useMemo } from 'react';
 import { X, RotateCcw, Copy, Save, Eraser } from 'lucide-react';
 import { REALMS, bandViewRaw, COMET_CATCHPHRASE } from '../data/realms';
+import { INTRO_BEATS } from '../components/IntroStory';
+import { ROOM_TOUR } from '../components/TravelerRoom';
+import { ATLAS_TOUR } from '../components/AtlasMap';
+import { REALM_TOUR } from '../components/RealmIntro';
 import {
   collectEditable,
+  collectScreenEditable,
   getOverrides,
   overrideCount,
   overridesVersion,
@@ -10,9 +15,20 @@ import {
   setOverride,
   clearOverrides,
   subscribe,
+  SCREENS,
+  SCREEN_BY_ID,
 } from './contentOverrides';
 
-const SOURCE_FILE = 'src/data/realms.js';
+const REALMS_FILE = 'src/data/realms.js';
+
+// The text arrays behind each editable screen. Kept here (not in
+// contentOverrides.js) so that module stays free of component imports.
+const SCREEN_DATA = {
+  intro: INTRO_BEATS,
+  roomTour: ROOM_TOUR,
+  atlasTour: ATLAS_TOUR,
+  realmTour: REALM_TOUR,
+};
 
 /* ---- turning a plain string into / out of a JS source literal ------------- */
 
@@ -61,33 +77,49 @@ function sectionOf(dotPath) {
   return '7 · Other';
 }
 
+/* ---- override key -> a readable "where" ---------------------------------- */
+
+function whereOf(key) {
+  const seg = key.split('|');
+  if (seg[0] === 'screen') {
+    return `${SCREEN_BY_ID[seg[1]]?.label ?? seg[1]} / ${seg[2]}`;
+  }
+  return `${seg[0]} / ${seg[1]} / ${seg[2]}`;
+}
+
 /* ------------------------------------------------------------------------- */
 
 export default function CopyEditor({ initialRealm, initialBand, onClose }) {
   useSyncExternalStore(subscribe, overridesVersion, () => 0);
 
-  const [realmId, setRealmId] = useState(
-    () => (REALMS.some((r) => r.id === initialRealm) ? initialRealm : REALMS[0].id),
+  const [target, setTarget] = useState(() =>
+    REALMS.some((r) => r.id === initialRealm) ? `realm|${initialRealm}` : `realm|${REALMS[0].id}`,
   );
   const [band, setBand] = useState(initialBand === 'higher' ? 'higher' : 'lower');
   const [result, setResult] = useState(null);
 
-  const realm = REALMS.find((r) => r.id === realmId);
+  const [kind, id] = target.split('|');
+  const isRealm = kind === 'realm';
+  const realm = isRealm ? REALMS.find((r) => r.id === id) : null;
+
   const fields = useMemo(
-    () => collectEditable(bandViewRaw(realm, band), realmId, band),
+    () =>
+      isRealm
+        ? collectEditable(bandViewRaw(realm, band), id, band)
+        : collectScreenEditable(SCREEN_DATA[id], id),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [realm, band, realmId, overridesVersion()],
+    [target, band, overridesVersion()],
   );
 
   const sections = useMemo(() => {
     const map = new Map();
     for (const f of fields) {
-      const s = sectionOf(f.dotPath);
+      const s = isRealm ? sectionOf(f.dotPath) : 'Lines';
       if (!map.has(s)) map.set(s, []);
       map.get(s).push(f);
     }
     return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [fields]);
+  }, [fields, isRealm]);
 
   const total = overrideCount();
 
@@ -97,23 +129,18 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
     else setOverride(field.key, value);
   };
 
-  const changedList = () =>
-    Object.entries(getOverrides()).map(([key, value]) => {
-      const [rid, scope, dotPath] = key.split('|');
-      return { key, rid, scope, dotPath, value };
-    });
-
   const copyChanges = async () => {
-    const items = changedList();
-    if (!items.length) return;
-    const pretty = items
-      .map((i) => `${i.rid} / ${i.scope} / ${i.dotPath}\n  ${i.value}`)
-      .join('\n\n');
+    const entries = Object.entries(getOverrides());
+    if (!entries.length) return;
+    const pretty = entries.map(([key, value]) => `${whereOf(key)}\n  ${value}`).join('\n\n');
     const raw = JSON.stringify(getOverrides(), null, 2);
-    const blob = `=== Copy changes (${items.length}) ===\n\n${pretty}\n\n--- raw ---\n${raw}\n`;
+    const blob = `=== Copy changes (${entries.length}) ===\n\n${pretty}\n\n--- raw ---\n${raw}\n`;
     try {
       await navigator.clipboard.writeText(blob);
-      setResult({ kind: 'ok', msg: `Copied ${items.length} change${items.length === 1 ? '' : 's'} to the clipboard.` });
+      setResult({
+        kind: 'ok',
+        msg: `Copied ${entries.length} change${entries.length === 1 ? '' : 's'} to the clipboard.`,
+      });
     } catch {
       setResult({ kind: 'err', msg: 'Clipboard blocked — open the console; the text is logged there.' });
       // eslint-disable-next-line no-console
@@ -121,33 +148,41 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
     }
   };
 
+  // Re-derive an override's *original* string from the live data, by key.
+  const originalFor = (key) => {
+    const seg = key.split('|');
+    if (seg[0] === 'screen') {
+      return { file: SCREEN_BY_ID[seg[1]]?.file, original: getAtPath(SCREEN_DATA[seg[1]], seg[2]) };
+    }
+    const [rid, scope, dotPath] = seg;
+    const rlm = REALMS.find((x) => x.id === rid);
+    if (!rlm) return { file: REALMS_FILE, original: undefined };
+    const view = bandViewRaw(rlm, scope === 'shared' ? 'lower' : scope);
+    return { file: REALMS_FILE, original: getAtPath(view, dotPath) };
+  };
+
   const saveToSource = async () => {
     const overrides = getOverrides();
     if (!Object.keys(overrides).length) return;
     setResult({ kind: 'busy', msg: 'Saving…' });
 
-    let fileText;
+    let files;
     try {
       const r = await fetch('/__copy-editor/source');
-      fileText = (await r.json()).files?.[SOURCE_FILE];
-      if (typeof fileText !== 'string') throw new Error('no source');
+      files = (await r.json()).files;
+      if (!files || typeof files !== 'object') throw new Error('no source');
     } catch (e) {
       setResult({ kind: 'err', msg: `Can't reach the dev server (${e.message}). Is npm run dev running?` });
       return;
     }
 
-    // Re-derive each override's *original* by realm+band+path.
     const replacements = [];
     const unlocatable = [];
     const applying = [];
     for (const [key, next] of Object.entries(overrides)) {
-      const [rid, scope, dotPath] = key.split('|');
-      const rlm = REALMS.find((x) => x.id === rid);
-      if (!rlm) continue;
-      const bands = scope === 'shared' ? ['lower'] : [scope];
-      const view = bandViewRaw(rlm, bands[0]);
-      const original = getAtPath(view, dotPath);
-      if (typeof original !== 'string') {
+      const { file, original } = originalFor(key);
+      const fileText = file && files[file];
+      if (typeof fileText !== 'string' || typeof original !== 'string') {
         unlocatable.push(key);
         continue;
       }
@@ -156,7 +191,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
         unlocatable.push(key);
         continue;
       }
-      replacements.push({ file: SOURCE_FILE, ...hit });
+      replacements.push({ file, ...hit });
       applying.push(key);
     }
 
@@ -178,19 +213,20 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
       return;
     }
 
-    // Drop the overrides that landed in source — HMR reloads realms.js with
-    // the new value baked in, so the localStorage copy is now redundant.
+    // Drop the overrides that landed in source — HMR reloads the file with the
+    // new value baked in, so the localStorage copy is now redundant.
     const failedFinds = new Set((saveRes.failed || []).map((f) => f.find));
     applying.forEach((key, i) => {
       if (!failedFinds.has(replacements[i].find)) removeOverride(key);
     });
 
     const leftover = unlocatable.length + (saveRes.failed?.length || 0);
+    const fileCount = new Set(replacements.map((r) => r.file)).size;
     setResult({
       kind: leftover ? 'warn' : 'ok',
       msg: leftover
-        ? `Saved ${saveRes.applied} to ${SOURCE_FILE}. ${leftover} couldn't be matched — kept in the browser; use "Copy changes" for those.`
-        : `Saved ${saveRes.applied} change${saveRes.applied === 1 ? '' : 's'} to ${SOURCE_FILE}.`,
+        ? `Saved ${saveRes.applied} to source. ${leftover} couldn't be matched — kept in the browser; use "Copy changes" for those.`
+        : `Saved ${saveRes.applied} change${saveRes.applied === 1 ? '' : 's'} to ${fileCount} file${fileCount === 1 ? '' : 's'}.`,
     });
   };
 
@@ -205,15 +241,24 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
       </header>
 
       <div className="ce-controls">
-        <select value={realmId} onChange={(e) => { setRealmId(e.target.value); setResult(null); }}>
-          {REALMS.map((r) => (
-            <option key={r.id} value={r.id}>{r.name}</option>
-          ))}
+        <select value={target} onChange={(e) => { setTarget(e.target.value); setResult(null); }}>
+          <optgroup label="Realms">
+            {REALMS.map((r) => (
+              <option key={r.id} value={`realm|${r.id}`}>{r.name}</option>
+            ))}
+          </optgroup>
+          <optgroup label="Screens">
+            {SCREENS.map((s) => (
+              <option key={s.id} value={`screen|${s.id}`}>{s.label}</option>
+            ))}
+          </optgroup>
         </select>
-        <select value={band} onChange={(e) => { setBand(e.target.value); setResult(null); }}>
-          <option value="lower">P1–P3</option>
-          <option value="higher">P4–P6</option>
-        </select>
+        {isRealm && (
+          <select value={band} onChange={(e) => { setBand(e.target.value); setResult(null); }}>
+            <option value="lower">P1–P3</option>
+            <option value="higher">P4–P6</option>
+          </select>
+        )}
       </div>
 
       <div className="ce-actions">

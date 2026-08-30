@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowRight, SkipForward } from 'lucide-react';
 import { Comet } from './Characters';
+import { applyScreenOverrides } from '../dev/contentOverrides';
 
 /**
  * The opening story, shown once when a fresh player taps Start (title →
@@ -13,8 +14,11 @@ import { Comet } from './Characters';
  * the grade band — instead of re-introducing Comet.
  *
  * storyline.md "Prologue: The Atlas Gate".
+ *
+ * Exported so the dev-only Copy Editor (src/dev/CopyEditor.jsx) can list and
+ * edit these lines; `applyScreenOverrides` merges any live edits at render.
  */
-const BEATS = [
+export const INTRO_BEATS = [
   {
     kind: 'scene',
     text: "It's late. On the shelf, behind everything else, there's a journal you don't remember owning. A brass clasp. Blank pages. A soft glow coming off it.",
@@ -76,6 +80,7 @@ function Journal() {
 
 export default function IntroStory({ onDone }) {
   const [i, setI] = useState(0);
+  const BEATS = applyScreenOverrides(INTRO_BEATS, 'intro');
   const beat = BEATS[i];
   const last = i === BEATS.length - 1;
 

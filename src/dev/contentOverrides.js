@@ -255,3 +255,91 @@ export function collectEditable(rawView, realmId, band) {
 
   return out;
 }
+
+/* --------------------------------------------------------------------------
+ * Screen copy — the opening story and the tutorial tours. Same override
+ * store, keyed  screen|<screenId>|<dotPath>  (three segments, so the
+ * CopyEditor's `key.split('|')` handling still lines up). The text arrays
+ * themselves live in their components and are passed in by the editor;
+ * this registry only holds where they are and which fields to expose.
+ * ------------------------------------------------------------------------ */
+
+export const SCREENS = [
+  {
+    id: 'intro',
+    label: 'Opening story',
+    file: 'src/components/IntroStory.jsx',
+    fields: ['text', 'cta'],
+    labelFor: (i, f, item) =>
+      f === 'cta'
+        ? `Beat ${i + 1} — button`
+        : `Beat ${i + 1} — ${item?.kind === 'comet' ? 'Comet' : 'scene'}`,
+  },
+  {
+    id: 'roomTour',
+    label: 'Tutorial · the room',
+    file: 'src/components/TravelerRoom.jsx',
+    fields: ['title', 'text'],
+    labelFor: (i, f) => `Step ${i + 1} — ${f === 'title' ? 'heading' : 'text'}`,
+  },
+  {
+    id: 'atlasTour',
+    label: 'Tutorial · the Atlas',
+    file: 'src/components/AtlasMap.jsx',
+    fields: ['title', 'text'],
+    labelFor: (i, f) => `Step ${i + 1} — ${f === 'title' ? 'heading' : 'text'}`,
+  },
+  {
+    id: 'realmTour',
+    label: 'Tutorial · how a realm works',
+    file: 'src/components/RealmIntro.jsx',
+    fields: ['title', 'text'],
+    labelFor: (i, f) => `Step ${i + 1} — ${f === 'title' ? 'heading' : 'text'}`,
+  },
+];
+
+export const SCREEN_BY_ID = Object.fromEntries(SCREENS.map((s) => [s.id, s]));
+
+export function screenKey(screenId, dotPath) {
+  return `screen|${screenId}|${dotPath}`;
+}
+
+/** Apply screen overrides over a plain array of beat/step objects — a fresh
+ *  clone when something matches, the same reference otherwise. Inert in a
+ *  production build (`!DEV`). */
+export function applyScreenOverrides(arr, screenId) {
+  if (!DEV) return arr;
+  const prefix = `screen|${screenId}|`;
+  const hits = Object.keys(store).filter((k) => k.startsWith(prefix));
+  if (!hits.length) return arr;
+  const out = clone(arr);
+  for (const k of hits) setDeep(out, k.slice(prefix.length), store[k]);
+  return out;
+}
+
+/**
+ * @returns {{ key, dotPath, scope, label, original, current, overridden }[]}
+ */
+export function collectScreenEditable(arr, screenId) {
+  const screen = SCREEN_BY_ID[screenId];
+  if (!screen || !Array.isArray(arr)) return [];
+  const out = [];
+  arr.forEach((item, i) => {
+    for (const f of screen.fields) {
+      const original = item?.[f];
+      if (typeof original !== 'string' || !original.trim()) continue;
+      const dotPath = `${i}.${f}`;
+      const key = screenKey(screenId, dotPath);
+      out.push({
+        key,
+        dotPath,
+        scope: screenId,
+        label: screen.labelFor(i, f, item),
+        original,
+        current: key in store ? store[key] : original,
+        overridden: key in store,
+      });
+    }
+  });
+  return out;
+}
