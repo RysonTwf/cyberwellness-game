@@ -110,6 +110,11 @@ export default function BalanceBeachRealm({
           ...ITEM_SPOTS[item.id],
           label: SHORT_LABELS[item.id] ?? item.text,
           action: 'Add to my day',
+          // Colour the pin the way it weighs the seesaw — screen time
+          // periwinkle (the side the sidebar legend calls "Screen time"),
+          // everything else teal — so a player can read the lean before
+          // they walk over.
+          accent: item.screen ? 'var(--periwinkle)' : 'var(--teal)',
         }));
 
   if (step === 'stamp') {
@@ -187,6 +192,11 @@ export default function BalanceBeachRealm({
 
           <aside className="stage-side">
             <p className="instruction">{realm.game.instruction}</p>
+
+            <div className="scale-legend">
+              <span style={{ color: 'var(--periwinkle)' }}>Screen time · {screenCount}</span>
+              <span style={{ color: 'var(--teal)' }}>Everything else · {lifeCount}</span>
+            </div>
             <p className="tile-hint">
               {day.length} / {slots} hours filled
             </p>
