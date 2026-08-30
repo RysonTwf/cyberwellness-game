@@ -457,7 +457,7 @@ const privacyHigher = {
     },
     {
       who: '"Atlas Security"',
-      text: 'Warning: we have seen unusual activity on your account. Confirm who you are within 24 hours or your account will be closed for good. Tap here to type your password.',
+      text: 'Warning: we have seen unusual activity on your account. Confirm who you are within 24 hours or your account will be closed for good. Tap this link to type your password.',
     },
   ],
 
@@ -489,7 +489,7 @@ const privacyHigher = {
     type: 'steppingstones',
     title: 'Clear the Fog',
     instruction:
-      'Six stones, six messages, one at a time. Step on the ones that are safe. Skip the ones with a warning sign. These are trickier than before. Looking official does not make something official.',
+      'Step on the ones that are safe. Skip the ones with a warning sign. These are trickier than before. Looking official does not make something official.',
     stones: [
       {
         id: 'q1',
@@ -505,9 +505,9 @@ const privacyHigher = {
       },
       {
         id: 'q3',
-        text: '"This is the Atlas Team. Please confirm your password to continue."',
+        text: '"This is the Atlas Team. Send us your One-Time-Password to continue"',
         flag: true,
-        note: 'No real team needs your password typed into a message. Skip it.',
+        note: 'No real team needs your One-Time-Password typed into a message. Skip it.',
       },
       {
         id: 'q4',
@@ -517,7 +517,7 @@ const privacyHigher = {
       },
       {
         id: 'q5',
-        text: 'atlas-security-verify.free-rewards.net',
+        text: 'atlas.free-rewards.net',
         flag: true,
         note: 'Look at the address itself, not the words around it. That is not where the real Atlas lives. Skip it.',
       },
@@ -831,13 +831,13 @@ const balanceHigher = {
  * now settled (name: Fable Falls; quest: Cyber Defender Quest; treat "P4-5"
  * in the source doc as P4-6 for this game). See Improvement Plan §5.
  *
- * School revision pass: the rumour about Mia now spreads online (a forwarded
- * screenshot/post) rather than by word of mouth, and both bands teach
+ * School revision pass: the rumour about Mia spreads online (a forwarded
+ * screenshot claiming she got caught taking snacks), and both bands teach
  * through a plain 5-question Q&A (`game.type: 'quiz'`,
- * minigames/MiniGameQuiz.jsx) instead of the Spot/Sort pile the school
- * found confusing. The lessons cover source-checking, "looks real vs is
- * real", edited / AI-made picture tells, and does-it-add-up evaluation,
- * consistent with the S.U.R.E. framework the Overview Plan names.
+ * minigames/MiniGameQuiz.jsx). Both bands run the *same* Mia scenario —
+ * `fableFallsHigher` reuses `fableFallsLower.story` verbatim — and P4–P6
+ * layers the S.U.R.E. framework (Source, Understand, Research, Evaluate)
+ * over it rather than a different, harder story.
  *
  * The official "3 tips to CHECK real vs. digitally-altered content" (the
  * SLS package's specific bullet list) was never sourced; the general,
@@ -994,35 +994,26 @@ const fableFallsLower = {
 };
 
 /**
- * P4–P6 — the S.U.R.E. framework, styled as the Cyber Defender Quest. The
- * five quiz questions walk the four letters in order (Source, Understand,
- * Research, then two Evaluate questions: one on picture/video tells, one on
- * plausibility), so the framework is taught through practice rather than a
- * lecture for each letter.
+ * P4–P6 — the same Mia screenshot scenario as `fableFallsLower` (reused
+ * verbatim for the story), but the safe choice and the five quiz questions
+ * are built around the S.U.R.E. framework: Source, Understand, Research,
+ * then two Evaluate questions (one on picture tells, one on plausibility),
+ * so the method is taught through practice on the same rumour.
  */
 const fableFallsHigher = {
-  story: [
-    {
-      who: 'Comet',
-      text: 'Fable Falls. A video is going round. It puts words in a classmate\'s mouth, and it looks almost real.',
-    },
-    {
-      who: 'The Echo',
-      text: 'Watch this, I am sharing it first! It is definitely real, look how real it looks. Everyone needs to see it before it gets taken down.',
-    },
-  ],
+  story: fableFallsLower.story,
 
   decision: {
-    prompt: 'The Echo wants you to share the video now, before you have really looked. What do you do?',
+    prompt: 'The Echo wants you to forward the screenshot too. What do you do?',
     options: [
       {
-        id: 'shareNow',
-        text: 'Share it now. It looks real, and everyone else is sharing it.',
+        id: 'spread',
+        text: 'Forward it. So many people have shared it already, so it is probably true.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          'It spreads fast, and so does the embarrassment for the classmate once it turns out to be fake. "Looks real" and "is real" are not the same thing. And "before it gets taken down" is the kind of rush that is built to stop you thinking. Shall we look again?',
+          'The screenshot tumbles further down the Falls, a bit bigger each time. Lots of shares only means a story has spread, not that it is true, and a screenshot is one of the easiest things to fake. Shall we look again?',
       },
       {
         id: 'sure',
@@ -1031,7 +1022,7 @@ const fableFallsHigher = {
         safe: true,
         who: 'Comet',
         response:
-          'Good call. Four questions, in order. Where does it come from? What is it really claiming? Can you find it anywhere you trust? Does it add up? That is the whole method, and it is faster than clearing up the mess afterwards.',
+          'Good call. Four questions, in order. Where does it come from? What is it really claiming? Can you find it anywhere you trust? Does it add up? That is the whole method, and it beats clearing up the mess afterwards.',
       },
     ],
   },
@@ -1039,105 +1030,104 @@ const fableFallsHigher = {
   game: {
     type: 'quiz',
     title: 'Run It Through S.U.R.E.',
-    instruction:
-      'Five things you notice about the video. For each one, decide whether it points to fake, or holds up. Use S.U.R.E. as you go.',
+    instruction: 'Five things you notice about the screenshot. Run the Mia post through S.U.R.E. as you go.',
     questions: [
       {
         id: 'q1',
-        text: 'Source. The account that posted the video was made yesterday and has no other posts. What does that suggest?',
+        text: 'Source. The screenshot has no name on it and reached you as a forward. Where did it start?',
         options: [
           {
             id: 'a',
-            text: 'Nothing, plenty of new accounts are fine.',
+            text: 'It does not matter, so many people shared it.',
             correct: false,
             feedback:
-              'New accounts are fine on their own. But a brand new account with no history, posting something dramatic, is a classic sign of a fake.',
+              'If nobody can tell you where a story began, that is a reason to doubt it, not to pass it on. Source is the S in S.U.R.E.',
           },
           {
             id: 'b',
-            text: 'It is a weak source, so I should be careful.',
+            text: 'Nobody can say, so I should not trust it yet.',
             correct: true,
-            feedback: 'Yes. Source is the S in S.U.R.E. Who is behind this, and is there any reason to trust them?',
+            feedback: 'Right. A story with no clear start is one to check. Source: who is behind this, and do you trust them?',
           },
         ],
       },
       {
         id: 'q2',
-        text: 'Understand. The caption says the classmate "admitted everything". The video only shows them talking for two seconds. What is going on?',
+        text: 'Understand. The caption says Mia "got caught stealing". The screenshot is just a few lines of chat. Do those match?',
         options: [
           {
             id: 'a',
-            text: 'The caption fills in the rest, that is normal.',
+            text: 'Yes, the caption explains what the chat means.',
             correct: false,
             feedback:
-              'A caption that claims far more than the video actually shows is trying to tell you what to think. Go by what you can see, not what you are told.',
+              'A caption tells you what to think. A few lines of chat, with no context, do not prove anyone was caught doing anything.',
           },
           {
             id: 'b',
-            text: 'The caption claims much more than the video shows, so I should not trust it.',
+            text: 'Not really. A screenshot of chat is not proof, and it could be edited or missing context.',
             correct: true,
             feedback:
-              'Right. Understand means working out what is really being claimed, and whether the evidence matches.',
+              'Exactly. Understand means working out what is really being claimed, and whether the evidence backs it up.',
           },
         ],
       },
       {
         id: 'q3',
-        text: 'Research. You search online and find nothing about this on any news site or school page. What does that mean?',
+        text: 'Research. You want to know if it is true. What is the best move?',
         options: [
           {
             id: 'a',
-            text: 'It is too new to be reported yet.',
+            text: 'Ask the group chat what everyone thinks.',
             correct: false,
             feedback:
-              'Real, big news usually shows up in more than one trusted place quickly. Finding nothing is a strong sign it did not happen.',
+              'The group chat is where the rumour is already spreading. Asking there just adds to it.',
           },
           {
             id: 'b',
-            text: 'If nowhere I trust has it, that points to fake.',
+            text: 'Check with a teacher, or with Mia, or wait for a real notice.',
             correct: true,
             feedback:
-              'Yes. Research means checking whether anyone reliable is saying the same thing, on their own.',
+              'Yes. Research means looking for the story somewhere you trust, on its own, not just more forwards.',
           },
         ],
       },
       {
         id: 'q4',
-        text: 'Evaluate. Watching closely, the mouth does not quite match the words and the lighting jumps partway through. What does that tell you?',
+        text: 'Evaluate. The screenshot has a small photo of Mia, and one edge looks stretched and blurry. What does that tell you?',
         options: [
           {
             id: 'a',
-            text: 'Videos glitch, it is probably fine.',
+            text: 'Nothing, phone photos look odd sometimes.',
             correct: false,
             feedback:
-              'A mouth that is out of sync, jumpy lighting, blurry edges, or hands that look wrong are all common signs a video has been edited or made by a computer.',
+              'Sometimes they do. But a stretched or smudged patch is also what you see when a picture has been changed. Look closer before you share.',
           },
           {
             id: 'b',
-            text: 'Those are signs the video may be edited or AI made.',
+            text: 'It might have been edited, so I should not trust it.',
             correct: true,
             feedback:
-              'Good eye. Those small mismatches are some of the easiest tells that a video is not real.',
+              'Good eye. Odd edges, blurry patches and strange shadows are common signs a picture is not real.',
           },
         ],
       },
       {
         id: 'q5',
-        text: 'Evaluate. The video is dramatic, perfectly timed, and makes one person look very bad. How does that sit with you?',
+        text: 'Evaluate. The story is dramatic, spreading fast, and makes one person look bad. How does that sit with you?',
         options: [
           {
             id: 'a',
-            text: 'Dramatic means important, so I should share it.',
+            text: 'Dramatic means important, so I should share it quickly.',
             correct: false,
             feedback:
               'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
           },
           {
             id: 'b',
-            text: 'Too perfect and too shocking is a reason to doubt it.',
+            text: 'Fast, dramatic and one-sided is a reason to doubt it.',
             correct: true,
             feedback:
-              'Exactly. If something seems designed to make you react fast, treat that as a warning, not proof.',
+              'Exactly. Evaluate: does it add up, or is it a bit too shocking, too perfect, too convenient?',
           },
         ],
       },
@@ -1146,7 +1136,7 @@ const fableFallsHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Use S.U.R.E. every time something makes you want to react fast. Source: who posted this, and do you trust them? Understand: what is it actually claiming? Research: can you find it confirmed somewhere you trust? Evaluate: does it add up, or is it a bit too perfect, too shocking, too convenient? Four questions is usually enough to catch a fake.',
+    text: 'Use S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who posted it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too handy? Four questions is usually enough to catch a fake.',
   },
 };
 
