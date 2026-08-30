@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Check, RefreshCw } from 'lucide-react';
+import { ArrowRight, Check, RefreshCw, Lock, LockOpen } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
@@ -235,8 +235,8 @@ export default function PlatformerStoryRealm({
 
               {!hasEveryStrong && verdict !== 'short' && (
                 <p className="instruction">
-                  The keypad wants the whole password. Tick every piece in your bag that belongs
-                  in a strong one.
+                  The keypad wants the whole password. Tick every teal, closed-padlock piece in
+                  your bag, and leave the gold ones out.
                 </p>
               )}
 
@@ -252,7 +252,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Some of what you ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count. Try again."
+                  text="That's not the set. Some of what you ticked is a gold, easy-to-guess piece. Pick only the teal ones with the closed padlock. Try again."
                 />
               )}
 
@@ -261,24 +261,32 @@ export default function PlatformerStoryRealm({
                   <div className="bag-grid">
                     {bag.map((t) => {
                       const on = chosen.includes(t.id);
+                      const strong = t.kind === 'real';
                       return (
                         <button
                           key={t.id}
                           type="button"
-                          className={`bag-chip${on ? ' on' : ''}`}
+                          className={`bag-chip bag-chip-${strong ? 'strong' : 'weak'}${on ? ' on' : ''}`}
                           aria-pressed={on}
+                          aria-label={`${t.label} — ${strong ? 'a strong piece' : 'easy to guess'}`}
                           onClick={() =>
                             setChosen((c) =>
                               c.includes(t.id) ? c.filter((x) => x !== t.id) : [...c, t.id],
                             )
                           }
                         >
+                          {strong ? <Lock size={12} /> : <LockOpen size={12} />}
                           {t.label}
                         </button>
                       );
                     })}
                     {bag.length === 0 && <p className="muted">Your bag is empty.</p>}
                   </div>
+                  <p className="tile-hint">
+                    <Lock size={12} style={{ verticalAlign: '-2px' }} /> teal pieces make a strong
+                    password. <LockOpen size={12} style={{ verticalAlign: '-2px' }} /> gold ones are
+                    easy to guess.
+                  </p>
                   <button
                     type="button"
                     className="btn btn-accent"

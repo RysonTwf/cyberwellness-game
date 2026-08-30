@@ -2264,9 +2264,10 @@ p {
   gap: 8px;
 }
 
-/* Each piece the Traveler carried up to the door. Ticking one is a claim that
-   it belongs in a strong password, so the pressed state has to be unmistakable
-   at a glance — colour alone wouldn't be. */
+/* Each piece the Traveler carried up to the door. A closed padlock + teal
+   border marks the strong pieces, an open padlock + gold marks the
+   easy-to-guess ones — the hint the door's feedback text points at. The
+   pressed (ticked) state stays unmistakable on top of that. */
 .bag-chip {
   appearance: none;
   cursor: pointer;
@@ -2279,19 +2280,39 @@ p {
   border: 2px solid var(--line-strong);
   background: var(--paper-card);
   color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
 }
 
+.bag-chip-strong {
+  border-color: var(--teal);
+}
+
+.bag-chip-weak {
+  border-color: var(--gold);
+  color: var(--ink-soft);
+}
+
 .bag-chip:hover {
-  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .bag-chip.on {
-  background: var(--accent);
-  border-color: var(--accent);
   color: var(--paper-card);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
+}
+
+.bag-chip-strong.on {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.bag-chip-weak.on {
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 /* A message the player has marked as worth stopping at, before they commit.
