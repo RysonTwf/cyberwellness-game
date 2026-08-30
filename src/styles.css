@@ -970,34 +970,21 @@ p {
   border: 1.5px solid var(--line);
 }
 
-.scale-beam {
-  height: 10px;
-  border-radius: 999px;
-  background: var(--line-strong);
-  margin: 26px 0 0;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+.seesaw-stage {
   position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 16 / 6;
+  margin: 12px auto 2px;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  border: 1.5px solid var(--line);
 }
 
-.scale-beam::before,
-.scale-beam::after {
-  content: '';
-  position: absolute;
-  top: -7px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-}
-
-.scale-beam::before {
-  left: 0;
-  background: var(--periwinkle);
-}
-
-.scale-beam::after {
-  right: 0;
-  background: var(--teal);
+@media (prefers-reduced-motion: reduce) {
+  .seesaw-stage img {
+    transition: none !important;
+  }
 }
 
 .scale-legend {
