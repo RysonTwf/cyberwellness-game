@@ -49,7 +49,7 @@ export default function MiniGameSort({ game, onComplete }) {
     setNote(
       correct
         ? null
-        : `Not quite — "${current.text}" goes in ${target.title}: ${target.sub.toLowerCase()}. Moved it there for you.`,
+        : `Not quite. "${current.text}" goes in ${target.title}: ${target.sub.toLowerCase()}. Moved it there for you.`,
     );
     setOver(null);
     setDragging(false);
@@ -85,7 +85,7 @@ export default function MiniGameSort({ game, onComplete }) {
             </div>
           </div>
           <p className="tile-hint">
-            {placed.length + 1} of {game.items.length} — drag it to a box, or just tap one.
+            {placed.length + 1} of {game.items.length}. Drag it to a box, or just tap one.
           </p>
         </>
       )}
@@ -97,7 +97,7 @@ export default function MiniGameSort({ game, onComplete }) {
           </span>
           <div>
             <p>
-              All sorted — {firstTryCorrect} of {game.items.length} filed right the first time.
+              All sorted. {firstTryCorrect} of {game.items.length} filed right the first time.
               {firstTryCorrect < game.items.length
                 ? ' The ones that moved are the ones worth remembering.'
                 : ' No mistakes at all.'}

@@ -23,7 +23,7 @@ export default function ReportBlock({ accent = 'var(--ink)' }) {
         <div>
           <div className="who">Good instinct</div>
           <p>
-            Reporting and blocking tells the app to stop this from reaching you again — you
+            Reporting and blocking tells the app to stop this from reaching you again, and you
             don&rsquo;t have to just let it keep happening.
           </p>
         </div>

@@ -282,7 +282,7 @@ export function makePasswordFortressLevelConfig(
     resolveSafe() {
       this.locked = false;
       this.hintText?.setText('Collect the letter, number, and symbol tiles up on the platforms.');
-      this.flashToast('Gate’s open — that wasn’t really Sam. The real Sam never needs your password.');
+      this.flashToast('Gate’s open. That wasn’t really Sam. The real Sam never needs your password.');
       this.tweens.add(motionTween({
         targets: this.gateBody,
         alpha: 0,
@@ -363,7 +363,7 @@ export function makePasswordFortressLevelConfig(
       this.knockUntil = 260;
       this.player.setTint(HAZARD);
       this.time.delayedCall(220, () => this.player.clearTint());
-      this.flashToast('Knocked clear — no harm done, just time it and go again.');
+      this.flashToast('Knocked clear. No harm done, just time it and go again.');
     }
 
     flashToast(msg) {

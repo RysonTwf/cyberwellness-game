@@ -21,7 +21,7 @@ export default function CertificateScreen({
       <div className="stack">
         <DialogueCard
           who="Comet"
-          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You picked curiosity and a bit of caution, every time — that's really all it takes.`}
+          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You picked curiosity and a bit of caution, every time, and that's really all it takes.`}
         />
 
         <div className="cert" style={{ '--accent': 'var(--gold)' }}>
@@ -92,7 +92,7 @@ export default function CertificateScreen({
             </div>
             <DialogueCard
               who="Comet"
-              text="The Atlas doesn't change much — but you can always visit again."
+              text="The Atlas doesn't change much, but you can always visit again."
             />
             <div className="row" style={{ justifyContent: 'center' }}>
               <button type="button" className="btn btn-ghost" onClick={onBackToAtlas}>

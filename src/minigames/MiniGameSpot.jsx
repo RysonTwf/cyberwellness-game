@@ -71,7 +71,7 @@ export default function MiniGameSpot({ game, onComplete }) {
         <Flag size={17} color="var(--coral)" />
         <span className="stamp-label">
           {checked
-            ? `${foundFlags} of ${totalFlags} — you found them all`
+            ? `${foundFlags} of ${totalFlags}, you found them all`
             : `${marked.length} marked · ${totalFlags} to find`}
         </span>
       </div>
@@ -108,7 +108,7 @@ export default function MiniGameSpot({ game, onComplete }) {
 
       {!checked && (
         <>
-          {miss && <p className="tile-hint">Not yet — there's {miss}. Have another look.</p>}
+          {miss && <p className="tile-hint">Not yet. There's {miss}. Have another look.</p>}
           <div className="center">
             <button
               type="button"
@@ -129,7 +129,7 @@ export default function MiniGameSpot({ game, onComplete }) {
             <Eye size={22} />
           </span>
           <p>
-            Fog's gone. Four things in one short chat — and the one asking your favourite game
+            Fog's gone. Four things in one short chat, and the one asking your favourite game
             was fine all along. Lots of travelers mark that one by mistake too.
           </p>
         </div>

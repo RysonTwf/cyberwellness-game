@@ -92,7 +92,7 @@ export default function StampBadge({
       className={`stamp${earned ? '' : ' locked'}${thunk ? ' thunk' : ''}`}
       style={{ width: size, height: size, transform: `rotate(${earned ? angle : 0}deg)` }}
       role="img"
-      aria-label={earned ? `${label} — stamp earned` : `${label} — not yet earned`}
+      aria-label={earned ? `${label}, stamp earned` : `${label}, not yet earned`}
     >
       <svg
         className="stamp-ring"

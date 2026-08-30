@@ -196,7 +196,7 @@ export default function World({
               pointerEvents: 'none',
             }}
           >
-            x: {probe.x}, y: {probe.y} — click copies
+            x: {probe.x}, y: {probe.y} · click copies
           </div>
         )}
 

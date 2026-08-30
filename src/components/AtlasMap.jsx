@@ -259,7 +259,7 @@ export default function AtlasMap({
   const greeting = allStamped
     ? `${ACTIVE_REALMS.length} stamps, Traveler ${travelerName}. The Gate's been waiting for you.`
     : visitedCount === 0
-      ? `Here it is — the whole Atlas. Pick a branch, ${travelerName}, and step onto whichever island you like the look of.`
+      ? `Here it is: the whole Atlas. Pick a branch, ${travelerName}, and step onto whichever island you like the look of.`
       : `${visitedCount} down, ${ACTIVE_REALMS.length - visitedCount} to go. Where to next, ${travelerName}?`;
 
   const hotspots = ACTIVE_REALMS.map((realm) => ({

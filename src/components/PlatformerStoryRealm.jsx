@@ -231,7 +231,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text={`Not all the correct pieces are in your bag yet — you've got ${strongInBag.length} of ${total}. The door won't open on a half-built password. Go back and find the rest.`}
+                  text={`Not all the correct pieces are in your bag yet. You've got ${strongInBag.length} of ${total}. The door won't open on a half-built password. Go back and find the rest.`}
                 />
               )}
 
@@ -239,7 +239,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Some of what you ticked is the easy-to-guess kind — look for the closed padlock on the ones that count, and try again."
+                  text="That's not the set. Some of what you ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count, and try again."
                 />
               )}
 

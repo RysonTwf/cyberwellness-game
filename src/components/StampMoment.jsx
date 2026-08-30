@@ -37,13 +37,13 @@ export default function StampMoment({ realm, angle, travelerName, onBackToAtlas 
         <div className="center">
           <h2>Stamped.</h2>
           <p className="lede" style={{ marginTop: 8 }}>
-            {realm.stamp.label} — that one&rsquo;s yours, {travelerName}.
+            {realm.stamp.label}. That one&rsquo;s yours, {travelerName}.
           </p>
         </div>
 
         <DialogueCard
           who="Comet"
-          text="Into the passport it goes. Nothing gets un-stamped — that stamp is yours forever."
+          text="Into the passport it goes. Nothing gets un-stamped. That stamp is yours forever."
           accent={realm.accent}
         />
 

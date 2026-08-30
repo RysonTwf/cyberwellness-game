@@ -9,11 +9,11 @@ import { ACTIVE_REALMS, COMET_CATCHPHRASE } from '../data/realms';
 const BEATS = [
   {
     who: 'Comet',
-    text: 'Oh — hello! You opened it. Most people just put these back on the shelf without looking.',
+    text: 'Oh, hello! You opened it. Most people just put these back on the shelf without looking.',
   },
   {
     who: 'Comet',
-    text: "I'm Comet. This is the Atlas — every path the internet takes, drawn out as a map. And you're about to become a Traveler.",
+    text: "I'm Comet. This is the Atlas: every path the internet takes, drawn out as a map. And you're about to become a Traveler.",
   },
 ];
 
