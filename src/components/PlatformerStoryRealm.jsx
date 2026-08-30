@@ -241,7 +241,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Some of what you ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count, and try again."
+                  text="That's not the set. Some of what you have ticked is the easy-to-guess kind. Look for the closed padlock on the ones that count, and try again."
                 />
               )}
 
@@ -285,7 +285,7 @@ export default function PlatformerStoryRealm({
                 className="btn btn-ghost btn-sm"
                 onClick={() =>
                   leaveDoor(
-                    hasEveryStrong ? 'Have another look at what you picked up.' : 'Some pieces are still out there.',
+                    hasEveryStrong ? 'Have another look at what you have.' : 'Some pieces are still out there.',
                   )
                 }
               >

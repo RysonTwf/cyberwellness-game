@@ -20,7 +20,7 @@ const ROOM_TOUR = [
   {
     target: '.hotspot',
     title: 'The glowing pin',
-    text: 'A pin like this always marks the next thing worth walking to. Get close and a button pops up: press it (or hit Enter) to interact. Something on the table is glowing…',
+    text: 'A pin like this always marks the next thing worth walking to. Get close and a button pops up: press it (or press Enter) to interact. Something on the table is glowing…',
   },
   {
     target: '.objective',

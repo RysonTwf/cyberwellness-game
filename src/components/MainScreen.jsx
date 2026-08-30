@@ -25,7 +25,7 @@ export default function MainScreen({ onStart }) {
           </div>
           <h1 style={{ marginTop: 10 }}>Cyber Defender Quest</h1>
           <p className="lede" style={{ marginTop: 8, maxWidth: '38ch' }}>
-            Travel the Atlas with Comet, and become a Wise Traveler.
+            Travel the Atlas with Comet, and become a Wise Traveller.
           </p>
         </div>
 

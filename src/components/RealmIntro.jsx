@@ -44,7 +44,7 @@ export default function RealmIntro({ realm, showIntro, showTutorial, onTutorialD
           },
           {
             title: 'Say hello',
-            text: 'When you get close enough, a button pops up over your head. Press it (or hit Enter) to talk, look, and play.',
+            text: 'When you get close enough, a button pops up over your head. Press it (or press Enter) to talk, look, and play.',
           },
           {
             target: '.objective',

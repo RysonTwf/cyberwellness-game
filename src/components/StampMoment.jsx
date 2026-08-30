@@ -35,7 +35,7 @@ export default function StampMoment({ realm, angle, travelerName, onBackToAtlas 
 
       <div className="stack">
         <div className="center">
-          <h2>Stamped.</h2>
+          <h2>That's a stamp.</h2>
           <p className="lede" style={{ marginTop: 8 }}>
             {realm.stamp.label}. That one&rsquo;s yours, {travelerName}.
           </p>

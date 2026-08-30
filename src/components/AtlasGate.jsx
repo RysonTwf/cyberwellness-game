@@ -102,7 +102,7 @@ export default function AtlasGate({ onBegin }) {
               </div>
 
               <label htmlFor="traveler-name" className="stamp-label">
-                Traveler name
+                Traveller name
               </label>
               <div style={{ maxWidth: 340, margin: '10px auto 0' }}>
                 <input
@@ -127,7 +127,7 @@ export default function AtlasGate({ onBegin }) {
 
             <DialogueCard
               who="Comet"
-              text="Type it in and hit Next. One quick question after that, and the door is all yours."
+              text="Type it in and tap Next. One quick question after that, and the door is all yours."
             />
 
             <div className="center">

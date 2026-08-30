@@ -33,16 +33,16 @@ const BEATS = [
   },
   {
     kind: 'comet',
-    text: "Each realm teaches a traveler something about getting around out here, safely and kindly. Visit one and it stamps your passport, which is this journal you're holding.",
+    text: "Each realm teaches a traveller something about getting around out here, safely and kindly. Visit one and it stamps your passport, which is this journal you're holding.",
   },
   {
     kind: 'comet',
-    text: "Collect all five stamps and you're a Wise Traveler, and the Atlas Gate opens for those. Curiosity and a bit of caution is really all it takes.",
+    text: "Collect all five stamps and you're a Wise Traveller, and the Atlas Gate opens for those. Curiosity and a bit of caution is really all it takes.",
   },
   {
     kind: 'comet',
     text: "Every journey starts at home, though. Let's get you ready first. Who's walking the Atlas with me?",
-    cta: 'Choose my traveler',
+    cta: 'Choose my traveller',
   },
 ];
 

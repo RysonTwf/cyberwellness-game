@@ -21,13 +21,13 @@ export default function CertificateScreen({
       <div className="stack">
         <DialogueCard
           who="Comet"
-          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You picked curiosity and a bit of caution, every time, and that's really all it takes.`}
+          text={`${ACTIVE_REALMS.length} stamps. ${ACTIVE_REALMS.length} realms. You pick curiosity and a bit of caution, every time, and that's really all it takes.`}
         />
 
         <div className="cert" style={{ '--accent': 'var(--gold)' }}>
           <span className="stamp-label">Cyber Defender Quest</span>
-          <h2 style={{ margin: '10px 0 4px' }}>Wise Traveler</h2>
-          <p className="muted">This traveler has walked the whole Atlas.</p>
+          <h2 style={{ margin: '10px 0 4px' }}>Wise Traveller</h2>
+          <p className="muted">This traveller has walked the whole Atlas.</p>
 
           <div className="cert-stamps">
             {ACTIVE_REALMS.map((realm) => (
@@ -44,7 +44,7 @@ export default function CertificateScreen({
             ))}
           </div>
 
-          <span className="stamp-label">The Traveler&rsquo;s Pledge</span>
+          <span className="stamp-label">The Traveller&rsquo;s Pledge</span>
           <div className="pledge" style={{ marginTop: 12 }}>
             {activePledge().map((line) => (
               <div

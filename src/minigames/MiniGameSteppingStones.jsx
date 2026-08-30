@@ -68,7 +68,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
       />
 
       <p className="tile-hint">
-        {done ? `Crossed. ${correctCount} of ${stones.length} right.` : `Stone ${index + 1} of ${stones.length}`}
+        {done ? `Across! ${correctCount} of ${stones.length} right.` : `Stone ${index + 1} of ${stones.length}`}
       </p>
 
       {!done && current && !feedback && (
@@ -96,7 +96,7 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
           <span className="ic">
             <Check size={22} />
           </span>
-          <p>Nice work reading each one before you moved. Pausing to think is the real skill.</p>
+          <p>Nice work reading each one before you move. Pausing to think is the real skill.</p>
         </div>
       )}
 
@@ -106,8 +106,8 @@ export default function MiniGameSteppingStones({ game, onComplete }) {
             <Info size={22} />
           </span>
           <p>
-            You made it across, but {stones.length - correctCount} of them tricked you. Read
-            what each one said again and cross it clean.
+            You get across, but {stones.length - correctCount} of them trick you. Read
+            what each one says again and cross it clean.
           </p>
         </div>
       )}

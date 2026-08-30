@@ -71,7 +71,7 @@ export default function MiniGameSpot({ game, onComplete }) {
         <Flag size={17} color="var(--coral)" />
         <span className="stamp-label">
           {checked
-            ? `${foundFlags} of ${totalFlags}, you found them all`
+            ? `${foundFlags} of ${totalFlags}, you have them all`
             : `${marked.length} marked · ${totalFlags} to find`}
         </span>
       </div>
@@ -117,7 +117,7 @@ export default function MiniGameSpot({ game, onComplete }) {
           </span>
           <p>
             Fog's gone. Four things in one short chat, and the one asking your favourite game
-            was fine all along. Lots of travelers mark that one by mistake too.
+            is fine all along. Lots of travellers mark that one by mistake too.
           </p>
         </div>
       )}

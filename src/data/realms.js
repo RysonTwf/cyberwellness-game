@@ -25,7 +25,7 @@
  */
 
 export const COMET_CATCHPHRASE =
-  'Every good traveler carries two things: curiosity, and a bit of caution.';
+  'Every good traveller carries two things: curiosity, and a bit of caution.';
 
 /**
  * Universal "Report & Block" resolution option (Improvement Plan §2): rather
@@ -61,7 +61,7 @@ const passworldLower = {
         who: 'Comet',
         // Warm redirect, not a punishment (design.md §5)
         response:
-          "Vex's vault door creaks open, but there's nothing behind it, just fog. Vex seems nice, but even a friendly stranger never needs your real info or your password. Want to try again?",
+          "Vex's vault door creaks open, but there's nothing behind it, just fog. Vex seems nice, but even a friendly stranger never needs your real details or your password. Want to try again?",
       },
       {
         id: 'decline',
@@ -119,7 +119,7 @@ const passworldHigher = {
     },
     {
       who: '"Sam"',
-      text: "hey!! it's me, sam, lol. forgot my password AGAIN. can u just send me urs so i can get back into my own stuff? promise i'll delete it after 😅",
+      text: "Hi, it's me, Sam. I've forgotten my password again. Could you send me yours so I can get back into my own account? I promise I'll delete it afterwards.",
     },
   ],
 
@@ -129,12 +129,12 @@ const passworldHigher = {
     options: [
       {
         id: 'send',
-        text: "Send your password, it's Sam and they wouldn't ask if it wasn't important.",
+        text: "Send your password. It's Sam, and they wouldn't ask unless it mattered.",
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          "You send it, and your door creaks open too. That wasn't really Sam. Someone got into Sam's vault because a password got shared or guessed, and now they're using it to get into more doors, including yours. A real friend never actually needs your password, even to \"help.\" Want to look again?",
+          "You send it, and your door creaks open too. That is not really Sam. When a password gets shared or guessed, whoever has it can open every door it fits, and that is what is happening here, to yours as well. A real friend never actually needs your password, even to help. Want to look again?",
       },
       {
         id: 'verify',
@@ -242,7 +242,7 @@ const passworldHigher = {
 
   rule: {
     who: 'Comet',
-    text: "Here's the Passworld rule for older travelers: accounts don't usually get \"stolen\" by someone breaking down the door. They get taken over because a password got shared, reused, or guessed. So: a different password for everything that matters, never hand yours over even to a friend who \"really needs it,\" and if a message ever feels off, even from someone you know, check with them a different way before you trust it.",
+    text: "Here's the Passworld rule for older travellers: accounts don't usually get \"stolen\" by someone breaking down the door. They get taken over because a password is shared, reused, or guessed. So: a different password for everything that matters, never hand yours over even to a friend who \"really needs it\", and if a message ever feels off, even from someone you know, check with them a different way before you trust it.",
   },
 };
 
@@ -258,7 +258,7 @@ const privacyLower = {
     },
     {
       who: 'The Fog',
-      text: "hii!! u just won a free tablet!! click here fast before it's gone, only for the next 5 minutes!! also whats ur address so we can send it lol",
+      text: "Hello! You have just won a free tablet! Click here quickly, before it is gone, only for the next 5 minutes. Also, what is your address, so we can send it to you?",
     },
   ],
 
@@ -272,7 +272,7 @@ const privacyLower = {
         safe: false,
         who: 'Comet',
         response:
-          "The fog gets thicker and… nothing good happens. Look at that message again: it promised a prize you never entered for, it rushed you to click fast, and it asked for your address. Let's look again.",
+          "The fog gets thicker and… nothing good happens. Look at that message again: it promises a prize out of nowhere, it rushes you to click quickly, and it asks for your address. Let's look again.",
       },
       {
         id: 'refuse',
@@ -281,7 +281,7 @@ const privacyLower = {
         safe: true,
         who: 'Comet',
         response:
-          'The fog thins out and drifts away, and there’s the real path again. Telling someone is the part most travelers forget. Nice work.',
+          'The fog thins out and drifts away, and there’s the real path again. Telling someone is the part most travellers forget. Nice work.',
       },
     ],
   },
@@ -292,34 +292,34 @@ const privacyLower = {
     instruction:
       'Tap each message to clear the fog off it. Find the parts that should make you stop and think. Not everything here is a trick.',
     messages: [
-      { id: 'm1', text: 'hii!! 😊', flag: false, note: 'Just a hello. Nothing wrong with that.' },
+      { id: 'm1', text: 'Hello there! 😊', flag: false, note: 'Just a hello. Nothing wrong with that.' },
       {
         id: 'm2',
-        text: 'u just won a free tablet!! 🎉',
+        text: 'You have just won a free tablet! 🎉',
         flag: true,
-        note: 'A prize you never entered for. If you didn’t enter, you didn’t win.',
+        note: 'A prize out of nowhere. If there is no competition, there is no real prize.',
       },
       {
         id: 'm3',
-        text: 'click here fast, only 5 minutes left!!',
+        text: 'Click here quickly, only 5 minutes left!',
         flag: true,
         note: 'Rushing you on purpose, so you don’t stop and think.',
       },
       {
         id: 'm4',
-        text: 'whats ur favourite game?',
+        text: 'What is your favourite game?',
         flag: false,
         note: 'Your favourite game is safe to share. Remember Passworld? Not everything a stranger asks is a trap.',
       },
       {
         id: 'm5',
-        text: 'whats ur address so we can send it lol',
+        text: 'What is your address, so we can send it to you?',
         flag: true,
         note: 'Your address is yours. That one stays locked.',
       },
       {
         id: 'm6',
-        text: 'wanna meet at the park after school? dont tell ur parents 🤫',
+        text: 'Do you want to meet at the park after school? Do not tell your parents. 🤫',
         flag: true,
         note: 'Wanting to meet up, and asking you to keep it secret. That’s the biggest one on this whole mountain.',
       },
@@ -345,7 +345,7 @@ const privacyHigher = {
     },
     {
       who: '"Atlas Security"',
-      text: '⚠️ URGENT: Unusual activity detected on your account. Verify your identity within 24 hours or your account will be permanently suspended. Tap here to confirm your password and continue.',
+      text: '⚠️ URGENT: We have detected unusual activity on your account. Verify your identity within 24 hours or your account will be permanently suspended. Tap here to confirm your password and continue.',
     },
   ],
 
@@ -368,7 +368,7 @@ const privacyHigher = {
         safe: true,
         who: 'Comet',
         response:
-          "You open the Atlas app directly, the ordinary way, and there's no warning waiting for you there. The fog wanted you to click before you could check. Slowing down was all it took.",
+          "You open the Atlas app directly, the ordinary way, and there's no warning waiting for you there. The fog wants you to click before you can check. Slowing down is all it takes.",
       },
     ],
   },
@@ -401,7 +401,7 @@ const privacyHigher = {
         id: 'q4',
         text: '"Reminder: your library book is due Friday."',
         flag: false,
-        note: 'Ordinary, boring, no ask. Not everything official-looking is a trap. Fine to step on.',
+        note: 'Ordinary, boring, nothing asked of you. Not everything official-looking is a trap. Fine to step on.',
       },
       {
         id: 'q5',
@@ -420,7 +420,7 @@ const privacyHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'The upgraded rule for the Peaks: scams get better at looking real the older you get: logos, official language, countdowns. None of that is proof. The tell is always the same underneath: rushing you, and asking for something (a password, a click, a link) a real message wouldn\'t need. When in doubt, go check the official way yourself, and loop in a trusted adult.',
+    text: 'The upgraded rule for the Peaks: scams get better at looking real the older you get: logos, official language, countdowns. None of that is proof. The tell is always the same underneath: rushing you, and asking for something (a password, a click, a link) that a real message never would. When in doubt, go check the official way yourself, and loop in a trusted adult.',
   },
 };
 
@@ -436,11 +436,11 @@ const bullybogLower = {
     },
     {
       who: 'Pockets',
-      text: '🎵 ribbit-a-doo, ribbit-a-daaaa… oh! Hello. Sorry, I was just singing. I do that.',
+      text: '🎵 ribbit-a-doo, ribbit-a-daaaa… oh! Hello. Sorry, I’m just singing. I do that.',
     },
     {
       who: 'A comment appears',
-      text: '"nobody wants to hear this, go away."',
+      text: '"Nobody wants to hear this. Go away."',
     },
     {
       who: 'Comet',
@@ -453,7 +453,7 @@ const bullybogLower = {
     options: [
       {
         id: 'joinin',
-        text: '"yeah that was bad"',
+        text: '"Yes, that is bad."',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
@@ -462,12 +462,12 @@ const bullybogLower = {
       },
       {
         id: 'standup',
-        text: '"That wasn\'t kind. I liked your song, Pockets."',
+        text: '"That is not kind. I love your song, Pockets."',
         tag: 'Option B',
         safe: true,
         who: 'Pockets',
         response:
-          'Oh. Oh! You did? Nobody’s ever… The water’s going clear right where you said it. Thank you, Traveler.',
+          'Oh. Oh! You do? Nobody ever… The water’s going clear right where you say it. Thank you, Traveller.',
       },
     ],
   },
@@ -480,15 +480,15 @@ const bullybogLower = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before it goes up for good: would it be okay if what you just typed stayed online forever? Posts don’t really disappear, even the kind ones.',
+        'One more thing, before it goes up for good: would it be okay if what you just typed stays online forever? Posts don’t really disappear, even the kind ones.',
       accept: 'Good point.',
       followUp:
-        'That’s a good habit: think about whether it’s kind, and whether you’d still be okay with it next year. You just did both!',
+        'That’s a good habit: think about whether it’s kind, and whether you’d still be okay with it next year. You are doing both right now!',
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        'You handled that one yourself, but you don’t always have to. If the water here ever got a lot darker, who’s a trusted adult you’d tell?',
+        'You handle this one yourself, but you don’t always have to. If the water here ever gets a lot darker, who’s a trusted adult you’d tell?',
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
@@ -509,14 +509,14 @@ const bullybogLower = {
       { id: 'leave', title: 'Leave It', sub: 'This would sting', icon: 'trash' },
     ],
     items: [
-      { id: 'c1', text: '"I liked your song, Pockets!"', bin: 'send' },
+      { id: 'c1', text: '"I love your song, Pockets!"', bin: 'send' },
       { id: 'c2', text: '"Want to sing the next one together?"', bin: 'send' },
-      { id: 'c3', text: '"That was brave. Nice one."', bin: 'send' },
+      { id: 'c3', text: '"That is brave. Nice one."', bin: 'send' },
       { id: 'c4', text: '"I\'m here if you want to talk."', bin: 'send' },
-      { id: 'c5', text: '"nobody wants to hear this"', bin: 'leave' },
-      { id: 'c6', text: '"lol that was so bad"', bin: 'leave' },
-      { id: 'c7', text: '"we\'re not inviting you next time"', bin: 'leave' },
-      { id: 'c8', text: '"everyone agrees with me btw"', bin: 'leave' },
+      { id: 'c5', text: '"Nobody wants to hear this."', bin: 'leave' },
+      { id: 'c6', text: '"That is so bad."', bin: 'leave' },
+      { id: 'c7', text: '"We are not inviting you next time."', bin: 'leave' },
+      { id: 'c8', text: '"Everyone agrees with me, by the way."', bin: 'leave' },
     ],
   },
 
@@ -542,15 +542,15 @@ const bullybogHigher = {
     },
     {
       who: 'Pockets',
-      text: "🎵 ribbit-a… oh. Everyone's already looking at my post. I probably shouldn't have posted my voice.",
+      text: "🎵 ribbit-a… oh. Everyone's already looking at my post. Maybe sharing my voice is a mistake.",
     },
     {
       who: 'A comment appears',
-      text: '"of course it sounds like that, it\'s a frog lol what did u expect"',
+      text: '"Of course it sounds like that, it is a frog. What do you expect?"',
     },
     {
       who: 'Another comment appears',
-      text: '"yeah that voice is exactly why nobody picks pockets for anything"',
+      text: '"Yes, that voice is exactly why nobody picks Pockets for anything."',
     },
     {
       who: 'Comet',
@@ -563,21 +563,21 @@ const bullybogHigher = {
     options: [
       {
         id: 'jointhepile',
-        text: '"lol true", just to fit in with everyone else.',
+        text: '"True", just to fit in with everyone else.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          'The water goes darker, and this time it\'s not just your words doing it, it\'s the weight of everyone\'s added up. "Everyone else was doing it" doesn\'t make a pile-on lighter for the person underneath it. Want to try again?',
+          'The water goes darker, and this time it\'s not just your words doing it, it\'s the weight of everyone\'s, all added together. "Everyone else is doing it" doesn\'t make a pile-on lighter for the person underneath it. Want to try again?',
       },
       {
         id: 'standupharder',
-        text: '"That\'s making fun of who Pockets actually is, not something they did. Not okay, with any of you."',
+        text: '"That\'s making fun of who Pockets actually is, not something they do. Not okay, with any of you."',
         tag: 'Option B',
         safe: true,
         who: 'Pockets',
         response:
-          "The water clears, slower this time, because more of it was dark. But it clears. And two of the others quietly delete their comments. Thank you for saying it to all of them, not just to me.",
+          "The water clears, slower this time, because more of it is dark. But it clears. And two of the others quietly delete their comments. Thank you for saying it to all of them, not just to me.",
       },
     ],
   },
@@ -586,22 +586,22 @@ const bullybogHigher = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing: before any of this goes up for good, would it be okay if it stayed online forever? That includes the comments that pile on, not just the first one.',
+        'One more thing: before any of this goes up for good, would it be okay if it stays online forever? That includes the comments that pile on, not just the first one.',
       accept: 'Good point.',
       followUp:
-        "That's the same habit as before, just harder to remember mid-pile-on: not just \"is this kind,\" but \"would I still stand by this next year.\"",
+        "That's the same habit as before, just harder to remember mid-pile-on: not just ‘is this kind’, but ‘would I still stand by this next year’.",
     },
     tellSomeone: {
       who: 'Comet',
       prompt:
-        "Standing up in the moment is hard, especially against more than one person. If a pile-on like this ever got bigger than you could handle alone, who's a trusted adult you'd tell?",
+        "Standing up in the moment is hard, especially against more than one person. If a pile-on like this ever gets bigger than you can handle alone, who's a trusted adult you'd tell?",
       options: [
         { id: 'parent', text: 'A parent or family member' },
         { id: 'teacher', text: 'A teacher' },
         { id: 'other-adult', text: 'Another trusted adult' },
       ],
       response:
-        "Good answer. Standing up doesn't mean handling a whole pile-on by yourself. Telling an adult is just as much a part of standing up as the comment was.",
+        "Good answer. Standing up doesn't mean handling a whole pile-on by yourself. Telling an adult is just as much a part of standing up as the comment is.",
     },
   },
 
@@ -609,7 +609,7 @@ const bullybogHigher = {
     type: 'sort',
     title: 'Clear the Water: Level Up',
     instruction:
-      "Some of these are about what someone did. Some are about who they are. Sort by which kind they are, and which pile you'd add to.",
+      "Some of these are about what someone does. Some are about who they are. Sort by which kind they are, and which pile you'd add to.",
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would sting', icon: 'trash' },
@@ -617,18 +617,18 @@ const bullybogHigher = {
     items: [
       { id: 'd1', text: '"Your voice is part of what makes your songs yours. Keep singing."', bin: 'send' },
       { id: 'd2', text: '"I don\'t care what anyone else says, I\'m still listening."', bin: 'send' },
-      { id: 'd3', text: '"of course it sounds like that, it\'s a frog lol"', bin: 'leave' },
-      { id: 'd4', text: '"that voice is exactly why nobody picks pockets for anything"', bin: 'leave' },
-      { id: 'd5', text: '"not joining in on this one, sorry"', bin: 'send' },
-      { id: 'd6', text: '"everyone else is saying it too so it\'s not that deep"', bin: 'leave' },
-      { id: 'd7', text: '"deleting my comment, that wasn\'t fair"', bin: 'send' },
-      { id: 'd8', text: '"guess we know who\'s getting picked last now"', bin: 'leave' },
+      { id: 'd3', text: '"Of course it sounds like that, it is a frog."', bin: 'leave' },
+      { id: 'd4', text: '"That voice is exactly why nobody picks Pockets for anything."', bin: 'leave' },
+      { id: 'd5', text: '"Not joining in on this one, sorry."', bin: 'send' },
+      { id: 'd6', text: '"Everyone else is saying it too, so it is not that deep."', bin: 'leave' },
+      { id: 'd7', text: '"Deleting my comment, that is not fair."', bin: 'send' },
+      { id: 'd8', text: '"I guess we know who is getting picked last now."', bin: 'leave' },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bog: the meanest comments usually aren't about what someone did, they're about who they are, and those are the ones that sting longest. A pile-on feels different from one comment, but the rule doesn't change: don't add to it, and it counts even more when you're the one who says something while others are watching. That's not small. That's the hardest version of standing up, and the most it's ever mattered.",
+    text: "The upgraded rule for the Bog: the meanest comments usually aren't about what someone does, they're about who they are, and those are the ones that sting longest. A pile-on feels different from one comment, but the rule doesn't change: don't add to it, and it counts even more when you're the one who says something while others are watching. That's not small. That's the hardest version of standing up, and the most it has ever mattered.",
   },
 };
 
@@ -677,7 +677,7 @@ const balanceLower = {
         safe: true,
         who: 'Comet',
         response:
-          'The tide slides back down to where it should be, and the bonfire goes warm and bright. You didn’t even have to stop having fun, you just decided when.',
+          'The tide slides back down to where it should be, and the bonfire goes warm and bright. You don’t even have to stop having fun, you just decide when.',
       },
     ],
   },
@@ -773,15 +773,15 @@ const balanceHigher = {
       allScreen:
         "All screens, and be honest: does that actually feel good right now, or just familiar? A day that's only screens doesn't leave room to find out.",
       noScreen:
-        "Zero screens isn't the goal either, that's swinging just as hard the other way. Screens can be one of the things that feels good. The question was never really \"how many,\" it's \"does this still feel good, or am I just still here.\"",
+        "Zero screens isn't the goal either, that's swinging just as hard the other way. Screens can be one of the things that feels good. The question is never really ‘how many’, it's ‘does this still feel good, or am I just still here’.",
       level:
-        "Look at that: level, and probably because some of this actually sounded good to choose, not just easy to default to. That's the real skill at this age: noticing, not counting.",
+        "Look at that: level, and probably because some of this actually sounds good to choose, not just easy to default to. That's the real skill at this age: noticing, not counting.",
     },
   },
 
   rule: {
     who: 'Comet',
-    text: "The upgraded rule for the Bay: counting hours matters less as you get older than noticing how you actually feel. Things like the Glimmer are built to feel fine in the moment, so \"do I feel fine\" isn't always a reliable stop sign. Check in with yourself on purpose, sometimes, and let that be what decides when enough's enough.",
+    text: "The upgraded rule for the Bay: counting hours matters less as you get older than noticing how you actually feel. Things like the Glimmer are built to feel fine in the moment, so ‘do I feel fine’ isn't always a reliable stop sign. Check in with yourself on purpose, sometimes, and let that be what decides when enough's enough.",
   },
 };
 
@@ -821,7 +821,7 @@ const fableFallsLower = {
     },
     {
       who: 'The Echo',
-      text: "Did you hear?? Mia got sent to the office for stealing snacks from the canteen! Everyone's saying it! I heard it from someone who heard it from someone!",
+      text: "Have you heard? Mia is in trouble at the office for stealing snacks from the canteen! Everyone's saying it! I get it from someone, who gets it from someone else!",
     },
   ],
 
@@ -844,7 +844,7 @@ const fableFallsLower = {
         safe: true,
         who: 'Comet',
         response:
-          "The water goes still and clear right where you stood. Turns out Mia wasn't in trouble at all. She was helping count snacks for the class party. One pause saved a rumour from growing.",
+          "The water goes still and clear right where you stand. It turns out Mia isn't in trouble at all. She's helping count snacks for the class party. One pause stops a rumour from growing.",
       },
     ],
   },
@@ -853,7 +853,7 @@ const fableFallsLower = {
     type: 'spot',
     title: 'Sort the Tales',
     instruction:
-      'Tap each tale to look closer. Some are just news, fine to believe. Most of these ones need you to STOP and CHECK before you believe or share them.',
+      'Tap each tale to look closer. Some are just news, fine to believe. Most of them need you to STOP and CHECK before you believe or share them.',
     messages: [
       {
         id: 'f1',
@@ -863,15 +863,15 @@ const fableFallsLower = {
       },
       {
         id: 'f2',
-        text: '"Everyone\'s saying" Mia got in trouble for stealing.',
+        text: '"Everyone\'s saying" Mia is in trouble for stealing.',
         flag: true,
-        note: '"Everyone\'s saying" isn\'t where a tale started, it\'s just how far it\'s travelled. STOP and CHECK.',
+        note: '"Everyone\'s saying" isn\'t where a tale starts, it\'s just how far it\'s travelled. STOP and CHECK.',
       },
       {
         id: 'f3',
         text: 'A video that looks like your friend saying something mean, but the mouth doesn\'t quite match the words.',
         flag: true,
-        note: 'If something looks or sounds slightly "off," that\'s exactly the moment to STOP and CHECK, not share.',
+        note: 'If something looks or sounds slightly ‘off’, that\'s exactly the moment to STOP and CHECK, not share.',
       },
       {
         id: 'f4',
@@ -881,9 +881,9 @@ const fableFallsLower = {
       },
       {
         id: 'f5',
-        text: 'A message says a classmate is "definitely" moving away forever, and no one seems to know where it started.',
+        text: 'A message says a classmate is "definitely" moving away forever, and no one seems to know where it starts.',
         flag: true,
-        note: 'Big news with no clear source and no one who actually confirmed it? STOP and CHECK before you spread it further.',
+        note: 'Big news with no clear source, and no one who can actually confirm it? STOP and CHECK before you spread it further.',
       },
       {
         id: 'f6',
@@ -911,11 +911,11 @@ const fableFallsHigher = {
   story: [
     {
       who: 'Comet',
-      text: 'Fable Falls, Cyber Defender Quest level. A video is going around claiming a classmate said something they never said, and it looks almost real.',
+      text: 'Fable Falls, Cyber Defender Quest level. A video is going around claiming a classmate says something they never actually say, and it looks almost real.',
     },
     {
       who: 'The Echo',
-      text: "Watch this!! I found it first! It's DEFINITELY real, look how real it looks! Everyone needs to see this before it gets taken down!",
+      text: "Watch this! I find it first! It is DEFINITELY real, look how real it looks! Everyone needs to see this before it gets taken down!",
     },
   ],
 
@@ -929,7 +929,7 @@ const fableFallsHigher = {
         safe: false,
         who: 'Comet',
         response:
-          "It spreads fast, and so does the embarrassment for the classmate it's about, once it turns out to be faked. \"Looks real\" and \"is real\" aren't the same thing, and \"before it gets taken down\" is exactly the kind of urgency that's designed to stop you thinking. Want to look again?",
+          "It spreads fast, and so does the embarrassment for the classmate it's about, once it turns out to be faked. ‘Looks real’ and ‘is real’ aren't the same thing, and ‘before it gets taken down’ is exactly the kind of urgency that's designed to stop you thinking. Want to look again?",
       },
       {
         id: 'sure',
@@ -938,7 +938,7 @@ const fableFallsHigher = {
         safe: true,
         who: 'Comet',
         response:
-          "Good call. Four questions, in order: where did this actually come from? What is it actually claiming? Can you find it anywhere else trustworthy? Does it really add up? That's the whole method, and it's faster than dealing with the embarrassment afterward.",
+          "Good call. Four questions, in order: where does this actually come from? What is it actually claiming? Can you find it anywhere else trustworthy? Does it really add up? That's the whole method, and it's faster than dealing with the embarrassment afterwards.",
       },
     ],
   },
@@ -947,7 +947,7 @@ const fableFallsHigher = {
     type: 'sort',
     title: 'Cyber Defender Quest: The Clue Board',
     instruction:
-      'Eight clues about the video. Sort each one into what it points toward, Points to Fake or Checks Out, using S.U.R.E. as you go.',
+      'Eight clues about the video. Sort each one into what it points towards, Points to Fake or Checks Out, using S.U.R.E. as you go.',
     bins: [
       { id: 'fake', title: 'Points to Fake', sub: 'A reason to doubt it', icon: 'lock' },
       { id: 'real', title: 'Checks Out', sub: 'A reason it holds up', icon: 'unlock' },
@@ -955,17 +955,17 @@ const fableFallsHigher = {
     items: [
       {
         id: 'c1',
-        text: '[Source] The account that posted it was made yesterday and has no other posts.',
+        text: '[Source] The account that posts it is only a day old and has no other posts.',
         bin: 'fake',
       },
       {
         id: 'c2',
-        text: '[Source] It was posted by your school\'s official account, which you already follow.',
+        text: '[Source] It comes from your school\'s official account, which you already follow.',
         bin: 'real',
       },
       {
         id: 'c3',
-        text: '[Understand] The caption claims way more than the video actually shows.',
+        text: '[Understand] The caption claims far more than the video actually shows.',
         bin: 'fake',
       },
       {
@@ -975,7 +975,7 @@ const fableFallsHigher = {
       },
       {
         id: 'c5',
-        text: '[Research] Two trusted classmates who were actually there say it didn\'t happen that way.',
+        text: '[Research] Two trusted classmates who are actually there say it does not happen that way.',
         bin: 'fake',
       },
       {
@@ -998,7 +998,7 @@ const fableFallsHigher = {
 
   rule: {
     who: 'Comet',
-    text: "S.U.R.E., every time something makes you want to react fast: Source: who actually posted this, and do you trust them? Understand: what is it actually claiming, exactly? Research: can you find it confirmed somewhere else you trust? Evaluate: does it really add up, or is it a little too perfect, too shocking, too convenient? Four questions is usually enough to catch a fake.",
+    text: "S.U.R.E., every time something makes you want to react fast: Source: who actually posts this, and do you trust them? Understand: what is it actually claiming, exactly? Research: can you find it confirmed somewhere else you trust? Evaluate: does it really add up, or is it a little too perfect, too shocking, too convenient? Four questions is usually enough to catch a fake.",
   },
 };
 
@@ -1012,17 +1012,17 @@ export const REALMS = [
     accent: 'var(--gold)',
     accentWash: 'rgba(224, 160, 48, 0.13)',
     blurb: 'A walled kingdom of vault doors, and a guard who asks a lot of questions.',
-    topic: 'Passwords & personal info',
+    topic: 'Passwords & personal information',
     stamp: { icon: 'key', label: 'Passworld · Visited' },
     enabled: true,
     // Shown in the Atlas sidebar (learnShort) and the entry popup
     // (RealmIntro.jsx — lore + learn). Same for both bands; the band only
     // changes *how* it's taught, not what the realm is about.
     intro: {
-      lore: 'Passworld is a walled kingdom built to keep secrets safe. Every treasure a traveler carries, like names, addresses and favourite things, sits locked behind a vault door, and Keeper Vex guards the gate with sharp questions. The walls only hold if every key stays strong… and lately, someone has been rattling the doors.',
+      lore: 'Passworld is a walled kingdom built to keep secrets safe. Every treasure a traveller carries, like names, addresses and favourite things, sits locked behind a vault door, and Keeper Vex guards the gate with sharp questions. The walls only hold if every key stays strong… and lately, someone has been rattling the doors.',
       learn: [
         'What makes a password strong, and what makes it easy to guess',
-        'Which things count as personal info that should stay locked away',
+        'Which things count as personal information that should stay locked away',
         'Who it is safe to share secrets with, and who it isn’t',
       ],
       learnShort: 'Learn: strong passwords & what to keep private',
@@ -1254,7 +1254,7 @@ export function getBandView(realm, band = 'lower') {
  * stays in place as a safety net for the next realm that ships disabled.
  */
 export const PLEDGE = [
-  { realm: 'passworld', text: 'I’ll keep my personal info to myself.' },
+  { realm: 'passworld', text: 'I’ll keep my personal information to myself.' },
   { realm: 'privacy', text: 'I’ll stop and think before I click.' },
   { realm: 'bullybog', text: 'I’ll be kind, and stand up for others.' },
   { realm: 'balance', text: 'I’ll balance my screen time with the rest of my day.' },
