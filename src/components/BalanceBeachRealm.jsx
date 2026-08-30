@@ -157,7 +157,9 @@ export default function BalanceBeachRealm({
         <div className="stage">
           <div className="stage-main">
             <div className="world" style={{ cursor: 'default' }}>
-              <RealmArt realmId={realm.id} mood="before" />
+              <div className="world-scene">
+                <RealmArt realmId={realm.id} mood="before" />
+              </div>
             </div>
           </div>
           <aside className="stage-side">
@@ -333,7 +335,9 @@ export default function BalanceBeachRealm({
         <div className="stage">
           <div className="stage-main">
             <div className="world" style={{ cursor: 'default' }}>
-              <RealmArt realmId={realm.id} mood="after" />
+              <div className="world-scene">
+                <RealmArt realmId={realm.id} mood="after" />
+              </div>
             </div>
           </div>
           <aside className="stage-side">

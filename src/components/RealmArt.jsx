@@ -34,8 +34,11 @@ function Sky({ tint, opacity = 0.14 }) {
 function PassworldScene({ mood }) {
   const open = mood === 'after';
 
+  // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
+  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // wider than tall), so the art covers the box rather than letterboxing.
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+    <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <image href="/assets/PASSWORLD/PassworldBG.png" x="0" y="0" width="560" height="280" preserveAspectRatio="xMidYMid slice" />
 
       {/* The main gate, filling the archway cutout exactly (`none` rather
@@ -74,8 +77,11 @@ function PassworldScene({ mood }) {
 function PrivacyScene({ mood }) {
   const clear = mood === 'after';
 
+  // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
+  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // wider than tall), so the art covers the box rather than letterboxing.
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+    <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <image href="/assets/PRIVACYPEAKS/PrivacyPeaksBG.png" x="0" y="0" width="560" height="280" preserveAspectRatio="xMidYMid slice" />
 
       {/* Thins to a trace rather than vanishing outright — echoes the old
@@ -106,8 +112,11 @@ function PrivacyScene({ mood }) {
 function BogScene({ mood }) {
   const clear = mood === 'after';
 
+  // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
+  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // wider than tall), so the art covers the box rather than letterboxing.
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+    <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <image href="/assets/BULLYBOG/BullyBogBG.png" x="0" y="0" width="560" height="280" preserveAspectRatio="xMidYMid slice" />
 
       <image
@@ -139,8 +148,11 @@ function BogScene({ mood }) {
  * pass/fail one), so a single backdrop for both moods doesn't misrepresent
  * anything the way it would elsewhere. */
 function BayScene() {
+  // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
+  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // wider than tall), so the art covers the box rather than letterboxing.
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+    <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <image href="/assets/BALANCEBAY/BalanceBayBG.png" x="0" y="0" width="560" height="280" preserveAspectRatio="xMidYMid slice" />
       <image href="/assets/BALANCEBAY/SHELLS.png" x="240" y="215" width="90" height="52.8" />
     </svg>
@@ -155,8 +167,11 @@ function FableFallsScene({ mood }) {
   const clear = mood === 'after';
   const sage = 'var(--sage)';
 
+  // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
+  // (BalanceBeachRealm / PlatformerStoryRealm's two-column layouts leave it
+  // wider than tall), so the art covers the box rather than letterboxing.
   return (
-    <svg viewBox="0 0 560 280" width="100%" aria-hidden="true">
+    <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <Sky tint={sage} opacity="0.12" />
 
       {/* canyon walls either side */}
