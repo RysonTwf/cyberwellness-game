@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-30)
 
 ## Corpus Check
-- 58 files · ~577,922 words
+- 60 files · ~580,341 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 343 nodes · 548 edges · 34 communities (14 shown, 20 thin omitted)
+- 349 nodes · 570 edges · 35 communities (15 shown, 20 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.56)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ce8ca692`
+- Built from commit: `b2db4ab5`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,6 +21,7 @@
 - passworldArt.js
 - App.jsx
 - dependencies
+- RealmArt.jsx
 - Cyber Wellness Quest — Milestones & Team Workstreams
 - audioSettings.js
 - Cyber Wellness Quest — Improvement Plan (Living Doc)
@@ -64,14 +65,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `SettingsPanel()` --calls--> `useAudioSettings()`  [EXTRACTED]
   src/components/SettingsMenu.jsx → src/hooks/useAudioSettings.js
+- `RealmScreen()` --calls--> `playSfx()`  [EXTRACTED]
+  src/components/RealmScreen.jsx → src/lib/sfx.js
 - `useAudioSettings()` --indirect_call--> `setMusicVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
 - `useAudioSettings()` --indirect_call--> `setSfxVolume()`  [INFERRED]
   src/hooks/useAudioSettings.js → src/lib/audioSettings.js
-- `playSfx()` --calls--> `getVolumes()`  [EXTRACTED]
-  src/lib/sfx.js → src/lib/audioSettings.js
-- `SpriteTraveler()` --calls--> `prefersReducedMotion()`  [EXTRACTED]
-  src/world/Traveler.jsx → src/lib/motion.js
+- `targetVolume()` --calls--> `getVolumes()`  [EXTRACTED]
+  src/lib/music.js → src/lib/audioSettings.js
 
 ## Import Cycles
 - None detected.
@@ -80,39 +81,43 @@
 - **The Atlas Cast** — storyline_comet, storyline_keeper_vex, storyline_the_fog, storyline_pockets, storyline_the_glimmer, storyline_traveler [EXTRACTED 1.00]
 - **Documented Deviations from the Design Docs** — readme_walkable_world_deviation, readme_vite_app_deviation, readme_third_minigame_deviation [EXTRACTED 1.00]
 
-## Communities (34 total, 20 thin omitted)
+## Communities (35 total, 20 thin omitted)
 
 ### Community 0 - "TravelerRoom.jsx"
-Cohesion: 0.11
-Nodes (17): AtlasGate(), BANDS, BEATS, ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge() (+9 more)
+Cohesion: 0.14
+Nodes (10): BOUNDS, DIARY_SPOT, DOOR_SPOT, ROOM_TOUR, SPAWN, TravelerRoom(), F, FURNITURE (+2 more)
 
 ### Community 1 - "Characters.jsx"
-Cohesion: 0.20
-Nodes (4): BY_NAME, CharacterArt(), Comet(), MainScreen()
+Cohesion: 0.13
+Nodes (12): AtlasGate(), BANDS, BEATS, BY_NAME, CharacterArt(), Comet(), MainScreen(), ICONS (+4 more)
 
 ### Community 2 - "RealmScreen.jsx"
 Cohesion: 0.08
-Nodes (23): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SHORT_LABELS, SPAWN, ChoiceCard(), DialogueCard(), RealmArt() (+15 more)
+Nodes (32): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SHORT_LABELS, SPAWN, ChoiceCard(), DialogueCard(), PlatformerStoryRealm() (+24 more)
 
 ### Community 3 - "passworldArt.js"
 Cohesion: 0.14
 Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+20 more)
 
 ### Community 4 - "App.jsx"
-Cohesion: 0.07
-Nodes (41): SPA Root Mount Point, App(), CertificateScreen(), CharacterSelect(), OPTIONS, JournalProgress(), REALM_ICONS, RealmScreen() (+33 more)
+Cohesion: 0.08
+Nodes (36): App(), CertificateScreen(), CharacterSelect(), OPTIONS, JournalProgress(), REALM_ICONS, ACTIVE_REALMS, activePledge() (+28 more)
 
 ### Community 5 - "dependencies"
 Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
+
+### Community 6 - "RealmArt.jsx"
+Cohesion: 0.14
+Nodes (6): SPA Root Mount Point, RealmArt(), SCENES, REALMS, ArtPreview(), MOODS
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
 Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Quest — Milestones & Team Workstreams, Folder & naming convention, Phase 0 — Foundation (shared design system + content schema), Phase 1 — Content authoring (both bands, all 5 realms), Phase 2 — New mechanics, Phase 3 — Backgrounds: scaling the existing 9 (+8 more)
 
 ### Community 8 - "audioSettings.js"
-Cohesion: 0.19
-Nodes (19): PlatformerStoryRealm(), useAudioSettings(), clamp01(), DEFAULTS, getVolumes(), listeners, load(), notify() (+11 more)
+Cohesion: 0.31
+Nodes (12): useAudioSettings(), clamp01(), DEFAULTS, getVolumes(), listeners, load(), notify(), save() (+4 more)
 
 ### Community 10 - "Cyber Wellness Quest — Improvement Plan (Living Doc)"
 Cohesion: 0.14
@@ -123,19 +128,19 @@ Cohesion: 0.12
 Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Direction & Rationale, 3. Token System, 4. Screen Flow, 5. Interaction Patterns, 6. Component Inventory (for the eventual React build), 7. State & Data Model (rough shape) (+8 more)
 
 ### Community 13 - "steppingStonesArt.js"
-Cohesion: 0.12
-Nodes (18): motionTween(), prefersReducedMotion(), MiniGameSteppingStones(), ART_MANIFEST, buildSteppingStonesArt(), drawToken(), fillRR(), generate() (+10 more)
+Cohesion: 0.15
+Nodes (15): motionTween(), prefersReducedMotion(), ART_MANIFEST, buildSteppingStonesArt(), drawToken(), fillRR(), generate(), preloadSteppingStonesArt() (+7 more)
 
 ### Community 14 - "Checklist"
 Cohesion: 0.33
 Nodes (5): Checklist, Done, Log, To do, Working Plan & Change Log
 
 ### Community 18 - "AtlasMap.jsx"
-Cohesion: 0.13
-Nodes (16): AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, SettingsMenu(), SettingsPanel(), orderedActiveRealms() (+8 more)
+Cohesion: 0.12
+Nodes (19): ATLAS_TOUR, AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, RealmIntro(), SettingsMenu() (+11 more)
 
 ## Knowledge Gaps
-- **129 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+124 more)
+- **131 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+126 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -144,15 +149,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `playSfx()` connect `App.jsx` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
   _High betweenness centrality (0.031) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `TravelerRoom.jsx`, `AtlasMap.jsx`, `App.jsx`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `Characters.jsx`, `AtlasMap.jsx`, `App.jsx`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Why does `World()` connect `AtlasMap.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _129 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _131 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `TravelerRoom.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.10666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14166666666666666 - nodes in this community are weakly interconnected._
+- **Should `Characters.jsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.12857142857142856 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08416389811738649 - nodes in this community are weakly interconnected._
-- **Should `passworldArt.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.14193548387096774 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08067375886524823 - nodes in this community are weakly interconnected._

@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1787506745.9171977,
-    "ast_hash": "41897b703ddafa283ef36eab85c292cc",
+    "mtime": 1788075937.5070288,
+    "ast_hash": "db14de9eca9af0b9e1ff14a784ab28ce",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
-    "mtime": 1787244276.457219,
-    "ast_hash": "fc906c3be181d6eefe2a71b8410da0fd",
+    "mtime": 1788075983.6456404,
+    "ast_hash": "f6cf4475da5a9213776afc7daa29c1c6",
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "src/components/JournalProgress.jsx": {
-    "mtime": 1787041849.7988324,
-    "ast_hash": "d7116553a505c98c7c36c57f8f7c425e",
+    "mtime": 1788075227.3839912,
+    "ast_hash": "90c1ce6f025cf5c953203b6090923a26",
     "semantic_hash": ""
   },
   "src/components/RealmArt.jsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "src/components/RealmScreen.jsx": {
-    "mtime": 1788064752.9111743,
-    "ast_hash": "e5201cafc8b6388969ce36347be7246a",
+    "mtime": 1788075277.525199,
+    "ast_hash": "4e342ea6532c5bfefbdd4223543c6335",
     "semantic_hash": ""
   },
   "src/components/StampBadge.jsx": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1788068863.548886,
-    "ast_hash": "4ede62d66269d7ac9668489b9bc7cf2a",
+    "mtime": 1788075905.4260764,
+    "ast_hash": "77de988bfa06ef37186b6f86f55049bd",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/state/useProgress.js": {
-    "mtime": 1787245142.4753475,
-    "ast_hash": "37710bf335360be1864e396bbaf383ef",
+    "mtime": 1788075913.5908487,
+    "ast_hash": "e7d23822fab1e5dd0c5816f97cc593eb",
     "semantic_hash": ""
   },
   "src/world/Traveler.jsx": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "src/world/World.jsx": {
-    "mtime": 1787749905.484953,
-    "ast_hash": "ce1161e39f58c28c4a1a8dff342fe687",
+    "mtime": 1788070534.764958,
+    "ast_hash": "3a2d6c58b77ad6b0a0df3daa7fa88a55",
     "semantic_hash": ""
   },
   "src/world/useWalker.js": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1787251322.4749959,
-    "ast_hash": "a895a6859eb98383bb7763959498902a",
+    "mtime": 1788075287.5274503,
+    "ast_hash": "745c6b80f0347bb4645b1442f7f058d3",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1787506702.8868418,
-    "ast_hash": "4a473c86dba69a57df8d1ecb0bfa0aa5",
+    "mtime": 1788075954.5197198,
+    "ast_hash": "33b9e4dca9460a278ca4e54dde45f8f1",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -29265,8 +29265,8 @@
     "semantic_hash": ""
   },
   "src/components/BalanceBeachRealm.jsx": {
-    "mtime": 1787506731.9082508,
-    "ast_hash": "31512a61bfcd27029a5d8347bff83723",
+    "mtime": 1788075286.4846005,
+    "ast_hash": "82fe1948aad70c0d71a9fb1c6246d487",
     "semantic_hash": ""
   },
   "src/world/beach/BeachScene.jsx": {
@@ -29415,8 +29415,18 @@
     "semantic_hash": ""
   },
   "PLAN.md": {
-    "mtime": 1788068900.6260126,
-    "ast_hash": "6b3e32d9068d64277db0e3be3a1e5226",
+    "mtime": 1788076614.2389,
+    "ast_hash": "48a15cfb467b74dc4a86ba81d6a29437",
+    "semantic_hash": ""
+  },
+  "src/components/RealmIntro.jsx": {
+    "mtime": 1788075865.238368,
+    "ast_hash": "3d73364319c652f73681fb6ae0316bd4",
+    "semantic_hash": ""
+  },
+  "src/components/Tutorial.jsx": {
+    "mtime": 1788076135.430507,
+    "ast_hash": "56e548a74bdb35e30a57ac0877b60c5e",
     "semantic_hash": ""
   }
 }
