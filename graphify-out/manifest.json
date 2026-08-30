@@ -15,18 +15,18 @@
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
-    "mtime": 1788102676.6678283,
-    "ast_hash": "ee49c2658727cebfc1fb3860096e24c6",
+    "mtime": 1788104408.8094015,
+    "ast_hash": "25a95fa784b4b72ce165646820a2a5c5",
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
-    "mtime": 1788102676.6723442,
-    "ast_hash": "8fdd2dc4e4a10e4ce5bb7313365f7beb",
+    "mtime": 1788104408.8073819,
+    "ast_hash": "75fe0fcfcd168d2ea74ea826b6263aec",
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
-    "mtime": 1788102676.669334,
-    "ast_hash": "0f6408b9148b1c6c63bf15ab46aa9cc0",
+    "mtime": 1788104408.8104007,
+    "ast_hash": "ca3274bb200add9cc37dec8826377b5c",
     "semantic_hash": ""
   },
   "src/components/Characters.jsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "src/components/RealmScreen.jsx": {
-    "mtime": 1788087652.9000487,
-    "ast_hash": "7cb556cd6f647e2d60198128ed14f795",
+    "mtime": 1788104543.1865377,
+    "ast_hash": "8253d0209ff9d513c0e1aed2edcd8868",
     "semantic_hash": ""
   },
   "src/components/StampBadge.jsx": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1788102844.2549336,
-    "ast_hash": "d3a69dc3aceb59b9425151dad2854fe0",
+    "mtime": 1788104309.071284,
+    "ast_hash": "0e478f5c1d36a5a1ce9d24128952d75d",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
@@ -95,8 +95,8 @@
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSpot.jsx": {
-    "mtime": 1788102676.6763427,
-    "ast_hash": "39d50f03ca0434769bc0cf4e889d5d51",
+    "mtime": 1788104408.8117766,
+    "ast_hash": "e43b8269b74e6cbddfe144d572b140a0",
     "semantic_hash": ""
   },
   "src/state/useProgress.js": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSteppingStones.jsx": {
-    "mtime": 1788102676.6773431,
-    "ast_hash": "b93a594181778aefeb1e33bfa804f960",
+    "mtime": 1788104408.8117766,
+    "ast_hash": "009b355d311ee28b7ab5d86b8f133e61",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/steppingStonesScene.js": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1788102676.678344,
-    "ast_hash": "4cd5dd6ac3cf3223a39a815e82052a6e",
+    "mtime": 1788104408.8117766,
+    "ast_hash": "80d0d0564208a6ab3fd926b04d4c9bfb",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1788102676.673342,
-    "ast_hash": "095813e1e54d8ef5671ccd7464d80f0f",
+    "mtime": 1788104408.8073819,
+    "ast_hash": "1c4a9827f38bce2be0bbb05ab88259da",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -29265,8 +29265,8 @@
     "semantic_hash": ""
   },
   "src/components/BalanceBeachRealm.jsx": {
-    "mtime": 1788089097.2255254,
-    "ast_hash": "00decf74ffe22577c1e46430db040188",
+    "mtime": 1788103898.709983,
+    "ast_hash": "51d4238291103772905f5e1956dc10b0",
     "semantic_hash": ""
   },
   "src/world/beach/BeachScene.jsx": {
@@ -29420,8 +29420,8 @@
     "semantic_hash": ""
   },
   "src/components/RealmIntro.jsx": {
-    "mtime": 1788102676.6743422,
-    "ast_hash": "78694a4fee2636c9a01b291ee9bbd37f",
+    "mtime": 1788104408.808401,
+    "ast_hash": "6583c74c2a78d884ce9bdee60df555e0",
     "semantic_hash": ""
   },
   "src/components/Tutorial.jsx": {
@@ -29430,8 +29430,8 @@
     "semantic_hash": ""
   },
   "src/components/IntroStory.jsx": {
-    "mtime": 1788102764.7090838,
-    "ast_hash": "1da41dfa08c284354929b87548c00fb2",
+    "mtime": 1788104408.8045874,
+    "ast_hash": "8de7dbd611d2b6e0206669734fe3d356",
     "semantic_hash": ""
   },
   "src/components/SchoolLogo.jsx": {
@@ -29442,6 +29442,11 @@
   "public/assets/greendale-logo.jpg": {
     "mtime": 1788093375.2912655,
     "ast_hash": "34587609d61899bbdb0762227a22ff7a",
+    "semantic_hash": ""
+  },
+  "src/components/StepTrail.jsx": {
+    "mtime": 1788103798.1530979,
+    "ast_hash": "a2647a0f7e3c28ff2a76a1b332149879",
     "semantic_hash": ""
   }
 }

@@ -10,23 +10,23 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1788075937.5070288,
-    "ast_hash": "db14de9eca9af0b9e1ff14a784ab28ce",
+    "mtime": 1788094311.559705,
+    "ast_hash": "b996274060f2955c66b9853e7b556638",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
-    "mtime": 1788088568.9891903,
-    "ast_hash": "1254303d528988bd20a464f4da8f7801",
+    "mtime": 1788102676.6678283,
+    "ast_hash": "ee49c2658727cebfc1fb3860096e24c6",
     "semantic_hash": ""
   },
   "src/components/AtlasMap.jsx": {
-    "mtime": 1788088568.9891903,
-    "ast_hash": "dd49336cf580b5ba2aa0866aa7fbef45",
+    "mtime": 1788102676.6723442,
+    "ast_hash": "8fdd2dc4e4a10e4ce5bb7313365f7beb",
     "semantic_hash": ""
   },
   "src/components/CertificateScreen.jsx": {
-    "mtime": 1788088568.9901893,
-    "ast_hash": "a79ef982954a7b0d2cfeb1b4210f0201",
+    "mtime": 1788102676.669334,
+    "ast_hash": "0f6408b9148b1c6c63bf15ab46aa9cc0",
     "semantic_hash": ""
   },
   "src/components/Characters.jsx": {
@@ -65,13 +65,13 @@
     "semantic_hash": ""
   },
   "src/components/StampMoment.jsx": {
-    "mtime": 1788088569.0221815,
-    "ast_hash": "e2b2b32b3934497ccc4b9ef0ccd36148",
+    "mtime": 1788102676.675343,
+    "ast_hash": "67e3a41a6bf013b2f7399f3489ebcd4a",
     "semantic_hash": ""
   },
   "src/data/realms.js": {
-    "mtime": 1788088763.2277126,
-    "ast_hash": "b5a5b75c3113c33221172d4f81f4caa9",
+    "mtime": 1788102844.2549336,
+    "ast_hash": "d3a69dc3aceb59b9425151dad2854fe0",
     "semantic_hash": ""
   },
   "src/dev/ArtPreview.jsx": {
@@ -90,18 +90,18 @@
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSort.jsx": {
-    "mtime": 1788088568.9861777,
-    "ast_hash": "496474e5e6d679c245510d49ad059b36",
+    "mtime": 1788102946.6253152,
+    "ast_hash": "7c53a459fe07f5b1dd5eaab2b1e41f60",
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSpot.jsx": {
-    "mtime": 1788088568.9871824,
-    "ast_hash": "357ea1522e1a3d52afc0ce010a2c3e41",
+    "mtime": 1788102676.6763427,
+    "ast_hash": "39d50f03ca0434769bc0cf4e889d5d51",
     "semantic_hash": ""
   },
   "src/state/useProgress.js": {
-    "mtime": 1788075913.5908487,
-    "ast_hash": "e7d23822fab1e5dd0c5816f97cc593eb",
+    "mtime": 1788094270.612442,
+    "ast_hash": "22f52c2308b4ea18ebad95ecb93ad25f",
     "semantic_hash": ""
   },
   "src/world/Traveler.jsx": {
@@ -140,8 +140,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1788088677.681239,
-    "ast_hash": "344223f57a69b4b4b9b09025968779b3",
+    "mtime": 1788102676.679937,
+    "ast_hash": "51890d175951495ea445af98f436ad6b",
     "semantic_hash": ""
   },
   "storyline.md": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "src/minigames/PhaserMiniGame.jsx": {
-    "mtime": 1788064733.261206,
-    "ast_hash": "12131e0c09dd9fa4fad5d61ec5fc671f",
+    "mtime": 1788091997.897012,
+    "ast_hash": "a633d13b958fef933ea0d0e14498661e",
     "semantic_hash": ""
   },
   "Cyber_Wellness_Quest_Improvement_Plan.md": {
@@ -175,28 +175,28 @@
     "semantic_hash": ""
   },
   "src/minigames/MiniGameSteppingStones.jsx": {
-    "mtime": 1788088568.9871824,
-    "ast_hash": "32218395d92d8da9874574006e73dfee",
+    "mtime": 1788102676.6773431,
+    "ast_hash": "b93a594181778aefeb1e33bfa804f960",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/steppingStonesScene.js": {
-    "mtime": 1787752313.2254717,
-    "ast_hash": "e426cf109ca7255de9c606820cc4c52c",
+    "mtime": 1788092696.7458136,
+    "ast_hash": "7b1af32d0afb18d9f9c9f875392c791a",
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1788089108.4969003,
-    "ast_hash": "0a8cf18fc54711f5cae317d91a2da433",
+    "mtime": 1788102676.678344,
+    "ast_hash": "4cd5dd6ac3cf3223a39a815e82052a6e",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
-    "mtime": 1788088568.988189,
-    "ast_hash": "96a56f9d3976a312784278cd178b4b05",
+    "mtime": 1788102676.678344,
+    "ast_hash": "d821364747d9d1319a8f89ddc1827ad9",
     "semantic_hash": ""
   },
   "src/components/TravelerRoom.jsx": {
-    "mtime": 1788088569.04522,
-    "ast_hash": "10e3c4e015a0dcec646ed8088715bf3d",
+    "mtime": 1788102676.673342,
+    "ast_hash": "095813e1e54d8ef5671ccd7464d80f0f",
     "semantic_hash": ""
   },
   "src/world/Boat.jsx": {
@@ -315,8 +315,8 @@
     "semantic_hash": ""
   },
   "src/components/MainScreen.jsx": {
-    "mtime": 1787245670.412235,
-    "ast_hash": "b843d5ed960d553d154735b770e3546d",
+    "mtime": 1788102676.6703439,
+    "ast_hash": "4113273f5007df32db5822dfcaf30906",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passworldArt.js": {
@@ -29325,8 +29325,8 @@
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/steppingStonesArt.js": {
-    "mtime": 1787751654.9749334,
-    "ast_hash": "69154e31500124646299f72248053262",
+    "mtime": 1788092401.7532222,
+    "ast_hash": "9c0963580ab25e0491564daacf227440",
     "semantic_hash": ""
   },
   "src/lib/motion.js": {
@@ -29420,13 +29420,28 @@
     "semantic_hash": ""
   },
   "src/components/RealmIntro.jsx": {
-    "mtime": 1788088568.9934492,
-    "ast_hash": "c9e9eb8d0272e560da1d86d6ab5831d3",
+    "mtime": 1788102676.6743422,
+    "ast_hash": "78694a4fee2636c9a01b291ee9bbd37f",
     "semantic_hash": ""
   },
   "src/components/Tutorial.jsx": {
     "mtime": 1788076135.430507,
     "ast_hash": "56e548a74bdb35e30a57ac0877b60c5e",
+    "semantic_hash": ""
+  },
+  "src/components/IntroStory.jsx": {
+    "mtime": 1788102764.7090838,
+    "ast_hash": "1da41dfa08c284354929b87548c00fb2",
+    "semantic_hash": ""
+  },
+  "src/components/SchoolLogo.jsx": {
+    "mtime": 1788093406.7402954,
+    "ast_hash": "4b7af0148a33fec7eb67b2677443ba28",
+    "semantic_hash": ""
+  },
+  "public/assets/greendale-logo.jpg": {
+    "mtime": 1788093375.2912655,
+    "ast_hash": "34587609d61899bbdb0762227a22ff7a",
     "semantic_hash": ""
   }
 }
