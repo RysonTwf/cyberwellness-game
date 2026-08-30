@@ -64,6 +64,11 @@ two things: curiosity, and a second thought."*
 > - **Bully Bog** dropped the "which trusted adult would you tell" follow-up
 >   and any "show an adult you trust" line from its rule (per the school).
 >   It keeps the digital-footprint follow-up and the block/report option.
+> - **Passworld** teaches "what is personal information" in both bands now:
+>   P1–P3 has its Sort game plus a "which password is hardest to guess"
+>   follow-up; P4–P6's platformer (passwords / impersonation) is followed by
+>   a short "Before You Post" Sort on things that give you away in
+>   combination (uniform, location tag, routine, real name as a handle).
 
 | Order | Realm | Topic | Mini-game type | Stamp icon |
 |---|---|---|---|---|

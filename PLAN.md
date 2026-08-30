@@ -154,6 +154,14 @@ what actually changed.
 
 ## Log
 
+- **31 Aug 2026 — Passworld personal-information coverage**: P1–P3 gained a
+  "which password is hardest to guess" follow-up (new `strongPassword`
+  extraBeat; RealmScreen's beat renderer generalised to any `options` /
+  `accept` beat). P4–P6's platformer only covered passwords + impersonation,
+  so it now runs a short "Before You Post" Sort afterwards (new
+  `passworldHigher.privacyCheck`; new `check` step in
+  `PlatformerStoryRealm.jsx`) on info that gives you away in combination, and
+  the P4–P6 rule mentions personal information.
 - **31 Aug 2026 — de-"level up" the band split**: the game is played once, so
   P4–P6 shouldn't read as a sequel to P1–P3. **Bully Bog** and **Balance
   Bay** now run the identical scenario / decision / mechanic / items for both

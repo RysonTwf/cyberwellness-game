@@ -259,9 +259,35 @@ const passworldHigher = {
     ],
   },
 
+  // A short Sort after the vault run (PlatformerStoryRealm's 'check' step) —
+  // the "what counts as personal information" lesson P1–P3 gets from its own
+  // sort game, pitched at the older band: things that seem harmless but give
+  // you away, mostly in combination (uniform + routine, real name as a
+  // handle, birthday for security questions, location tags).
+  privacyCheck: {
+    type: 'sort',
+    title: 'Before You Post',
+    instruction:
+      'Some of these seem harmless. Sort each one: safe to post, or better kept private?',
+    bins: [
+      { id: 'post', title: 'Safe to Post', sub: 'Gives nothing away', icon: 'unlock' },
+      { id: 'private', title: 'Keep Private', sub: 'Could give you away', icon: 'lock' },
+    ],
+    items: [
+      { id: 'tag', text: 'My gamer tag', bin: 'post' },
+      { id: 'drawing', text: 'A drawing I made', bin: 'post' },
+      { id: 'band', text: 'My favourite band', bin: 'post' },
+      { id: 'realname', text: 'My real full name as my username', bin: 'private' },
+      { id: 'uniform', text: 'A photo of me in my school uniform', bin: 'private' },
+      { id: 'location', text: 'A photo with the place tagged on it', bin: 'private' },
+      { id: 'birthday', text: 'My full date of birth', bin: 'private' },
+      { id: 'routine', text: 'That I walk home alone at the same time every day', bin: 'private' },
+    ],
+  },
+
   rule: {
     who: 'Comet',
-    text: 'Here is the Passworld rule for older travellers. Accounts are almost never taken by force. They are taken over when a password is shared, reused, or easy to guess. So use a different password for everything that matters. Never hand yours over, not even to a friend who says they really need it. And if a message feels wrong, even from someone you know, check another way before you trust it.',
+    text: 'Here is the Passworld rule for older travellers. Accounts are taken over when a password is shared, reused, or easy to guess, so use a different one for everything that matters and never hand yours over. Personal information adds up: a uniform, a location tag and a daily routine together can point a stranger straight to you, so keep those private even when each one feels small. And if a message feels wrong, even from someone you know, check another way first.',
   },
 };
 
@@ -277,7 +303,7 @@ const privacyLower = {
     },
     {
       who: 'The Fog',
-      text: 'Hello! You have won a free tablet! Tap here quickly, before it is gone. Only five minutes left. Also, what is your home address, so we can send it to you?',
+      text: 'Hello! You have won a free tablet! Tap this link quickly, before it is gone! Only five minutes left. Also, what is your home address, so we can send it to you?',
     },
   ],
 
@@ -626,7 +652,7 @@ const bullybogHigher = {
     },
     {
       who: 'Comet',
-      text: 'Pockets has stopped singing. Two other bog creatures are typing, and now they are watching to see what you will do.',
+      text: 'Pockets the Frog is sad and has stopped singing.',
     },
   ],
 
@@ -663,7 +689,7 @@ const bullybogHigher = {
         'One more thing, before this goes up for good. Would you be happy for it to stay online forever? Posts do not really disappear, even the kind ones.',
       accept: 'Good point.',
       followUp:
-        'A good habit to keep. First ask if it is kind. Then ask if you would still stand by it next year.',
+        'First ask if it is kind. Then ask if you would still stand by it next year.',
     },
   },
 

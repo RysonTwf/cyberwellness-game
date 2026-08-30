@@ -6,6 +6,7 @@ import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
 import StepTrail from './StepTrail';
 import RealmArt from './RealmArt';
+import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
 import { playMusic, stopMusic } from '../lib/music';
@@ -34,7 +35,7 @@ export default function PlatformerStoryRealm({
   onStamp,
   onBackToAtlas,
 }) {
-  const [step, setStep] = useState('story'); // story | level | rule | stamp
+  const [step, setStep] = useState('story'); // story | level | check | rule | stamp
   const [beat, setBeat] = useState(0);
   const [pick, setPick] = useState(null);
   const [decisionOpen, setDecisionOpen] = useState(false);
@@ -154,8 +155,12 @@ export default function PlatformerStoryRealm({
           see RealmScreen for why the heading row moved up there. Only three
           steps here: the choice and the game are one continuous vault run. */}
       <StepTrail
-        steps={['Story', 'The vault', 'Rule']}
-        current={{ story: 0, level: 1, rule: 2 }[step] ?? 0}
+        steps={realm.privacyCheck ? ['Story', 'The vault', 'Check', 'Rule'] : ['Story', 'The vault', 'Rule']}
+        current={
+          (realm.privacyCheck
+            ? { story: 0, level: 1, check: 2, rule: 3 }
+            : { story: 0, level: 1, rule: 2 })[step] ?? 0
+        }
       />
 
       {/* ---------------------------------------------------------- story -- */}
@@ -213,7 +218,7 @@ export default function PlatformerStoryRealm({
                 },
                 onWin: (finalScore) => {
                   setScore((s) => s || finalScore);
-                  setStep('rule');
+                  setStep(realm.privacyCheck ? 'check' : 'rule');
                 },
                 onSceneReady: (scene) => {
                   sceneRef.current = scene;
@@ -385,6 +390,28 @@ export default function PlatformerStoryRealm({
               Restart this vault
             </button>
           </div>
+          </aside>
+        </div>
+      )}
+
+      {/* --------------------------------------------------------- check -- */}
+      {step === 'check' && realm.privacyCheck && (
+        <div className="stage">
+          <div className="stage-main">
+            <div className="world" style={{ cursor: 'default' }}>
+              <div className="world-scene">
+                <RealmArt realmId={realm.id} mood="before" />
+              </div>
+            </div>
+          </div>
+          <aside className="stage-side">
+            <MiniGameSort
+              game={realm.privacyCheck}
+              onComplete={(result) => {
+                setScore((s) => s + result);
+                setStep('rule');
+              }}
+            />
           </aside>
         </div>
       )}
