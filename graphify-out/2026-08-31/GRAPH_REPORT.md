@@ -1,26 +1,27 @@
 # Graph Report - cyberwellness-game  (2026-08-31)
 
 ## Corpus Check
-- 66 files · ~585,907 words
+- 66 files · ~586,570 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 394 nodes · 677 edges · 34 communities (13 shown, 21 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.58)
+- 402 nodes · 713 edges · 36 communities (15 shown, 21 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3c782d58`
+- Built from commit: `a6af37e1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - TravelerRoom.jsx
-- realms.js
+- contentOverrides.js
 - RealmScreen.jsx
 - passworldArt.js
 - App.jsx
 - dependencies
+- Characters.jsx
 - Cyber Wellness Quest — Milestones & Team Workstreams
 - audioSettings.js
 - vite-plugin-copy-editor.js
@@ -29,6 +30,7 @@
 - Asset pipeline
 - steppingStonesArt.js
 - Checklist
+- RealmArt.jsx
 - graphify Knowledge-Graph Workflow
 - AtlasMap.jsx
 - localStorage Persistence (cyber-wellness-quest/v1)
@@ -51,20 +53,18 @@
 - The Traveler's Pledge
 
 ## God Nodes (most connected - your core abstractions)
-1. `CopyEditor()` - 14 edges
+1. `CopyEditor()` - 16 edges
 2. `Cyber Wellness Quest — Milestones & Team Workstreams` - 13 edges
 3. `fillRR()` - 12 edges
 4. `Cyber Wellness Quest — Design Document` - 12 edges
-5. `playSfx()` - 10 edges
-6. `circle()` - 9 edges
-7. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
-8. `App()` - 8 edges
-9. `DialogueCard()` - 8 edges
-10. `collectEditable()` - 8 edges
+5. `applyScreenOverrides()` - 10 edges
+6. `playSfx()` - 10 edges
+7. `circle()` - 9 edges
+8. `Cyber Wellness Quest — Improvement Plan (Living Doc)` - 9 edges
+9. `App()` - 8 edges
+10. `DialogueCard()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `SettingsPanel()` --calls--> `useAudioSettings()`  [EXTRACTED]
-  src/components/SettingsMenu.jsx → src/hooks/useAudioSettings.js
 - `App()` --indirect_call--> `overridesVersion()`  [INFERRED]
   src/App.jsx → src/dev/contentOverrides.js
 - `App()` --indirect_call--> `subscribe()`  [INFERRED]
@@ -73,6 +73,8 @@
   src/App.jsx → src/hooks/useUiClickSfx.js
 - `App()` --calls--> `useUiHoverSfx()`  [EXTRACTED]
   src/App.jsx → src/hooks/useUiHoverSfx.js
+- `App()` --calls--> `useProgress()`  [EXTRACTED]
+  src/App.jsx → src/state/useProgress.js
 
 ## Import Cycles
 - None detected.
@@ -81,31 +83,35 @@
 - **The Atlas Cast** — storyline_comet, storyline_keeper_vex, storyline_the_fog, storyline_pockets, storyline_the_glimmer, storyline_traveler [EXTRACTED 1.00]
 - **Documented Deviations from the Design Docs** — readme_walkable_world_deviation, readme_vite_app_deviation, readme_third_minigame_deviation [EXTRACTED 1.00]
 
-## Communities (34 total, 21 thin omitted)
+## Communities (36 total, 21 thin omitted)
 
 ### Community 0 - "TravelerRoom.jsx"
-Cohesion: 0.10
-Nodes (18): AtlasGate(), BANDS, BEATS, ICONS, makeRandom(), roughCircle(), seedFrom(), StampBadge() (+10 more)
+Cohesion: 0.14
+Nodes (10): BOUNDS, DIARY_SPOT, DOOR_SPOT, ROOM_TOUR, SPAWN, TravelerRoom(), F, FURNITURE (+2 more)
 
-### Community 1 - "realms.js"
-Cohesion: 0.07
-Nodes (45): SPA Root Mount Point, App(), balanceHigher, balanceLower, bandViewRaw(), bullybogHigher, bullybogLower, fableFallsHigher (+37 more)
+### Community 1 - "contentOverrides.js"
+Cohesion: 0.10
+Nodes (38): App(), INTRO_BEATS, IntroStory(), bandViewRaw(), getBandView(), REALMS, applyOverrides(), applyScreenOverrides() (+30 more)
 
 ### Community 2 - "RealmScreen.jsx"
-Cohesion: 0.07
-Nodes (33): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SHORT_LABELS, SPAWN, ChoiceCard(), DialogueCard(), PlatformerStoryRealm() (+25 more)
+Cohesion: 0.08
+Nodes (33): BalanceBeachRealm(), BOUNDS, ITEM_SPOTS, SHORT_LABELS, SPAWN, ChoiceCard(), PlatformerStoryRealm(), EXTRA_BEAT_ORDER (+25 more)
 
 ### Community 3 - "passworldArt.js"
 Cohesion: 0.14
 Nodes (28): ART_ANIMS, ART_MANIFEST, buildPassworldArt(), BUILTIN_PLAYER_BODY, circle(), drawGate(), drawHacker(), drawImpostor() (+20 more)
 
 ### Community 4 - "App.jsx"
-Cohesion: 0.10
-Nodes (20): CertificateScreen(), BY_NAME, CharacterArt(), Comet(), CharacterSelect(), OPTIONS, BEATS, IntroStory() (+12 more)
+Cohesion: 0.09
+Nodes (29): CertificateScreen(), Comet(), CharacterSelect(), OPTIONS, JournalProgress(), REALM_ICONS, MainScreen(), SchoolLogo() (+21 more)
 
 ### Community 5 - "dependencies"
 Cohesion: 0.07
 Nodes (28): @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono, lucide-react, dependencies, @fontsource/baloo-2, @fontsource/nunito, @fontsource/space-mono (+20 more)
+
+### Community 6 - "Characters.jsx"
+Cohesion: 0.15
+Nodes (11): AtlasGate(), BANDS, BEATS, BY_NAME, CharacterArt(), DialogueCard(), ICONS, makeRandom() (+3 more)
 
 ### Community 7 - "Cyber Wellness Quest — Milestones & Team Workstreams"
 Cohesion: 0.12
@@ -113,7 +119,7 @@ Nodes (16): Asset pipeline: placeholders & specs, Changelog, Cyber Wellness Ques
 
 ### Community 8 - "audioSettings.js"
 Cohesion: 0.14
-Nodes (21): RealmScreen(), useAudioSettings(), useUiClickSfx(), useUiHoverSfx(), clamp01(), DEFAULTS, getVolumes(), listeners (+13 more)
+Nodes (22): RealmScreen(), SettingsPanel(), useAudioSettings(), useUiClickSfx(), useUiHoverSfx(), clamp01(), DEFAULTS, getVolumes() (+14 more)
 
 ### Community 10 - "Cyber Wellness Quest — Improvement Plan (Living Doc)"
 Cohesion: 0.14
@@ -124,19 +130,23 @@ Cohesion: 0.12
 Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Direction & Rationale, 3. Token System, 4. Screen Flow, 5. Interaction Patterns, 6. Component Inventory (for the eventual React build), 7. State & Data Model (rough shape) (+8 more)
 
 ### Community 13 - "steppingStonesArt.js"
-Cohesion: 0.11
-Nodes (20): motionTween(), prefersReducedMotion(), MiniGameSteppingStones(), ART_MANIFEST, buildSteppingStonesArt(), drawBackdrop(), drawFogBank(), drawWisp() (+12 more)
+Cohesion: 0.15
+Nodes (16): motionTween(), prefersReducedMotion(), ART_MANIFEST, buildSteppingStonesArt(), drawBackdrop(), drawFogBank(), drawWisp(), generate() (+8 more)
 
 ### Community 14 - "Checklist"
 Cohesion: 0.33
 Nodes (5): Checklist, Done, Log, To do, Working Plan & Change Log
 
+### Community 15 - "RealmArt.jsx"
+Cohesion: 0.15
+Nodes (5): SPA Root Mount Point, RealmArt(), SCENES, ArtPreview(), MOODS
+
 ### Community 18 - "AtlasMap.jsx"
 Cohesion: 0.12
-Nodes (19): ATLAS_TOUR, AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, RealmIntro(), SettingsMenu() (+11 more)
+Nodes (20): ATLAS_TOUR, AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, REALM_TOUR, RealmIntro() (+12 more)
 
 ## Knowledge Gaps
-- **138 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+133 more)
+- **135 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+130 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -144,16 +154,16 @@ Nodes (19): ATLAS_TOUR, AtlasMap(), BRANCH_CTRL, GATE, GATE_SVG, ISLANDS, RealmI
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `playSfx()` connect `audioSettings.js` to `RealmScreen.jsx`, `passworldArt.js`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `DialogueCard()` connect `RealmScreen.jsx` to `TravelerRoom.jsx`, `AtlasMap.jsx`, `App.jsx`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `DialogueCard()` connect `Characters.jsx` to `AtlasMap.jsx`, `RealmScreen.jsx`, `App.jsx`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **Why does `World()` connect `AtlasMap.jsx` to `TravelerRoom.jsx`, `RealmScreen.jsx`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `CopyEditor()` (e.g. with `overridesVersion()` and `subscribe()`) actually correct?**
   _`CopyEditor()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _138 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _135 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `TravelerRoom.jsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.09846153846153846 - nodes in this community are weakly interconnected._
-- **Should `realms.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07390648567119155 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14166666666666666 - nodes in this community are weakly interconnected._
+- **Should `contentOverrides.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.10188261351052048 - nodes in this community are weakly interconnected._
