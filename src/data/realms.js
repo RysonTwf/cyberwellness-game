@@ -1244,10 +1244,10 @@ export const REALMS = [
       // and the murky water to clear is the left-hand pond.
       bounds: { minX: 5, maxX: 92, minY: 70, maxY: 92 },
       stops: {
-        story: { x: 72, y: 69, label: 'Pockets', action: 'Listen' },
+        story: { x: 72, y: 69, label: 'Pockets the frog', action: 'Listen' },
         decision: { x: 72, y: 69, label: 'the comment', action: 'Respond' },
         game: { x: 26, y: 73, label: 'the murky water', action: 'Clear it' },
-        rule: { x: 72, y: 69, label: 'Pockets', action: 'Talk' },
+        rule: { x: 72, y: 69, label: 'Pockets the frog', action: 'Talk' },
       },
     },
 
