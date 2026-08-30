@@ -21,7 +21,7 @@ import { applyScreenOverrides } from '../dev/contentOverrides';
 export const INTRO_BEATS = [
   {
     kind: 'scene',
-    text: "It's late. On the shelf, behind everything else, there's a journal you don't remember owning. A brass clasp. Blank pages. A soft glow coming off it.",
+    text: "On the shelf, behind everything else, there's a journal you don't remember owning. ",
   },
   {
     kind: 'scene',
@@ -29,11 +29,11 @@ export const INTRO_BEATS = [
   },
   {
     kind: 'comet',
-    text: 'Oh, hello! You actually opened it. Most people dust these off and put them straight back.',
+    text: 'Oh, hello! You actually opened it. Most people dust this off and put it straight back.',
   },
   {
     kind: 'comet',
-    text: "I'm Comet. I carry messages across the Atlas. It's a map of every path the internet takes. Five islands, five realms.",
+    text: "I'm Comet. I carry messages across the Atlas. It's a map of every path the Internet takes. Five islands, five realms.",
   },
   {
     kind: 'comet',
@@ -41,11 +41,11 @@ export const INTRO_BEATS = [
   },
   {
     kind: 'comet',
-    text: "Collect all five stamps and you're a Wise Traveller. The Atlas Gate only opens for those. Curiosity and a bit of caution is all it takes.",
+    text: "Collect all five stamps and you're a Wise Traveller.",
   },
   {
     kind: 'comet',
-    text: "But every journey starts at home. Let's get you ready first. Who's walking the Atlas with me?",
+    text: "Let's get you ready first. Who's walking the Atlas with me?",
     cta: 'Choose my traveller',
   },
 ];
