@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-31)
 
 ## Corpus Check
-- 68 files · ~589,795 words
+- 68 files · ~589,854 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 403 nodes · 723 edges · 36 communities (15 shown, 21 thin omitted)
+- 403 nodes · 727 edges · 36 communities (15 shown, 21 thin omitted)
 - Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d65243f6`
+- Built from commit: `6fc52681`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

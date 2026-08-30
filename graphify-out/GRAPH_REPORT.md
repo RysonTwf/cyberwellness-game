@@ -1,16 +1,16 @@
 # Graph Report - cyberwellness-game  (2026-08-31)
 
 ## Corpus Check
-- 68 files · ~589,854 words
+- 68 files · ~590,059 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 403 nodes · 727 edges · 36 communities (15 shown, 21 thin omitted)
+- 404 nodes · 728 edges · 36 communities (15 shown, 21 thin omitted)
 - Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6fc52681`
+- Built from commit: `8deb529c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -126,8 +126,8 @@ Cohesion: 0.12
 Nodes (16): 10. Motion & Animation Direction, 1. Concept Summary, 2. Design Direction & Rationale, 3. Token System, 4. Screen Flow, 5. Interaction Patterns, 6. Component Inventory (for the eventual React build), 7. State & Data Model (rough shape) (+8 more)
 
 ### Community 13 - "steppingStonesArt.js"
-Cohesion: 0.14
-Nodes (17): motionTween(), prefersReducedMotion(), ART_MANIFEST, buildSteppingStonesArt(), drawBackdrop(), drawFogBank(), drawWisp(), generate() (+9 more)
+Cohesion: 0.13
+Nodes (18): motionTween(), prefersReducedMotion(), ART_MANIFEST, buildSteppingStonesArt(), drawBackdrop(), drawFogBank(), drawWisp(), generate() (+10 more)
 
 ### Community 14 - "Checklist"
 Cohesion: 0.33
@@ -146,7 +146,7 @@ Cohesion: 0.40
 Nodes (3): SPA Root Mount Point, ArtPreview(), MOODS
 
 ## Knowledge Gaps
-- **131 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+126 more)
+- **132 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+127 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -156,13 +156,13 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `playSfx()` connect `sfx.js` to `audioSettings.js`, `RealmScreen.jsx`, `passworldArt.js`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `DialogueCard()` connect `RealmScreen.jsx` to `AtlasMap.jsx`, `App.jsx`?**
-  _High betweenness centrality (0.022) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **Why does `World()` connect `AtlasMap.jsx` to `RealmScreen.jsx`, `App.jsx`?**
   _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `CopyEditor()` (e.g. with `overridesVersion()` and `subscribe()`) actually correct?**
   _`CopyEditor()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _131 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _132 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `CopyEditor.jsx` be split into smaller, more focused modules?**
   _Cohesion score 0.1166429587482219 - nodes in this community are weakly interconnected._
 - **Should `RealmScreen.jsx` be split into smaller, more focused modules?**
