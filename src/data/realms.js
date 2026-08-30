@@ -77,6 +77,23 @@ const passworldLower = {
     ],
   },
 
+  // One follow-up before the sort game: how to make a strong password
+  // (P4–P6 learns this in its platformer; P1–P3 had nothing on it).
+  extraBeats: {
+    strongPassword: {
+      who: 'Comet',
+      prompt:
+        'One thing first. You will need a password for your own vault. Which one would be hardest for someone else to guess?',
+      options: [
+        { id: 'birthday', text: 'My name and my birthday' },
+        { id: 'pet', text: "My pet's name" },
+        { id: 'words', text: 'Three random words joined up, like BlueTigerMoon' },
+      ],
+      response:
+        'Three random words wins. It is long, and it is not about you, so nobody can guess it from what they know. A name or a birthday is the easiest to crack.',
+    },
+  },
+
   game: {
     type: 'sort',
     title: 'Guard the Vault',
@@ -102,7 +119,7 @@ const passworldLower = {
   // The realm's real-world rule, stated once and plainly (storyline.md).
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for the whole Atlas. Your name, your address, your school and your passwords stay locked. Your favourite colour, your nickname and the games you love are fine to share. And a real grown-up will never need your password. Not for anything.',
+    text: 'Here is the rule for the whole Atlas. Your name, your address, your school and your passwords stay locked. Your favourite colour, your nickname and the games you love are fine to share. A strong password is long, and not about you. And a real grown-up will never need it. Not for anything.',
   },
 };
 
@@ -558,14 +575,14 @@ const bullybogLower = {
       prompt:
         'One more thing. This stays online for good. Would you be happy for that? Posts do not really go away.',
       accept: 'Good point.',
-      followUp: 'Good habit. Ask if it is kind. Then ask if you would still be happy with it next year.',
+      followUp: 'Ask yourself it is kind to send and if you would still be happy with it next year.',
     },
   },
 
   game: {
     type: 'sort',
     title: 'Clear the Water',
-    instruction: 'Replies people could send Pockets. Which would you send, and which would sting?',
+    instruction: 'Replies people could send Pockets. Which would you send and not send?',
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },

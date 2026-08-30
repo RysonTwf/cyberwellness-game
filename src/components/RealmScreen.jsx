@@ -35,9 +35,11 @@ const GAMES = {
   quiz: MiniGameQuiz,
 };
 
-// Order the optional post-decision beats appear in, when a realm defines them
-// (Improvement Plan §2: digital footprint, then "who would you tell").
-const EXTRA_BEAT_ORDER = ['footprint', 'tellSomeone'];
+// Order the optional post-decision beats appear in, when a realm defines
+// them. A beat with an `accept` string renders as prompt → tap-to-agree →
+// follow-up (digital footprint); a beat with `options` renders as prompt →
+// pick one → response (strong password, who would you tell).
+const EXTRA_BEAT_ORDER = ['footprint', 'strongPassword', 'tellSomeone'];
 
 /**
  * One realm, start to finish.
@@ -262,7 +264,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                       </span>
                     )}
 
-                    {currentExtraKey === 'footprint' && (
+                    {currentExtraKey && currentExtra.accept && (
                       <>
                         <DialogueCard
                           who={currentExtra.who}
@@ -297,7 +299,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                       </>
                     )}
 
-                    {currentExtraKey === 'tellSomeone' && (
+                    {currentExtraKey && currentExtra.options && (
                       <>
                         <DialogueCard
                           who={currentExtra.who}
