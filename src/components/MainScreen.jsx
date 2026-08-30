@@ -1,5 +1,6 @@
 import { Play } from 'lucide-react';
 import { Comet } from './Characters';
+import SchoolLogo from './SchoolLogo';
 
 /**
  * The actual first thing a player sees — before the Traveler's Room, before
@@ -17,7 +18,11 @@ export default function MainScreen({ onStart }) {
     <div className="fold">
       <div className="center" style={{ flex: 1, display: 'grid', placeItems: 'center', gap: 22 }}>
         <div className="stack" style={{ alignItems: 'center', textAlign: 'center' }}>
-          <Comet size={96} />
+          <div className="title-logos">
+            <Comet size={92} />
+            <span className="title-logos-x" aria-hidden="true" />
+            <SchoolLogo />
+          </div>
           <h1 style={{ marginTop: 10 }}>Cyber Defender Quest</h1>
           <p className="lede" style={{ marginTop: 8, maxWidth: '38ch' }}>
             Travel the Atlas with Comet, and become a Wise Traveler.

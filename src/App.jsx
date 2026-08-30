@@ -7,6 +7,7 @@ import RealmScreen from './components/RealmScreen';
 import RealmIntro from './components/RealmIntro';
 import CertificateScreen from './components/CertificateScreen';
 import JournalProgress from './components/JournalProgress';
+import SchoolLogo from './components/SchoolLogo';
 import SettingsMenu from './components/SettingsMenu';
 import { useProgress } from './state/useProgress';
 import { useUiClickSfx } from './hooks/useUiClickSfx';
@@ -39,6 +40,12 @@ export default function App() {
   return (
     <div className="app">
       <SettingsMenu />
+
+      {/* The school crest sits top-left on every screen after the opening
+          sequence (the title + intro story feature it full-size instead). */}
+      {currentScreen !== 'title' && currentScreen !== 'intro' && (
+        <SchoolLogo variant="mark" className="corner-logo" />
+      )}
 
       <div className="shell">
         {currentScreen !== 'title' && currentScreen !== 'character' && currentScreen !== 'room' && (

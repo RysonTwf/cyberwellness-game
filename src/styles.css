@@ -480,8 +480,9 @@ p {
      without it the stamp dots run in right underneath it. Vertical padding
      is deliberately tight: every px of chrome height comes straight out of
      the scene box below (2:1 ratio — each chrome px costs 2px of box width),
-     and short laptop viewports are the common case. */
-  padding: 6px 52px 10px 0;
+     and short laptop viewports are the common case. Left padding does the
+     same for the fixed school crest (.corner-logo) in the other corner. */
+  padding: 6px 52px 10px 48px;
 }
 
 .journal-count {
@@ -2142,6 +2143,62 @@ p {
 /* The gear sits above every screen, .panel-scrim (30) and .stamp-flash (40)
    included — it needs to stay reachable no matter what's open underneath.
    The panel it opens goes higher still, so it's never the thing buried. */
+
+/* ---------- Greendale school crest (SchoolLogo.jsx) ------------------------ */
+
+/* Title screen: the full logo, matched in height to Comet and set beside it. */
+.title-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.title-logos-x {
+  width: 1px;
+  align-self: stretch;
+  margin: 6px 0;
+  background: var(--line);
+}
+
+.school-logo {
+  height: 92px;
+  width: auto;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Corner watermark: a small window onto just the emblem (the wordmark is
+   unreadable this size), backed by a soft chip so it holds on any scene.
+   The crop is an oversized <img> shifted so the green/orange "G" fills the
+   window — measured against the 447×447 source. */
+.school-mark {
+  display: block;
+  width: 42px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 11px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.school-mark img {
+  display: block;
+  width: 108px;
+  height: auto;
+  /* Shifts the 447-sq source so the emblem (src x 128–289, y 66–244) fills
+     the window; the wordmark below is left out of frame. */
+  margin: -15px 0 0 -30px;
+}
+
+.corner-logo {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 45;
+}
 
 .settings-fab {
   position: fixed;
