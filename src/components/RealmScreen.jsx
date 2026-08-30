@@ -102,9 +102,14 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
 
   const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
-  const settled = Boolean(picked?.safe);
-  // The world visibly changes once the Traveler makes the safe choice.
-  const mood = settled || step === 'game' || step === 'rule' || step === 'stamp' ? 'after' : 'before';
+  // The world visibly changes only once the whole level's work is done —
+  // decision made AND mini-game completed. Flipping at the safe choice (as
+  // this used to) showed the reward early and broke the game step's own
+  // fiction: Bully Bog's game is literally clearing the murky water, so the
+  // water can't already be clear while you play it. The rule stops depend on
+  // the flip too ("the open gate", "the clear path") — they're rule-step
+  // destinations, which is exactly when 'after' now starts.
+  const mood = step === 'rule' || step === 'stamp' ? 'after' : 'before';
   const currentExtraKey =
     picked?.safe && extraIndex < extraBeatKeys.length ? extraBeatKeys[extraIndex] : null;
   const currentExtra = currentExtraKey ? realm.extraBeats[currentExtraKey] : null;

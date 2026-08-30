@@ -186,7 +186,12 @@ export default function BalanceBeachRealm({
         <div className="stage">
           <div className="stage-main">
             <div className="world" style={{ cursor: 'default' }}>
-              <RealmArt realmId={realm.id} mood={picked?.safe ? 'after' : 'before'} />
+              {/* 'before' even after the safe pick — the after-look is the
+                  reward for finishing the whole level (the beach step), not
+                  the decision alone. Same rule as RealmScreen's mood. */}
+              <div className="world-scene">
+                <RealmArt realmId={realm.id} mood="before" />
+              </div>
             </div>
           </div>
           <aside className="stage-side">
