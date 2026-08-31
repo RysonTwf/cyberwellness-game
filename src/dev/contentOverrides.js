@@ -145,7 +145,6 @@ const EDITABLE_KEYS = new Set([
   'feedback',
   'miss',
   'why',
-  'lead',
   'checkNote',
   'instruction',
   'title',
@@ -206,10 +205,6 @@ function humanize(dotPath, view) {
   if (/^game\.bins\.\d+\.title$/.test(dotPath)) return `Mini-game — bin ${n(2)} name`;
   if (/^game\.bins\.\d+\.sub$/.test(dotPath)) return `Mini-game — bin ${n(2)} hint`;
   if (/^game\.items\.\d+\.text$/.test(dotPath)) return `Mini-game — card ${n(2)}`;
-  if (/^game\.messages\.\d+\.text$/.test(dotPath)) return `Mini-game — message ${n(2)}`;
-  if (/^game\.messages\.\d+\.note$/.test(dotPath)) return `Mini-game — message ${n(2)} (why)`;
-  if (/^game\.stones\.\d+\.text$/.test(dotPath)) return `Mini-game — stone ${n(2)}`;
-  if (/^game\.stones\.\d+\.note$/.test(dotPath)) return `Mini-game — stone ${n(2)} (why)`;
   if (/^game\.verdicts\.\w+$/.test(dotPath)) return `Mini-game — result (${seg[2]})`;
   if (/^game\.items\.\d+\.checkNote$/.test(dotPath)) return `Mini-game, card ${n(2)} (which check)`;
   if (/^game\.stones\.\d+\.checkNote$/.test(dotPath)) return `Mini-game, stone ${n(2)} (which check)`;
@@ -219,39 +214,6 @@ function humanize(dotPath, view) {
   if (dotPath === 'game.purpose.prompt') return 'Method, "which check?" question';
   if (/^game\.purpose\.checks\.\d+\.(name|sub)$/.test(dotPath))
     return `Method, check ${n(3)} ${seg[4] === 'sub' ? 'question' : 'name'}`;
-  // S.U.R.E. (Fable Falls P4–P6), one of `game.posts` is drawn per run
-  if (/^game\.posts\.\d+\.lead$/.test(dotPath)) return `S.U.R.E. post ${n(2)} name`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.text$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)}`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.miss$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)} (wrong check)`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.note$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)} (right check)`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.action\.prompt$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)} question`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.action\.options\.\d+\.text$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)} answer ${String.fromCharCode(65 + Number(seg[7]))}`;
-  if (/^game\.posts\.\d+\.cards\.\d+\.action\.options\.\d+\.feedback$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} clue ${n(4)} answer ${String.fromCharCode(65 + Number(seg[7]))}, feedback`;
-  if (/^game\.posts\.\d+\.verdict\.prompt$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} last question`;
-  if (/^game\.posts\.\d+\.verdict\.options\.\d+\.text$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} last answer ${String.fromCharCode(65 + Number(seg[5]))}`;
-  if (/^game\.posts\.\d+\.verdict\.options\.\d+\.feedback$/.test(dotPath))
-    return `S.U.R.E. post ${n(2)} last answer ${String.fromCharCode(65 + Number(seg[5]))}, feedback`;
-  if (/^game\.cards\.\d+\.text$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)}`;
-  if (/^game\.cards\.\d+\.miss$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)} (wrong check)`;
-  if (/^game\.cards\.\d+\.note$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)} (right check)`;
-  if (/^game\.cards\.\d+\.action\.prompt$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)} question`;
-  if (/^game\.cards\.\d+\.action\.options\.\d+\.text$/.test(dotPath))
-    return `S.U.R.E. — clue ${n(2)} answer ${String.fromCharCode(65 + Number(seg[5]))}`;
-  if (/^game\.cards\.\d+\.action\.options\.\d+\.feedback$/.test(dotPath))
-    return `S.U.R.E. — clue ${n(2)} answer ${String.fromCharCode(65 + Number(seg[5]))} — feedback`;
-  if (dotPath === 'game.verdict.prompt') return 'S.U.R.E. — the last question';
-  if (/^game\.verdict\.options\.\d+\.text$/.test(dotPath))
-    return `S.U.R.E. — last answer ${String.fromCharCode(65 + Number(seg[3]))}`;
-  if (/^game\.verdict\.options\.\d+\.feedback$/.test(dotPath))
-    return `S.U.R.E. — last answer ${String.fromCharCode(65 + Number(seg[3]))} — feedback`;
   return dotPath;
 }
 

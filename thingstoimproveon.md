@@ -216,6 +216,67 @@ bag-chip work as uncommitted. Both are committed (`9de6f87`).
 `verdict.tone === 'settled'`, and that value genuinely exists at `BalanceBeachRealm.jsx:90`, the
 fix is implementable exactly as written.
 
+---
+
+## What changed on 31 Aug 2026
+
+Everything above was acted on. Two commits: the audit fixes, then the client's
+format rule.
+
+### The audit fixes
+
+| Realm, band | Blind-guess odds before | After |
+|---|---|---|
+| Balance Bay | passed **always** | blocked unless the Three Musts hold |
+| Privacy Peaks P1 to P3 | passed **always** (ten taps) | 1 in 243 |
+| Fable Falls P1 to P3 | passed **always** (ten taps) | 1 in 243 |
+| Bully Bog P4 to P6 | 1 in 256 | 1 in 160,000 |
+| Privacy Peaks P4 to P6 | 1 in 64 | 1 in 243 |
+| Passworld P4 to P6 sort | 1 in 256 | 1 in 20,736 |
+
+- Balance Bay gates on the **Three Musts**: sleep is in the day, one thing is
+  away from a screen, screens take no more than half. Checked exhaustively:
+  every screens-only day is blocked.
+- Every gated game draws its round from a larger authored pool, which closes
+  the rote loophole.
+- Every game names its method on screen while you play, through a shared
+  `MethodTrack`: S.U.R.E., T.H.I.N.K., S.T.O.P., L.M.N., the Three Questions,
+  the Three Musts.
+- Bully Bog's bands no longer share byte-identical items. P4 to P6 has the
+  ambiguous middle.
+- The vault door's tiles are no longer sortable on silhouette.
+- The digital-footprint beat is a real two-option pick.
+- The first-try score, saved and never read, is surfaced for teachers in
+  Settings and kept out of the child's flow.
+- `MiniGameSpot` and `MiniGameBalance` are gone.
+- The Traveller's room no longer wedges the avatar against the reading nook on
+  the way to the door.
+
+### The client's format rule
+
+Privacy Peaks and Fable Falls use one question format throughout: a plain
+five-question Q&A, one question at a time, one answer each. The stepping-stones
+run and the S.U.R.E. card game each asked two things per item and ran to nine
+or twelve asks, so both are retired, along with `MiniGameSteppingStones`,
+`MiniGameSure` and the stepping-stones Phaser scene and art.
+
+The frameworks survive the change. A question whose options are the four
+S.U.R.E. letters, or the four S.T.O.P. checks, is an ordinary single-select
+question, so naming the check is still the answer and the older bands still
+*run* the method rather than merely agreeing with it.
+
+Passworld and Balance Bay keep their mechanics: the client confirmed both are
+fine, and they hold the only genuine tick-several-then-submit steps in the
+product.
+
+### Still open
+
+- Balance Bay's Three Musts are met by 58% of random six-hour days. That is by
+  design, since the three conditions are stated on screen and the point is that
+  they can be reasoned to rather than guessed, but it is the weakest gate left.
+- Privacy Peaks P4 to P6 lost the Phaser stepping-stones visual with the format
+  change. If that scene is wanted back inside a Q&A, it would need re-siting.
+
 ## Writing rules
 
 All player-facing copy follows the client's writing rules: school language, no

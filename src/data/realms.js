@@ -709,8 +709,9 @@ const privacyLower = {
 
 /**
  * P4–P6 variant — subtler scam/phishing nuance (Improvement Plan §3), paired
- * with the Phase 2 Phaser stepping-stone mechanic ("Clear the Fog: Level
- * Up" — minigames/MiniGameSteppingStones.jsx).
+ * subtler messages in the same five-question Q&A the younger band uses
+ * (minigames/MiniGameQuiz.jsx), with the four S.T.O.P. checks on the track
+ * and naming the right one as the answer to several of the questions.
  */
 const privacyHigher = {
   story: [
@@ -749,102 +750,121 @@ const privacyHigher = {
   },
 
   game: {
-    type: 'steppingstones',
+    type: 'quiz',
     title: 'Clear the Fog',
     instruction:
-      'Step on the ones that are safe. Skip the ones with a warning sign, then say which check caught it. Looking official does not make something official.',
-    // Naming the check is what stops this being "skip anything that sounds
-    // scary". A stone can trip more than one check, `check` takes an array
-    // and any of them counts, so the gate never punishes a right answer for
-    // being the second-best one.
+      'More messages drift out of the fog, and these are subtler. Name the check that catches each one, then decide what to do.',
+    // Naming the check keeps this from being "skip anything that sounds
+    // scary": it is still one question with one answer, so the format matches
+    // the younger band exactly, but the answer is the method rather than a
+    // hunch.
     purpose: {
       name: 'S.T.O.P.',
       why: 'Four signs that a message is not what it says it is.',
-      nameTheCheck: true,
-      prompt: 'Which check caught it?',
       checks: [
         { key: 'S', name: 'Sender', sub: 'Do I actually know who this is?' },
         { key: 'T', name: 'Tone', sub: 'Is it rushing or threatening me?' },
         { key: 'O', name: 'Offer', sub: 'Is it dangling a prize or a reward?' },
-        { key: 'P', name: 'Password', sub: 'Does it want a secret, or a tap to type one?' },
+        { key: 'P', name: 'Password', sub: 'Does it want a secret of mine?' },
       ],
     },
-    // Six of these eleven each crossing (lib/draw.js), so a blind run can't
-    // be traded for a memorised clean one.
-    roundSize: 6,
-    stones: [
+    // Five of these ten each run, so one blind attempt cannot be traded for a
+    // memorised clean one.
+    roundSize: 5,
+    questions: [
       {
         id: 'q1',
-        text: '"Your order has shipped. No action needed."',
-        flag: false,
-        note: 'No link, no rush, nothing asked of you. Safe to step on.',
+        text: '"Warning: confirm within 24 hours or your account will be closed for good." Which check catches this one?',
+        options: [
+          { id: 't', text: 'Tone. It is threatening me and putting a clock on it.', correct: true, feedback: 'Yes. A countdown and a threat are there to rush you past thinking, and that is the whole trick.' },
+          { id: 's', text: 'Sender. I do not know who sent it.', correct: false, feedback: 'You do not, but the loudest signal here is the pressure. Real services do not threaten to lock you out in a day.' },
+          { id: 'o', text: 'Offer. It is dangling something.', correct: false, feedback: 'Nothing is being offered. What is being used on you is fear, not a prize.' },
+          { id: 'p', text: 'Password. It wants a secret.', correct: false, feedback: 'Not yet. This message is still working on your nerves. Read what it actually asks for.' },
+        ],
       },
       {
         id: 'q2',
-        text: '"Warning: confirm within 24 hours or lose your account. Tap here."',
-        flag: true,
-        check: 'T',
-        note: 'A countdown and a threat, both there to rush you past thinking. Skip it.',
+        text: '"You have a reward waiting. Claim it at atlas-free-rewards.net" Which check catches this one?',
+        options: [
+          { id: 'o', text: 'Offer. It is dangling a reward I never asked for.', correct: true, feedback: 'That is it. A reward out of nowhere is the bait, and the strange address is the hook.' },
+          { id: 't', text: 'Tone. It is rushing me.', correct: false, feedback: 'It is not, actually. It is being pleasant. That is what makes the free reward the thing to notice.' },
+          { id: 's', text: 'Sender. It is not really from Atlas.', correct: false, feedback: 'True, and the reason you can tell is what it is offering. Start with the reward nobody promised you.' },
+          { id: 'p', text: 'Password. It wants my login.', correct: false, feedback: 'It has not asked for one yet. The reward is the part that does not add up.' },
+        ],
       },
       {
         id: 'q3',
-        text: '"This is the Atlas Team. Send us your One-Time-Password to continue"',
-        flag: true,
-        check: ['P', 'S'],
-        note: 'No real team needs your One-Time-Password typed into a message. Skip it.',
+        text: '"This is the Atlas Team. Send us the code we just texted you so we can finish the check." Which check catches this one?',
+        options: [
+          { id: 'p', text: 'Password. A code is a secret, and it wants me to hand it over.', correct: true, feedback: 'Exactly. A code is a key. It is for typing in yourself, never for passing on, and no real team asks for it.' },
+          { id: 's', text: 'Sender. Anyone can say they are the Atlas Team.', correct: false, feedback: 'Anyone can, and that matters. But the thing that settles it is what they are asking you to hand over.' },
+          { id: 't', text: 'Tone. It sounds official.', correct: false, feedback: 'Sounding official is easy and proves nothing. Look at what it wants from you.' },
+          { id: 'o', text: 'Offer. It is promising to help me.', correct: false, feedback: 'Helping you is the cover story. The request is the real content.' },
+        ],
       },
       {
         id: 'q4',
-        text: '"Reminder: your library book is due on Friday."',
-        flag: false,
-        note: 'Ordinary and dull, and nothing is asked of you. Not everything official looking is a trick. Step on it.',
+        text: '"Hi, it is Jamie. I lost my phone and this is my new number. Can you lend me some money? Do not tell mum." Which check catches this one?',
+        options: [
+          { id: 's', text: 'Sender. A new number I cannot check is not proof it is Jamie.', correct: true, feedback: 'Right. Ring the number you already have for Jamie. If it really is them, they will answer.' },
+          { id: 'p', text: 'Password. It wants something secret.', correct: false, feedback: 'It wants money, not a password. The question you cannot answer is who is typing.' },
+          { id: 'o', text: 'Offer. It is offering me something.', correct: false, feedback: 'It is asking, not offering. Start with whether this is really Jamie.' },
+          { id: 't', text: 'Tone. It is being friendly.', correct: false, feedback: 'Friendly is easy to type. The gap is that you cannot tell who is behind the new number.' },
+        ],
       },
       {
         id: 'q5',
-        text: 'atlas.free-rewards.net',
-        flag: true,
-        check: ['O', 'S'],
-        note: 'Look at the address itself, not the words around it. That is not where the real Atlas lives. Skip it.',
+        text: 'The message has the right logo, the right colours and not one spelling mistake. Does that prove it is real?',
+        options: [
+          { id: 'b', text: 'No. A logo is a picture, and anyone can copy one.', correct: true, feedback: 'Yes. Looking official is the easiest part to fake, so it proves nothing at all.' },
+          { id: 'a', text: 'Yes. Tricks always look messy and badly spelled.', correct: false, feedback: 'They used to. The careful ones look perfect now, which is exactly why looks are not the test.' },
+          { id: 'c', text: 'Yes, as long as the address looks close enough.', correct: false, feedback: '"Close enough" is the trick. One changed letter in an address sends you somewhere else entirely.' },
+        ],
       },
       {
         id: 'q6',
-        text: '"Hi, it is your teacher. Can you send me your login so I can check your account?"',
-        flag: true,
-        check: ['S', 'P'],
-        note: 'A real teacher can check your account their own way. They never need your password. Skip it.',
+        text: 'A message says your parcel needs a 30p fee before it can be delivered. Why ask for such a small amount?',
+        options: [
+          { id: 'b', text: 'So I do not think twice. It is my card details they are really after.', correct: true, feedback: 'That is it. The 30p is not the point. Typing your card into their page is.' },
+          { id: 'a', text: 'Because delivery genuinely costs a little more sometimes.', correct: false, feedback: 'A real delivery company bills the sender, not you, and never through a link you did not go looking for.' },
+          { id: 'c', text: 'Because they are being fair and only charging what it costs.', correct: false, feedback: 'The small price is chosen to feel harmless. What they collect is the card, not the coins.' },
+        ],
       },
       {
         id: 'q7',
-        text: '"You are our 1,000,000th visitor! Claim your prize in the next 5 minutes."',
-        flag: true,
-        check: ['O', 'T'],
-        note: 'A prize you never entered for, and a clock on it. Both halves are the trick. Skip it.',
+        text: 'You tapped a link before you stopped to think. What is the best next move?',
+        options: [
+          { id: 'b', text: 'Tell an adult I trust straight away, and change my password from the real app.', correct: true, feedback: 'Exactly right. Telling someone early is what keeps a mistake small. Nobody is in trouble for saying so.' },
+          { id: 'a', text: 'Say nothing and hope it was fine.', correct: false, feedback: 'Waiting is what gives it time to do damage. Saying so early is always the smaller problem.' },
+          { id: 'c', text: 'Tap it again to see what happens.', correct: false, feedback: 'Going back gives it a second chance at you. Close it and tell someone instead.' },
+        ],
       },
       {
         id: 'q8',
-        text: '"Your parcel could not be delivered. Pay 30p here to rebook it."',
-        flag: true,
-        check: 'P',
-        note: 'A tiny amount, so you do not think twice, but it wants your card details on a page you did not go looking for. Skip it.'
+        text: '"Reminder: your library book is due back on Friday." Is this one a trick?',
+        options: [
+          { id: 'b', text: 'No. It does not rush me and it does not ask me for anything.', correct: true, feedback: 'Good. Being careful is not the same as being scared of everything. Look for the signs, not for messages.' },
+          { id: 'a', text: 'Yes, because every message could be a trick.', correct: false, feedback: 'Most messages are ordinary. Treating all of them as traps means you stop reading the ones that matter.' },
+          { id: 'c', text: 'Yes, because I do not remember borrowing a book.', correct: false, feedback: 'Forgetting is not a warning sign. Nothing here is asked of you, so there is nothing to hand over.' },
+        ],
       },
       {
         id: 'q9',
-        text: '"School closed tomorrow, check the school website for details."',
-        flag: false,
-        note: 'It sends you to look something up yourself rather than tapping through. Nothing is asked of you. Step on it.',
+        text: 'Someone you only know from a game asks you to carry on chatting somewhere quieter instead. What do you do?',
+        options: [
+          { id: 'b', text: 'Stay where I am, and tell an adult I trust.', correct: true, feedback: 'Right. Wanting you somewhere quieter and on your own is the sign to stop, every time.' },
+          { id: 'a', text: 'Go, we are friends in the game.', correct: false, feedback: 'Moving you somewhere with nobody watching is the point of the request. That is the part to notice.' },
+          { id: 'c', text: 'Go, as long as I do not tell them my name.', correct: false, feedback: 'Being alone with them is the risk, not your name.' },
+        ],
       },
       {
         id: 'q10',
-        text: '"It is Jamie, I got a new number. Can you lend me some money? Do not tell mum."',
-        flag: true,
-        check: ['S', 'T'],
-        note: 'A new number you cannot check, and an instruction to keep it quiet. Ring the old number. Skip it.',
-      },
-      {
-        id: 'q11',
-        text: '"Two new photos were added to the class album."',
-        flag: false,
-        note: 'Nothing is claimed, nothing is asked, nothing is rushed. Step on it.',
+        text: 'A warning says there is a problem with your account. What is the safe way to check?',
+        options: [
+          { id: 'b', text: 'Close the message and open the real app or website myself.', correct: true, feedback: 'Yes. Going there yourself is the one route the message cannot control.' },
+          { id: 'a', text: 'Tap the link in the message, since it goes straight there.', correct: false, feedback: 'It goes wherever whoever wrote it decided. That is the whole reason the link is in there.' },
+          { id: 'c', text: 'Reply and ask them to prove who they are.', correct: false, feedback: 'They will happily "prove" it, because they are writing both sides. Check away from the message.' },
+        ],
       },
     ],
   },
@@ -1312,13 +1332,12 @@ const balanceHigher = {
  * screen in short words while they answer.
  *
  * P4–P6 (10–12) is the S.U.R.E. framework (Source, Understand, Research,
- * Evaluate) and has to be *run*, not just agreed with: the clues arrive
- * unlabelled and shuffled and the child names the check each one belongs to
- * (`game.type: 'sure'`, minigames/MiniGameSure.jsx). The earlier version
- * labelled each question with its own step, which a child could clear on
- * common sense without ever learning the method. Both halves of every clue
- * are gated now, and one of two unrelated posts is drawn per run so the
- * clue-to-letter mapping can't be learned off a single scenario.
+ * Evaluate) and has to be *run*, not just agreed with: the clue arrives
+ * unlabelled and naming the check it belongs to *is* the answer. The version
+ * before that labelled each question with its own step, which a child could
+ * clear on common sense without ever learning the method. Both bands use the
+ * same five-question Q&A, per the client's rule that a realm asks one kind of
+ * question.
  *
  * The official "3 tips to CHECK real vs. digitally-altered content" (the
  * SLS package's specific bullet list) was never sourced; the general,
@@ -1620,17 +1639,16 @@ const fableFallsLower = {
 
 /**
  * P4–P6 — the same Mia screenshot as `fableFallsLower` (story reused
- * verbatim), but where the younger band answers five plain questions, this
- * band has to actually *run* S.U.R.E.
+ * verbatim). Same five-question shape as the younger band, harder questions:
+ * where P1–P3 is asked what to think, this band is asked which S.U.R.E. check
+ * a clue belongs to, which is the part that has to be *run*.
  *
  * The version this replaced labelled every quiz question with its own step
  * ("Source. The screenshot has no name…"), which meant a child could clear
  * the whole thing on ordinary common sense and never learn the method — the
  * letters were decoration. Now the clues arrive unlabelled and shuffled
- * (`game.type: 'sure'`, minigames/MiniGameSure.jsx): you have to name the
- * check a clue belongs to before you can say what to do about it, a missed
- * check comes back round at the end, and the game closes on the verdict all
- * four checks add up to.
+ * naming the check a clue belongs to is the answer, and the round closes on
+ * the verdict all four checks add up to.
  */
 const fableFallsHigher = {
   story: fableFallsLower.story,
@@ -1660,14 +1678,17 @@ const fableFallsHigher = {
   },
 
   game: {
-    type: 'sure',
+    type: 'quiz',
     title: 'Run It Through S.U.R.E.',
     instruction:
-      'Four clues about the post, jumbled up. Work out which check each one belongs to, then decide what it means.',
+      'Things you notice about the post, one at a time. Name the check each one belongs to, then decide what to do about it.',
+    // The letter is still the answer, which is what stopped the old version
+    // being clearable on ordinary common sense. It just asks it as one plain
+    // question with one answer now, the same format as the younger band, so
+    // the realm is five questions rather than nine.
     purpose: {
       name: 'S.U.R.E.',
       why: 'Four checks for anything that reaches you and wants a reaction.',
-      nameTheCheck: true,
       checks: [
         { key: 'S', name: 'Source', sub: 'Who is behind it?' },
         { key: 'U', name: 'Understand', sub: 'What is it claiming?' },
@@ -1675,269 +1696,104 @@ const fableFallsHigher = {
         { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
       ],
     },
-    // Two posts, one drawn per run. With a single post the `miss` and `note`
-    // copy eventually teaches the clue→letter mapping, so by the second
-    // recheck round a child could pass on memory of *this post* rather than
-    // on the method (thingstoimproveon.md, "the two games that are already
-    // close"). A second, unrelated post means the method is the only thing
-    // that carries over.
-    posts: [
+    // Five of these ten each run, drawn fresh, so the clue-to-letter mapping
+    // cannot be memorised off a single pass.
+    roundSize: 5,
+    questions: [
       {
-        id: 'mia',
-        lead: 'The screenshot about Mia.',
-        cards: [
-          {
-            id: 'source',
-            step: 'S',
-            text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward.',
-            miss: 'Not that check. This clue is about where the post came from in the first place.',
-            note: 'Source. Nobody can point to who posted it first, so there is nobody here to trust.',
-            action: {
-              prompt: 'So what does that mean for the post?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'Someone must have seen it happen, or they would not have posted it.',
-                  correct: false,
-                  feedback:
-                    '"Someone said so" is not the same as someone knowing. With no first poster, there is nothing you can check.',
-                },
-                {
-                  id: 'b',
-                  text: 'Treat it as unproven until I know who posted it.',
-                  correct: true,
-                  feedback: 'Right. A story with no clear start is one to check, not one to pass on.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'understand',
-            step: 'U',
-            text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat.',
-            miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
-            note: 'Understand. The caption claims far more than three lines of chat could ever show.',
-            action: {
-              prompt: 'So what is the post actually proving?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'The caption explains what the chat means.',
-                  correct: false,
-                  feedback:
-                    'A caption tells you what to think, and it was written by whoever wanted the post shared. It is not evidence.',
-                },
-                {
-                  id: 'b',
-                  text: 'Nothing. Nobody gets caught doing anything in those three lines.',
-                  correct: true,
-                  feedback:
-                    'Exactly. Understand means holding the claim up against the evidence, and this evidence is very thin.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'research',
-            step: 'R',
-            text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it.',
-            miss: 'Not that check. This clue is about looking for the story somewhere other than the chat.',
-            note: 'Research. Something this big would turn up somewhere real, and it has not turned up anywhere.',
-            action: {
-              prompt: 'Where do you go to find out?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'Ask the group chat what everyone thinks.',
-                  correct: false,
-                  feedback:
-                    'The group chat is where the rumour is already spreading. Asking there only adds to it.',
-                },
-                {
-                  id: 'b',
-                  text: 'Ask a teacher, or Mia herself, or wait for something official.',
-                  correct: true,
-                  feedback:
-                    'Yes. Research means finding the story on its own, somewhere you trust, not counting how many forwards it has.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'evaluate',
-            step: 'E',
-            text: 'It is shocking, it is spreading fast, and it makes one person look bad. One edge of the photo is stretched and blurry.',
-            miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
-            note: 'Evaluate. Too shocking, too fast, too one-sided, and the picture itself looks tampered with.',
-            action: {
-              prompt: 'What do those signs tell you?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'Dramatic means important, so it is worth sending on quickly.',
-                  correct: false,
-                  feedback:
-                    'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
-                },
-                {
-                  id: 'b',
-                  text: 'A stretched edge and a story this convenient are reasons to doubt it.',
-                  correct: true,
-                  feedback:
-                    'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.',
-                },
-              ],
-            },
-          },
+        id: 'q1',
+        text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward. Which check is this?',
+        options: [
+          { id: 's', text: 'Source. Nobody can say who posted it first.', correct: true, feedback: 'Yes. With no first poster there is nobody to trust and nothing to check. Treat it as unproven.' },
+          { id: 'u', text: 'Understand. It is about what the post claims.', correct: false, feedback: 'The claim is a separate question. This clue is about where the post came from in the first place.' },
+          { id: 'r', text: 'Research. It is about looking it up.', correct: false, feedback: 'Looking it up comes later. First notice that there is no name attached to it at all.' },
+          { id: 'e', text: 'Evaluate. It is about whether it adds up.', correct: false, feedback: 'That comes at the end. This one is simply: who is behind it?' },
         ],
-        verdict: {
-          prompt: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
-          options: [
-            {
-              id: 'a',
-              text: 'Forward it, but add "not sure if this is true".',
-              correct: false,
-              feedback:
-                'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.',
-            },
-            {
-              id: 'b',
-              text: 'No. And if it keeps spreading, tell an adult I trust.',
-              correct: true,
-              feedback:
-                'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.',
-            },
-          ],
-        },
       },
       {
-        id: 'shutdown',
-        lead: 'The post about the game shutting down.',
-        cards: [
-          {
-            id: 'source',
-            step: 'S',
-            text: 'It is headed "OFFICIAL ANNOUNCEMENT". The account that posted it is called gamenews_daily_real, and it was made three weeks ago.',
-            miss: 'Not that check. This clue is about who is behind the post in the first place.',
-            note: 'Source. A three-week-old account calling itself "real" is not the people who make the game.',
-            action: {
-              prompt: 'So what does the account tell you?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'It says official, so it must be speaking for the game.',
-                  correct: false,
-                  feedback:
-                    'Anyone can type the word official. The word is free. Being the actual studio is not.',
-                },
-                {
-                  id: 'b',
-                  text: 'Nothing yet. Anyone can name an account anything.',
-                  correct: true,
-                  feedback:
-                    'Right. "Real" in a username is a claim, not proof. Look for who is genuinely behind it.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'understand',
-            step: 'U',
-            text: 'The caption says the game is "shutting down for good next week". The screenshot under it is a notice about servers being down for maintenance.',
-            miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
-            note: 'Understand. Maintenance means back soon. The caption turned that into gone forever.',
-            action: {
-              prompt: 'So what is the screenshot actually showing?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'It proves the game is closing. That is what the notice is about.',
-                  correct: false,
-                  feedback:
-                    'It is about a few hours offline. The caption is doing all the work, and the caption is the part someone wrote.',
-                },
-                {
-                  id: 'b',
-                  text: 'A short outage, which is not the same thing at all.',
-                  correct: true,
-                  feedback:
-                    'Exactly. Understand means holding the claim up against the evidence, and the evidence says something much smaller.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'research',
-            step: 'R',
-            text: 'The game\'s own app says nothing about it. Neither does its website. Nobody who actually works on it has mentioned it anywhere.',
-            miss: 'Not that check. This clue is about looking for the story somewhere other than the post.',
-            note: 'Research. News this big would be on the game\'s own channels first, and it is on none of them.',
-            action: {
-              prompt: 'Where do you go to find out?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'Check how many people have shared it.',
-                  correct: false,
-                  feedback:
-                    'Shares measure how fast something travelled, never whether it was true when it set off.',
-                },
-                {
-                  id: 'b',
-                  text: 'Open the game itself, or its own site, and see what they say.',
-                  correct: true,
-                  feedback:
-                    'Yes. Research means going to the source that would actually know, not to the crowd repeating it.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'evaluate',
-            step: 'E',
-            text: 'It is upsetting, it is spreading fast, and it ends with "share this to save the game". The logo in the picture is the wrong shade of blue.',
-            miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
-            note: 'Evaluate. Upsetting, urgent, and it asks you to share as the fix. That combination is the tell.',
-            action: {
-              prompt: 'What do those signs tell you?',
-              options: [
-                {
-                  id: 'a',
-                  text: 'Sharing costs nothing, so I may as well, just in case.',
-                  correct: false,
-                  feedback:
-                    'Sharing is exactly what it was built to make you do. "Just in case" is how a made-up story gets its reach.',
-                },
-                {
-                  id: 'b',
-                  text: 'A post that asks to be shared to fix something is a post to doubt.',
-                  correct: true,
-                  feedback:
-                    'Good eye. Wrong-shade logos, urgency, and "share to save it" are all signs of something made to travel, not something true.',
-                },
-              ],
-            },
-          },
+        id: 'q2',
+        text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat. Which check is this?',
+        options: [
+          { id: 'u', text: 'Understand. The caption claims far more than the picture shows.', correct: true, feedback: 'Exactly. Understand means holding the claim up against the evidence, and nobody gets caught doing anything in three lines of chat.' },
+          { id: 's', text: 'Source. It is about who wrote it.', correct: false, feedback: 'Who wrote it is a different question. This one is about the gap between the caption and the picture.' },
+          { id: 'r', text: 'Research. It is about finding it elsewhere.', correct: false, feedback: 'Not yet. Read what is actually being claimed first, and what is offered as proof.' },
+          { id: 'e', text: 'Evaluate. It is about the picture looking odd.', correct: false, feedback: 'The picture is not the issue here. The caption is doing all the work, and a caption is not evidence.' },
         ],
-        verdict: {
-          prompt: 'All four checks are done, and not one of them held up. Do you forward it to the group chat?',
-          options: [
-            {
-              id: 'a',
-              text: 'Send it, but say "might not be true".',
-              correct: false,
-              feedback:
-                'The "might not be true" gets dropped at the very next forward, and the post keeps travelling without it. Passing it on with a warning is still passing it on.',
-            },
-            {
-              id: 'b',
-              text: 'No. And I will say where I actually checked, so nobody else falls for it.',
-              correct: true,
-              feedback:
-                'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it, and telling people where you looked is what stops the next forward.',
-            },
-          ],
-        },
+      },
+      {
+        id: 'q3',
+        text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it. Which check is this?',
+        options: [
+          { id: 'r', text: 'Research. Something this big would turn up somewhere real.', correct: true, feedback: 'Right. Research means finding the story on its own, somewhere you trust, instead of counting forwards.' },
+          { id: 's', text: 'Source. It is about who started it.', correct: false, feedback: 'Who started it is a different gap. This clue is about looking for the story anywhere outside the chat.' },
+          { id: 'u', text: 'Understand. It is about the claim.', correct: false, feedback: 'The claim is clear enough. What is missing is any trace of it anywhere else.' },
+          { id: 'e', text: 'Evaluate. It is about weighing it up.', correct: false, feedback: 'Weighing up comes last. This is the step where you go and look.' },
+        ],
+      },
+      {
+        id: 'q4',
+        text: 'It is shocking, it is spreading fast, it makes one person look bad, and one edge of the photo is stretched and blurry. Which check is this?',
+        options: [
+          { id: 'e', text: 'Evaluate. Too shocking, too fast, too one-sided, and the picture looks tampered with.', correct: true, feedback: 'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.' },
+          { id: 's', text: 'Source. It is about who made it.', correct: false, feedback: 'This clue is about the post itself, not the person behind it. Look at how it is built.' },
+          { id: 'u', text: 'Understand. It is about the claim.', correct: false, feedback: 'The claim was the last step. This one is about whether the whole thing holds together.' },
+          { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'You have already checked elsewhere. This is what you notice looking hard at the post itself.' },
+        ],
+      },
+      {
+        id: 'q5',
+        text: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
+        options: [
+          { id: 'b', text: 'No. And if it keeps spreading, I will tell an adult I trust.', correct: true, feedback: 'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.' },
+          { id: 'a', text: 'Forward it, but add "not sure if this is true".', correct: false, feedback: 'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.' },
+          { id: 'c', text: 'Send it to one friend only, to ask what they think.', correct: false, feedback: 'One friend is how every forward starts. If you want to ask someone, ask an adult who can actually find out.' },
+        ],
+      },
+      {
+        id: 'q6',
+        text: 'Hundreds of people have already shared it. Does that make it true?',
+        options: [
+          { id: 'b', text: 'No. It only tells me how far it travelled.', correct: true, feedback: 'Exactly. Popular and true are not the same thing, and a made-up story travels just as fast.' },
+          { id: 'a', text: 'Yes. That many people cannot all be wrong.', correct: false, feedback: 'They can, and they usually got it the same way you did: from someone else who did not check.' },
+          { id: 'c', text: 'Yes, if the people sharing it are people I know.', correct: false, feedback: 'Your friends forwarded it without checking too. Knowing someone is not knowing the story.' },
+        ],
+      },
+      {
+        id: 'q7',
+        text: 'You want to find out whether the story is real. Where do you look?',
+        options: [
+          { id: 'b', text: 'Ask a teacher, or Mia herself, or wait for something official.', correct: true, feedback: 'Yes. Go to someone who would actually know, rather than to the crowd repeating it.' },
+          { id: 'a', text: 'Ask the group chat what everyone thinks.', correct: false, feedback: 'The group chat is where the rumour is already spreading. Asking there only adds to it.' },
+          { id: 'c', text: 'See how many people have liked it.', correct: false, feedback: 'Likes count taps, not truth. They tell you nothing about what happened.' },
+        ],
+      },
+      {
+        id: 'q8',
+        text: 'A post headed "OFFICIAL ANNOUNCEMENT" comes from an account called gamenews_daily_real, made three weeks ago. Which check is this?',
+        options: [
+          { id: 's', text: 'Source. A new account calling itself "real" is not the people it claims to speak for.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
+          { id: 'u', text: 'Understand. It is about what is announced.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
+          { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'Checking elsewhere is your next move. First notice who is behind the post.' },
+          { id: 'e', text: 'Evaluate. It is about the whole thing adding up.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
+        ],
+      },
+      {
+        id: 'q9',
+        text: 'A friend says, "just share it, you can say sorry later." What do you think?',
+        options: [
+          { id: 'b', text: 'No. Checking first is far easier than fixing it after.', correct: true, feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer, and sometimes it cannot be done.' },
+          { id: 'a', text: 'Fine. Sorry fixes it.', correct: false, feedback: 'Once a story is out it keeps going without you. Sorry does not call it back.' },
+          { id: 'c', text: 'Share it, then delete it quickly if it turns out to be wrong.', correct: false, feedback: 'Screenshots take a second. Deleting your copy does not touch the ones already sent on.' },
+        ],
+      },
+      {
+        id: 'q10',
+        text: 'You shared it before you checked, and now you know it is not true. What now?',
+        options: [
+          { id: 'b', text: 'Take it down, say plainly that it was not true, and tell an adult I trust.', correct: true, feedback: 'That is the brave one. Getting it wrong is fixable. Leaving it up is what does the damage.' },
+          { id: 'a', text: 'Say nothing and hope people forget.', correct: false, feedback: 'It keeps going while you stay quiet. Saying so is how it stops.' },
+          { id: 'c', text: 'Say it was not my fault, because someone sent it to me.', correct: false, feedback: 'Passing the blame does not take the post down. Fix it first, then tell an adult.' },
+        ],
       },
     ],
   },

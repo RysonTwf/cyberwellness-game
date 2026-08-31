@@ -10,9 +10,7 @@ import StepTrail from './StepTrail';
 import World from '../world/World';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
-import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import MiniGameQuiz from '../minigames/MiniGameQuiz';
-import MiniGameSure from '../minigames/MiniGameSure';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BalanceBeachRealm from './BalanceBeachRealm';
 
@@ -32,15 +30,20 @@ import BalanceBeachRealm from './BalanceBeachRealm';
 // MiniGameBalance was unreachable behind `fullMechanic: 'balanceBeach'`, a
 // second implementation of the beach's maths, quietly drifting away from the
 // one that actually runs (thingstoimproveon.md, Secondary findings).
+//
+// 'steppingstones' and 'sure' went on 31 Aug 2026 with the client's rule that
+// Privacy Peaks and Fable Falls use one question format throughout. Both asked
+// two things per item and ran to nine or twelve asks; both bands of both
+// realms are now the same five-question Q&A. Naming the S.T.O.P. or S.U.R.E.
+// check is still the answer to several of those questions, so the method is
+// still run rather than merely agreed with.
 const GAMES = {
   sort: MiniGameSort,
-  steppingstones: MiniGameSteppingStones,
   quiz: MiniGameQuiz,
-  sure: MiniGameSure,
 };
 
 // What the step trail calls the mini-game step, per game type.
-const GAME_LABELS = { quiz: 'Questions', sure: 'S.U.R.E.' };
+const GAME_LABELS = { quiz: 'Questions' };
 
 // Order the optional post-decision beats appear in, when a realm defines
 // them. Every beat is prompt → pick one → response. The digital-footprint
