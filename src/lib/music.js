@@ -2,21 +2,22 @@
  * Tiny background-music player — same public/audio-relative-URL approach as
  * lib/sfx.js, but a single looping track instead of a pool of one-shots.
  *
- * Only one track lives here for now (the platformer level's). A screen that
- * wants music calls playMusic('name') on mount/enter and stopMusic() on
- * unmount/leave — see PlatformerStoryRealm.jsx.
+ * One track: the gameplay loop, started once the player leaves the title
+ * and left running across the whole journey (App.jsx). playMusic('name') is
+ * safe to call repeatedly — it no-ops when that track is already going, and
+ * retries a play() that the browser's autoplay policy blocked first time.
  */
 import { getVolumes, subscribeAudioSettings } from './audioSettings';
 
 const TRACK_FILES = {
-  platformer: '/audio/gameplay/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3',
+  gameplay: '/audio/gameplay/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3',
 };
 
 // This is the volume at the settings menu's 100% — the music slider scales
-// down from here, it never scales up past it. Tune this if a future track
-// swap reads too loud/quiet again rather than just living with it, since
-// the slider can only go down from whatever this is set to.
-const BASE_VOLUME = 0.16;
+// down from here, it never scales up past it. Set deliberately modest: it is
+// a background loop, and the slider can only take it lower, so players who
+// want it quieter (or off) have the room to do that in the options menu.
+const BASE_VOLUME = 0.3;
 const FADE_MS = 280;
 
 function targetVolume() {
@@ -35,7 +36,13 @@ function clearFade() {
 
 /** Start a track looping. No-ops if it's already the one playing. */
 export function playMusic(name) {
-  if (current?.name === name) return;
+  if (current?.name === name) {
+    // The first call often lands before any user gesture and play() is
+    // rejected by the autoplay policy. A later call (after a click or key)
+    // should get the same element going rather than bailing on the name match.
+    if (current.audio.paused) current.audio.play().catch(() => {});
+    return;
+  }
   stopMusic();
 
   const src = TRACK_FILES[name];
@@ -56,6 +63,24 @@ export function playMusic(name) {
     audio.volume = targetVolume() * t;
     if (t >= 1) clearFade();
   }, 30);
+}
+
+/**
+ * Step the current track aside without tearing it down. The P4–P6 Passworld
+ * platformer level uses this so its own scene keeps the floor; resumeMusic()
+ * then picks the same loop back up where it left off (the element stays alive
+ * across the whole journey — App.jsx).
+ */
+export function pauseMusic() {
+  if (current) current.audio.pause();
+}
+
+/** Resume a track paused with pauseMusic. */
+export function resumeMusic() {
+  if (current && current.audio.paused) {
+    current.audio.volume = targetVolume();
+    current.audio.play().catch(() => {});
+  }
 }
 
 /** Fade out and stop whatever's currently playing. */

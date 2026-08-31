@@ -14,6 +14,7 @@ import { useProgress } from './state/useProgress';
 import { useUiClickSfx } from './hooks/useUiClickSfx';
 import { useUiHoverSfx } from './hooks/useUiHoverSfx';
 import { REALM_BY_ID, getBandView } from './data/realms';
+import { playMusic, stopMusic } from './lib/music';
 import { DEV, subscribe, overridesVersion } from './dev/contentOverrides';
 
 // Dev-only in-browser copy editor (src/dev/CopyEditor.jsx). Code-split so it
@@ -57,6 +58,27 @@ export default function App() {
   // column was scrolled rather than the window.
   useEffect(() => {
     document.querySelector('.stage-side')?.scrollTo({ top: 0 });
+  }, [currentScreen]);
+
+  // One looping background track for the whole journey. It starts once the
+  // player leaves the title (that transition is a click, which satisfies the
+  // browser's autoplay policy) and runs unbroken across every screen after
+  // it. On a reload mid-game there's been no gesture yet, so also arm a
+  // one-time listener that kicks it off on the first click or key. Back at
+  // the title (fresh start, or "start a new journal"), it stops.
+  useEffect(() => {
+    if (currentScreen === 'title') {
+      stopMusic();
+      return undefined;
+    }
+    playMusic('gameplay');
+    const kick = () => playMusic('gameplay');
+    window.addEventListener('pointerdown', kick, { once: true });
+    window.addEventListener('keydown', kick, { once: true });
+    return () => {
+      window.removeEventListener('pointerdown', kick);
+      window.removeEventListener('keydown', kick);
+    };
   }, [currentScreen]);
 
   const go = (screen) => dispatch({ type: 'go', screen });

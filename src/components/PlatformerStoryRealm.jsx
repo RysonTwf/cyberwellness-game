@@ -9,7 +9,7 @@ import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
-import { playMusic, stopMusic } from '../lib/music';
+import { pauseMusic, resumeMusic } from '../lib/music';
 
 /**
  * A realm whose entire experience — story, the decision, the mini-game —
@@ -56,15 +56,14 @@ export default function PlatformerStoryRealm({
   const total = realm.game.tiles.filter((t) => t.kind === 'real').length;
   const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
 
-  // Music plays for the level itself, not the story/rule beats either side of
-  // it — starts the moment the vault becomes playable, stops the moment it
-  // isn't (leaving early via the journal's back button unmounts this
-  // component mid-step too, which the cleanup below still catches). Retrying
-  // (round bumps, step stays 'level') deliberately doesn't restart it.
+  // The journey's background loop (App.jsx) steps aside for the level itself,
+  // which carries its own game audio, and comes back for the story/check/rule
+  // beats either side of it. Leaving early (the back button unmounts this
+  // component mid-level) still resumes it via the cleanup.
   useEffect(() => {
     if (step !== 'level') return undefined;
-    playMusic('platformer');
-    return () => stopMusic();
+    pauseMusic();
+    return () => resumeMusic();
   }, [step]);
 
   function choose(optionId) {
