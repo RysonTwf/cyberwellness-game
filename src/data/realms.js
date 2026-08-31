@@ -832,12 +832,19 @@ const balanceHigher = {
  * in the source doc as P4-6 for this game). See Improvement Plan §5.
  *
  * School revision pass: the rumour about Mia spreads online (a forwarded
- * screenshot claiming she got caught taking snacks), and both bands teach
- * through a plain 5-question Q&A (`game.type: 'quiz'`,
- * minigames/MiniGameQuiz.jsx). Both bands run the *same* Mia scenario —
- * `fableFallsHigher` reuses `fableFallsLower.story` verbatim — and P4–P6
- * layers the S.U.R.E. framework (Source, Understand, Research, Evaluate)
- * over it rather than a different, harder story.
+ * screenshot claiming she got caught taking snacks). Both bands run the
+ * *same* Mia scenario — `fableFallsHigher` reuses `fableFallsLower.story`
+ * verbatim — and the difference between them is how hard the checking gets.
+ *
+ * P1–P3 (7–9) is a plain 5-question Q&A (`game.type: 'quiz'`,
+ * minigames/MiniGameQuiz.jsx), kept deliberately short-sentenced.
+ *
+ * P4–P6 (10–12) is the S.U.R.E. framework (Source, Understand, Research,
+ * Evaluate) and has to be *run*, not just agreed with: the clues arrive
+ * unlabelled and shuffled and the child names the check each one belongs to
+ * (`game.type: 'sure'`, minigames/MiniGameSure.jsx). The earlier version
+ * labelled each question with its own step, which a child could clear on
+ * common sense without ever learning the method.
  *
  * The official "3 tips to CHECK real vs. digitally-altered content" (the
  * SLS package's specific bullet list) was never sourced; the general,
@@ -884,42 +891,39 @@ const fableFallsLower = {
   game: {
     type: 'quiz',
     title: 'Check Before You Share',
-    instruction:
-      'A few more things about the post reach you. Decide what to do with each one, the way you decided with the Echo.',
+    instruction: 'More things about the post reach you. Decide what to do with each one.',
     questions: [
       {
         id: 'q1',
-        text: 'The post is a screenshot with no name on it. Who actually said this first?',
+        text: 'The screenshot has no name on it. Who said it first?',
         options: [
           {
             id: 'a',
-            text: 'It does not matter, lots of people shared it.',
+            text: 'It does not matter. Lots of people shared it.',
             correct: false,
-            feedback:
-              'If nobody can tell you where a story started, that is a reason to doubt it, not to pass it on.',
+            feedback: 'If nobody knows where a story started, that is a reason to doubt it.',
           },
           {
             id: 'b',
-            text: 'Nobody can say, so I should not trust it yet.',
+            text: 'Nobody knows, so I should not trust it.',
             correct: true,
-            feedback: 'Right. A story with no clear start is one to check, not share.',
+            feedback: 'Right. A story with no start is one to check, not to share.',
           },
         ],
       },
       {
         id: 'q2',
-        text: 'The post has hundreds of shares. Does that make it true?',
+        text: 'Hundreds of people shared the post. Does that make it true?',
         options: [
           {
             id: 'a',
-            text: 'Yes, that many people cannot be wrong.',
+            text: 'Yes. That many people cannot be wrong.',
             correct: false,
-            feedback:
-              'Shares only show how far something has travelled. A wrong story can travel just as fast as a true one, often faster.',
+            feedback: 'Shares only show how far it went. A made-up story travels just as fast.',
           },
           {
             id: 'b',
-            text: 'No, it just means it has spread a lot.',
+            text: 'No. It only means it spread a lot.',
             correct: true,
             feedback: 'Exactly. Popular and true are not the same thing.',
           },
@@ -927,60 +931,55 @@ const fableFallsLower = {
       },
       {
         id: 'q3',
-        text: 'You want to know if the snack story is real. What is the best thing to do?',
+        text: 'You want to know if the snack story is real. What is best?',
         options: [
           {
             id: 'a',
             text: 'Ask the group chat what they think.',
             correct: false,
-            feedback:
-              'The group chat is where the rumour is already spreading. Asking there just adds to it.',
+            feedback: 'That is where the rumour is already spreading. Asking there adds to it.',
           },
           {
             id: 'b',
             text: 'Ask a teacher or another adult I trust.',
             correct: true,
-            feedback:
-              'Yes. A trusted adult can find out the real story, and telling one is never the wrong move.',
+            feedback: 'Yes. A trusted adult can find out the real story.',
           },
         ],
       },
       {
         id: 'q4',
-        text: 'The screenshot has a photo of Mia, but one edge looks stretched and blurry. What does that tell you?',
+        text: 'The photo of Mia has a stretched, blurry edge. What does that tell you?',
         options: [
           {
             id: 'a',
-            text: 'Nothing, photos look odd sometimes.',
+            text: 'Nothing. Photos look odd sometimes.',
             correct: false,
-            feedback:
-              'Sometimes they do, but a stretched or smudged patch can also mean a picture has been changed. It is a reason to look closer.',
+            feedback: 'Sometimes they do. A stretched, smudged bit can also mean it was changed.',
           },
           {
             id: 'b',
-            text: 'The picture might have been changed, so I should look closer.',
+            text: 'The picture might have been changed.',
             correct: true,
-            feedback:
-              'Good eye. Odd edges, blurry patches and strange shadows are all signs a picture may not be real.',
+            feedback: 'Good eye. Odd edges and strange shadows are signs a photo is not real.',
           },
         ],
       },
       {
         id: 'q5',
-        text: 'A friend says, "just share it, you can always say sorry later." What do you think?',
+        text: 'A friend says, "just share it, you can say sorry later." What do you think?',
         options: [
           {
             id: 'a',
-            text: 'Fair enough, sorry fixes it.',
+            text: 'Okay. Sorry fixes it.',
             correct: false,
-            feedback:
-              'Once a story is shared it keeps going, even after you say sorry. The embarrassment for Mia does not disappear.',
+            feedback: 'Once a story is out it keeps going. Sorry does not call it back.',
           },
           {
             id: 'b',
-            text: 'No. It is easier to check first than to fix it after.',
+            text: 'No. Checking first is easier than fixing it after.',
             correct: true,
-            feedback: 'That is it. Checking takes a minute. Undoing a rumour can take a lot longer.',
+            feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer.',
           },
         ],
       },
@@ -989,16 +988,23 @@ const fableFallsLower = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for Fable Falls. Not everything that reaches you is true, even a post that lots of people have shared. Stop before you believe or share something surprising or upsetting. Check it: ask an adult you trust, or find it somewhere real, before you pass it on.',
+    text: 'Here is the rule for Fable Falls. Not everything that reaches you is true, even when lots of people shared it. Stop before you believe it or pass it on. Then check: ask an adult you trust, or find the story somewhere real.',
   },
 };
 
 /**
- * P4–P6 — the same Mia screenshot scenario as `fableFallsLower` (reused
- * verbatim for the story), but the safe choice and the five quiz questions
- * are built around the S.U.R.E. framework: Source, Understand, Research,
- * then two Evaluate questions (one on picture tells, one on plausibility),
- * so the method is taught through practice on the same rumour.
+ * P4–P6 — the same Mia screenshot as `fableFallsLower` (story reused
+ * verbatim), but where the younger band answers five plain questions, this
+ * band has to actually *run* S.U.R.E.
+ *
+ * The version this replaced labelled every quiz question with its own step
+ * ("Source. The screenshot has no name…"), which meant a child could clear
+ * the whole thing on ordinary common sense and never learn the method — the
+ * letters were decoration. Now the clues arrive unlabelled and shuffled
+ * (`game.type: 'sure'`, minigames/MiniGameSure.jsx): you have to name the
+ * check a clue belongs to before you can say what to do about it, a missed
+ * check comes back round at the end, and the game closes on the verdict all
+ * four checks add up to.
  */
 const fableFallsHigher = {
   story: fableFallsLower.story,
@@ -1022,121 +1028,151 @@ const fableFallsHigher = {
         safe: true,
         who: 'Comet',
         response:
-          'Good call. Four questions, in order. Where does it come from? What is it really claiming? Can you find it anywhere you trust? Does it add up? That is the whole method, and it beats clearing up the mess afterwards.',
+          'Good call. Four checks. Source: who is behind it? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up? Let us take this post apart properly.',
       },
     ],
   },
 
   game: {
-    type: 'quiz',
+    type: 'sure',
     title: 'Run It Through S.U.R.E.',
-    instruction: 'Five things you notice about the screenshot. Run the Mia post through S.U.R.E. as you go.',
-    questions: [
+    instruction:
+      'Four clues about the post, jumbled up. Work out which check each one belongs to, then decide what it means.',
+    steps: [
+      { key: 'S', name: 'Source', sub: 'Who is behind it?' },
+      { key: 'U', name: 'Understand', sub: 'What is it claiming?' },
+      { key: 'R', name: 'Research', sub: 'Can I find it somewhere I trust?' },
+      { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
+    ],
+    cards: [
       {
-        id: 'q1',
-        text: 'Source. The screenshot has no name on it and reached you as a forward. Where did it start?',
-        options: [
-          {
-            id: 'a',
-            text: 'It does not matter, so many people shared it.',
-            correct: false,
-            feedback:
-              'If nobody can tell you where a story began, that is a reason to doubt it, not to pass it on. Source is the S in S.U.R.E.',
-          },
-          {
-            id: 'b',
-            text: 'Nobody can say, so I should not trust it yet.',
-            correct: true,
-            feedback: 'Right. A story with no clear start is one to check. Source: who is behind this, and do you trust them?',
-          },
-        ],
+        id: 'source',
+        step: 'S',
+        text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward.',
+        miss: 'Not that check. This clue is about where the post came from in the first place.',
+        note: 'Source. Nobody can point to who posted it first, so there is nobody here to trust.',
+        action: {
+          prompt: 'So what does that mean for the post?',
+          options: [
+            {
+              id: 'a',
+              text: 'Someone must have seen it happen, or they would not have posted it.',
+              correct: false,
+              feedback:
+                '"Someone said so" is not the same as someone knowing. With no first poster, there is nothing you can check.',
+            },
+            {
+              id: 'b',
+              text: 'Treat it as unproven until I know who posted it.',
+              correct: true,
+              feedback: 'Right. A story with no clear start is one to check, not one to pass on.',
+            },
+          ],
+        },
       },
       {
-        id: 'q2',
-        text: 'Understand. The caption says Mia "got caught stealing". The screenshot is just a few lines of chat. Do those match?',
-        options: [
-          {
-            id: 'a',
-            text: 'Yes, the caption explains what the chat means.',
-            correct: false,
-            feedback:
-              'A caption tells you what to think. A few lines of chat, with no context, do not prove anyone was caught doing anything.',
-          },
-          {
-            id: 'b',
-            text: 'Not really. A screenshot of chat is not proof, and it could be edited or missing context.',
-            correct: true,
-            feedback:
-              'Exactly. Understand means working out what is really being claimed, and whether the evidence backs it up.',
-          },
-        ],
+        id: 'understand',
+        step: 'U',
+        text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat.',
+        miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
+        note: 'Understand. The caption claims far more than three lines of chat could ever show.',
+        action: {
+          prompt: 'So what is the post actually proving?',
+          options: [
+            {
+              id: 'a',
+              text: 'The caption explains what the chat means.',
+              correct: false,
+              feedback:
+                'A caption tells you what to think, and it was written by whoever wanted the post shared. It is not evidence.',
+            },
+            {
+              id: 'b',
+              text: 'Nothing. Nobody gets caught doing anything in those three lines.',
+              correct: true,
+              feedback:
+                'Exactly. Understand means holding the claim up against the evidence, and this evidence is very thin.',
+            },
+          ],
+        },
       },
       {
-        id: 'q3',
-        text: 'Research. You want to know if it is true. What is the best move?',
-        options: [
-          {
-            id: 'a',
-            text: 'Ask the group chat what everyone thinks.',
-            correct: false,
-            feedback:
-              'The group chat is where the rumour is already spreading. Asking there just adds to it.',
-          },
-          {
-            id: 'b',
-            text: 'Check with a teacher, or with Mia, or wait for a real notice.',
-            correct: true,
-            feedback:
-              'Yes. Research means looking for the story somewhere you trust, on its own, not just more forwards.',
-          },
-        ],
+        id: 'research',
+        step: 'R',
+        text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it.',
+        miss: 'Not that check. This clue is about looking for the story somewhere other than the chat.',
+        note: 'Research. Something this big would turn up somewhere real, and it has not turned up anywhere.',
+        action: {
+          prompt: 'Where do you go to find out?',
+          options: [
+            {
+              id: 'a',
+              text: 'Ask the group chat what everyone thinks.',
+              correct: false,
+              feedback:
+                'The group chat is where the rumour is already spreading. Asking there only adds to it.',
+            },
+            {
+              id: 'b',
+              text: 'Ask a teacher, or Mia herself, or wait for something official.',
+              correct: true,
+              feedback:
+                'Yes. Research means finding the story on its own, somewhere you trust, not counting how many forwards it has.',
+            },
+          ],
+        },
       },
       {
-        id: 'q4',
-        text: 'Evaluate. The screenshot has a small photo of Mia, and one edge looks stretched and blurry. What does that tell you?',
-        options: [
-          {
-            id: 'a',
-            text: 'Nothing, phone photos look odd sometimes.',
-            correct: false,
-            feedback:
-              'Sometimes they do. But a stretched or smudged patch is also what you see when a picture has been changed. Look closer before you share.',
-          },
-          {
-            id: 'b',
-            text: 'It might have been edited, so I should not trust it.',
-            correct: true,
-            feedback:
-              'Good eye. Odd edges, blurry patches and strange shadows are common signs a picture is not real.',
-          },
-        ],
-      },
-      {
-        id: 'q5',
-        text: 'Evaluate. The story is dramatic, spreading fast, and makes one person look bad. How does that sit with you?',
-        options: [
-          {
-            id: 'a',
-            text: 'Dramatic means important, so I should share it quickly.',
-            correct: false,
-            feedback:
-              'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
-          },
-          {
-            id: 'b',
-            text: 'Fast, dramatic and one-sided is a reason to doubt it.',
-            correct: true,
-            feedback:
-              'Exactly. Evaluate: does it add up, or is it a bit too shocking, too perfect, too convenient?',
-          },
-        ],
+        id: 'evaluate',
+        step: 'E',
+        text: 'It is shocking, it is spreading fast, and it makes one person look bad. One edge of the photo is stretched and blurry.',
+        miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
+        note: 'Evaluate. Too shocking, too fast, too one-sided, and the picture itself looks tampered with.',
+        action: {
+          prompt: 'What do those signs tell you?',
+          options: [
+            {
+              id: 'a',
+              text: 'Dramatic means important, so it is worth sending on quickly.',
+              correct: false,
+              feedback:
+                'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
+            },
+            {
+              id: 'b',
+              text: 'A stretched edge and a story this convenient are reasons to doubt it.',
+              correct: true,
+              feedback:
+                'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.',
+            },
+          ],
+        },
       },
     ],
+    verdict: {
+      prompt: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
+      options: [
+        {
+          id: 'a',
+          text: 'Forward it, but add "not sure if this is true".',
+          correct: false,
+          feedback:
+            'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.',
+        },
+        {
+          id: 'b',
+          text: 'No. And if it keeps spreading, tell an adult I trust.',
+          correct: true,
+          feedback:
+            'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.',
+        },
+      ],
+    },
   },
 
   rule: {
     who: 'Comet',
-    text: 'Use S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who posted it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too handy? Four questions is usually enough to catch a fake.',
+    text: 'Run S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who is behind it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too convenient? Four checks is usually enough to catch a fake.',
   },
 };
 

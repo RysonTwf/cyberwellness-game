@@ -702,6 +702,134 @@ p {
   color: var(--ink-soft);
 }
 
+/* ---------- S.U.R.E. (MiniGameSure.jsx) ---------------------------------- */
+
+/* The four checks, ticked off as each one's clue is placed. */
+.sure-track {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  list-style: none;
+  margin: 0 0 2px;
+  padding: 0;
+}
+
+.sure-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-stamp);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-soft);
+  background: var(--paper-sunk);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px 4px 4px;
+}
+
+.sure-chip.done {
+  color: var(--teal);
+  border-color: var(--teal);
+  background: rgba(45, 140, 127, 0.08);
+}
+
+.sure-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--paper-card);
+  border: 1px solid currentColor;
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* The thing you noticed about the post — the clue being placed. */
+.sure-clue {
+  background: var(--paper-card);
+  border: 2px solid var(--accent, var(--line-strong));
+  border-left-width: 6px;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 16.5px;
+  color: var(--ink);
+}
+
+.sure-keys {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+/* One of the four checks, offered as an answer. The question under each name
+   is the scaffold: the child has to match the clue to a question, which is
+   the bit of S.U.R.E. that actually has to be understood. */
+.sure-key {
+  appearance: none;
+  cursor: pointer;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'letter name' 'letter sub';
+  column-gap: 9px;
+  row-gap: 2px;
+  padding: 11px 12px;
+  min-height: 62px;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper-card);
+  color: var(--ink);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.sure-key .sure-letter {
+  grid-area: letter;
+  align-self: center;
+  width: 26px;
+  height: 26px;
+  font-family: var(--font-stamp);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sure-key-name {
+  grid-area: name;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15.5px;
+}
+
+.sure-key-sub {
+  grid-area: sub;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.sure-key:hover:not(:disabled) {
+  border-color: var(--accent, var(--ink));
+  transform: translateY(-1px);
+}
+
+/* Already tried on this clue. Spent, not punished — it just can't be tapped
+   again, so the row can't be brute-forced. */
+.sure-key.spent {
+  cursor: not-allowed;
+  opacity: 0.42;
+  border-style: dashed;
+}
+
+@media (max-width: 520px) {
+  .sure-keys {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Step trail + follow-up tag (StepTrail.jsx) ----------------- */
 
 .step-trail {
@@ -2317,33 +2445,18 @@ p {
   transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
 }
 
-.bag-chip-strong {
-  border-color: var(--teal);
-}
-
-.bag-chip-weak {
-  border-color: var(--gold);
-  color: var(--ink-soft);
-}
-
 .bag-chip:hover {
   transform: translateY(-1px);
 }
 
+/* Ticked, not "right" — every piece at the vault door looks the same until
+   the player commits, so the colour can only mean "I put this one in". */
 .bag-chip.on {
   color: var(--paper-card);
+  background: var(--accent, var(--ink));
+  border-color: var(--accent, var(--ink));
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
-}
-
-.bag-chip-strong.on {
-  background: var(--teal);
-  border-color: var(--teal);
-}
-
-.bag-chip-weak.on {
-  background: var(--gold);
-  border-color: var(--gold);
 }
 
 /* A message the player has marked as worth stopping at, before they commit.

@@ -14,6 +14,7 @@ import MiniGameSpot from '../minigames/MiniGameSpot';
 import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import MiniGameQuiz from '../minigames/MiniGameQuiz';
+import MiniGameSure from '../minigames/MiniGameSure';
 import PlatformerStoryRealm from './PlatformerStoryRealm';
 import BalanceBeachRealm from './BalanceBeachRealm';
 
@@ -33,7 +34,11 @@ const GAMES = {
   balance: MiniGameBalance,
   steppingstones: MiniGameSteppingStones,
   quiz: MiniGameQuiz,
+  sure: MiniGameSure,
 };
+
+// What the step trail calls the mini-game step, per game type.
+const GAME_LABELS = { quiz: 'Questions', sure: 'S.U.R.E.' };
 
 // Order the optional post-decision beats appear in, when a realm defines
 // them. A beat with an `accept` string renders as prompt → tap-to-agree →
@@ -108,7 +113,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   // where the "what do you do" moment was cut per the school's revision). The
   // step trail and the story panel's forward button both adapt.
   const hasDecision = Boolean(realm.decision);
-  const gameLabel = realm.game.type === 'quiz' ? 'Questions' : 'Game';
+  const gameLabel = GAME_LABELS[realm.game.type] ?? 'Game';
   const trailSteps = hasDecision
     ? ['Story', 'Choice', gameLabel, 'Rule']
     : ['Story', gameLabel, 'Rule'];

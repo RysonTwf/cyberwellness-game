@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1788124856.8680542,
-    "ast_hash": "5046baae8113162a048c4cdde7ff93cd",
+    "mtime": 1788157206.5103858,
+    "ast_hash": "446fb78d14fef90e85b253f566637484",
     "semantic_hash": ""
   },
   "src/components/AtlasGate.jsx": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/components/PlatformerStoryRealm.jsx": {
-    "mtime": 1788121679.9269574,
-    "ast_hash": "7ecc38669986054e5c0cbea91b4dc94a",
+    "mtime": 1788158879.8938048,
+    "ast_hash": "7e56aee58e23dff3f439d7fe937f3071",
     "semantic_hash": ""
   },
   "src/minigames/phaser-scenes/passwordFortressLevelScene.js": {
@@ -29235,8 +29235,8 @@
     "semantic_hash": ""
   },
   "src/lib/music.js": {
-    "mtime": 1787295526.95744,
-    "ast_hash": "15f25efed3f7f56a0ba79294927b0320",
+    "mtime": 1788158824.9990687,
+    "ast_hash": "c6945030630e650bacd6670ad83a7d16",
     "semantic_hash": ""
   },
   "src/components/SettingsMenu.jsx": {
