@@ -1,7 +1,7 @@
 /**
  * Privacy Peaks' P4–P6 mechanic (Milestones Phase 2): the stepping-stone
  * decision run. The actual decision logic (which stone, correct/incorrect,
- * progress, when it's done) lives in React — same pattern as MiniGameSpot —
+ * progress, when it's done) lives in React, as in every mini-game here
  * so this scene is deliberately dumb: it draws the misty ravine, the run of
  * stones and the Traveler, and exposes one method, `hopTo(index, correct)`,
  * that the React wrapper calls after each choice to move the Traveler and
@@ -18,11 +18,15 @@ import { motionTween, prefersReducedMotion } from '../../lib/motion';
 import boyWalk from '../../assets/characters/boy-walk-1.png';
 import girlWalk from '../../assets/characters/girl-walk-1.png';
 
-// The player's CharacterSelect pick, if any — the idle walk frame, the same
-// one world/Traveler.jsx and CharacterSelect.jsx show. Loaded into the scene
-// so the figure that hops the stones is the one the player chose, not the
-// neutral 'ss-token' stand-in. Anything but 'boy'/'girl' keeps the token.
+// The player's CharacterSelect pick, the idle walk frame, the same one
+// world/Traveler.jsx and CharacterSelect.jsx show, so the figure that hops
+// the stones is the character the player chose rather than an abstract
+// counter. CharacterSelect has no skip, so `avatar` is always set by the time
+// a realm is reached; the fallback only covers dev previews, and it falls
+// back to a *character* rather than the neutral 'ss-token' so the token never
+// stands in for the Traveler on screen.
 const AVATAR_SRC = { boy: boyWalk, girl: girlWalk };
+const avatarSrc = (avatar) => AVATAR_SRC[avatar] ?? AVATAR_SRC.girl;
 
 // Only the runtime tints live here — everything the art is drawn with belongs
 // to steppingStonesArt.js. Light tints so a resolved stone still reads as a
@@ -47,8 +51,7 @@ export function makeSteppingStonesConfig(Phaser, { stones, onSceneReady, avatar 
       preloadSteppingStonesArt(this);
       // The player's chosen avatar, when they picked one — used in place of
       // the neutral token below.
-      const src = AVATAR_SRC[avatar];
-      if (src) this.load.image('ss-avatar', src);
+      this.load.image('ss-avatar', avatarSrc(avatar));
     }
 
     create() {

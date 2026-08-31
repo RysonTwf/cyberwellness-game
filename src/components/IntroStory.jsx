@@ -22,7 +22,7 @@ import { applyScreenOverrides } from '../dev/contentOverrides';
 export const INTRO_BEATS = [
   {
     kind: 'scene',
-    text: "On the shelf, behind everything else, there's a journal you don't remember owning. ",
+    text: "On the shelf, behind everything else, there is a journal you do not remember owning. ",
   },
   {
     kind: 'scene',
@@ -34,19 +34,19 @@ export const INTRO_BEATS = [
   },
   {
     kind: 'comet',
-    text: "I'm Comet. I carry messages across the Atlas. It's a map of every path the Internet takes. Five islands, five realms.",
+    text: "I am Comet. I carry messages across the Atlas. It is a map of every path the Internet takes. Five islands, five realms.",
   },
   {
     kind: 'comet',
-    text: "Each realm teaches a traveller something about getting around out here, safely and kindly. Visit one and it stamps your passport. That's this journal you're holding.",
+    text: "Each realm teaches a traveller something about getting around out here, safely and kindly. Visit one and it stamps your passport. That is this journal you are holding.",
   },
   {
     kind: 'comet',
-    text: "Collect all five stamps and you're a Wise Traveller.",
+    text: "Collect all five stamps and you are a Wise Traveller.",
   },
   {
     kind: 'comet',
-    text: "Let's get you ready first. Who's walking the Atlas with me?",
+    text: "We will get you ready first. Who is walking the Atlas with me?",
     cta: 'Choose my traveller',
   },
 ];

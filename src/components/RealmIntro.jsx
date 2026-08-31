@@ -20,7 +20,7 @@ export const REALM_TOUR = [
   {
     target: '.objective',
     title: 'Never lost',
-    text: 'The bar down here always says what to do next. That’s the whole game: follow the pins, make your choices, earn the stamp!',
+    text: 'The bar down here always says what to do next. That is the whole game: follow the pins, make your choices, earn the stamp!',
   },
 ];
 
@@ -84,7 +84,7 @@ export default function RealmIntro({ realm, showIntro, showTutorial, onTutorialD
         <div className="realm-learn">
           <span className="realm-learn-head">
             <Sparkles size={16} />
-            In this realm you&rsquo;ll learn
+            In this realm you will learn
           </span>
           <ul>
             {realm.intro.learn.map((item) => (

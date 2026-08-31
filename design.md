@@ -1,9 +1,9 @@
-# Cyber Wellness Quest — Design Document
+# Cyber Wellness Quest: Design Document
 
 ## 1. Concept Summary
 
 A single-page interactive web game for kids aged 7-12, playable in one 20-30
-minute sitting. The internet is reframed as **the Atlas** — a living map made
+minute sitting. The internet is reframed as **the Atlas**, a living map made
 of "realms" the player travels through with a guide. Each realm teaches one
 cyber wellness topic through a short story beat, a branching decision, and a
 small hands-on mini-game. Progress is tracked with **stamps** collected in a
@@ -18,7 +18,7 @@ Two tropes dominate this space and both were deliberately avoided:
   or hacker-coded, which works against the message that the internet is a
   place kids can explore *safely*, not a dangerous void.
 - **Generic warm-cream-and-serif "AI design" default.** Flattens personality
-  and doesn't fit an energetic kids' product anyway.
+  and does not fit an energetic kids' product anyway.
 
 Instead the whole product is grounded in a **field-journal / passport**
 metaphor: the player is a Traveler filling in a journal as they explore, and
@@ -33,13 +33,13 @@ void to fear or a screen to be babysat through.
 
 | Token | Hex | Role |
 |---|---|---|
-| `paper` | `#F1F5F6` | Base background — cool "journal page," not warm cream |
-| `ink` | `#1F3452` | Primary text — deep fountain-pen navy, never pure black |
+| `paper` | `#F1F5F6` | Base background, cool "journal page," not warm cream |
+| `ink` | `#1F3452` | Primary text, deep fountain-pen navy, never pure black |
 | `ink-soft` | `#5C7185` | Secondary text, captions |
-| `gold` (Passworld) | `#E0A030` | Realm 1 accent — vault/key |
-| `teal` (Privacy Peaks) | `#2D8C7F` | Realm 2 accent — misty lookout |
-| `coral` (Bully Bog) | `#E0637A` | Realm 3 accent — warm, not alarming |
-| `periwinkle` (Balance Bay) | `#7B6EF6` | Realm 4 accent — dusk/tide |
+| `gold` (Passworld) | `#E0A030` | Realm 1 accent, vault/key |
+| `teal` (Privacy Peaks) | `#2D8C7F` | Realm 2 accent, misty lookout |
+| `coral` (Bully Bog) | `#E0637A` | Realm 3 accent, warm, not alarming |
+| `periwinkle` (Balance Bay) | `#7B6EF6` | Realm 4 accent, dusk/tide |
 
 Each realm accent is used **only** inside that realm's screens and its stamp.
 The hub and shared UI (buttons, nav) stay in `ink`/`paper` so the four realm
@@ -47,19 +47,19 @@ colors read as distinct "regions of the map," not a rainbow UI.
 
 ### Type
 
-- **Display** — a rounded, friendly geometric face (e.g. *Baloo 2* or
+- **Display**: a rounded, friendly geometric face (e.g. *Baloo 2* or
   *Fredoka*) for titles and the traveler's journal headers. Used at large
   size only; never for body paragraphs.
-- **Body** — a clean rounded sans (e.g. *Nunito*) at a large base size
+- **Body**: a clean rounded sans (e.g. *Nunito*) at a large base size
   (18-20px) for readability at this age.
-- **Stamp/Label** — a monospace or typewriter face (e.g. *Space Mono* or
-  *IBM Plex Mono*) used only inside stamps, map pins, and badge labels — this
+- **Stamp/Label**: a monospace or typewriter face (e.g. *Space Mono* or
+  *IBM Plex Mono*) used only inside stamps, map pins, and badge labels, this
   is what sells the "passport ink stamp" signature and should not leak into
   body copy.
 
 ### Layout Concept
 
-**Hub — "The Atlas"**
+**Hub, "The Atlas"**
 ```
 ┌─────────────────────────────────────┐
 │   Comet's greeting + journal icon    │
@@ -87,10 +87,10 @@ colors read as distinct "regions of the map," not a rainbow UI.
 └─────────────────────────────────────┘
 ```
 
-**Mini-game screen** — same header/accent bar, full-width interactive area
+**Mini-game screen**, same header/accent bar, full-width interactive area
 below (drag targets, sort bins, or tap targets depending on realm).
 
-**Stamp moment** — full-bleed accent-colored flash, stamp graphic thunks
+**Stamp moment**, full-bleed accent-colored flash, stamp graphic thunks
 down at a slight rotation onto the journal, then screen returns to the Atlas
 with the new stamp filled in.
 
@@ -103,7 +103,7 @@ short monospace label arced or set along the bottom (e.g. "PASSWORLD ·
 VISITED"). Each stamp lands at a slightly different rotation (-6° to 6°,
 randomized once per session) so the journal page feels hand-stamped rather
 than templated. This is the one recurring "wow" moment and everything else
-in the UI stays quiet so it doesn't compete.
+in the UI stays quiet so it does not compete.
 
 ## 4. Screen Flow
 
@@ -123,7 +123,7 @@ in the UI stays quiet so it doesn't compete.
                    Finale: Wise Traveler certificate + pledge
 ```
 
-Every realm branches out from the Gate and is reachable from the start —
+Every realm branches out from the Gate and is reachable from the start
 free exploration, in any order. The table order in storyline.md is only the
 suggested pacing shown in the realm-strip list beneath the map. The finale
 unlocks once every realm's stamp is earned.
@@ -132,18 +132,18 @@ unlocks once every realm's stamp is earned.
 
 - **Story beats:** tap/click to advance dialogue cards (no timed text).
 - **Decision points:** two large tappable cards, side by side on desktop,
-  stacked on mobile. Selecting the "unsafe" option doesn't punish or scare —
-  it shows a brief, warm redirect ("Let's think about that one differently…")
-  and lets the child pick again, so there's no wrong-answer dead end.
-- **Mini-games:** reused across realms with different content so kids don't
+  stacked on mobile. Selecting the "unsafe" option does not punish or scare
+  it shows a brief, warm redirect ("Let us think about that one differently…")
+  and lets the child pick again, so there is no wrong-answer dead end.
+- **Mini-games:** reused across realms with different content so kids do not
   have to learn new controls each time:
   - *Sort:* drag items into two labeled bins (Passworld, Bully Bog)
   - *Spot:* tap the flagged items within a scene/message
-  - *Balance:* Balance Bay's walkable beach (both bands, `fullMechanic`) —
+  - *Balance:* Balance Bay's walkable beach (both bands, `fullMechanic`)
     walk the sand picking activities up for the day while a seesaw sprite
     tips; no branching choice
   - *Quiz:* five one-at-a-time questions, each answer with its own warm
-    explanation, no fail state (Privacy Peaks P1–3, Fable Falls) — added in
+    explanation, no fail state (Privacy Peaks P1–3, Fable Falls), added in
     the school revision pass, which found "mark a whole pile then commit"
     (Sort/Spot) too confusing for those two realms. P4–6 Privacy Peaks keeps
     its Phaser stepping-stones.
@@ -153,8 +153,8 @@ unlocks once every realm's stamp is earned.
 
 ## 6. Component Inventory (for the eventual React build)
 
-- `AtlasMap` — hub screen with 4 realm nodes + progress dots
-- `RealmScreen` — wraps story beat + choice + mini-game for a given realm
+- `AtlasMap`: hub screen with 4 realm nodes + progress dots
+- `RealmScreen`: wraps story beat + choice + mini-game for a given realm
 - `DialogueCard`
 - `ChoiceCard` (x2 per decision)
 - `MiniGameSort` (generic, takes items + two bin labels as props)
@@ -162,8 +162,8 @@ unlocks once every realm's stamp is earned.
 - `MiniGameBalance` (the seesaw), `MiniGameSteppingStones` (Phaser),
   `MiniGameQuiz` (five Q&A questions, one at a time)
 - `StampBadge` (renders one of the 4 realm stamps, "earned" or "locked")
-- `JournalProgress` — small persistent header showing stamp count
-- `CertificateScreen` — finale, name + 4 stamps + pledge lines
+- `JournalProgress`: small persistent header showing stamp count
+- `CertificateScreen`: finale, name + 4 stamps + pledge lines
 
 ## 7. State & Data Model (rough shape)
 
@@ -183,13 +183,13 @@ unlocks once every realm's stamp is earned.
 All state lives in `useState`/`useReducer` in memory for the session
 (artifacts cannot use browser storage). If persistence across visits is
 wanted later, the artifact persistent-storage API (`window.storage`) can
-store `realmProgress` per traveler name — worth adding once the base game is
+store `realmProgress` per traveler name, worth adding once the base game is
 built, not before.
 
 ## 8. Accessibility & Kid-Safety UX Notes
 
-- Large tap targets (min ~48px) throughout — this is a touch-first product.
-- No timers, no fail states, no score pressure — mini-games can be retried
+- Large tap targets (min ~48px) throughout: this is a touch-first product.
+- No timers, no fail states, no score pressure: mini-games can be retried
   freely.
 - Every mini-game has a text-equivalent instruction line, not icon-only.
 - Color is never the *only* signal (e.g. "safe/unsafe" sort bins are also
@@ -201,18 +201,18 @@ built, not before.
 
 - Single-file React artifact, Tailwind core utility classes only (no
   compiler, no arbitrary config).
-- No `localStorage`/`sessionStorage` — in-memory state only, per artifact
+- No `localStorage`/`sessionStorage`: in-memory state only, per artifact
   rules.
-- Icons via `lucide-react`. No framer-motion available — animation via
+- Icons via `lucide-react`. No framer-motion available: animation via
   Tailwind transition utilities and CSS keyframes defined in the same file.
-- No external image assets — all character and scene art built from SVG
+- No external image assets: all character and scene art built from SVG
   shapes/icons, consistent with the flat vector direction in Section 3.
 
 ## 9a. Scene Construction (added once the realms became walkable)
 
 Section 5 originally specified point-and-click cards with no moving character.
 That changed on request: each realm is now a 2D scene the Traveler walks
-around. That introduces a constraint the card design never had — **the art has
+around. That introduces a constraint the card design never had, **the art has
 to agree with the ground the player can stand on.**
 
 Scene art is authored in a 560×280 viewBox; the walkable band is authored in
@@ -222,8 +222,8 @@ Two rules:
 1. **Solid ground across the whole band, in both moods.** Scenery changes when
    the safe choice is made (the tide goes out, the fog lifts), and the band has
    to stay on solid ground through that change, not just before it.
-2. **Nothing solid floats above the band.** There is no depth sorting — the
-   Traveler always draws over the scene — so a prop placed higher than the band
+2. **Nothing solid floats above the band.** There is no depth sorting: the
+   Traveler always draws over the scene, so a prop placed higher than the band
    will have the player walk in front of something they should pass behind.
 
 Breaking these is not a subtle rendering nit; it reads immediately as broken to
@@ -238,10 +238,31 @@ band and every hotspot on all realms in both moods.
 
 Spend motion on exactly two moments, keep everything else static:
 
-1. **The stamp thunk** — scale-in + slight rotate + a quick "ink bleed"
+1. **The stamp thunk**: scale-in + slight rotate + a quick "ink bleed"
    pulse, on stamp-earned only.
-2. **Page-fold transition** — between hub and realm screens only.
+2. **Page-fold transition**: between hub and realm screens only.
 
 Choice cards, buttons, and mini-game feedback use quick, subtle
-opacity/scale changes (~150ms) — nothing bouncy or attention-grabbing that
+opacity/scale changes (~150ms), nothing bouncy or attention-grabbing that
 would compete with the two signature moments above.
+
+## Writing rules for all player-facing copy (client requirement)
+
+These are the client's rules. They apply to everything a child, a teacher or a
+parent can read: game copy in `src/data/realms.js`, screen copy in the
+components, Phaser toasts, button labels and the documents in this repository.
+
+1. **School language.** Full, proper English that a teacher would be happy to
+   read aloud in class.
+2. **No short forms.** Write "do not", "it is", "you are", "I am", "cannot".
+   Never "don't", "it's", "you're", "I'm", "can't". Possessives are fine
+   ("Sam's vault").
+3. **No text-speak.** No "lol", "btw", "omg", "u", "ur" or similar, including
+   inside quoted example messages. A scam message in the game is written in
+   plain English, not in deliberately broken spelling.
+4. **No em-dashes.** Use a comma, a colon or a full stop instead.
+5. **School-kid friendly.** Short sentences, concrete words, nothing a 7 year
+   old would need an adult to unpack. The P1 to P3 band is shorter and plainer
+   than the P4 to P6 band, never the same text at a different length.
+6. **It has to make sense.** Every sentence has to read as something a real
+   person would say. No filler and no half-sentences.

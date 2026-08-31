@@ -12,7 +12,16 @@ import { ACTIVE_REALMS } from '../data/realms';
  * personal data is collected beyond that (design.md §8).
  */
 
-const STORAGE_KEY = 'cyber-wellness-quest/v1';
+export const STORAGE_KEY = 'cyber-wellness-quest/v1';
+
+/**
+ * The saved journal, straight off disk: for the one reader that lives
+ * outside the provider (SettingsMenu's teacher summary). Everything inside
+ * the app should use the `state` this hook returns instead.
+ */
+export function readSaved() {
+  return load();
+}
 
 function freshRealmProgress() {
   return Object.fromEntries(

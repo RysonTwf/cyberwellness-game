@@ -152,9 +152,16 @@ const FURNITURE = [
   { key: 'bookshelf', src: bookshelfImg, x: 28, y: BACK_ROW, width: 11.5, nativeW: 40, nativeH: 41 },
   { key: 'wardrobe', src: wardrobeImg, x: 42, y: BACK_ROW, width: 9.5, nativeW: 41, nativeH: 46 },
   { key: 'cabinet', src: cabinetImg, x: 86, y: BACK_ROW, width: 5.8, nativeW: 16, nativeH: 23 },
-  { key: 'table', src: tableImg, x: 70, y: TABLE_BASE, width: 7, nativeW: 30, nativeH: 29, footprintFrac: 0.55 },
+  { key: 'table', src: tableImg, x: 58, y: TABLE_BASE, width: 7, nativeW: 30, nativeH: 29, footprintFrac: 0.55 },
+  // The reading nook (table + armchair + the rug under them) sits 12% left
+  // of where it was. It used to form an unbroken wall from x:59 to x:75 at
+  // mid-room, directly below the door pin at x:68, so walking straight at
+  // the door wedged the Traveler against the armchair with no interact
+  // prompt, and the way out had to be discovered by routing around the
+  // furniture (thingstoimproveon.md, Secondary findings). Moved left, the
+  // right-hand third of the room is a clear lane from the spawn to the door.
   // Bigger, per request — was 4.
-  { key: 'armchair', src: armchairImg, x: 63, y: TABLE_BASE, width: 6, nativeW: 23, nativeH: 26, footprintFrac: 0.55 },
+  { key: 'armchair', src: armchairImg, x: 51, y: TABLE_BASE, width: 6, nativeW: 23, nativeH: 26, footprintFrac: 0.55 },
   { key: 'plant', src: plantImg, x: 12, y: 90, width: 4.3, nativeW: 10, nativeH: 23 },
   // footprintFrac > 1 on purpose — see comment above.
   { key: 'bed', src: bedImg, x: 84, y: 92, width: 9.5, nativeW: 35, nativeH: 36, footprintFrac: 1.1 },
@@ -250,7 +257,7 @@ export default function RoomScene({ diaryOpened = false }) {
         alt=""
         style={{
           position: 'absolute',
-          left: '66.5%',
+          left: '54.5%',
           top: `${TABLE_BASE + 3}%`,
           width: '24%',
           transform: 'translate(-50%, -50%)',

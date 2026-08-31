@@ -5,6 +5,7 @@ import ChoiceCard from './ChoiceCard';
 import ReportBlock from './ReportBlock';
 import StampMoment from './StampMoment';
 import StepTrail from './StepTrail';
+import MethodTrack from './MethodTrack';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
@@ -232,14 +233,19 @@ export default function PlatformerStoryRealm({
             <div className="stack">
               <h3>The vault door</h3>
 
-              {/* The pieces are shown plain here on purpose. Marking the
-                  strong ones teal-and-padlocked at the door handed over the
-                  answer: ticking the green ones took no judgement at all.
-                  The player has to decide what makes a password strong. */}
+              {/* The three tests to judge each piece against, on screen while
+                  you choose. The pieces themselves are shown plain on purpose:
+                  marking the strong ones teal-and-padlocked at the door handed
+                  over the answer, so ticking the green ones took no judgement
+                  at all. L.M.N. is what replaces that, something to reason
+                  from rather than a colour to follow. */}
+              <MethodTrack purpose={realm.game.purpose} cleared={new Set()} />
+
               {!hasEveryStrong && verdict !== 'short' && (
                 <p className="instruction">
                   The keypad wants the whole password. Tick the pieces you think make it strong,
-                  and leave the easy-to-guess ones out.
+                  and leave the easy-to-guess ones out. Not every short one is strong, and not
+                  every word-shaped one is weak.
                 </p>
               )}
 
@@ -247,7 +253,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text={`You don't have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door won't open on a half-built password. Go back and find the rest.`}
+                  text={`You do not have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door will not open on a half-built password. Go back and find the rest.`}
                 />
               )}
 
@@ -255,7 +261,7 @@ export default function PlatformerStoryRealm({
                 <DialogueCard
                   who="Comet"
                   accent={realm.accent}
-                  text="That's not the set. Something you ticked would be easy for someone to guess, or something strong got left out. Read them again and try once more."
+                  text="That is not the set. Something you ticked would be easy for someone to guess, or something strong got left out. Read them again and try once more."
                 />
               )}
 

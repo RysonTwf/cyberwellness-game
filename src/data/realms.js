@@ -7,6 +7,9 @@ import { applyOverrides } from '../dev/contentOverrides';
  *  - nothing is a villain; every unsafe pick is a misunderstanding to retry
  *  - Comet asks rather than tells ("let's look again", never "wrong")
  *  - plain words, no jargon ("phishing", "PII") unless explained in kid terms
+ *  - school language: full proper English, no short forms ("do not", never
+ *    "don't"), no text-speak, no em-dashes. See the writing rules in
+ *    CLAUDE.md and design.md, which the client set.
  *  - each realm states its real-world rule once, plainly, near the end
  *
  * --- Band split (Cyber_Wellness_Quest_Milestones.md Phase 0) -------------
@@ -99,20 +102,41 @@ const passworldLower = {
     title: 'Guard the Vault',
     instruction:
       'These are the things Vex asked you for, and a few more. Put each one where it belongs. Which stay locked away, and which are fine to share?',
+    // The method, on screen the whole time you play. P1–P3 read the three
+    // questions and sort by them; they aren't asked to *name* which one an
+    // item fails (`nameTheCheck`), that step is P4–P6's, in `privacyCheck`
+    // on the higher band below.
+    purpose: {
+      name: 'The Three Questions',
+      why: 'Ask these before you tell anyone anything.',
+      checks: [
+        { key: 'F', name: 'Find', sub: 'Could this help someone find me?' },
+        { key: 'U', name: 'Unlock', sub: 'Could this unlock something of mine?' },
+        { key: 'P', name: 'Pretend', sub: 'Could someone pretend to be me with it?' },
+      ],
+    },
     bins: [
       { id: 'locked', title: 'Keep It Locked', sub: 'Only for me and my family', icon: 'lock' },
       { id: 'share', title: 'Safe to Share', sub: 'Fine for other people to know', icon: 'unlock' },
     ],
+    // Nine of these fourteen come up each time, drawn fresh every run
+    // (lib/draw.js) so one blind attempt can't buy a clean one on memory.
+    roundSize: 9,
     items: [
-      { id: 'address', text: 'My home address', bin: 'locked' },
-      { id: 'fullname', text: 'My full name', bin: 'locked' },
-      { id: 'school', text: 'The school I go to', bin: 'locked' },
-      { id: 'password', text: 'My password', bin: 'locked' },
-      { id: 'phone', text: 'My phone number', bin: 'locked' },
+      { id: 'address', text: 'My home address', bin: 'locked', check: 'F' },
+      { id: 'fullname', text: 'My full name', bin: 'locked', check: 'P' },
+      { id: 'school', text: 'The school I go to', bin: 'locked', check: 'F' },
+      { id: 'password', text: 'My password', bin: 'locked', check: 'U' },
+      { id: 'phone', text: 'My phone number', bin: 'locked', check: 'F' },
+      { id: 'birthday', text: 'The day I was born', bin: 'locked', check: 'P' },
+      { id: 'mumphone', text: "My mum's phone number", bin: 'locked', check: 'F' },
+      { id: 'secret', text: 'The answer to my secret question', bin: 'locked', check: 'U' },
       { id: 'colour', text: 'My favourite colour', bin: 'share' },
       { id: 'game', text: 'The game I like most', bin: 'share' },
       { id: 'nickname', text: 'My nickname', bin: 'share' },
       { id: 'hobby', text: 'That I like drawing', bin: 'share' },
+      { id: 'food', text: 'My favourite food', bin: 'share' },
+      { id: 'animal', text: 'My favourite animal', bin: 'share' },
     ],
   },
 
@@ -226,11 +250,28 @@ const passworldHigher = {
       { x: 2854, y: 134, w: 50, h: 12 },
       { x: 2964, y: 186, w: 60, h: 12 }, // the vault door stands here
     ],
+    // The door's method, shown beside the keypad while you choose (L.M.N.).
+    purpose: {
+      name: 'L.M.N.',
+      why: 'Three things every strong password piece has to survive.',
+      checks: [
+        { key: 'L', name: 'Long', sub: 'Enough pieces to be long' },
+        { key: 'M', name: 'Mixed', sub: 'Letters, numbers and symbols' },
+        { key: 'N', name: 'Not me', sub: 'Not about me, not a real word' },
+      ],
+    },
+    // Six real, six decoy, but *not* sortable on shape. The old set was six
+    // single characters against six recognisable English words, so a player
+    // could clear the door on silhouette alone without reading a tile
+    // (thingstoimproveon.md, "the vault door"). Now one real piece is
+    // word-shaped nonsense (`Zub`) and two decoys are short and symbol-ish
+    // (`abc`, a keyboard run; `Pockets`, a pet name, "not about me"), so the
+    // tile has to be read against L.M.N. rather than classified by length.
     tiles: [
       { id: 'letter', type: 'letter', label: 'A', kind: 'real', x: 621, y: 95 },
       { id: 'number', type: 'number', label: '7', kind: 'real', x: 1179, y: 91 },
       { id: 'symbol', type: 'symbol', label: '#', kind: 'real', x: 1622, y: 43 },
-      { id: 'letter2', type: 'letter', label: 'k', kind: 'real', x: 2185, y: 51 },
+      { id: 'letter2', type: 'letter', label: 'Zub', kind: 'real', x: 2185, y: 51 },
       { id: 'number2', type: 'number', label: '4', kind: 'real', x: 2757, y: 59 },
       { id: 'symbol2', type: 'symbol', label: '!', kind: 'real', x: 2879, y: 115 },
       // The weak ones are scattered through the climb, not parked on the
@@ -241,8 +282,8 @@ const passworldHigher = {
       { id: 'decoy1', label: '123456', kind: 'decoy', x: 320, y: 245 },
       { id: 'decoy2', label: 'password', kind: 'decoy', x: 513, y: 143 },
       { id: 'decoy3', label: 'qwerty', kind: 'decoy', x: 1075, y: 139 },
-      { id: 'decoy4', label: 'letmein', kind: 'decoy', x: 1731, y: 99 },
-      { id: 'decoy5', label: 'football', kind: 'decoy', x: 1400, y: 245 },
+      { id: 'decoy4', label: 'abc', kind: 'decoy', x: 1731, y: 99 },
+      { id: 'decoy5', label: 'Pockets', kind: 'decoy', x: 1400, y: 245 },
       { id: 'decoy6', label: 'iloveyou', kind: 'decoy', x: 2652, y: 107 },
     ],
     // Each guard walks a platform — the scene snaps them onto the surface
@@ -268,20 +309,89 @@ const passworldHigher = {
     type: 'sort',
     title: 'Before You Post',
     instruction:
-      'Some of these seem harmless. Sort each one: safe to post, or better kept private?',
+      'Some of these seem harmless. Sort each one, then say which of the three questions it falls foul of.',
+    // Same three questions P1–P3 sort by, but this band has to *name* the one
+    // an item fails (`nameTheCheck`), which is the move that turns "pick a
+    // bin" into a judgement you could carry to a post the game never showed
+    // you (thingstoimproveon.md, "The purpose question").
+    purpose: {
+      name: 'The Three Questions',
+      why: 'Ask these before anything of yours goes up.',
+      nameTheCheck: true,
+      prompt: 'Which question does this one fall foul of?',
+      checks: [
+        { key: 'F', name: 'Find', sub: 'Could this help someone find me?' },
+        { key: 'U', name: 'Unlock', sub: 'Could this unlock an account of mine?' },
+        { key: 'P', name: 'Pretend', sub: 'Could someone pretend to be me with it?' },
+      ],
+    },
     bins: [
       { id: 'post', title: 'Safe to Post', sub: 'Gives nothing away', icon: 'unlock' },
       { id: 'private', title: 'Keep Private', sub: 'Could give you away', icon: 'lock' },
     ],
+    roundSize: 8,
     items: [
       { id: 'tag', text: 'My gamer tag', bin: 'post' },
       { id: 'drawing', text: 'A drawing I made', bin: 'post' },
       { id: 'band', text: 'My favourite band', bin: 'post' },
-      { id: 'realname', text: 'My real full name as my username', bin: 'private' },
-      { id: 'uniform', text: 'A photo of me in my school uniform', bin: 'private' },
-      { id: 'location', text: 'A photo with the place tagged on it', bin: 'private' },
-      { id: 'birthday', text: 'My full date of birth', bin: 'private' },
-      { id: 'routine', text: 'That I walk home alone at the same time every day', bin: 'private' },
+      { id: 'dinner', text: 'A photo of my dinner', bin: 'post' },
+      { id: 'opinion', text: 'What I thought of a film', bin: 'post' },
+      {
+        id: 'realname',
+        text: 'My real full name as my username',
+        bin: 'private',
+        check: 'P',
+        checkNote: 'A real name as a handle lets someone find the rest of you, and pose as you.',
+      },
+      {
+        id: 'uniform',
+        text: 'A photo of me in my school uniform',
+        bin: 'private',
+        check: 'F',
+        checkNote: 'A uniform names your school to anyone who recognises it.',
+      },
+      {
+        id: 'location',
+        text: 'A photo with the place tagged on it',
+        bin: 'private',
+        check: 'F',
+        checkNote: 'The tag is the map. It says exactly where you were, and probably where you go.',
+      },
+      {
+        id: 'birthday',
+        text: 'My full date of birth',
+        bin: 'private',
+        check: 'U',
+        checkNote: 'A date of birth is half of most "prove it is really you" questions.',
+      },
+      {
+        id: 'routine',
+        text: 'That I walk home alone at the same time every day',
+        bin: 'private',
+        check: 'F',
+        checkNote: 'A routine tells someone where to wait. That is the whole risk.',
+      },
+      {
+        id: 'door',
+        text: 'A photo out my front door with the house number in it',
+        bin: 'private',
+        check: 'F',
+        checkNote: 'One number in the background is enough to turn a street into an address.',
+      },
+      {
+        id: 'firstpet',
+        text: 'The name of my first pet',
+        bin: 'private',
+        check: 'U',
+        checkNote: 'That is a security question on half the internet. Answering it in public hands it over.',
+      },
+      {
+        id: 'timetable',
+        text: 'A screenshot of my school timetable',
+        bin: 'private',
+        check: 'F',
+        checkNote: 'It says where you are, hour by hour, all week.',
+      },
     ],
   },
 
@@ -336,6 +446,20 @@ const privacyLower = {
     title: 'Read the Fog',
     instruction:
       'A few more messages drift out of the fog. Answer each one the way you answered the shape you just met.',
+    // P1–P3 read S.T.O.P. off the track while they answer; naming the check
+    // is the older band's job (see `privacyHigher` below).
+    purpose: {
+      name: 'S.T.O.P.',
+      why: 'Four things that give a trick away.',
+      checks: [
+        { key: 'S', name: 'Sender', sub: 'Do I really know who this is?' },
+        { key: 'T', name: 'Tone', sub: 'Is it rushing or scaring me?' },
+        { key: 'O', name: 'Offer', sub: 'Is it dangling a prize?' },
+        { key: 'P', name: 'Password', sub: 'Does it want a secret of mine?' },
+      ],
+    },
+    // Five of these nine each run (lib/draw.js).
+    roundSize: 5,
     questions: [
       {
         id: 'q1',
@@ -354,6 +478,13 @@ const privacyLower = {
             correct: true,
             feedback:
               'Exactly. No entry means no prize. A surprise win is one of the oldest tricks in the fog.',
+          },
+          {
+            id: 'c',
+            text: 'Ask them to prove the prize is real.',
+            correct: false,
+            feedback:
+              'Replying at all tells them a real person is reading. Do not answer it.',
           },
         ],
       },
@@ -374,6 +505,13 @@ const privacyLower = {
             correct: true,
             feedback: 'That is it. Anything that pushes you to hurry is a sign to slow right down.',
           },
+          {
+            id: 'c',
+            text: 'Because the prize really is about to run out.',
+            correct: false,
+            feedback:
+              'Real things do not need you to hurry past thinking. The clock is the trick.',
+          },
         ],
       },
       {
@@ -392,6 +530,13 @@ const privacyLower = {
             text: 'Keep it to myself and tell an adult I trust.',
             correct: true,
             feedback: 'Yes. Your address stays locked, just like in Passworld.',
+          },
+          {
+            id: 'c',
+            text: 'Tell them my street but not my house number.',
+            correct: false,
+            feedback:
+              'Half an address is still an address. A stranger needs none of it.',
           },
         ],
       },
@@ -413,6 +558,13 @@ const privacyLower = {
             feedback:
               'Right. Anyone who wants to be kept secret from your grown-ups is someone to tell a grown-up about.',
           },
+          {
+            id: 'c',
+            text: 'Only if they are the same age as me.',
+            correct: false,
+            feedback:
+              'You cannot tell how old someone is from a message. That is why the secret is the warning sign.',
+          },
         ],
       },
       {
@@ -432,6 +584,117 @@ const privacyLower = {
             correct: true,
             feedback:
               'Good. When you cannot see who is talking, check another way before you trust it.',
+          },
+          {
+            id: 'c',
+            text: 'Reply and see if they sound like my friend.',
+            correct: false,
+            feedback:
+              'Anyone can copy the way a person types. You cannot tell from inside the message.',
+          },
+        ],
+      },
+      {
+        id: 'q6',
+        text: 'A game sends you a code and says "type this code back to us to prove it is you". What do you do?',
+        options: [
+          {
+            id: 'a',
+            text: 'Send the code back. They sent it to me.',
+            correct: false,
+            feedback:
+              'That code is the key to your account. Anyone asking you to pass it on is trying to get in.',
+          },
+          {
+            id: 'b',
+            text: 'Keep the code. A code is a secret, like a password.',
+            correct: true,
+            feedback: 'Yes. Codes are for typing in yourself, never for sending on.',
+          },
+          {
+            id: 'c',
+            text: 'Send it if the message has the game\'s logo on it.',
+            correct: false,
+            feedback:
+              'A logo is just a picture. Anyone can paste one in.',
+          },
+        ],
+      },
+      {
+        id: 'q7',
+        text: 'A message says "your library book is due back on Friday". Is that a trick?',
+        options: [
+          {
+            id: 'a',
+            text: 'Yes. All messages are tricks.',
+            correct: false,
+            feedback:
+              'Not all of them. This one asks you for nothing and does not rush you. Most messages are ordinary.',
+          },
+          {
+            id: 'b',
+            text: 'No. It does not rush me and it does not ask me for anything.',
+            correct: true,
+            feedback:
+              'Good. Being careful is not the same as being scared of everything. Look for the signs, not for messages.',
+          },
+          {
+            id: 'c',
+            text: 'Yes, because I do not remember borrowing a book.',
+            correct: false,
+            feedback:
+              'Forgetting is not a warning sign. Look at what it asks of you, which is nothing.',
+          },
+        ],
+      },
+      {
+        id: 'q8',
+        text: 'Someone you have only met in a game wants to chat somewhere else instead. What do you think?',
+        options: [
+          {
+            id: 'a',
+            text: 'Fine. We are friends in the game.',
+            correct: false,
+            feedback:
+              'Moving you somewhere quieter is a way of getting you on your own. Tell an adult you trust.',
+          },
+          {
+            id: 'b',
+            text: 'I will stay where I am and tell an adult I trust.',
+            correct: true,
+            feedback: 'Right. Someone wanting you alone somewhere else is a sign to stop.',
+          },
+          {
+            id: 'c',
+            text: 'Go, as long as I do not tell them my name.',
+            correct: false,
+            feedback:
+              'Being somewhere quiet on your own with them is the risk, not your name.',
+          },
+        ],
+      },
+      {
+        id: 'q9',
+        text: 'A message has your first name in it. Does that prove it is really from someone who knows you?',
+        options: [
+          {
+            id: 'a',
+            text: 'Yes. They knew my name.',
+            correct: false,
+            feedback: 'Your first name is easy to find. Knowing it proves nothing at all.',
+          },
+          {
+            id: 'b',
+            text: 'No. Anyone could find out my name.',
+            correct: true,
+            feedback: 'Exactly. A name in a message is not proof of anything.',
+          },
+          {
+            id: 'c',
+            text: 'Yes, if they know my school as well.',
+            correct: false,
+            feedback:
+              'Both of those are easy to find out. Neither one is proof.',
           },
         ],
       },
@@ -489,7 +752,26 @@ const privacyHigher = {
     type: 'steppingstones',
     title: 'Clear the Fog',
     instruction:
-      'Step on the ones that are safe. Skip the ones with a warning sign. These are trickier than before. Looking official does not make something official.',
+      'Step on the ones that are safe. Skip the ones with a warning sign, then say which check caught it. Looking official does not make something official.',
+    // Naming the check is what stops this being "skip anything that sounds
+    // scary". A stone can trip more than one check, `check` takes an array
+    // and any of them counts, so the gate never punishes a right answer for
+    // being the second-best one.
+    purpose: {
+      name: 'S.T.O.P.',
+      why: 'Four signs that a message is not what it says it is.',
+      nameTheCheck: true,
+      prompt: 'Which check caught it?',
+      checks: [
+        { key: 'S', name: 'Sender', sub: 'Do I actually know who this is?' },
+        { key: 'T', name: 'Tone', sub: 'Is it rushing or threatening me?' },
+        { key: 'O', name: 'Offer', sub: 'Is it dangling a prize or a reward?' },
+        { key: 'P', name: 'Password', sub: 'Does it want a secret, or a tap to type one?' },
+      ],
+    },
+    // Six of these eleven each crossing (lib/draw.js), so a blind run can't
+    // be traded for a memorised clean one.
+    roundSize: 6,
     stones: [
       {
         id: 'q1',
@@ -501,12 +783,14 @@ const privacyHigher = {
         id: 'q2',
         text: '"Warning: confirm within 24 hours or lose your account. Tap here."',
         flag: true,
+        check: 'T',
         note: 'A countdown and a threat, both there to rush you past thinking. Skip it.',
       },
       {
         id: 'q3',
         text: '"This is the Atlas Team. Send us your One-Time-Password to continue"',
         flag: true,
+        check: ['P', 'S'],
         note: 'No real team needs your One-Time-Password typed into a message. Skip it.',
       },
       {
@@ -519,13 +803,48 @@ const privacyHigher = {
         id: 'q5',
         text: 'atlas.free-rewards.net',
         flag: true,
+        check: ['O', 'S'],
         note: 'Look at the address itself, not the words around it. That is not where the real Atlas lives. Skip it.',
       },
       {
         id: 'q6',
         text: '"Hi, it is your teacher. Can you send me your login so I can check your account?"',
         flag: true,
+        check: ['S', 'P'],
         note: 'A real teacher can check your account their own way. They never need your password. Skip it.',
+      },
+      {
+        id: 'q7',
+        text: '"You are our 1,000,000th visitor! Claim your prize in the next 5 minutes."',
+        flag: true,
+        check: ['O', 'T'],
+        note: 'A prize you never entered for, and a clock on it. Both halves are the trick. Skip it.',
+      },
+      {
+        id: 'q8',
+        text: '"Your parcel could not be delivered. Pay 30p here to rebook it."',
+        flag: true,
+        check: 'P',
+        note: 'A tiny amount, so you do not think twice, but it wants your card details on a page you did not go looking for. Skip it.'
+      },
+      {
+        id: 'q9',
+        text: '"School closed tomorrow, check the school website for details."',
+        flag: false,
+        note: 'It sends you to look something up yourself rather than tapping through. Nothing is asked of you. Step on it.',
+      },
+      {
+        id: 'q10',
+        text: '"It is Jamie, I got a new number. Can you lend me some money? Do not tell mum."',
+        flag: true,
+        check: ['S', 'T'],
+        note: 'A new number you cannot check, and an instruction to keep it quiet. Ring the old number. Skip it.',
+      },
+      {
+        id: 'q11',
+        text: '"Two new photos were added to the class album."',
+        flag: false,
+        note: 'Nothing is claimed, nothing is asked, nothing is rushed. Step on it.',
       },
     ],
   },
@@ -545,8 +864,16 @@ const privacyHigher = {
  * mean comment lands, others are watching, you choose whether to join in or
  * stand up, then sort replies. Only the wording changes: `bullybogLower` is
  * kept very short for P1–P3, `bullybogHigher` fills the sentences out a
- * little for P4–P6 without getting long. Structure, ids, decision and game
- * items are identical.
+ * little for P4–P6 without getting long. Structure, ids and the decision are
+ * shared.
+ *
+ * The two bands no longer share a game, though. They used to run
+ * byte-identical items: four unmistakably kind replies against four
+ * unmistakably cruel ones: which asks nothing of a 10–12 year old and was
+ * the clearest band-parity gap in the product (thingstoimproveon.md §4).
+ * P4–P6 now gets the ambiguous middle (the laugh, the joke, the bystander,
+ * the defence that starts a second pile-on) and has to name which T.H.I.N.K.
+ * check each reply fails.
  */
 const bullybogLower = {
   story: [
@@ -596,12 +923,20 @@ const bullybogLower = {
   // "Think Before You Act" — respectful + positive trail). The "who would
   // you tell" beat was dropped from Bully Bog per the school.
   extraBeats: {
+    // Asked as a real two-option pick, not a "Good point." button. It puts a
+    // genuine question to the child, *would* you be happy with this next
+    // year, and a single tap-to-agree accepted any answer at all, which is
+    // no answer (thingstoimproveon.md, Secondary findings).
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing. This stays online for good. Would you be happy for that? Posts do not really go away.',
-      accept: 'Good point.',
-      followUp: 'Ask yourself it is kind to send and if you would still be happy with it next year.',
+        'One more thing. What you just typed stays online for good. Which of these would you still be happy about next year?',
+      options: [
+        { id: 'kind', text: 'The kind reply I sent Pockets.' },
+        { id: 'mean', text: 'The mean one about Pockets.' },
+      ],
+      response:
+        'Kind ones are the easy answer, and that is the point. Posts do not really go away, so ask before you send: is it kind, and would you still be happy with it next year?',
     },
   },
 
@@ -609,19 +944,39 @@ const bullybogLower = {
     type: 'sort',
     title: 'Clear the Water',
     instruction: 'Replies people could send Pockets. Which would you send and not send?',
+    // T.H.I.N.K. is the standard school poster, so it reads as something the
+    // classroom already owns rather than a game invention. P1–P3 sort by it
+    // off the track; P4–P6 (below) name the check a reply fails.
+    purpose: {
+      name: 'T.H.I.N.K.',
+      why: 'Five checks before you send anything about someone.',
+      checks: [
+        { key: 'T', name: 'True', sub: 'Do I know it is true?' },
+        { key: 'H', name: 'Helpful', sub: 'Does it help anyone?' },
+        { key: 'I', name: 'Inspiring', sub: 'Does it lift them up?' },
+        { key: 'N', name: 'Necessary', sub: 'Does it need saying?' },
+        { key: 'K', name: 'Kind', sub: 'Is it kind?' },
+      ],
+    },
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
     ],
+    roundSize: 8,
     items: [
       { id: 'c1', text: '"I love your song, Pockets!"', bin: 'send' },
       { id: 'c2', text: '"Do you want to sing the next one together?"', bin: 'send' },
       { id: 'c3', text: '"That is brave. Nice one."', bin: 'send' },
       { id: 'c4', text: '"I am here if you want to talk."', bin: 'send' },
+      { id: 'c9', text: '"Your song made me smile."', bin: 'send' },
+      { id: 'c10', text: '"Can I hear the rest of it?"', bin: 'send' },
       { id: 'c5', text: '"Nobody wants to hear this."', bin: 'leave' },
       { id: 'c6', text: '"That is so bad."', bin: 'leave' },
       { id: 'c7', text: '"We are not inviting you next time."', bin: 'leave' },
       { id: 'c8', text: '"Everyone agrees with me, by the way."', bin: 'leave' },
+      { id: 'c11', text: '"You should stop singing."', bin: 'leave' },
+      { id: 'c12', text: '"Nobody here likes you."', bin: 'leave' },
+      { id: 'c13', text: '"That was the worst song I have heard."', bin: 'leave' },
     ],
   },
 
@@ -683,13 +1038,17 @@ const bullybogHigher = {
   // One follow-up beat only: digital footprint. The "who would you tell"
   // beat was dropped from Bully Bog per the school.
   extraBeats: {
+    // A real pick rather than a tap-to-agree, see `bullybogLower` above.
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before this goes up for good. Would you be happy for it to stay online forever? Posts do not really disappear, even the kind ones.',
-      accept: 'Good point.',
-      followUp:
-        'First ask if it is kind. Then ask if you would still stand by it next year.',
+        'One more thing, before this goes up for good. Posts do not really disappear. Which of these would you still stand by in a year, when someone screenshots it back to you?',
+      options: [
+        { id: 'kind', text: 'The reply I actually sent, sticking up for Pockets.' },
+        { id: 'joke', text: '"Ha ha ha." under the mean one. It was only a laugh.' },
+      ],
+      response:
+        'The laugh is the trap. It feels like saying nothing, and it reads as agreeing, and it lasts exactly as long as the sentence you would have been proud of. Ask if it is kind first, then ask whether you would still stand by it next year.',
     },
   },
 
@@ -697,20 +1056,99 @@ const bullybogHigher = {
     type: 'sort',
     title: 'Clear the Water',
     instruction:
-      'Replies people could send Pockets. Sort each one, then pick the pile you would add to. Which would you send, and which would sting?',
+      'Replies people could send Pockets. Sort each one, then name the check it fails. Some of these are not cruel at all, they just do not help.',
+    // The band-parity fix (thingstoimproveon.md §4). P1–P3 sorts four
+    // unmistakably kind replies against four unmistakably cruel ones, which
+    // asks nothing of a 10–12 year old. This set is the *ambiguous middle*,
+    // where the real skill lives: the joke, the laugh under the pile-on, the
+    // bystander who only laughed, the defence that starts a second pile-on.
+    // Naming which check it fails is what stops "long and negative = leave".
+    purpose: {
+      name: 'T.H.I.N.K.',
+      why: 'Five checks before you send anything about someone.',
+      nameTheCheck: true,
+      prompt: 'Which check does this reply fail?',
+      checks: [
+        { key: 'T', name: 'True', sub: 'Do I know it is true?' },
+        { key: 'H', name: 'Helpful', sub: 'Does it help anyone?' },
+        { key: 'I', name: 'Inspiring', sub: 'Does it lift them up?' },
+        { key: 'N', name: 'Necessary', sub: 'Did it need saying?' },
+        { key: 'K', name: 'Kind', sub: 'Is it kind?' },
+      ],
+    },
     bins: [
       { id: 'send', title: 'Send It', sub: 'Kind, or just fine', icon: 'send' },
       { id: 'leave', title: 'Leave It', sub: 'This would hurt', icon: 'trash' },
     ],
+    roundSize: 8,
     items: [
-      { id: 'c1', text: '"I love your song, Pockets!"', bin: 'send' },
-      { id: 'c2', text: '"Do you want to sing the next one together?"', bin: 'send' },
-      { id: 'c3', text: '"That is brave. Nice one."', bin: 'send' },
-      { id: 'c4', text: '"I am here if you want to talk."', bin: 'send' },
-      { id: 'c5', text: '"Nobody wants to hear this."', bin: 'leave' },
-      { id: 'c6', text: '"That is so bad."', bin: 'leave' },
-      { id: 'c7', text: '"We are not inviting you next time."', bin: 'leave' },
-      { id: 'c8', text: '"Everyone agrees with me, by the way."', bin: 'leave' },
+      { id: 'h1', text: '"I love your song, Pockets!"', bin: 'send' },
+      { id: 'h2', text: '"Do you want to sing the next one together?"', bin: 'send' },
+      { id: 'h3', text: '"I am here if you want to talk."', bin: 'send' },
+      { id: 'h4', text: '"I thought it sounded good, honestly."', bin: 'send' },
+      { id: 'h5', text: '"Are you okay? That comment was out of order."', bin: 'send' },
+      { id: 'h6', text: '"Never mind them. Sing the next one."', bin: 'send' },
+      {
+        id: 'h7',
+        text: '"Nobody wants to hear this."',
+        bin: 'leave',
+        check: 'K',
+        checkNote: 'Nothing complicated here. It is simply unkind, and it is the comment that started all this.',
+      },
+      {
+        id: 'h8',
+        text: '"That was the worst singing I have ever heard."',
+        bin: 'leave',
+        check: 'K',
+        checkNote: 'Dressed up as an opinion, but it is aimed at a person who can read it.',
+      },
+      {
+        id: 'h9',
+        text: '"Ha ha ha.", posted under the mean comment',
+        bin: 'leave',
+        check: ['H', 'K'],
+        checkNote:
+          'It costs nothing to type, and it helps nobody. To Pockets it reads as one more person agreeing.',
+      },
+      {
+        id: 'h10',
+        text: '"It is just a joke, do not be so sensitive."',
+        bin: 'leave',
+        check: 'K',
+        checkNote:
+          'This one tells the person they are wrong to be hurt. That is the unkind part, not the joke.',
+      },
+      {
+        id: 'h11',
+        text: '"I did not say anything. I only laughed."',
+        bin: 'leave',
+        check: 'H',
+        checkNote:
+          'Laughing along is still weight on the pile. Doing nothing helps the comment, not Pockets.',
+      },
+      {
+        id: 'h12',
+        text: '"Everyone thinks it, I am just the one who said it."',
+        bin: 'leave',
+        check: 'N',
+        checkNote:
+          '"Everyone thinks it" is not a reason. Nothing here needed saying at all.',
+      },
+      {
+        id: 'h13',
+        text: '"Ignore them, Pockets. They are losers anyway."',
+        bin: 'leave',
+        check: ['I', 'K'],
+        checkNote:
+          'Meant kindly, and it still starts a second pile-on. Standing up for someone does not need a target.',
+      },
+      {
+        id: 'h14',
+        text: '"I heard he got told off for singing in class as well."',
+        bin: 'leave',
+        check: 'T',
+        checkNote: 'You heard it. You do not know it. Passing that on is how a rumour gets its second life.',
+      },
     ],
   },
 
@@ -731,7 +1169,10 @@ const bullybogHigher = {
  * character. Only the wording changes: `balanceLower` is very short for
  * P1–P3; `balanceHigher` says a little more for P4–P6 (noticing how screen
  * time feels, not just how long) without getting long. Same ten activity
- * cards, same verdict thresholds.
+ * cards, same verdict copy: and, since 31 Aug 2026, the same Three Musts
+ * which are what the realm actually requires to finish (see `musts` below
+ * and components/BalanceBeachRealm.jsx). Filling six slots used to be the
+ * whole requirement, which made this the one unfailable realm.
  */
 
 const balanceLower = {
@@ -754,8 +1195,27 @@ const balanceLower = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. Add something, or tap it in your list to take it back. Watch how the seesaw sits.',
+      'Fill the six hours between school and bed. All three musts have to be true before you can call it a day. Add something, or tap it in your list to take it back.',
     slots: 6,
+    // The gate. Filling six slots used to be the whole requirement, so six
+    // hours of screens passed exactly as readily as a balanced day and the
+    // realm was not merely guessable but *unfailable* (thingstoimproveon.md
+    // §1). These three are defensible conditions a child can reason from and
+    // watch tick off live, rather than an invisible threshold.
+    purpose: {
+      name: 'The Three Musts',
+      why: 'All three have to be true before a day counts as balanced.',
+      checks: [
+        { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
+        { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
+        { key: 'H', name: 'Half', sub: 'Screens take up no more than half' },
+      ],
+    },
+    musts: {
+      sleep: 'b9',
+      somethingElse: ['b6', 'b7', 'b8', 'b10'],
+      maxScreenShare: 0.5,
+    },
     items: [
       { id: 'b1', text: 'Watch videos', screen: true },
       { id: 'b2', text: 'Play my game', screen: true },
@@ -780,7 +1240,7 @@ const balanceLower = {
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. Leave room for sleep, playing, and real people.',
+    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. And keep the Three Musts: sleep is in the day, one thing is away from a screen, and screens take no more than half.',
   },
 };
 
@@ -804,8 +1264,18 @@ const balanceHigher = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. Add something, or tap it in your list to take it back. Notice which parts you would look forward to, and watch how the seesaw sits.',
+      'Fill the six hours between school and bed. All three musts have to be true before you can call it a day. Notice which parts you would look forward to, and which you would just fall into.',
     slots: 6,
+    purpose: {
+      name: 'The Three Musts',
+      why: 'A day is not balanced until all three are true. After that, judge it on how it would feel.',
+      checks: [
+        { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
+        { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
+        { key: 'H', name: 'Half', sub: 'Screens take up no more than half' },
+      ],
+    },
+    musts: balanceLower.game.musts,
     items: balanceLower.game.items,
     verdicts: {
       allScreen:
@@ -819,7 +1289,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'As you get older, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
+    text: 'Start with the Three Musts: sleep is in the day, one thing is off a screen, and screens take no more than half. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
   },
 };
 
@@ -836,15 +1306,19 @@ const balanceHigher = {
  * *same* Mia scenario — `fableFallsHigher` reuses `fableFallsLower.story`
  * verbatim — and the difference between them is how hard the checking gets.
  *
- * P1–P3 (7–9) is a plain 5-question Q&A (`game.type: 'quiz'`,
- * minigames/MiniGameQuiz.jsx), kept deliberately short-sentenced.
+ * P1–P3 (7–9) is a plain Q&A (`game.type: 'quiz'`,
+ * minigames/MiniGameQuiz.jsx), kept deliberately short-sentenced: five
+ * questions drawn from a pool of nine, with the four S.U.R.E. checks on
+ * screen in short words while they answer.
  *
  * P4–P6 (10–12) is the S.U.R.E. framework (Source, Understand, Research,
  * Evaluate) and has to be *run*, not just agreed with: the clues arrive
  * unlabelled and shuffled and the child names the check each one belongs to
  * (`game.type: 'sure'`, minigames/MiniGameSure.jsx). The earlier version
  * labelled each question with its own step, which a child could clear on
- * common sense without ever learning the method.
+ * common sense without ever learning the method. Both halves of every clue
+ * are gated now, and one of two unrelated posts is drawn per run so the
+ * clue-to-letter mapping can't be learned off a single scenario.
  *
  * The official "3 tips to CHECK real vs. digitally-altered content" (the
  * SLS package's specific bullet list) was never sourced; the general,
@@ -892,6 +1366,21 @@ const fableFallsLower = {
     type: 'quiz',
     title: 'Check Before You Share',
     instruction: 'More things about the post reach you. Decide what to do with each one.',
+    // The same four checks the older band has to *run* (see fableFallsHigher),
+    // here just kept on screen in short words while a 7–9 year old answers.
+    // Both bands now leave Fable Falls able to name the method.
+    purpose: {
+      name: 'S.U.R.E.',
+      why: 'Four checks before you believe it or pass it on.',
+      checks: [
+        { key: 'S', name: 'Source', sub: 'Who said it first?' },
+        { key: 'U', name: 'Understand', sub: 'What is it really saying?' },
+        { key: 'R', name: 'Research', sub: 'Can I check it somewhere real?' },
+        { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
+      ],
+    },
+    // Five of these nine each run (lib/draw.js).
+    roundSize: 5,
     questions: [
       {
         id: 'q1',
@@ -908,6 +1397,13 @@ const fableFallsLower = {
             text: 'Nobody knows, so I should not trust it.',
             correct: true,
             feedback: 'Right. A story with no start is one to check, not to share.',
+          },
+          {
+            id: 'c',
+            text: 'The person who sent it to me said it first.',
+            correct: false,
+            feedback:
+              'They forwarded it too. Keep asking who is at the very start, not who passed it on.',
           },
         ],
       },
@@ -927,6 +1423,13 @@ const fableFallsLower = {
             correct: true,
             feedback: 'Exactly. Popular and true are not the same thing.',
           },
+          {
+            id: 'c',
+            text: 'Yes, if the people sharing it are my friends.',
+            correct: false,
+            feedback:
+              'Your friends got it the same way you did. Sharing it is not the same as knowing it.',
+          },
         ],
       },
       {
@@ -944,6 +1447,13 @@ const fableFallsLower = {
             text: 'Ask a teacher or another adult I trust.',
             correct: true,
             feedback: 'Yes. A trusted adult can find out the real story.',
+          },
+          {
+            id: 'c',
+            text: 'Count how many likes it has.',
+            correct: false,
+            feedback:
+              'Likes count taps, not truth. A made-up story can collect plenty.',
           },
         ],
       },
@@ -963,6 +1473,13 @@ const fableFallsLower = {
             correct: true,
             feedback: 'Good eye. Odd edges and strange shadows are signs a photo is not real.',
           },
+          {
+            id: 'c',
+            text: 'It just means the photo is old.',
+            correct: false,
+            feedback:
+              'Being old does not stretch one edge of a picture. Editing does.',
+          },
         ],
       },
       {
@@ -980,6 +1497,115 @@ const fableFallsLower = {
             text: 'No. Checking first is easier than fixing it after.',
             correct: true,
             feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer.',
+          },
+          {
+            id: 'c',
+            text: 'Share it, then delete it quickly after.',
+            correct: false,
+            feedback:
+              'Screenshots take a second. Deleting your copy does not call the others back.',
+          },
+        ],
+      },
+      {
+        id: 'q6',
+        text: 'Mia says the post is not true. The post says it is. Who do you ask?',
+        options: [
+          {
+            id: 'a',
+            text: 'Whoever has more people agreeing with them.',
+            correct: false,
+            feedback: 'Counting sides does not find the truth. Someone who actually knows does.',
+          },
+          {
+            id: 'b',
+            text: 'A teacher or an adult I trust, who can find out.',
+            correct: true,
+            feedback: 'Yes. Ask someone who can check, not the crowd.',
+          },
+          {
+            id: 'c',
+            text: 'Nobody. I will wait and see what happens.',
+            correct: false,
+            feedback:
+              'Waiting lets it keep spreading. Asking someone who can actually check is what stops it.',
+          },
+        ],
+      },
+      {
+        id: 'q7',
+        text: 'The post makes you feel angry straight away. What is that a sign of?',
+        options: [
+          {
+            id: 'a',
+            text: 'That it must be important, so I should send it on fast.',
+            correct: false,
+            feedback:
+              'Something made to make you cross is made to be shared before you think. That is the moment to slow down.',
+          },
+          {
+            id: 'b',
+            text: 'Slow down. Feeling cross fast is a reason to check.',
+            correct: true,
+            feedback: 'Good. Strong feelings are the hook. Notice the hook and you are already safer.',
+          },
+          {
+            id: 'c',
+            text: 'Reply angrily, so everyone knows it is wrong.',
+            correct: false,
+            feedback:
+              'Angry replies spread it further. Check first, then say something.',
+          },
+        ],
+      },
+      {
+        id: 'q8',
+        text: 'Someone says "I saw it on a video, so it is real." Is a video proof?',
+        options: [
+          {
+            id: 'a',
+            text: 'Yes. You cannot fake a video.',
+            correct: false,
+            feedback: 'You can. Videos get cut, sped up and made up, just like pictures.',
+          },
+          {
+            id: 'b',
+            text: 'No. Videos can be changed too.',
+            correct: true,
+            feedback: 'Right. Seeing it is not the same as it being true.',
+          },
+          {
+            id: 'c',
+            text: 'Yes, if I can clearly see the person\'s face.',
+            correct: false,
+            feedback:
+              'Faces are the part people change most of all.',
+          },
+        ],
+      },
+      {
+        id: 'q9',
+        text: 'You shared the post before you checked, and now you know it is not true. What now?',
+        options: [
+          {
+            id: 'a',
+            text: 'Say nothing and hope people forget.',
+            correct: false,
+            feedback: 'It keeps going while you stay quiet. Saying so is how it stops.',
+          },
+          {
+            id: 'b',
+            text: 'Take it down, say it was not true, and tell an adult I trust.',
+            correct: true,
+            feedback:
+              'That is the brave one. Getting it wrong is fixable. Leaving it up is what does the damage.',
+          },
+          {
+            id: 'c',
+            text: 'Say it was not my fault, because someone sent it to me.',
+            correct: false,
+            feedback:
+              'Passing the blame does not take the post down. Fix it first, then tell an adult.',
           },
         ],
       },
@@ -1038,136 +1664,282 @@ const fableFallsHigher = {
     title: 'Run It Through S.U.R.E.',
     instruction:
       'Four clues about the post, jumbled up. Work out which check each one belongs to, then decide what it means.',
-    steps: [
-      { key: 'S', name: 'Source', sub: 'Who is behind it?' },
-      { key: 'U', name: 'Understand', sub: 'What is it claiming?' },
-      { key: 'R', name: 'Research', sub: 'Can I find it somewhere I trust?' },
-      { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
-    ],
-    cards: [
-      {
-        id: 'source',
-        step: 'S',
-        text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward.',
-        miss: 'Not that check. This clue is about where the post came from in the first place.',
-        note: 'Source. Nobody can point to who posted it first, so there is nobody here to trust.',
-        action: {
-          prompt: 'So what does that mean for the post?',
-          options: [
-            {
-              id: 'a',
-              text: 'Someone must have seen it happen, or they would not have posted it.',
-              correct: false,
-              feedback:
-                '"Someone said so" is not the same as someone knowing. With no first poster, there is nothing you can check.',
-            },
-            {
-              id: 'b',
-              text: 'Treat it as unproven until I know who posted it.',
-              correct: true,
-              feedback: 'Right. A story with no clear start is one to check, not one to pass on.',
-            },
-          ],
-        },
-      },
-      {
-        id: 'understand',
-        step: 'U',
-        text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat.',
-        miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
-        note: 'Understand. The caption claims far more than three lines of chat could ever show.',
-        action: {
-          prompt: 'So what is the post actually proving?',
-          options: [
-            {
-              id: 'a',
-              text: 'The caption explains what the chat means.',
-              correct: false,
-              feedback:
-                'A caption tells you what to think, and it was written by whoever wanted the post shared. It is not evidence.',
-            },
-            {
-              id: 'b',
-              text: 'Nothing. Nobody gets caught doing anything in those three lines.',
-              correct: true,
-              feedback:
-                'Exactly. Understand means holding the claim up against the evidence, and this evidence is very thin.',
-            },
-          ],
-        },
-      },
-      {
-        id: 'research',
-        step: 'R',
-        text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it.',
-        miss: 'Not that check. This clue is about looking for the story somewhere other than the chat.',
-        note: 'Research. Something this big would turn up somewhere real, and it has not turned up anywhere.',
-        action: {
-          prompt: 'Where do you go to find out?',
-          options: [
-            {
-              id: 'a',
-              text: 'Ask the group chat what everyone thinks.',
-              correct: false,
-              feedback:
-                'The group chat is where the rumour is already spreading. Asking there only adds to it.',
-            },
-            {
-              id: 'b',
-              text: 'Ask a teacher, or Mia herself, or wait for something official.',
-              correct: true,
-              feedback:
-                'Yes. Research means finding the story on its own, somewhere you trust, not counting how many forwards it has.',
-            },
-          ],
-        },
-      },
-      {
-        id: 'evaluate',
-        step: 'E',
-        text: 'It is shocking, it is spreading fast, and it makes one person look bad. One edge of the photo is stretched and blurry.',
-        miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
-        note: 'Evaluate. Too shocking, too fast, too one-sided, and the picture itself looks tampered with.',
-        action: {
-          prompt: 'What do those signs tell you?',
-          options: [
-            {
-              id: 'a',
-              text: 'Dramatic means important, so it is worth sending on quickly.',
-              correct: false,
-              feedback:
-                'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
-            },
-            {
-              id: 'b',
-              text: 'A stretched edge and a story this convenient are reasons to doubt it.',
-              correct: true,
-              feedback:
-                'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.',
-            },
-          ],
-        },
-      },
-    ],
-    verdict: {
-      prompt: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
-      options: [
-        {
-          id: 'a',
-          text: 'Forward it, but add "not sure if this is true".',
-          correct: false,
-          feedback:
-            'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.',
-        },
-        {
-          id: 'b',
-          text: 'No. And if it keeps spreading, tell an adult I trust.',
-          correct: true,
-          feedback:
-            'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.',
-        },
+    purpose: {
+      name: 'S.U.R.E.',
+      why: 'Four checks for anything that reaches you and wants a reaction.',
+      nameTheCheck: true,
+      checks: [
+        { key: 'S', name: 'Source', sub: 'Who is behind it?' },
+        { key: 'U', name: 'Understand', sub: 'What is it claiming?' },
+        { key: 'R', name: 'Research', sub: 'Can I find it somewhere I trust?' },
+        { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
       ],
     },
+    // Two posts, one drawn per run. With a single post the `miss` and `note`
+    // copy eventually teaches the clue→letter mapping, so by the second
+    // recheck round a child could pass on memory of *this post* rather than
+    // on the method (thingstoimproveon.md, "the two games that are already
+    // close"). A second, unrelated post means the method is the only thing
+    // that carries over.
+    posts: [
+      {
+        id: 'mia',
+        lead: 'The screenshot about Mia.',
+        cards: [
+          {
+            id: 'source',
+            step: 'S',
+            text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward.',
+            miss: 'Not that check. This clue is about where the post came from in the first place.',
+            note: 'Source. Nobody can point to who posted it first, so there is nobody here to trust.',
+            action: {
+              prompt: 'So what does that mean for the post?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'Someone must have seen it happen, or they would not have posted it.',
+                  correct: false,
+                  feedback:
+                    '"Someone said so" is not the same as someone knowing. With no first poster, there is nothing you can check.',
+                },
+                {
+                  id: 'b',
+                  text: 'Treat it as unproven until I know who posted it.',
+                  correct: true,
+                  feedback: 'Right. A story with no clear start is one to check, not one to pass on.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'understand',
+            step: 'U',
+            text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat.',
+            miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
+            note: 'Understand. The caption claims far more than three lines of chat could ever show.',
+            action: {
+              prompt: 'So what is the post actually proving?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'The caption explains what the chat means.',
+                  correct: false,
+                  feedback:
+                    'A caption tells you what to think, and it was written by whoever wanted the post shared. It is not evidence.',
+                },
+                {
+                  id: 'b',
+                  text: 'Nothing. Nobody gets caught doing anything in those three lines.',
+                  correct: true,
+                  feedback:
+                    'Exactly. Understand means holding the claim up against the evidence, and this evidence is very thin.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'research',
+            step: 'R',
+            text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it.',
+            miss: 'Not that check. This clue is about looking for the story somewhere other than the chat.',
+            note: 'Research. Something this big would turn up somewhere real, and it has not turned up anywhere.',
+            action: {
+              prompt: 'Where do you go to find out?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'Ask the group chat what everyone thinks.',
+                  correct: false,
+                  feedback:
+                    'The group chat is where the rumour is already spreading. Asking there only adds to it.',
+                },
+                {
+                  id: 'b',
+                  text: 'Ask a teacher, or Mia herself, or wait for something official.',
+                  correct: true,
+                  feedback:
+                    'Yes. Research means finding the story on its own, somewhere you trust, not counting how many forwards it has.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'evaluate',
+            step: 'E',
+            text: 'It is shocking, it is spreading fast, and it makes one person look bad. One edge of the photo is stretched and blurry.',
+            miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
+            note: 'Evaluate. Too shocking, too fast, too one-sided, and the picture itself looks tampered with.',
+            action: {
+              prompt: 'What do those signs tell you?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'Dramatic means important, so it is worth sending on quickly.',
+                  correct: false,
+                  feedback:
+                    'Something built to shock you is built to be shared before you think. That is the moment to slow down, not speed up.',
+                },
+                {
+                  id: 'b',
+                  text: 'A stretched edge and a story this convenient are reasons to doubt it.',
+                  correct: true,
+                  feedback:
+                    'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.',
+                },
+              ],
+            },
+          },
+        ],
+        verdict: {
+          prompt: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
+          options: [
+            {
+              id: 'a',
+              text: 'Forward it, but add "not sure if this is true".',
+              correct: false,
+              feedback:
+                'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.',
+            },
+            {
+              id: 'b',
+              text: 'No. And if it keeps spreading, tell an adult I trust.',
+              correct: true,
+              feedback:
+                'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.',
+            },
+          ],
+        },
+      },
+      {
+        id: 'shutdown',
+        lead: 'The post about the game shutting down.',
+        cards: [
+          {
+            id: 'source',
+            step: 'S',
+            text: 'It is headed "OFFICIAL ANNOUNCEMENT". The account that posted it is called gamenews_daily_real, and it was made three weeks ago.',
+            miss: 'Not that check. This clue is about who is behind the post in the first place.',
+            note: 'Source. A three-week-old account calling itself "real" is not the people who make the game.',
+            action: {
+              prompt: 'So what does the account tell you?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'It says official, so it must be speaking for the game.',
+                  correct: false,
+                  feedback:
+                    'Anyone can type the word official. The word is free. Being the actual studio is not.',
+                },
+                {
+                  id: 'b',
+                  text: 'Nothing yet. Anyone can name an account anything.',
+                  correct: true,
+                  feedback:
+                    'Right. "Real" in a username is a claim, not proof. Look for who is genuinely behind it.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'understand',
+            step: 'U',
+            text: 'The caption says the game is "shutting down for good next week". The screenshot under it is a notice about servers being down for maintenance.',
+            miss: 'Not that check. This clue is about the claim itself, and whether the picture backs it up.',
+            note: 'Understand. Maintenance means back soon. The caption turned that into gone forever.',
+            action: {
+              prompt: 'So what is the screenshot actually showing?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'It proves the game is closing. That is what the notice is about.',
+                  correct: false,
+                  feedback:
+                    'It is about a few hours offline. The caption is doing all the work, and the caption is the part someone wrote.',
+                },
+                {
+                  id: 'b',
+                  text: 'A short outage, which is not the same thing at all.',
+                  correct: true,
+                  feedback:
+                    'Exactly. Understand means holding the claim up against the evidence, and the evidence says something much smaller.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'research',
+            step: 'R',
+            text: 'The game\'s own app says nothing about it. Neither does its website. Nobody who actually works on it has mentioned it anywhere.',
+            miss: 'Not that check. This clue is about looking for the story somewhere other than the post.',
+            note: 'Research. News this big would be on the game\'s own channels first, and it is on none of them.',
+            action: {
+              prompt: 'Where do you go to find out?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'Check how many people have shared it.',
+                  correct: false,
+                  feedback:
+                    'Shares measure how fast something travelled, never whether it was true when it set off.',
+                },
+                {
+                  id: 'b',
+                  text: 'Open the game itself, or its own site, and see what they say.',
+                  correct: true,
+                  feedback:
+                    'Yes. Research means going to the source that would actually know, not to the crowd repeating it.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'evaluate',
+            step: 'E',
+            text: 'It is upsetting, it is spreading fast, and it ends with "share this to save the game". The logo in the picture is the wrong shade of blue.',
+            miss: 'Not that check. This clue is about whether the post holds together when you look hard at it.',
+            note: 'Evaluate. Upsetting, urgent, and it asks you to share as the fix. That combination is the tell.',
+            action: {
+              prompt: 'What do those signs tell you?',
+              options: [
+                {
+                  id: 'a',
+                  text: 'Sharing costs nothing, so I may as well, just in case.',
+                  correct: false,
+                  feedback:
+                    'Sharing is exactly what it was built to make you do. "Just in case" is how a made-up story gets its reach.',
+                },
+                {
+                  id: 'b',
+                  text: 'A post that asks to be shared to fix something is a post to doubt.',
+                  correct: true,
+                  feedback:
+                    'Good eye. Wrong-shade logos, urgency, and "share to save it" are all signs of something made to travel, not something true.',
+                },
+              ],
+            },
+          },
+        ],
+        verdict: {
+          prompt: 'All four checks are done, and not one of them held up. Do you forward it to the group chat?',
+          options: [
+            {
+              id: 'a',
+              text: 'Send it, but say "might not be true".',
+              correct: false,
+              feedback:
+                'The "might not be true" gets dropped at the very next forward, and the post keeps travelling without it. Passing it on with a warning is still passing it on.',
+            },
+            {
+              id: 'b',
+              text: 'No. And I will say where I actually checked, so nobody else falls for it.',
+              correct: true,
+              feedback:
+                'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it, and telling people where you looked is what stops the next forward.',
+            },
+          ],
+        },
+      },
+    ],
   },
 
   rule: {

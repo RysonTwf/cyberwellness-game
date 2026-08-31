@@ -247,7 +247,7 @@ export function makePasswordFortressLevelConfig(
       // take any other scene-targeted tween down with it.
       this.meter = { v: 0 };
       this.hintText = this.add
-        .text(280, 264, 'Walk right to find out what’s going on.', {
+        .text(280, 264, 'Walk right to find out what is going on.', {
           fontFamily: 'sans-serif',
           fontSize: '12px',
           color: '#1f3452',
@@ -282,7 +282,7 @@ export function makePasswordFortressLevelConfig(
     resolveSafe() {
       this.locked = false;
       this.hintText?.setText('Collect the letter, number, and symbol tiles up on the platforms.');
-      this.flashToast('Gate’s open. That is not really Sam. The real Sam never needs your password.');
+      this.flashToast('The gate is open. That is not really Sam. The real Sam never needs your password.');
       this.tweens.add(motionTween({
         targets: this.gateBody,
         alpha: 0,
@@ -304,7 +304,7 @@ export function makePasswordFortressLevelConfig(
     resolveDoor(passed, message) {
       if (passed) {
         this.doorAnswered = true;
-        this.flashToast(message ?? 'That’s a strong password.');
+        this.flashToast(message ?? 'That is a strong password.');
         this.tweens.add(motionTween({
           targets: this.door,
           alpha: 0,

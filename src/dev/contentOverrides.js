@@ -144,6 +144,9 @@ const EDITABLE_KEYS = new Set([
   'accept',
   'feedback',
   'miss',
+  'why',
+  'lead',
+  'checkNote',
   'instruction',
   'title',
   'sub',
@@ -167,7 +170,8 @@ const SKIP_KEYS = new Set([
   'reportBlockEligible',
   'type',
   'slots',
-  'items', // items[].text is editable — handled below via a targeted walk
+  'musts', // item ids and a ratio, not copy (Balance Bay's Three Musts gate)
+  'items', // items[].text/.checkNote are editable, targeted walk below
 ]);
 
 function humanize(dotPath, view) {
@@ -207,9 +211,34 @@ function humanize(dotPath, view) {
   if (/^game\.stones\.\d+\.text$/.test(dotPath)) return `Mini-game — stone ${n(2)}`;
   if (/^game\.stones\.\d+\.note$/.test(dotPath)) return `Mini-game — stone ${n(2)} (why)`;
   if (/^game\.verdicts\.\w+$/.test(dotPath)) return `Mini-game — result (${seg[2]})`;
-  // S.U.R.E. (Fable Falls P4–P6)
-  if (/^game\.steps\.\d+\.(name|sub)$/.test(dotPath))
-    return `S.U.R.E. — check ${n(2)} ${seg[3] === 'sub' ? 'question' : 'name'}`;
+  if (/^game\.items\.\d+\.checkNote$/.test(dotPath)) return `Mini-game, card ${n(2)} (which check)`;
+  if (/^game\.stones\.\d+\.checkNote$/.test(dotPath)) return `Mini-game, stone ${n(2)} (which check)`;
+  // The named method every game now shows while you play (MethodTrack.jsx)
+  if (dotPath === 'game.purpose.name') return 'Method, name';
+  if (dotPath === 'game.purpose.why') return 'Method, why it matters';
+  if (dotPath === 'game.purpose.prompt') return 'Method, "which check?" question';
+  if (/^game\.purpose\.checks\.\d+\.(name|sub)$/.test(dotPath))
+    return `Method, check ${n(3)} ${seg[4] === 'sub' ? 'question' : 'name'}`;
+  // S.U.R.E. (Fable Falls P4–P6), one of `game.posts` is drawn per run
+  if (/^game\.posts\.\d+\.lead$/.test(dotPath)) return `S.U.R.E. post ${n(2)} name`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.text$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)}`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.miss$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)} (wrong check)`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.note$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)} (right check)`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.action\.prompt$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)} question`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.action\.options\.\d+\.text$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)} answer ${String.fromCharCode(65 + Number(seg[7]))}`;
+  if (/^game\.posts\.\d+\.cards\.\d+\.action\.options\.\d+\.feedback$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} clue ${n(4)} answer ${String.fromCharCode(65 + Number(seg[7]))}, feedback`;
+  if (/^game\.posts\.\d+\.verdict\.prompt$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} last question`;
+  if (/^game\.posts\.\d+\.verdict\.options\.\d+\.text$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} last answer ${String.fromCharCode(65 + Number(seg[5]))}`;
+  if (/^game\.posts\.\d+\.verdict\.options\.\d+\.feedback$/.test(dotPath))
+    return `S.U.R.E. post ${n(2)} last answer ${String.fromCharCode(65 + Number(seg[5]))}, feedback`;
   if (/^game\.cards\.\d+\.text$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)}`;
   if (/^game\.cards\.\d+\.miss$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)} (wrong check)`;
   if (/^game\.cards\.\d+\.note$/.test(dotPath)) return `S.U.R.E. — clue ${n(2)} (right check)`;
@@ -270,10 +299,12 @@ export function collectEditable(rawView, realmId, band) {
 
   walk(rawView, '');
 
-  // `items` is skipped wholesale above (to dodge items[].id/.bin/etc); pick
-  // its text back up here.
+  // `items` is skipped wholesale above (to dodge items[].id/.bin/.check);
+  // pick its two copy fields back up here.
   (rawView.game?.items ?? []).forEach((it, i) => {
     if (typeof it.text === 'string' && it.text.trim()) push(`game.items.${i}.text`, it.text);
+    if (typeof it.checkNote === 'string' && it.checkNote.trim())
+      push(`game.items.${i}.checkNote`, it.checkNote);
   });
 
   return out;

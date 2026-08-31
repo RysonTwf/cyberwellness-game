@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Settings, X, Music, Volume2 } from 'lucide-react';
+import { Settings, X, Music, Volume2, ClipboardList } from 'lucide-react';
 import { useAudioSettings } from '../hooks/useAudioSettings';
 import { lockInput, unlockInput } from '../lib/inputLock';
+import { readSaved } from '../state/useProgress';
+import { ACTIVE_REALMS } from '../data/realms';
 
 /**
  * Always-available settings menu — a floating gear button, present on every
@@ -76,7 +78,70 @@ function SettingsPanel({ onClose }) {
           value={sfx}
           onChange={setSfxVolume}
         />
+
+        <HowItWent />
       </div>
+    </div>
+  );
+}
+
+/**
+ * The teacher's read-out: behind a "Show" toggle in Settings, deliberately
+ * not on the child's certificate.
+ *
+ * Every mini-game has always handed `onComplete` the number it got right
+ * first time, and that number has always been saved: RealmScreen → App →
+ * useProgress writes it as `gameScore` into the journal, and the journal goes
+ * to localStorage. Nothing ever read it back, so there was no way for a
+ * teacher to tell a child who judged carefully from one who thrashed
+ * (thingstoimproveon.md, Secondary findings). This is the read.
+ *
+ * It is kept out of the child's flow on purpose. design.md §5/§8 is explicit
+ * that there is no score and no fail state in front of the player, and a
+ * per-realm mark on the finale would undo that. Settings is where an adult
+ * already goes.
+ */
+function HowItWent() {
+  const [shown, setShown] = useState(false);
+  const saved = shown ? readSaved() : null;
+  const rows = saved
+    ? ACTIVE_REALMS.map((r) => ({ realm: r, p: saved.realmProgress?.[r.id] })).filter(
+        ({ p }) => p?.stamped,
+      )
+    : [];
+
+  return (
+    <div className="how-it-went">
+      <button
+        type="button"
+        className="btn btn-ghost btn-sm"
+        onClick={() => setShown((s) => !s)}
+        aria-expanded={shown}
+      >
+        <ClipboardList size={16} />
+        {shown ? 'Hide how it went' : 'For the teacher: how it went'}
+      </button>
+
+      {shown && (
+        <>
+          <p className="muted" style={{ marginBottom: 4 }}>
+            How many each realm&apos;s game got right first time. Not a mark, a child may
+            retry as often as they like, and the last attempt is what is stored.
+          </p>
+          {rows.length === 0 ? (
+            <p className="muted">No realms finished on this device yet.</p>
+          ) : (
+            <ul className="how-it-went-list">
+              {rows.map(({ realm, p }) => (
+                <li key={realm.id}>
+                  <span>{realm.name}</span>
+                  <strong>{p.gameScore} right first time</strong>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
+      )}
     </div>
   );
 }

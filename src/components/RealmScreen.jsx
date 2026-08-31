@@ -10,8 +10,6 @@ import StepTrail from './StepTrail';
 import World from '../world/World';
 import RealmArt from './RealmArt';
 import MiniGameSort from '../minigames/MiniGameSort';
-import MiniGameSpot from '../minigames/MiniGameSpot';
-import MiniGameBalance from '../minigames/MiniGameBalance';
 import MiniGameSteppingStones from '../minigames/MiniGameSteppingStones';
 import MiniGameQuiz from '../minigames/MiniGameQuiz';
 import MiniGameSure from '../minigames/MiniGameSure';
@@ -28,10 +26,14 @@ import BalanceBeachRealm from './BalanceBeachRealm';
 // `fullMechanic: 'platformerStory'` (PlatformerStoryRealm.jsx, below) for a
 // while now — no realm's `game.type` is 'platformer' any more, and the
 // mechanic + its Phaser scene were removed 30 Aug 2026 as dead code.
+//
+// 'spot' and 'balance' went the same way on 31 Aug 2026. No realm had set
+// `game.type: 'spot'` since Privacy Peaks became quiz/steppingstones, and
+// MiniGameBalance was unreachable behind `fullMechanic: 'balanceBeach'`, a
+// second implementation of the beach's maths, quietly drifting away from the
+// one that actually runs (thingstoimproveon.md, Secondary findings).
 const GAMES = {
   sort: MiniGameSort,
-  spot: MiniGameSpot,
-  balance: MiniGameBalance,
   steppingstones: MiniGameSteppingStones,
   quiz: MiniGameQuiz,
   sure: MiniGameSure,
@@ -41,9 +43,12 @@ const GAMES = {
 const GAME_LABELS = { quiz: 'Questions', sure: 'S.U.R.E.' };
 
 // Order the optional post-decision beats appear in, when a realm defines
-// them. A beat with an `accept` string renders as prompt → tap-to-agree →
-// follow-up (digital footprint); a beat with `options` renders as prompt →
-// pick one → response (strong password, who would you tell).
+// them. Every beat is prompt → pick one → response. The digital-footprint
+// beat used to be prompt → a single "Good point." button → follow-up, which
+// asked a real question ("would you be happy for this to stay online
+// forever?") and then accepted any answer at all, i.e. no answer
+// (thingstoimproveon.md, Secondary findings). It's a two-option pick now,
+// like the others, and the tap-to-agree branch is gone with it.
 const EXTRA_BEAT_ORDER = ['footprint', 'strongPassword', 'tellSomeone'];
 
 /**
@@ -98,10 +103,8 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   // Improvement Plan §2) — only realms that define `extraBeats` show these.
   const extraBeatKeys = EXTRA_BEAT_ORDER.filter((k) => realm.extraBeats?.[k]);
   const [extraIndex, setExtraIndex] = useState(0);
-  const [beatAcked, setBeatAcked] = useState(false);
   const [tellPick, setTellPick] = useState(null);
   const advanceExtra = () => {
-    setBeatAcked(false);
     setTellPick(null);
     setExtraIndex((i) => i + 1);
   };
@@ -267,41 +270,6 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                       <span className="beat-tag">
                         Follow-up question {extraIndex + 1} of {extraBeatKeys.length}
                       </span>
-                    )}
-
-                    {currentExtraKey && currentExtra.accept && (
-                      <>
-                        <DialogueCard
-                          who={currentExtra.who}
-                          text={currentExtra.prompt}
-                          accent={realm.accent}
-                        />
-                        {beatAcked ? (
-                          <>
-                            <DialogueCard
-                              who={currentExtra.who}
-                              text={currentExtra.followUp}
-                              accent={realm.accent}
-                            />
-                            <div className="center">
-                              <button type="button" className="btn btn-accent" onClick={advanceExtra}>
-                                Continue
-                                <ArrowRight size={19} />
-                              </button>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="center">
-                            <button
-                              type="button"
-                              className="btn btn-accent"
-                              onClick={() => setBeatAcked(true)}
-                            >
-                              {currentExtra.accept}
-                            </button>
-                          </div>
-                        )}
-                      </>
                     )}
 
                     {currentExtraKey && currentExtra.options && (

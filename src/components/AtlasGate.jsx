@@ -23,7 +23,7 @@ export const DIARY_COPY = [
     label: 'Comet — passport intro',
     text: 'There you are. This is your passport now. Five empty stamps, one for each realm. You just need a name for the cover.',
   },
-  { id: 'letsDo', label: 'Button — start', text: "Let's do it" },
+  { id: 'letsDo', label: 'Button — start', text: 'I am ready' },
   { id: 'passportLabel', label: 'Passport heading', text: 'Your passport' },
   { id: 'nameLabel', label: 'Name field label', text: 'Traveller name' },
   { id: 'namePlaceholder', label: 'Name field placeholder', text: 'Type your first name' },

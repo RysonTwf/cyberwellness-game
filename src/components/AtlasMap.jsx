@@ -17,7 +17,7 @@ export const ATLAS_TOUR = [
   {
     target: '.realm-strip',
     title: 'Five realms',
-    text: 'Each island teaches something different. Read here what a realm is about, and what you’ll learn. Tap a card to travel straight there.',
+    text: 'Each island teaches something different. Read here what a realm is about, and what you will learn. Tap a card to travel straight there.',
   },
   {
     target: '.journal-count',

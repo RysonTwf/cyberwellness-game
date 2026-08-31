@@ -30,7 +30,7 @@ export const ROOM_TOUR = [
   {
     target: '.objective',
     title: 'Never lost',
-    text: 'Not sure what to do next? The bar down here always says your next move. That’s everything. Go open that diary!',
+    text: 'Not sure what to do next? The bar down here always says your next move. That is everything. Go open that diary!',
   },
 ];
 
@@ -42,12 +42,14 @@ export const ROOM_TOUR = [
  * Once named, the diary settles and the door becomes the way out to the
  * Atlas.
  */
-const SPAWN = { x: 50, y: 82 };
+// In the clear lane below the door, so the way out is a straight walk
+// rather than a route around the reading nook (see RoomScene's FURNITURE).
+const SPAWN = { x: 67, y: 84 };
 const BOUNDS = { minX: 10, maxX: 90, minY: 30, maxY: 92 };
 // Just in front of the table (RoomScene's TABLE_BASE), so the Traveler walks
 // up to it on the floor rather than standing inside the furniture.
 // No label — the diary glows for itself, and the pin is enough of a marker.
-const DIARY_SPOT = { id: 'diary', x: 70, y: 62, action: 'Open it' };
+const DIARY_SPOT = { id: 'diary', x: 58, y: 63, action: 'Open it' };
 // On the floor just inside the door, which is set into the back wall.
 const DOOR_SPOT = { id: 'door', x: 68, y: 36, label: 'the door', action: 'Step outside' };
 

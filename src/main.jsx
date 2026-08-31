@@ -26,6 +26,7 @@ import ArtPreview from './dev/ArtPreview';
 // checking scenery against the walkable band. Nothing links to it.
 const Root = window.location.hash === '#art' ? ArtPreview : App;
 
+
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Root />

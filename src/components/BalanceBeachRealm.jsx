@@ -3,6 +3,7 @@ import { ArrowRight, Check, RefreshCw, Scale } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import StampMoment from './StampMoment';
 import StepTrail from './StepTrail';
+import MethodTrack from './MethodTrack';
 import RealmArt from './RealmArt';
 import World from '../world/World';
 import BeachScene, { BEACH_OBSTACLES } from '../world/beach/BeachScene';
@@ -15,7 +16,8 @@ import BeachScene, { BEACH_OBSTACLES } from '../world/beach/BeachScene';
  * Instead of tapping chips off a pool in a panel, the Traveler walks the
  * beach and picks activities up as hotspots, watching a real seesaw
  * (world/beach/BeachScene.jsx) tip as they go. The day / tilt / verdict
- * maths is the same as minigames/MiniGameBalance.jsx.
+ * seesaw maths lives here and nowhere else (the unreachable panel
+ * version, minigames/MiniGameBalance.jsx, was deleted 31 Aug 2026).
  *
  * The school revision pass cut this realm's branching choice and its
  * Glimmer character, so the flow here is just story → your day → rule.
@@ -72,14 +74,36 @@ export default function BalanceBeachRealm({
 
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
 
-  const { items, slots, verdicts } = realm.game;
+  const { items, slots, verdicts, musts, purpose } = realm.game;
   const chosen = day.map((id) => items.find((i) => i.id === id));
   const screenCount = chosen.filter((i) => i.screen).length;
   const lifeCount = chosen.length - screenCount;
   const full = day.length === slots;
-  // Same formula as MiniGameBalance: more screen time tips one way, more of
-  // everything else tips the other, capped by construction at the extremes.
+  // More screen time tips one way, more of everything else tips the other,
+  // capped by construction at the extremes.
   const tilt = day.length ? -((screenCount - lifeCount) / slots) * 15 : 0;
+
+  /**
+   * The Three Musts: the realm's actual gate.
+   *
+   * Filling six slots used to be the entire requirement: the verdict below
+   * was computed, shown, and then never required, so six hours of screens
+   * passed exactly as readily as a balanced day. Comet said the seesaw had
+   * tipped over and let you through anyway, which made this the one realm
+   * that was not merely guessable but unfailable (thingstoimproveon.md §1).
+   *
+   * These three replace that invisible threshold with conditions a child can
+   * reason from and watch tick off live. Still no penalty and no buzzer
+   * "Clear the day" is right there, and a day that doesn't meet them just
+   * isn't finished yet (design.md §8).
+   */
+  const met = {
+    S: day.includes(musts.sleep),
+    E: musts.somethingElse.some((id) => day.includes(id)),
+    H: screenCount <= slots * musts.maxScreenShare,
+  };
+  const cleared = new Set(Object.keys(met).filter((k) => met[k]));
+  const balanced = full && purpose.checks.every((c) => met[c.key]);
 
   const verdict = !full
     ? null
@@ -193,6 +217,10 @@ export default function BalanceBeachRealm({
           <aside className="stage-side">
             <p className="instruction">{realm.game.instruction}</p>
 
+            {/* The gate, on screen and ticking off live, so it reads as three
+                things to get right rather than a hidden pass mark. */}
+            <MethodTrack purpose={purpose} cleared={cleared} />
+
             <div className="scale-legend">
               <span style={{ color: 'var(--periwinkle)' }}>Screen time · {screenCount}</span>
               <span style={{ color: 'var(--teal)' }}>Everything else · {lifeCount}</span>
@@ -244,7 +272,7 @@ export default function BalanceBeachRealm({
                 <RefreshCw size={16} />
                 Clear the day
               </button>
-              {full && (
+              {balanced && (
                 <button
                   type="button"
                   className="btn btn-accent"
@@ -253,8 +281,17 @@ export default function BalanceBeachRealm({
                     setStep('rule');
                   }}
                 >
-                  That&apos;s my day
+                  That is my day
                 </button>
+              )}
+              {full && !balanced && (
+                <p className="tile-hint">
+                  {purpose.checks
+                    .filter((c) => !met[c.key])
+                    .map((c) => c.sub)
+                    .join('. ')}
+                  . Swap something out and try again.
+                </p>
               )}
             </div>
           </aside>

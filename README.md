@@ -1,7 +1,7 @@
 # Cyber Wellness Quest
 
-A walkable cyber wellness game for ages 7–12. You're a Traveler with a paper
-journal; a paper-airplane spirit called Comet shows you the Atlas — a map of the
+A walkable cyber wellness game for ages 7–12. You are a Traveler with a paper
+journal; a paper-airplane spirit called Comet shows you the Atlas, a map of the
 internet made of four islands. Walk each realm, talk to who lives there, make a
 call, play a small game, and earn a passport stamp. Four stamps gets you the
 Wise Traveler certificate.
@@ -21,15 +21,15 @@ npm run preview  # serve the built site
 
 Each realm is a 2D scene you walk around in:
 
-- **Move** — tap/click the ground to walk there, or hold the arrow keys / WASD.
-- **Interact** — walk up to the pin and press Space/Enter, or tap the button
+- **Move**: tap/click the ground to walk there, or hold the arrow keys / WASD.
+- **Interact**: walk up to the pin and press Space/Enter, or tap the button
   that appears over the Traveler.
 - Each step (story → decision → mini-game → the rule) puts the pin somewhere
   new, and the scene itself changes once you make the safe choice: the vault
   opens, the fog lifts, the water clears, the tide goes out.
 
 Nothing can be failed. Picking the unsafe option gets a warm redirect from
-Comet and hands the decision straight back — there is no dead end, no timer,
+Comet and hands the decision straight back, there is no dead end, no timer
 and no score shown to the player.
 
 ## The four realms
@@ -70,9 +70,9 @@ burning on open water, a Traveler walking across a bog):
 
 1. **Solid ground must be drawn across the entire walkable band.** If the band
    runs 207–260, every pixel of scene between those rows has to be beach, bank,
-   or floor — for *both* moods, since the art changes after the safe choice.
+   or floor, for *both* moods, since the art changes after the safe choice.
 2. **Nothing solid may float above the band.** `World.jsx` draws the Traveler
-   over the scene unconditionally — there is no depth sorting — so props need to
+   over the scene unconditionally, there is no depth sorting, so props need to
    sit where a Traveler overlapping them still reads correctly.
 
 ### Scene contact sheet
@@ -86,14 +86,14 @@ walking to all sixteen corners by hand. It is dev-only and nothing links to it.
 
 - Progress (name, stamps, pledge) persists in `localStorage` under
   `cyber-wellness-quest/v1`. "Start a new journal" on the finale clears it.
-- No image assets — every character and scene is SVG shapes, per `design.md` §9.
+- No image assets: every character and scene is SVG shapes, per `design.md` §9.
 - Fonts are self-hosted via `@fontsource`, so there are no external requests.
 - The walk loop is driven by `requestAnimationFrame`, so it pauses while the tab
   is in the background and resumes with a clamped timestep (no teleporting).
   Note for automated testing: a browser throttles `rAF` to zero in a hidden tab,
   so the Traveler will appear frozen there. That is the harness, not the game.
 - The step panel is rendered through a **portal to `<body>`**. `.fold` animates a
-  `perspective()/rotateY()` transform, which makes it a containing block — a
+  `perspective()/rotateY()` transform, which makes it a containing block, a
   `position: fixed` scrim inside it resolves against the realm card instead of
   the viewport. Anything full-screen must be portalled out for the same reason.
 - Panel action rows (`.center`, `.panel-actions`) are sticky to the bottom of
@@ -102,7 +102,7 @@ walking to all sixteen corners by hand. It is dev-only and nothing links to it.
 
 ## Known deviations from the design docs
 
-Both were deliberate calls, noted here so the docs and the build don't quietly
+Both were deliberate calls, noted here so the docs and the build do not quietly
 drift apart:
 
 1. **Walkable world instead of card-based navigation.** `design.md` §5 specified
@@ -113,5 +113,11 @@ drift apart:
    already flagged persistence as the follow-up once the base game existed.
 3. **A third mini-game component.** §6 lists only Sort and Spot, but §5's own
    "Balance the Day" description is a scale rather than two bins, so it has its
-   own component — reusing Sort's exact tap-to-place controls so there is no new
+   own component, reusing Sort's exact tap-to-place controls so there is no new
    control to learn.
+
+## Writing rules
+
+All player-facing copy follows the client's writing rules: school language, no
+short forms, no text-speak, no em-dashes, school-kid friendly. They are
+written out in `CLAUDE.md` and `design.md`.

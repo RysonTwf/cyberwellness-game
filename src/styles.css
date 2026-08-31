@@ -702,9 +702,40 @@ p {
   color: var(--ink-soft);
 }
 
-/* ---------- S.U.R.E. (MiniGameSure.jsx) ---------------------------------- */
+/* ---------- The named method (components/MethodTrack.jsx) ----------------- */
 
-/* The four checks, ticked off as each one's clue is placed. */
+/* Every mini-game now names the method it is teaching and keeps it on screen
+   while you play, S.U.R.E. T.H.I.N.K. S.T.O.P. L.M.N. the Three
+   Questions, the Three Musts. The chip row below started as S.U.R.E.'s own
+   track and is now shared by all of them. */
+.method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--accent-wash, rgba(0, 0, 0, 0.03));
+}
+
+.method-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.method-why {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* The checks, ticked off as each one is used. */
 .sure-track {
   display: flex;
   flex-wrap: wrap;
@@ -2901,4 +2932,36 @@ p {
   height: 20px;
   cursor: pointer;
   accent-color: var(--gold);
+}
+
+/* ---------- Teacher read-out (SettingsMenu.jsx) --------------------------- */
+
+/* The first-try count each realm's game reported, surfaced for an adult and
+   deliberately not on the child's certificate, design.md §5/§8 keeps scores
+   out of the player's flow entirely. */
+.how-it-went {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.how-it-went-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.how-it-went-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
 }
