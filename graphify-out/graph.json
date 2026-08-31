@@ -361,7 +361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "app.jsx"
     },
@@ -369,11 +369,11 @@
       "label": "App()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 1,
-      "community_name": "CopyEditor.jsx",
+      "community": 8,
+      "community_name": "audioSettings.js",
       "norm_label": "app()"
     },
     {
@@ -384,7 +384,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "atlasgate.jsx"
     },
     {
@@ -395,7 +395,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate_diary_copy",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "diary_copy"
     },
     {
@@ -406,7 +406,7 @@
       "_origin": "ast",
       "id": "src_components_atlasgate_atlasgate",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "atlasgate()"
     },
     {
@@ -593,7 +593,7 @@
       "_origin": "ast",
       "id": "src_components_certificatescreen",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "certificatescreen.jsx"
     },
     {
@@ -604,7 +604,7 @@
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificate_copy",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "certificate_copy"
     },
     {
@@ -614,7 +614,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_certificatescreen_certificatescreen",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "certificatescreen()"
     },
@@ -625,7 +625,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_characterselect",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "characterselect.jsx"
     },
@@ -636,7 +636,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_components_characterselect_options",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "options"
     },
@@ -647,7 +647,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_characterselect_characterselect",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "characterselect()"
     },
@@ -659,7 +659,7 @@
       "_origin": "ast",
       "id": "src_components_characters",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "characters.jsx"
     },
     {
@@ -670,7 +670,7 @@
       "_origin": "ast",
       "id": "src_components_characters_comet",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "comet()"
     },
     {
@@ -681,7 +681,7 @@
       "_origin": "ast",
       "id": "src_components_characters_vex",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "vex()"
     },
     {
@@ -692,7 +692,7 @@
       "_origin": "ast",
       "id": "src_components_characters_fog",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "fog()"
     },
     {
@@ -703,7 +703,7 @@
       "_origin": "ast",
       "id": "src_components_characters_pockets",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "pockets()"
     },
     {
@@ -714,7 +714,7 @@
       "_origin": "ast",
       "id": "src_components_characters_commentbubble",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "commentbubble()"
     },
     {
@@ -725,7 +725,7 @@
       "_origin": "ast",
       "id": "src_components_characters_by_name",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "by_name"
     },
     {
@@ -736,7 +736,7 @@
       "_origin": "ast",
       "id": "src_components_characters_characterart",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "characterart()"
     },
     {
@@ -768,8 +768,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_dialoguecard",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "dialoguecard.jsx"
     },
     {
@@ -779,8 +779,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_dialoguecard_dialoguecard",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "dialoguecard()"
     },
     {
@@ -790,7 +790,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_introstory",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "introstory.jsx"
     },
@@ -801,7 +801,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_components_introstory_intro_beats",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "intro_beats"
     },
@@ -812,7 +812,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_components_introstory_journal",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "journal()"
     },
@@ -823,7 +823,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "src_components_introstory_introstory",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "introstory()"
     },
@@ -867,7 +867,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_mainscreen",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "mainscreen.jsx"
     },
@@ -878,7 +878,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_mainscreen_mainscreen",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "mainscreen()"
     },
@@ -900,8 +900,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_platformerstoryrealm_platformerstoryrealm",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "platformerstoryrealm()"
     },
     {
@@ -1077,7 +1077,7 @@
       "_origin": "ast",
       "id": "src_components_realmscreen_realmscreen",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "realmscreen()"
     },
     {
@@ -1109,7 +1109,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_schoollogo",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "schoollogo.jsx"
     },
@@ -1120,7 +1120,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_schoollogo_schoollogo",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "schoollogo()"
     },
@@ -1176,7 +1176,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "stampbadge.jsx"
     },
     {
@@ -1187,7 +1187,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_icons",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "icons"
     },
     {
@@ -1198,7 +1198,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_makerandom",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "makerandom()"
     },
     {
@@ -1209,7 +1209,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_seedfrom",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "seedfrom()"
     },
     {
@@ -1220,7 +1220,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_roughcircle",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "roughcircle()"
     },
     {
@@ -1231,7 +1231,7 @@
       "_origin": "ast",
       "id": "src_components_stampbadge_stampbadge",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "stampbadge()"
     },
     {
@@ -1241,8 +1241,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_stampmoment",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "stampmoment.jsx"
     },
     {
@@ -1252,8 +1252,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_stampmoment_stampmoment",
-      "community": 2,
-      "community_name": "RealmScreen.jsx",
+      "community": 6,
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "stampmoment()"
     },
     {
@@ -1285,7 +1285,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_titlescene",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "titlescene.jsx"
     },
@@ -1296,7 +1296,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_titlescene_flower",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "flower()"
     },
@@ -1307,7 +1307,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_titlescene_tree",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "tree()"
     },
@@ -1318,7 +1318,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_titlescene_titlescene",
-      "community": 6,
+      "community": 15,
       "community_name": "App.jsx",
       "norm_label": "titlescene()"
     },
@@ -1330,7 +1330,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "travelerroom.jsx"
     },
     {
@@ -1341,7 +1341,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_room_tour",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "room_tour"
     },
     {
@@ -1352,7 +1352,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_spawn",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "spawn"
     },
     {
@@ -1363,7 +1363,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_bounds",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "bounds"
     },
     {
@@ -1374,7 +1374,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_diary_spot",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "diary_spot"
     },
     {
@@ -1385,7 +1385,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_door_spot",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "door_spot"
     },
     {
@@ -1396,7 +1396,7 @@
       "_origin": "ast",
       "id": "src_components_travelerroom_travelerroom",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "travelerroom()"
     },
     {
@@ -1560,8 +1560,8 @@
       "source_location": "L1352",
       "_origin": "ast",
       "id": "src_data_realms_realm_by_id",
-      "community": 6,
-      "community_name": "App.jsx",
+      "community": 4,
+      "community_name": "realms.js",
       "norm_label": "realm_by_id"
     },
     {
@@ -1637,8 +1637,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_dev_artpreview",
-      "community": 20,
-      "community_name": "ArtPreview.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "artpreview.jsx"
     },
     {
@@ -1648,8 +1648,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_dev_artpreview_moods",
-      "community": 20,
-      "community_name": "ArtPreview.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "moods"
     },
     {
@@ -1659,8 +1659,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_dev_artpreview_scene",
-      "community": 20,
-      "community_name": "ArtPreview.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "scene()"
     },
     {
@@ -1670,8 +1670,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_dev_artpreview_artpreview",
-      "community": 20,
-      "community_name": "ArtPreview.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "artpreview()"
     },
     {
@@ -2045,7 +2045,7 @@
       "_origin": "ast",
       "id": "src_dev_contentoverrides_applyscreenoverrides",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "applyscreenoverrides()"
     },
     {
@@ -2089,7 +2089,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "useuiclicksfx.js"
     },
     {
@@ -2100,7 +2100,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuiclicksfx_useuiclicksfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "useuiclicksfx()"
     },
     {
@@ -2111,7 +2111,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "useuihoversfx.js"
     },
     {
@@ -2122,7 +2122,7 @@
       "_origin": "ast",
       "id": "src_hooks_useuihoversfx_useuihoversfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "useuihoversfx()"
     },
     {
@@ -2308,8 +2308,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_motion",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "motion.js"
     },
     {
@@ -2319,8 +2319,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_lib_motion_prefersreducedmotion",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "prefersreducedmotion()"
     },
     {
@@ -2330,8 +2330,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_lib_motion_motiontween",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "motiontween()"
     },
     {
@@ -2349,7 +2349,7 @@
       "label": "TRACK_FILES",
       "file_type": "code",
       "source_file": "src/lib/music.js",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_lib_music_track_files",
       "community": 8,
@@ -2360,7 +2360,7 @@
       "label": "targetVolume()",
       "file_type": "code",
       "source_file": "src/lib/music.js",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_lib_music_targetvolume",
       "community": 8,
@@ -2371,7 +2371,7 @@
       "label": "clearFade()",
       "file_type": "code",
       "source_file": "src/lib/music.js",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "src_lib_music_clearfade",
       "community": 8,
@@ -2382,7 +2382,7 @@
       "label": "playMusic()",
       "file_type": "code",
       "source_file": "src/lib/music.js",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "src_lib_music_playmusic",
       "community": 8,
@@ -2390,10 +2390,32 @@
       "norm_label": "playmusic()"
     },
     {
+      "label": "pauseMusic()",
+      "file_type": "code",
+      "source_file": "src/lib/music.js",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "src_lib_music_pausemusic",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
+      "norm_label": "pausemusic()"
+    },
+    {
+      "label": "resumeMusic()",
+      "file_type": "code",
+      "source_file": "src/lib/music.js",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "src_lib_music_resumemusic",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
+      "norm_label": "resumemusic()"
+    },
+    {
       "label": "stopMusic()",
       "file_type": "code",
       "source_file": "src/lib/music.js",
-      "source_location": "L62",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "src_lib_music_stopmusic",
       "community": 8,
@@ -2408,7 +2430,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "sfx.js"
     },
     {
@@ -2419,7 +2441,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_sound_files",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "sound_files"
     },
     {
@@ -2430,7 +2452,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_volumes",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "volumes"
     },
     {
@@ -2441,7 +2463,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_pools",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "pools"
     },
     {
@@ -2452,7 +2474,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_nextindex",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "nextindex"
     },
     {
@@ -2463,7 +2485,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_getpool",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "getpool()"
     },
     {
@@ -2474,7 +2496,7 @@
       "_origin": "ast",
       "id": "src_lib_sfx_playsfx",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "playsfx()"
     },
     {
@@ -2484,8 +2506,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 20,
-      "community_name": "ArtPreview.jsx",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "main.jsx"
     },
     {
@@ -2518,7 +2540,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamequiz",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "minigamequiz.jsx"
     },
     {
@@ -2529,7 +2551,7 @@
       "_origin": "ast",
       "id": "src_minigames_minigamequiz_minigamequiz",
       "community": 15,
-      "community_name": "sfx.js",
+      "community_name": "App.jsx",
       "norm_label": "minigamequiz()"
     },
     {
@@ -2660,8 +2682,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_passwordfortresslevelscene_makepasswordfortresslevelconfig",
-      "community": 8,
-      "community_name": "audioSettings.js",
+      "community": 2,
+      "community_name": "RealmScreen.jsx",
       "norm_label": "makepasswordfortresslevelconfig()"
     },
     {
@@ -3177,8 +3199,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "steppingstonesscene.js"
     },
     {
@@ -3188,8 +3210,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene_avatar_src",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "avatar_src"
     },
     {
@@ -3298,8 +3320,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_world_traveler",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "traveler.jsx"
     },
     {
@@ -3309,8 +3331,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_world_traveler_frame_sets",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "frame_sets"
     },
     {
@@ -3320,8 +3342,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_world_traveler_spritetraveler",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "spritetraveler()"
     },
     {
@@ -3331,8 +3353,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "src_world_traveler_traveler",
-      "community": 13,
-      "community_name": "steppingStonesArt.js",
+      "community": 3,
+      "community_name": "passworldArt.js",
       "norm_label": "traveler()"
     },
     {
@@ -3453,7 +3475,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "roomscene.jsx"
     },
     {
@@ -3464,7 +3486,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_prop",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "prop()"
     },
     {
@@ -3475,7 +3497,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_shadow",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "shadow()"
     },
     {
@@ -3486,7 +3508,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_glowingdiary",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "glowingdiary()"
     },
     {
@@ -3497,7 +3519,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_screen",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "screen()"
     },
     {
@@ -3508,7 +3530,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_furniture",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "furniture"
     },
     {
@@ -3519,7 +3541,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_f",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "f"
     },
     {
@@ -3530,7 +3552,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_room_obstacles",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "room_obstacles"
     },
     {
@@ -3541,7 +3563,7 @@
       "_origin": "ast",
       "id": "src_world_room_roomscene_roomscene",
       "community": 6,
-      "community_name": "App.jsx",
+      "community_name": "TravelerRoom.jsx",
       "norm_label": "roomscene()"
     },
     {
@@ -4520,9 +4542,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 2,
       "norm_label": "spa root mount point",
-      "community_name": "ArtPreview.jsx",
+      "community_name": "RealmScreen.jsx",
       "id": "index_root_mount"
     },
     {
@@ -4862,7 +4884,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/App.jsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app",
@@ -5174,7 +5196,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/App.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app",
@@ -5186,7 +5208,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/App.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app",
@@ -5198,7 +5220,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/App.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app",
@@ -5258,6 +5280,42 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/App.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app",
+      "target": "src_lib_music",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app",
+      "target": "src_lib_music_playmusic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app",
+      "target": "src_lib_music_stopmusic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
@@ -5295,7 +5353,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/App.jsx",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -5307,7 +5365,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/App.jsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -5319,7 +5377,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "src/App.jsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -5331,7 +5389,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/App.jsx",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -5343,7 +5401,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/App.jsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -5355,7 +5413,31 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/App.jsx",
-      "source_location": "L24",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_app",
+      "target": "src_lib_music_playmusic"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/App.jsx",
+      "source_location": "L71",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_app_app",
+      "target": "src_lib_music_stopmusic"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/App.jsx",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_app_app",
@@ -6995,7 +7077,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_platformerstoryrealm",
-      "target": "src_lib_music_playmusic",
+      "target": "src_lib_music_pausemusic",
       "confidence_score": 1.0
     },
     {
@@ -7007,7 +7089,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_platformerstoryrealm",
-      "target": "src_lib_music_stopmusic",
+      "target": "src_lib_music_resumemusic",
       "confidence_score": 1.0
     },
     {
@@ -7100,11 +7182,23 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/PlatformerStoryRealm.jsx",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_components_platformerstoryrealm_platformerstoryrealm",
+      "target": "src_lib_music_pausemusic"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/PlatformerStoryRealm.jsx",
       "source_location": "L66",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_platformerstoryrealm_platformerstoryrealm",
-      "target": "src_lib_music_playmusic"
+      "target": "src_lib_music_resumemusic"
     },
     {
       "relation": "calls",
@@ -7112,19 +7206,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/PlatformerStoryRealm.jsx",
-      "source_location": "L67",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_components_platformerstoryrealm_platformerstoryrealm",
-      "target": "src_lib_music_stopmusic"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/components/PlatformerStoryRealm.jsx",
-      "source_location": "L207",
+      "source_location": "L206",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_platformerstoryrealm_platformerstoryrealm",
@@ -9965,7 +10047,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10073,7 +10155,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10085,7 +10167,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music_targetvolume",
@@ -10121,7 +10203,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10379,7 +10461,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10390,7 +10472,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L37",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_music",
+      "target": "src_lib_music_pausemusic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/music.js",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10401,7 +10494,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L62",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_music",
+      "target": "src_lib_music_resumemusic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/music.js",
+      "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10412,7 +10516,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10423,7 +10527,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music",
@@ -10435,7 +10539,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L56",
+      "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music_playmusic",
@@ -10447,7 +10551,19 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L50",
+      "source_location": "L81",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_music_resumemusic",
+      "target": "src_lib_music_targetvolume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/music.js",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music_playmusic",
@@ -10459,7 +10575,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L66",
+      "source_location": "L91",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music_stopmusic",
@@ -10471,7 +10587,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/music.js",
-      "source_location": "L39",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_music_playmusic",
@@ -13021,5 +13137,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "8deb529c53427b268c5cabd55ecbfca03ea0954b"
+  "built_at_commit": "9a979b98f3e7f295a2313c8680f404a83aaf0272"
 }

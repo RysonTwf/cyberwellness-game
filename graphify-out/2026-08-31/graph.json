@@ -3182,10 +3182,21 @@
       "norm_label": "steppingstonesscene.js"
     },
     {
+      "label": "AVATAR_SRC",
+      "file_type": "code",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "src_minigames_phaser_scenes_steppingstonesscene_avatar_src",
+      "community": 13,
+      "community_name": "steppingStonesArt.js",
+      "norm_label": "avatar_src"
+    },
+    {
       "label": "makeSteppingStonesConfig()",
       "file_type": "code",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L30",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "src_minigames_phaser_scenes_steppingstonesscene_makesteppingstonesconfig",
       "community": 2,
@@ -7717,7 +7728,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/RealmScreen.jsx",
-      "source_location": "L398",
+      "source_location": "L399",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_components_realmscreen_realmscreen",
@@ -11854,7 +11865,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
-      "source_location": "L30",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_minigames_phaser_scenes_steppingstonesscene",
+      "target": "src_minigames_phaser_scenes_steppingstonesscene_avatar_src",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/minigames/phaser-scenes/steppingStonesScene.js",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_minigames_phaser_scenes_steppingstonesscene",
@@ -12999,5 +13021,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "6fc5268159abaf5eb44088fe5c134739cd0163c9"
+  "built_at_commit": "8deb529c53427b268c5cabd55ecbfca03ea0954b"
 }
