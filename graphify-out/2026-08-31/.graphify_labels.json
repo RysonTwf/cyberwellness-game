@@ -1,4 +1,5 @@
 {
+  "0": "Cyber Wellness Quest — Storyline",
   "1": "CopyEditor.jsx",
   "2": "RealmScreen.jsx",
   "3": "passworldArt.js",
@@ -14,6 +15,7 @@
   "13": "steppingStonesArt.js",
   "14": "Checklist",
   "15": "App.jsx",
+  "16": "CLAUDE.md",
   "17": "graphify Knowledge-Graph Workflow",
   "18": "AtlasMap.jsx",
   "30": "localStorage Persistence (cyber-wellness-quest/v1)",
