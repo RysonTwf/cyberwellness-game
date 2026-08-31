@@ -20,3 +20,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Local-only, per-developer. Both used to be committed and both carried
+# absolute paths from one machine (`C:/Users/<name>/...`), which broke
+# everyone else: .claude/settings.json registered a PreToolUse hook pointing
+# at an executable that does not exist on another machine, so it fired and
+# failed on every Bash, Read and Glob call.
+.claude/settings.json
+
+# The knowledge graph is a derived artefact (13MB) and is rebuilt locally with
+# `graphify update .`. Its sidecars record the interpreter and scan root of
+# whoever built it.
+graphify-out/

@@ -1,6 +1,8 @@
 ## graphify
 
-This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+This project can have a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+graphify-out/ is **local only and gitignored**. It is a derived artefact, and its sidecars record the interpreter path and scan root of whoever built it, so committing it broke every other machine. If you do not have one, build it with `graphify .` and never commit the result. The same goes for .claude/settings.json, which registers graphify's hooks against an absolute path.
 
 Rules:
 - For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
