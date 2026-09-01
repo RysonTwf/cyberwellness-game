@@ -166,6 +166,14 @@ what actually changed.
 
 ## Log
 
+- **1 Sep 2026: "respect others' work" folded into Fable Falls.** Term 2's
+  "Be Smart Online" has a "respect other people's work, do not copy or steal
+  content" bullet with no home in the game (the last gap from the Overview &
+  Plan verification pass). Added light-touch per Improvement Plan §2: one
+  quiz question per band (P1–P3 q10 "you find a drawing you love", P4–P6 q11
+  "using a photo someone else took" — not a "name the check" one), a closing
+  line in each `rule`, and a 4th `intro.learn` bullet. Pools are now 10
+  (P1–P3) and 11 (P4–P6), roundSize still 5.
 - **1 Sep 2026: Report & Block reaches the safe path.** It was only offered
   on the wrong-answer redirect, so a player who picked the safe option every
   time (the goal) never met the "know how to report and block" point the

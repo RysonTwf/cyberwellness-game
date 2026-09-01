@@ -1338,7 +1338,7 @@ const balanceHigher = {
  * ("STOP - pause before reacting, CHECK - ask a trusted adult or check
  * another source"), and it aligns with CSA's campaign. Delivered as a plain
  * Q&A (`game.type: 'quiz'`, minigames/MiniGameQuiz.jsx), deliberately
- * short-sentenced: five questions from a pool of nine, with STOP & CHECK on
+ * short-sentenced: five questions from a pool of ten, with STOP & CHECK on
  * screen while they answer.
  *
  * P4–P6 (10–12) is the S.U.R.E. framework (Source, Understand, Research,
@@ -1353,6 +1353,11 @@ const balanceHigher = {
  * SLS package's specific bullet list) was never sourced; the general,
  * well-established media-literacy signals used here are easy to swap for the
  * verbatim wording once it surfaces.
+ *
+ * Term 2's "Be Smart Online" also has a "respect other people's work, do not
+ * copy or steal content" bullet with no realm of its own. Folded in here
+ * (Improvement Plan §2): one quiz question per band (P1–P3 q10, P4–P6 q11)
+ * and a closing line in each rule.
  */
 
 const fableFallsLower = {
@@ -1410,7 +1415,7 @@ const fableFallsLower = {
         { key: 'C', name: 'Check', sub: 'Ask an adult you trust to help you find out.' },
       ],
     },
-    // Five of these nine each run (lib/draw.js). All kept short and plain
+    // Five of these ten each run (lib/draw.js). All kept short and plain
     // for 6–9 year olds: one idea per sentence, no idioms, no chat short
     // forms, UK spelling.
     roundSize: 5,
@@ -1631,12 +1636,39 @@ const fableFallsLower = {
           },
         ],
       },
+      {
+        // Term 2 "Be Smart Online": respect other people's work, do not copy
+        // or steal content. Folded in here (Improvement Plan §2) rather than
+        // given its own realm.
+        id: 'q10',
+        text: 'You find a drawing you love online. You want to post it. What should you do?',
+        options: [
+          {
+            id: 'a',
+            text: 'Post it and say I made it.',
+            correct: false,
+            feedback: 'That is not true, and it is not fair to the person who really made it.',
+          },
+          {
+            id: 'b',
+            text: 'Ask the person first, and say who made it.',
+            correct: true,
+            feedback: 'Yes. Ask first, and always say whose work it is.',
+          },
+          {
+            id: 'c',
+            text: 'Post it with no name on it.',
+            correct: false,
+            feedback: 'Someone still made that drawing. Always say whose work it is.',
+          },
+        ],
+      },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for Fable Falls. Not everything you see online is true, even when lots of people have shared it. Stop before you believe it or share it. Then check: ask an adult you trust to help you find out.',
+    text: 'Here is the rule for Fable Falls. Not everything you see online is true, even when lots of people have shared it. Stop before you believe it or share it. Then check: ask an adult you trust to help you find out. And if you share something someone else made, always say whose work it is.',
   },
 };
 
@@ -1699,8 +1731,8 @@ const fableFallsHigher = {
         { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
       ],
     },
-    // Five of these ten each run, drawn fresh, so the clue-to-letter mapping
-    // cannot be memorised off a single pass.
+    // Five of these eleven each run, drawn fresh, so the clue-to-letter
+    // mapping cannot be memorised off a single pass.
     roundSize: 5,
     questions: [
       {
@@ -1798,12 +1830,24 @@ const fableFallsHigher = {
           { id: 'c', text: 'Say it was not my fault, because someone sent it to me.', correct: false, feedback: 'Passing the blame does not take the post down. Fix it first, then tell an adult.' },
         ],
       },
+      {
+        // Term 2 "Be Smart Online": respect other people's work, do not copy
+        // or steal content. Folded in here (Improvement Plan §2). Not a
+        // "name the check" question, like q6–q10.
+        id: 'q11',
+        text: 'You want to use a photo someone else took in your own post. What is the right thing to do?',
+        options: [
+          { id: 'b', text: 'Ask them first, and name them as the photographer when you post it.', correct: true, feedback: 'Right. Other people\'s work is theirs. Ask before you use it, and credit them clearly.' },
+          { id: 'a', text: 'Use it. Anything online is free for anyone to take.', correct: false, feedback: 'Being online does not make it free to take. It still belongs to whoever made it.' },
+          { id: 'c', text: 'Use it, but crop their name or watermark out first.', correct: false, feedback: 'Removing the credit is the opposite of respecting the work. That is taking it and passing it off as yours.' },
+        ],
+      },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'Run S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who is behind it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too convenient? Four checks is usually enough to catch a fake.',
+    text: 'Run S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who is behind it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too convenient? Four checks is usually enough to catch a fake. And when you use what someone else made, credit them and ask first. It is theirs, not yours to pass off as your own.',
   },
 };
 
@@ -1996,6 +2040,7 @@ export const REALMS = [
         'How fake news and edited pictures spread so fast online',
         'The questions to ask before you believe a post, or share it',
         'How to check facts like a real Cyber Defender',
+        'Why other people\'s work is theirs, and how to credit it',
       ],
       learnShort: 'Learn: spotting fake news & checking facts',
     },
