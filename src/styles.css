@@ -1294,14 +1294,20 @@ p {
   cursor: default;
 }
 
-/* The Atlas hub is a true top-down spread rather than a single row, so it
-   needs more vertical room than a realm's 2:1 scene box, and a tighter
-   width cap to match (viewBox 640x356 in AtlasMap.jsx's AtlasScene). This
-   compound selector out-specifies the plain `.atlas-map` rule below, so it
-   wins regardless of source order. */
+/* The Atlas hub shows the painted island map (2:1, viewBox 640x320 in
+   AtlasMap.jsx's AtlasScene). Unlike a realm scene, the hub sits under very
+   little chrome, so the leftover column height is more than the 2:1 box
+   needs — letting it flex-grow into all of it (the default `.world` rule)
+   would stretch the box past 2:1 and pull the painted islands out from
+   under their walkable pins. So: a definite width, no grow, and
+   aspect-ratio sets the height; `.stage-main`'s `justify-content: center`
+   then centres the shorter box in the column. This compound selector
+   out-specifies the plain `.atlas-map` rule below. */
 .world.atlas-map {
-  --scene-ar: 1.8;
+  --scene-ar: 2;
   --scene-max-w: 1200px;
+  flex: 0 1 auto;
+  width: min(100%, var(--scene-max-w));
 }
 
 /* Phaser-backed mini-games (Milestones Phase 2: Passworld platformer,

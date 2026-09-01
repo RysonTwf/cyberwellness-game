@@ -2,28 +2,16 @@
  * Scene art — one illustrated 2D world per realm (design.md §4 layout, §9
  * "all character and scene art built from SVG shapes/icons").
  *
- * Each scene takes a `mood`:
+ * Most scenes take a `mood`:
  *   'before'  — how the realm looks when you arrive
  *   'after'   — how it looks once the Traveler has made the safe choice
  * The change is the reward for the decision: the vault opens, the fog lifts,
- * the water clears, the tide goes out.
+ * the water clears. Realms with no right/wrong "solved" state (Balance Bay,
+ * Fable Falls) use a single backdrop and ignore `mood`.
  *
  * The viewBox is 560x280 and the bottom third is the walkable ground, which
  * is why nothing important is drawn below y=200 — the Traveler walks there.
  */
-
-const SKY = '#e9eff1';
-const INK = 'var(--ink)';
-
-/** Shared: a soft sky panel behind everything. */
-function Sky({ tint, opacity = 0.14 }) {
-  return (
-    <>
-      <rect width="560" height="280" rx="18" fill={SKY} />
-      <rect width="560" height="280" rx="18" fill={tint} opacity={opacity} />
-    </>
-  );
-}
 
 /* ------------------------------------------------------------ Passworld -- */
 /* Real background art (30 Aug 2026, public/assets/PASSWORLD/) — a walled
@@ -160,62 +148,35 @@ function BayScene() {
 }
 
 /* --------------------------------------------------------- Fable Falls -- */
-/* A waterfall of tales, some of which are true. Deliberately minimal —
-   placeholder art (Milestones Phase 3's real designer pass is still
-   pending), just enough that the realm doesn't read as broken/blank. */
-function FableFallsScene({ mood }) {
-  const clear = mood === 'after';
-  const sage = 'var(--sage)';
-
+/* Real background art (1 Sep 2026, public/assets/FABLEFALLS/) — a cavern
+ * with a waterfall spilling into a still pool, one lit shaft, a rock in the
+ * middle and a bat off to the side. Like Balance Bay, only a single backdrop
+ * was delivered (no before/after pair). That's a fine fit here: Fable Falls'
+ * mini-game is now the five-question S.U.R.E. check, not a "solve it and the
+ * scene changes" beat, so there's no mood flip for the art to track.
+ *
+ * The three ECHO_* pieces are the Echo's voice bouncing off the cave — a
+ * little ripple at the rock (where the "Echo" pin sits), the falls and the
+ * bat. Faint, so they read as ambience rather than clutter. */
+function FableFallsScene() {
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
-  // (PlatformerStoryRealm's two-column layout leaves it
-  // wider than tall), so the art covers the box rather than letterboxing.
+  // (PlatformerStoryRealm's two-column layout leaves it wider than tall), so
+  // the art covers the box rather than letterboxing.
   return (
     <svg viewBox="0 0 560 280" width="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <Sky tint={sage} opacity="0.12" />
-
-      {/* canyon walls either side */}
-      <path d="M0 0 L70 0 Q40 120 60 280 L0 280 Z" fill={INK} opacity="0.08" />
-      <path d="M560 0 L500 0 Q530 120 510 280 L560 280 Z" fill={INK} opacity="0.08" />
-
-      {/* the falls themselves */}
-      <g opacity={clear ? 0.85 : 0.6}>
-        <path d="M150 0 Q158 90 148 190 Q170 90 162 0 Z" fill={sage} opacity="0.5" />
-        <path d="M190 0 Q198 90 186 190 Q210 90 200 0 Z" fill={sage} opacity="0.4" />
-      </g>
-      <g stroke={sage} strokeWidth="2" fill="none" opacity={clear ? 0.5 : 0.3} strokeLinecap="round">
-        <path d="M158 20 q6 60 -4 150" />
-        <path d="M198 30 q6 60 -6 140" />
-      </g>
-
-      {/* mist at the base — thick and swallowing shapes before, thin after */}
-      <g fill="#f6f9fa" opacity={clear ? 0.4 : 0.75}>
-        <ellipse cx="175" cy="196" rx="90" ry="20" />
-        <ellipse cx="230" cy="188" rx="60" ry="14" />
-      </g>
-
-      {/* floating tales — little lantern shapes drifting downstream; fewer
-          and calmer once the water's settled */}
-      <g fill={sage} opacity="0.55">
-        <ellipse cx="330" cy="90" rx="16" ry="10" />
-        <ellipse cx="380" cy="60" rx="12" ry="8" />
-        {!clear && <ellipse cx="420" cy="110" rx="14" ry="9" />}
-        {!clear && <ellipse cx="290" cy="50" rx="10" ry="7" />}
-      </g>
-
-      {/* the ground the Traveler walks — solid across the whole band */}
-      <path
-        d="M0 196 Q140 186 280 194 T560 190 L560 280 L0 280 Z"
-        fill={sage}
-        opacity="0.28"
+      <image
+        href="/assets/FABLEFALLS/FableFallsBG.png"
+        x="0"
+        y="0"
+        width="560"
+        height="280"
+        preserveAspectRatio="xMidYMid slice"
       />
-      <path
-        d="M0 196 Q140 186 280 194 T560 190"
-        fill="none"
-        stroke={INK}
-        strokeWidth="2"
-        opacity="0.16"
-      />
+      <g opacity="0.7">
+        <image href="/assets/FABLEFALLS/ECHO_WATERFALL.png" x="80" y="158" width="36" height="45" />
+        <image href="/assets/FABLEFALLS/ECHO_ROCK.png" x="326" y="150" width="50" height="40" />
+        <image href="/assets/FABLEFALLS/ECHO_BAT.png" x="438" y="96" width="38" height="53" />
+      </g>
     </svg>
   );
 }
