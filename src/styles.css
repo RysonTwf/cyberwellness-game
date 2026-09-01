@@ -1538,6 +1538,23 @@ p {
   animation: pin-ping 0.8s ease-in-out infinite;
 }
 
+/* On the Atlas hub the islands are a finished painting, so the realm-name
+   pills would sit right on the art. Keep them hidden until the boat is
+   actually near an island — the coloured pin marks each one the rest of
+   the time, and the side strip lists every name. Fades via opacity (the
+   label keeps its slot in the flex column) so the pin above it never
+   shifts. */
+.world.atlas-map .hotspot-label {
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.world.atlas-map .hotspot.near .hotspot-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes pin-hover {
   0%,
   100% {
