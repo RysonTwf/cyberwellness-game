@@ -911,7 +911,7 @@ const bullybogLower = {
     },
     {
       who: 'Comet',
-      text: 'Pockets is sad and has stopped singing. ',
+      text: 'Pockets is sad and has stopped singing.',
     },
   ],
 
@@ -950,20 +950,21 @@ const bullybogLower = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing. What you just typed stays online for good. Which of these would you still be happy about next year?',
+        'One more thing. What you just typed stays online forever. Which of these would you still be happy about next year?',
       options: [
         { id: 'kind', text: 'The kind reply I sent Pockets.' },
         { id: 'mean', text: 'The mean one about Pockets.' },
       ],
       response:
-        'Kind ones are the easy answer, and that is the point. Posts do not really go away, so ask before you send: is it kind, and would you still be happy with it next year?',
+        'The kind one is easy to pick, and that is good. Posts do not really go away. So before you send something, ask: is it kind? Would I still be happy with it next year?',
     },
   },
 
   game: {
     type: 'sort',
     title: 'Clear the Water',
-    instruction: 'Replies people could send Pockets. Which would you send and not send?',
+    instruction:
+      'Here are replies people could send to Pockets. Which ones would you send? Which would you leave?',
     // T.H.I.N.K. is the standard school poster, so it reads as something the
     // classroom already owns rather than a game invention. P1–P3 sort by it
     // off the track; P4–P6 (below) name the check a reply fails.
@@ -1002,7 +1003,7 @@ const bullybogLower = {
 
   rule: {
     who: 'Comet',
-    text: 'If it is ever about you, not Pockets, the rule is the same. Do not be mean back. Standing up can be one kind sentence.',
+    text: 'If a mean comment is ever about you, not Pockets, the rule is the same. Do not be mean back. You can block or report the message, so it stops coming to you. And standing up can be one kind sentence.',
   },
 };
 
@@ -1027,7 +1028,7 @@ const bullybogHigher = {
     },
     {
       who: 'Comet',
-      text: 'Pockets the Frog is sad and has stopped singing.',
+      text: 'Pockets the frog is sad and has stopped singing.',
     },
   ],
 

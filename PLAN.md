@@ -166,6 +166,17 @@ what actually changed.
 
 ## Log
 
+- **1 Sep 2026: Bully Bog P1–P3 rule gained the block/report line.** The
+  verification pass against the Overview & Plan found the P1–P3 rule ended at
+  "Do not be mean back. Standing up can be one kind sentence." with no
+  "When Things Go Wrong" route, while P4–P6 kept "use block or report if you
+  need to" and the shared `intro.learn` already promised "When to use block
+  or report". P1–P3 rule now reads "...You can block or report the message,
+  so it stops coming to you..." (plain words, no re-adding the "tell a
+  trusted adult" line the school had removed). Also tidied P1–P3 wording for
+  6–9 year olds (footprint prompt "for good" → "forever", the game
+  instruction fragment) and fixed a stray "Pockets the Frog" capital in the
+  P4–P6 story.
 - **1 Sep 2026: Fable Falls P1–P3 method corrected to STOP & CHECK.** A
   verification pass against `docs/Cyber Wellness 2026_Overview&Plan.pdf`
   found the P1–P3 mini-game's on-screen method card was labelled **S.U.R.E.**
