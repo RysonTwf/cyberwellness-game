@@ -316,9 +316,17 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                       </>
                     )}
 
-                    {/* ---- move on: game step (safe) or retry (unsafe) ---- */}
+                    {/* ---- move on: game step (safe) or retry (unsafe) ----
+                        Report & Block sits on *both* branches (Improvement
+                        Plan §2 / the school's "know how to report and block"
+                        point): a player who picks the safe option every time
+                        still meets the option, it is not a reward for getting
+                        the decision wrong. */}
                     {!currentExtraKey && (
-                      <div className="center">
+                      <div
+                        className="row"
+                        style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                      >
                         {picked.safe ? (
                           <button
                             type="button"
@@ -332,23 +340,18 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
                             <ArrowRight size={19} />
                           </button>
                         ) : (
-                          <div
-                            className="row"
-                            style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                          /* Never a dead end — hand the decision straight back */
+                          <button
+                            type="button"
+                            className="btn btn-ghost"
+                            onClick={() => setPick(null)}
                           >
-                            {/* Never a dead end — hand the decision straight back */}
-                            <button
-                              type="button"
-                              className="btn btn-ghost"
-                              onClick={() => setPick(null)}
-                            >
-                              <RefreshCw size={17} />
-                              Let me look again
-                            </button>
-                            {realm.reportBlockEligible !== false && (
-                              <ReportBlock accent={realm.accent} />
-                            )}
-                          </div>
+                            <RefreshCw size={17} />
+                            Let me look again
+                          </button>
+                        )}
+                        {realm.reportBlockEligible !== false && (
+                          <ReportBlock accent={realm.accent} />
                         )}
                       </div>
                     )}

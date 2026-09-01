@@ -44,6 +44,12 @@ export const COMET_CATCHPHRASE =
 /* ------------------------------------------------------------------------ */
 
 const passworldLower = {
+  // No Report & Block prompt here: Keeper Vex is a well-meaning comedy
+  // character (storyline.md), not "inappropriate content or behaviour", so
+  // reporting or blocking him would muddy the lesson (do not overshare, even
+  // with someone friendly). The other four realms' decisions are genuine
+  // report/block cases and keep it.
+  reportBlockEligible: false,
   story: [
     {
       who: 'Comet',

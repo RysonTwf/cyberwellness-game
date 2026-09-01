@@ -166,6 +166,18 @@ what actually changed.
 
 ## Log
 
+- **1 Sep 2026: Report & Block reaches the safe path.** It was only offered
+  on the wrong-answer redirect, so a player who picked the safe option every
+  time (the goal) never met the "know how to report and block" point the
+  Overview & Plan names as its own habit. Now `RealmScreen` shows the
+  `ReportBlock` option next to "Look around" on the safe branch too, and
+  `PlatformerStoryRealm` (Passworld P4–P6) shows the safe response + a
+  "Carry on" button + Report & Block before the gate opens (the safe
+  response was previously never shown at all). Keeper Vex is opted out
+  (`passworldLower.reportBlockEligible: false`) — he is a well-meaning
+  comedy character, not "inappropriate content or behaviour". `ReportBlock`
+  copy de-contracted for the school ("I would also report and block this",
+  "You do not have to…").
 - **1 Sep 2026: Bully Bog P1–P3 rule gained the block/report line.** The
   verification pass against the Overview & Plan found the P1–P3 rule ended at
   "Do not be mean back. Standing up can be one kind sentence." with no

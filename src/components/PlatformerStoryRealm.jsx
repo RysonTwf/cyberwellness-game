@@ -71,10 +71,17 @@ export default function PlatformerStoryRealm({
     setPick(optionId);
     const option = realm.decision.options.find((o) => o.id === optionId);
     if (option.safe) {
+      // Record the choice, but keep the panel up: the safe response and the
+      // Report & Block option show first (see the `decisionOpen` block below),
+      // then `carryOn` opens the gate. Report & Block belongs on the safe
+      // path too, not only when the decision is picked wrong.
       onSettle(realm.id, optionId);
-      setDecisionOpen(false);
-      sceneRef.current?.resolveSafe();
     }
+  }
+
+  function carryOn() {
+    setDecisionOpen(false);
+    sceneRef.current?.resolveSafe();
   }
 
   const hold = (key) => ({
@@ -359,7 +366,9 @@ export default function PlatformerStoryRealm({
 
           {/* The world froze the moment the player reached Sam — same
               decision content and Report & Block option every other realm
-              uses, just triggered by the level instead of a hotspot. */}
+              uses, just triggered by the level instead of a hotspot. Report &
+              Block sits on both branches: a player who verifies (the safe
+              choice) still meets it, before the gate opens. */}
           {decisionOpen && (
             <div className="stack">
               <h3>{realm.decision.prompt}</h3>
@@ -383,14 +392,21 @@ export default function PlatformerStoryRealm({
                 ))}
               </div>
 
-              {picked && !picked.safe && (
+              {picked && (
                 <>
                   <DialogueCard who={picked.who} text={picked.response} accent={realm.accent} />
                   <div className="row" style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
-                    <button type="button" className="btn btn-ghost" onClick={() => setPick(null)}>
-                      <RefreshCw size={17} />
-                      Let me look again
-                    </button>
+                    {picked.safe ? (
+                      <button type="button" className="btn btn-accent" onClick={carryOn}>
+                        Carry on
+                        <ArrowRight size={19} />
+                      </button>
+                    ) : (
+                      <button type="button" className="btn btn-ghost" onClick={() => setPick(null)}>
+                        <RefreshCw size={17} />
+                        Let me look again
+                      </button>
+                    )}
                     {realm.reportBlockEligible !== false && <ReportBlock accent={realm.accent} />}
                   </div>
                 </>

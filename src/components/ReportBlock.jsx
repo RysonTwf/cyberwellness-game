@@ -21,10 +21,10 @@ export default function ReportBlock({ accent = 'var(--ink)' }) {
           <ShieldCheck size={22} color={accent} />
         </div>
         <div>
-          <div className="who">Good instinct</div>
+          <div className="who">Good thinking</div>
           <p>
-            Reporting and blocking tells the app to stop this from reaching you again, and you
-            don&rsquo;t have to just let it keep happening.
+            Reporting and blocking tells the app to stop this from reaching you again. You do not
+            have to just let it keep happening.
           </p>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function ReportBlock({ accent = 'var(--ink)' }) {
   return (
     <button type="button" className="btn btn-ghost btn-sm" onClick={() => setDone(true)}>
       <ShieldAlert size={16} />
-      I&rsquo;d also report &amp; block this
+      I would also report and block this
     </button>
   );
 }
