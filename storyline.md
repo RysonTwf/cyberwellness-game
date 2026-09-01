@@ -54,9 +54,12 @@ two things: curiosity, and a second thought."*
 >   bands: the Traveler walks the sand picking activities up while a seesaw
 >   sprite tips.
 > - **Fable Falls'** rumour spreads online (a forwarded screenshot about
->   Mia), not by word of mouth. Both bands run that same Mia scenario;
->   P4–P6 layers the S.U.R.E. framework (Source, Understand, Research,
->   Evaluate) over it rather than a different, harder story.
+>   Mia), not by word of mouth. Both bands run that same Mia scenario. The
+>   checking method follows the Overview & Plan's own split: **P1–P3 use
+>   STOP & CHECK** (stop, then ask a trusted adult), **P4–P6 use the
+>   S.U.R.E. framework** (Source, Understand, Research, Evaluate) and have
+>   to run it, not just agree with it. P1–P3 wording is kept short and
+>   plain for 6–9 year olds.
 > - The game is played once, so P4–P6 is **not** framed as a "level up" of
 >   P1–P3. **Bully Bog** and **Balance Bay** run the exact same scenario,
 >   mechanic and items for both bands, only the wording changes (short for

@@ -1324,12 +1324,15 @@ const balanceHigher = {
  * School revision pass: the rumour about Mia spreads online (a forwarded
  * screenshot claiming she got caught taking snacks). Both bands run the
  * *same* Mia scenario — `fableFallsHigher` reuses `fableFallsLower.story`
- * verbatim — and the difference between them is how hard the checking gets.
+ * verbatim — and the difference between them is the checking method, which
+ * is exactly the split the Overview & Plan draws.
  *
- * P1–P3 (7–9) is a plain Q&A (`game.type: 'quiz'`,
- * minigames/MiniGameQuiz.jsx), kept deliberately short-sentenced: five
- * questions drawn from a pool of nine, with the four S.U.R.E. checks on
- * screen in short words while they answer.
+ * P1–P3 (7–9) is STOP & CHECK, the method the source doc names for this band
+ * ("STOP - pause before reacting, CHECK - ask a trusted adult or check
+ * another source"), and it aligns with CSA's campaign. Delivered as a plain
+ * Q&A (`game.type: 'quiz'`, minigames/MiniGameQuiz.jsx), deliberately
+ * short-sentenced: five questions from a pool of nine, with STOP & CHECK on
+ * screen while they answer.
  *
  * P4–P6 (10–12) is the S.U.R.E. framework (Source, Understand, Research,
  * Evaluate) and has to be *run*, not just agreed with: the clue arrives
@@ -1349,11 +1352,11 @@ const fableFallsLower = {
   story: [
     {
       who: 'Comet',
-      text: `Fable Falls. Every story in the Atlas ends up in this water. Some of it true, some of it made up. ${COMET_CATCHPHRASE}`,
+      text: `Fable Falls. Every story in the Atlas ends up in this water. Some of it is true. Some of it is made up. ${COMET_CATCHPHRASE}`,
     },
     {
       who: 'The Echo',
-      text: 'Have you seen this? Someone posted that Mia got caught taking snacks from the canteen. It is a screenshot, and it already has loads of shares. Everyone is passing it on.',
+      text: 'Have you seen this? Someone posted that Mia got caught taking snacks from the canteen. It is a screenshot, and lots of people have shared it already.',
     },
   ],
 
@@ -1362,142 +1365,142 @@ const fableFallsLower = {
     options: [
       {
         id: 'spread',
-        text: 'Share it. It has so many shares already, so it must be true.',
+        text: 'Share it. Lots of people shared it, so it must be true.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
         response:
-          'The post tumbles further down the Falls, growing a little bigger each time. Lots of shares only tells you a story has spread, not that it is true. Shall we look again?',
+          'The post tumbles further down the Falls, and grows a bit bigger each time. Lots of shares does not make a story true. It only means the story has spread. Shall we look again?',
       },
       {
         id: 'stopcheck',
-        text: '"I will stop. Then I will check with an adult I trust, or look for it somewhere real, before I believe it or share it."',
+        text: '"I will stop. Then I will ask an adult I trust, before I believe it or share it."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          'The water goes still and clear where you stand. It turns out Mia is not in trouble at all. She is counting snacks for the class party. One pause stops a rumour from growing.',
+          'The water goes still and clear where you stand. Mia is not in trouble at all. She was counting snacks for the class party. Stopping to check stopped the rumour from spreading.',
       },
     ],
   },
 
   game: {
     type: 'quiz',
-    title: 'Check Before You Share',
-    instruction: 'More things about the post reach you. Decide what to do with each one.',
-    // The same four checks the older band has to *run* (see fableFallsHigher),
-    // here just kept on screen in short words while a 7–9 year old answers.
-    // Both bands now leave Fable Falls able to name the method.
+    title: 'Stop and Check',
+    instruction:
+      'More things about the post reach you. Stop and think about each one, then decide what to do.',
+    // STOP & CHECK is the method the Overview & Plan names for P1–P3 (S.U.R.E.
+    // is the P4–P6 method, in `fableFallsHigher`). It is two steps, not an
+    // acronym, so the track is short: stop, then go and check. The questions
+    // below are all "what do you think / what do you do", so nothing here
+    // hangs on naming a letter — the track is a reference card, not a quiz.
+    // Wording kept short and plain for 6–9 year olds (school revision pass).
     purpose: {
-      name: 'S.U.R.E.',
-      why: 'Four checks before you believe it or pass it on.',
+      name: 'STOP & CHECK',
+      why: 'Do both before you believe a story or share it.',
       checks: [
-        { key: 'S', name: 'Source', sub: 'Who said it first?' },
-        { key: 'U', name: 'Understand', sub: 'What is it really saying?' },
-        { key: 'R', name: 'Research', sub: 'Can I check it somewhere real?' },
-        { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
+        { key: 'S', name: 'Stop', sub: 'Do not believe it or share it yet.' },
+        { key: 'C', name: 'Check', sub: 'Ask an adult you trust to help you find out.' },
       ],
     },
-    // Five of these nine each run (lib/draw.js).
+    // Five of these nine each run (lib/draw.js). All kept short and plain
+    // for 6–9 year olds: one idea per sentence, no idioms, no chat short
+    // forms, UK spelling.
     roundSize: 5,
     questions: [
       {
         id: 'q1',
-        text: 'The screenshot has no name on it. Who said it first?',
+        text: 'The screenshot has no name on it. Who posted it first?',
         options: [
           {
             id: 'a',
             text: 'It does not matter. Lots of people shared it.',
             correct: false,
-            feedback: 'If nobody knows where a story started, that is a reason to doubt it.',
+            feedback: 'If nobody knows who started a story, do not trust it.',
           },
           {
             id: 'b',
             text: 'Nobody knows, so I should not trust it.',
             correct: true,
-            feedback: 'Right. A story with no start is one to check, not to share.',
+            feedback: 'Yes. If you cannot find who started it, stop and check it.',
           },
           {
             id: 'c',
-            text: 'The person who sent it to me said it first.',
+            text: 'The person who sent it to me started it.',
             correct: false,
-            feedback:
-              'They forwarded it too. Keep asking who is at the very start, not who passed it on.',
+            feedback: 'They shared it too. They did not start it. Nobody knows who did.',
           },
         ],
       },
       {
         id: 'q2',
-        text: 'Hundreds of people shared the post. Does that make it true?',
+        text: 'Lots of people shared the post. Does that make it true?',
         options: [
           {
             id: 'a',
             text: 'Yes. That many people cannot be wrong.',
             correct: false,
-            feedback: 'Shares only show how far it went. A made-up story travels just as fast.',
+            feedback: 'Lots of shares only mean people passed it on. A made-up story can be shared just as much.',
           },
           {
             id: 'b',
-            text: 'No. It only means it spread a lot.',
+            text: 'No. It only means lots of people shared it.',
             correct: true,
-            feedback: 'Exactly. Popular and true are not the same thing.',
+            feedback: 'Yes. A story can be shared a lot and still be made up.',
           },
           {
             id: 'c',
-            text: 'Yes, if the people sharing it are my friends.',
+            text: 'Yes, if my friends are the ones sharing it.',
             correct: false,
-            feedback:
-              'Your friends got it the same way you did. Sharing it is not the same as knowing it.',
+            feedback: 'Your friends saw it the same way you did. They do not know if it is true either.',
           },
         ],
       },
       {
         id: 'q3',
-        text: 'You want to know if the snack story is real. What is best?',
+        text: 'You want to find out if the snack story is real. What is the best thing to do?',
         options: [
           {
             id: 'a',
             text: 'Ask the group chat what they think.',
             correct: false,
-            feedback: 'That is where the rumour is already spreading. Asking there adds to it.',
+            feedback: 'That is where the rumour is spreading. Asking there makes it spread more.',
           },
           {
             id: 'b',
             text: 'Ask a teacher or another adult I trust.',
             correct: true,
-            feedback: 'Yes. A trusted adult can find out the real story.',
+            feedback: 'Yes. An adult you trust can find out what really happened.',
           },
           {
             id: 'c',
             text: 'Count how many likes it has.',
             correct: false,
-            feedback:
-              'Likes count taps, not truth. A made-up story can collect plenty.',
+            feedback: 'Likes do not tell you if a story is true. A made-up story can get lots of likes.',
           },
         ],
       },
       {
         id: 'q4',
-        text: 'The photo of Mia has a stretched, blurry edge. What does that tell you?',
+        text: 'One edge of the photo of Mia looks stretched and blurry. What could that mean?',
         options: [
           {
             id: 'a',
             text: 'Nothing. Photos look odd sometimes.',
             correct: false,
-            feedback: 'Sometimes they do. A stretched, smudged bit can also mean it was changed.',
+            feedback: 'Sometimes photos do look odd. But a stretched or blurry edge can also mean someone changed it.',
           },
           {
             id: 'b',
-            text: 'The picture might have been changed.',
+            text: 'Someone might have changed the photo.',
             correct: true,
-            feedback: 'Good eye. Odd edges and strange shadows are signs a photo is not real.',
+            feedback: 'Well spotted. Odd edges and strange shadows can be signs that a photo is not real.',
           },
           {
             id: 'c',
             text: 'It just means the photo is old.',
             correct: false,
-            feedback:
-              'Being old does not stretch one edge of a picture. Editing does.',
+            feedback: 'An old photo does not have a stretched edge. Changing it on a computer can do that.',
           },
         ],
       },
@@ -1507,124 +1510,117 @@ const fableFallsLower = {
         options: [
           {
             id: 'a',
-            text: 'Okay. Sorry fixes it.',
+            text: 'Okay. I can say sorry after.',
             correct: false,
-            feedback: 'Once a story is out it keeps going. Sorry does not call it back.',
+            feedback: 'Once you share a story, other people keep sharing it. Saying sorry does not stop them.',
           },
           {
             id: 'b',
-            text: 'No. Checking first is easier than fixing it after.',
+            text: 'No. It is easier to check first than to fix it later.',
             correct: true,
-            feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer.',
+            feedback: 'Yes. Checking takes a minute. Stopping a rumour takes a lot longer.',
           },
           {
             id: 'c',
             text: 'Share it, then delete it quickly after.',
             correct: false,
-            feedback:
-              'Screenshots take a second. Deleting your copy does not call the others back.',
+            feedback: 'Other people can screenshot it before you delete it. Then it is still out there.',
           },
         ],
       },
       {
         id: 'q6',
-        text: 'Mia says the post is not true. The post says it is. Who do you ask?',
+        text: 'Mia says the post is not true. The post says it is. Who should you ask?',
         options: [
           {
             id: 'a',
-            text: 'Whoever has more people agreeing with them.',
+            text: 'The side with the most people.',
             correct: false,
-            feedback: 'Counting sides does not find the truth. Someone who actually knows does.',
+            feedback: 'The side with more people is not always right. Ask someone who really knows.',
           },
           {
             id: 'b',
-            text: 'A teacher or an adult I trust, who can find out.',
+            text: 'A teacher or an adult I trust, who can find out the truth.',
             correct: true,
-            feedback: 'Yes. Ask someone who can check, not the crowd.',
+            feedback: 'Yes. Ask someone who can find out what really happened.',
           },
           {
             id: 'c',
             text: 'Nobody. I will wait and see what happens.',
             correct: false,
-            feedback:
-              'Waiting lets it keep spreading. Asking someone who can actually check is what stops it.',
+            feedback: 'If you wait, the rumour keeps spreading. Ask an adult who can check.',
           },
         ],
       },
       {
         id: 'q7',
-        text: 'The post makes you feel angry straight away. What is that a sign of?',
+        text: 'The post makes you feel angry straight away. What should you do?',
         options: [
           {
             id: 'a',
-            text: 'That it must be important, so I should send it on fast.',
+            text: 'Share it fast, because it must be important.',
             correct: false,
-            feedback:
-              'Something made to make you cross is made to be shared before you think. That is the moment to slow down.',
+            feedback: 'Some posts are written to make you angry so you share them fast. That is the time to slow down.',
           },
           {
             id: 'b',
-            text: 'Slow down. Feeling cross fast is a reason to check.',
+            text: 'Stop and check it before I do anything else.',
             correct: true,
-            feedback: 'Good. Strong feelings are the hook. Notice the hook and you are already safer.',
+            feedback: 'Well done. When a post makes you angry fast, stop and check it first.',
           },
           {
             id: 'c',
-            text: 'Reply angrily, so everyone knows it is wrong.',
+            text: 'Reply angrily to show everyone it is wrong.',
             correct: false,
-            feedback:
-              'Angry replies spread it further. Check first, then say something.',
+            feedback: 'An angry reply spreads the post further. Check it first, then say something.',
           },
         ],
       },
       {
         id: 'q8',
-        text: 'Someone says "I saw it on a video, so it is real." Is a video proof?',
+        text: 'Someone says, "I saw it in a video, so it must be true." Are they right?',
         options: [
           {
             id: 'a',
-            text: 'Yes. You cannot fake a video.',
+            text: 'Yes. You cannot change a video.',
             correct: false,
-            feedback: 'You can. Videos get cut, sped up and made up, just like pictures.',
+            feedback: 'You can change a video. People cut them, speed them up, and even make fake ones.',
           },
           {
             id: 'b',
             text: 'No. Videos can be changed too.',
             correct: true,
-            feedback: 'Right. Seeing it is not the same as it being true.',
+            feedback: 'Yes. Seeing something in a video does not make it true.',
           },
           {
             id: 'c',
-            text: 'Yes, if I can clearly see the person\'s face.',
+            text: 'Yes, if I can see the person\'s face clearly.',
             correct: false,
-            feedback:
-              'Faces are the part people change most of all.',
+            feedback: 'Faces are the part people change the most.',
           },
         ],
       },
       {
         id: 'q9',
-        text: 'You shared the post before you checked, and now you know it is not true. What now?',
+        text: 'You shared the post. Then you found out it is not true. What do you do now?',
         options: [
           {
             id: 'a',
             text: 'Say nothing and hope people forget.',
             correct: false,
-            feedback: 'It keeps going while you stay quiet. Saying so is how it stops.',
+            feedback: 'The rumour keeps going while you stay quiet. Telling people the truth helps it stop.',
           },
           {
             id: 'b',
-            text: 'Take it down, say it was not true, and tell an adult I trust.',
+            text: 'Take it down, tell people it was not true, and tell an adult I trust.',
             correct: true,
-            feedback:
-              'That is the brave one. Getting it wrong is fixable. Leaving it up is what does the damage.',
+            feedback: 'That is the brave choice. You can put a mistake right. Leaving the post up is what hurts.',
           },
           {
             id: 'c',
             text: 'Say it was not my fault, because someone sent it to me.',
             correct: false,
-            feedback:
-              'Passing the blame does not take the post down. Fix it first, then tell an adult.',
+            feedback: 'Blaming someone else does not take the post down. Take it down first, then tell an adult.',
           },
         ],
       },
@@ -1633,7 +1629,7 @@ const fableFallsLower = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for Fable Falls. Not everything that reaches you is true, even when lots of people shared it. Stop before you believe it or pass it on. Then check: ask an adult you trust, or find the story somewhere real.',
+    text: 'Here is the rule for Fable Falls. Not everything you see online is true, even when lots of people have shared it. Stop before you believe it or share it. Then check: ask an adult you trust to help you find out.',
   },
 };
 

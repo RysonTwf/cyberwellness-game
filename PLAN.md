@@ -166,6 +166,18 @@ what actually changed.
 
 ## Log
 
+- **1 Sep 2026: Fable Falls P1–P3 method corrected to STOP & CHECK.** A
+  verification pass against `docs/Cyber Wellness 2026_Overview&Plan.pdf`
+  found the P1–P3 mini-game's on-screen method card was labelled **S.U.R.E.**
+  The Overview & Plan names **STOP & CHECK** for P1–P3 (S.U.R.E. is the
+  P4–P6 method); the P1–P3 narrative, decision, rule and pledge line already
+  used stop/check wording, so only the `game.purpose` card was off. Swapped
+  it to a two-step STOP & CHECK track, renamed the game "Stop and Check",
+  and did a full plain-English pass on the P1–P3 story, decision and all
+  nine quiz questions for 6–9 year olds: one idea per sentence, no idioms
+  ("good eye", "the hook", "call it back", "counting sides", "passing the
+  blame" all gone), no informal fillers, UK spelling. P4–P6 S.U.R.E.
+  content unchanged.
 - **31 Aug 2026: Copy Editor covers the finale**: added a "The passport
   (end)" screen to the dev Copy Editor, `CERTIFICATE_COPY` in
   `CertificateScreen.jsx` (flat `{ id, label, text }` list, `{count}` /
