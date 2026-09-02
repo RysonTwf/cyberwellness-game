@@ -32,41 +32,28 @@ export const ATLAS_TOUR = [
 
 /**
  * Island positions, keyed to the painted map
- * (public/assets/ATLASGATE/Atlas Gate.png — a 2:1 illustration of six
- * islands and the Gate crest on open water). Each `svg` point is that
- * island's centre in the scene's 640x320 viewBox, which the art fills edge
- * to edge, so svg = art pixel ÷ 3. `world` is the same point in the
- * walkable layer's 0-100 units, nudged down a little so the boat pulls up
- * to the near shore rather than sitting on top of the island.
+ * (public/assets/ATLASGATE/AtlasGateBG.png — a 2:1 chart of six islands and
+ * the Gate crest, with the compass rose and the dashed wakes between them
+ * already painted in). Each `svg` point is that island's centre in the
+ * scene's 640x320 viewBox, which the art fills edge to edge, so svg = art
+ * pixel ÷ 3 (centres found by scanning the PNG). `world` is the same point
+ * in the walkable layer's 0-100 units, nudged down a little so the boat
+ * pulls up to the near shore rather than sitting on top of the island.
  */
 const ISLANDS = {
-  passworld: { svg: { x: 104, y: 199 }, world: { x: 16, y: 67 } }, // the castle
-  privacy: { svg: { x: 220, y: 76 }, world: { x: 34, y: 30 } }, // the snowy peak
-  bullybog: { svg: { x: 271, y: 279 }, world: { x: 42, y: 91 } }, // the frog's marsh
-  balance: { svg: { x: 528, y: 242 }, world: { x: 82, y: 81 } }, // the bonfire beach
-  fablefalls: { svg: { x: 462, y: 89 }, world: { x: 72, y: 33 } }, // the falls in the cliffs
+  passworld: { svg: { x: 107, y: 194 }, world: { x: 17, y: 64 } }, // the castle
+  privacy: { svg: { x: 221, y: 69 }, world: { x: 35, y: 27 } }, // the snowy peak
+  bullybog: { svg: { x: 271, y: 282 }, world: { x: 42, y: 91 } }, // the frog's marsh
+  balance: { svg: { x: 531, y: 240 }, world: { x: 83, y: 79 } }, // the bonfire beach
+  fablefalls: { svg: { x: 464, y: 92 }, world: { x: 72, y: 32 } }, // the falls in the cliffs
 };
 
 // The Atlas Gate is the crest painted at the centre of the map — the boat
-// starts there and every branch fans out from it.
+// starts there and the painted wakes fan out from it to every island.
 const GATE = { x: 50, y: 55 };
-const GATE_SVG = { x: 320, y: 175 };
+const GATE_SVG = { x: 320, y: 173 };
 
-/**
- * One curved wake from the Gate crest to each island, as a quadratic
- * control point rather than a finished path — the render loop turns each
- * into the trail's `d`, so they can't drift. Each heads off in its own
- * direction so the trails fan out instead of bunching at the crest.
- */
-const BRANCH_CTRL = {
-  passworld: { x: 205, y: 205 },
-  privacy: { x: 250, y: 110 },
-  bullybog: { x: 305, y: 240 },
-  balance: { x: 435, y: 225 },
-  fablefalls: { x: 405, y: 115 },
-};
-
-/** The map: the painted islands, a faint wake to each, and progress marks. */
+/** The map: the painted chart, plus per-island progress marks over the top. */
 function AtlasScene({ realmProgress }) {
   const allDone = ACTIVE_REALMS.every((r) => realmProgress[r.id]?.stamped);
   return (
@@ -77,7 +64,7 @@ function AtlasScene({ realmProgress }) {
       aria-hidden="true"
     >
       <image
-        href="/assets/ATLASGATE/Atlas Gate.png"
+        href="/assets/ATLASGATE/AtlasGateBG.png"
         x="0"
         y="0"
         width="640"
@@ -85,29 +72,10 @@ function AtlasScene({ realmProgress }) {
         preserveAspectRatio="xMidYMid slice"
       />
 
-      {/* A faint wake from the Gate crest out to each island — the "branches"
-          the tour talks about, kept light so the painting carries. */}
-      {ACTIVE_REALMS.map((realm) => {
-        const ctrl = BRANCH_CTRL[realm.id];
-        const end = ISLANDS[realm.id].svg;
-        const d = `M${GATE_SVG.x} ${GATE_SVG.y} Q${ctrl.x} ${ctrl.y} ${end.x} ${end.y}`;
-        return (
-          <path
-            key={`branch-${realm.id}`}
-            d={d}
-            fill="none"
-            stroke="#f2fbfa"
-            strokeWidth="2.4"
-            strokeDasharray="1 9"
-            strokeLinecap="round"
-            opacity="0.4"
-          />
-        );
-      })}
-
       {/* A stamp tick on each island whose passport stamp is earned — the
-          realm pins themselves (World hotspots) already mark and colour each
-          island, so nothing is drawn for the unvisited ones. */}
+          painted islands already carry a realm-coloured outline and the
+          World hotspot pins mark them, so nothing is drawn for the
+          unvisited ones. */}
       {ACTIVE_REALMS.map((realm) => {
         if (!realmProgress[realm.id]?.stamped) return null;
         const { x, y } = ISLANDS[realm.id].svg;
