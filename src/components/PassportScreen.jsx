@@ -16,11 +16,11 @@ import { ACTIVE_REALMS } from '../data/realms';
  * already draws plus a greyed-out badge outline.
  */
 const SLOTS = {
-  passworld: { circle: [13.0, 37.8], frame: [34.9, 38.0] },
-  privacy: { circle: [38.3, 68.2], frame: [15.9, 68.4] },
-  balance: { circle: [61.9, 18.8], frame: [83.8, 19.0] },
-  bullybog: { circle: [87.0, 48.3], frame: [64.4, 48.3] },
-  fablefalls: { circle: [61.7, 77.7], frame: [84.0, 77.7] },
+  passworld: { circle: [13.07, 37.97], frame: [35.06, 37.92] },
+  privacy: { circle: [38.46, 68.46], frame: [15.91, 68.46] },
+  balance: { circle: [61.93, 18.99], frame: [83.93, 18.99] },
+  bullybog: { circle: [87.05, 48.42], frame: [64.59, 48.42] },
+  fablefalls: { circle: [61.86, 77.74], frame: [83.85, 77.8] },
 };
 
 export default function PassportScreen({ travelerName, realmProgress, onClose }) {
@@ -28,7 +28,7 @@ export default function PassportScreen({ travelerName, realmProgress, onClose })
   const [spreadW, setSpreadW] = useState(860);
 
   // StampBadge sizes in px, so track the spread's rendered width and scale
-  // the badge to ~15% of it (the painted circle is ~17% wide).
+  // the badge to sit inside the painted circle (~17.4% of the width).
   useEffect(() => {
     const el = spreadRef.current;
     if (!el) return undefined;
@@ -45,7 +45,7 @@ export default function PassportScreen({ travelerName, realmProgress, onClose })
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  const stampSize = Math.round(spreadW * 0.138);
+  const stampSize = Math.round(spreadW * 0.155);
   const earned = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
 
   return (
