@@ -8,6 +8,7 @@ import RealmScreen from './components/RealmScreen';
 import RealmIntro from './components/RealmIntro';
 import CertificateScreen from './components/CertificateScreen';
 import JournalProgress from './components/JournalProgress';
+import PassportScreen from './components/PassportScreen';
 import SchoolLogo from './components/SchoolLogo';
 import SettingsMenu from './components/SettingsMenu';
 import { useProgress } from './state/useProgress';
@@ -34,6 +35,7 @@ export default function App() {
   const [editorOpen, setEditorOpen] = useState(
     () => DEV && typeof window !== 'undefined' && window.location.hash === '#edit',
   );
+  const [passportOpen, setPassportOpen] = useState(false);
   useEffect(() => {
     if (!DEV) return undefined;
     const onKey = (e) => {
@@ -101,6 +103,7 @@ export default function App() {
             travelerName={travelerName}
             showBack={!onAtlas}
             onOpenAtlas={() => go('atlas')}
+            onOpenPassport={() => setPassportOpen(true)}
             realm={realm}
           />
         )}
@@ -188,6 +191,14 @@ export default function App() {
           />
         )}
       </div>
+
+      {passportOpen && (
+        <PassportScreen
+          travelerName={travelerName}
+          realmProgress={realmProgress}
+          onClose={() => setPassportOpen(false)}
+        />
+      )}
 
       {DEV && (
         <>

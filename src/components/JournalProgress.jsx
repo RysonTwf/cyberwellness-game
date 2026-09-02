@@ -14,9 +14,17 @@ const REALM_ICONS = { passworld: Key, privacy: Compass, bullybog: Heart, balance
  * that row's ~55px cost the box ~110px of width. The bar's middle was
  * empty; the identity moved up here instead (`realm` prop, null elsewhere).
  */
-export default function JournalProgress({ realmProgress, travelerName, onOpenAtlas, showBack, realm }) {
+export default function JournalProgress({
+  realmProgress,
+  travelerName,
+  onOpenAtlas,
+  onOpenPassport,
+  showBack,
+  realm,
+}) {
   const earned = ACTIVE_REALMS.filter((r) => realmProgress[r.id]?.stamped).length;
   const RealmIcon = realm ? REALM_ICONS[realm.id] : null;
+  const passportLabel = travelerName ? `${travelerName}'s passport` : 'Passport';
 
   return (
     <div className="journal-bar">
@@ -25,12 +33,20 @@ export default function JournalProgress({ realmProgress, travelerName, onOpenAtl
           <BookMarked size={17} />
           The Atlas
         </button>
+      ) : onOpenPassport ? (
+        <button
+          type="button"
+          className="btn btn-ghost btn-sm"
+          onClick={onOpenPassport}
+          title="Open your passport"
+        >
+          <BookMarked size={17} />
+          {passportLabel}
+        </button>
       ) : (
         <div className="row" style={{ gap: 8 }}>
           <BookMarked size={18} color="var(--ink-soft)" />
-          <span className="stamp-label">
-            {travelerName ? `${travelerName}'s passport` : 'Passport'}
-          </span>
+          <span className="stamp-label">{passportLabel}</span>
         </div>
       )}
 
