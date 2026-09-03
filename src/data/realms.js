@@ -53,7 +53,7 @@ const passworldLower = {
   story: [
     {
       who: 'Comet',
-      text: `Passworld! Every door here is a vault, and every vault has a keeper. ${COMET_CATCHPHRASE}`,
+      text: 'Passworld! Every door here is a vault, and every vault has a keeper.',
     },
     {
       who: 'Keeper Vex',
@@ -415,7 +415,7 @@ const privacyLower = {
   story: [
     {
       who: 'Comet',
-      text: `Privacy Peaks. Take care up here. The fog is not dangerous, but it hides who is really sending a message. ${COMET_CATCHPHRASE}`,
+      text: 'Privacy Peaks. Take care up here. The fog is not dangerous, but it hides who is really sending a message.',
     },
     {
       who: 'The Fog',
@@ -905,7 +905,7 @@ const bullybogLower = {
   story: [
     {
       who: 'Comet',
-      text: `Bully Bog. What people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
+      text: 'Bully Bog. What people post about someone shows up in the water here.',
     },
     {
       who: 'Pockets the frog',
@@ -913,7 +913,7 @@ const bullybogLower = {
     },
     {
       who: 'A comment appears',
-      text: '"Nobody wants to hear this. Go away."',
+      text: '"Nobody wants to hear you sing. Go away."',
     },
     {
       who: 'Comet',
@@ -926,7 +926,7 @@ const bullybogLower = {
     options: [
       {
         id: 'joinin',
-        text: '"Yes, that is bad."',
+        text: '"Yes, your singing is bad."',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
@@ -1022,7 +1022,7 @@ const bullybogHigher = {
   story: [
     {
       who: 'Comet',
-      text: `Bully Bog. Whatever people post about someone shows up in the water here. ${COMET_CATCHPHRASE}`,
+      text: 'Bully Bog. Whatever people post about someone shows up in the water here.',
     },
     {
       who: 'Pockets the frog',
@@ -1206,7 +1206,7 @@ const balanceLower = {
   story: [
     {
       who: 'Comet',
-      text: `Balance Bay, the last realm. This one is about balancing your time, especially time on screens. ${COMET_CATCHPHRASE}`,
+      text: 'This is where we talk about balancing your time, especially your time on screens.',
     },
     {
       who: 'Comet',
@@ -1275,7 +1275,7 @@ const balanceHigher = {
   story: [
     {
       who: 'Comet',
-      text: `Balance Bay, the last realm. This one is about balancing your time, especially the time you spend on screens. ${COMET_CATCHPHRASE}`,
+      text: 'Balancing screen time is not only about counting hours.',
     },
     {
       who: 'Comet',
@@ -1364,7 +1364,7 @@ const fableFallsLower = {
   story: [
     {
       who: 'Comet',
-      text: `Fable Falls. Every story in the Atlas ends up in this water. Some of it is true. Some of it is made up. ${COMET_CATCHPHRASE}`,
+      text: 'Fable Falls. Every story in the Atlas ends up in this water. Some of it is true. Some of it is made up.',
     },
     {
       who: 'The Echo',
