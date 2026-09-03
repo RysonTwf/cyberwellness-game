@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, Check, RefreshCw, Lock, LockOpen } from 'lucide-react';
 import DialogueCard from './DialogueCard';
 import ChoiceCard from './ChoiceCard';
@@ -12,7 +12,7 @@ import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
 import { pauseMusic, resumeMusic } from '../lib/music';
-import { describeMix, readPassword } from '../lib/password';
+import { describeMix, gradePassword, readPassword } from '../lib/password';
 import { playSfx } from '../lib/sfx';
 import { prefersReducedMotion } from '../lib/motion';
 
@@ -63,7 +63,20 @@ export default function PlatformerStoryRealm({
   const [touchControls, setTouchControls] = useState(false);
 
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
-  const total = realm.game.tiles.filter((t) => t.kind === 'real').length;
+
+  // The level as played: the `{name}` tile carries the name the child chose
+  // for themselves, and drops out of the level entirely if they never gave
+  // one, since a piece labelled with an empty string teaches nothing.
+  const game = useMemo(() => {
+    const tiles = realm.game.tiles
+      .map((t) => (t.label.includes('{name}')
+        ? { ...t, label: t.label.replace('{name}', travelerName ?? '') }
+        : t))
+      .filter((t) => t.label.trim().length > 0);
+    return { ...realm.game, tiles };
+  }, [realm.game, travelerName]);
+
+  const total = game.tiles.filter((t) => t.kind === 'real').length;
   const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
 
   // The journey's background loop (App.jsx) steps aside for the level itself,
@@ -167,10 +180,30 @@ export default function PlatformerStoryRealm({
   // order the level happened to hand the pieces over in.
   const chosenPieces = chosen.map((id) => bag.find((t) => t.id === id)).filter(Boolean);
   const built = readPassword(chosenPieces);
+  // The gauge on screen is what the door opens for, so the two read the same
+  // grade rather than testing different things.
+  const grade = gradePassword(built);
+  // The pieces that are about the child: their own name, and the pet name.
+  // No gauge anywhere can see anything wrong with these, which is why the
+  // vault, not the gauge, is what refuses them.
+  const aboutMePieces = chosenPieces.filter((t) => t.aboutMe);
+  // Easy-to-guess words that are not about the child. They do not stop the
+  // door: a common word inside a long, well mixed password barely dents it,
+  // and saying otherwise would be teaching something untrue. The reveal says
+  // as much.
+  const weakWordsUsed = chosenPieces.filter((t) => t.kind === 'decoy' && !t.aboutMe);
   // Two of L.M.N. are plain facts about what is ticked, so they tick
   // themselves as the password grows. The third is the judgement being asked
   // for, so it stays open until the door opens.
-  const liveChecks = new Set([...(built.isLong ? ['L'] : []), ...(built.isMixed ? ['M'] : [])]);
+  // All three tick live now, because all three are checkable: long, mixed, and
+  // nothing about you in there. N going dark the moment a child ticks their own
+  // name is not giving an answer away, it is the lesson arriving at the moment
+  // they can act on it.
+  const liveChecks = new Set([
+    ...(built.isLong ? ['L'] : []),
+    ...(built.isMixed ? ['M'] : []),
+    ...(chosenPieces.length > 0 && aboutMePieces.length === 0 ? ['N'] : []),
+  ]);
   // The reveal compares what they built against something weak they actually
   // carried up here, rather than an example out of nowhere.
   const weakExample = bag.find((t) => t.kind === 'decoy')?.label ?? 'password';
@@ -183,23 +216,29 @@ export default function PlatformerStoryRealm({
    * but another go (design.md §8), it just doesn't open.
    */
   function answerDoor() {
-    if (!hasEveryStrong) {
-      setVerdict('short');
+    // The gauge decides. It used to be one exact set of pieces, which meant a
+    // child holding a long, well mixed password could still be turned away
+    // with "that is not the set" and nothing to work from. Now the keypad
+    // opens for anything its own gauge calls strong, and the gauge says what
+    // is missing when it does not.
+    if (!grade.strong) {
+      setVerdict('weak');
       return;
     }
-    const wantedIds = strongInBag.map((t) => t.id).sort();
-    const gotIds = [...chosen].sort();
-    const exact =
-      wantedIds.length === gotIds.length && wantedIds.every((id, i) => id === gotIds[i]);
-    if (!exact) {
-      setVerdict('wrong');
+    // Strong is not enough on its own. A password with the child's own name in
+    // it is one question away for anybody who knows them, and no meter on
+    // earth can spot that, so the vault holds this line itself.
+    if (aboutMePieces.length > 0) {
+      setVerdict('aboutMe');
       return;
     }
     // The door stays on screen on a pass: the reveal of what the pieces built
     // is the part the level was missing, and it goes with `openVault` below,
     // once the child has read it.
     setVerdict('passed');
-    setScore(strongInBag.length);
+    // Scored on the strong pieces they actually used, so a password padded out
+    // with something weak is still a pass, but not full marks.
+    setScore(chosenPieces.filter((t) => t.kind === 'real').length);
     playSfx('confirm');
   }
 
@@ -288,7 +327,7 @@ export default function PlatformerStoryRealm({
             key={round}
             config={(Phaser) =>
               makePasswordFortressLevelConfig(Phaser, {
-                game: realm.game,
+                game,
                 controlsRef,
                 onDecisionReached: () => setDecisionOpen(true),
                 onProgress: (n) => setCollected(n),
@@ -359,7 +398,18 @@ export default function PlatformerStoryRealm({
                    The vault waits here now, with the pieces joined up on
                    screen, until they have read it and chosen to go on. */
                 <>
-                  <MethodTrack purpose={realm.game.purpose} cleared={new Set(['L', 'M', 'N'])} />
+                  {/* Ticked from what they actually built, not as a foregone
+                      conclusion: a password can get through the door long and
+                      mixed while still carrying a piece that is about them, and
+                      the track has to say so. */}
+                  <MethodTrack
+                    purpose={game.purpose}
+                    cleared={new Set([
+                      ...(built.isLong ? ['L'] : []),
+                      ...(built.isMixed ? ['M'] : []),
+                      ...(aboutMePieces.length === 0 ? ['N'] : []),
+                    ])}
+                  />
 
                   <p className="instruction">
                     The keypad accepts it. Here is what your pieces built.
@@ -378,7 +428,15 @@ export default function PlatformerStoryRealm({
                       room, which keeps the reveal short enough to read on a
                       phone held sideways. */}
                   <div className="pw-why">
-                    <PasswordChoices length={built.length} />
+                    {weakWordsUsed.length > 0 && (
+                    <DialogueCard
+                      who="Comet"
+                      accent={realm.accent}
+                      text={`Worth knowing: ${weakWordsUsed.map((t) => `"${t.label}"`).join(' and ')} on its own would be guessed in a heartbeat, because it sits near the top of every guessing list. Buried inside something this long and this mixed, it does no harm. Length and mix are what did the work.`}
+                    />
+                  )}
+
+                  <PasswordChoices length={built.length} />
                     <PasswordCompare weak={weakExample} strong={built.joined} />
                   </div>
 
@@ -401,34 +459,33 @@ export default function PlatformerStoryRealm({
                       themselves. Not me stays open: whether a piece is a real word
                       or something about them is the judgement the door is asking
                       for, and ticking it would hand the answer over. */}
-                  <MethodTrack purpose={realm.game.purpose} cleared={liveChecks} />
+                  <MethodTrack purpose={game.purpose} cleared={liveChecks} />
 
-                  {!hasEveryStrong && verdict !== 'short' && (
+                  {!verdict && (
                     <p className="instruction">
-                      The keypad wants a password of twelve characters or more. Tick the pieces you
-                      think make it strong, and leave the easy-to-guess ones out. Not every short
-                      one is strong, and not every word-shaped one is weak.
+                      The keypad opens for any password its gauge calls strong: twelve characters
+                      or more, with letters, numbers and symbols mixed together. The vault adds one
+                      rule of its own, and it is the N up there. Nothing about you goes in.
                     </p>
                   )}
 
-                  {verdict === 'short' && (
+                  {verdict === 'weak' && (
                     <DialogueCard
                       who="Comet"
                       accent={realm.accent}
-                      text={`You do not have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door will not open on a half-built password. Go back and find the rest.`}
+                      text={`The gauge does not call that strong yet. ${grade.reason ?? 'Try a longer, better mixed set of pieces.'} Change what you have ticked and watch the gauge move.`}
                     />
                   )}
 
-                  {verdict === 'wrong' && (
+                  {verdict === 'aboutMe' && (
                     <DialogueCard
                       who="Comet"
                       accent={realm.accent}
-                      text="That is not the set. Something you ticked would be easy for someone to guess, or something strong got left out. Read them again and try once more."
+                      text={`The gauge says that password is strong, and it is right about the length and the mix. It cannot see the problem, though. ${aboutMePieces.map((t) => `"${t.label}"`).join(' and ')} ${aboutMePieces.length > 1 ? 'are' : 'is'} about you. Anybody who knows you would try that first, so the vault will not take it. Leave that piece out and use the others.`}
                     />
                   )}
 
-                  {verdict !== 'short' && (
-                    <>
+                  <>
                       <div className="bag-grid">
                         {bag.map((t) => {
                           const on = chosen.includes(t.id);
@@ -474,15 +531,16 @@ export default function PlatformerStoryRealm({
                         <Check size={19} />
                         Enter the password
                       </button>
-                    </>
-                  )}
+                  </>
 
                   <button
                     type="button"
                     className="btn btn-ghost btn-sm"
                     onClick={() =>
                       leaveDoor(
-                        hasEveryStrong ? 'Have another look at what you have.' : 'Some pieces are still out there.',
+                        hasEveryStrong
+                          ? 'Have another look at what you have.'
+                          : 'Some pieces are still out there.',
                       )
                     }
                   >
@@ -495,7 +553,7 @@ export default function PlatformerStoryRealm({
 
           {!decisionOpen && !doorOpen && (
             <>
-              <p className="instruction">{realm.game.instruction}</p>
+              <p className="instruction">{game.instruction}</p>
               {/* Count only. Showing "x of 6 strong" as they went told them
                   which pickups had counted the moment they touched one. */}
               <p className="tile-hint">In the bag: {bag.length}</p>
