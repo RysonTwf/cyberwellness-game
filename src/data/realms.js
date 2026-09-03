@@ -1253,13 +1253,13 @@ const balanceLower = {
       checks: [
         { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
         { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
-        { key: 'H', name: 'Half', sub: 'Screens take up no more than half' },
+        { key: 'H', name: 'Two hours', sub: 'Screens take up no more than two hours' },
       ],
     },
     musts: {
       sleep: 'b9',
       somethingElse: ['b6', 'b7', 'b8', 'b10'],
-      maxScreenShare: 0.5,
+      maxScreenHours: 2,
     },
     items: [
       { id: 'b1', text: 'Watch videos', screen: true },
@@ -1285,7 +1285,7 @@ const balanceLower = {
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. And keep the Three Musts: sleep is in the day, one thing is away from a screen, and screens take no more than half.',
+    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. And keep the Three Musts: sleep is in the day, one thing is away from a screen, and screens take no more than two hours.',
   },
 };
 
@@ -1317,7 +1317,7 @@ const balanceHigher = {
       checks: [
         { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
         { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
-        { key: 'H', name: 'Half', sub: 'Screens take up no more than half' },
+        { key: 'H', name: 'Two hours', sub: 'Screens take up no more than two hours' },
       ],
     },
     musts: balanceLower.game.musts,
@@ -1334,7 +1334,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Start with the Three Musts: sleep is in the day, one thing is off a screen, and screens take no more than half. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
+    text: 'Start with the Three Musts: sleep is in the day, one thing is off a screen, and screens take no more than two hours. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
   },
 };
 

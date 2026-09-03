@@ -27,6 +27,17 @@ import BeachScene, { BEACH_OBSTACLES } from '../world/beach/BeachScene';
 const SPAWN = { x: 26, y: 88 };
 const BOUNDS = { minX: 8, maxX: 92, minY: 48, maxY: 92 };
 
+// The six slots are one evening, school to bed, an hour per activity — so a
+// clock can be read straight off how many are filled. 4pm keeps the day
+// ending at a plausible bedtime once all six are placed.
+const DAY_START_HOUR = 16;
+
+function formatClockHour(hour24) {
+  const period = hour24 < 12 ? 'AM' : 'PM';
+  const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+  return `${hour12}:00 ${period}`;
+}
+
 // Where each activity waits on the sand. Screen-time items sit toward the
 // water; everything else sits toward the drier sand, and both are kept clear
 // of the seesaw and the palm-hammock (BeachScene's SEESAW_SPOT / HAMMOCK_SPOT).
@@ -100,7 +111,7 @@ export default function BalanceBeachRealm({
   const met = {
     S: day.includes(musts.sleep),
     E: musts.somethingElse.some((id) => day.includes(id)),
-    H: screenCount <= slots * musts.maxScreenShare,
+    H: screenCount <= musts.maxScreenHours,
   };
   const cleared = new Set(Object.keys(met).filter((k) => met[k]));
   const balanced = full && purpose.checks.every((c) => met[c.key]);
@@ -228,6 +239,7 @@ export default function BalanceBeachRealm({
             <p className="tile-hint">
               {day.length} / {slots} hours filled
             </p>
+            <p className="tile-hint">The clock says {formatClockHour(DAY_START_HOUR + day.length)}.</p>
 
             <div className="slots">
               {Array.from({ length: slots }, (_, i) => {

@@ -133,7 +133,7 @@ Concrete proposals per realm:
 | Passworld (the vault door) | **L.M.N.** | **Long** enough · **Mixed** characters · **Not** about me and not a real word |
 | Privacy Peaks | **S.T.O.P.** | **Sender**, do I actually know who this is? · **Tone**, is it rushing or scaring me? · **Task**, what is it asking me to do? · **Path**, where does that link really go? |
 | Bully Bog | **T.H.I.N.K.** | Is it **True**? **Helpful**? **Inspiring**? **Necessary**? **Kind**? |
-| Balance Bay | **The Three Musts** | **Sleep** is in the day · at least one thing **off a screen** · screens under **half** the evening |
+| Balance Bay | **The Three Musts** | **Sleep** is in the day · at least one thing **off a screen** · screens under **two hours** in the evening |
 | Fable Falls | **S.U.R.E.** *(already done)* | Source · Understand · Research · Evaluate |
 
 S.T.O.P. and T.H.I.N.K. are standard, school-recognisable frameworks, the same reason S.U.R.E. works well for the older band, and both convert their game from "pick a bin" into "name the check it fails, then decide", which is the move that made S.U.R.E. un-guessable.
@@ -235,8 +235,8 @@ format rule.
 | Passworld P4 to P6 sort | 1 in 256 | 1 in 20,736 |
 
 - Balance Bay gates on the **Three Musts**: sleep is in the day, one thing is
-  away from a screen, screens take no more than half. Checked exhaustively:
-  every screens-only day is blocked.
+  away from a screen, screens take no more than two hours. Checked
+  exhaustively: every screens-only day is blocked.
 - Every gated game draws its round from a larger authored pool, which closes
   the rote loophole.
 - Every game names its method on screen while you play, through a shared
@@ -271,9 +271,11 @@ product.
 
 ### Still open
 
-- Balance Bay's Three Musts are met by 58% of random six-hour days. That is by
+- Balance Bay's Three Musts are met by 39% of random six-hour days (tightened
+  from 58% when the Half check became a flat two-hour screen cap). That is by
   design, since the three conditions are stated on screen and the point is that
-  they can be reasoned to rather than guessed, but it is the weakest gate left.
+  they can be reasoned to rather than guessed, but it is still the weakest gate
+  left.
 - Privacy Peaks P4 to P6 lost the Phaser stepping-stones visual with the format
   change. If that scene is wanted back inside a Q&A, it would need re-siting.
 
