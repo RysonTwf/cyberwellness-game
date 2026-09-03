@@ -37,15 +37,24 @@ export const ATLAS_TOUR = [
  * already painted in). Each `svg` point is that island's centre in the
  * scene's 640x320 viewBox, which the art fills edge to edge, so svg = art
  * pixel ÷ 3 (centres found by scanning the PNG). `world` is the same point
- * in the walkable layer's 0-100 units, nudged down a little so the boat
- * pulls up to the near shore rather than sitting on top of the island.
+ * in the walkable layer's 0-100 units.
+ *
+ * `zone` is the "close enough to step ashore" box — `[halfWidth, halfHeight]`
+ * around the world point, sized to the painted island's footprint so the
+ * "visit" prompt appears the moment the boat reaches any shore, not only
+ * when it is right on the centre pin (World.jsx reads `spot.zone`).
  */
 const ISLANDS = {
-  passworld: { svg: { x: 107, y: 194 }, world: { x: 17, y: 64 } }, // the castle
-  privacy: { svg: { x: 221, y: 69 }, world: { x: 35, y: 27 } }, // the snowy peak
-  bullybog: { svg: { x: 271, y: 282 }, world: { x: 42, y: 91 } }, // the frog's marsh
-  balance: { svg: { x: 531, y: 240 }, world: { x: 83, y: 79 } }, // the bonfire beach
-  fablefalls: { svg: { x: 464, y: 92 }, world: { x: 72, y: 32 } }, // the falls in the cliffs
+  // the castle
+  passworld: { svg: { x: 107, y: 194 }, world: { x: 17, y: 64 }, zone: [14, 14] },
+  // the snowy peak
+  privacy: { svg: { x: 221, y: 69 }, world: { x: 35, y: 27 }, zone: [14, 15] },
+  // the frog's marsh (sits low, so a shorter box)
+  bullybog: { svg: { x: 271, y: 282 }, world: { x: 42, y: 91 }, zone: [14, 12] },
+  // the bonfire beach
+  balance: { svg: { x: 531, y: 240 }, world: { x: 83, y: 79 }, zone: [14, 15] },
+  // the falls in the cliffs
+  fablefalls: { svg: { x: 464, y: 92 }, world: { x: 72, y: 32 }, zone: [14, 15] },
 };
 
 // The Atlas Gate is the crest painted at the centre of the map — the boat
@@ -142,6 +151,7 @@ export default function AtlasMap({
   const hotspots = ACTIVE_REALMS.map((realm) => ({
     id: realm.id,
     ...ISLANDS[realm.id].world,
+    zone: ISLANDS[realm.id].zone,
     label: realm.name,
     action: realmProgress[realm.id]?.stamped ? 'Visit again' : 'Travel here',
     accent: realm.accent,
@@ -152,6 +162,8 @@ export default function AtlasMap({
       id: 'finale',
       x: GATE.x + 2,
       y: GATE.y - 4,
+      // The crest is a small target, so a tight box rather than an island one.
+      zone: [10, 9],
       label: 'The Atlas Gate',
       action: 'Finish',
       accent: 'var(--gold)',
