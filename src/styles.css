@@ -2619,6 +2619,264 @@ p {
   box-shadow: var(--shadow-sm);
 }
 
+/* ---------- The vault door: how the pieces pair up ----------------------- */
+/* components/PasswordBuild.jsx. The pieces on one line, joined into a single
+   password on the next, every character coloured by what it is. Children were
+   finishing the level without seeing what they had built, so this is shown
+   live while they tick and again, larger, once the door opens. */
+
+.pw-build {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line-strong);
+  background: var(--paper-card);
+  text-align: center;
+}
+
+.pw-empty {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.pw-pieces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 4px;
+}
+
+.pw-pieces li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pw-piece {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.pw-plus {
+  margin: 0 6px;
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
+/* One character of a password, coloured by what it is. The three colours are
+   the whole point of the picture, so they are spelled out by PasswordLegend
+   rather than left for the child to work out. */
+.pw-char {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 30px;
+  padding: 0 5px;
+  border-radius: 7px;
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink-soft);
+}
+
+.pw-char.is-letter {
+  background: var(--teal);
+}
+
+.pw-char.is-number {
+  background: var(--gold);
+  color: #3d2a10;
+}
+
+.pw-char.is-symbol {
+  background: var(--periwinkle);
+}
+
+/* The step from "pieces" to "one password". */
+.pw-arrow {
+  margin: 10px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.pw-arrow::before {
+  content: '↓';
+  display: block;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.pw-joined {
+  margin: 0;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-wash);
+  border: 1.5px dashed var(--accent, var(--line-strong));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pw-joined .pw-char {
+  min-width: 28px;
+  height: 34px;
+  font-size: 17px;
+}
+
+.pw-mix {
+  margin: 9px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pw-legend {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pw-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pw-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  background: var(--ink-soft);
+}
+
+.pw-swatch.is-letter {
+  background: var(--teal);
+}
+
+.pw-swatch.is-number {
+  background: var(--gold);
+}
+
+.pw-swatch.is-symbol {
+  background: var(--periwinkle);
+}
+
+/* The characters walk in left to right on the reveal, so the joining is
+   something the child watches happen rather than a block of colour that was
+   simply there. `--step` is the character's place in the strip. */
+.pw-build.is-building .pw-char {
+  animation: pw-pop 0.3s ease-out both;
+  animation-delay: calc(var(--step, 0) * 70ms);
+}
+
+@keyframes pw-pop {
+  from {
+    opacity: 0;
+    transform: translateY(7px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Why it is stronger: the weak piece they carried up here, and the password
+   they built, with a bar each for how much guessing it takes. */
+.pw-compare {
+  display: grid;
+  /* Side by side wherever there is room, which on a phone held sideways is
+     what keeps the reveal down to one screen instead of two. */
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pw-compare-row {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--paper-card);
+}
+
+.pw-compare-label {
+  margin: 0;
+  font-family: var(--font-stamp);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.pw-bar {
+  margin: 7px 0;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--paper-sunk);
+  overflow: hidden;
+}
+
+.pw-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.pw-bar-fill.is-weak {
+  background: var(--coral);
+}
+
+.pw-bar-fill.is-strong {
+  background: var(--teal);
+}
+
+.pw-compare-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* A phone held sideways has a short screen and the reveal is the longest
+   panel in the realm, so it is tightened up there rather than asking a child
+   to scroll through it twice. */
+@media (max-height: 620px) and (pointer: coarse) {
+  .pw-build {
+    margin-top: 8px;
+    padding: 9px 10px;
+  }
+
+  .pw-arrow {
+    margin: 6px 0 5px;
+  }
+
+  .pw-legend,
+  .pw-compare {
+    margin-top: 8px;
+  }
+}
+
+/* The blanket reduced-motion rule shortens animations but leaves delays
+   alone, which would hold every character off screen for its turn. */
+@media (prefers-reduced-motion: reduce) {
+  .pw-build.is-building .pw-char {
+    animation-delay: 0s !important;
+  }
+}
+
 /* A message the player has marked as worth stopping at, before they commit.
    Distinct from `.cleared`, which is the post-answer reveal. */
 .msg.marked {

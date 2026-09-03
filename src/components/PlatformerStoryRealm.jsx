@@ -7,10 +7,14 @@ import StampMoment from './StampMoment';
 import StepTrail from './StepTrail';
 import MethodTrack from './MethodTrack';
 import RealmArt from './RealmArt';
+import PasswordBuild, { PasswordCompare, PasswordLegend } from './PasswordBuild';
 import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
 import { pauseMusic, resumeMusic } from '../lib/music';
+import { describeMix, readPassword } from '../lib/password';
+import { playSfx } from '../lib/sfx';
+import { prefersReducedMotion } from '../lib/motion';
 
 /**
  * A realm whose entire experience — story, the decision, the mini-game —
@@ -52,6 +56,7 @@ export default function PlatformerStoryRealm({
 
   const controlsRef = useRef({ left: false, right: false, jump: false });
   const sceneRef = useRef(null);
+  const panelRef = useRef(null);
   // On a phone or a tablet the controls belong on the level itself, thumbs
   // resting at the bottom corners. On a desktop the keyboard does the job and
   // the row of buttons beside the level is there for a mouse.
@@ -79,6 +84,20 @@ export default function PlatformerStoryRealm({
     query.addEventListener('change', apply);
     return () => query.removeEventListener('change', apply);
   }, []);
+
+  // Stacked on a phone, the panel sits under a level that fills the screen,
+  // so a question opening down there can go unseen. Bring it into view as it
+  // opens, and again when the door answers back. Side by side on a laptop,
+  // nothing needs to move.
+  useEffect(() => {
+    if (!decisionOpen && !doorOpen) return;
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
+    panelRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  }, [decisionOpen, doorOpen, verdict]);
 
   // A panel taking over (Sam's question, the vault door) hides the buttons.
   // Let go of whatever was held down as they go, or the player carries on
@@ -139,6 +158,19 @@ export default function PlatformerStoryRealm({
   const strongInBag = bag.filter((t) => t.kind === 'real');
   const hasEveryStrong = strongInBag.length >= total;
 
+  // The ticked pieces in the order they were ticked, which is the order they
+  // are joined in: the child decides what the password reads like, not the
+  // order the level happened to hand the pieces over in.
+  const chosenPieces = chosen.map((id) => bag.find((t) => t.id === id)).filter(Boolean);
+  const built = readPassword(chosenPieces);
+  // Two of L.M.N. are plain facts about what is ticked, so they tick
+  // themselves as the password grows. The third is the judgement being asked
+  // for, so it stays open until the door opens.
+  const liveChecks = new Set([...(built.isLong ? ['L'] : []), ...(built.isMixed ? ['M'] : [])]);
+  // The reveal compares what they built against something weak they actually
+  // carried up here, rather than an example out of nowhere.
+  const weakExample = bag.find((t) => t.kind === 'decoy')?.label ?? 'password';
+
   /**
    * The door's question. Two separate gates, deliberately:
    * first, are all the strong pieces even in the bag — if not there's nothing
@@ -159,9 +191,17 @@ export default function PlatformerStoryRealm({
       setVerdict('wrong');
       return;
     }
+    // The door stays on screen on a pass: the reveal of what the pieces built
+    // is the part the level was missing, and it goes with `openVault` below,
+    // once the child has read it.
     setVerdict('passed');
-    setDoorOpen(false);
     setScore(strongInBag.length);
+    playSfx('confirm');
+  }
+
+  /** The reveal is read; open the vault and let the level play its win. */
+  function openVault() {
+    setDoorOpen(false);
     sceneRef.current?.resolveDoor(true);
   }
 
@@ -304,92 +344,141 @@ export default function PlatformerStoryRealm({
 
           <aside className="stage-side">
           {doorOpen && (
-            <div className="stack">
+            <div className="stack" ref={panelRef}>
               <h3>The vault door</h3>
 
-              {/* The three tests to judge each piece against, on screen while
-                  you choose. The pieces themselves are shown plain on purpose:
-                  marking the strong ones teal-and-padlocked at the door handed
-                  over the answer, so ticking the green ones took no judgement
-                  at all. L.M.N. is what replaces that, something to reason
-                  from rather than a colour to follow. */}
-              <MethodTrack purpose={realm.game.purpose} cleared={new Set()} />
-
-              {!hasEveryStrong && verdict !== 'short' && (
-                <p className="instruction">
-                  The keypad wants the whole password. Tick the pieces you think make it strong,
-                  and leave the easy-to-guess ones out. Not every short one is strong, and not
-                  every word-shaped one is weak.
-                </p>
-              )}
-
-              {verdict === 'short' && (
-                <DialogueCard
-                  who="Comet"
-                  accent={realm.accent}
-                  text={`You do not have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door will not open on a half-built password. Go back and find the rest.`}
-                />
-              )}
-
-              {verdict === 'wrong' && (
-                <DialogueCard
-                  who="Comet"
-                  accent={realm.accent}
-                  text="That is not the set. Something you ticked would be easy for someone to guess, or something strong got left out. Read them again and try once more."
-                />
-              )}
-
-              {verdict !== 'short' && (
+              {verdict === 'passed' ? (
+                /* The reveal. Opening the door used to be the whole answer,
+                   so children finished the level without ever seeing what
+                   their six pickups had built, or why a letter beside a
+                   number beside a symbol is harder to guess than a word.
+                   The vault waits here now, with the pieces joined up on
+                   screen, until they have read it and chosen to go on. */
                 <>
-                  <div className="bag-grid">
-                    {bag.map((t) => {
-                      const on = chosen.includes(t.id);
-                      return (
-                        <button
-                          key={t.id}
-                          type="button"
-                          className={`bag-chip${on ? ' on' : ''}`}
-                          aria-pressed={on}
-                          aria-label={t.label}
-                          onClick={() =>
-                            setChosen((c) =>
-                              c.includes(t.id) ? c.filter((x) => x !== t.id) : [...c, t.id],
-                            )
-                          }
-                        >
-                          {on ? <Lock size={12} /> : <LockOpen size={12} />}
-                          {t.label}
-                        </button>
-                      );
-                    })}
-                    {bag.length === 0 && <p className="muted">Your bag is empty.</p>}
-                  </div>
-                  <p className="tile-hint">
-                    Tap a piece to put it in the password. Tap it again to take it back out.
+                  <MethodTrack purpose={realm.game.purpose} cleared={new Set(['L', 'M', 'N'])} />
+
+                  <p className="instruction">
+                    The keypad accepts it. Here is what your pieces built.
                   </p>
+
+                  <PasswordBuild pieces={chosenPieces} animate />
+                  <PasswordLegend />
+
+                  <DialogueCard
+                    who="Comet"
+                    accent={realm.accent}
+                    text={`Look at it all joined up. ${chosenPieces.length} small pieces became one password of ${built.length} characters. It holds ${describeMix(built.counts)}, and not one part of it is a real word or anything about you. A space that can only hold a letter gives a guessing machine 26 things to try. A space that can hold a letter, a number or a symbol gives it many more, and you have ${built.length} of those spaces.`}
+                  />
+
+                  <PasswordCompare weak={weakExample} strong={built.joined} />
+
+                  <button type="button" className="btn btn-accent" onClick={openVault}>
+                    <ArrowRight size={19} />
+                    Open the vault
+                  </button>
+                </>
+              ) : (
+                <>
+                  {/* The three tests to judge each piece against, on screen while
+                      you choose. The pieces themselves are shown plain on purpose:
+                      marking the strong ones teal-and-padlocked at the door handed
+                      over the answer, so ticking the green ones took no judgement
+                      at all. L.M.N. is what replaces that, something to reason
+                      from rather than a colour to follow.
+
+                      Long and Mixed tick themselves as the child builds, because
+                      both are plain facts about the string they can see for
+                      themselves. Not me stays open: whether a piece is a real word
+                      or something about them is the judgement the door is asking
+                      for, and ticking it would hand the answer over. */}
+                  <MethodTrack purpose={realm.game.purpose} cleared={liveChecks} />
+
+                  {!hasEveryStrong && verdict !== 'short' && (
+                    <p className="instruction">
+                      The keypad wants the whole password. Tick the pieces you think make it strong,
+                      and leave the easy-to-guess ones out. Not every short one is strong, and not
+                      every word-shaped one is weak.
+                    </p>
+                  )}
+
+                  {verdict === 'short' && (
+                    <DialogueCard
+                      who="Comet"
+                      accent={realm.accent}
+                      text={`You do not have all the right pieces yet. ${strongInBag.length} of ${total} so far. The door will not open on a half-built password. Go back and find the rest.`}
+                    />
+                  )}
+
+                  {verdict === 'wrong' && (
+                    <DialogueCard
+                      who="Comet"
+                      accent={realm.accent}
+                      text="That is not the set. Something you ticked would be easy for someone to guess, or something strong got left out. Read them again and try once more."
+                    />
+                  )}
+
+                  {verdict !== 'short' && (
+                    <>
+                      <div className="bag-grid">
+                        {bag.map((t) => {
+                          const on = chosen.includes(t.id);
+                          return (
+                            <button
+                              key={t.id}
+                              type="button"
+                              className={`bag-chip${on ? ' on' : ''}`}
+                              aria-pressed={on}
+                              aria-label={t.label}
+                              onClick={() =>
+                                setChosen((c) =>
+                                  c.includes(t.id) ? c.filter((x) => x !== t.id) : [...c, t.id],
+                                )
+                              }
+                            >
+                              {on ? <Lock size={12} /> : <LockOpen size={12} />}
+                              {t.label}
+                            </button>
+                          );
+                        })}
+                        {bag.length === 0 && <p className="muted">Your bag is empty.</p>}
+                      </div>
+                      <p className="tile-hint">
+                        Tap a piece to put it in the password. Tap it again to take it back out.
+                      </p>
+
+                      {/* The pieces joined up as they are ticked, so the password
+                          is something the child watches being built rather than a
+                          list of chips they hope adds up. */}
+                      <PasswordBuild
+                        pieces={chosenPieces}
+                        empty="Tick a piece to start building your password."
+                      />
+
+                      <button
+                        type="button"
+                        className="btn btn-accent"
+                        disabled={chosen.length === 0}
+                        onClick={answerDoor}
+                      >
+                        <Check size={19} />
+                        Enter the password
+                      </button>
+                    </>
+                  )}
+
                   <button
                     type="button"
-                    className="btn btn-accent"
-                    disabled={chosen.length === 0}
-                    onClick={answerDoor}
+                    className="btn btn-ghost btn-sm"
+                    onClick={() =>
+                      leaveDoor(
+                        hasEveryStrong ? 'Have another look at what you have.' : 'Some pieces are still out there.',
+                      )
+                    }
                   >
-                    <Check size={19} />
-                    Enter the password
+                    Step back
                   </button>
                 </>
               )}
-
-              <button
-                type="button"
-                className="btn btn-ghost btn-sm"
-                onClick={() =>
-                  leaveDoor(
-                    hasEveryStrong ? 'Have another look at what you have.' : 'Some pieces are still out there.',
-                  )
-                }
-              >
-                Step back
-              </button>
             </div>
           )}
 
@@ -441,7 +530,7 @@ export default function PlatformerStoryRealm({
               Block sits on both branches: a player who verifies (the safe
               choice) still meets it, before the gate opens. */}
           {decisionOpen && (
-            <div className="stack">
+            <div className="stack" ref={panelRef}>
               <h3>{realm.decision.prompt}</h3>
               <div className="choices">
                 {realm.decision.options.map((option) => (
