@@ -913,7 +913,7 @@ const bullybogLower = {
     },
     {
       who: 'A comment appears',
-      text: '"Nobody wants to hear this. Please go away."',
+      text: '"Nobody wants to hear this. Go away."',
     },
     {
       who: 'Comet',
