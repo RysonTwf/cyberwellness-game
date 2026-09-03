@@ -116,18 +116,21 @@ export default function World({
   }, [moving, pos]);
 
   // Whichever pin the Traveler is close enough to interact with — the
-  // nearest one whose zone they're inside. Most pins use a plain radius
-  // (`INTERACT_RANGE`); a pin can pass `zone: [halfW, halfH]` for a
-  // rectangle instead, so a big target (an Atlas island) triggers as soon
-  // as you reach its shore rather than only near its centre point.
+  // nearest one they're inside the trigger area of. Most pins use a plain
+  // radius (`INTERACT_RANGE`) centred on the pin itself; a pin can instead
+  // pass `zone: { x, y, w, h }` — a rectangle in world units, its own centre
+  // and full size — so a big target (an Atlas island, drawn with its pin
+  // low on the shore) triggers across its whole footprint. "Nearest" is
+  // measured to the zone's centre when it has one, else to the pin.
   const active = useMemo(() => {
     let best = null;
     let bestDist = Infinity;
     for (const spot of hotspots) {
-      const d = distance(pos, spot);
       const z = spot.zone;
+      const centre = z ? { x: z.x, y: z.y } : spot;
+      const d = distance(pos, centre);
       const inside = z
-        ? Math.abs(pos.x - spot.x) <= z[0] && Math.abs(pos.y - spot.y) <= z[1]
+        ? Math.abs(pos.x - z.x) <= z.w / 2 && Math.abs(pos.y - z.y) <= z.h / 2
         : d < INTERACT_RANGE;
       if (inside && d < bestDist) {
         best = spot;

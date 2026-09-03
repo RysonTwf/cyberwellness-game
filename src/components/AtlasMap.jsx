@@ -39,22 +39,46 @@ export const ATLAS_TOUR = [
  * pixel ÷ 3 (centres found by scanning the PNG). `world` is the same point
  * in the walkable layer's 0-100 units.
  *
- * `zone` is the "close enough to step ashore" box — `[halfWidth, halfHeight]`
- * around the world point, sized to the painted island's footprint so the
- * "visit" prompt appears the moment the boat reaches any shore, not only
- * when it is right on the centre pin (World.jsx reads `spot.zone`).
+ * `zone` is the "close enough to step ashore" box — `{ x, y, w, h }` in world
+ * units, its own centre and full size, matched to each painted island's
+ * footprint (measured by scanning the PNG) so the "visit" prompt appears the
+ * moment the boat reaches any shore. It is separate from the pin, which sits
+ * lower on the island for a tidy marker + label; the box stays centred on
+ * the island itself, and each island's box is its own size — Bully Bog's
+ * flat marsh is short, Balance Bay's palm-and-sparkle beach is tall
+ * (World.jsx reads `spot.zone`).
  */
 const ISLANDS = {
-  // the castle
-  passworld: { svg: { x: 107, y: 194 }, world: { x: 17, y: 64 }, zone: [14, 14] },
+  // the castle (its grass island is a little narrower than the others)
+  passworld: {
+    svg: { x: 107, y: 194 },
+    world: { x: 17, y: 64 },
+    zone: { x: 16, y: 58, w: 21, h: 29 },
+  },
   // the snowy peak
-  privacy: { svg: { x: 221, y: 69 }, world: { x: 35, y: 27 }, zone: [14, 15] },
-  // the frog's marsh (sits low, so a shorter box)
-  bullybog: { svg: { x: 271, y: 282 }, world: { x: 42, y: 91 }, zone: [14, 12] },
-  // the bonfire beach
-  balance: { svg: { x: 531, y: 240 }, world: { x: 83, y: 79 }, zone: [14, 15] },
+  privacy: {
+    svg: { x: 221, y: 69 },
+    world: { x: 35, y: 27 },
+    zone: { x: 34, y: 19, w: 24, h: 30 },
+  },
+  // the frog's marsh — a low, flat island
+  bullybog: {
+    svg: { x: 271, y: 282 },
+    world: { x: 42, y: 91 },
+    zone: { x: 42, y: 87, w: 24, h: 20 },
+  },
+  // the bonfire beach — palm and sparkle make it tall
+  balance: {
+    svg: { x: 531, y: 240 },
+    world: { x: 83, y: 79 },
+    zone: { x: 81, y: 71, w: 24, h: 34 },
+  },
   // the falls in the cliffs
-  fablefalls: { svg: { x: 464, y: 92 }, world: { x: 72, y: 32 }, zone: [14, 15] },
+  fablefalls: {
+    svg: { x: 464, y: 92 },
+    world: { x: 72, y: 32 },
+    zone: { x: 72, y: 27, w: 24, h: 28 },
+  },
 };
 
 // The Atlas Gate is the crest painted at the centre of the map — the boat
@@ -162,8 +186,8 @@ export default function AtlasMap({
       id: 'finale',
       x: GATE.x + 2,
       y: GATE.y - 4,
-      // The crest is a small target, so a tight box rather than an island one.
-      zone: [10, 9],
+      // The painted crest is a small target — a tight box on the crest itself.
+      zone: { x: 50, y: 52, w: 13, h: 15 },
       label: 'The Atlas Gate',
       action: 'Finish',
       accent: 'var(--gold)',
