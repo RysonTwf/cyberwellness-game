@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { isInputLocked } from '../lib/inputLock';
+import { findPath, segmentClear } from './pathfind';
 
 /**
  * Movement for the Traveler inside a 2D realm.
@@ -53,6 +54,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
   const posRef = useRef(spawn);
   const keys = useRef(new Set());
   const target = useRef(null); // { x, y } | null — pending tap/click destination
+  const path = useRef(null); // { x, y }[] — waypoints still to reach after `target`
   const frame = useRef(0);
   const lastTime = useRef(0);
 
@@ -64,11 +66,14 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     [bounds.maxX, bounds.minX, bounds.maxY, bounds.minY],
   );
 
-  // Kept in a ref, not a hook dependency — callers that don't memoize their
-  // `obstacles` array (a fresh `[]` every render, by default) would
-  // otherwise restart the tick loop below on every single render.
+  // Kept in refs, not hook dependencies — callers that don't memoize their
+  // `obstacles` array (a fresh `[]` every render, by default) or their
+  // `bounds` object (RealmScreen/AtlasMap pass an inline literal) would
+  // otherwise restart the tick loop / rebuild `goTo` on every render.
   const obstaclesRef = useRef(obstacles);
   obstaclesRef.current = obstacles;
+  const boundsRef = useRef(bounds);
+  boundsRef.current = bounds;
 
   /** Is this point standing inside a piece of furniture? */
   const blocked = useCallback((x, y) => {
@@ -81,6 +86,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
   const stop = useCallback(() => {
     keys.current.clear();
     target.current = null;
+    path.current = null;
     setMoving(false);
   }, []);
 
@@ -92,7 +98,30 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
   const goTo = useCallback((x, y) => {
     if (!enabled || isInputLocked()) return;
     const [cx, cy] = clamp(x, y);
-    target.current = { x: cx, y: cy };
+    const obs = obstaclesRef.current;
+    const dest = { x: cx, y: cy };
+
+    // Nothing in the way (the common case, and every obstacle-free scene) —
+    // head straight there, no grid, no waypoints.
+    if (!obs.length || segmentClear(posRef.current, dest, obs)) {
+      target.current = dest;
+      path.current = null;
+      return;
+    }
+
+    // Route around the furniture. `findPath` also snaps a tap that landed on
+    // an obstacle out to its edge, so the Traveler stops beside it, not in it.
+    const wp = findPath(posRef.current, dest, obs, boundsRef.current);
+    if (wp && wp.length) {
+      target.current = wp[0];
+      path.current = wp.slice(1);
+      if (!path.current.length) path.current = null;
+    } else {
+      // Genuinely unreachable — walk toward it and let the slide/stuck
+      // handling below stop at the wall.
+      target.current = dest;
+      path.current = null;
+    }
   }, [enabled, clamp]);
 
   /** Teleport without animating — used when a realm remounts. */
@@ -120,6 +149,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
         // A real key press takes over from a walk-to-tap in progress —
         // otherwise the two fight over posRef every frame.
         target.current = null;
+        path.current = null;
       }
     };
     const up = (e) => {
@@ -132,6 +162,7 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
     const clear = () => {
       keys.current.clear();
       target.current = null;
+      path.current = null;
     };
 
     window.addEventListener('keydown', down, { passive: false });
@@ -183,16 +214,25 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
       if (seekingTarget) {
         dx = target.current.x - posRef.current.x;
         dy = target.current.y - posRef.current.y;
-        if (Math.hypot(dx, dy) < ARRIVE_EPS) {
-          // Close enough — snap exactly onto it rather than creeping the
-          // last fraction of a unit forever, and stop seeking.
-          const [fx, fy] = clamp(target.current.x, target.current.y);
-          target.current = null;
-          posRef.current = { x: fx, y: fy };
-          setPos({ x: fx, y: fy });
-          setMoving(false);
-          frame.current = requestAnimationFrame(tick);
-          return;
+        while (target.current && Math.hypot(dx, dy) < ARRIVE_EPS) {
+          if (path.current && path.current.length) {
+            // Reached a waypoint — aim at the next one and keep moving.
+            target.current = path.current.shift();
+            if (!path.current.length) path.current = null;
+            dx = target.current.x - posRef.current.x;
+            dy = target.current.y - posRef.current.y;
+          } else {
+            // Reached the destination — snap exactly onto it rather than
+            // creeping the last fraction of a unit forever, and stop.
+            const [fx, fy] = clamp(target.current.x, target.current.y);
+            target.current = null;
+            path.current = null;
+            posRef.current = { x: fx, y: fy };
+            setPos({ x: fx, y: fy });
+            setMoving(false);
+            frame.current = requestAnimationFrame(tick);
+            return;
+          }
         }
       }
 
@@ -235,14 +275,22 @@ export function useWalker({ spawn, bounds, speed = 30, enabled = true, obstacles
         setMoving(true);
         if (dx !== 0) setFacing(dx > 0 ? 1 : -1);
 
-        // Reached the tap target, or walked as far as an obstacle/bound lets
-        // — either way, stop seeking it (a target stuck behind furniture
-        // would otherwise sit there forever quietly failing to arrive, which
-        // reads as a bug more than "there was furniture in the way").
-        if (seekingTarget) {
+        // Reached this waypoint, or walked as far as an obstacle/bound lets.
+        // Either way, press on to the next waypoint; with none left, finish
+        // (arrived) or give up (stuck against something) rather than shuffle
+        // at the wall forever.
+        if (seekingTarget && target.current) {
           const arrived = cx === target.current.x && cy === target.current.y;
           const stuck = cx === startX && cy === startY;
-          if (arrived || stuck) target.current = null;
+          if (arrived || stuck) {
+            if (path.current && path.current.length) {
+              target.current = path.current.shift();
+              if (!path.current.length) path.current = null;
+            } else {
+              target.current = null;
+              path.current = null;
+            }
+          }
         }
       } else {
         setMoving(false);
