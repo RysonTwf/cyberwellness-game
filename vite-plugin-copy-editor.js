@@ -6,23 +6,27 @@
  *   GET  /__copy-editor/source     -> { files: { "<rel>": "<text>" } }
  *   POST /__copy-editor/save       <- { replacements: [{ file, find, replace }] }
  *                                  -> { ok, applied, failed: [{ find, reason }] }
- *   POST /__copy-editor/publish    <- { replacements, message? }
+ *   POST /__copy-editor/publish    <- { replacements, message?, dryRun? }
  *                                  -> { ok, applied, failed, committed, pushed[],
  *                                       gitError?, error? }
  *
- * Each replacement is an exact string swap that must match exactly once in
- * its file — no parsing, so it can't corrupt syntax as long as the editor
- * hands it a real source snippet.
+ * A replacement is an exact string swap. It normally has to match exactly
+ * once in the file; when it carries `realmId` + `band` it may match a line
+ * that Bully Bog (say) repeats across its two bands, and the search is then
+ * narrowed to that band's `const <realm><Band> = { … }` object.
  *
- * `publish` writes the same way, then stages *only* the files it touched,
- * commits them, and pushes to every configured remote (`nato`/`main` is the
- * one Vercel builds from). It never touches unrelated working-tree changes —
- * the commit contains exactly the copy-editor files and nothing else.
+ * `publish` writes to the working tree the same way `save` does, then
+ * commits *only the editor's own hunk*: it re-applies the same swaps to the
+ * committed (HEAD) version of each file and stages that, so any other
+ * unsaved edits you have in the same file stay in your working tree and out
+ * of the commit. It then pushes to every configured remote — `nato`/`main`
+ * is the refspec Vercel builds from.
  */
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { parseAst } from 'vite';
 
 const pExecFile = promisify(execFile);
 
@@ -45,36 +49,111 @@ const PUSH_TARGETS = [
   { remote: 'nato', refspec: 'HEAD:main' },
 ];
 
-/** Apply the exact-string replacements to disk. Returns what changed. */
-async function applyReplacements(root, replacements) {
+/**
+ * Bully Bog (and any realm that shares wording between its P1–P3 and P4–P6
+ * bands) has the same sentence in the file two or more times, so a bare
+ * "must match exactly once" swap can't tell which one the editor meant.
+ *
+ * When an edit carries a `realmId` + `band`, narrow the search to that
+ * band's own `const <realm><Band> = { … }` object: find the top-level
+ * declarator whose name starts with the realm id and ends with the band,
+ * then look for the literal only inside its source range. Returns the
+ * `[start, end)` range of the one occurrence, or null if the region can't
+ * be pinned down or the literal still isn't unique inside it.
+ */
+function bandScopedRange(text, find, realmId, band) {
+  if (!realmId || (band !== 'lower' && band !== 'higher')) return null;
+  let ast;
+  try {
+    ast = parseAst(text);
+  } catch {
+    return null;
+  }
+  const rid = realmId.toLowerCase();
+  const decls = [];
+  for (const node of ast.body) {
+    if (node.type !== 'VariableDeclaration') continue;
+    for (const d of node.declarations) {
+      if (d.id?.type === 'Identifier') {
+        decls.push({ name: d.id.name.toLowerCase(), start: d.start, end: d.end });
+      }
+    }
+  }
+  const region = decls.filter((d) => d.name.startsWith(rid) && d.name.endsWith(band));
+  if (region.length !== 1) return null;
+
+  const { start, end } = region[0];
+  const hits = [];
+  for (let i = text.indexOf(find, start); i !== -1 && i < end; i = text.indexOf(find, i + find.length)) {
+    hits.push(i);
+  }
+  return hits.length === 1 ? [hits[0], hits[0] + find.length] : null;
+}
+
+/**
+ * Apply a file's edits to `text` in memory. Pure — used for both the
+ * working tree and the HEAD version, so the commit carries exactly the same
+ * change the editor made to the working copy.
+ */
+function applyEdits(text, edits, rel) {
+  const failed = [];
+  let applied = 0;
+  let out = text;
+
+  for (const { find, replace, realmId, band } of edits) {
+    if (find === replace) continue;
+    const count = out.split(find).length - 1;
+
+    if (count === 1) {
+      out = out.replace(find, replace);
+      applied += 1;
+      continue;
+    }
+
+    // Duplicated line — try to pin it to the band the editor was showing.
+    if (count > 1 && rel === 'src/data/realms.js') {
+      const range = bandScopedRange(out, find, realmId, band);
+      if (range) {
+        out = out.slice(0, range[0]) + replace + out.slice(range[1]);
+        applied += 1;
+        continue;
+      }
+    }
+
+    failed.push({
+      find,
+      reason: count === 0 ? 'not found' : `found ${count}x, could not tell which one`,
+    });
+  }
+
+  return { out, applied, failed };
+}
+
+/** Group replacements by file, dropping anything outside the allow-list. */
+function groupByFile(replacements) {
   const byFile = new Map();
   for (const r of replacements) {
     if (!ALLOWED.includes(r.file)) continue;
     if (!byFile.has(r.file)) byFile.set(r.file, []);
     byFile.get(r.file).push(r);
   }
+  return byFile;
+}
 
+/** Apply the replacements to the working tree on disk. */
+async function writeWorkingTree(root, byFile) {
   const failed = [];
   let applied = 0;
   const touchedFiles = [];
 
   for (const [rel, edits] of byFile) {
     const abs = path.join(root, rel);
-    let text = await fs.readFile(abs, 'utf8');
-    let touched = false;
-    for (const { find, replace } of edits) {
-      if (find === replace) continue;
-      const count = text.split(find).length - 1;
-      if (count !== 1) {
-        failed.push({ find, reason: count === 0 ? 'not found' : `found ${count}x` });
-        continue;
-      }
-      text = text.replace(find, replace);
-      touched = true;
-      applied += 1;
-    }
-    if (touched) {
-      await fs.writeFile(abs, text, 'utf8');
+    const before = await fs.readFile(abs, 'utf8');
+    const r = applyEdits(before, edits, rel);
+    failed.push(...r.failed);
+    applied += r.applied;
+    if (r.out !== before) {
+      await fs.writeFile(abs, r.out, 'utf8');
       touchedFiles.push(rel);
     }
   }
@@ -85,7 +164,7 @@ async function applyReplacements(root, replacements) {
 export default function copyEditorPlugin() {
   let root = process.cwd();
 
-  const git = (args) => pExecFile('git', args, { cwd: root, windowsHide: true });
+  const git = (args) => pExecFile('git', args, { cwd: root, windowsHide: true, maxBuffer: 20_000_000 });
 
   const readBody = (req) =>
     new Promise((resolve, reject) => {
@@ -102,6 +181,70 @@ export default function copyEditorPlugin() {
     res.statusCode = code;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(obj));
+  };
+
+  /**
+   * Commit only the editor's hunk. For each touched file: take the HEAD
+   * version, apply the same swaps, stage that exact content, then put the
+   * working tree back. Other unsaved edits to the file are left alone.
+   * Requires an otherwise-empty staging area so the final `git commit`
+   * (no pathspec) captures nothing but these blobs.
+   */
+  const commitHunk = async (byFile, touchedFiles, message, dryRun) => {
+    const { stdout: preStaged } = await git(['diff', '--cached', '--name-only']);
+    if (preStaged.trim()) {
+      return {
+        error: `Your staging area already has changes (${preStaged
+          .trim()
+          .split('\n')
+          .join(', ')}). Run "git reset" and try again.`,
+      };
+    }
+
+    const committedFiles = [];
+    const skipped = [];
+
+    for (const rel of touchedFiles) {
+      const abs = path.join(root, rel);
+      let headVer;
+      try {
+        ({ stdout: headVer } = await git(['show', `HEAD:${rel}`]));
+      } catch {
+        skipped.push(rel);
+        continue;
+      }
+      const r = applyEdits(headVer, byFile.get(rel), rel);
+      if (r.out === headVer) {
+        skipped.push(rel);
+        continue;
+      }
+      const working = await fs.readFile(abs, 'utf8');
+      try {
+        await fs.writeFile(abs, r.out, 'utf8');
+        await git(['add', '--', rel]);
+      } finally {
+        await fs.writeFile(abs, working, 'utf8'); // always restore the working tree
+      }
+      committedFiles.push(rel);
+    }
+
+    if (!committedFiles.length) {
+      return {
+        error: skipped.includes('src/data/realms.js')
+          ? 'Saved to your working copy, but it could not be committed on its own — that file has other uncommitted edits around these lines. Commit those first, then publish.'
+          : 'Saved to your working copy, but there was nothing new to commit.',
+      };
+    }
+
+    if (dryRun) {
+      const { stdout: staged } = await git(['diff', '--cached', '--stat']);
+      await git(['reset', '--quiet']); // unstage; working tree already restored
+      return { dryRun: true, committedFiles, skipped, staged: staged.trim() };
+    }
+
+    await git(['commit', '-m', message]);
+    const { stdout: sha } = await git(['rev-parse', '--short', 'HEAD']);
+    return { committed: sha.trim(), committedFiles, skipped };
   };
 
   return {
@@ -125,13 +268,14 @@ export default function copyEditorPlugin() {
 
           if (req.method === 'POST' && req.url === '/__copy-editor/save') {
             const { replacements = [] } = JSON.parse((await readBody(req)) || '{}');
-            const { applied, failed } = await applyReplacements(root, replacements);
+            const { applied, failed } = await writeWorkingTree(root, groupByFile(replacements));
             return json(res, 200, { ok: failed.length === 0, applied, failed });
           }
 
           if (req.method === 'POST' && req.url === '/__copy-editor/publish') {
-            const { replacements = [], message } = JSON.parse((await readBody(req)) || '{}');
-            const { applied, failed, touchedFiles } = await applyReplacements(root, replacements);
+            const { replacements = [], message, dryRun } = JSON.parse((await readBody(req)) || '{}');
+            const byFile = groupByFile(replacements);
+            const { applied, failed, touchedFiles } = await writeWorkingTree(root, byFile);
 
             const result = {
               ok: false,
@@ -143,35 +287,31 @@ export default function copyEditorPlugin() {
             };
 
             if (!touchedFiles.length) {
-              result.error =
-                'No edits could be written to source, so there is nothing to publish.';
+              result.error = 'No edits could be written to source, so there is nothing to publish.';
               return json(res, 200, result);
             }
 
+            const msg =
+              typeof message === 'string' && message.trim()
+                ? message.trim()
+                : `Copy edit: ${applied} change${applied === 1 ? '' : 's'} from the in-app editor`;
+
             try {
-              // Stage ONLY the files this call wrote — never sweep up
-              // whatever else is dirty in the tree.
-              await git(['add', '--', ...touchedFiles]);
-              const { stdout: staged } = await git([
-                'diff',
-                '--cached',
-                '--name-only',
-                '--',
-                ...touchedFiles,
-              ]);
-              if (!staged.trim()) {
-                result.error =
-                  'Those edits were already saved in source — nothing new to commit.';
+              const c = await commitHunk(byFile, touchedFiles, msg, dryRun);
+              if (c.error) {
+                result.error = c.error;
                 return json(res, 200, result);
               }
+              result.committedFiles = c.committedFiles;
+              if (c.skipped?.length) result.skipped = c.skipped;
 
-              const msg =
-                typeof message === 'string' && message.trim()
-                  ? message.trim()
-                  : `Copy edit: ${applied} change${applied === 1 ? '' : 's'} from the in-app editor`;
-              await git(['commit', '-m', msg, '--', ...touchedFiles]);
-              const { stdout: sha } = await git(['rev-parse', '--short', 'HEAD']);
-              result.committed = sha.trim();
+              if (c.dryRun) {
+                result.dryRun = true;
+                result.staged = c.staged;
+                result.ok = true;
+                return json(res, 200, result);
+              }
+              result.committed = c.committed;
 
               const { stdout: remoteList } = await git(['remote']);
               const remotes = new Set(
@@ -186,9 +326,7 @@ export default function copyEditorPlugin() {
                   await git(['push', remote, refspec]);
                   result.pushed.push(remote);
                 } catch (e) {
-                  result.gitError = `push to ${remote} failed: ${
-                    e.stderr?.trim() || e.message
-                  }`;
+                  result.gitError = `push to ${remote} failed: ${e.stderr?.trim() || e.message}`;
                 }
               }
 

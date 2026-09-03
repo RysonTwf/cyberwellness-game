@@ -52,20 +52,27 @@ const count = (haystack, needle) => haystack.split(needle).length - 1;
  * @returns {{ find: string, replace: string } | null}
  */
 function locate(fileText, original, next) {
+  const forms = [];
   for (const q of ["'", '"', '`']) {
-    const find = q + escapeFor(original, q) + q;
-    if (count(fileText, find) === 1) return { find, replace: q + escapeFor(next, q) + q };
+    forms.push({ find: q + escapeFor(original, q) + q, replace: q + escapeFor(next, q) + q });
   }
   // template literal: `...${COMET_CATCHPHRASE}`
   if (original.endsWith(COMET_CATCHPHRASE) && next.endsWith(COMET_CATCHPHRASE)) {
     const oPre = original.slice(0, -COMET_CATCHPHRASE.length);
     const nPre = next.slice(0, -COMET_CATCHPHRASE.length);
-    const find = '`' + escapeFor(oPre, '`') + '${COMET_CATCHPHRASE}`';
-    if (count(fileText, find) === 1) {
-      return { find, replace: '`' + escapeFor(nPre, '`') + '${COMET_CATCHPHRASE}`' };
-    }
+    forms.push({
+      find: '`' + escapeFor(oPre, '`') + '${COMET_CATCHPHRASE}`',
+      replace: '`' + escapeFor(nPre, '`') + '${COMET_CATCHPHRASE}`',
+    });
   }
-  return null;
+  // Prefer the quote style that appears exactly once. Fall back to one that
+  // appears more than once — a line Bully Bog repeats across its two bands —
+  // and let the server pin it to the right band from the realm id + band.
+  return (
+    forms.find((f) => count(fileText, f.find) === 1) ||
+    forms.find((f) => count(fileText, f.find) > 1) ||
+    null
+  );
 }
 
 /* ---- grouping fields into sections --------------------------------------- */
@@ -163,7 +170,14 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
     const rlm = REALMS.find((x) => x.id === rid);
     if (!rlm) return { file: REALMS_FILE, original: undefined };
     const view = bandViewRaw(rlm, scope === 'shared' ? 'lower' : scope);
-    return { file: REALMS_FILE, original: getAtPath(view, dotPath) };
+    return {
+      file: REALMS_FILE,
+      original: getAtPath(view, dotPath),
+      // Passed to the server so a line repeated in both bands is pinned to
+      // the one the editor was showing (see bandScopedRange in the plugin).
+      realmId: rid,
+      band: scope === 'lower' || scope === 'higher' ? scope : undefined,
+    };
   };
 
   // Match every pending override against the live source and turn it into an
@@ -179,7 +193,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
     const unlocatable = [];
     const applying = [];
     for (const [key, next] of Object.entries(overrides)) {
-      const { file, original } = originalFor(key);
+      const { file, original, realmId, band } = originalFor(key);
       const fileText = file && files[file];
       if (typeof fileText !== 'string' || typeof original !== 'string') {
         unlocatable.push(key);
@@ -190,7 +204,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
         unlocatable.push(key);
         continue;
       }
-      replacements.push({ file, ...hit });
+      replacements.push({ file, ...hit, realmId, band });
       applying.push(key);
     }
     return { replacements, unlocatable, applying };
