@@ -103,9 +103,13 @@ export default function PlatformerStoryRealm({
   // Let go of whatever was held down as they go, or the player carries on
   // running the moment the level unfreezes.
   useEffect(() => {
-    if (decisionOpen || doorOpen) {
+    const panelOpen = decisionOpen || doorOpen;
+    if (panelOpen) {
       controlsRef.current = { left: false, right: false, jump: false };
     }
+    // Hand the keyboard back to the panel while it is up, and to the level
+    // again once it closes. See `setPanelOpen` in the scene.
+    sceneRef.current?.setPanelOpen(panelOpen);
   }, [decisionOpen, doorOpen]);
 
   function choose(optionId) {
@@ -401,9 +405,9 @@ export default function PlatformerStoryRealm({
 
                   {!hasEveryStrong && verdict !== 'short' && (
                     <p className="instruction">
-                      The keypad wants the whole password. Tick the pieces you think make it strong,
-                      and leave the easy-to-guess ones out. Not every short one is strong, and not
-                      every word-shaped one is weak.
+                      The keypad wants a password of twelve characters or more. Tick the pieces you
+                      think make it strong, and leave the easy-to-guess ones out. Not every short
+                      one is strong, and not every word-shaped one is weak.
                     </p>
                   )}
 
@@ -457,6 +461,7 @@ export default function PlatformerStoryRealm({
                           list of chips they hope adds up. */}
                       <PasswordBuild
                         pieces={chosenPieces}
+                        strengthNote
                         empty="Tick a piece to start building your password."
                       />
 

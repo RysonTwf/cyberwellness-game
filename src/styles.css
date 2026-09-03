@@ -2795,6 +2795,77 @@ p {
   }
 }
 
+/* The keypad's strength gauge: four segments and a word, moving as pieces go
+   in and out of the password. Colour runs coral to gold to teal as it fills,
+   the same reading as the word beside it. */
+.pw-strength {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1.5px solid var(--line);
+}
+
+.pw-strength-top {
+  margin: 0 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 10px;
+}
+
+.pw-strength-top .pw-caption {
+  margin: 0;
+}
+
+.pw-strength-label {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pw-strength-label.is-low {
+  color: var(--coral);
+}
+
+.pw-strength-label.is-mid {
+  color: var(--gold);
+}
+
+.pw-strength-label.is-high {
+  color: var(--teal);
+}
+
+.pw-strength-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.pw-seg {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--paper-sunk);
+  transition: background 0.2s ease;
+}
+
+.pw-seg.on.is-low {
+  background: var(--coral);
+}
+
+.pw-seg.on.is-mid {
+  background: var(--gold);
+}
+
+.pw-seg.on.is-high {
+  background: var(--teal);
+}
+
+.pw-strength-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
 /* The two explanations after the strip: how many things fit in one space, and
    this password against a weak one. Side by side wherever the column is wide
    enough, stacked when it is not. */

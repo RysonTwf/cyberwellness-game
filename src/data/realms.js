@@ -261,7 +261,7 @@ const passworldHigher = {
       name: 'L.M.N.',
       why: 'Three things every strong password piece has to survive.',
       checks: [
-        { key: 'L', name: 'Long', sub: 'Enough pieces to be long' },
+        { key: 'L', name: 'Long', sub: 'Twelve characters or more' },
         { key: 'M', name: 'Mixed', sub: 'Letters, numbers and symbols' },
         { key: 'N', name: 'Not me', sub: 'Not about me, not a real word' },
       ],
@@ -269,16 +269,25 @@ const passworldHigher = {
     // Six real, six decoy, but *not* sortable on shape. The old set was six
     // single characters against six recognisable English words, so a player
     // could clear the door on silhouette alone without reading a tile
-    // (thingstoimproveon.md, "the vault door"). Now one real piece is
-    // word-shaped nonsense (`Zub`) and two decoys are short and symbol-ish
-    // (`abc`, a keyboard run; `Pockets`, a pet name, "not about me"), so the
-    // tile has to be read against L.M.N. rather than classified by length.
+    // (thingstoimproveon.md, "the vault door"). Two real pieces are now
+    // word-shaped nonsense (`Zub`, `Kip`) and two decoys are short and
+    // symbol-ish (`abc`, a keyboard run; `Pockets`, a pet name, "not about
+    // me"), so the tile has to be read against L.M.N. rather than classified
+    // by length.
+    //
+    // The six together come to twelve characters, which is what current
+    // advice actually asks for. They used to make eight (`A7#Zub4!`), the old
+    // minimum: a machine guessing offline works through every eight-character
+    // mix in about a day, so a level that called that "strong" was teaching
+    // advice the real world has moved past. Nonsense word chunks with numbers
+    // and symbols between them is also the shape real guidance recommends,
+    // since it is long without being impossible to remember.
     tiles: [
-      { id: 'letter', type: 'letter', label: 'A', kind: 'real', x: 621, y: 95 },
-      { id: 'number', type: 'number', label: '7', kind: 'real', x: 1179, y: 91 },
+      { id: 'letter', type: 'letter', label: 'Kip', kind: 'real', x: 621, y: 95 },
+      { id: 'number', type: 'number', label: '73', kind: 'real', x: 1179, y: 91 },
       { id: 'symbol', type: 'symbol', label: '#', kind: 'real', x: 1622, y: 43 },
       { id: 'letter2', type: 'letter', label: 'Zub', kind: 'real', x: 2185, y: 51 },
-      { id: 'number2', type: 'number', label: '4', kind: 'real', x: 2757, y: 59 },
+      { id: 'number2', type: 'number', label: '42', kind: 'real', x: 2757, y: 59 },
       { id: 'symbol2', type: 'symbol', label: '!', kind: 'real', x: 2879, y: 115 },
       // The weak ones are scattered through the climb, not parked on the
       // floor. If every decoy sat at the bottom the lesson would collapse

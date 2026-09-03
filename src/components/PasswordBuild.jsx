@@ -1,4 +1,4 @@
-import { charKind, describeMix, readPassword } from '../lib/password';
+import { charKind, describeGuessTime, describeMix, gradePassword, readPassword } from '../lib/password';
 
 /**
  * How the pieces pair up into one password.
@@ -16,8 +16,14 @@ import { charKind, describeMix, readPassword } from '../lib/password';
  * the password grows in front of them, and again on the reveal once the
  * door opens, where `animate` walks the characters in one at a time.
  */
-export default function PasswordBuild({ pieces = [], animate = false, empty = 'Nothing ticked yet.' }) {
-  const { joined, chars, counts, length } = readPassword(pieces);
+export default function PasswordBuild({
+  pieces = [],
+  animate = false,
+  strengthNote = false,
+  empty = 'Nothing ticked yet.',
+}) {
+  const reading = readPassword(pieces);
+  const { joined, chars, counts, length } = reading;
 
   if (pieces.length === 0) {
     return <p className="muted pw-empty">{empty}</p>;
@@ -73,6 +79,40 @@ export default function PasswordBuild({ pieces = [], animate = false, empty = 'N
       <p className="pw-mix">
         {length} characters long: {describeMix(counts)}.
       </p>
+
+      <PasswordStrength reading={reading} note={strengthNote} />
+    </div>
+  );
+}
+
+/**
+ * The strength gauge, four segments and a word. It moves as pieces go in and
+ * out, so the child can see a short single piece read as weak and the whole
+ * mixed set read as strong, which is the lesson the door is teaching.
+ *
+ * See `gradePassword` for why it measures length and mix only, and why the
+ * note beside it says so out loud while the child is still choosing.
+ */
+export function PasswordStrength({ reading, note = false }) {
+  const { score, max, label, tone } = gradePassword(reading);
+
+  return (
+    <div className="pw-strength">
+      <p className="pw-strength-top">
+        <span className="pw-caption">Keypad gauge</span>
+        <strong className={`pw-strength-label is-${tone}`}>{label}</strong>
+      </p>
+      <div className="pw-strength-bar" role="img" aria-label={`Password strength: ${label}`}>
+        {Array.from({ length: max }, (_, i) => (
+          <span key={i} className={`pw-seg${i < score ? ` on is-${tone}` : ''}`} />
+        ))}
+      </div>
+      {note && (
+        <p className="pw-strength-note">
+          This gauge measures length and mix only. Whether a piece is a real word, or something
+          about you, is for you to judge.
+        </p>
+      )}
     </div>
   );
 }
@@ -119,8 +159,8 @@ export function PasswordCompare({ weak, strong }) {
           <span className="pw-bar-fill is-weak" style={{ width: '14%' }} />
         </div>
         <p className="pw-compare-note">
-          One of the most common passwords there is. A guessing machine keeps a list of these and
-          tries the whole list first.
+          One of the most common passwords there is. A guessing machine starts with that list, so
+          this one falls straight away, however long it looks.
         </p>
       </div>
       <div className="pw-compare-row">
@@ -129,7 +169,8 @@ export function PasswordCompare({ weak, strong }) {
           <span className="pw-bar-fill is-strong" style={{ width: '100%' }} />
         </div>
         <p className="pw-compare-note">
-          Long, mixed, and not on any list. The machine has to try many millions of guesses instead.
+          {strong.length} characters, mixed, and on no list. The same machine would need{' '}
+          {describeGuessTime(strong.length)}.
         </p>
       </div>
     </div>
@@ -172,8 +213,9 @@ export function PasswordChoices({ length }) {
         ))}
       </ul>
       <p className="pw-mix">
-        Your password has {length} spaces like that, and every one of them could be any of about
-        94 things. That is a huge number of guesses.
+        Every space you add multiplies the guessing by about 94. Your password has {length} of
+        them, so a machine making a hundred billion guesses every second would need{' '}
+        {describeGuessTime(length)}.
       </p>
     </div>
   );

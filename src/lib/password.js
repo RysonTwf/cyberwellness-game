@@ -40,9 +40,11 @@ export function readPassword(pieces = []) {
     chars,
     counts,
     length: joined.length,
-    // Eight characters is the length the vault's own advice settles on, and
-    // "mixed" means all three kinds are in there, not merely two.
-    isLong: joined.length >= 8,
+    // Twelve, not eight. Eight was the old minimum everywhere, and a machine
+    // guessing offline now works through every eight-character mix in about a
+    // day, so current advice asks for twelve or more. "Mixed" means all three
+    // kinds are in there, not merely two.
+    isLong: joined.length >= 12,
     isMixed: counts.letter > 0 && counts.number > 0 && counts.symbol > 0,
   };
 }
@@ -61,4 +63,64 @@ export function describeMix(counts) {
   if (parts.length === 0) return 'nothing yet';
   if (parts.length === 1) return parts[0];
   return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
+}
+
+/**
+ * The keypad's own gauge, out of four.
+ *
+ * Deliberately built from length and mix alone, the two things a child can
+ * see for themselves in the strip: a gauge that also knew which pieces were
+ * real words would be handing over the door's answer, since ticking a decoy
+ * would make the needle drop. So it grades the shape of the password and
+ * says so, and "is this a real word, or is it about me" stays the judgement
+ * the vault is asking the child to make (the N of L.M.N.).
+ */
+export function gradePassword({ length, counts }) {
+  const kinds = [counts.letter, counts.number, counts.symbol].filter(Boolean).length;
+  // Length carries most of the weight, the way it does in real life: a short
+  // password with one of everything in it is still guessed quickly, while a
+  // long one is hard work whatever it is made of. The mix earns a point on
+  // top, and only once there is some length for it to matter to.
+  let score = 0;
+  if (length >= 8) score += 1; // the old minimum, and no longer enough on its own
+  if (length >= 12) score += 1; // what current advice asks for
+  if (length >= 16) score += 1;
+  if (kinds >= 2 && length >= 8) score += 1;
+  score = Math.min(score, 4);
+
+  const label = ['Too short', 'Weak', 'Getting stronger', 'Strong', 'Very strong'][score];
+  const tone = score <= 1 ? 'low' : score === 2 ? 'mid' : 'high';
+  return { score, max: 4, label, tone };
+}
+
+// How a guessing machine is pictured in this realm: a fast offline attacker
+// making about a hundred billion tries a second, against the 94 characters a
+// keyboard offers. Both are round numbers chosen to be defensible rather than
+// dramatic. Real rigs reach this rate against weakly hashed passwords, and a
+// well-hashed one is far slower to attack, so the estimate errs towards making
+// passwords look weaker than they are, never stronger.
+const GUESSES_PER_SECOND = 1e11;
+export const KEYBOARD_CHARACTERS = 94;
+
+/**
+ * Roughly how long that machine would need for a password of this length,
+ * in words a child can hold on to. Only honest for a password that is not on
+ * a list of common ones: anything off such a list falls immediately, however
+ * long it is, which is the whole point of the comparison it sits in.
+ */
+export function describeGuessTime(length) {
+  if (!length) return 'no time at all';
+  const year = 60 * 60 * 24 * 365;
+  // Half the possible combinations, on average, before the right one lands.
+  const seconds = KEYBOARD_CHARACTERS ** length / 2 / GUESSES_PER_SECOND;
+  if (seconds < 60) return 'less than a minute';
+  if (seconds < 60 * 60) return 'a few minutes';
+  if (seconds < 24 * 60 * 60) return 'a few hours';
+  if (seconds < 30 * 24 * 60 * 60) return 'a few weeks';
+  if (seconds < year) return 'months';
+  if (seconds < 100 * year) return 'years';
+  if (seconds < 1000 * year) return 'hundreds of years';
+  if (seconds < 10000 * year) return 'thousands of years';
+  if (seconds < 1e6 * year) return 'many thousands of years';
+  return 'millions of years';
 }
