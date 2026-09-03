@@ -2714,6 +2714,7 @@ p {
 }
 
 .pw-joined {
+  list-style: none;
   margin: 0;
   padding: 9px 10px;
   border-radius: var(--radius-sm);
@@ -2794,6 +2795,125 @@ p {
   }
 }
 
+/* The two explanations after the strip: how many things fit in one space, and
+   this password against a weak one. Side by side wherever the column is wide
+   enough, stacked when it is not. */
+.pw-why {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+.pw-why > * {
+  margin-top: 12px;
+}
+
+/* Names the two rows so the picture reads as "these became that" rather than
+   as the same thing printed twice. */
+.pw-caption {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.pw-arrow + .pw-caption {
+  margin-top: 0;
+}
+
+/* One space of the password: the dashed outline is the empty slot, the
+   coloured character covers it once it lands, and the small number under it
+   is what makes the length countable rather than merely stated. */
+.pw-slot {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.pw-slot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 15px;
+  left: 0;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 8px;
+}
+
+.pw-slot-n {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+/* How many characters could sit in one space, counted three ways. The bars
+   carry the point; the numbers beside them are the proof. */
+.pw-choices {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  background: var(--paper-card);
+}
+
+.pw-choices ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pw-choices li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2px 10px;
+}
+
+.pw-choices-name {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.pw-choices-n {
+  grid-row: span 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 68px;
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.pw-choices-n em {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.pw-choices .pw-bar {
+  display: block;
+  margin: 0;
+  grid-column: 1;
+}
+
+.pw-choices .pw-mix {
+  text-align: left;
+}
+
 /* Why it is stronger: the weak piece they carried up here, and the password
    they built, with a bar each for how much guessing it takes. */
 .pw-compare {
@@ -2833,6 +2953,7 @@ p {
   display: block;
   height: 100%;
   border-radius: 999px;
+  background: var(--gold);
 }
 
 .pw-bar-fill.is-weak {

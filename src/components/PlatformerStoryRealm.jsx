@@ -7,7 +7,7 @@ import StampMoment from './StampMoment';
 import StepTrail from './StepTrail';
 import MethodTrack from './MethodTrack';
 import RealmArt from './RealmArt';
-import PasswordBuild, { PasswordCompare, PasswordLegend } from './PasswordBuild';
+import PasswordBuild, { PasswordChoices, PasswordCompare, PasswordLegend } from './PasswordBuild';
 import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
@@ -367,10 +367,16 @@ export default function PlatformerStoryRealm({
                   <DialogueCard
                     who="Comet"
                     accent={realm.accent}
-                    text={`Look at it all joined up. ${chosenPieces.length} small pieces became one password of ${built.length} characters. It holds ${describeMix(built.counts)}, and not one part of it is a real word or anything about you. A space that can only hold a letter gives a guessing machine 26 things to try. A space that can hold a letter, a number or a symbol gives it many more, and you have ${built.length} of those spaces.`}
+                    text={`Look at it all joined up. Your ${chosenPieces.length} pieces became one password of ${built.length} characters, holding ${describeMix(built.counts)}, and no part of it is a real word or anything about you.`}
                   />
 
-                  <PasswordCompare weak={weakExample} strong={built.joined} />
+                  {/* The two "why" panels sit side by side wherever there is
+                      room, which keeps the reveal short enough to read on a
+                      phone held sideways. */}
+                  <div className="pw-why">
+                    <PasswordChoices length={built.length} />
+                    <PasswordCompare weak={weakExample} strong={built.joined} />
+                  </div>
 
                   <button type="button" className="btn btn-accent" onClick={openVault}>
                     <ArrowRight size={19} />
@@ -574,12 +580,17 @@ export default function PlatformerStoryRealm({
             </div>
           )}
 
-          <div className="row panel-actions" style={{ justifyContent: 'center' }}>
-            <button type="button" className="btn btn-ghost btn-sm" onClick={restartLevel}>
-              <RefreshCw size={16} />
-              Restart this vault
-            </button>
-          </div>
+          {/* Gone during the reveal: the vault is solved by then, and a
+              restart sitting under "Open the vault" is one mistaken tap away
+              from throwing the whole climb away. */}
+          {verdict !== 'passed' && (
+            <div className="row panel-actions" style={{ justifyContent: 'center' }}>
+              <button type="button" className="btn btn-ghost btn-sm" onClick={restartLevel}>
+                <RefreshCw size={16} />
+                Restart this vault
+              </button>
+            </div>
+          )}
           </aside>
         </div>
       )}

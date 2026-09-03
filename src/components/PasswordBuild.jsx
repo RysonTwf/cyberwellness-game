@@ -29,6 +29,10 @@ export default function PasswordBuild({ pieces = [], animate = false, empty = 'N
 
   return (
     <div className={`pw-build${animate ? ' is-building' : ''}`}>
+      <p className="pw-caption">
+        {pieces.length === 1 ? 'The piece you picked' : `The ${pieces.length} pieces you picked`}
+      </p>
+
       <ol className="pw-pieces" aria-hidden="true">
         {pieces.map((piece, i) => (
           <li key={piece.id}>
@@ -48,13 +52,23 @@ export default function PasswordBuild({ pieces = [], animate = false, empty = 'N
         joined together
       </p>
 
-      <p className="pw-joined" aria-label={`Your password is ${joined}`}>
+      <p className="pw-caption">Your password</p>
+
+      {/* Numbered slots, not a run of characters: the empty outline of every
+          space shows through until its character lands in it, so a child can
+          see the password filling up and can count how long it came out. */}
+      <ol className="pw-joined" aria-label={`Your password is ${joined}`}>
         {chars.map((c, i) => (
-          <span key={i} className={`pw-char is-${c.kind}`} style={{ '--step': i }}>
-            {c.ch}
-          </span>
+          <li key={i} className="pw-slot">
+            <span className={`pw-char is-${c.kind}`} style={{ '--step': i }}>
+              {c.ch}
+            </span>
+            <span className="pw-slot-n" aria-hidden="true">
+              {i + 1}
+            </span>
+          </li>
         ))}
-      </p>
+      </ol>
 
       <p className="pw-mix">
         {length} characters long: {describeMix(counts)}.
@@ -62,6 +76,7 @@ export default function PasswordBuild({ pieces = [], animate = false, empty = 'N
     </div>
   );
 }
+
 
 /**
  * What the three colours in the strip mean. Kept out of the live preview,
@@ -117,6 +132,49 @@ export function PasswordCompare({ weak, strong }) {
           Long, mixed, and not on any list. The machine has to try many millions of guesses instead.
         </p>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Why a mixed password is harder to guess, as a picture rather than a
+ * paragraph: how many different characters could sit in a single space of
+ * the password, counted three ways. The numbers are the real ones a keyboard
+ * offers, so the jump from 26 to about 94 is the lesson, and the closing line
+ * ties it back to how many spaces the child's own password has.
+ */
+export function PasswordChoices({ length }) {
+  const rows = [
+    { name: 'Small letters only', n: 26 },
+    { name: 'Add capitals and numbers', n: 62 },
+    { name: 'Add symbols as well', n: 94, best: true },
+
+  ];
+  const most = rows[rows.length - 1].n;
+
+  return (
+    <div className="pw-choices">
+      <p className="pw-caption">How many things could go in one space</p>
+      <ul>
+        {rows.map((row) => (
+          <li key={row.name}>
+            <span className="pw-choices-name">{row.name}</span>
+            <span className="pw-bar">
+              <span className="pw-bar-fill" style={{ width: `${(row.n / most) * 100}%` }} />
+            </span>
+            {/* Fixed-width so every bar above runs to the same finish line and
+                the three lengths can be compared at a glance. */}
+            <span className="pw-choices-n">
+              {row.best && <em>about</em>}
+              {row.n}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className="pw-mix">
+        Your password has {length} spaces like that, and every one of them could be any of about
+        94 things. That is a huge number of guesses.
+      </p>
     </div>
   );
 }
