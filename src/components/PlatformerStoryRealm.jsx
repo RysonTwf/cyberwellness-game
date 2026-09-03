@@ -52,6 +52,10 @@ export default function PlatformerStoryRealm({
 
   const controlsRef = useRef({ left: false, right: false, jump: false });
   const sceneRef = useRef(null);
+  // On a phone or a tablet the controls belong on the level itself, thumbs
+  // resting at the bottom corners. On a desktop the keyboard does the job and
+  // the row of buttons beside the level is there for a mouse.
+  const [touchControls, setTouchControls] = useState(false);
 
   const accentVars = { '--accent': realm.accent, '--accent-wash': realm.accentWash };
   const total = realm.game.tiles.filter((t) => t.kind === 'real').length;
@@ -66,6 +70,24 @@ export default function PlatformerStoryRealm({
     pauseMusic();
     return () => resumeMusic();
   }, [step]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined;
+    const query = window.matchMedia('(pointer: coarse)');
+    const apply = () => setTouchControls(query.matches);
+    apply();
+    query.addEventListener('change', apply);
+    return () => query.removeEventListener('change', apply);
+  }, []);
+
+  // A panel taking over (Sam's question, the vault door) hides the buttons.
+  // Let go of whatever was held down as they go, or the player carries on
+  // running the moment the level unfreezes.
+  useEffect(() => {
+    if (decisionOpen || doorOpen) {
+      controlsRef.current = { left: false, right: false, jump: false };
+    }
+  }, [decisionOpen, doorOpen]);
 
   function choose(optionId) {
     setPick(optionId);
@@ -84,12 +106,22 @@ export default function PlatformerStoryRealm({
     sceneRef.current?.resolveSafe();
   }
 
+  // Held down, not clicked: the key stays true while the finger or the mouse
+  // button is down. `onTouchCancel` matters on a phone, where the browser can
+  // take a touch away mid-press (a notification, a stray second finger) and no
+  // `touchend` ever arrives, which would leave the player running on its own.
+  // Scrolling and pinch-zooming are turned off by `touch-action: none` on the
+  // buttons themselves rather than by `preventDefault` here: React listens for
+  // touches passively, so a `preventDefault` in this handler is ignored and
+  // only fills the console with warnings.
   const hold = (key) => ({
     onMouseDown: () => { controlsRef.current[key] = true; },
     onMouseUp: () => { controlsRef.current[key] = false; },
     onMouseLeave: () => { controlsRef.current[key] = false; },
-    onTouchStart: (e) => { e.preventDefault(); controlsRef.current[key] = true; },
-    onTouchEnd: (e) => { e.preventDefault(); controlsRef.current[key] = false; },
+    onTouchStart: () => { controlsRef.current[key] = true; },
+    onTouchEnd: () => { controlsRef.current[key] = false; },
+    onTouchCancel: () => { controlsRef.current[key] = false; },
+    onContextMenu: (e) => e.preventDefault(),
   });
 
   function restartLevel() {
@@ -232,7 +264,42 @@ export default function PlatformerStoryRealm({
                 },
               })
             }
-            />
+            >
+              {/* On a touch screen the controls sit on the level itself:
+                  left in the bottom left corner, right in the bottom right
+                  corner, and jump just above right, so both thumbs rest where
+                  they already are. They step out of the way while Sam's
+                  question or the vault door is on screen, because the level is
+                  frozen then anyway. */}
+              {touchControls && !decisionOpen && !doorOpen && (
+                <div className="level-pad">
+                  <button
+                    type="button"
+                    className="level-pad-btn level-pad-left"
+                    aria-label="Move left"
+                    {...hold('left')}
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    className="level-pad-btn level-pad-jump"
+                    aria-label="Jump"
+                    {...hold('jump')}
+                  >
+                    Jump
+                  </button>
+                  <button
+                    type="button"
+                    className="level-pad-btn level-pad-right"
+                    aria-label="Move right"
+                    {...hold('right')}
+                  >
+                    →
+                  </button>
+                </div>
+              )}
+            </PhaserMiniGame>
           </div>
 
           <aside className="stage-side">
@@ -332,35 +399,39 @@ export default function PlatformerStoryRealm({
               {/* Count only. Showing "x of 6 strong" as they went told them
                   which pickups had counted the moment they touched one. */}
               <p className="tile-hint">In the bag: {bag.length}</p>
-              <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
-                <button
-                  type="button"
-                  className="btn btn-ghost btn-sm"
-                  style={{ minWidth: 56, minHeight: 48 }}
-                  aria-label="Move left"
-                  {...hold('left')}
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-ghost btn-sm"
-                  style={{ minWidth: 72, minHeight: 48 }}
-                  aria-label="Jump"
-                  {...hold('jump')}
-                >
-                  Jump
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-ghost btn-sm"
-                  style={{ minWidth: 56, minHeight: 48 }}
-                  aria-label="Move right"
-                  {...hold('right')}
-                >
-                  →
-                </button>
-              </div>
+              {/* The same three controls for a mouse. On a touch screen they
+                  are on the level itself instead, so this row stands down. */}
+              {!touchControls && (
+                <div className="row" style={{ justifyContent: 'center', gap: 10 }}>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-sm"
+                    style={{ minWidth: 56, minHeight: 48, touchAction: 'none' }}
+                    aria-label="Move left"
+                    {...hold('left')}
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-sm"
+                    style={{ minWidth: 72, minHeight: 48, touchAction: 'none' }}
+                    aria-label="Jump"
+                    {...hold('jump')}
+                  >
+                    Jump
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-sm"
+                    style={{ minWidth: 56, minHeight: 48, touchAction: 'none' }}
+                    aria-label="Move right"
+                    {...hold('right')}
+                  >
+                    →
+                  </button>
+                </div>
+              )}
             </>
           )}
 

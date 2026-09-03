@@ -26,9 +26,11 @@ import { useEffect, useRef, useState } from 'react';
  *   <PhaserMiniGame
  *     config={(Phaser) => makePasswordFortressLevelConfig(Phaser, { game, onWin })}
  *     onReady={(game) => {...}}   // optional: fires once with the Phaser.Game instance
- *   />
+ *   >
+ *     {overlay}                     // optional: anything pinned over the canvas,
+ *   </PhaserMiniGame>               // e.g. the on-screen controls for touch screens
  */
-export default function PhaserMiniGame({ config, onReady }) {
+export default function PhaserMiniGame({ config, onReady, children }) {
   const hostRef = useRef(null);
   const gameRef = useRef(null);
   const [loadError, setLoadError] = useState(null);
@@ -90,6 +92,7 @@ export default function PhaserMiniGame({ config, onReady }) {
           Loading…
         </p>
       )}
+      {!loading && children}
     </div>
   );
 }

@@ -202,6 +202,14 @@ body {
     overflow-y: auto;
   }
 
+  /* Stacked, the two rows are read top to bottom, so the first one has to
+     keep its full height. Left at `min-height: 0` (which is there so the
+     scene box can flex *down* beside a side column on a laptop) a short
+     window squeezes the row and the side column rides up over the level. */
+  .stage-main {
+    min-height: auto;
+  }
+
   .stage-side {
     overflow: visible;
     max-height: none;
@@ -1324,6 +1332,104 @@ p {
   display: block;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* On-screen controls for touch screens, pinned to the level box itself
+   (components/PlatformerStoryRealm.jsx). Left thumb sits in the bottom left
+   corner, right thumb in the bottom right, with jump stacked just above the
+   right button so one thumb can run and jump together. The pad itself lets
+   taps fall through to the canvas; only the buttons take a touch. */
+.level-pad {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  /* One size for all three buttons, and one gap, so the jump button can sit
+     exactly one button plus one gap above the right button on any screen.
+     Big enough for a child's thumb, small enough to leave the level visible
+     on a narrow phone. */
+  --pad-size: clamp(44px, 12vw, 64px);
+  --pad-gap: clamp(8px, 2vw, 14px);
+}
+
+/* Better still, size them against the level box rather than the whole window:
+   a phone held sideways has a wide window but a short level, and buttons cut
+   from the window would swallow it. The pad is the container to measure, not
+   the level box itself: the pad is stretched to `inset: 0`, so containment
+   cannot starve it of a size, while the box works out its own width from its
+   height and would collapse. The rule above stays as the fallback for
+   browsers without container queries. */
+@supports (container-type: size) {
+  .level-pad {
+    container-type: size;
+    --pad-size: clamp(42px, min(13cqw, 26cqh), 64px);
+    --pad-gap: clamp(8px, 2cqw, 14px);
+  }
+}
+
+.level-pad-btn {
+  position: absolute;
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  min-width: var(--pad-size);
+  min-height: var(--pad-size);
+  padding: 0 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1;
+  /* The browser must not treat these as scroll or zoom gestures, and a long
+     press must not pop up a selection or a callout mid-jump. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.level-pad-btn:active {
+  background: var(--accent, var(--ink));
+  border-color: var(--accent, var(--ink));
+  color: #fff;
+}
+
+.level-pad-left {
+  left: var(--pad-gap);
+  bottom: var(--pad-gap);
+}
+
+.level-pad-right {
+  right: var(--pad-gap);
+  bottom: var(--pad-gap);
+}
+
+/* Directly above the right button: one button height plus one gap. */
+.level-pad-jump {
+  right: var(--pad-gap);
+  bottom: calc(var(--pad-gap) + var(--pad-size) + var(--pad-gap));
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  font-weight: 700;
+}
+
+/* A phone held sideways has very little height to spare. Left alone the box
+   takes half its own width in height, which pushes the bottom of the level,
+   and the controls sitting on it, below the edge of the screen. */
+@media (max-height: 620px) and (pointer: coarse) {
+  .phaser-host {
+    /* Capped by *width*, not height: width is the side this box is sized
+       from, and its aspect ratio walks the height down to match. The last
+       term is what the window has left once the journal bar and the step
+       trail above have taken their share, turned back into a width; the
+       floor stops the level shrinking away to nothing. */
+    max-width: max(300px, min(100%, var(--scene-max-w), calc((100dvh - 180px) * var(--scene-ar))));
+    flex: 0 0 auto;
+  }
 }
 
 /* The backdrop art. `isolation` keeps every z-index *inside* a scene (props,
