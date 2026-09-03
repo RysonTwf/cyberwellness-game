@@ -2814,6 +2814,27 @@ p {
   font-size: 12px;
 }
 
+.ce-publish {
+  display: flex;
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+.ce-publish .ce-msg {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper-card);
+  color: var(--ink);
+}
+.ce-publish .btn {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
 .ce-result {
   margin: 0 12px 8px;
   padding: 7px 10px;

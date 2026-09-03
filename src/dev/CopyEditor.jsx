@@ -1,5 +1,5 @@
 import { useSyncExternalStore, useState, useMemo } from 'react';
-import { X, RotateCcw, Copy, Save, Eraser } from 'lucide-react';
+import { X, RotateCcw, Copy, Save, Eraser, UploadCloud } from 'lucide-react';
 import { REALMS, bandViewRaw, COMET_CATCHPHRASE } from '../data/realms';
 import { INTRO_BEATS } from '../components/IntroStory';
 import { ROOM_TOUR } from '../components/TravelerRoom';
@@ -101,6 +101,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
   );
   const [band, setBand] = useState(initialBand === 'higher' ? 'higher' : 'lower');
   const [result, setResult] = useState(null);
+  const [message, setMessage] = useState('');
 
   const [kind, id] = target.split('|');
   const isRealm = kind === 'realm';
@@ -165,20 +166,14 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
     return { file: REALMS_FILE, original: getAtPath(view, dotPath) };
   };
 
-  const saveToSource = async () => {
+  // Match every pending override against the live source and turn it into an
+  // exact { file, find, replace } swap. Throws if the dev server is
+  // unreachable. `unlocatable` keys stay in the browser for "Copy changes".
+  const buildReplacements = async () => {
     const overrides = getOverrides();
-    if (!Object.keys(overrides).length) return;
-    setResult({ kind: 'busy', msg: 'Saving…' });
-
-    let files;
-    try {
-      const r = await fetch('/__copy-editor/source');
-      files = (await r.json()).files;
-      if (!files || typeof files !== 'object') throw new Error('no source');
-    } catch (e) {
-      setResult({ kind: 'err', msg: `Can't reach the dev server (${e.message}). Is npm run dev running?` });
-      return;
-    }
+    const r = await fetch('/__copy-editor/source');
+    const files = (await r.json()).files;
+    if (!files || typeof files !== 'object') throw new Error('no source');
 
     const replacements = [];
     const unlocatable = [];
@@ -198,7 +193,30 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
       replacements.push({ file, ...hit });
       applying.push(key);
     }
+    return { replacements, unlocatable, applying };
+  };
 
+  // Drop the overrides that landed in source — HMR reloads the file with the
+  // new value baked in, so the localStorage copy is now redundant.
+  const dropLanded = (applying, replacements, failed) => {
+    const failedFinds = new Set((failed || []).map((f) => f.find));
+    applying.forEach((key, i) => {
+      if (!failedFinds.has(replacements[i].find)) removeOverride(key);
+    });
+  };
+
+  const saveToSource = async () => {
+    if (!Object.keys(getOverrides()).length) return;
+    setResult({ kind: 'busy', msg: 'Saving…' });
+
+    let built;
+    try {
+      built = await buildReplacements();
+    } catch (e) {
+      setResult({ kind: 'err', msg: `Can't reach the dev server (${e.message}). Is npm run dev running?` });
+      return;
+    }
+    const { replacements, unlocatable, applying } = built;
     if (!replacements.length) {
       setResult({ kind: 'err', msg: 'Nothing could be matched in the source. Use "Copy changes" instead.' });
       return;
@@ -217,12 +235,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
       return;
     }
 
-    // Drop the overrides that landed in source — HMR reloads the file with the
-    // new value baked in, so the localStorage copy is now redundant.
-    const failedFinds = new Set((saveRes.failed || []).map((f) => f.find));
-    applying.forEach((key, i) => {
-      if (!failedFinds.has(replacements[i].find)) removeOverride(key);
-    });
+    dropLanded(applying, replacements, saveRes.failed);
 
     const leftover = unlocatable.length + (saveRes.failed?.length || 0);
     const fileCount = new Set(replacements.map((r) => r.file)).size;
@@ -232,6 +245,61 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
         ? `Saved ${saveRes.applied} to source. ${leftover} couldn't be matched — kept in the browser; use "Copy changes" for those.`
         : `Saved ${saveRes.applied} change${saveRes.applied === 1 ? '' : 's'} to ${fileCount} file${fileCount === 1 ? '' : 's'}.`,
     });
+  };
+
+  // Save to source, then commit those files and push them — the deploy
+  // remote (`nato`/`main`) is the one Vercel builds, so this lands the edit
+  // on the live site without leaving the editor.
+  const saveAndPublish = async () => {
+    if (!Object.keys(getOverrides()).length) return;
+    setResult({ kind: 'busy', msg: 'Saving and publishing…' });
+
+    let built;
+    try {
+      built = await buildReplacements();
+    } catch (e) {
+      setResult({ kind: 'err', msg: `Can't reach the dev server (${e.message}). Is npm run dev running?` });
+      return;
+    }
+    const { replacements, unlocatable, applying } = built;
+    if (!replacements.length) {
+      setResult({ kind: 'err', msg: 'Nothing could be matched in the source. Use "Copy changes" instead.' });
+      return;
+    }
+
+    let pub;
+    try {
+      const r = await fetch('/__copy-editor/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ replacements, message: message.trim() || undefined }),
+      });
+      pub = await r.json();
+    } catch (e) {
+      setResult({ kind: 'err', msg: `Publish failed: ${e.message}` });
+      return;
+    }
+
+    dropLanded(applying, replacements, pub.failed);
+
+    if (!pub.committed) {
+      setResult({
+        kind: pub.gitError ? 'err' : 'warn',
+        msg: pub.gitError
+          ? `Saved to source, but git failed: ${pub.gitError}`
+          : pub.error || 'Saved to source, but there was nothing new to commit.',
+      });
+      return;
+    }
+
+    setMessage('');
+    const leftover = unlocatable.length + (pub.failed?.length || 0);
+    const pushed = pub.pushed?.length ? `pushed to ${pub.pushed.join(' and ')}` : 'not pushed';
+    let msg = `Saved ${pub.applied}, committed ${pub.committed}, ${pushed}.`;
+    if (pub.pushed?.includes('nato')) msg += ' Vercel will redeploy shortly.';
+    if (leftover) msg += ` ${leftover} couldn't be matched — kept in the browser.`;
+    if (pub.gitError) msg += ` (${pub.gitError})`;
+    setResult({ kind: leftover || pub.gitError ? 'warn' : 'ok', msg });
   };
 
   return (
@@ -269,7 +337,7 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
         <button type="button" className="btn btn-ghost btn-sm" onClick={copyChanges} disabled={!total}>
           <Copy size={14} /> Copy changes
         </button>
-        <button type="button" className="btn btn-accent btn-sm" onClick={saveToSource} disabled={!total}>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={saveToSource} disabled={!total}>
           <Save size={14} /> Save to source
         </button>
         <button
@@ -279,6 +347,26 @@ export default function CopyEditor({ initialRealm, initialBand, onClose }) {
           disabled={!total}
         >
           <Eraser size={14} /> Reset all
+        </button>
+      </div>
+
+      <div className="ce-publish">
+        <input
+          type="text"
+          className="ce-msg"
+          placeholder="Commit message (optional)"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          disabled={!total}
+        />
+        <button
+          type="button"
+          className="btn btn-accent btn-sm"
+          onClick={saveAndPublish}
+          disabled={!total}
+          title="Save to source, commit those files, and push to the deploy remote"
+        >
+          <UploadCloud size={14} /> Save &amp; publish
         </button>
       </div>
 
