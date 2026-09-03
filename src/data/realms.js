@@ -913,7 +913,7 @@ const bullybogLower = {
     },
     {
       who: 'A comment appears',
-      text: '"Nobody wants to hear this. Go away."',
+      text: '"Nobody wants to hear this. Please go away."',
     },
     {
       who: 'Comet',
@@ -931,7 +931,7 @@ const bullybogLower = {
         safe: false,
         who: 'Comet',
         response:
-          'The water goes darker. Pockets sinks lower. Those words sting. Shall we try a kinder reply?',
+          'The water goes darker. Pockets is sad. Shall we send a kinder reply?',
       },
       {
         id: 'standup',
@@ -940,7 +940,7 @@ const bullybogLower = {
         safe: true,
         who: 'Pockets the frog',
         response:
-          'Oh! You do? The water is going clear, right where you typed. Thank you, Traveller.',
+          'Oh! You do? Thank you, Traveller.',
       },
     ],
   },
@@ -962,7 +962,7 @@ const bullybogLower = {
         { id: 'mean', text: 'The mean one about Pockets.' },
       ],
       response:
-        'The kind one is easy to pick, and that is good. Posts do not really go away. So before you send something, ask: is it kind? Would I still be happy with it next year?',
+        'The kind one is easy to pick, and that is good. Posts do not go away. So before you send something. Ask yourself, is it kind? Would I still be happy with it next year?',
     },
   },
 
@@ -970,7 +970,7 @@ const bullybogLower = {
     type: 'sort',
     title: 'Clear the Water',
     instruction:
-      'Here are replies people could send to Pockets. Which ones would you send? Which would you leave?',
+      'Here are the replies people could send to Pockets. Which one of the messages would you send?',
     // T.H.I.N.K. is the standard school poster, so it reads as something the
     // classroom already owns rather than a game invention. P1–P3 sort by it
     // off the track; P4–P6 (below) name the check a reply fails.
@@ -1009,7 +1009,7 @@ const bullybogLower = {
 
   rule: {
     who: 'Comet',
-    text: 'If a mean comment is ever about you, not Pockets, the rule is the same. Do not be mean back. You can block or report the message, so it stops coming to you. And standing up can be one kind sentence.',
+    text: 'If a mean comment is ever about you, and not about Pockets, the rule stays the same. Do not be mean back. You can block the message or report it, so it stops coming to you.',
   },
 };
 
