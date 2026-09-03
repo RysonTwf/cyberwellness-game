@@ -100,6 +100,7 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   const [open, setOpen] = useState(false); // is the step's panel showing?
   const [beat, setBeat] = useState(0);
   const [pick, setPick] = useState(null);
+  const [respAck, setRespAck] = useState(false); // has the pick's reply been read?
   const [score, setScore] = useState(0);
 
   // Optional post-decision beats (digital footprint / "who would you tell",
@@ -139,6 +140,28 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
   const currentExtraKey =
     picked?.safe && extraIndex < extraBeatKeys.length ? extraBeatKeys[extraIndex] : null;
   const currentExtra = currentExtraKey ? realm.extraBeats[currentExtraKey] : null;
+
+  // The decision step shows one beat at a time and swaps it out on each tap,
+  // rather than growing a scroll of stacked cards that a young player reads as
+  // "nothing happened, I am still on the same screen" (school feedback, Bully
+  // Bog). Each phase is keyed so it animates in as a fresh panel.
+  //   ask       — the question and the choices
+  //   rethink   — unsafe pick: the reply, then hand the choice back
+  //   response  — safe pick: the reply, then a forward button
+  //   beat-ask  — a follow-up question and its options
+  //   beat-reply— the follow-up's reply, then Continue
+  //   move      — walk out to the mini-game
+  const decisionPhase = !picked
+    ? 'ask'
+    : !picked.safe
+      ? 'rethink'
+      : !respAck
+        ? 'response'
+        : currentExtraKey
+          ? tellPick
+            ? 'beat-reply'
+            : 'beat-ask'
+          : 'move';
 
   const OBJECTIVES = {
     story: `Walk over to ${realm.world.stops.story.label}`,
@@ -237,125 +260,165 @@ export default function RealmScreen({ realm, progress, travelerName, avatar, onS
               </div>
             )}
 
-            {/* ------------------------------------------------- decision -- */}
+            {/* ------------------------------------------------- decision --
+                One beat on screen at a time — see `decisionPhase` above. The
+                key remounts the panel body on every step so it animates in
+                and reads as a new screen, not more text under the old. */}
             {step === 'decision' && (
-              <div className="stack">
-                <h3>{realm.decision.prompt}</h3>
+              <div className="stack decision-step" key={decisionPhase}>
+                {decisionPhase === 'ask' && (
+                  <>
+                    <h3>{realm.decision.prompt}</h3>
+                    <div className="choices">
+                      {realm.decision.options.map((option) => (
+                        <ChoiceCard
+                          key={option.id}
+                          option={option}
+                          state="idle"
+                          onPick={() => choose(option.id)}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
 
-                <div className="choices">
-                  {realm.decision.options.map((option) => (
-                    <ChoiceCard
-                      key={option.id}
-                      option={option}
-                      disabled={Boolean(picked)}
-                      state={
-                        !picked
-                          ? 'idle'
-                          : picked.id !== option.id
-                            ? 'faded'
-                            : option.safe
-                              ? 'safe'
-                              : 'rethink'
-                      }
-                      onPick={() => choose(option.id)}
-                    />
-                  ))}
-                </div>
-
-                {picked && (
+                {/* Unsafe pick — never a dead end: read the reply, hand the
+                    choice straight back. */}
+                {decisionPhase === 'rethink' && (
                   <>
                     <DialogueCard who={picked.who} text={picked.response} accent={realm.accent} />
-
-                    {/* ---- optional post-decision beats (Improvement Plan §2) ----
-                        Flagged so a player knows this is a bonus question, not
-                        part of the main decision they already made. */}
-                    {currentExtraKey && (
-                      <span className="beat-tag">
-                        Follow-up question {extraIndex + 1} of {extraBeatKeys.length}
-                      </span>
-                    )}
-
-                    {currentExtraKey && currentExtra.options && (
-                      <>
-                        <DialogueCard
-                          who={currentExtra.who}
-                          text={currentExtra.prompt}
-                          accent={realm.accent}
-                        />
-                        {tellPick ? (
-                          <>
-                            <DialogueCard
-                              who={currentExtra.who}
-                              text={currentExtra.response}
-                              accent={realm.accent}
-                            />
-                            <div className="center">
-                              <button type="button" className="btn btn-accent" onClick={advanceExtra}>
-                                Continue
-                                <ArrowRight size={19} />
-                              </button>
-                            </div>
-                          </>
-                        ) : (
-                          <div
-                            className="row"
-                            style={{ justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}
-                          >
-                            {currentExtra.options.map((o) => (
-                              <button
-                                key={o.id}
-                                type="button"
-                                className="btn btn-ghost btn-sm"
-                                onClick={() => setTellPick(o.id)}
-                              >
-                                {o.text}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    )}
-
-                    {/* ---- move on: game step (safe) or retry (unsafe) ----
-                        Report & Block sits on *both* branches (Improvement
-                        Plan §2 / the school's "know how to report and block"
-                        point): a player who picks the safe option every time
-                        still meets the option, it is not a reward for getting
-                        the decision wrong. */}
-                    {!currentExtraKey && (
-                      <div
-                        className="row"
-                        style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                    <div
+                      className="row"
+                      style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                    >
+                      <button
+                        type="button"
+                        className="btn btn-ghost"
+                        onClick={() => {
+                          setPick(null);
+                          setRespAck(false);
+                        }}
                       >
-                        {picked.safe ? (
-                          <button
-                            type="button"
-                            className="btn btn-accent"
-                            onClick={() => {
-                              setStep('game');
-                              setOpen(false);
-                            }}
-                          >
-                            Look around
-                            <ArrowRight size={19} />
-                          </button>
-                        ) : (
-                          /* Never a dead end — hand the decision straight back */
-                          <button
-                            type="button"
-                            className="btn btn-ghost"
-                            onClick={() => setPick(null)}
-                          >
-                            <RefreshCw size={17} />
-                            Let me look again
-                          </button>
-                        )}
-                        {realm.reportBlockEligible !== false && (
-                          <ReportBlock accent={realm.accent} />
-                        )}
-                      </div>
-                    )}
+                        <RefreshCw size={17} />
+                        Let me look again
+                      </button>
+                      {realm.reportBlockEligible !== false && (
+                        <ReportBlock accent={realm.accent} />
+                      )}
+                    </div>
                   </>
+                )}
+
+                {/* Safe pick — the reply, then forward. With no follow-up
+                    beats this is the last decision screen, so Report & Block
+                    rides along here; with beats it waits for `move`. */}
+                {decisionPhase === 'response' && (
+                  <>
+                    <DialogueCard who={picked.who} text={picked.response} accent={realm.accent} />
+                    <div
+                      className="row"
+                      style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                    >
+                      {extraBeatKeys.length > 0 ? (
+                        <button
+                          type="button"
+                          className="btn btn-accent"
+                          onClick={() => setRespAck(true)}
+                        >
+                          Next
+                          <ArrowRight size={19} />
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn btn-accent"
+                          onClick={() => {
+                            setStep('game');
+                            setOpen(false);
+                          }}
+                        >
+                          Look around
+                          <ArrowRight size={19} />
+                        </button>
+                      )}
+                      {realm.reportBlockEligible !== false && extraBeatKeys.length === 0 && (
+                        <ReportBlock accent={realm.accent} />
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {/* ---- optional post-decision beats (Improvement Plan §2) ----
+                    Flagged so a player knows this is a bonus question, not
+                    part of the main decision they already made. */}
+                {decisionPhase === 'beat-ask' && (
+                  <>
+                    <span className="beat-tag">
+                      Follow-up question {extraIndex + 1} of {extraBeatKeys.length}
+                    </span>
+                    <DialogueCard
+                      who={currentExtra.who}
+                      text={currentExtra.prompt}
+                      accent={realm.accent}
+                    />
+                    <div
+                      className="row"
+                      style={{ justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}
+                    >
+                      {currentExtra.options.map((o) => (
+                        <button
+                          key={o.id}
+                          type="button"
+                          className="btn btn-ghost btn-sm"
+                          onClick={() => setTellPick(o.id)}
+                        >
+                          {o.text}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {decisionPhase === 'beat-reply' && (
+                  <>
+                    <span className="beat-tag">
+                      Follow-up question {extraIndex + 1} of {extraBeatKeys.length}
+                    </span>
+                    <DialogueCard
+                      who={currentExtra.who}
+                      text={currentExtra.response}
+                      accent={realm.accent}
+                    />
+                    <div className="center">
+                      <button type="button" className="btn btn-accent" onClick={advanceExtra}>
+                        Continue
+                        <ArrowRight size={19} />
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {/* Report & Block sits on the safe branch too (the school's
+                    "know how to report and block" point) — a player who picks
+                    the safe option every time still meets it. */}
+                {decisionPhase === 'move' && (
+                  <div
+                    className="row"
+                    style={{ justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}
+                  >
+                    <button
+                      type="button"
+                      className="btn btn-accent"
+                      onClick={() => {
+                        setStep('game');
+                        setOpen(false);
+                      }}
+                    >
+                      Look around
+                      <ArrowRight size={19} />
+                    </button>
+                    {realm.reportBlockEligible !== false && <ReportBlock accent={realm.accent} />}
+                  </div>
                 )}
               </div>
             )}

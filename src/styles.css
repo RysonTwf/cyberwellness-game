@@ -1808,6 +1808,28 @@ p {
   }
 }
 
+/* The decision panel swaps its whole body on each tap (RealmScreen
+   `decisionPhase`, keyed). A short fade-and-rise on every swap makes each
+   beat read as a new screen rather than more text appended to the last. */
+.panel .decision-step {
+  animation: decision-swap 0.2s ease both;
+}
+@keyframes decision-swap {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel .decision-step {
+    animation: none;
+  }
+}
+
 .panel-close {
   position: absolute;
   top: 12px;
