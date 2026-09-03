@@ -110,7 +110,7 @@ function BogScene({ mood }) {
       <image
         href={clear ? '/assets/BULLYBOG/PONDLEFT_AFTER.png' : '/assets/BULLYBOG/PONDLEFT_BEFORE.png'}
         x="60"
-        y="168"
+        y="120"
         width="200"
         height="66.6"
       />
@@ -118,7 +118,7 @@ function BogScene({ mood }) {
       <image
         href={clear ? '/assets/BULLYBOG/PONDRIGHT_AFTER.png' : '/assets/BULLYBOG/PONDRIGHT_BEFORE.png'}
         x="310"
-        y="158"
+        y="110"
         width="200"
         height="79.3"
       />
