@@ -94,7 +94,7 @@ export default function PasswordBuild({
  * note beside it says so out loud while the child is still choosing.
  */
 export function PasswordStrength({ reading, note = false }) {
-  const { score, max, label, tone } = gradePassword(reading);
+  const { score, max, label, tone, reason } = gradePassword(reading);
 
   return (
     <div className="pw-strength">
@@ -107,10 +107,12 @@ export function PasswordStrength({ reading, note = false }) {
           <span key={i} className={`pw-seg${i < score ? ` on is-${tone}` : ''}`} />
         ))}
       </div>
+      {reason && <p className="pw-strength-reason">{reason}</p>}
       {note && (
         <p className="pw-strength-note">
-          This gauge measures length and mix only. Whether a piece is a real word, or something
-          about you, is for you to judge.
+          The gauge checks how long your password is, what it is made of, and whether any piece is
+          on the list a guessing machine already knows. It cannot tell whether a piece is about
+          you. Only you can.
         </p>
       )}
     </div>

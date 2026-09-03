@@ -299,6 +299,15 @@ const passworldHigher = {
       { id: 'decoy3', label: 'qwerty', kind: 'decoy', x: 1075, y: 139 },
       { id: 'decoy4', label: 'abc', kind: 'decoy', x: 1731, y: 99 },
       { id: 'decoy5', label: 'Pockets', kind: 'decoy', x: 1400, y: 245 },
+      // The piece that is about the child themselves. No guessing machine has
+      // it on a list and no strength gauge can see anything wrong with it,
+      // which is the point: the vault refuses it however strong the rest of
+      // the password reads, and that refusal is the only thing in the level
+      // that puts teeth in the N of L.M.N. ("not me"). `{name}` is filled in
+      // with the name the child chose for themselves
+      // (components/PlatformerStoryRealm.jsx), and the tile is left out of the
+      // level entirely if they never gave one.
+      { id: 'myname', label: '{name}', kind: 'decoy', aboutMe: true, x: 1500, y: 245 },
       { id: 'decoy6', label: 'iloveyou', kind: 'decoy', x: 2652, y: 107 },
     ],
     // Each guard walks a platform — the scene snaps them onto the surface

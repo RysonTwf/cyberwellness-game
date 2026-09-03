@@ -68,12 +68,13 @@ export function describeMix(counts) {
 /**
  * The keypad's own gauge, out of four.
  *
- * Deliberately built from length and mix alone, the two things a child can
- * see for themselves in the strip: a gauge that also knew which pieces were
- * real words would be handing over the door's answer, since ticking a decoy
- * would make the needle drop. So it grades the shape of the password and
- * says so, and "is this a real word, or is it about me" stays the judgement
- * the vault is asking the child to make (the N of L.M.N.).
+ * Built from length and mix alone, which is what actually decides how long a
+ * password takes to guess. A word from a common list buried inside a long
+ * mixed password does not weaken it much (`iLoveyou123'z'z.` really is a
+ * strong password), so the gauge does not go hunting for words, and it cannot
+ * know that a piece is the child's own name either. That is the vault's own
+ * rule to enforce, and the N of L.M.N.: see `aboutMe` in the tile data and
+ * `answerDoor` in components/PlatformerStoryRealm.jsx.
  */
 export function gradePassword({ length, counts }) {
   const kinds = [counts.letter, counts.number, counts.symbol].filter(Boolean).length;
@@ -88,9 +89,21 @@ export function gradePassword({ length, counts }) {
   if (kinds >= 2 && length >= 8) score += 1;
   score = Math.min(score, 4);
 
+  // A piece off the most-guessed list caps the gauge however long the rest of
+  // it is, because that is what happens for real: the machine tries the list
+  // first, so the length behind it never gets tested.
+  // What the gauge is still waiting for, so the keypad never just says no.
+  const reason = length < 12
+    ? 'Twelve characters or more is what the keypad wants.'
+    : kinds < 2
+      ? 'Mix letters, numbers and symbols together.'
+      : null;
+
   const label = ['Too short', 'Weak', 'Getting stronger', 'Strong', 'Very strong'][score];
   const tone = score <= 1 ? 'low' : score === 2 ? 'mid' : 'high';
-  return { score, max: 4, label, tone };
+  // What the vault door opens for. The gauge is the promise on screen, so the
+  // door has to keep it: anything the gauge calls Strong gets through.
+  return { score, max: 4, label, tone, reason, strong: score >= 3 };
 }
 
 // How a guessing machine is pictured in this realm: a fast offline attacker

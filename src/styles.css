@@ -2859,6 +2859,16 @@ p {
   background: var(--teal);
 }
 
+/* What the gauge is waiting for, in one line, so a child is never left
+   guessing why it will not move. */
+.pw-strength-reason {
+  margin: 7px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
 .pw-strength-note {
   margin: 8px 0 0;
   font-size: 12px;
