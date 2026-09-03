@@ -12,7 +12,7 @@ export const ATLAS_TOUR = [
   {
     target: '.world.atlas-map',
     title: 'The Atlas',
-    text: 'A map of every path the internet takes. Tap the water or WASD or arrow keys to sail your paper boat. Sail up close to an island to step ashore.',
+    text: 'A map of every path the internet takes. Tap the water or WASD or arrow keys to sail your paper boat. Pull up close to an island to step ashore.',
   },
   {
     target: '.realm-strip',
