@@ -55,13 +55,13 @@ const ISLANDS = {
   passworld: {
     svg: { x: 107, y: 194 },
     world: { x: 17, y: 64 },
-    zone: { x: 16, y: 62, w: 21, h: 29 },
+    zone: { x: 16, y: 67, w: 21, h: 29 },
   },
   // the snowy peak
   privacy: {
     svg: { x: 221, y: 69 },
     world: { x: 35, y: 27 },
-    zone: { x: 34, y: 23, w: 24, h: 30 },
+    zone: { x: 34, y: 29, w: 24, h: 30 },
   },
   // the frog's marsh — a low, flat island
   bullybog: {
@@ -73,13 +73,13 @@ const ISLANDS = {
   balance: {
     svg: { x: 531, y: 240 },
     world: { x: 83, y: 79 },
-    zone: { x: 81, y: 75, w: 24, h: 34 },
+    zone: { x: 81, y: 81, w: 24, h: 34 },
   },
   // the falls in the cliffs
   fablefalls: {
     svg: { x: 464, y: 92 },
     world: { x: 72, y: 32 },
-    zone: { x: 72, y: 31, w: 24, h: 28 },
+    zone: { x: 72, y: 36, w: 24, h: 28 },
   },
 };
 
