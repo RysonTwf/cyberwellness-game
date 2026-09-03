@@ -269,13 +269,35 @@ export function makePasswordFortressLevelConfig(
       this.updateHud();
 
       // ---- input ----
+      // Phaser calls preventDefault on every key it captures, for the whole
+      // window, so a captured key is dead everywhere on the page — including
+      // on a focused button in the panel beside the level. Only the keys this
+      // level actually steers with are worth that cost: the arrows and WASD,
+      // to stop the page scrolling under the player mid-jump. The space bar is
+      // captured by `createCursorKeys` and never read here, and while it was
+      // captured a keyboard player could not tick a piece at the vault door
+      // with it, which is how a button is normally pressed.
       this.cursors = this.input.keyboard.createCursorKeys();
       this.wasd = this.input.keyboard.addKeys('W,A,S,D');
+      this.input.keyboard.removeCapture('SPACE');
       this.controlsRef = controlsRef;
       this.hitCooldown = 0;
       this.knockUntil = 0; // ms of knockback left, during which input can't steer
 
       onSceneReady?.(this);
+    }
+
+    /**
+     * React tells the scene when a panel (Sam's question, the vault door) has
+     * taken over. The level is frozen behind it, so it gives the keyboard back
+     * for as long as the panel is up: the arrow keys scroll the panel, and
+     * every key reaches the buttons in it. Captures come back when play does.
+     */
+    setPanelOpen(open) {
+      const keyboard = this.input?.keyboard;
+      if (!keyboard) return;
+      if (open) keyboard.clearCaptures();
+      else keyboard.addCapture('UP,DOWN,LEFT,RIGHT,W,A,S,D');
     }
 
     /** Called by React once the decision resolves on the safe option. */

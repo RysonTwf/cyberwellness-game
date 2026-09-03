@@ -202,6 +202,14 @@ body {
     overflow-y: auto;
   }
 
+  /* Stacked, the two rows are read top to bottom, so the first one has to
+     keep its full height. Left at `min-height: 0` (which is there so the
+     scene box can flex *down* beside a side column on a laptop) a short
+     window squeezes the row and the side column rides up over the level. */
+  .stage-main {
+    min-height: auto;
+  }
+
   .stage-side {
     overflow: visible;
     max-height: none;
@@ -1324,6 +1332,104 @@ p {
   display: block;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* On-screen controls for touch screens, pinned to the level box itself
+   (components/PlatformerStoryRealm.jsx). Left thumb sits in the bottom left
+   corner, right thumb in the bottom right, with jump stacked just above the
+   right button so one thumb can run and jump together. The pad itself lets
+   taps fall through to the canvas; only the buttons take a touch. */
+.level-pad {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  /* One size for all three buttons, and one gap, so the jump button can sit
+     exactly one button plus one gap above the right button on any screen.
+     Big enough for a child's thumb, small enough to leave the level visible
+     on a narrow phone. */
+  --pad-size: clamp(44px, 12vw, 64px);
+  --pad-gap: clamp(8px, 2vw, 14px);
+}
+
+/* Better still, size them against the level box rather than the whole window:
+   a phone held sideways has a wide window but a short level, and buttons cut
+   from the window would swallow it. The pad is the container to measure, not
+   the level box itself: the pad is stretched to `inset: 0`, so containment
+   cannot starve it of a size, while the box works out its own width from its
+   height and would collapse. The rule above stays as the fallback for
+   browsers without container queries. */
+@supports (container-type: size) {
+  .level-pad {
+    container-type: size;
+    --pad-size: clamp(42px, min(13cqw, 26cqh), 64px);
+    --pad-gap: clamp(8px, 2cqw, 14px);
+  }
+}
+
+.level-pad-btn {
+  position: absolute;
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  min-width: var(--pad-size);
+  min-height: var(--pad-size);
+  padding: 0 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1;
+  /* The browser must not treat these as scroll or zoom gestures, and a long
+     press must not pop up a selection or a callout mid-jump. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.level-pad-btn:active {
+  background: var(--accent, var(--ink));
+  border-color: var(--accent, var(--ink));
+  color: #fff;
+}
+
+.level-pad-left {
+  left: var(--pad-gap);
+  bottom: var(--pad-gap);
+}
+
+.level-pad-right {
+  right: var(--pad-gap);
+  bottom: var(--pad-gap);
+}
+
+/* Directly above the right button: one button height plus one gap. */
+.level-pad-jump {
+  right: var(--pad-gap);
+  bottom: calc(var(--pad-gap) + var(--pad-size) + var(--pad-gap));
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  font-weight: 700;
+}
+
+/* A phone held sideways has very little height to spare. Left alone the box
+   takes half its own width in height, which pushes the bottom of the level,
+   and the controls sitting on it, below the edge of the screen. */
+@media (max-height: 620px) and (pointer: coarse) {
+  .phaser-host {
+    /* Capped by *width*, not height: width is the side this box is sized
+       from, and its aspect ratio walks the height down to match. The last
+       term is what the window has left once the journal bar and the step
+       trail above have taken their share, turned back into a width; the
+       floor stops the level shrinking away to nothing. */
+    max-width: max(300px, min(100%, var(--scene-max-w), calc((100dvh - 180px) * var(--scene-ar))));
+    flex: 0 0 auto;
+  }
 }
 
 /* The backdrop art. `isolation` keeps every z-index *inside* a scene (props,
@@ -2511,6 +2617,456 @@ p {
   border-color: var(--accent, var(--ink));
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
+}
+
+/* ---------- The vault door: how the pieces pair up ----------------------- */
+/* components/PasswordBuild.jsx. The pieces on one line, joined into a single
+   password on the next, every character coloured by what it is. Children were
+   finishing the level without seeing what they had built, so this is shown
+   live while they tick and again, larger, once the door opens. */
+
+.pw-build {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line-strong);
+  background: var(--paper-card);
+  text-align: center;
+}
+
+.pw-empty {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.pw-pieces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 4px;
+}
+
+.pw-pieces li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pw-piece {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.pw-plus {
+  margin: 0 6px;
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
+/* One character of a password, coloured by what it is. The three colours are
+   the whole point of the picture, so they are spelled out by PasswordLegend
+   rather than left for the child to work out. */
+.pw-char {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 30px;
+  padding: 0 5px;
+  border-radius: 7px;
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink-soft);
+}
+
+.pw-char.is-letter {
+  background: var(--teal);
+}
+
+.pw-char.is-number {
+  background: var(--gold);
+  color: #3d2a10;
+}
+
+.pw-char.is-symbol {
+  background: var(--periwinkle);
+}
+
+/* The step from "pieces" to "one password". */
+.pw-arrow {
+  margin: 10px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.pw-arrow::before {
+  content: '↓';
+  display: block;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.pw-joined {
+  list-style: none;
+  margin: 0;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-wash);
+  border: 1.5px dashed var(--accent, var(--line-strong));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pw-joined .pw-char {
+  min-width: 28px;
+  height: 34px;
+  font-size: 17px;
+}
+
+.pw-mix {
+  margin: 9px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pw-legend {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pw-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pw-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  background: var(--ink-soft);
+}
+
+.pw-swatch.is-letter {
+  background: var(--teal);
+}
+
+.pw-swatch.is-number {
+  background: var(--gold);
+}
+
+.pw-swatch.is-symbol {
+  background: var(--periwinkle);
+}
+
+/* The characters walk in left to right on the reveal, so the joining is
+   something the child watches happen rather than a block of colour that was
+   simply there. `--step` is the character's place in the strip. */
+.pw-build.is-building .pw-char {
+  animation: pw-pop 0.3s ease-out both;
+  animation-delay: calc(var(--step, 0) * 70ms);
+}
+
+@keyframes pw-pop {
+  from {
+    opacity: 0;
+    transform: translateY(7px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The keypad's strength gauge: four segments and a word, moving as pieces go
+   in and out of the password. Colour runs coral to gold to teal as it fills,
+   the same reading as the word beside it. */
+.pw-strength {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1.5px solid var(--line);
+}
+
+.pw-strength-top {
+  margin: 0 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 10px;
+}
+
+.pw-strength-top .pw-caption {
+  margin: 0;
+}
+
+.pw-strength-label {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pw-strength-label.is-low {
+  color: var(--coral);
+}
+
+.pw-strength-label.is-mid {
+  color: var(--gold);
+}
+
+.pw-strength-label.is-high {
+  color: var(--teal);
+}
+
+.pw-strength-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.pw-seg {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--paper-sunk);
+  transition: background 0.2s ease;
+}
+
+.pw-seg.on.is-low {
+  background: var(--coral);
+}
+
+.pw-seg.on.is-mid {
+  background: var(--gold);
+}
+
+.pw-seg.on.is-high {
+  background: var(--teal);
+}
+
+.pw-strength-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* The two explanations after the strip: how many things fit in one space, and
+   this password against a weak one. Side by side wherever the column is wide
+   enough, stacked when it is not. */
+.pw-why {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+.pw-why > * {
+  margin-top: 12px;
+}
+
+/* Names the two rows so the picture reads as "these became that" rather than
+   as the same thing printed twice. */
+.pw-caption {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.pw-arrow + .pw-caption {
+  margin-top: 0;
+}
+
+/* One space of the password: the dashed outline is the empty slot, the
+   coloured character covers it once it lands, and the small number under it
+   is what makes the length countable rather than merely stated. */
+.pw-slot {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.pw-slot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 15px;
+  left: 0;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 8px;
+}
+
+.pw-slot-n {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+/* How many characters could sit in one space, counted three ways. The bars
+   carry the point; the numbers beside them are the proof. */
+.pw-choices {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  background: var(--paper-card);
+}
+
+.pw-choices ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pw-choices li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2px 10px;
+}
+
+.pw-choices-name {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.pw-choices-n {
+  grid-row: span 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 68px;
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.pw-choices-n em {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.pw-choices .pw-bar {
+  display: block;
+  margin: 0;
+  grid-column: 1;
+}
+
+.pw-choices .pw-mix {
+  text-align: left;
+}
+
+/* Why it is stronger: the weak piece they carried up here, and the password
+   they built, with a bar each for how much guessing it takes. */
+.pw-compare {
+  display: grid;
+  /* Side by side wherever there is room, which on a phone held sideways is
+     what keeps the reveal down to one screen instead of two. */
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pw-compare-row {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--paper-card);
+}
+
+.pw-compare-label {
+  margin: 0;
+  font-family: var(--font-stamp);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.pw-bar {
+  margin: 7px 0;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--paper-sunk);
+  overflow: hidden;
+}
+
+.pw-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.pw-bar-fill.is-weak {
+  background: var(--coral);
+}
+
+.pw-bar-fill.is-strong {
+  background: var(--teal);
+}
+
+.pw-compare-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* A phone held sideways has a short screen and the reveal is the longest
+   panel in the realm, so it is tightened up there rather than asking a child
+   to scroll through it twice. */
+@media (max-height: 620px) and (pointer: coarse) {
+  .pw-build {
+    margin-top: 8px;
+    padding: 9px 10px;
+  }
+
+  .pw-arrow {
+    margin: 6px 0 5px;
+  }
+
+  .pw-legend,
+  .pw-compare {
+    margin-top: 8px;
+  }
+}
+
+/* The blanket reduced-motion rule shortens animations but leaves delays
+   alone, which would hold every character off screen for its turn. */
+@media (prefers-reduced-motion: reduce) {
+  .pw-build.is-building .pw-char {
+    animation-delay: 0s !important;
+  }
 }
 
 /* A message the player has marked as worth stopping at, before they commit.
