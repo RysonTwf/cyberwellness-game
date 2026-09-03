@@ -43,23 +43,25 @@ export const ATLAS_TOUR = [
  * units, its own centre and full size, matched to each painted island's
  * footprint (measured by scanning the PNG) so the "visit" prompt appears the
  * moment the boat reaches any shore. It is separate from the pin, which sits
- * lower on the island for a tidy marker + label; the box stays centred on
- * the island itself, and each island's box is its own size — Bully Bog's
- * flat marsh is short, Balance Bay's palm-and-sparkle beach is tall
- * (World.jsx reads `spot.zone`).
+ * lower on the island for a tidy marker + label; the box sits over the
+ * island, nudged down towards the shore the boat sails up to (Bully Bog is
+ * the exception — its marsh reaches the water on every side, so its box stays
+ * centred). Each island's box is its own size — Bully Bog's flat marsh is
+ * short, Balance Bay's palm-and-sparkle beach is tall (World.jsx reads
+ * `spot.zone`).
  */
 const ISLANDS = {
   // the castle (its grass island is a little narrower than the others)
   passworld: {
     svg: { x: 107, y: 194 },
     world: { x: 17, y: 64 },
-    zone: { x: 16, y: 58, w: 21, h: 29 },
+    zone: { x: 16, y: 62, w: 21, h: 29 },
   },
   // the snowy peak
   privacy: {
     svg: { x: 221, y: 69 },
     world: { x: 35, y: 27 },
-    zone: { x: 34, y: 19, w: 24, h: 30 },
+    zone: { x: 34, y: 23, w: 24, h: 30 },
   },
   // the frog's marsh — a low, flat island
   bullybog: {
@@ -71,13 +73,13 @@ const ISLANDS = {
   balance: {
     svg: { x: 531, y: 240 },
     world: { x: 83, y: 79 },
-    zone: { x: 81, y: 71, w: 24, h: 34 },
+    zone: { x: 81, y: 75, w: 24, h: 34 },
   },
   // the falls in the cliffs
   fablefalls: {
     svg: { x: 464, y: 92 },
     world: { x: 72, y: 32 },
-    zone: { x: 72, y: 27, w: 24, h: 28 },
+    zone: { x: 72, y: 31, w: 24, h: 28 },
   },
 };
 
