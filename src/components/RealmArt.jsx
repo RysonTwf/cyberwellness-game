@@ -155,9 +155,9 @@ function BayScene() {
  * mini-game is now the five-question S.U.R.E. check, not a "solve it and the
  * scene changes" beat, so there's no mood flip for the art to track.
  *
- * The three ECHO_* pieces are the Echo's voice bouncing off the cave — a
- * little ripple at the rock (where the "Echo" pin sits), the falls and the
- * bat. Faint, so they read as ambience rather than clutter. */
+ * One ECHO_* piece is kept: a faint ripple at the rock in the middle,
+ * where the "Echo" pin sits. The waterfall and bat ripples were dropped
+ * as clutter. */
 function FableFallsScene() {
   // preserveAspectRatio 'slice': the scene box isn't always exactly 2:1
   // (PlatformerStoryRealm's two-column layout leaves it wider than tall), so
@@ -173,9 +173,7 @@ function FableFallsScene() {
         preserveAspectRatio="xMidYMid slice"
       />
       <g opacity="0.7">
-        <image href="/assets/FABLEFALLS/ECHO_WATERFALL.png" x="80" y="158" width="36" height="45" />
         <image href="/assets/FABLEFALLS/ECHO_ROCK.png" x="326" y="150" width="50" height="40" />
-        <image href="/assets/FABLEFALLS/ECHO_BAT.png" x="438" y="96" width="38" height="53" />
       </g>
     </svg>
   );
