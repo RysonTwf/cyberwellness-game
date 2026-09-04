@@ -397,11 +397,11 @@ const privacyLower = {
   story: [
     {
       who: 'Comet',
-      text: 'Privacy Peaks. Take care up here. The fog is not dangerous, but it hides who is really sending a message.',
+      text: 'Privacy Peaks. Take care up here. The fog is not dangerous, but it hides who is sending a message.',
     },
     {
       who: 'The Fog',
-      text: 'Hello! You have won a free tablet! Tap this link quickly, before it is gone! Only five minutes left. Also, what is your home address, so we can send it to you?',
+      text: 'Hello! You have won a free tablet! Tap this link quickly, before it is gone! Only five minutes left! What is your home address, so we can send it to you?',
     },
   ],
 
@@ -415,7 +415,7 @@ const privacyLower = {
         safe: false,
         who: 'Comet',
         response:
-          'The fog grows thicker. Nothing good happens. Look at that message again. A prize from nowhere. A rush to tap. A question about where you live. Let us look again.',
+          'The fog grows thicker. Nothing good happens. Look at that message again.',
       },
       {
         id: 'refuse',
@@ -478,7 +478,7 @@ const privacyLower = {
       },
       {
         id: 'q2',
-        text: 'The message says "only three minutes left, hurry". Why does it say that?',
+        text: 'The message says "Only three minutes left, hurry!". Why does it say that?',
         options: [
           {
             id: 'a',
@@ -495,7 +495,7 @@ const privacyLower = {
           },
           {
             id: 'c',
-            text: 'Because the prize really is about to run out.',
+            text: 'The prize really is about to run out.',
             correct: false,
             feedback:
               'Real things do not need you to hurry past thinking. The clock is the trick.',
@@ -517,7 +517,7 @@ const privacyLower = {
             id: 'b',
             text: 'Keep it to myself and tell an adult I trust.',
             correct: true,
-            feedback: 'Yes. Your address stays locked, just like in Passworld.',
+            feedback: 'Yes, your address stays locked, just like in Passworld.',
           },
           {
             id: 'c',
@@ -541,7 +541,7 @@ const privacyLower = {
           },
           {
             id: 'b',
-            text: 'No. I will tell an adult I trust.',
+            text: 'No, I will tell an adult I trust.',
             correct: true,
             feedback:
               'Right. Anyone who wants to be kept secret from your grown-ups is someone to tell a grown-up about.',
@@ -597,7 +597,7 @@ const privacyLower = {
             id: 'b',
             text: 'Keep the code. A code is a secret, like a password.',
             correct: true,
-            feedback: 'Yes. Codes are for typing in yourself, never for sending on.',
+            feedback: 'Yes, codes are for typing in yourself, never for sending on.',
           },
           {
             id: 'c',
@@ -614,14 +614,14 @@ const privacyLower = {
         options: [
           {
             id: 'a',
-            text: 'Yes. All messages are tricks.',
+            text: 'Yes, all messages are tricks.',
             correct: false,
             feedback:
               'Not all of them. This one asks you for nothing and does not rush you. Most messages are ordinary.',
           },
           {
             id: 'b',
-            text: 'No. It does not rush me and it does not ask me for anything.',
+            text: 'No, it does not rush me and it does not ask me for anything.',
             correct: true,
             feedback:
               'Good. Being careful is not the same as being scared of everything. Look for the signs, not for messages.',
@@ -641,7 +641,7 @@ const privacyLower = {
         options: [
           {
             id: 'a',
-            text: 'Fine. We are friends in the game.',
+            text: 'We are friends in the game.',
             correct: false,
             feedback:
               'Moving you somewhere quieter is a way of getting you on your own. Tell an adult you trust.',
@@ -667,13 +667,13 @@ const privacyLower = {
         options: [
           {
             id: 'a',
-            text: 'Yes. They knew my name.',
+            text: 'Yes, they knew my name.',
             correct: false,
             feedback: 'Your first name is easy to find. Knowing it proves nothing at all.',
           },
           {
             id: 'b',
-            text: 'No. Anyone could find out my name.',
+            text: 'No, anyone could find out my name.',
             correct: true,
             feedback: 'Exactly. A name in a message is not proof of anything.',
           },
@@ -1346,7 +1346,7 @@ const fableFallsLower = {
   story: [
     {
       who: 'Comet',
-      text: 'Fable Falls. Every story in the Atlas ends up in this water. Some of it is true. Some of it is made up.',
+      text: 'Fable Falls. Every story in the Atlas ends up in this water. Some of it is true, and some is made up.',
     },
     {
       who: 'The Echo',
