@@ -29,9 +29,6 @@ import { applyOverrides } from '../dev/contentOverrides';
  * the scene box (see world/useWalker.js).
  */
 
-export const COMET_CATCHPHRASE =
-  'Every good traveller carries two things: curiosity, and a bit of caution.';
-
 /**
  * Universal "Report & Block" resolution option (Improvement Plan §2): rather
  * than a dedicated realm, it's offered wherever a redirect/consequence

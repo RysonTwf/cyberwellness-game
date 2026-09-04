@@ -1,6 +1,6 @@
 import { useSyncExternalStore, useState, useMemo } from 'react';
 import { X, RotateCcw, Copy, Save, Eraser, UploadCloud } from 'lucide-react';
-import { REALMS, bandViewRaw, COMET_CATCHPHRASE } from '../data/realms';
+import { REALMS, bandViewRaw } from '../data/realms';
 import { INTRO_BEATS } from '../components/IntroStory';
 import { ROOM_TOUR } from '../components/TravelerRoom';
 import { ATLAS_TOUR } from '../components/AtlasMap';
@@ -47,23 +47,13 @@ function escapeFor(s, quote) {
 const count = (haystack, needle) => haystack.split(needle).length - 1;
 
 /**
- * Find the exact source literal holding `value`, trying each quote style, and
- * the `${COMET_CATCHPHRASE}` template used by every realm's first line.
+ * Find the exact source literal holding `value`, trying each quote style.
  * @returns {{ find: string, replace: string } | null}
  */
 function locate(fileText, original, next) {
   const forms = [];
   for (const q of ["'", '"', '`']) {
     forms.push({ find: q + escapeFor(original, q) + q, replace: q + escapeFor(next, q) + q });
-  }
-  // template literal: `...${COMET_CATCHPHRASE}`
-  if (original.endsWith(COMET_CATCHPHRASE) && next.endsWith(COMET_CATCHPHRASE)) {
-    const oPre = original.slice(0, -COMET_CATCHPHRASE.length);
-    const nPre = next.slice(0, -COMET_CATCHPHRASE.length);
-    forms.push({
-      find: '`' + escapeFor(oPre, '`') + '${COMET_CATCHPHRASE}`',
-      replace: '`' + escapeFor(nPre, '`') + '${COMET_CATCHPHRASE}`',
-    });
   }
   // Prefer the quote style that appears exactly once. Fall back to one that
   // appears more than once — a line Bully Bog repeats across its two bands —

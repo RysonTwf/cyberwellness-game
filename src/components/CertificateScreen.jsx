@@ -20,7 +20,7 @@ export const CERTIFICATE_COPY = [
   {
     id: 'comet1',
     label: 'Comet — opening line',
-    text: '{count} stamps, one for every realm. Each time, you have chosen curiosity and a bit of caution. That is what makes a Wise Traveller.',
+    text: '{count} stamps, one for every realm. Each time, you stopped to think before you clicked, shared or believed. That is what makes a Wise Traveller.',
   },
   { id: 'certLabel', label: 'Certificate — small label', text: 'Cyber Defender Quest' },
   { id: 'certHeading', label: 'Certificate — heading', text: 'Wise Traveller' },
