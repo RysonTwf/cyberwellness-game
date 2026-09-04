@@ -1212,7 +1212,7 @@ const balanceLower = {
     // §1). These are defensible conditions a child can reason from and watch
     // tick off live, rather than an invisible threshold.
     purpose: {
-      name: 'The must haves',
+      name: '"The must haves"',
       why: 'All of these have to be true before a day counts as balanced.',
       checks: [
         { key: 'R', name: 'Rest', sub: 'Rest is in the day' },
@@ -1273,7 +1273,7 @@ const balanceHigher = {
       'Plan the six hours between school and bed. All the must haves need to be true before you can call it a day. Notice which parts you would look forward to, and which you would just fall into.',
     slots: 6,
     purpose: {
-      name: 'The must haves',
+      name: '"The must haves"',
       why: 'A day is not balanced until every one of these is true. After that, judge it on how it would feel.',
       checks: [
         { key: 'R', name: 'Rest', sub: 'Rest is in the day' },
