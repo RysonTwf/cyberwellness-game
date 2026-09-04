@@ -85,10 +85,12 @@ export const BEACH_OBSTACLES = PROPS.map((p) => {
  * from the Farm RPG pack (see src/assets/beach/) — visible landmarks the
  * Traveler walks around while picking activities up as hotspots.
  *
- * `tilt` is the seesaw's live rotation in degrees, from BalanceBeachRealm's
- * -((screenCount - lifeCount) / slots) * 15.
+ * `tilt` is the seesaw's live rotation in degrees, from BalanceBeachRealm
+ * ((screenHours - screenCount) * 6 — level at two hours of screen time).
+ * `clock` is the evening's current time as a string ("3:00 PM" .. "9:00 PM"),
+ * painted big and blocky in the sky above the seesaw.
  */
-export default function BeachScene({ tilt = 0 }) {
+export default function BeachScene({ tilt = 0, clock = null }) {
   return (
     <div style={{ position: 'absolute', inset: 0, background: '#e8d5a3' }}>
       {/* the tide, along the top edge */}
@@ -100,6 +102,30 @@ export default function BeachScene({ tilt = 0 }) {
           background: 'linear-gradient(180deg, #6fa8b5 0%, #8fc0c9 70%, #a8d0d4 100%)',
         }}
       />
+
+      {/* The evening clock — just the time, blocky pixel-art lettering, sitting
+          in the sky over the seesaw. No dial: the number is the point. */}
+      {clock && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '6%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontFamily: 'var(--font-stamp), monospace',
+            fontWeight: 700,
+            fontSize: 'clamp(18px, 3.6vw, 30px)',
+            letterSpacing: '0.14em',
+            color: '#fdf3dc',
+            textShadow: '3px 3px 0 rgba(31, 52, 82, 0.55)',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
+            zIndex: 3,
+          }}
+        >
+          {clock}
+        </div>
+      )}
       {/* where the water meets the sand — a soft foam edge, not a hard line */}
       <div
         style={{

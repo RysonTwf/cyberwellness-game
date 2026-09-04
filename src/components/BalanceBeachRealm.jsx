@@ -27,10 +27,10 @@ import BeachScene, { BEACH_OBSTACLES } from '../world/beach/BeachScene';
 const SPAWN = { x: 26, y: 88 };
 const BOUNDS = { minX: 8, maxX: 92, minY: 48, maxY: 92 };
 
-// The six slots are one evening, school to bed, an hour per activity — so a
-// clock can be read straight off how many are filled. 4pm keeps the day
-// ending at a plausible bedtime once all six are placed.
-const DAY_START_HOUR = 16;
+// The six slots are one evening, school to bed, an hour per activity — so the
+// planner reads as a real timetable and the sky clock can be read straight
+// off how many are filled. 3pm start, 9pm once all six are placed.
+const DAY_START_HOUR = 15;
 
 function formatClockHour(hour24) {
   const period = hour24 < 12 ? 'AM' : 'PM';
@@ -42,31 +42,27 @@ function formatClockHour(hour24) {
 // water; everything else sits toward the drier sand, and both are kept clear
 // of the seesaw and the palm-hammock (BeachScene's SEESAW_SPOT / HAMMOCK_SPOT).
 const ITEM_SPOTS = {
-  b1: { x: 24, y: 74 }, // Watch videos
-  b2: { x: 40, y: 52 }, // Play my game
-  b3: { x: 54, y: 50 }, // Group chat
-  b4: { x: 72, y: 52 }, // Video call my cousin
+  b1: { x: 24, y: 74 }, // Watching television
+  b2: { x: 44, y: 52 }, // Play my video game
   b5: { x: 86, y: 64 }, // Homework
   b6: { x: 88, y: 82 }, // Play outside
   b7: { x: 74, y: 90 }, // Dinner with family
-  b8: { x: 40, y: 90 }, // Read a book
-  b9: { x: 58, y: 90 }, // Sleep
+  b8: { x: 40, y: 90 }, // Reading a book
+  b9: { x: 58, y: 90 }, // Rest
   b10: { x: 14, y: 88 }, // Help at home
 };
 
 // Short forms for the world pins — `.hotspot-label` is a single-line pill,
-// and with up to 10 of these on screen at once the full item text reads far
-// wider than anywhere else in the game. The sidebar list keeps `item.text`.
+// and with several of these on screen at once the full item text reads far
+// wider than anywhere else in the game. The sidebar planner keeps `item.text`.
 const SHORT_LABELS = {
-  b1: 'Videos',
-  b2: 'My game',
-  b3: 'Group chat',
-  b4: 'Video call',
+  b1: 'Television',
+  b2: 'Video game',
   b5: 'Homework',
   b6: 'Outside',
   b7: 'Dinner',
   b8: 'A book',
-  b9: 'Sleep',
+  b9: 'Rest',
   b10: 'Help at home',
 };
 
@@ -90,12 +86,14 @@ export default function BalanceBeachRealm({
   const screenCount = chosen.filter((i) => i.screen).length;
   const lifeCount = chosen.length - screenCount;
   const full = day.length === slots;
-  // More screen time tips one way, more of everything else tips the other,
-  // capped by construction at the extremes.
-  const tilt = day.length ? -((screenCount - lifeCount) / slots) * 15 : 0;
+  // The seesaw sits level at exactly two hours of screen time; every hour
+  // short of that leans it. With only two screen activities on the beach it
+  // never leans the other way — the "no more than two" side is held by the
+  // must, and its verdict copy.
+  const tilt = day.length ? (musts.screenHours - screenCount) * 6 : 0;
 
   /**
-   * The Three Musts: the realm's actual gate.
+   * The must haves: the realm's actual gate.
    *
    * Filling six slots used to be the entire requirement: the verdict below
    * was computed, shown, and then never required, so six hours of screens
@@ -103,26 +101,24 @@ export default function BalanceBeachRealm({
    * tipped over and let you through anyway, which made this the one realm
    * that was not merely guessable but unfailable (thingstoimproveon.md §1).
    *
-   * These three replace that invisible threshold with conditions a child can
+   * These replace that invisible threshold with conditions a child can
    * reason from and watch tick off live. Still no penalty and no buzzer
    * "Clear the day" is right there, and a day that doesn't meet them just
    * isn't finished yet (design.md §8).
    */
   const met = {
-    S: day.includes(musts.sleep),
-    E: musts.somethingElse.some((id) => day.includes(id)),
-    H: screenCount <= musts.maxScreenHours,
+    R: day.includes(musts.rest),
+    O: musts.somethingElse.some((id) => day.includes(id)),
+    S: screenCount === musts.screenHours,
   };
   const cleared = new Set(Object.keys(met).filter((k) => met[k]));
   const balanced = full && purpose.checks.every((c) => met[c.key]);
 
   const verdict = !full
     ? null
-    : screenCount >= slots - 1
-      ? { tone: 'rethink', text: verdicts.allScreen }
-      : screenCount === 0
-        ? { tone: 'rethink', text: verdicts.noScreen }
-        : { tone: 'settled', text: verdicts.level };
+    : screenCount < musts.screenHours
+      ? { tone: 'rethink', text: verdicts.tooFewScreen }
+      : { tone: 'settled', text: verdicts.level };
 
   function addToDay(id) {
     if (full || day.includes(id)) return;
@@ -212,7 +208,9 @@ export default function BalanceBeachRealm({
           <div className="stage-main">
             <World
               sceneKey="balance-beach"
-              scene={<BeachScene tilt={tilt} />}
+              scene={
+                <BeachScene tilt={tilt} clock={formatClockHour(DAY_START_HOUR + day.length)} />
+              }
               accent={realm.accent}
               spawn={SPAWN}
               bounds={BOUNDS}
@@ -237,17 +235,20 @@ export default function BalanceBeachRealm({
               <span style={{ color: 'var(--teal)' }}>Everything else · {lifeCount}</span>
             </div>
             <p className="tile-hint">
-              {day.length} / {slots} hours filled
+              {day.length} / {slots} hours planned
             </p>
-            <p className="tile-hint">The clock says {formatClockHour(DAY_START_HOUR + day.length)}.</p>
 
-            <div className="slots">
+            {/* A planner, not a row of numbered boxes: each hour of the
+                evening on its own line with the time down the side. */}
+            <div className="slots planner">
               {Array.from({ length: slots }, (_, i) => {
                 const item = chosen[i];
+                const time = formatClockHour(DAY_START_HOUR + i);
                 if (!item) {
                   return (
                     <div key={`empty-${i}`} className="slot">
-                      Hour {i + 1}
+                      <span className="slot-time">{time}</span>
+                      <span className="slot-activity is-empty">Open</span>
                     </div>
                   );
                 }
@@ -257,9 +258,10 @@ export default function BalanceBeachRealm({
                     type="button"
                     className={`slot filled ${item.screen ? 'screen' : 'life'}`}
                     onClick={() => removeFromDay(item.id)}
-                    aria-label={`Take "${item.text}" back out of the day`}
+                    aria-label={`Take "${item.text}" out of ${time}`}
                   >
-                    {item.text}
+                    <span className="slot-time">{time}</span>
+                    <span className="slot-activity">{item.text}</span>
                   </button>
                 );
               })}

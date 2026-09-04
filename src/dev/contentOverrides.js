@@ -169,7 +169,7 @@ const SKIP_KEYS = new Set([
   'reportBlockEligible',
   'type',
   'slots',
-  'musts', // item ids and a cap, not copy (Balance Bay's Three Musts gate)
+  'musts', // item ids and an hour count, not copy (Balance Bay's must-haves gate)
   'items', // items[].text/.checkNote are editable, targeted walk below
 ]);
 

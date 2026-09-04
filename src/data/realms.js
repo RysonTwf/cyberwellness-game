@@ -1177,11 +1177,11 @@ const bullybogHigher = {
  * while a seesaw tips. There is no branching choice and no Glimmer
  * character. Only the wording changes: `balanceLower` is very short for
  * P1–P3; `balanceHigher` says a little more for P4–P6 (noticing how screen
- * time feels, not just how long) without getting long. Same ten activity
- * cards, same verdict copy: and, since 31 Aug 2026, the same Three Musts
- * which are what the realm actually requires to finish (see `musts` below
- * and components/BalanceBeachRealm.jsx). Filling six slots used to be the
- * whole requirement, which made this the one unfailable realm.
+ * time feels, not just how long) without getting long. Same eight activity
+ * cards, same verdict copy, and the same must haves which are what the
+ * realm actually requires to finish (see `musts` below and
+ * components/BalanceBeachRealm.jsx). Filling six slots used to be the whole
+ * requirement, which made this the one unfailable realm.
  */
 
 const balanceLower = {
@@ -1204,52 +1204,49 @@ const balanceLower = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. All three musts have to be true before you can call it a day. Add something, or tap it in your list to take it back.',
+      'Plan the six hours between school and bed. All the must haves need to be true before you can call it a day. Add something, or tap it in your list to take it back.',
     slots: 6,
     // The gate. Filling six slots used to be the whole requirement, so six
     // hours of screens passed exactly as readily as a balanced day and the
     // realm was not merely guessable but *unfailable* (thingstoimproveon.md
-    // §1). These three are defensible conditions a child can reason from and
-    // watch tick off live, rather than an invisible threshold.
+    // §1). These are defensible conditions a child can reason from and watch
+    // tick off live, rather than an invisible threshold.
     purpose: {
-      name: 'The Three Musts',
-      why: 'All three have to be true before a day counts as balanced.',
+      name: 'The must haves',
+      why: 'All of these have to be true before a day counts as balanced.',
       checks: [
-        { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
-        { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
-        { key: 'H', name: 'Two hours', sub: 'Screens take up no more than two hours' },
+        { key: 'R', name: 'Rest', sub: 'Rest is in the day' },
+        { key: 'O', name: 'Others', sub: 'One thing that is not a screen, rest or homework' },
+        { key: 'S', name: 'Two hours of screen time', sub: 'Screens fill two hours, no more and no less' },
       ],
     },
     musts: {
-      sleep: 'b9',
+      rest: 'b9',
       somethingElse: ['b6', 'b7', 'b8', 'b10'],
-      maxScreenHours: 2,
+      screenHours: 2,
     },
     items: [
-      { id: 'b1', text: 'Watch videos', screen: true },
-      { id: 'b2', text: 'Play my game', screen: true },
-      { id: 'b3', text: 'Group chat', screen: true },
-      { id: 'b4', text: 'Video call my cousin', screen: true },
+      { id: 'b1', text: 'Watching television', screen: true },
+      { id: 'b2', text: 'Play my video game', screen: true },
       { id: 'b5', text: 'Homework', screen: false },
       { id: 'b6', text: 'Play outside', screen: false },
       { id: 'b7', text: 'Dinner with family', screen: false },
-      { id: 'b8', text: 'Read a book', screen: false },
-      { id: 'b9', text: 'Sleep', screen: false },
+      { id: 'b8', text: 'Reading a book', screen: false },
+      { id: 'b9', text: 'Rest', screen: false },
       { id: 'b10', text: 'Help at home', screen: false },
     ],
-    // No single correct split; only the extremes tip the scale hard.
+    // Two screen hours is the level point; anything short of that leans.
     verdicts: {
-      allScreen:
-        'The seesaw tipped right over. A day of only screens leaves no room for the rest of you. Swap one or two out.',
-      noScreen:
-        'The seesaw tipped the other way. You do not have to cut screens out completely. Add one back in.',
-      level: 'The seesaw is level. Some screen time, plenty of everything else. That is it.',
+      tooFewScreen:
+        'The seesaw is leaning. You do not have to cut screens out completely. Screen time can be one of the good things. Fill two of the hours with a screen.',
+      level:
+        'The seesaw is level. Two hours of screen time, four hours of other things. That is a balanced day.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. And keep the Three Musts: sleep is in the day, one thing is away from a screen, and screens take no more than two hours.',
+    text: 'The rule for the Bay. Screens are not bad. Losing track of time is. Decide when you will stop before you start. And keep the must haves: rest is in the day, one thing is away from a screen, and screens fill two hours.',
   },
 };
 
@@ -1273,32 +1270,30 @@ const balanceHigher = {
     type: 'balance',
     title: 'Balance the Day',
     instruction:
-      'Fill the six hours between school and bed. All three musts have to be true before you can call it a day. Notice which parts you would look forward to, and which you would just fall into.',
+      'Plan the six hours between school and bed. All the must haves need to be true before you can call it a day. Notice which parts you would look forward to, and which you would just fall into.',
     slots: 6,
     purpose: {
-      name: 'The Three Musts',
-      why: 'A day is not balanced until all three are true. After that, judge it on how it would feel.',
+      name: 'The must haves',
+      why: 'A day is not balanced until every one of these is true. After that, judge it on how it would feel.',
       checks: [
-        { key: 'S', name: 'Sleep', sub: 'Sleep is in the day' },
-        { key: 'E', name: 'Else', sub: 'One thing that is not a screen, sleep or homework' },
-        { key: 'H', name: 'Two hours', sub: 'Screens take up no more than two hours' },
+        { key: 'R', name: 'Rest', sub: 'Rest is in the day' },
+        { key: 'O', name: 'Others', sub: 'One thing that is not a screen, rest or homework' },
+        { key: 'S', name: 'Two hours of screen time', sub: 'Screens fill two hours, no more and no less' },
       ],
     },
     musts: balanceLower.game.musts,
     items: balanceLower.game.items,
     verdicts: {
-      allScreen:
-        'The seesaw tipped right over. Be honest: does a day of only screens feel good, or just familiar? It does not leave room to find out.',
-      noScreen:
-        'The seesaw tipped the other way. Zero screens is not the goal either. Screens can be one of the good things. Add one back in.',
+      tooFewScreen:
+        'The seesaw is leaning. Zero screens is not the goal either. Screens can be one of the good things. Fill two of the hours with a screen.',
       level:
-        'The seesaw is level. Probably because some of this sounds good to choose, not just easy to fall into. That is the real skill: noticing, not counting.',
+        'The seesaw is level. Two hours of screen time and four hours of other things. Past the count, the real skill is noticing which parts you would look forward to.',
     },
   },
 
   rule: {
     who: 'Comet',
-    text: 'Start with the Three Musts: sleep is in the day, one thing is off a screen, and screens take no more than two hours. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
+    text: 'Start with the must haves: rest is in the day, one thing is off a screen, and screens fill two hours. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
   },
 };
 
