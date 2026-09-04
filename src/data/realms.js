@@ -325,22 +325,12 @@ const passworldHigher = {
     type: 'sort',
     title: 'Before You Post',
     instruction:
-      'Some of these seem harmless. Sort each one, then say which of the three questions it falls foul of.',
-    // Same three questions P1–P3 sort by, but this band has to *name* the one
-    // an item fails (`nameTheCheck`), which is the move that turns "pick a
-    // bin" into a judgement you could carry to a post the game never showed
-    // you (thingstoimproveon.md, "The purpose question").
-    purpose: {
-      name: 'The Three Questions',
-      why: 'Ask these before anything of yours goes up.',
-      nameTheCheck: true,
-      prompt: 'Which question does this one fall foul of?',
-      checks: [
-        { key: 'F', name: 'Find', sub: 'Could this help someone find me?' },
-        { key: 'U', name: 'Unlock', sub: 'Could this unlock an account of mine?' },
-        { key: 'P', name: 'Pretend', sub: 'Could someone pretend to be me with it?' },
-      ],
-    },
+      'Some of these seem harmless. Decide what is safe to post and what could give you away. When one could, it will tell you how.',
+    // No method track. The invented "Three Questions" (Find / Unlock /
+    // Pretend) is not in the school's curriculum and was dropped here as it
+    // was for P1–P3. The teaching is kept: sorting a card into Keep Private
+    // shows its one-line `checkNote` (MiniGameSort surfaces it on a correct
+    // filing when there is no naming step).
     bins: [
       { id: 'post', title: 'Safe to Post', sub: 'Gives nothing away', icon: 'unlock' },
       { id: 'private', title: 'Keep Private', sub: 'Could give you away', icon: 'lock' },
@@ -356,56 +346,48 @@ const passworldHigher = {
         id: 'realname',
         text: 'My real full name as my username',
         bin: 'private',
-        check: 'P',
         checkNote: 'A real name as a handle lets someone find the rest of you, and pose as you.',
       },
       {
         id: 'uniform',
         text: 'A photo of me in my school uniform',
         bin: 'private',
-        check: 'F',
         checkNote: 'A uniform names your school to anyone who recognises it.',
       },
       {
         id: 'location',
         text: 'A photo with the place tagged on it',
         bin: 'private',
-        check: 'F',
         checkNote: 'The tag is the map. It says exactly where you were, and probably where you go.',
       },
       {
         id: 'birthday',
         text: 'My full date of birth',
         bin: 'private',
-        check: 'U',
         checkNote: 'A date of birth is half of most "prove it is really you" questions.',
       },
       {
         id: 'routine',
         text: 'That I walk home alone at the same time every day',
         bin: 'private',
-        check: 'F',
         checkNote: 'A routine tells someone where to wait. That is the whole risk.',
       },
       {
         id: 'door',
         text: 'A photo out my front door with the house number in it',
         bin: 'private',
-        check: 'F',
         checkNote: 'One number in the background is enough to turn a street into an address.',
       },
       {
         id: 'firstpet',
         text: 'The name of my first pet',
         bin: 'private',
-        check: 'U',
         checkNote: 'That is a security question on half the internet. Answering it in public hands it over.',
       },
       {
         id: 'timetable',
         text: 'A screenshot of my school timetable',
         bin: 'private',
-        check: 'F',
         checkNote: 'It says where you are, hour by hour, all week.',
       },
     ],

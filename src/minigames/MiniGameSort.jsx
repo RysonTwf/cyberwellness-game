@@ -89,7 +89,10 @@ export default function MiniGameSort({ game, onComplete }) {
     setPlaced((p) => [...p, { item: current, bin: current.bin, correct }]);
     setNote(
       correct
-        ? null
+        ? // A filed-right card with a `checkNote` but no naming step (P4–P6
+          // Passworld's "Before You Post", once its method track was dropped)
+          // still gets its one-line "why" here.
+          current.checkNote ?? null
         : `Not quite. "${current.text}" goes in ${target.title}: ${target.sub.toLowerCase()}. Putting it there for you.`,
     );
   }
