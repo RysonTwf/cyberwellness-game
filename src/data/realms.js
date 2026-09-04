@@ -57,7 +57,7 @@ const passworldLower = {
     },
     {
       who: 'Keeper Vex',
-      text: 'A visitor! Lovely. First I need a few things from you. Your full name, your school, and your home address. Oh, and your password. Just so I know I can trust you.',
+      text: 'A visitor! Lovely. First I need a few things from you. Your full name, your school, and your home address. Oh, and your password! Just so I know I can trust you.',
     },
   ],
 
@@ -99,7 +99,7 @@ const passworldLower = {
         { id: 'words', text: 'Three random words joined up, like BlueTigerMoon' },
       ],
       response:
-        'Three random words wins. It is long, and it is not about you, so nobody can guess it from what they know. A name or a birthday is the easiest to crack.',
+        'Three random words wins. A name or a birthday is the easiest to crack.',
     },
   },
 
@@ -1350,7 +1350,7 @@ const fableFallsLower = {
     },
     {
       who: 'The Echo',
-      text: 'Have you seen this? Someone posted that Mia got caught taking snacks from the canteen. It is a screenshot, and lots of people have shared it already.',
+      text: 'Have you seen this? Someone posted that Mia got caught taking snacks from the canteen. And lots of people have shared it already.',
     },
   ],
 
@@ -1368,7 +1368,7 @@ const fableFallsLower = {
       },
       {
         id: 'stopcheck',
-        text: '"I will stop. Then I will ask an adult I trust, before I believe it or share it."',
+        text: '"I will stop. Then I will ask an adult I trust, before I believe it."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
@@ -1393,7 +1393,7 @@ const fableFallsLower = {
       name: 'STOP & CHECK',
       why: 'Do both before you believe a story or share it.',
       checks: [
-        { key: 'S', name: 'Stop', sub: 'Do not believe it or share it yet.' },
+        { key: 'S', name: 'Stop', sub: 'Do not believe it.' },
         { key: 'C', name: 'Check', sub: 'Ask an adult you trust to help you find out.' },
       ],
     },
@@ -1438,9 +1438,9 @@ const fableFallsLower = {
           },
           {
             id: 'b',
-            text: 'No. It only means lots of people shared it.',
+            text: 'No, it only means lots of people shared it.',
             correct: true,
-            feedback: 'Yes. A story can be shared a lot and still be made up.',
+            feedback: 'Yes, a story can be shared a lot and still be made up.',
           },
           {
             id: 'c',
@@ -1464,7 +1464,7 @@ const fableFallsLower = {
             id: 'b',
             text: 'Ask a teacher or another adult I trust.',
             correct: true,
-            feedback: 'Yes. An adult you trust can find out what really happened.',
+            feedback: 'Yes, an adult you trust can find out what really happened.',
           },
           {
             id: 'c',
@@ -1500,7 +1500,7 @@ const fableFallsLower = {
       },
       {
         id: 'q5',
-        text: 'A friend says, "just share it, you can say sorry later." What do you think?',
+        text: 'A friend says, "Just share it, you can say sorry later." What do you think?',
         options: [
           {
             id: 'a',
@@ -1510,9 +1510,9 @@ const fableFallsLower = {
           },
           {
             id: 'b',
-            text: 'No. It is easier to check first than to fix it later.',
+            text: 'No, it is easier to check first than to fix it later.',
             correct: true,
-            feedback: 'Yes. Checking takes a minute. Stopping a rumour takes a lot longer.',
+            feedback: 'Yes, checking takes a minute. Stopping a rumour takes a lot longer.',
           },
           {
             id: 'c',
@@ -1536,7 +1536,7 @@ const fableFallsLower = {
             id: 'b',
             text: 'A teacher or an adult I trust, who can find out the truth.',
             correct: true,
-            feedback: 'Yes. Ask someone who can find out what really happened.',
+            feedback: 'Yes, ask someone who can find out what really happened.',
           },
           {
             id: 'c',
@@ -1576,15 +1576,15 @@ const fableFallsLower = {
         options: [
           {
             id: 'a',
-            text: 'Yes. You cannot change a video.',
+            text: 'Yes, you cannot change a video.',
             correct: false,
             feedback: 'You can change a video. People cut them, speed them up, and even make fake ones.',
           },
           {
             id: 'b',
-            text: 'No. Videos can be changed too.',
+            text: 'No, videos can be changed too.',
             correct: true,
-            feedback: 'Yes. Seeing something in a video does not make it true.',
+            feedback: 'Yes, seeing something in a video does not make it true.',
           },
           {
             id: 'c',
@@ -1650,7 +1650,7 @@ const fableFallsLower = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for Fable Falls. Not everything you see online is true, even when lots of people have shared it. Stop before you believe it or share it. Then check: ask an adult you trust to help you find out. And if you share something someone else made, always say whose work it is.',
+    text: 'Here is the rule for Fable Falls. Not everything you see online is true, even when lots of people have shared it. Stop before you believe it or share it. Then check, ask an adult you trust to help you find out.',
   },
 };
 
