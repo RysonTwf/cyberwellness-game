@@ -108,19 +108,11 @@ const passworldLower = {
     title: 'Guard the Vault',
     instruction:
       'These are the things Vex asked you for, and a few more. Put each one where it belongs. Which stay locked away, and which are fine to share?',
-    // The method, on screen the whole time you play. P1–P3 read the three
-    // questions and sort by them; they aren't asked to *name* which one an
-    // item fails (`nameTheCheck`), that step is P4–P6's, in `privacyCheck`
-    // on the higher band below.
-    purpose: {
-      name: 'The Three Questions',
-      why: 'Ask these before you tell anyone anything.',
-      checks: [
-        { key: 'F', name: 'Find', sub: 'Could this help someone find me?' },
-        { key: 'U', name: 'Unlock', sub: 'Could this unlock something of mine?' },
-        { key: 'P', name: 'Pretend', sub: 'Could someone pretend to be me with it?' },
-      ],
-    },
+    // No method track here. The school's curriculum teaches this as a plain
+    // rule ("never share personal information: full name, address, phone
+    // number, passwords"), not a named mnemonic to reason from, so the
+    // invented "Three Questions" (Find / Unlock / Pretend) was cut. P4–P6
+    // still has its own `privacyCheck` step below.
     bins: [
       { id: 'locked', title: 'Keep It Locked', sub: 'Only for me and my family', icon: 'lock' },
       { id: 'share', title: 'Safe to Share', sub: 'Fine for other people to know', icon: 'unlock' },
@@ -129,14 +121,14 @@ const passworldLower = {
     // (lib/draw.js) so one blind attempt can't buy a clean one on memory.
     roundSize: 9,
     items: [
-      { id: 'address', text: 'My home address', bin: 'locked', check: 'F' },
-      { id: 'fullname', text: 'My full name', bin: 'locked', check: 'P' },
-      { id: 'school', text: 'The school I go to', bin: 'locked', check: 'F' },
-      { id: 'password', text: 'My password', bin: 'locked', check: 'U' },
-      { id: 'phone', text: 'My phone number', bin: 'locked', check: 'F' },
-      { id: 'birthday', text: 'The day I was born', bin: 'locked', check: 'P' },
-      { id: 'mumphone', text: "My mum's phone number", bin: 'locked', check: 'F' },
-      { id: 'secret', text: 'The answer to my secret question', bin: 'locked', check: 'U' },
+      { id: 'address', text: 'My home address', bin: 'locked' },
+      { id: 'fullname', text: 'My full name', bin: 'locked' },
+      { id: 'school', text: 'The school I go to', bin: 'locked' },
+      { id: 'password', text: 'My password', bin: 'locked' },
+      { id: 'phone', text: 'My phone number', bin: 'locked' },
+      { id: 'birthday', text: 'The day I was born', bin: 'locked' },
+      { id: 'mumphone', text: "My mum's phone number", bin: 'locked' },
+      { id: 'secret', text: 'The answer to my secret question', bin: 'locked' },
       { id: 'colour', text: 'My favourite colour', bin: 'share' },
       { id: 'game', text: 'The game I like most', bin: 'share' },
       { id: 'nickname', text: 'My nickname', bin: 'share' },
