@@ -108,11 +108,6 @@ const passworldLower = {
     title: 'Guard the Vault',
     instruction:
       'These are the things Vex asked you for, and a few more. Put each one where it belongs. Which stay locked away, and which are fine to share?',
-    // No method track here. The school's curriculum teaches this as a plain
-    // rule ("never share personal information: full name, address, phone
-    // number, passwords"), not a named mnemonic to reason from, so the
-    // invented "Three Questions" (Find / Unlock / Pretend) was cut. P4–P6
-    // still has its own `privacyCheck` step below.
     bins: [
       { id: 'locked', title: 'Keep It Locked', sub: 'Only for me and my family', icon: 'lock' },
       { id: 'share', title: 'Safe to Share', sub: 'Fine for other people to know', icon: 'unlock' },
@@ -326,11 +321,6 @@ const passworldHigher = {
     title: 'Before You Post',
     instruction:
       'Some of these seem harmless. Decide what is safe to post and what could give you away. When one could, it will tell you how.',
-    // No method track. The invented "Three Questions" (Find / Unlock /
-    // Pretend) is not in the school's curriculum and was dropped here as it
-    // was for P1–P3. The teaching is kept: sorting a card into Keep Private
-    // shows its one-line `checkNote` (MiniGameSort surfaces it on a correct
-    // filing when there is no naming step).
     bins: [
       { id: 'post', title: 'Safe to Post', sub: 'Gives nothing away', icon: 'unlock' },
       { id: 'private', title: 'Keep Private', sub: 'Could give you away', icon: 'lock' },
