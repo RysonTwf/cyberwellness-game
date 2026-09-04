@@ -77,7 +77,7 @@ function PrivacyScene({ mood }) {
       <image
         href="/assets/PRIVACYPEAKS/FOG.png"
         x="0"
-        y="122"
+        y="125"
         width="560"
         height="102.4"
         opacity={clear ? 0.15 : 1}
