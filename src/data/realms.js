@@ -398,7 +398,7 @@ const privacyLower = {
     },
     {
       who: 'The Fog',
-      text: 'Hello! You have won a free tablet! Tap this link quickly, before it is gone! Only five minutes left! What is your home address, so we can send it to you?',
+      text: 'Hello! You have won a free tablet! Click this link quickly, before it is gone! Only five minutes left! What is your home address, so we can send it to you?',
     },
   ],
 
@@ -407,7 +407,7 @@ const privacyLower = {
     options: [
       {
         id: 'click',
-        text: 'Tap the link.',
+        text: 'Click the link.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
@@ -416,7 +416,7 @@ const privacyLower = {
       },
       {
         id: 'refuse',
-        text: '"This looks like a trick. I am not tapping it, and I will tell an adult I trust."',
+        text: '"This looks like a trick. I am not clicking it, and I will tell an adult I trust."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
@@ -455,7 +455,7 @@ const privacyLower = {
             text: 'Brilliant, I will claim my prize.',
             correct: false,
             feedback:
-              'A prize you never entered is almost always a trick to get you to tap a link or share your details. Real competitions do not work like this.',
+              'A prize you never entered is almost always a trick to get you to click a link or share your details. Real competitions do not work like this.',
           },
           {
             id: 'b',
@@ -1389,37 +1389,13 @@ const fableFallsLower = {
         { key: 'C', name: 'Check', sub: 'Ask an adult you trust to help you find out.' },
       ],
     },
-    // Five of these ten each run (lib/draw.js). All kept short and plain
+    // Five of these six each run (lib/draw.js). All kept short and plain
     // for 6–9 year olds: one idea per sentence, no idioms, no chat short
     // forms, UK spelling.
     roundSize: 5,
     questions: [
       {
         id: 'q1',
-        text: 'The screenshot has no name on it. Who posted it first?',
-        options: [
-          {
-            id: 'a',
-            text: 'It does not matter. Lots of people shared it.',
-            correct: false,
-            feedback: 'If nobody knows who started a story, do not trust it.',
-          },
-          {
-            id: 'b',
-            text: 'Nobody knows, so I should not trust it.',
-            correct: true,
-            feedback: 'Yes. If you cannot find who started it, stop and check it.',
-          },
-          {
-            id: 'c',
-            text: 'The person who sent it to me started it.',
-            correct: false,
-            feedback: 'They shared it too. They did not start it. Nobody knows who did.',
-          },
-        ],
-      },
-      {
-        id: 'q2',
         text: 'Lots of people shared the post. Does that make it true?',
         options: [
           {
@@ -1443,31 +1419,7 @@ const fableFallsLower = {
         ],
       },
       {
-        id: 'q3',
-        text: 'You want to find out if the snack story is real. What is the best thing to do?',
-        options: [
-          {
-            id: 'a',
-            text: 'Ask the group chat what they think.',
-            correct: false,
-            feedback: 'That is where the rumour is spreading. Asking there makes it spread more.',
-          },
-          {
-            id: 'b',
-            text: 'Ask a teacher or another adult I trust.',
-            correct: true,
-            feedback: 'Yes, an adult you trust can find out what really happened.',
-          },
-          {
-            id: 'c',
-            text: 'Count how many likes it has.',
-            correct: false,
-            feedback: 'Likes do not tell you if a story is true. A made-up story can get lots of likes.',
-          },
-        ],
-      },
-      {
-        id: 'q4',
+        id: 'q2',
         text: 'One edge of the photo of Mia looks stretched and blurry. What could that mean?',
         options: [
           {
@@ -1491,55 +1443,7 @@ const fableFallsLower = {
         ],
       },
       {
-        id: 'q5',
-        text: 'A friend says, "Just share it, you can say sorry later." What do you think?',
-        options: [
-          {
-            id: 'a',
-            text: 'Okay. I can say sorry after.',
-            correct: false,
-            feedback: 'Once you share a story, other people keep sharing it. Saying sorry does not stop them.',
-          },
-          {
-            id: 'b',
-            text: 'No, it is easier to check first than to fix it later.',
-            correct: true,
-            feedback: 'Yes, checking takes a minute. Stopping a rumour takes a lot longer.',
-          },
-          {
-            id: 'c',
-            text: 'Share it, then delete it quickly after.',
-            correct: false,
-            feedback: 'Other people can screenshot it before you delete it. Then it is still out there.',
-          },
-        ],
-      },
-      {
-        id: 'q6',
-        text: 'Mia says the post is not true. The post says it is. Who should you ask?',
-        options: [
-          {
-            id: 'a',
-            text: 'The side with the most people.',
-            correct: false,
-            feedback: 'The side with more people is not always right. Ask someone who really knows.',
-          },
-          {
-            id: 'b',
-            text: 'A teacher or an adult I trust, who can find out the truth.',
-            correct: true,
-            feedback: 'Yes, ask someone who can find out what really happened.',
-          },
-          {
-            id: 'c',
-            text: 'Nobody. I will wait and see what happens.',
-            correct: false,
-            feedback: 'If you wait, the rumour keeps spreading. Ask an adult who can check.',
-          },
-        ],
-      },
-      {
-        id: 'q7',
+        id: 'q3',
         text: 'The post makes you feel angry straight away. What should you do?',
         options: [
           {
@@ -1563,7 +1467,7 @@ const fableFallsLower = {
         ],
       },
       {
-        id: 'q8',
+        id: 'q4',
         text: 'Someone says, "I saw it in a video, so it must be true." Are they right?',
         options: [
           {
@@ -1587,7 +1491,7 @@ const fableFallsLower = {
         ],
       },
       {
-        id: 'q9',
+        id: 'q5',
         text: 'You shared the post. Then you found out it is not true. What do you do now?',
         options: [
           {
@@ -1614,7 +1518,7 @@ const fableFallsLower = {
         // Term 2 "Be Smart Online": respect other people's work, do not copy
         // or steal content. Folded in here (Improvement Plan §2) rather than
         // given its own realm.
-        id: 'q10',
+        id: 'q6',
         text: 'You find a drawing you love online. You want to post it. What should you do?',
         options: [
           {
@@ -1705,42 +1609,12 @@ const fableFallsHigher = {
         { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
       ],
     },
-    // Five of these eleven each run, drawn fresh, so the clue-to-letter
-    // mapping cannot be memorised off a single pass.
+    // Five of these six each run, drawn fresh, so the clue-to-letter mapping
+    // cannot be memorised off a single pass.
     roundSize: 5,
     questions: [
       {
         id: 'q1',
-        text: 'The screenshot has no name on it. It reached you as a forward of a forward of a forward. Which check is this?',
-        options: [
-          { id: 's', text: 'Source. Nobody can say who posted it first.', correct: true, feedback: 'Yes. With no first poster there is nobody to trust and nothing to check. Treat it as unproven.' },
-          { id: 'u', text: 'Understand. It is about what the post claims.', correct: false, feedback: 'The claim is a separate question. This clue is about where the post came from in the first place.' },
-          { id: 'r', text: 'Research. It is about looking it up.', correct: false, feedback: 'Looking it up comes later. First notice that there is no name attached to it at all.' },
-          { id: 'e', text: 'Evaluate. It is about whether it adds up.', correct: false, feedback: 'That comes at the end. This one is simply: who is behind it?' },
-        ],
-      },
-      {
-        id: 'q2',
-        text: 'The caption says Mia "got caught stealing". The picture under it is three lines of chat. Which check is this?',
-        options: [
-          { id: 'u', text: 'Understand. The caption claims far more than the picture shows.', correct: true, feedback: 'Exactly. Understand means holding the claim up against the evidence, and nobody gets caught doing anything in three lines of chat.' },
-          { id: 's', text: 'Source. It is about who wrote it.', correct: false, feedback: 'Who wrote it is a different question. This one is about the gap between the caption and the picture.' },
-          { id: 'r', text: 'Research. It is about checking if the source is reliable.', correct: false, feedback: 'Not yet. Read what is actually being claimed first, and what is offered as proof.' },
-          { id: 'e', text: 'Evaluate. It is about the picture looking odd.', correct: false, feedback: 'The picture is not the issue here. The caption is doing all the work, and a caption is not evidence.' },
-        ],
-      },
-      {
-        id: 'q3',
-        text: 'No teacher has mentioned it. There is no notice. Nobody outside the chat has heard of it. Which check is this?',
-        options: [
-          { id: 'r', text: 'Research. Something this big would turn up somewhere real.', correct: true, feedback: 'Right. Research means finding the story on its own, somewhere you trust, instead of counting forwards.' },
-          { id: 's', text: 'Source. It is about who started it.', correct: false, feedback: 'Who started it is a different gap. This clue is about looking for the story anywhere outside the chat.' },
-          { id: 'u', text: 'Understand. It is about the claim.', correct: false, feedback: 'The claim is clear enough. What is missing is any trace of it anywhere else.' },
-          { id: 'e', text: 'Evaluate. It is about weighing it up.', correct: false, feedback: 'Weighing up comes last. This is the step where you go and look.' },
-        ],
-      },
-      {
-        id: 'q4',
         text: 'You are looking at a photo. You notice that one edge of it is stretched and blurry, and you start to question whether it is real. Which check is this?',
         options: [
           { id: 'e', text: 'Evaluate. The picture looks tampered with.', correct: true, feedback: 'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.' },
@@ -1750,7 +1624,7 @@ const fableFallsHigher = {
         ],
       },
       {
-        id: 'q5',
+        id: 'q2',
         text: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
         options: [
           { id: 'b', text: 'No, if it keeps spreading, I will tell an adult I trust.', correct: true, feedback: 'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.' },
@@ -1759,7 +1633,7 @@ const fableFallsHigher = {
         ],
       },
       {
-        id: 'q6',
+        id: 'q3',
         text: 'Hundreds of people have already shared it. Does that make it true?',
         options: [
           { id: 'b', text: 'No, it only tells me how much the message has been shared.', correct: true, feedback: 'Exactly. Popular and true are not the same thing, and a made-up story travels just as fast.' },
@@ -1768,16 +1642,7 @@ const fableFallsHigher = {
         ],
       },
       {
-        id: 'q7',
-        text: 'You want to find out whether the story is real. Where do you look?',
-        options: [
-          { id: 'b', text: 'Ask a teacher, or Mia herself, or wait for something official.', correct: true, feedback: 'Yes. Go to someone who would actually know, rather than to the crowd repeating it.' },
-          { id: 'a', text: 'Ask the group chat what everyone thinks.', correct: false, feedback: 'The group chat is where the rumour is already spreading. Asking there only adds to it.' },
-          { id: 'c', text: 'See how many people have liked it.', correct: false, feedback: 'Likes count taps, not truth. They tell you nothing about what happened.' },
-        ],
-      },
-      {
-        id: 'q8',
+        id: 'q4',
         text: 'A post titled "OFFICIAL ANNOUNCEMENT" comes from an account called gamenews_daily_real that was made three weeks ago. You want to check whether it is real. Which check should you use?',
         options: [
           { id: 's', text: 'Source. A new account calling itself "real" may not be what it claims to be.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
@@ -1787,7 +1652,7 @@ const fableFallsHigher = {
         ],
       },
       {
-        id: 'q9',
+        id: 'q5',
         text: 'A friend says, "Just share it. You can say sorry later." What do you think?',
         options: [
           { id: 'b', text: 'No, checking first is far easier than fixing it later.', correct: true, feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer, and sometimes it cannot be done.' },
@@ -1796,19 +1661,10 @@ const fableFallsHigher = {
         ],
       },
       {
-        id: 'q10',
-        text: 'You shared it before you checked, and now you know it is not true. What now?',
-        options: [
-          { id: 'b', text: 'Take it down, say plainly that it was not true, and tell an adult I trust.', correct: true, feedback: 'That is the brave one. Getting it wrong is fixable. Leaving it up is what does the damage.' },
-          { id: 'a', text: 'Say nothing and hope people forget.', correct: false, feedback: 'It keeps going while you stay quiet. Saying so is how it stops.' },
-          { id: 'c', text: 'Say it was not my fault, because someone sent it to me.', correct: false, feedback: 'Passing the blame does not take the post down. Fix it first, then tell an adult.' },
-        ],
-      },
-      {
         // Term 2 "Be Smart Online": respect other people's work, do not copy
         // or steal content. Folded in here (Improvement Plan §2). Not a
-        // "name the check" question, like q6–q10.
-        id: 'q11',
+        // "name the check" question, unlike q1 and q4.
+        id: 'q6',
         text: 'You want to use a photo someone else took in your own post. What is the right thing to do?',
         options: [
           { id: 'b', text: 'Ask them first, and name them as the photographer when you post it.', correct: true, feedback: 'Right. Other people\'s work is theirs. Ask before you use it, and credit them clearly.' },
