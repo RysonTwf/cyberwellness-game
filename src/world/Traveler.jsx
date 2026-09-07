@@ -1,36 +1,46 @@
 import { useEffect, useState } from 'react';
 import boyWalk1 from '../assets/characters/boy-walk-1.png';
 import boyWalk2 from '../assets/characters/boy-walk-2.png';
+import boyWalkFlip1 from '../assets/characters/boy-walkflip-1.png';
+import boyWalkFlip2 from '../assets/characters/boy-walkflip-2.png';
 import girlWalk1 from '../assets/characters/girl-walk-1.png';
 import girlWalk2 from '../assets/characters/girl-walk-2.png';
+import girlWalkFlip1 from '../assets/characters/girl-walkflip-1.png';
+import girlWalkFlip2 from '../assets/characters/girl-walkflip-2.png';
 import { prefersReducedMotion } from '../lib/motion';
 
+// Each avatar has a hand-drawn walk cycle for each direction — `right` faces
+// the way the art was drawn, `left` is the artist's flipped pass (not a CSS
+// mirror, so the pack sits on the correct shoulder either way).
 const FRAME_SETS = {
-  boy: [boyWalk1, boyWalk2],
-  girl: [girlWalk1, girlWalk2],
+  boy: { right: [boyWalk1, boyWalk2], left: [boyWalkFlip1, boyWalkFlip2] },
+  girl: { right: [girlWalk1, girlWalk2], left: [girlWalkFlip1, girlWalkFlip2] },
 };
 const FRAME_MS = 240;
 
 /**
  * Real character art for players who picked "boy" or "girl" at
- * CharacterSelect — a 2-frame walk cycle, swapped on a timer while moving
- * and held on the idle frame (frame 0 — also each avatar's CharacterSelect
- * portrait) otherwise. Both sets are cropped to the same 664x931 bounding
- * box (~0.713:1, close enough to the neutral SVG's own 40:56 — ~0.714:1 —
- * that rendering either at the same 64px-wide footprint lands in
- * World.jsx's existing `.walker` positioning, styles.css, calibrated for
- * that footprint, without any changes there).
+ * CharacterSelect — a 2-frame walk cycle per direction, swapped on a timer
+ * while moving and held on the idle frame (frame 0 — also each avatar's
+ * CharacterSelect portrait) otherwise. `facing` picks the left or right
+ * cycle rather than mirroring one with scaleX, so the pack, the cap brim
+ * and the stride all stay drawn the right way round.
+ *
+ * All eight frames (two avatars x two directions x two frames) are cropped
+ * to the same 672x931 bounding box (~0.722:1, close enough to the neutral
+ * SVG's own 40:56 — ~0.714:1 — that rendering at a 64px-wide footprint
+ * lands in World.jsx's existing `.walker` positioning, styles.css,
+ * calibrated for that footprint, without changes there).
  *
  * One correction on top of that footprint match: the SVG's own feet sit
  * ~8.9% up from its rendered bottom edge (viewBox y=51 of 56 — the shadow
  * ellipse lives in that gap), which is what `.walker`'s -81px offset was
- * actually calibrated against. Both crops are tight to the shoe tips
- * instead (no such gap), so without a correction the sprite would visibly
- * sit ~8px lower than pos.y/the hotspots actually anchor it. -8.9% here
- * restores it for either set.
+ * actually calibrated against. The crops are tight to the shoe tips instead
+ * (no such gap), so without a correction the sprite would visibly sit ~8px
+ * lower than pos.y/the hotspots actually anchor it. -8.9% here restores it.
  */
 function SpriteTraveler({ avatar, facing = 1, moving = false }) {
-  const frames = FRAME_SETS[avatar];
+  const frames = FRAME_SETS[avatar][facing < 0 ? 'left' : 'right'];
   const [frame, setFrame] = useState(0);
 
   useEffect(() => {
@@ -43,17 +53,18 @@ function SpriteTraveler({ avatar, facing = 1, moving = false }) {
       setFrame(0); // hold the idle pose the instant they stop, not mid-stride
       return undefined;
     }
-    const id = setInterval(() => setFrame((f) => (f + 1) % frames.length), FRAME_MS);
+    // Both direction cycles are two frames, so a turn mid-stride just swaps
+    // which set `frames[frame]` reads from — the index and timer carry over.
+    const id = setInterval(() => setFrame((f) => (f + 1) % 2), FRAME_MS);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- `frames` is
-    // keyed off `avatar`, which this component remounts on (see Traveler
-    // below), so it can't change without a fresh mount already resetting this.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- the interval
+    // only ever needs `moving`; `frames` is read fresh on every render.
   }, [moving]);
 
   return (
     <div
       className={`traveler-sprite${moving ? ' walking' : ''}`}
-      style={{ width: 64, transform: `scaleX(${facing}) translateY(-8.9%)` }}
+      style={{ width: 64, transform: 'translateY(-8.9%)' }}
     >
       <div className="tv-shadow-sprite" />
       <img src={frames[frame]} alt="" width={64} draggable={false} />
