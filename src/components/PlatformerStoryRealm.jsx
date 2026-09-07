@@ -11,7 +11,6 @@ import PasswordBuild, { PasswordChoices, PasswordCompare, PasswordLegend } from 
 import MiniGameSort from '../minigames/MiniGameSort';
 import PhaserMiniGame from '../minigames/PhaserMiniGame';
 import { makePasswordFortressLevelConfig } from '../minigames/phaser-scenes/passwordFortressLevelScene';
-import { pauseMusic, resumeMusic } from '../lib/music';
 import { describeMix, gradePassword, readPassword } from '../lib/password';
 import { playSfx } from '../lib/sfx';
 import { prefersReducedMotion } from '../lib/motion';
@@ -78,16 +77,6 @@ export default function PlatformerStoryRealm({
 
   const total = game.tiles.filter((t) => t.kind === 'real').length;
   const picked = pick ? realm.decision.options.find((o) => o.id === pick) : null;
-
-  // The journey's background loop (App.jsx) steps aside for the level itself,
-  // which carries its own game audio, and comes back for the story/check/rule
-  // beats either side of it. Leaving early (the back button unmounts this
-  // component mid-level) still resumes it via the cleanup.
-  useEffect(() => {
-    if (step !== 'level') return undefined;
-    pauseMusic();
-    return () => resumeMusic();
-  }, [step]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return undefined;

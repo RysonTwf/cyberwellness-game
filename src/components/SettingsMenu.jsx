@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Settings, X, Music, Volume2, ClipboardList } from 'lucide-react';
+import { Settings, X, Volume2, ClipboardList } from 'lucide-react';
 import { useAudioSettings } from '../hooks/useAudioSettings';
 import { lockInput, unlockInput } from '../lib/inputLock';
 import { readSaved } from '../state/useProgress';
@@ -9,7 +9,7 @@ import { ACTIVE_REALMS } from '../data/realms';
 /**
  * Always-available settings menu — a floating gear button, present on every
  * screen (rendered once, in App.jsx, outside any of the screen switches),
- * opening a small volume panel. Currently just music/sfx sliders; anything
+ * opening a small volume panel. Currently just the sound-effects slider; anything
  * else settings-shaped later (band re-pick, reset) has a home here too.
  */
 export default function SettingsMenu() {
@@ -41,7 +41,7 @@ export default function SettingsMenu() {
 }
 
 function SettingsPanel({ onClose }) {
-  const { music, sfx, setMusicVolume, setSfxVolume } = useAudioSettings();
+  const { sfx, setSfxVolume } = useAudioSettings();
 
   useEffect(() => {
     const onKey = (e) => {
@@ -64,14 +64,8 @@ function SettingsPanel({ onClose }) {
         </button>
 
         <h2 style={{ marginBottom: 4 }}>Settings</h2>
-        <p className="muted" style={{ marginTop: 0 }}>Adjust the music and sound effects.</p>
+        <p className="muted" style={{ marginTop: 0 }}>Adjust the sound effects.</p>
 
-        <VolumeRow
-          icon={<Music size={18} />}
-          label="Music"
-          value={music}
-          onChange={setMusicVolume}
-        />
         <VolumeRow
           icon={<Volume2 size={18} />}
           label="Sound effects"

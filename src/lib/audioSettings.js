@@ -1,11 +1,11 @@
 /**
- * Shared music/sfx volume — a tiny module-level store (not React state) so
- * both the settings menu and the audio players (sfx.js, music.js) read the
- * same live values without threading props through every screen. Persisted
- * to localStorage so a chosen level survives a reload.
+ * Shared sound-effects volume — a tiny module-level store (not React state)
+ * so both the settings menu and the sfx player (sfx.js) read the same live
+ * value without threading props through every screen. Persisted to
+ * localStorage so a chosen level survives a reload.
  */
 const STORAGE_KEY = 'cyber-wellness-quest/audio/v1';
-const DEFAULTS = { music: 1, sfx: 1 };
+const DEFAULTS = { sfx: 1 };
 
 function clamp01(n) {
   const v = Number(n);
@@ -18,7 +18,6 @@ function load() {
     if (!raw) return { ...DEFAULTS };
     const parsed = JSON.parse(raw);
     return {
-      music: parsed.music === undefined ? DEFAULTS.music : clamp01(parsed.music),
       sfx: parsed.sfx === undefined ? DEFAULTS.sfx : clamp01(parsed.sfx),
     };
   } catch {
@@ -44,12 +43,6 @@ function notify() {
 
 export function getVolumes() {
   return volumes;
-}
-
-export function setMusicVolume(v) {
-  volumes = { ...volumes, music: clamp01(v) };
-  save();
-  notify();
 }
 
 export function setSfxVolume(v) {
