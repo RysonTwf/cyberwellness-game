@@ -744,7 +744,7 @@ const privacyHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for the Peaks. Some tricks look very real. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real organisation, such as a bank, would never ask for, like a password or a click on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
+    text: 'Here is the rule for the Peaks. Some tricks look very real. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real organisation, such as a bank, would never ask for. Not sure? Check the official way yourself, and tell an adult you trust.',
   },
 };
 
@@ -1178,7 +1178,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Keep screen time to about two hours in a day, and balance it with things that are not screens. Remember to leave room for rest. Past the count, notice how you feel: apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop.',
+    text: 'Keep screen time to about two hours in a day, and balance it with things that are non-screen activities. Remember to leave room for rest.',
   },
 };
 
@@ -1277,10 +1277,10 @@ const fableFallsLower = {
         { key: 'C', name: 'Check', sub: 'Ask an adult you trust to help you find out.' },
       ],
     },
-    // Five of these six each run (lib/draw.js). All kept short and plain
+    // Four of these five each run (lib/draw.js). All kept short and plain
     // for 6–9 year olds: one idea per sentence, no idioms, no chat short
     // forms, UK spelling.
-    roundSize: 5,
+    roundSize: 4,
     questions: [
       {
         id: 'q1',
@@ -1402,33 +1402,6 @@ const fableFallsLower = {
           },
         ],
       },
-      {
-        // Term 2 "Be Smart Online": respect other people's work, do not copy
-        // or steal content. Folded in here (Improvement Plan §2) rather than
-        // given its own realm.
-        id: 'q6',
-        text: 'You find a drawing you love online. You want to post it. What should you do?',
-        options: [
-          {
-            id: 'a',
-            text: 'Post it and say I made it.',
-            correct: false,
-            feedback: 'That is not true, and it is not fair to the person who really made it.',
-          },
-          {
-            id: 'b',
-            text: 'Ask the person first, and say who made it.',
-            correct: true,
-            feedback: 'Yes. Ask first, and always say whose work it is.',
-          },
-          {
-            id: 'c',
-            text: 'Post it with no name on it.',
-            correct: false,
-            feedback: 'Someone still made that drawing. Always say whose work it is.',
-          },
-        ],
-      },
     ],
   },
 
@@ -1440,7 +1413,7 @@ const fableFallsLower = {
 
 /**
  * P4–P6 — the same Mia screenshot as `fableFallsLower` (story reused
- * verbatim). Same five-question shape as the younger band, harder questions:
+ * verbatim). Same short-quiz shape as the younger band, harder questions:
  * where P1–P3 is asked what to think, this band is asked which S.U.R.E. check
  * a clue belongs to, which is the part that has to be *run*.
  *
@@ -1497,9 +1470,9 @@ const fableFallsHigher = {
         { key: 'E', name: 'Evaluate', sub: 'Does it add up?' },
       ],
     },
-    // Five of these six each run, drawn fresh, so the clue-to-letter mapping
+    // Four of these five each run, drawn fresh, so the clue-to-letter mapping
     // cannot be memorised off a single pass.
-    roundSize: 5,
+    roundSize: 4,
     questions: [
       {
         id: 'q1',
@@ -1507,7 +1480,6 @@ const fableFallsHigher = {
         options: [
           { id: 'e', text: 'Evaluate. The picture looks tampered with.', correct: true, feedback: 'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.' },
           { id: 's', text: 'Source. It is about who created the picture.', correct: false, feedback: 'This clue is about the post itself, not the person behind it. Look at how it is built.' },
-          { id: 'u', text: 'Understand. It is about the claim.', correct: false, feedback: 'The claim was the last step. This one is about whether the whole thing holds together.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'You have already checked elsewhere. This is what you notice looking hard at the post itself.' },
         ],
       },
@@ -1534,9 +1506,8 @@ const fableFallsHigher = {
         text: 'A post titled "OFFICIAL ANNOUNCEMENT" comes from an account called gamenews_daily_real that was made three weeks ago. You want to check whether it is real. Which check should you use?',
         options: [
           { id: 's', text: 'Source. A new account calling itself "real" may not be what it claims to be.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
-          { id: 'u', text: 'Understand. It is about understanding the content.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'Checking elsewhere is your next move. First notice who is behind the post.' },
-          { id: 'e', text: 'Evaluate. It is about whether the whole thing adds up.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
+          { id: 'e', text: 'Evaluate. It is about whether it all checks out.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
         ],
       },
       {
@@ -1548,24 +1519,12 @@ const fableFallsHigher = {
           { id: 'c', text: 'Share it, then delete it quickly if it turns out to be wrong.', correct: false, feedback: 'Screenshots take a second. Deleting your copy does not touch the ones already sent on.' },
         ],
       },
-      {
-        // Term 2 "Be Smart Online": respect other people's work, do not copy
-        // or steal content. Folded in here (Improvement Plan §2). Not a
-        // "name the check" question, unlike q1 and q4.
-        id: 'q6',
-        text: 'You want to use a photo someone else took in your own post. What is the right thing to do?',
-        options: [
-          { id: 'b', text: 'Ask them first, and name them as the photographer when you post it.', correct: true, feedback: 'Right. Other people\'s work is theirs. Ask before you use it, and credit them clearly.' },
-          { id: 'a', text: 'Use it. Anything online is free for anyone to take.', correct: false, feedback: 'Being online does not make it free to take. It still belongs to whoever made it.' },
-          { id: 'c', text: 'Use it, but crop their name or watermark out first.', correct: false, feedback: 'Removing the credit is the opposite of respecting the work. That is taking it and passing it off as yours.' },
-        ],
-      },
     ],
   },
 
   rule: {
     who: 'Comet',
-    text: 'Run S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who is behind it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too convenient? Four checks is usually enough to catch a fake. And when you use what someone else made, credit them and ask first. It is theirs, not yours to pass off as your own.',
+    text: 'Run S.U.R.E. every time something makes you want to react fast, even a screenshot everyone is forwarding. Source: who is behind it, and do you trust them? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up, or is it too shocking, too perfect, too convenient? Four checks is usually enough to catch a fake.',
   },
 };
 
@@ -1758,7 +1717,6 @@ export const REALMS = [
         'How fake news and edited pictures spread so fast online',
         'The questions to ask before you believe a post, or share it',
         'How to check facts like a real Cyber Defender',
-        'Why other people\'s work is theirs, and how to credit it',
       ],
       learnShort: 'Learn: spotting fake news & checking facts',
     },
