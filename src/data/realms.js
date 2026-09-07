@@ -984,7 +984,7 @@ const bullybogHigher = {
       { id: 'h6', text: '"Do not mind them. Sing the next one."', bin: 'send' },
       {
         id: 'h7',
-        text: '"Nobody wants to hear you sing."',
+        text: '"Nobody wants to hear your song."',
         bin: 'leave',
         check: 'K',
         checkNote: 'Nothing complicated here. It is simply unkind, and it is the comment that started all this.',
@@ -1048,7 +1048,7 @@ const bullybogHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'The lesson here is for us to be kind in our words and actions, regardless the situation. Do not be mean back, and you can block or report it.',
+    text: 'The lesson here is for us to be kind in our words and actions, regardless of the situation. Do not be mean back, and you can block or report it.',
   },
 };
 
@@ -1536,7 +1536,7 @@ const fableFallsHigher = {
           { id: 's', text: 'Source. A new account calling itself "real" may not be what it claims to be.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
           { id: 'u', text: 'Understand. It is about understanding the content.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'Checking elsewhere is your next move. First notice who is behind the post.' },
-          { id: 'e', text: 'Research. It is about checking its authenticity.  ', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
+          { id: 'e', text: 'Evaluate. It is about whether the whole thing adds up.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
         ],
       },
       {
