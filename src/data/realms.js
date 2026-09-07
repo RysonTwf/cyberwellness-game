@@ -162,7 +162,7 @@ const passworldHigher = {
     options: [
       {
         id: 'send',
-        text: 'Send your password. It is Sam, and Sam would not ask unless it mattered.',
+        text: 'Send your password. It is Sam, and Sam would not ask unless it matters.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
@@ -171,12 +171,12 @@ const passworldHigher = {
       },
       {
         id: 'verify',
-        text: '"That does not sound like Sam. I will check with them another way first. I am not sending my password to anyone."',
+        text: '"That does not sound like Sam. I will check with him first. I am not sending my password to anyone."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          'Good call. You message Sam another way. The real Sam has no idea what you mean. Whoever is in that vault is not Sam, and now Sam knows to lock it again.',
+          'Good call. You send a message to Sam another way. The real Sam has no idea what you meant. Whoever is in that vault is not Sam.',
       },
     ],
   },
@@ -317,7 +317,7 @@ const passworldHigher = {
     type: 'sort',
     title: 'Before You Post',
     instruction:
-      'Some of these seem harmless. Decide what is safe to post and what could give you away. When one could, it will tell you how.',
+      'Some of these seem harmless. Decide what is safe to post and what could give away your personal information. When one could, it will tell you how.',
     bins: [
       { id: 'post', title: 'Safe to Post', sub: 'Gives nothing away', icon: 'unlock' },
       { id: 'private', title: 'Keep Private', sub: 'Could give you away', icon: 'lock' },
@@ -706,7 +706,7 @@ const privacyHigher = {
     },
     {
       who: '"Atlas Security"',
-      text: 'Warning: we have seen unusual activity on your account. Confirm who you are within 24 hours or your account will be closed for good. Tap this link to type your password.',
+      text: 'Warning: We have seen unusual activity on your account. Confirm who you are within 24 hours or your account will be closed for good. Click this link to type your password.',
     },
   ],
 
@@ -715,7 +715,7 @@ const privacyHigher = {
     options: [
       {
         id: 'verify',
-        text: 'Tap the link and type your password to confirm, before the time runs out.',
+        text: 'Click the link and type your password to confirm, before the time runs out.',
         tag: 'Option A',
         safe: false,
         who: 'Comet',
@@ -729,7 +729,7 @@ const privacyHigher = {
         safe: true,
         who: 'Comet',
         response:
-          'You open the Atlas app the normal way. There is no warning there at all. The fog wants you to tap before you check. Slowing down is all it takes.',
+          'You open the Atlas app the normal way. There is no warning there at all. The fog wants you to click before you check. Pause, think and check to protect your personal information.',
       },
     ],
   },
@@ -759,12 +759,12 @@ const privacyHigher = {
     questions: [
       {
         id: 'q1',
-        text: '"Warning: confirm within 24 hours or your account will be closed for good." Which check catches this one?',
+        text: '"Warning: Confirm within 24 hours or your account will be closed for good." Which check catches this one?',
         options: [
           { id: 't', text: 'Tone. It is threatening me and putting a clock on it.', correct: true, feedback: 'Yes. A countdown and a threat are there to rush you past thinking, and that is the whole trick.' },
           { id: 's', text: 'Sender. I do not know who sent it.', correct: false, feedback: 'You do not, but the loudest signal here is the pressure. Real services do not threaten to lock you out in a day.' },
-          { id: 'o', text: 'Offer. It is dangling something.', correct: false, feedback: 'Nothing is being offered. What is being used on you is fear, not a prize.' },
-          { id: 'p', text: 'Password. It wants a secret.', correct: false, feedback: 'Not yet. This message is still working on your nerves. Read what it actually asks for.' },
+          { id: 'o', text: 'Offer. It is trying to tempt me.', correct: false, feedback: 'Nothing is being offered. What is being used on you is fear, not a prize.' },
+          { id: 'p', text: 'Password. It wants my secret information.', correct: false, feedback: 'Not yet. This message is still working on your nerves. Read what it actually asks for.' },
         ],
       },
       {
@@ -789,10 +789,10 @@ const privacyHigher = {
       },
       {
         id: 'q4',
-        text: '"Hi, it is Jamie. I lost my phone and this is my new number. Can you lend me some money? Do not tell mum." Which check catches this one?',
+        text: '"Hi, it is Jamie. I lost my phone and this is my new number. Can you lend me some money? Do not tell my mother." Which check catches this one?',
         options: [
           { id: 's', text: 'Sender. A new number I cannot check is not proof it is Jamie.', correct: true, feedback: 'Right. Ring the number you already have for Jamie. If it really is them, they will answer.' },
-          { id: 'p', text: 'Password. It wants something secret.', correct: false, feedback: 'It wants money, not a password. The question you cannot answer is who is typing.' },
+          { id: 'p', text: 'Password. It wants my personal information.', correct: false, feedback: 'It wants money, not a password. The question you cannot answer is who is typing.' },
           { id: 'o', text: 'Offer. It is offering me something.', correct: false, feedback: 'It is asking, not offering. Start with whether this is really Jamie.' },
           { id: 't', text: 'Tone. It is being friendly.', correct: false, feedback: 'Friendly is easy to type. The gap is that you cannot tell who is behind the new number.' },
         ],
@@ -803,25 +803,25 @@ const privacyHigher = {
         options: [
           { id: 'b', text: 'No. A logo is a picture, and anyone can copy one.', correct: true, feedback: 'Yes. Looking official is the easiest part to fake, so it proves nothing at all.' },
           { id: 'a', text: 'Yes. Tricks always look messy and badly spelled.', correct: false, feedback: 'They used to. The careful ones look perfect now, which is exactly why looks are not the test.' },
-          { id: 'c', text: 'Yes, as long as the address looks close enough.', correct: false, feedback: '"Close enough" is the trick. One changed letter in an address sends you somewhere else entirely.' },
+          { id: 'c', text: 'Yes, as long as the address looks close enough to the right address.', correct: false, feedback: '"Close enough" is the trick. One changed letter in an address sends you somewhere else entirely.' },
         ],
       },
       {
         id: 'q6',
-        text: 'A message says your parcel needs a 30p fee before it can be delivered. Why ask for such a small amount?',
+        text: 'A message says your parcel needs a small fee of two dollars before it can be delivered. Why ask for such a small amount?',
         options: [
-          { id: 'b', text: 'So I do not think twice. It is my card details they are really after.', correct: true, feedback: 'That is it. The 30p is not the point. Typing your card into their page is.' },
-          { id: 'a', text: 'Because delivery genuinely costs a little more sometimes.', correct: false, feedback: 'A real delivery company bills the sender, not you, and never through a link you did not go looking for.' },
-          { id: 'c', text: 'Because they are being fair and only charging what it costs.', correct: false, feedback: 'The small price is chosen to feel harmless. What they collect is the card, not the coins.' },
+          { id: 'b', text: 'It is my card details they are really after.', correct: true, feedback: 'That is it. The two dollars is not the point. Typing your card into their page is.' },
+          { id: 'a', text: 'Delivery genuinely costs a little more sometimes.', correct: false, feedback: 'A real delivery company bills the sender, not you, and never through a link you did not go looking for.' },
+          { id: 'c', text: 'They are being fair and only charging what it costs.', correct: false, feedback: 'The small price is chosen to feel harmless. What they collect is the card, not the coins.' },
         ],
       },
       {
         id: 'q7',
-        text: 'You tapped a link before you stopped to think. What is the best next move?',
+        text: 'You accidentally clicked a link that seems suspicious. What is the next best move?',
         options: [
-          { id: 'b', text: 'Tell an adult I trust straight away, and change my password from the real app.', correct: true, feedback: 'Exactly right. Telling someone early is what keeps a mistake small. Nobody is in trouble for saying so.' },
-          { id: 'a', text: 'Say nothing and hope it was fine.', correct: false, feedback: 'Waiting is what gives it time to do damage. Saying so early is always the smaller problem.' },
-          { id: 'c', text: 'Tap it again to see what happens.', correct: false, feedback: 'Going back gives it a second chance at you. Close it and tell someone instead.' },
+          { id: 'b', text: 'Tell an adult I trust straight away, and change my password from the app.', correct: true, feedback: 'Exactly right. Telling someone early is what keeps a mistake small. Nobody is in trouble for saying so.' },
+          { id: 'a', text: 'Say nothing and hope it will be fine.', correct: false, feedback: 'Waiting is what gives it time to do damage. Saying so early is always the smaller problem.' },
+          { id: 'c', text: 'Click it again to see what happens.', correct: false, feedback: 'Going back gives it a second chance at you. Close it and tell someone instead.' },
         ],
       },
       {
@@ -835,7 +835,7 @@ const privacyHigher = {
       },
       {
         id: 'q9',
-        text: 'Someone you only know from a game asks you to carry on chatting somewhere quieter instead. What do you do?',
+        text: 'Someone you only know from an online game invites you to meet face to face. What do you do?',
         options: [
           { id: 'b', text: 'Stay where I am, and tell an adult I trust.', correct: true, feedback: 'Right. Wanting you somewhere quieter and on your own is the sign to stop, every time.' },
           { id: 'a', text: 'Go, we are friends in the game.', correct: false, feedback: 'Moving you somewhere with nobody watching is the point of the request. That is the part to notice.' },
@@ -846,8 +846,8 @@ const privacyHigher = {
         id: 'q10',
         text: 'A warning says there is a problem with your account. What is the safe way to check?',
         options: [
-          { id: 'b', text: 'Close the message and open the real app or website myself.', correct: true, feedback: 'Yes. Going there yourself is the one route the message cannot control.' },
-          { id: 'a', text: 'Tap the link in the message, since it goes straight there.', correct: false, feedback: 'It goes wherever whoever wrote it decided. That is the whole reason the link is in there.' },
+          { id: 'b', text: 'Close the message and open the app or website myself.', correct: true, feedback: 'Yes. Going there yourself is the one route the message cannot control.' },
+          { id: 'a', text: 'Click the link in the message.', correct: false, feedback: 'It goes wherever whoever wrote it decided. That is the whole reason the link is in there.' },
           { id: 'c', text: 'Reply and ask them to prove who they are.', correct: false, feedback: 'They will happily "prove" it, because they are writing both sides. Check away from the message.' },
         ],
       },
@@ -856,7 +856,7 @@ const privacyHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Here is the rule for the Peaks. Some tricks look very real. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real message never would, like a password or a tap on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
+    text: 'Here is the rule for the Peaks. Some tricks look very real. Logos, official words, countdowns: none of that is proof. The sign is always the same. They rush you, and they ask for something a real organisation, such as a bank, would never ask for, like a password or a click on a link. Not sure? Check the official way yourself, and tell an adult you trust.',
   },
 };
 
@@ -1009,7 +1009,7 @@ const bullybogHigher = {
     },
     {
       who: 'A comment appears',
-      text: '"Nobody wants to hear this. Go away."',
+      text: '"Nobody wants to hear your song. Go away."',
     },
     {
       who: 'Comet',
@@ -1036,7 +1036,7 @@ const bullybogHigher = {
         safe: true,
         who: 'Pockets the frog',
         response:
-          'Oh. You do? Nobody usually says that. The water is clearing, right where you typed. Thank you, Traveller.',
+          'Oh, you do? No one has ever said that to me. The water is clearing, right where you typed. Thank you, Traveller.',
       },
     ],
   },
@@ -1048,13 +1048,13 @@ const bullybogHigher = {
     footprint: {
       who: 'Comet',
       prompt:
-        'One more thing, before this goes up for good. Posts do not really disappear. Which of these would you still stand by in a year, when someone screenshots it back to you?',
+        'One more thing, before this goes up for good. Posts do not really disappear from the internet. Which of these posts would you still be proud of a year from now?',
       options: [
-        { id: 'kind', text: 'The reply I actually sent, sticking up for Pockets.' },
-        { id: 'joke', text: '"Ha ha ha." under the mean one. It was only a laugh.' },
+        { id: 'kind', text: 'The reply I sent, standing up for Pockets.' },
+        { id: 'joke', text: 'Me making fun of Pockets.' },
       ],
       response:
-        'The laugh is the trap. It feels like saying nothing, and it reads as agreeing, and it lasts exactly as long as the sentence you would have been proud of. Ask if it is kind first, then ask whether you would still stand by it next year.',
+        'The laugh is the trap. It feels like nothing, but it reads as agreeing. Ask yourself if it is kind. Then ask whether you would still stand by it next year.',
     },
   },
 
@@ -1071,7 +1071,7 @@ const bullybogHigher = {
     // Naming which check it fails is what stops "long and negative = leave".
     purpose: {
       name: 'T.H.I.N.K.',
-      why: 'Five checks before you send anything about someone.',
+      why: 'Five checks to take note of before you send a message about someone.',
       nameTheCheck: true,
       prompt: 'Which check does this reply fail?',
       checks: [
@@ -1092,8 +1092,8 @@ const bullybogHigher = {
       { id: 'h2', text: '"Do you want to sing the next one together?"', bin: 'send' },
       { id: 'h3', text: '"I am here if you want to talk."', bin: 'send' },
       { id: 'h4', text: '"I thought it sounded good, honestly."', bin: 'send' },
-      { id: 'h5', text: '"Are you okay? That comment was out of order."', bin: 'send' },
-      { id: 'h6', text: '"Never mind them. Sing the next one."', bin: 'send' },
+      { id: 'h5', text: '"Are you okay? That comment was unkind."', bin: 'send' },
+      { id: 'h6', text: '"Do not mind them. Sing the next one."', bin: 'send' },
       {
         id: 'h7',
         text: '"Nobody wants to hear this."',
@@ -1106,7 +1106,7 @@ const bullybogHigher = {
         text: '"That was the worst singing I have ever heard."',
         bin: 'leave',
         check: 'K',
-        checkNote: 'Dressed up as an opinion, but it is aimed at a person who can read it.',
+        checkNote: 'It may seem like an opinion, but it is actually an unkind message for someone.',
       },
       {
         id: 'h9',
@@ -1118,7 +1118,7 @@ const bullybogHigher = {
       },
       {
         id: 'h10',
-        text: '"It is just a joke, do not be so sensitive."',
+        text: '"It is just a joke. Do not be so sensitive."',
         bin: 'leave',
         check: 'K',
         checkNote:
@@ -1134,11 +1134,11 @@ const bullybogHigher = {
       },
       {
         id: 'h12',
-        text: '"Everyone thinks it, I am just the one who said it."',
+        text: '"I am just repeating what others are saying."',
         bin: 'leave',
         check: 'N',
         checkNote:
-          '"Everyone thinks it" is not a reason. Nothing here needed saying at all.',
+          'What other people are saying does not make it right. Nothing here needed saying at all.',
       },
       {
         id: 'h13',
@@ -1146,7 +1146,7 @@ const bullybogHigher = {
         bin: 'leave',
         check: ['I', 'K'],
         checkNote:
-          'Meant kindly, and it still starts a second pile-on. Standing up for someone does not need a target.',
+          'When standing up for someone, use kind words.',
       },
       {
         id: 'h14',
@@ -1160,7 +1160,7 @@ const bullybogHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'And if it is ever about you, not Pockets, the rule is the same. Do not reply to be mean back. Save it, and use block or report if you need to. Standing up for someone can be one kind sentence, and it counts most when other people are watching.',
+    text: 'The lesson here is for us to be kind in our words and actions, whatever the situation. And if a mean message is ever about you, not Pockets, the rule is the same: do not be mean back, and you can block or report it.',
   },
 };
 
@@ -1290,7 +1290,7 @@ const balanceHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'Start with the must haves: rest is in the day, one thing is off a screen, and screens fill two hours. Past that, counting hours matters less than noticing how you feel. Apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop. Check in with yourself on purpose, and let that decide when enough is enough.',
+    text: 'Keep screen time to about two hours in a day, and balance it with things that are not screens. Remember to leave room for rest. Past the count, notice how you feel: apps and games are built to keep you going, so "I feel fine" is not always a good sign to stop.',
   },
 };
 
@@ -1676,12 +1676,12 @@ const fableFallsHigher = {
       },
       {
         id: 'sure',
-        text: '"I will run it through S.U.R.E. first: Source, Understand, Research, Evaluate. Then I will decide."',
+        text: '"I will run it through S.U.R.E. first: Source, Understand, Research, Evaluate. Then, I will decide."',
         tag: 'Option B',
         safe: true,
         who: 'Comet',
         response:
-          'Good call. Four checks. Source: who is behind it? Understand: what is it really claiming? Research: can you find it somewhere you trust? Evaluate: does it add up? Let us take this post apart properly.',
+          'Good call. Four checks. Source: Who is behind it? Understand: What is it really claiming? Research: Can you find it somewhere you trust? Evaluate: Does it add up? Let us check the authenticity of this post.',
       },
     ],
   },
@@ -1725,7 +1725,7 @@ const fableFallsHigher = {
         options: [
           { id: 'u', text: 'Understand. The caption claims far more than the picture shows.', correct: true, feedback: 'Exactly. Understand means holding the claim up against the evidence, and nobody gets caught doing anything in three lines of chat.' },
           { id: 's', text: 'Source. It is about who wrote it.', correct: false, feedback: 'Who wrote it is a different question. This one is about the gap between the caption and the picture.' },
-          { id: 'r', text: 'Research. It is about finding it elsewhere.', correct: false, feedback: 'Not yet. Read what is actually being claimed first, and what is offered as proof.' },
+          { id: 'r', text: 'Research. It is about checking if the source is reliable.', correct: false, feedback: 'Not yet. Read what is actually being claimed first, and what is offered as proof.' },
           { id: 'e', text: 'Evaluate. It is about the picture looking odd.', correct: false, feedback: 'The picture is not the issue here. The caption is doing all the work, and a caption is not evidence.' },
         ],
       },
@@ -1741,10 +1741,10 @@ const fableFallsHigher = {
       },
       {
         id: 'q4',
-        text: 'It is shocking, it is spreading fast, it makes one person look bad, and one edge of the photo is stretched and blurry. Which check is this?',
+        text: 'You are looking at a photo. You notice that one edge of it is stretched and blurry, and you start to question whether it is real. Which check is this?',
         options: [
-          { id: 'e', text: 'Evaluate. Too shocking, too fast, too one-sided, and the picture looks tampered with.', correct: true, feedback: 'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.' },
-          { id: 's', text: 'Source. It is about who made it.', correct: false, feedback: 'This clue is about the post itself, not the person behind it. Look at how it is built.' },
+          { id: 'e', text: 'Evaluate. The picture looks tampered with.', correct: true, feedback: 'Good eye. Odd edges, strange blur and shadows that do not match are common signs a picture has been changed.' },
+          { id: 's', text: 'Source. It is about who created the picture.', correct: false, feedback: 'This clue is about the post itself, not the person behind it. Look at how it is built.' },
           { id: 'u', text: 'Understand. It is about the claim.', correct: false, feedback: 'The claim was the last step. This one is about whether the whole thing holds together.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'You have already checked elsewhere. This is what you notice looking hard at the post itself.' },
         ],
@@ -1753,7 +1753,7 @@ const fableFallsHigher = {
         id: 'q5',
         text: 'All four checks are done, and not one of them held up. Do you forward the screenshot?',
         options: [
-          { id: 'b', text: 'No. And if it keeps spreading, I will tell an adult I trust.', correct: true, feedback: 'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.' },
+          { id: 'b', text: 'No, if it keeps spreading, I will tell an adult I trust.', correct: true, feedback: 'That is S.U.R.E. finished properly. Four checks gave you four reasons to doubt it and not one reason to send it on.' },
           { id: 'a', text: 'Forward it, but add "not sure if this is true".', correct: false, feedback: 'That still passes it on, and the "not sure" gets dropped at the very next forward. The post keeps travelling either way.' },
           { id: 'c', text: 'Send it to one friend only, to ask what they think.', correct: false, feedback: 'One friend is how every forward starts. If you want to ask someone, ask an adult who can actually find out.' },
         ],
@@ -1762,8 +1762,8 @@ const fableFallsHigher = {
         id: 'q6',
         text: 'Hundreds of people have already shared it. Does that make it true?',
         options: [
-          { id: 'b', text: 'No. It only tells me how far it travelled.', correct: true, feedback: 'Exactly. Popular and true are not the same thing, and a made-up story travels just as fast.' },
-          { id: 'a', text: 'Yes. That many people cannot all be wrong.', correct: false, feedback: 'They can, and they usually got it the same way you did: from someone else who did not check.' },
+          { id: 'b', text: 'No, it only tells me how much the message has been shared.', correct: true, feedback: 'Exactly. Popular and true are not the same thing, and a made-up story travels just as fast.' },
+          { id: 'a', text: 'Yes, that many people cannot all be wrong.', correct: false, feedback: 'They can, and they usually got it the same way you did: from someone else who did not check.' },
           { id: 'c', text: 'Yes, if the people sharing it are people I know.', correct: false, feedback: 'Your friends forwarded it without checking too. Knowing someone is not knowing the story.' },
         ],
       },
@@ -1778,20 +1778,20 @@ const fableFallsHigher = {
       },
       {
         id: 'q8',
-        text: 'A post headed "OFFICIAL ANNOUNCEMENT" comes from an account called gamenews_daily_real, made three weeks ago. Which check is this?',
+        text: 'A post titled "OFFICIAL ANNOUNCEMENT" comes from an account called gamenews_daily_real that was made three weeks ago. You want to check whether it is real. Which check should you use?',
         options: [
-          { id: 's', text: 'Source. A new account calling itself "real" is not the people it claims to speak for.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
-          { id: 'u', text: 'Understand. It is about what is announced.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
+          { id: 's', text: 'Source. A new account calling itself "real" may not be what it claims to be.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
+          { id: 'u', text: 'Understand. It is about understanding the content.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'Checking elsewhere is your next move. First notice who is behind the post.' },
-          { id: 'e', text: 'Evaluate. It is about the whole thing adding up.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
+          { id: 'e', text: 'Evaluate. It is about checking the facts to ensure it is true.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
         ],
       },
       {
         id: 'q9',
-        text: 'A friend says, "just share it, you can say sorry later." What do you think?',
+        text: 'A friend says, "Just share it. You can say sorry later." What do you think?',
         options: [
-          { id: 'b', text: 'No. Checking first is far easier than fixing it after.', correct: true, feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer, and sometimes it cannot be done.' },
-          { id: 'a', text: 'Fine. Sorry fixes it.', correct: false, feedback: 'Once a story is out it keeps going without you. Sorry does not call it back.' },
+          { id: 'b', text: 'No, checking first is far easier than fixing it later.', correct: true, feedback: 'That is it. Checking takes a minute. Undoing a rumour takes much longer, and sometimes it cannot be done.' },
+          { id: 'a', text: 'It is fine to share it. You can always apologise later if it turns out to be untrue.', correct: false, feedback: 'Once a story is out it keeps going without you. Sorry does not call it back.' },
           { id: 'c', text: 'Share it, then delete it quickly if it turns out to be wrong.', correct: false, feedback: 'Screenshots take a second. Deleting your copy does not touch the ones already sent on.' },
         ],
       },
