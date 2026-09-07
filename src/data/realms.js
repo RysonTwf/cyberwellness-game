@@ -443,7 +443,7 @@ const privacyLower = {
         { key: 'P', name: 'Password', sub: 'Does it want a secret of mine?' },
       ],
     },
-    // Five of these nine each run (lib/draw.js).
+    // Five of these six each run (lib/draw.js).
     roundSize: 5,
     questions: [
       {
@@ -501,32 +501,6 @@ const privacyLower = {
       },
       {
         id: 'q3',
-        text: 'Someone you do not know asks for your home address. What do you do?',
-        options: [
-          {
-            id: 'a',
-            text: 'Send it, they seem friendly.',
-            correct: false,
-            feedback:
-              'Friendly words are easy to type. Your address is yours, and a stranger never needs it.',
-          },
-          {
-            id: 'b',
-            text: 'Keep it to myself and tell an adult I trust.',
-            correct: true,
-            feedback: 'Yes, your address stays locked, just like in Passworld.',
-          },
-          {
-            id: 'c',
-            text: 'Tell them my street but not my house number.',
-            correct: false,
-            feedback:
-              'Half an address is still an address. A stranger needs none of it.',
-          },
-        ],
-      },
-      {
-        id: 'q4',
         text: 'A new online friend asks you to keep your chats a secret from your family. Is that okay?',
         options: [
           {
@@ -553,7 +527,7 @@ const privacyLower = {
         ],
       },
       {
-        id: 'q5',
+        id: 'q4',
         text: 'A message says, "Hi, it is your friend from school." How do you know it really is?',
         options: [
           {
@@ -580,7 +554,7 @@ const privacyLower = {
         ],
       },
       {
-        id: 'q6',
+        id: 'q5',
         text: 'A game sends you a code and says "type this code back to us to prove it is you". What do you do?',
         options: [
           {
@@ -606,7 +580,7 @@ const privacyLower = {
         ],
       },
       {
-        id: 'q7',
+        id: 'q6',
         text: 'A message says "your library book is due back on Friday". Is that a trick?',
         options: [
           {
@@ -629,57 +603,6 @@ const privacyLower = {
             correct: false,
             feedback:
               'Forgetting is not a warning sign. Look at what it asks of you, which is nothing.',
-          },
-        ],
-      },
-      {
-        id: 'q8',
-        text: 'Someone you have only met in a game wants to chat somewhere else instead. What do you think?',
-        options: [
-          {
-            id: 'a',
-            text: 'We are friends in the game.',
-            correct: false,
-            feedback:
-              'Moving you somewhere quieter is a way of getting you on your own. Tell an adult you trust.',
-          },
-          {
-            id: 'b',
-            text: 'I will stay where I am and tell an adult I trust.',
-            correct: true,
-            feedback: 'Right. Someone wanting you alone somewhere else is a sign to stop.',
-          },
-          {
-            id: 'c',
-            text: 'Go, as long as I do not tell them my name.',
-            correct: false,
-            feedback:
-              'Being somewhere quiet on your own with them is the risk, not your name.',
-          },
-        ],
-      },
-      {
-        id: 'q9',
-        text: 'A message has your first name in it. Does that prove it is really from someone who knows you?',
-        options: [
-          {
-            id: 'a',
-            text: 'Yes, they knew my name.',
-            correct: false,
-            feedback: 'Your first name is easy to find. Knowing it proves nothing at all.',
-          },
-          {
-            id: 'b',
-            text: 'No, anyone could find out my name.',
-            correct: true,
-            feedback: 'Exactly. A name in a message is not proof of anything.',
-          },
-          {
-            id: 'c',
-            text: 'Yes, if they know my school as well.',
-            correct: false,
-            feedback:
-              'Both of those are easy to find out. Neither one is proof.',
           },
         ],
       },
@@ -753,8 +676,9 @@ const privacyHigher = {
         { key: 'P', name: 'Password', sub: 'Does it want a secret of mine?' },
       ],
     },
-    // Five of these ten each run, so one blind attempt cannot be traded for a
-    // memorised clean one.
+    // Five of these six each run, so one blind attempt cannot be traded for a
+    // memorised clean one. The six keep all four S.T.O.P. checks named at
+    // least once (q1 Tone, q2 Offer, q3 Password, q4 Sender).
     roundSize: 5,
     questions: [
       {
@@ -799,24 +723,6 @@ const privacyHigher = {
       },
       {
         id: 'q5',
-        text: 'The message has the right logo, the right colours and not one spelling mistake. Does that prove it is real?',
-        options: [
-          { id: 'b', text: 'No. A logo is a picture, and anyone can copy one.', correct: true, feedback: 'Yes. Looking official is the easiest part to fake, so it proves nothing at all.' },
-          { id: 'a', text: 'Yes. Tricks always look messy and badly spelled.', correct: false, feedback: 'They used to. The careful ones look perfect now, which is exactly why looks are not the test.' },
-          { id: 'c', text: 'Yes, as long as the address looks close enough to the right address.', correct: false, feedback: '"Close enough" is the trick. One changed letter in an address sends you somewhere else entirely.' },
-        ],
-      },
-      {
-        id: 'q6',
-        text: 'A message says your parcel needs a small fee of two dollars before it can be delivered. Why ask for such a small amount?',
-        options: [
-          { id: 'b', text: 'It is my card details they are really after.', correct: true, feedback: 'That is it. The two dollars is not the point. Typing your card into their page is.' },
-          { id: 'a', text: 'Delivery genuinely costs a little more sometimes.', correct: false, feedback: 'A real delivery company bills the sender, not you, and never through a link you did not go looking for.' },
-          { id: 'c', text: 'They are being fair and only charging what it costs.', correct: false, feedback: 'The small price is chosen to feel harmless. What they collect is the card, not the coins.' },
-        ],
-      },
-      {
-        id: 'q7',
         text: 'You accidentally clicked a link that seems suspicious. What is the next best move?',
         options: [
           { id: 'b', text: 'Tell an adult I trust straight away, and change my password from the app.', correct: true, feedback: 'Exactly right. Telling someone early is what keeps a mistake small. Nobody is in trouble for saying so.' },
@@ -825,30 +731,12 @@ const privacyHigher = {
         ],
       },
       {
-        id: 'q8',
-        text: '"Reminder: your library book is due back on Friday." Is this one a trick?',
-        options: [
-          { id: 'b', text: 'No. It does not rush me and it does not ask me for anything.', correct: true, feedback: 'Good. Being careful is not the same as being scared of everything. Look for the signs, not for messages.' },
-          { id: 'a', text: 'Yes, because every message could be a trick.', correct: false, feedback: 'Most messages are ordinary. Treating all of them as traps means you stop reading the ones that matter.' },
-          { id: 'c', text: 'Yes, because I do not remember borrowing a book.', correct: false, feedback: 'Forgetting is not a warning sign. Nothing here is asked of you, so there is nothing to hand over.' },
-        ],
-      },
-      {
-        id: 'q9',
+        id: 'q6',
         text: 'Someone you only know from an online game invites you to meet face to face. What do you do?',
         options: [
           { id: 'b', text: 'Stay where I am, and tell an adult I trust.', correct: true, feedback: 'Right. Wanting you somewhere quieter and on your own is the sign to stop, every time.' },
           { id: 'a', text: 'Go, we are friends in the game.', correct: false, feedback: 'Moving you somewhere with nobody watching is the point of the request. That is the part to notice.' },
           { id: 'c', text: 'Go, as long as I do not tell them my name.', correct: false, feedback: 'Being alone with them is the risk, not your name.' },
-        ],
-      },
-      {
-        id: 'q10',
-        text: 'A warning says there is a problem with your account. What is the safe way to check?',
-        options: [
-          { id: 'b', text: 'Close the message and open the app or website myself.', correct: true, feedback: 'Yes. Going there yourself is the one route the message cannot control.' },
-          { id: 'a', text: 'Click the link in the message.', correct: false, feedback: 'It goes wherever whoever wrote it decided. That is the whole reason the link is in there.' },
-          { id: 'c', text: 'Reply and ask them to prove who they are.', correct: false, feedback: 'They will happily "prove" it, because they are writing both sides. Check away from the message.' },
         ],
       },
     ],
