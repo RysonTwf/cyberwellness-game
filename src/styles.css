@@ -1499,27 +1499,57 @@ p {
   transform-origin: center bottom;
 }
 
-/* BoyTraveler (world/Traveler.jsx) — a real 2-frame sprite instead of the
-   neutral SVG. The frame-swap itself is JS-driven; this just gives it the
-   same subtle vertical bob the SVG figure gets, reusing that keyframe. */
+/* SpriteTraveler (world/Traveler.jsx) — a real hand-drawn sprite instead of
+   the neutral SVG. Both directions and both poses stay mounted; CSS shows
+   one direction and cross-fades its two poses while walking. */
 .traveler-sprite {
   position: relative;
   transform-origin: center bottom;
 }
 
-.traveler-sprite img {
+/* One direction per group. The inactive one stays in the DOM (decoded, ready
+   for an instant turn) but out of sight and out of flow; the active one is
+   in flow so it sizes the wrapper. */
+.tv-dir {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.tv-dir.active {
+  position: relative;
+  opacity: 1;
+}
+
+.tv-frame {
   display: block;
   width: 100%;
   height: auto;
 }
+/* pose B sits over pose A; idle shows A alone */
+.tv-b {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
 
-/* The bob lives on the inner img, not the wrapper — the wrapper's inline
-   transform carries the foot-line offset (translateY), and a transform
-   animation here would override it for the whole walk. Same split as the
-   SVG figure: offset on the outer element, bob on an inner one. Direction
-   is a different set of frames now, not a scaleX flip (world/Traveler.jsx). */
-.traveler-sprite.walking img {
-  animation: walk-bob 0.42s ease-in-out infinite;
+/* Walking: fade B in and out over A — a smooth two-pose oscillation, not a
+   hard frame cut. The bob rides the same wrapper and is timed to two steps
+   per fade cycle. Both are plain CSS, so the blanket reduced-motion rule
+   (further down) freezes the sprite on pose A. */
+.traveler-sprite.walking .tv-dir.active {
+  animation: walk-bob 0.25s ease-in-out infinite;
+}
+.traveler-sprite.walking .tv-dir.active .tv-b {
+  animation: tv-step 0.5s ease-in-out infinite;
+}
+@keyframes tv-step {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .tv-shadow-sprite {

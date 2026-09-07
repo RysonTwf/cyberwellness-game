@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import boyWalk1 from '../assets/characters/boy-walk-1.png';
 import boyWalk2 from '../assets/characters/boy-walk-2.png';
 import boyWalkFlip1 from '../assets/characters/boy-walkflip-1.png';
@@ -7,67 +6,52 @@ import girlWalk1 from '../assets/characters/girl-walk-1.png';
 import girlWalk2 from '../assets/characters/girl-walk-2.png';
 import girlWalkFlip1 from '../assets/characters/girl-walkflip-1.png';
 import girlWalkFlip2 from '../assets/characters/girl-walkflip-2.png';
-import { prefersReducedMotion } from '../lib/motion';
 
-// Each avatar has a hand-drawn walk cycle for each direction — `right` faces
-// the way the art was drawn, `left` is the artist's flipped pass (not a CSS
-// mirror, so the pack sits on the correct shoulder either way).
+// Each avatar has a hand-drawn two-pose walk cycle for each direction —
+// `right` faces the way the art was drawn, `left` is the artist's flipped
+// pass (not a CSS mirror, so the pack sits on the correct shoulder either
+// way). [poseA, poseB] — A is also the idle/CharacterSelect pose.
 const FRAME_SETS = {
   boy: { right: [boyWalk1, boyWalk2], left: [boyWalkFlip1, boyWalkFlip2] },
   girl: { right: [girlWalk1, girlWalk2], left: [girlWalkFlip1, girlWalkFlip2] },
 };
-const FRAME_MS = 240;
 
 /**
  * Real character art for players who picked "boy" or "girl" at
- * CharacterSelect — a 2-frame walk cycle per direction, swapped on a timer
- * while moving and held on the idle frame (frame 0 — also each avatar's
- * CharacterSelect portrait) otherwise. `facing` picks the left or right
- * cycle rather than mirroring one with scaleX, so the pack, the cap brim
- * and the stride all stay drawn the right way round.
+ * CharacterSelect. `facing` picks the left or right cycle rather than
+ * mirroring one with scaleX, so the pack, the cap brim and the stride all
+ * stay drawn the right way round.
  *
- * All eight frames (two avatars x two directions x two frames) are cropped
- * to the same 672x931 bounding box (~0.722:1, close enough to the neutral
- * SVG's own 40:56 — ~0.714:1 — that rendering at a 64px-wide footprint
- * lands in World.jsx's existing `.walker` positioning, styles.css,
- * calibrated for that footprint, without changes there).
+ * The two poses cross-fade continuously while walking (CSS `tv-step`) rather
+ * than hard-cutting on a JS timer — with only two frames a hard swap reads
+ * as a stutter, and swapping the <img> src can drop a frame while the next
+ * one decodes. Every frame for both directions stays mounted here, so a
+ * step, and a turn, are pure opacity changes with nothing to load. Idle
+ * holds pose A; the blanket reduced-motion rule (styles.css) freezes it
+ * there too.
  *
- * One correction on top of that footprint match: the SVG's own feet sit
- * ~8.9% up from its rendered bottom edge (viewBox y=51 of 56 — the shadow
- * ellipse lives in that gap), which is what `.walker`'s -81px offset was
- * actually calibrated against. The crops are tight to the shoe tips instead
- * (no such gap), so without a correction the sprite would visibly sit ~8px
- * lower than pos.y/the hotspots actually anchor it. -8.9% here restores it.
+ * All eight frames (two avatars x two directions x two poses) are cropped to
+ * the same 672x931 box (~0.722:1, close enough to the neutral SVG's own
+ * 40:56 — ~0.714:1 — that a 64px-wide footprint lands in World.jsx's
+ * `.walker` positioning without changes there). The -8.9% translateY is the
+ * one correction: the SVG's feet sit ~8.9% up from its bottom edge (the
+ * shadow gap), which `.walker`'s -81px offset was calibrated against, and
+ * the crops are tight to the shoe tips with no such gap.
  */
 function SpriteTraveler({ avatar, facing = 1, moving = false }) {
-  const frames = FRAME_SETS[avatar][facing < 0 ? 'left' : 'right'];
-  const [frame, setFrame] = useState(0);
-
-  useEffect(() => {
-    // This frame-swap is a `setInterval`, not a CSS animation, so it's
-    // outside styles.css's blanket reduced-motion rule (which only catches
-    // the neutral SVG traveler's leg/scarf bob) — holding the idle frame
-    // here keeps the two travelers consistent under reduced motion instead
-    // of only one of them respecting it.
-    if (!moving || prefersReducedMotion()) {
-      setFrame(0); // hold the idle pose the instant they stop, not mid-stride
-      return undefined;
-    }
-    // Both direction cycles are two frames, so a turn mid-stride just swaps
-    // which set `frames[frame]` reads from — the index and timer carry over.
-    const id = setInterval(() => setFrame((f) => (f + 1) % 2), FRAME_MS);
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- the interval
-    // only ever needs `moving`; `frames` is read fresh on every render.
-  }, [moving]);
-
+  const dir = facing < 0 ? 'left' : 'right';
   return (
     <div
       className={`traveler-sprite${moving ? ' walking' : ''}`}
       style={{ width: 64, transform: 'translateY(-8.9%)' }}
     >
       <div className="tv-shadow-sprite" />
-      <img src={frames[frame]} alt="" width={64} draggable={false} />
+      {Object.entries(FRAME_SETS[avatar]).map(([d, [poseA, poseB]]) => (
+        <div key={d} className={`tv-dir${d === dir ? ' active' : ''}`}>
+          <img className="tv-frame" src={poseA} alt="" width={64} draggable={false} />
+          <img className="tv-frame tv-b" src={poseB} alt="" width={64} draggable={false} />
+        </div>
+      ))}
     </div>
   );
 }
