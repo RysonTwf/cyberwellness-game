@@ -1500,24 +1500,24 @@ p {
 }
 
 /* SpriteTraveler (world/Traveler.jsx) — a real hand-drawn sprite instead of
-   the neutral SVG. Both directions and both poses stay mounted; CSS shows
-   one direction and cross-fades its two poses while walking. */
+   the neutral SVG. Every frame (both directions, both poses) stays mounted;
+   Traveler.jsx toggles which one is opaque. Nothing loads between frames, so
+   the swap is a clean hard cut with no decode hitch. */
 .traveler-sprite {
   position: relative;
   transform-origin: center bottom;
 }
 
 /* One direction per group. The inactive one stays in the DOM (decoded, ready
-   for an instant turn) but out of sight and out of flow; the active one is
-   in flow so it sizes the wrapper. */
+   for an instant turn) but out of flow; the active one is in flow so it
+   sizes the wrapper. Which frame shows is set inline (opacity). */
 .tv-dir {
   position: absolute;
-  inset: 0;
-  opacity: 0;
+  top: 0;
+  left: 0;
 }
 .tv-dir.active {
   position: relative;
-  opacity: 1;
 }
 
 .tv-frame {
@@ -1525,31 +1525,17 @@ p {
   width: 100%;
   height: auto;
 }
-/* pose B sits over pose A; idle shows A alone */
+/* frame 1 stacked over frame 0 */
 .tv-b {
   position: absolute;
-  inset: 0;
-  opacity: 0;
+  top: 0;
+  left: 0;
 }
 
-/* Walking: fade B in and out over A — a smooth two-pose oscillation, not a
-   hard frame cut. The bob rides the same wrapper and is timed to two steps
-   per fade cycle. Both are plain CSS, so the blanket reduced-motion rule
-   (further down) freezes the sprite on pose A. */
+/* The vertical bob, on the wrapper so both frames rise together. Plain CSS,
+   so the blanket reduced-motion rule (further down) stills it. */
 .traveler-sprite.walking .tv-dir.active {
-  animation: walk-bob 0.25s ease-in-out infinite;
-}
-.traveler-sprite.walking .tv-dir.active .tv-b {
-  animation: tv-step 0.5s ease-in-out infinite;
-}
-@keyframes tv-step {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+  animation: walk-bob 0.38s ease-in-out infinite;
 }
 
 .tv-shadow-sprite {

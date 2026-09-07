@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import boyWalk1 from '../assets/characters/boy-walk-1.png';
 import boyWalk2 from '../assets/characters/boy-walk-2.png';
 import boyWalkFlip1 from '../assets/characters/boy-walkflip-1.png';
@@ -6,15 +7,17 @@ import girlWalk1 from '../assets/characters/girl-walk-1.png';
 import girlWalk2 from '../assets/characters/girl-walk-2.png';
 import girlWalkFlip1 from '../assets/characters/girl-walkflip-1.png';
 import girlWalkFlip2 from '../assets/characters/girl-walkflip-2.png';
+import { prefersReducedMotion } from '../lib/motion';
 
-// Each avatar has a hand-drawn two-pose walk cycle for each direction —
+// Each avatar has a hand-drawn two-frame walk cycle for each direction —
 // `right` faces the way the art was drawn, `left` is the artist's flipped
 // pass (not a CSS mirror, so the pack sits on the correct shoulder either
-// way). [poseA, poseB] — A is also the idle/CharacterSelect pose.
+// way). Frame 0 is also the idle / CharacterSelect pose.
 const FRAME_SETS = {
   boy: { right: [boyWalk1, boyWalk2], left: [boyWalkFlip1, boyWalkFlip2] },
   girl: { right: [girlWalk1, girlWalk2], left: [girlWalkFlip1, girlWalkFlip2] },
 };
+const FRAME_MS = 190;
 
 /**
  * Real character art for players who picked "boy" or "girl" at
@@ -22,16 +25,16 @@ const FRAME_SETS = {
  * mirroring one with scaleX, so the pack, the cap brim and the stride all
  * stay drawn the right way round.
  *
- * The two poses cross-fade continuously while walking (CSS `tv-step`) rather
- * than hard-cutting on a JS timer — with only two frames a hard swap reads
- * as a stutter, and swapping the <img> src can drop a frame while the next
- * one decodes. Every frame for both directions stays mounted here, so a
- * step, and a turn, are pure opacity changes with nothing to load. Idle
- * holds pose A; the blanket reduced-motion rule (styles.css) freezes it
- * there too.
+ * The frame swap is a hard cut on a timer — the two poses are a stride
+ * apart, so cross-fading them just shows the character twice at once. What
+ * *is* worth doing is keeping every frame mounted: swapping the <img> src
+ * can drop a frame while the next PNG decodes (the "delay between frames"),
+ * so all four (two directions x two frames) stay in the DOM and only their
+ * opacity toggles. A turn is then instant too. Idle and reduced motion both
+ * hold frame 0.
  *
- * All eight frames (two avatars x two directions x two poses) are cropped to
- * the same 672x931 box (~0.722:1, close enough to the neutral SVG's own
+ * All eight frames (two avatars x two directions x two frames) are cropped
+ * to the same 672x931 box (~0.722:1, close enough to the neutral SVG's own
  * 40:56 — ~0.714:1 — that a 64px-wide footprint lands in World.jsx's
  * `.walker` positioning without changes there). The -8.9% translateY is the
  * one correction: the SVG's feet sit ~8.9% up from its bottom edge (the
@@ -40,16 +43,36 @@ const FRAME_SETS = {
  */
 function SpriteTraveler({ avatar, facing = 1, moving = false }) {
   const dir = facing < 0 ? 'left' : 'right';
+  const [frame, setFrame] = useState(0);
+
+  useEffect(() => {
+    if (!moving || prefersReducedMotion()) {
+      setFrame(0); // hold the idle pose the instant they stop, not mid-stride
+      return undefined;
+    }
+    const id = setInterval(() => setFrame((f) => f ^ 1), FRAME_MS);
+    return () => clearInterval(id);
+  }, [moving]);
+
   return (
     <div
       className={`traveler-sprite${moving ? ' walking' : ''}`}
       style={{ width: 64, transform: 'translateY(-8.9%)' }}
     >
       <div className="tv-shadow-sprite" />
-      {Object.entries(FRAME_SETS[avatar]).map(([d, [poseA, poseB]]) => (
+      {Object.entries(FRAME_SETS[avatar]).map(([d, poses]) => (
         <div key={d} className={`tv-dir${d === dir ? ' active' : ''}`}>
-          <img className="tv-frame" src={poseA} alt="" width={64} draggable={false} />
-          <img className="tv-frame tv-b" src={poseB} alt="" width={64} draggable={false} />
+          {poses.map((src, i) => (
+            <img
+              key={i}
+              className={`tv-frame${i === 1 ? ' tv-b' : ''}`}
+              src={src}
+              alt=""
+              width={64}
+              draggable={false}
+              style={{ opacity: d === dir && i === frame ? 1 : 0 }}
+            />
+          ))}
         </div>
       ))}
     </div>
