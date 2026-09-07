@@ -979,12 +979,12 @@ const bullybogHigher = {
       { id: 'h1', text: '"I love your song, Pockets!"', bin: 'send' },
       { id: 'h2', text: '"Do you want to sing the next one together?"', bin: 'send' },
       { id: 'h3', text: '"I am here if you want to talk."', bin: 'send' },
-      { id: 'h4', text: '"I thought it sounded good, honestly."', bin: 'send' },
+      { id: 'h4', text: '"I thought it sounded good!"', bin: 'send' },
       { id: 'h5', text: '"Are you okay? That comment was unkind."', bin: 'send' },
       { id: 'h6', text: '"Do not mind them. Sing the next one."', bin: 'send' },
       {
         id: 'h7',
-        text: '"Nobody wants to hear this."',
+        text: '"Nobody wants to hear you sing."',
         bin: 'leave',
         check: 'K',
         checkNote: 'Nothing complicated here. It is simply unkind, and it is the comment that started all this.',
@@ -1048,7 +1048,7 @@ const bullybogHigher = {
 
   rule: {
     who: 'Comet',
-    text: 'The lesson here is for us to be kind in our words and actions, whatever the situation. And if a mean message is ever about you, not Pockets, the rule is the same: do not be mean back, and you can block or report it.',
+    text: 'The lesson here is for us to be kind in our words and actions, regardless the situation. Do not be mean back, and you can block or report it.',
   },
 };
 
@@ -1536,7 +1536,7 @@ const fableFallsHigher = {
           { id: 's', text: 'Source. A new account calling itself "real" may not be what it claims to be.', correct: true, feedback: 'Right. Anyone can type the word official, and anyone can put "real" in a username. Neither is proof.' },
           { id: 'u', text: 'Understand. It is about understanding the content.', correct: false, feedback: 'You have not got to the announcement yet. Look at who is making it.' },
           { id: 'r', text: 'Research. It is about checking elsewhere.', correct: false, feedback: 'Checking elsewhere is your next move. First notice who is behind the post.' },
-          { id: 'e', text: 'Evaluate. It is about checking the facts to ensure it is true.', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
+          { id: 'e', text: 'Research. It is about checking its authenticity.  ', correct: false, feedback: 'That comes at the end. This clue is squarely about the account itself.' },
         ],
       },
       {
